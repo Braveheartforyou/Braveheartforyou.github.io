@@ -6,32 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-<style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
@@ -39,8 +17,10 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -58,7 +38,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -92,23 +72,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="vue-cli,">
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+  <meta name="keywords" content="ECMAScript 6,javascript,vue,webpack," />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -116,17 +96,16 @@
 
 
 <meta name="description" content="vue官方脚手架 vue-cli npm run build 在本地运行">
-<meta name="keywords" content="vue-cli">
+<meta name="keywords" content="ECMAScript 6,javascript,vue,webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue-cli构建项目 npm run build后应该怎么运行在本地查看效果 (未完待续)">
+<meta property="og:title" content="vue-cli构建项目 npm run build后应该怎么运行在本地查看效果">
 <meta property="og:url" content="http://asyncnode.com/blog/vue-run-build.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="vue官方脚手架 vue-cli npm run build 在本地运行">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://asyncnode.com/images/run_build1.jpg">
-<meta property="og:updated_time" content="2018-11-13T09:28:14.915Z">
+<meta property="og:updated_time" content="2017-07-19T02:09:21.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue-cli构建项目 npm run build后应该怎么运行在本地查看效果 (未完待续)">
+<meta name="twitter:title" content="vue-cli构建项目 npm run build后应该怎么运行在本地查看效果">
 <meta name="twitter:description" content="vue官方脚手架 vue-cli npm run build 在本地运行">
 <meta name="twitter:image" content="http://asyncnode.com/images/run_build1.jpg">
 
@@ -156,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/blog/vue-run-build.html">
+  <link rel="canonical" href="http://asyncnode.com/blog/vue-run-build.html"/>
 
 
 
 
 
-  <title>vue-cli构建项目 npm run build后应该怎么运行在本地查看效果 (未完待续) | asyncnode</title>
+  <title>vue-cli构建项目 npm run build后应该怎么运行在本地查看效果 | asyncnode</title>
   
 
 
@@ -190,7 +169,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -199,15 +178,14 @@
 
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
-    <a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">asyncnode</span>
         <span class="logo-line-after"><i></i></span>
@@ -237,7 +215,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -247,7 +225,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -257,7 +235,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -267,7 +245,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -280,7 +258,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -301,7 +279,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -333,16 +313,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/vue-run-build.html">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangjingguo">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/uploads/user.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="asyncnode">
     </span>
 
@@ -351,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vue-cli构建项目 npm run build后应该怎么运行在本地查看效果 (未完待续)</h1>
+          <h1 class="post-title" itemprop="name headline">vue-cli构建项目 npm run build后应该怎么运行在本地查看效果</h1>
         
 
         <div class="post-meta">
@@ -374,7 +354,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -385,9 +365,20 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-cli/" itemprop="url" rel="index">
-                    <span itemprop="name">vue-cli</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
                   </a>
                 </span>
 
@@ -434,7 +425,7 @@
       
 
       
-        <h2 id="运行npm-run-build-本地查看页面效果"><a href="#运行npm-run-build-本地查看页面效果" class="headerlink" title="运行npm run build 本地查看页面效果"></a>运行npm run build 本地查看页面效果</h2><h3 id="本文以vue官方脚手架vue-cli构建的项目为例"><a href="#本文以vue官方脚手架vue-cli构建的项目为例" class="headerlink" title="本文以vue官方脚手架vue-cli构建的项目为例"></a>本文以vue官方脚手架vue-cli构建的项目为例</h3><p> 这时如果直接运行npn run build是可以运行并打包你的代码的，不会报任何异常或错误，但是你会看到你的命令行打包完成有这样一句提示：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Build complete.</span><br><span class="line">Tip: built files are meant to be served over an HTTP server.</span><br><span class="line">Opening index.html over file:<span class="comment">// won\'t work</span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="运行npm-run-build-本地查看页面效果"><a href="#运行npm-run-build-本地查看页面效果" class="headerlink" title="运行npm run build 本地查看页面效果"></a>运行npm run build 本地查看页面效果</h2><h3 id="本文以vue官方脚手架vue-cli构建的项目为例"><a href="#本文以vue官方脚手架vue-cli构建的项目为例" class="headerlink" title="本文以vue官方脚手架vue-cli构建的项目为例"></a>本文以vue官方脚手架vue-cli构建的项目为例</h3><p> 这时如果直接运行npn run build是可以运行并打包你的代码的，不会报任何异常或错误，但是你会看到你的命令行打包完成有这样一句提示：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Build complete.</div><div class="line">Tip: built files are meant to be served over an HTTP server.</div><div class="line">Opening index.html over file:<span class="comment">// won\'t work</span></div></pre></td></tr></table></figure></p>
 <p> 运行完npm run build,打开项目中的dist目录下的index.html文件！<br> 看到index.html的 <font color="red">控制台</font>会出现一片<font color="red">404</font> 如下图：<br> <img src="../images/run_build1.jpg" alt="run_build_console_error"></p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>  因为<font color="red"> config </font>目录下的<font color="red"> index.js </font>中的<font color="red"> build </font>配置的<font color="red"> assetsPublicPath </font>为<font color="red"> / </font>绝对路径,所以找不到打包以后的资源<br>  我们只要报<font color="red"> build </font>中的<font color="red"> assetsPublicPath </font>改为<font color="red"> ./ </font>就可以了，在运行一次npm run build,再打开index.html就可以在本地看了</p>
 
@@ -466,7 +457,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue-cli/" rel="tag"><i class="fa fa-tag"></i> vue-cli</a>
+            <a href="/tags/ECMAScript-6/" rel="tag"># ECMAScript 6</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
           
         </div>
       
@@ -488,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/Frame-selection.html" rel="prev" title="框架选型">
-                框架选型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -520,7 +513,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript">
+<script type="text/javascript" >
   var jiathis_config={
     hideMore:false
   }
@@ -564,7 +557,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -574,9 +567,11 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="Zhang">
-          <p class="site-author-name" itemprop="name">Zhang</p>
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/user.jpg"
+               alt="zhangjingguo" />
+          <p class="site-author-name" itemprop="name">zhangjingguo</p>
            
               <p class="site-description motion-element" itemprop="description">asyncnode</p>
           
@@ -586,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -597,7 +592,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -608,7 +603,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -681,24 +676,18 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">
+        <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Zhang</span>
+  <span class="author" itemprop="copyrightHolder">zhangjingguo</span>
 </div>
 
+
 <div class="powered-by">
-  <i class="fa fa-user-md"></i>
-  <span id="busuanzi_container_site_uv">
-    本站总访问量<span id="busuanzi_value_site_uv"></span>次
-  </span>
-</div>
-<!--<div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
@@ -707,12 +696,8 @@
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
-</div> -->
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共36.9k字</span>
 </div>
+
 
         
 
@@ -748,8 +733,6 @@
   
 
 
-  
-
 
 
 
@@ -777,9 +760,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
@@ -1177,35 +1157,6 @@
   
 
   
-
-  
-<div id="hexo-helper-live2d">
-  <canvas id="live2dcanvas" width="150" height="300"></canvas>
-</div>
-<style>
-  #live2dcanvas{
-    position: fixed;
-    width: 150px;
-    height: 300px;
-    opacity:0.7;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -20px;
-  }
-</style>
-<script type="text/javascript" src="/live2d/device.min.js"></script>
-<script type="text/javascript">
-const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
-(function(){
-  if((typeof(device) != 'undefined') && (device.mobile())){
-    document.getElementById("live2dcanvas").style.width = '75px';
-    document.getElementById("live2dcanvas").style.height = '150px';
-  }else
-    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
-  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/hibiki.model.json", 0.5);});
-})();
-</script>
 
 </body>
 </html>
