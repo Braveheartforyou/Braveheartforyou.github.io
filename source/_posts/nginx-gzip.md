@@ -1,5 +1,5 @@
 ---
-title: nginx-gzip
+title: nginx 配置前端 字段 gzip
 date: 2018-11-14 17:21:14
 tags: [nginx]
 categories: [nginx]
