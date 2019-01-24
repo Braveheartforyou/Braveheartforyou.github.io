@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="vue-cli,WebPack,">
+  <meta name="keywords" content="JavaScript, js, html, css, vue, node">
 
 
 
@@ -115,18 +115,17 @@
 
 
 
-<meta name="description" content="在用webpack打包的时候，要区分正式环境、测试环境、预发布环境，要调用不同的接口和一些路径不同，我用vue官方脚手架vue-cli上做的">
-<meta name="keywords" content="vue-cli,WebPack">
+<meta name="description" content="asyncnode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack_Environment_build">
-<meta property="og:url" content="http://asyncnode.com/blog/webpack-Environment-build.html">
+<meta property="og:title" content="vue_mixins">
+<meta property="og:url" content="http://asyncnode.com/blog/vue-mixins.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="在用webpack打包的时候，要区分正式环境、测试环境、预发布环境，要调用不同的接口和一些路径不同，我用vue官方脚手架vue-cli上做的">
+<meta property="og:description" content="asyncnode">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T10:08:03.233Z">
+<meta property="og:updated_time" content="2019-01-16T02:25:47.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack_Environment_build">
-<meta name="twitter:description" content="在用webpack打包的时候，要区分正式环境、测试环境、预发布环境，要调用不同的接口和一些路径不同，我用vue官方脚手架vue-cli上做的">
+<meta name="twitter:title" content="vue_mixins">
+<meta name="twitter:description" content="asyncnode">
 
 
 
@@ -154,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/blog/webpack-Environment-build.html">
+  <link rel="canonical" href="http://asyncnode.com/blog/vue-mixins.html">
 
 
 
 
 
-  <title>webpack_Environment_build | asyncnode</title>
+  <title>vue_mixins | asyncnode</title>
   
 
 
@@ -332,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/webpack-Environment-build.html">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/vue-mixins.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang">
@@ -349,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">webpack_Environment_build</h1>
+          <h1 class="post-title" itemprop="name headline">vue_mixins</h1>
         
 
         <div class="post-meta">
@@ -361,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T14:20:59+08:00">
-                2017-10-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T10:25:47+08:00">
+                2019-01-16
               </time>
             
 
@@ -372,28 +371,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-cli/" itemprop="url" rel="index">
-                    <span itemprop="name">vue-cli</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -402,7 +379,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/blog/webpack-Environment-build.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/blog/vue-mixins.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -417,10 +394,6 @@
           
 
           
-              <div class="post-description">
-                  在用webpack打包的时候，要区分正式环境、测试环境、预发布环境，要调用不同的接口和一些路径不同，我用vue官方脚手架vue-cli上做的
-              </div>
-          
 
         </div>
       </header>
@@ -432,11 +405,7 @@
       
 
       
-        <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>在公司整体的框架就是要分为测试环境、预发布环境、正式环境，要切换不同的后台api地址，登录地址也是跳转别的子站点登录，所以就要通过编译不同环境的前端代码。<br>用的vue默认的脚手架<font color="red">vue-cli</font><br>第一种就是通过<font color="red">process.env</font>来传递不同的值，在<font color="red">config</font>文件夹中通过 <font color="red">dev.env.js、pro.env.js</font>区分是什么环境要调用的接口地址和登录地址</p>
-<h2 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h2><p>可以通过最外层的<font color="red">package.json</font>中的<font color="red">scripts</font>对象中的<font color="red">dev添加 <font color="red">set API_ROOT=localhost&amp;&amp; node build/dev-server.js</font>并且在<font color="red">config文件夹中的dev.env.js</font>加一个判断,分别判断 sit、uat、pro正式环境还有本地loaclhost，打包不同的文件和接口<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">switch</span> (process.env.API_ROOT) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'sit'</span>:</span><br><span class="line">        <span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">            NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">            API_URL: <span class="string">''</span>,</span><br><span class="line">            LOGIN_URL: <span class="string">''</span>,</span><br><span class="line">            LOGOUT_URL: <span class="string">''</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'uat'</span>:</span><br><span class="line">        <span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">            NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">            API_URL: <span class="string">''</span>,</span><br><span class="line">            LOGIN_URL: <span class="string">''</span>,</span><br><span class="line">            LOGOUT_URL: <span class="string">''</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'pro'</span>:</span><br><span class="line">        <span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">            NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">            API_URL: <span class="string">''</span>,</span><br><span class="line">            LOGIN_URL: <span class="string">''</span>,</span><br><span class="line">            LOGOUT_URL: <span class="string">''</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">            NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">            API_URL: <span class="string">''</span>,</span><br><span class="line">            LOGIN_URL: <span class="string">''</span>,</span><br><span class="line">            LOGOUT_URL: <span class="string">''</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></font></p>
-<p>但是有一个不好的地方，就是要写多个dev-sit、dev-uat、dev-pro和build-sit、build-uat、build-pro要运行不同的环境和打包不同的环境<br>同时在<font color="red">api.js</font>中读取<font color="red">process.env.API_URL</font>来调用不同的接口位置</p>
-<h2 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h2><p>可以在 cmd 运行npm run dev时添加进程的信息，如在window端添加进程信息set API_ROOT=localhost&amp;&amp; npm run dev这样式和上面有同样的结果，这样更简洁一些，这只是个人的一些简单的见解。</p>
-
+        
       
     </div>
 
@@ -463,14 +432,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/vue-cli/" rel="tag"><i class="fa fa-tag"></i> vue-cli</a>
-          
-            <a href="/tags/WebPack/" rel="tag"><i class="fa fa-tag"></i> WebPack</a>
-          
-        </div>
-      
 
       
       
@@ -480,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/mockData.html" rel="next" title="mockData">
-                <i class="fa fa-chevron-left"></i> mockData
+              <a href="/blog/etag-cache.html" rel="next" title="利用ETag和If-None-Match字段验证缓存的响应">
+                <i class="fa fa-chevron-left"></i> 利用ETag和If-None-Match字段验证缓存的响应
               </a>
             
           </div>
@@ -489,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/webpack-build-iconfont.html" rel="prev" title="webpack-build-iconfont">
-                webpack-build-iconfont <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,17 +521,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="Zhang">
           <p class="site-author-name" itemprop="name">Zhang</p>
@@ -652,22 +600,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路1"><span class="nav-number">2.</span> <span class="nav-text">思路1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路2"><span class="nav-number">3.</span> <span class="nav-text">思路2</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
