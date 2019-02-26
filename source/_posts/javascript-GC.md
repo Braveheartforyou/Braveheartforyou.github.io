@@ -1,5 +1,5 @@
 ---
-title: javascript-GC
+title: javascript中垃圾回收机制
 date: 2017-10-31 21:20:13
 tags: [JavaScript]
 categories: [JavaScript]

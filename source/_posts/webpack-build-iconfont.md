@@ -1,5 +1,5 @@
 ---
-title: webpack-build-iconfont
+title: vue-cli中引入static文件中的iconfont无法显示解决方法
 date: 2017-10-26 14:49:40
 tags: [WebPack]
 categories: [WebPack]

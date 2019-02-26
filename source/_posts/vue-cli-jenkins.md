@@ -1,5 +1,5 @@
 ---
-title: vue-cli-jenkins
+title: vue-cli结合jekins配置 实现自动部署，持续化集成
 date: 2018-11-14 15:46:23
 tags: [vue-cli]
 categories: [WebPack]

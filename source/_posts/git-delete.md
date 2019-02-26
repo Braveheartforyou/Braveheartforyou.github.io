@@ -1,5 +1,5 @@
 ---
-title: git-delete
+title: git中删除git本地远程分支、本地分支、远程分支
 date: 2019-01-23 22:10:09
 tags: [Git]
 categories: [Git]

@@ -7,6 +7,13 @@ description: 基本的判断是, this的指向在函数定义的时候是确定�
 ---
 ## 概述
  首先必须要说的是，this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象,那么接下来我会深入的探讨这个问题。
+ <font color="red">function执行默认返回undefined</font>
+ ```javascript
+ function a () {
+	console.log(1111);
+}
+console.log(a()); // undefined
+ ```
 ### 在一般函数方法中使用 this 指代全局对象
 ```javascript
     var ale = '外部';

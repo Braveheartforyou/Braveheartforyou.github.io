@@ -25,4 +25,5 @@ description: 在JavaScript中运算符是有明确的有限级的，如*运算�
 ### 汇总表
 下面的表将所有运算符按照优先级的不同从高到低排列。
 可以查看 mdn中的 table来分他的等级。
-参考>https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+mdn运算符优先级参考表 <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table>

@@ -1,5 +1,5 @@
 ---
-title: jenkins-fornt
+title: jenkins配置前端不同环境打包不同的文件
 date: 2018-11-13 18:09:31
 tags: [jenkins]
 categories: [WebPack]

@@ -1,5 +1,5 @@
 ---
-title: git_rebase
+title: git中git rebase的使用
 date: 2019-01-24 16:59:06
 tags: [Git]
 categories: [Git]

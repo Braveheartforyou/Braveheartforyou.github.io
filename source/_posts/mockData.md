@@ -1,5 +1,5 @@
 ---
-title: mockData
+title: 前端开发中mock数据的几种办法
 date: 2017-09-13 13:30:46
 tags: [JavaScript]
 categories: [JavaScript]
