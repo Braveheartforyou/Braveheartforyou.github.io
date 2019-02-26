@@ -19,5 +19,12 @@ JavaScript 有两种比较方式：严格比较运算符和转换类型比较运
 ### 相等(==)
 比较操作符会为两个不同类型的操作数转换类型，然后进行严格比较。当两个操作数都是对象时，JavaScript会比较其内部引用，当且仅当他们的引用指向内存中的相同对象（区域）时才相等，即他们在栈内存中的引用地址相同。
 ### [] == false or ![] == [] or ![] = [] 为true
+mdn运算符优先级参考表
+![! ==](../images/false-true/false-true-1.png)
+![! ==](../images/false-true/false-true-2.png)
+<font color="red">==</font>的优先级16
+<font color="red">!</font>的优先级10
 #### [] == false
-mdn运算符优先级参考表 > https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table
+非严格比较操作符 == 是会做强制类型转换的，那么根据 ECMA 262 它的规则是：
+![! ==](../images/false-true/1.png)
+来源 >http://www.ecma-international.org
