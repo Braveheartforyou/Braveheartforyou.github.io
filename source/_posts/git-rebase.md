@@ -22,3 +22,31 @@ description: 在git中有两种合并方式 git merge、git rebase 还有 git ch
 //  exec：执行shell命令（缩写:x）
 //  drop：我要丢弃该commit（缩写:d）
 ```
+
+## git merge
+使用 git merge 合并master1和dev1分支
+``` shell
+git checkout master1
+git merge dev1
+```
+![git merge](../images/git/1-1.png)
+如上图所示：
+最新的快照c2和c3，还有它们共同的祖先c1进行三方合并，合并的结果会产生以下新的c5，同时太还会对你的master1分支上的合并线条产生不好的结果。
+![git merge](../images/git/1-2.jpg)
+
+## git rebase
+我们现在使用 git rebase 来合并master1和dev1分支
+``` shell
+git checkout dev1
+git rebase master1
+git checkout master1
+git merge dev1
+```
+![git merge](../images/git/1-3.png)
+如上图所示：
+它的原理是回到两个分支最近的共同祖先，根据当前分支（也就是要进行衍合的分支 dev1）后续的历次提交对象（这里只有一个 C3），生成一系列文件补丁，然后以基底分支（也就是主干分支master1）最后一个提交对象（C2）为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象（C3'），从而改写 dev1 的提交历史，使它成为 master1 分支的直接下游.
+把 C3 里产生的改变到 C2 上重演一遍。
+现在回到 master1 分支，进行一次快进合并.
+![git merge](../images/git/1-4.jpg)
+
+## git cherry-pick
