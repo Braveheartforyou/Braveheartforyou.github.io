@@ -47,9 +47,57 @@ git merge dev1
 它的原理是回到两个分支最近的共同祖先，根据当前分支（也就是要进行衍合的分支 dev1）后续的历次提交对象（这里只有一个 C3），生成一系列文件补丁，然后以基底分支（也就是主干分支master1）最后一个提交对象（C2）为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象（C3'），从而改写 dev1 的提交历史，使它成为 master1 分支的直接下游.
 把 C3 里产生的改变到 C2 上重演一遍。
 现在回到 master1 分支，进行一次快进合并.
-![git merge](../images/git/1-4.jpg)
+![git merge](../images/git/1-4.png)
 
 ## git rebase [startpoint]   [endpoint]  --onto  [branchName]
 当我们想从master1分支上复制b、c、d节点复制到dev1分支上，如下图所示：
-![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-5.jpg)
-a
+![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-5.png)
+master分支：
+```
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:27:30 2019 +0800
+
+    d
+
+commit d422a0cb01609f9007b5acf8771428d04ef5d963
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:27:02 2019 +0800
+
+    c
+
+commit f379de54fe09093b5f09d4f28e8c1d87318c06df
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:24:58 2019 +0800
+
+    b
+
+commit 7343021a9f5a65c6042bf62589ca02bd7bb95e7f (origin/hexo-source, hexo-source)
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:20:53 2019 +0800
+
+    a
+```
+dev1分支：
+```
+commit 12d7fd6a7c7ff82f433fc47244dfa29df77130a9 (HEAD -> dev1)
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:29:47 2019 +0800
+
+    e
+
+commit 7343021a9f5a65c6042bf62589ca02bd7bb95e7f (origin/hexo-source, hexo-source)
+Author: velen <896662364@qq.com>
+Date:   Wed Feb 27 22:20:53 2019 +0800
+
+    a
+
+```
+我们使用命令的形式为:
+```
+git rebase   [startpoint]   [endpoint]  --onto  [branchName]
+```
+其中，[startpoint]  [endpoint]仍然和上一个命令一样指定了一个编辑区间(前开后闭)，--onto的意思是要将该指定的提交复制到哪个分支上。
+所以，在找到b(7343021a9f5a65c6042bf62589ca02bd7bb95e7f)和c(d422a0cb01609f9007b5acf8771428d04ef5d963)的提交hash后，我们运行以下命令：
+```
+git rebase 7343021a9f5a65c6042bf62589ca02bd7bb95e7f^ d422a0cb01609f9007b5acf8771428d04ef5d963 --onto dev1
+```
