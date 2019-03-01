@@ -52,44 +52,58 @@ git merge dev1
 ## git rebase [startpoint]   [endpoint]  --onto  [branchName]
 当我们想从master1分支上复制b、c、d节点复制到dev1分支上，如下图所示：
 ![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-5.png)
-master分支：
+master1分支：
 ```
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:27:30 2019 +0800
+commit 302d0381120b55518924d0fa5d91aeb651e7d4fd (HEAD -> master1)
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:38:25 2019 +0800
 
     d
 
-commit d422a0cb01609f9007b5acf8771428d04ef5d963
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:27:02 2019 +0800
+commit 9ef980cce33baa48a96f2d989d17330047cdf36b
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:38:04 2019 +0800
 
     c
 
-commit f379de54fe09093b5f09d4f28e8c1d87318c06df
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:24:58 2019 +0800
+commit 0d00c05dc3cb28447e35d5d4be23ca76cc32741c
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:37:27 2019 +0800
 
     b
 
-commit 7343021a9f5a65c6042bf62589ca02bd7bb95e7f (origin/hexo-source, hexo-source)
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:20:53 2019 +0800
+commit 57840ed32293ca5218a9734402b51d6bcad9698d
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:34:50 2019 +0800
 
     a
+
+commit 24b0963b54f65fc58ca2642e81e7cdc7dae1e8ac (origin/develop, master, develop)
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Feb 22 13:28:15 2019 +0800
+
+    Initial commit from Create React App
+
 ```
 dev1分支：
 ```
-commit 12d7fd6a7c7ff82f433fc47244dfa29df77130a9 (HEAD -> dev1)
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:29:47 2019 +0800
+commit 1225ea20d48bd16fbcfe1465e84f06292c52fe42 (HEAD -> dev1)
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:36:58 2019 +0800
 
     e
 
-commit 7343021a9f5a65c6042bf62589ca02bd7bb95e7f (origin/hexo-source, hexo-source)
-Author: velen <896662364@qq.com>
-Date:   Wed Feb 27 22:20:53 2019 +0800
+commit 57840ed32293ca5218a9734402b51d6bcad9698d
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Mar 1 14:34:50 2019 +0800
 
     a
+
+commit 24b0963b54f65fc58ca2642e81e7cdc7dae1e8ac (origin/develop, master, develop)
+Author: zhang.jg <zhangjingguo@unicdata.com>
+Date:   Fri Feb 22 13:28:15 2019 +0800
+
+    Initial commit from Create React App
 
 ```
 我们使用命令的形式为:
@@ -99,5 +113,33 @@ git rebase   [startpoint]   [endpoint]  --onto  [branchName]
 其中，[startpoint]  [endpoint]仍然和上一个命令一样指定了一个编辑区间(前开后闭)，--onto的意思是要将该指定的提交复制到哪个分支上。
 所以，在找到b(7343021a9f5a65c6042bf62589ca02bd7bb95e7f)和c(d422a0cb01609f9007b5acf8771428d04ef5d963)的提交hash后，我们运行以下命令：
 ```
-git rebase 7343021a9f5a65c6042bf62589ca02bd7bb95e7f^ d422a0cb01609f9007b5acf8771428d04ef5d963 --onto dev1
+git rebase 0d00c05dc^ 302d0381 --onto dev1
 ```
+如果有冲突解决冲突就解决冲突,如果没有就跳过这一步：
+```
+git add .
+git rebase --continue
+```
+![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-6.png)
+当前HEAD处于<font color="blue">游离状态</font>，实际上，此时所有分支的状态应该是这样:
+![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-7.png
+所以，虽然此时<font color="blue">HEAD</font>所指向的内容正是我们所需要的，但是<font color="blue">dev1</font>分支是没有任何变化的，git只是将<font color="blue">b-c-d</font>部分的提交内容复制一份粘贴到了<font color="blue">dev1</font>所指向的提交后面，我们需要做的就是将<font color="blue">dev1</font>所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
+```
+git checkout dev1
+git reset --hard 316ad6d
+```
+这时候就完成了。
+<font color="blue">git rebase [startpoint]   [endpoint]  --onto  [branchName] </font>还有一种用法。
+参考 ><font color="blue">https://blog.csdn.net/endlu/article/details/51605861</font>
+
+## git cherry-pick
+如果只是复制某一两个提交到其他分支，建议使用更简单的命令:git cherry-pick
+```
+git checkout '你的分支'
+git cherry-pick '你要copy的id'
+git log //查看
+```
+## git rebase -i  [startpoint]  [endpoint] // 合并多个commit
+其中-i的意思是--interactive，即弹出交互式的界面让用户编辑完成合并操作，[startpoint]  [endpoint]则指定了一个编辑区间，如果不指定[endpoint]，则该区间的终点默认是当前分支HEAD所指向的commit(注：该区间指定的是一个前开后闭的区间)。
+在查看到了log日志后，我们运行以下命令：
+未完待续。
