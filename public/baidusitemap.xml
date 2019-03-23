@@ -1,157 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com//blog/http-get-post.html</loc>
+    <lastmod>2019-03-23T15:23:31.756Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/hoisting.html</loc>
+    <lastmod>2019-03-21T15:05:08.000Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/http-tcp.html</loc>
+    <lastmod>2019-03-21T13:20:24.824Z</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-debounce-throttle.html</loc>
-    <lastmod>2019-03-04T08:42:06.371Z</lastmod>
+    <lastmod>2019-03-04T13:31:04.600Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/git-rebase.html</loc>
-    <lastmod>2019-03-01T09:51:55.323Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-module.html</loc>
-    <lastmod>2019-03-01T01:49:45.737Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-false-true.html</loc>
-    <lastmod>2019-03-01T01:49:45.736Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/es-promise.html</loc>
-    <lastmod>2019-03-01T01:49:45.734Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-build-iconfont.html</loc>
-    <lastmod>2019-02-27T09:20:06.030Z</lastmod>
+    <lastmod>2019-03-02T23:44:54.246Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/vue-mixins.html</loc>
-    <lastmod>2019-02-27T09:20:06.029Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.180Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/vue-run-build.html</loc>
-    <lastmod>2019-02-27T09:20:06.029Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.180Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/webpack-Environment-build.html</loc>
-    <lastmod>2019-02-27T09:20:06.029Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.180Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/webpack-build-iconfont.html</loc>
+    <lastmod>2019-02-27T14:43:38.180Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/react-setState.html</loc>
-    <lastmod>2019-02-27T09:20:06.028Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.179Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/vue-build-dll.html</loc>
-    <lastmod>2019-02-27T09:20:06.028Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.179Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/vue-cli-jenkins.html</loc>
-    <lastmod>2019-02-27T09:20:06.028Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/nginx-gzip.html</loc>
-    <lastmod>2019-02-27T09:20:06.027Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.179Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/node-phantom.html</loc>
-    <lastmod>2019-02-27T09:20:06.027Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/js-this.html</loc>
-    <lastmod>2019-02-27T09:20:06.026Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/mobile-all.html</loc>
-    <lastmod>2019-02-27T09:20:06.026Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/mockData.html</loc>
-    <lastmod>2019-02-27T09:20:06.026Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.179Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/jenkins-fornt.html</loc>
-    <lastmod>2019-02-27T09:20:06.025Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.178Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/js-this.html</loc>
+    <lastmod>2019-02-27T14:43:38.178Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/mobile-all.html</loc>
+    <lastmod>2019-02-27T14:43:38.178Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/mockData.html</loc>
+    <lastmod>2019-02-27T14:43:38.178Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/nginx-gzip.html</loc>
+    <lastmod>2019-02-27T14:43:38.178Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/javascript-false-true.html</loc>
+    <lastmod>2019-02-27T14:43:38.177Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/javascript-module.html</loc>
+    <lastmod>2019-02-27T14:43:38.177Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-oop.html</loc>
-    <lastmod>2019-02-27T09:20:06.025Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.177Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-scope.html</loc>
-    <lastmod>2019-02-27T09:20:06.025Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-IF-False-options.html</loc>
-    <lastmod>2019-02-27T09:20:06.024Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.177Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/ios-bug-retina.html</loc>
-    <lastmod>2019-02-27T09:20:06.023Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.176Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-GC.html</loc>
-    <lastmod>2019-02-27T09:20:06.023Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.176Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/ios-bug-border.html</loc>
-    <lastmod>2019-02-27T09:20:06.023Z</lastmod>
+    <loc>http://asyncnode.com//blog/javascript-IF-False-options.html</loc>
+    <lastmod>2019-02-27T14:43:38.176Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/ios-bug.html</loc>
-    <lastmod>2019-02-27T09:20:06.023Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/git-delete.html</loc>
-    <lastmod>2019-02-27T09:20:06.022Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.176Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/hello-world.html</loc>
-    <lastmod>2019-02-27T09:20:06.022Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.175Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/hetamap-draw.html</loc>
-    <lastmod>2019-02-27T09:20:06.022Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.175Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/extends-1.html</loc>
-    <lastmod>2019-02-27T09:20:06.021Z</lastmod>
+    <loc>http://asyncnode.com//blog/ios-bug-border.html</loc>
+    <lastmod>2019-02-27T14:43:38.175Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/float-Operation.html</loc>
-    <lastmod>2019-02-27T09:20:06.021Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/etag-cache.html</loc>
-    <lastmod>2019-02-27T09:20:06.021Z</lastmod>
+    <loc>http://asyncnode.com//blog/extends-1.html</loc>
+    <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-class-extends.html</loc>
-    <lastmod>2019-02-27T09:20:06.020Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Number.html</loc>
-    <lastmod>2019-02-27T09:20:06.020Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-2.html</loc>
-    <lastmod>2019-02-27T09:20:06.019Z</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Array1.html</loc>
-    <lastmod>2019-02-27T09:20:06.019Z</lastmod>
+    <loc>http://asyncnode.com//blog/git-delete.html</loc>
+    <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/es6-AsyncFuntion.html</loc>
-    <lastmod>2019-02-27T09:20:06.019Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.173Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Array.html</loc>
-    <lastmod>2019-02-27T09:20:06.019Z</lastmod>
+    <loc>http://asyncnode.com//blog/es6-class-extends.html</loc>
+    <lastmod>2019-02-27T14:43:38.173Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/cookie-function.html</loc>
-    <lastmod>2019-02-27T09:20:06.018Z</lastmod>
+    <loc>http://asyncnode.com//blog/etag-cache.html</loc>
+    <lastmod>2019-02-27T14:43:38.173Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/css3transfrom3D.html</loc>
-    <lastmod>2019-02-27T09:20:06.018Z</lastmod>
+    <loc>http://asyncnode.com//blog/es6-Number.html</loc>
+    <lastmod>2019-02-27T14:43:38.173Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/es6-1.html</loc>
-    <lastmod>2019-02-27T09:20:06.018Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.172Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/call-apply-bind-polyfill.html</loc>
-    <lastmod>2019-02-27T09:20:06.017Z</lastmod>
+    <loc>http://asyncnode.com//blog/es6-2.html</loc>
+    <lastmod>2019-02-27T14:43:38.172Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/constructor-1.html</loc>
-    <lastmod>2019-02-27T09:20:06.017Z</lastmod>
+    <loc>http://asyncnode.com//blog/es6-Array1.html</loc>
+    <lastmod>2019-02-27T14:43:38.172Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-2.html</loc>
-    <lastmod>2019-02-27T09:20:06.017Z</lastmod>
+    <loc>http://asyncnode.com//blog/es6-Array.html</loc>
+    <lastmod>2019-02-27T14:43:38.172Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-1.html</loc>
-    <lastmod>2019-02-27T09:20:06.017Z</lastmod>
+    <loc>http://asyncnode.com//blog/cookie-function.html</loc>
+    <lastmod>2019-02-27T14:43:38.171Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Hello.html</loc>
-    <lastmod>2019-02-27T09:20:06.016Z</lastmod>
+    <loc>http://asyncnode.com//blog/css3transfrom3D.html</loc>
+    <lastmod>2019-02-27T14:43:38.171Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Precautions.html</loc>
-    <lastmod>2019-02-27T09:20:06.016Z</lastmod>
+    <loc>http://asyncnode.com//blog/es-promise.html</loc>
+    <lastmod>2019-02-27T14:43:38.171Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/JavaScript-Operator-priority.html</loc>
-    <lastmod>2019-02-27T09:20:06.016Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/Precautions.html</loc>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/call-apply-bind-polyfill.html</loc>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/canvas-1.html</loc>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/canvas-2.html</loc>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/constructor-1.html</loc>
+    <lastmod>2019-02-27T14:43:38.170Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/Call-Apply-Bind.html</loc>
-    <lastmod>2019-02-27T09:20:06.015Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.169Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/Classic-layout.html</loc>
-    <lastmod>2019-02-27T09:20:06.015Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.169Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/Hello.html</loc>
+    <lastmod>2019-02-27T14:43:38.169Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/Frame-selection.html</loc>
-    <lastmod>2019-02-27T09:20:06.015Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.169Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/ArrayObject-deepCopy.html</loc>
-    <lastmod>2019-02-27T09:20:06.014Z</lastmod>
+    <lastmod>2019-02-27T14:43:38.168Z</lastmod>
   </url>
 </urlset>

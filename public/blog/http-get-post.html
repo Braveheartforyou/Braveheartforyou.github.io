@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="JavaScript, js, html, css, vue, node">
+  <meta name="keywords" content="Http,">
 
 
 
@@ -115,16 +115,18 @@
 
 
 
-<meta name="description" content="asyncnode">
-<meta property="og:type" content="website">
-<meta property="og:title" content="asyncnode">
-<meta property="og:url" content="http://asyncnode.com/page/6/index.html">
+<meta name="description" content="在http协议中get请求和post请求的区别">
+<meta name="keywords" content="Http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http中get请求和post请求的区别">
+<meta property="og:url" content="http://asyncnode.com/blog/http-get-post.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="asyncnode">
+<meta property="og:description" content="在http协议中get请求和post请求的区别">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-23T15:23:31.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="asyncnode">
-<meta name="twitter:description" content="asyncnode">
+<meta name="twitter:title" content="http中get请求和post请求的区别">
+<meta name="twitter:description" content="在http协议中get请求和post请求的区别">
 
 
 
@@ -152,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/page/6/">
+  <link rel="canonical" href="http://asyncnode.com/blog/http-get-post.html">
 
 
 
 
 
-  <title>asyncnode</title>
+  <title>http中get请求和post请求的区别 | asyncnode</title>
   
 
 
@@ -193,9 +195,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
     <a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
 
@@ -321,9 +321,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -332,7 +332,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/css3transfrom3D.html">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http-get-post.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang">
@@ -349,9 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/css3transfrom3D.html" itemprop="url">css3transfrom3D</a></h1>
+          <h1 class="post-title" itemprop="name headline">http中get请求和post请求的区别</h1>
         
 
         <div class="post-meta">
@@ -363,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T16:22:48+08:00">
-                2017-07-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T22:59:35+08:00">
+                2019-03-22
               </time>
             
 
@@ -374,30 +372,18 @@
           </span>
 
           
-            <span class="post-category">
+
+          
             
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
                 </span>
-
-                
-                
-              
-            </span>
-          
-
-          
+                <a class="cloud-tie-join-count" href="/blog/http-get-post.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -408,6 +394,10 @@
 
           
 
+          
+              <div class="post-description">
+                  在http协议中get请求和post请求的区别
+              </div>
           
 
         </div>
@@ -420,441 +410,184 @@
       
 
       
+        <p>在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。</p>
+<ul>
+<li>GET - 从指定的资源请求数据。</li>
+<li>POST - 向指定的资源提交要被处理的数据<br>最直观的区别就是GET把参数包含在URL中，POST通过request body传递参数。<br>区别</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Tables</th>
+<th style="text-align:center">GET</th>
+<th style="text-align:center">POST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">后退按钮/刷新</td>
+<td style="text-align:center">无害</td>
+<td style="text-align:center">数据会被重新提交（浏览器应该告知用户数据会被重新提交）</td>
+</tr>
+<tr>
+<td style="text-align:center">书签</td>
+<td style="text-align:center">可收藏为书签</td>
+<td style="text-align:center">不可收藏为书签</td>
+</tr>
+<tr>
+<td style="text-align:center">缓存</td>
+<td style="text-align:center">能被缓存</td>
+<td style="text-align:center">不能缓存</td>
+</tr>
+<tr>
+<td style="text-align:center">编码类型</td>
+<td style="text-align:center">application/x-www-form-urlencoded</td>
+<td style="text-align:center">application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码</td>
+</tr>
+<tr>
+<td style="text-align:center">历史</td>
+<td style="text-align:center">参数保留在浏览器历史中</td>
+<td style="text-align:center">参数不会保存在浏览器历史中</td>
+</tr>
+<tr>
+<td style="text-align:center">对数据长度的限制</td>
+<td style="text-align:center">当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）</td>
+<td style="text-align:center">无限制</td>
+</tr>
+<tr>
+<td style="text-align:center">对数据类型的限制</td>
+<td style="text-align:center">只允许 ASCII 字符</td>
+<td style="text-align:center">没有限制。也允许二进制数据</td>
+</tr>
+<tr>
+<td style="text-align:center">安全性</td>
+<td style="text-align:center">与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分 在发送密码或其他敏感信息时绝不要使用 GET ！</td>
+<td style="text-align:center">POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中</td>
+</tr>
+<tr>
+<td style="text-align:center">可见性</td>
+<td style="text-align:center">数据在 URL 中对所有人都是可见的</td>
+<td style="text-align:center">数据不会显示在 URL 中</td>
+</tr>
+</tbody>
+</table>
+<p>其实GET和POST都是http协议中的两种发送请求的方法。</p>
+<ol>
+<li>http协议并未规定get和post的长度限制</li>
+<li>get的最大长度限制是因为浏览器和web服务器限制了URL的长度</li>
+<li>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）</li>
+</ol>
+<p>其实很多人说get请求比post请求快，主要是底下两条</p>
+<ol>
+<li>get请求比post请求少一步</li>
+<li>get请求可以缓存</li>
+</ol>
+<p>get请求过程：</p>
+<ol>
+<li>浏览器请求tcp连接（第一次握手） </li>
+<li>服务器答应进行tcp连接（第二次握手） </li>
+<li>浏览器确认，并发送get请求头和数据（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） </li>
+<li>服务器返回200 OK响应</li>
+</ol>
+<p>post请求过程：</p>
+<ol>
+<li>浏览器请求tcp连接（第一次握手） </li>
+<li>服务器答应进行tcp连接（第二次握手） </li>
+<li>浏览器确认，并发送post请求头（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） </li>
+<li>服务器返回100 Continue响应 </li>
+<li>浏览器发送数据 </li>
+<li>服务器返回200 OK响应</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-          css3 3d transfrom
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/css3transfrom3D.html">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/es6-1.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="asyncnode">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/es6-1.html" itemprop="url">es6中let、const和var之间的关联、区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T15:14:25+08:00">
-                2017-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ECMAScript6/" itemprop="url" rel="index">
-                    <span itemprop="name">ECMAScript6</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Http/" rel="tag"><i class="fa fa-tag"></i> Http</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          ECMAScript6 let && const && var
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/es6-1.html">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/hoisting.html" rel="next" title="hoisting">
+                <i class="fa fa-chevron-left"></i> hoisting
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/mobile-all.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="asyncnode">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/mobile-all.html" itemprop="url">移动端注意事项 (未完待续)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T09:33:57+08:00">
-                2017-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mobile/" itemprop="url" rel="index">
-                    <span itemprop="name">mobile</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          一些移动端常见问题 和解决方案(未完成 2017-7-17)
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/mobile-all.html">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/Hello.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="asyncnode">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/Hello.html" itemprop="url">大家好</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T10:26:37+08:00">
-                2017-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="每周两篇bolg-最后整理合并，分类，总结"><a href="#每周两篇bolg-最后整理合并，分类，总结" class="headerlink" title="每周两篇bolg,最后整理合并，分类，总结"></a>每周两篇bolg,最后整理合并，分类，总结</h3>
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -862,6 +595,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -1088,10 +827,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
