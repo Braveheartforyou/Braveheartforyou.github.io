@@ -3,13 +3,13 @@
   <entry>
     <title><![CDATA[http中get请求和post请求的区别]]></title>
     <url>%2F%2Fblog%2Fhttp-get-post.html</url>
-    <content type="text"><![CDATA[在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。 GET - 从指定的资源请求数据。 POST - 向指定的资源提交要被处理的数据最直观的区别就是GET把参数包含在URL中，POST通过request body传递参数。区别 Tables GET POST 后退按钮/刷新 无害 数据会被重新提交（浏览器应该告知用户数据会被重新提交） 书签 可收藏为书签 不可收藏为书签 缓存 能被缓存 不能缓存 编码类型 application/x-www-form-urlencoded application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码 历史 参数保留在浏览器历史中 参数不会保存在浏览器历史中 对数据长度的限制 当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符） 无限制 对数据类型的限制 只允许 ASCII 字符 没有限制。也允许二进制数据 安全性 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分 在发送密码或其他敏感信息时绝不要使用 GET ！ POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中 可见性 数据在 URL 中对所有人都是可见的 数据不会显示在 URL 中 其实GET和POST都是http协议中的两种发送请求的方法。 http协议并未规定get和post的长度限制 get的最大长度限制是因为浏览器和web服务器限制了URL的长度 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据） 其实很多人说get请求比post请求快，主要是底下两条 get请求比post请求少一步 get请求可以缓存 get请求过程： 浏览器请求tcp连接（第一次握手） 服务器答应进行tcp连接（第二次握手） 浏览器确认，并发送get请求头和数据（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） 服务器返回200 OK响应 post请求过程： 浏览器请求tcp连接（第一次握手） 服务器答应进行tcp连接（第二次握手） 浏览器确认，并发送post请求头（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） 服务器返回100 Continue响应 浏览器发送数据 服务器返回200 OK响应]]></content>
+    <content type="text"><![CDATA[在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。 GET - 从指定的资源请求数据。 POST - 向指定的资源提交要被处理的数据最直观的区别就是GET把参数包含在URL中，POST通过request body传递参数。区别 GET POST 后退按钮/刷新 无害 数据会被重新提交（浏览器应该告知用户数据会被重新提交） 书签 可收藏为书签 不可收藏为书签 缓存 能被缓存 不能缓存 编码类型 application/x-www-form-urlencoded application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码 历史 参数保留在浏览器历史中 参数不会保存在浏览器历史中 对数据长度的限制 当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符） 无限制 对数据类型的限制 只允许 ASCII 字符 没有限制。也允许二进制数据 安全性 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分 在发送密码或其他敏感信息时绝不要使用 GET ！ POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中 可见性 数据在 URL 中对所有人都是可见的 数据不会显示在 URL 中 其实GET和POST都是http协议中的两种发送请求的方法。 http协议并未规定get和post的长度限制 get的最大长度限制是因为浏览器和web服务器限制了URL的长度 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据） 其实很多人说get请求比post请求快，主要是底下两条 get请求比post请求少一步 get请求可以缓存 get请求过程： 浏览器请求tcp连接（第一次握手） 服务器答应进行tcp连接（第二次握手） 浏览器确认，并发送get请求头和数据（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） 服务器返回200 OK响应 post请求过程： 浏览器请求tcp连接（第一次握手） 服务器答应进行tcp连接（第二次握手） 浏览器确认，并发送post请求头（第三次握手，这个报文比较小，所以http会在此时进行第一次数据发送） 服务器返回100 Continue响应 浏览器发送数据 服务器返回200 OK响应]]></content>
       <tags>
         <tag>Http</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hoisting]]></title>
+    <title><![CDATA[JavaScript中的变量提升]]></title>
     <url>%2F%2Fblog%2Fhoisting.html</url>
     <content type="text"><![CDATA[产生变量提升的原因在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。变量提升即将变量声明提升到它所在作用域的最开始的部分。在JavaScript代码运行之前其实是有一个编译阶段的。编译之后才是从上到下，一行一行解释执行。变量提升就发生在编译阶段，它把变量和函数的声明提升至作用域的顶端。（编译阶段的工作之一就是将变量与其作用域进行关联）。我先分开介绍变量提升和函数提升到后面再放到一起比较。 变量提升我们直接从代码从最基础的开始12console.log(a); // undefinedvar a = 2; 相信这个大家知道，上面代码其实就是123var a;console.log(a); // undefineda = 2; 他会提前声明a,但是不会给a赋值。但是如下代码会怎么执行呢？12console.log(a); // Uncaught ReferenceError: a is not defined a = 2; 如果没有通过var声明值类型的就不会存在变量提升，而是会报错。 函数提升和变量提升一样存在函数提升，但是他们还有点不同。如下代码12console.log(a); // function a () &#123;console.log(1);&#125;function a () &#123;console.log(1);&#125; 他会提前声明并且赋值，还有一种函数声明方式，代码如下12console.log(a); // undefinedvar a = function () &#123;console.log(1);&#125; 这种写法就和变量提升相同了。还有一种我感觉要说一下，其实不仔细思考也很容易犯错。12345console.log(a()); function a () &#123;console.log(1);&#125;// 会输出如下：// 1 这个 a function 输出的// undefined 因为 a function没有 return出来任何值，默认return undefined。 为什么会输出 一个 1 和一个undefined,我来解释一下,首先console.log(a())，他会先执行a()方法，输出 1,但是a方法没有返回值，默认返回undefined。123console.log(a); // undefinedconsole.log(a()); // Uncaught TypeError: a is not a functionvar a = function () &#123;console.log(1);&#125; 这个看一下就行。 结合变量提升和函数提升如果变量提升遇到函数提升，那个优先级更高呢，看下面的代码。1234console.log(a); // function a () &#123;console.log(1);&#125;var a = 1;function a () &#123;console.log(1);&#125;console.log(a); // 1 看上面的代码知道函数提升是高于变量提升的，因为在javascript中函数是一等公民，并且不会被变量声明覆盖，但是会被变量赋值覆盖。其实代码如下12345var a = function () &#123;console.log(1);&#125;;var a;console.log(a); // function a () &#123;console.log(1);&#125;a = 1;console.log(a); // 1 我们再来一个稍微复杂一点的，代码如下：12345678console.log(a); // function a () &#123;console.log(2);&#125;var a = 1;function a () &#123;console.log(1);&#125;console.log(a); // 1var a = 2;function a () &#123;console.log(2);&#125;console.log(a); // 2console.log(typeof a); // number 在多次函数提升的会后一个覆盖前一个，然后才是变量提升，其实代码如下：123456789var a = function () &#123;console.log(1);&#125;var a = function () &#123;console.log(2);&#125;var a;console.log(a); // function a () &#123;console.log(2);&#125;a = 1;console.log(a); // 1a = 2;console.log(a); // 2console.log(typeof a); // number 基本上这个上面基本上包含了javascript的变量提升和函数提升。其实还有一个作用域的我在这边就不介绍了，我会开篇再好好说一下作用域。]]></content>
       <categories>
@@ -40,9 +40,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[javascript-module]]></title>
+    <title><![CDATA[require和import的区别]]></title>
     <url>%2F%2Fblog%2Fjavascript-module.html</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[简单比较对比表格如下 对比类型 import require 何时加载 编译时加载 运行时加载 静态化 ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量 只有运行时才能得到这个对象，不能在编译时做到静态化 调用时间 import是编译时调用，所以严格模式必须放在文件开头 require是运行时调用，所以require理论上可以运用在代码的任何地方 模块输出 模块输出的是值的引用，不会缓存，而是动态地去被加载的模块取值，并且变量总是绑定其所在的模块 模块输出的是一个值的拷贝，并且在第一次加载是缓存，后面加载都会读取缓存 模块加载 按引入加载 整体加载 循环加载 ES6 模块是动态引用，如果使用import从一个模块加载变量，那些变量不会被缓存，而是成为一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值 CommonJS 模块的重要特性是加载时执行，即脚本代码在require的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出 下面我们一项一项具体解释： 何时加载/静态化require / exports ：遵循 CommonJS/AMD，只能在运行时确定模块的依赖关系及输入/输出的变量，无法进行静态优化。 import / export：遵循 ES6 规范，支持编译时静态分析，便于JS引入宏和类型检验。动态绑定。 调用时间import / export：import命令具有提升效果，会提升到整个模块的头部，首先执行。（是在编译阶段执行的）因为import是静态执行的，不能使用表达式和变量，即在运行时才能拿到结果的语法结构. require / exports ：require是运行时调用，所以require理论上可以运用在代码的任何地方 模块输出/模块加载require / exports ：CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值，并且会在第一次加载是缓存这个值的拷贝，他是完全输出这个值的拷贝。 import / export：模块输出的是值的引用，不会缓存，而是动态地去被加载的模块取值，并且变量总是绑定其所在的模块，并且只会加载引入的值，不去全部加载。]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[es-promise]]></title>
