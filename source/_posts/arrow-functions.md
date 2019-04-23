@@ -27,8 +27,11 @@ description: ECMAScript6中的箭头我们基本都是非常的常用，总结�
 ```
 ### 2.不能直接修改箭头函数的this指向,但是可以通过修改外层函数的this
 ```javascript 
-    var aa = () => {
-        console.log(this);
+    var aa = {
+        name: '1111';
+        bb: = () => {
+            console.log(this.name);
+        }
     }
-    aa(); // window
+    aa.bb(); // window
 ```

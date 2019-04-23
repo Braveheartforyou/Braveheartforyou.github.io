@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com//blog/arrow-functions.html</loc>
+    <lastmod>2019-04-17T10:18:38.700Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/evenloop.html</loc>
+    <lastmod>2019-04-16T08:42:26.104Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/vue-hoc.html</loc>
+    <lastmod>2019-04-10T08:48:46.804Z</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com//blog/vue-mvvm.html</loc>
+    <lastmod>2019-04-01T07:10:11.000Z</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-module.html</loc>
     <lastmod>2019-03-23T16:50:20.000Z</lastmod>
   </url>  <url>
@@ -91,10 +103,10 @@
     <loc>http://asyncnode.com//blog/extends-1.html</loc>
     <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/float-Operation.html</loc>
+    <loc>http://asyncnode.com//blog/git-delete.html</loc>
     <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/git-delete.html</loc>
+    <loc>http://asyncnode.com//blog/float-Operation.html</loc>
     <lastmod>2019-02-27T14:43:38.174Z</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/es6-AsyncFuntion.html</loc>
