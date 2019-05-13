@@ -191,3 +191,9 @@ Array.isArray其实也是通过[[Class]]来判定当前是否维数组.
 - instanceof运算符，用来分类对象
 - constructor，用来创建实例对象的 Object 构造函数的引用
 - [[Class]]是一个内部属性字符串，用来给对象分类
+
+> 参考：<https://www.cnblogs.com/onepixel/p/5126046.html>
+> 参考：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor>
+> 参考：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString>
+> 参考：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof>
+> 参考：<https://segmentfault.com/a/1190000015264821>
