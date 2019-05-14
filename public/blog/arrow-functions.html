@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="ECMAScript6中的箭头我们基本都是非常的常用，总结一下他与普通函数的区别和优点、确定。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T10:18:38.700Z">
+<meta property="og:updated_time" content="2019-04-26T08:13:43.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="arrow-functions（箭头函数）和普通的函数的区别">
 <meta name="twitter:description" content="ECMAScript6中的箭头我们基本都是非常的常用，总结一下他与普通函数的区别和优点、确定。">
@@ -475,7 +475,7 @@
 </tbody>
 </table>
 <h2 id="箭头函数this指向的规则"><a href="#箭头函数this指向的规则" class="headerlink" title="箭头函数this指向的规则"></a>箭头函数this指向的规则</h2><h3 id="1-箭头函数的this在定义的时候捕获自外层第一个普通函数的this"><a href="#1-箭头函数的this在定义的时候捕获自外层第一个普通函数的this" class="headerlink" title="1.箭头函数的this在定义的时候捕获自外层第一个普通函数的this"></a>1.箭头函数的this在定义的时候捕获自外层第一个普通函数的this</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aa = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">aa(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-不能直接修改箭头函数的this指向-但是可以通过修改外层函数的this"><a href="#2-不能直接修改箭头函数的this指向-但是可以通过修改外层函数的this" class="headerlink" title="2.不能直接修改箭头函数的this指向,但是可以通过修改外层函数的this"></a>2.不能直接修改箭头函数的this指向,但是可以通过修改外层函数的this</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aa = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">aa(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-不能直接修改箭头函数的this指向-但是可以通过修改外层函数的this"><a href="#2-不能直接修改箭头函数的this指向-但是可以通过修改外层函数的this" class="headerlink" title="2.不能直接修改箭头函数的this指向,但是可以通过修改外层函数的this"></a>2.不能直接修改箭头函数的this指向,但是可以通过修改外层函数的this</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aa = &#123;</span><br><span class="line">    name: <span class="string">'1111'</span>;</span><br><span class="line">    bb: = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">aa.bb(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -624,7 +624,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -749,7 +749,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.8k字</span>
+  <span class="post-count">博客全站共55.7k字</span>
 </div>
 
         
