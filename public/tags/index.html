@@ -324,10 +324,10 @@
     
       <div class="tag-cloud">
         <div class="tag-cloud-title">
-            目前共计 18 个标签
+            目前共计 19 个标签
         </div>
         <div class="tag-cloud-tags">
-          <a href="/tags/ECMAScript6/" style="font-size: 25.5px; color: #404040">ECMAScript6</a> <a href="/tags/Git/" style="font-size: 14.25px; color: #b5b5b5">Git</a> <a href="/tags/Http/" style="font-size: 16.5px; color: #9d9d9d">Http</a> <a href="/tags/JavaScript/" style="font-size: 30px; color: #111">JavaScript</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/React/" style="font-size: 12px; color: #ccc">React</a> <a href="/tags/Tcp/" style="font-size: 12px; color: #ccc">Tcp</a> <a href="/tags/Vue/" style="font-size: 27.75px; color: #282828">Vue</a> <a href="/tags/WebPack/" style="font-size: 21px; color: #6f6f6f">WebPack</a> <a href="/tags/css/" style="font-size: 23.25px; color: #575757">css</a> <a href="/tags/heatmap/" style="font-size: 12px; color: #ccc">heatmap</a> <a href="/tags/html/" style="font-size: 18.75px; color: #868686">html</a> <a href="/tags/jenkins/" style="font-size: 12px; color: #ccc">jenkins</a> <a href="/tags/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/tags/phantom/" style="font-size: 12px; color: #ccc">phantom</a> <a href="/tags/vue-cli/" style="font-size: 18.75px; color: #868686">vue-cli</a> <a href="/tags/杂谈/" style="font-size: 14.25px; color: #b5b5b5">杂谈</a> <a href="/tags/框架选型/" style="font-size: 12px; color: #ccc">框架选型</a>
+          <a href="/tags/ECMAScript6/" style="font-size: 25.5px; color: #404040">ECMAScript6</a> <a href="/tags/Git/" style="font-size: 14.25px; color: #b5b5b5">Git</a> <a href="/tags/Http/" style="font-size: 16.5px; color: #9d9d9d">Http</a> <a href="/tags/JavaScript/" style="font-size: 30px; color: #111">JavaScript</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/React/" style="font-size: 14.25px; color: #b5b5b5">React</a> <a href="/tags/Tcp/" style="font-size: 12px; color: #ccc">Tcp</a> <a href="/tags/Vue/" style="font-size: 27.75px; color: #282828">Vue</a> <a href="/tags/WebPack/" style="font-size: 21px; color: #6f6f6f">WebPack</a> <a href="/tags/css/" style="font-size: 23.25px; color: #575757">css</a> <a href="/tags/heatmap/" style="font-size: 12px; color: #ccc">heatmap</a> <a href="/tags/html/" style="font-size: 18.75px; color: #868686">html</a> <a href="/tags/jenkins/" style="font-size: 12px; color: #ccc">jenkins</a> <a href="/tags/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/tags/phantom/" style="font-size: 12px; color: #ccc">phantom</a> <a href="/tags/vue-cli/" style="font-size: 18.75px; color: #868686">vue-cli</a> <a href="/tags/vue-router/" style="font-size: 14.25px; color: #b5b5b5">vue-router</a> <a href="/tags/杂谈/" style="font-size: 14.25px; color: #b5b5b5">杂谈</a> <a href="/tags/框架选型/" style="font-size: 12px; color: #ccc">框架选型</a>
         </div>
       </div>
     
@@ -378,7 +378,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -400,7 +400,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -943,6 +943,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

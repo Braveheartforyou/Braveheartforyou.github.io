@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="css3中的flex布局详解">
+<meta name="description" content="css3中的flex布局详解，最后会有几个比较常用的flex代替老布局的实现">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css-flex">
+<meta property="og:title" content="css3中flex的所有属性详解">
 <meta property="og:url" content="http://asyncnode.com/blog/css-flex.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="css3中的flex布局详解">
+<meta property="og:description" content="css3中的flex布局详解，最后会有几个比较常用的flex代替老布局的实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T06:54:37.451Z">
+<meta property="og:updated_time" content="2019-06-10T10:00:03.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css-flex">
-<meta name="twitter:description" content="css3中的flex布局详解">
+<meta name="twitter:title" content="css3中flex的所有属性详解">
+<meta name="twitter:description" content="css3中的flex布局详解，最后会有几个比较常用的flex代替老布局的实现">
 
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>css-flex | asyncnode</title>
+  <title>css3中flex的所有属性详解 | asyncnode</title>
   
 
 
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">css-flex</h1>
+          <h1 class="post-title" itemprop="name headline">css3中flex的所有属性详解</h1>
         
 
         <div class="post-meta">
@@ -401,6 +401,17 @@
 
           
           
+             <span id="/blog/css-flex.html" class="leancloud_visitors" data-flag-title="css3中flex的所有属性详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -408,7 +419,7 @@
 
           
               <div class="post-description">
-                  css3中的flex布局详解
+                  css3中的flex布局详解，最后会有几个比较常用的flex代替老布局的实现
               </div>
           
 
@@ -464,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/react-hot.html" rel="next" title="react-hot">
-                <i class="fa fa-chevron-left"></i> react-hot
+              <a href="/blog/react-hot.html" rel="next" title="react中的高阶组件详解">
+                <i class="fa fa-chevron-left"></i> react中的高阶组件详解
               </a>
             
           </div>
@@ -562,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +595,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1127,6 +1138,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

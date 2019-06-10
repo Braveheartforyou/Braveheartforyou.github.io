@@ -318,7 +318,7 @@
       
        
         
-      好! 目前共计 77 篇日志。 继续努力。
+      好! 目前共计 78 篇日志。 继续努力。
     </span>
 
     
@@ -342,9 +342,44 @@
 
       <h2 class="post-title">
         
+            <a class="post-title-link" href="/blog/vue-router.html" itemprop="url">
+              
+                <span itemprop="name">Vue-router的mode源码分析</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-14T23:27:07+08:00" content="2019-05-14">
+          05-14
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
             <a class="post-title-link" href="/blog/vue-click-eventbus.html" itemprop="url">
               
-                <span itemprop="name">vue中@click和@click.native的区别和实现、vue中eventBus的原理</span>
+                <span itemprop="name">vue中的events源码分析</span>
               
             </a>
         
@@ -484,7 +519,7 @@
         
             <a class="post-title-link" href="/blog/css-flex.html" itemprop="url">
               
-                <span itemprop="name">css-flex</span>
+                <span itemprop="name">css3中flex的所有属性详解</span>
               
             </a>
         
@@ -519,7 +554,7 @@
         
             <a class="post-title-link" href="/blog/react-hot.html" itemprop="url">
               
-                <span itemprop="name">react-hot</span>
+                <span itemprop="name">react中的高阶组件详解</span>
               
             </a>
         
@@ -554,7 +589,7 @@
         
             <a class="post-title-link" href="/blog/vue-parse.html" itemprop="url">
               
-                <span itemprop="name">vue-parse</span>
+                <span itemprop="name">vue源码中parse生成AST</span>
               
             </a>
         
@@ -589,7 +624,7 @@
         
             <a class="post-title-link" href="/blog/vue-complier.html" itemprop="url">
               
-                <span itemprop="name">vue-complier</span>
+                <span itemprop="name">vue源码中complier整体流程</span>
               
             </a>
         
@@ -624,7 +659,7 @@
         
             <a class="post-title-link" href="/blog/simple-vue-mvvm.html" itemprop="url">
               
-                <span itemprop="name">simple-vue-mvvm</span>
+                <span itemprop="name">实现一个简单mvvm双向绑定基础框架</span>
               
             </a>
         
@@ -633,41 +668,6 @@
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2019-04-18T16:16:55+08:00" content="2019-04-18">
           04-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/evenloop.html" itemprop="url">
-              
-                <span itemprop="name">evenloop</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T16:42:11+08:00" content="2019-04-15">
-          04-15
         </time>
       </div>
 
@@ -726,7 +726,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -748,7 +748,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1293,6 +1293,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

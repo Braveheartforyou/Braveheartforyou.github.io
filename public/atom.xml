@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asyncnode.com/"/>
-  <updated>2019-06-10T09:24:36.273Z</updated>
+  <updated>2019-06-10T09:48:57.264Z</updated>
   <id>http://asyncnode.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue-router整体的流程和源码解析</title>
+    <link href="http://asyncnode.com//blog/vue-router-flow.html"/>
+    <id>http://asyncnode.com//blog/vue-router-flow.html</id>
+    <published>2019-06-13T09:47:48.000Z</published>
+    <updated>2019-06-10T09:48:57.264Z</updated>
+    
+    <summary type="html">
+    
+      Vue-router的是怎么实现跳转的。
+    
+    </summary>
+    
+      <category term="Vue" scheme="http://asyncnode.com/categories/Vue/"/>
+    
+    
+      <category term="vue-router" scheme="http://asyncnode.com/tags/vue-router/"/>
+    
+  </entry>
   
   <entry>
     <title>vue中的next-tick原理和源码解析</title>
@@ -77,15 +97,15 @@
   </entry>
   
   <entry>
-    <title>vue-render</title>
+    <title>vue中render源码解析</title>
     <link href="http://asyncnode.com//blog/vue-update-render-createelement-patch.html"/>
     <id>http://asyncnode.com//blog/vue-update-render-createelement-patch.html</id>
     <published>2019-06-01T07:47:01.000Z</published>
-    <updated>2019-06-03T02:47:53.440Z</updated>
+    <updated>2019-06-10T09:50:58.278Z</updated>
     
     <summary type="html">
     
-      vue的render
+      分析一下vue中render函数在什么时候被创建，什么时候被执行
     
     </summary>
     
@@ -97,15 +117,15 @@
   </entry>
   
   <entry>
-    <title>vue-new-vue</title>
+    <title>vue源码中new vue都做了什么</title>
     <link href="http://asyncnode.com//blog/vue-new-vue.html"/>
     <id>http://asyncnode.com//blog/vue-new-vue.html</id>
     <published>2019-05-28T01:45:22.000Z</published>
-    <updated>2019-06-03T02:46:25.580Z</updated>
+    <updated>2019-06-10T09:52:14.576Z</updated>
     
     <summary type="html">
     
-      new vue 都做了什么
+      new vue都做了什么事情，比如说initEvents、initstate、等等
     
     </summary>
     
@@ -197,29 +217,35 @@
   </entry>
   
   <entry>
-    <title>vue-router</title>
+    <title>Vue-router的mode源码分析</title>
     <link href="http://asyncnode.com//blog/vue-router.html"/>
     <id>http://asyncnode.com//blog/vue-router.html</id>
     <published>2019-05-14T15:27:07.000Z</published>
-    <updated>2019-05-15T01:37:16.894Z</updated>
+    <updated>2019-06-10T09:55:47.656Z</updated>
     
     <summary type="html">
     
+      Vue-router的mode有两种状态,分别是hash、history 分别是怎么实现。
+    
     </summary>
     
+      <category term="Vue" scheme="http://asyncnode.com/categories/Vue/"/>
+    
+    
+      <category term="vue-router" scheme="http://asyncnode.com/tags/vue-router/"/>
     
   </entry>
   
   <entry>
-    <title>vue中@click和@click.native的区别和实现、vue中eventBus的原理</title>
+    <title>vue中的events源码分析</title>
     <link href="http://asyncnode.com//blog/vue-click-eventbus.html"/>
     <id>http://asyncnode.com//blog/vue-click-eventbus.html</id>
     <published>2019-05-13T06:55:55.000Z</published>
-    <updated>2019-05-13T07:05:07.512Z</updated>
+    <updated>2019-06-10T09:58:17.827Z</updated>
     
     <summary type="html">
     
-      这篇博客讲解vue中@click和@click.native的区别，和vue中eventBus的使用、原理分析。
+      vue中源码中整体的events分为两类，一类为原生事件（Dom事件）、另一类为事件中心事件
     
     </summary>
     
@@ -297,15 +323,15 @@
   </entry>
   
   <entry>
-    <title>css-flex</title>
+    <title>css3中flex的所有属性详解</title>
     <link href="http://asyncnode.com//blog/css-flex.html"/>
     <id>http://asyncnode.com//blog/css-flex.html</id>
     <published>2019-05-02T06:51:36.000Z</published>
-    <updated>2019-05-07T06:54:37.451Z</updated>
+    <updated>2019-06-10T10:00:03.867Z</updated>
     
     <summary type="html">
     
-      css3中的flex布局详解
+      css3中的flex布局详解，最后会有几个比较常用的flex代替老布局的实现
     
     </summary>
     
@@ -317,72 +343,82 @@
   </entry>
   
   <entry>
-    <title>react-hot</title>
+    <title>react中的高阶组件详解</title>
     <link href="http://asyncnode.com//blog/react-hot.html"/>
     <id>http://asyncnode.com//blog/react-hot.html</id>
     <published>2019-04-30T02:36:56.000Z</published>
-    <updated>2019-04-30T02:36:56.739Z</updated>
+    <updated>2019-06-10T10:01:35.698Z</updated>
     
     <summary type="html">
     
+      在react中高阶组件是为了解决什么问题而产生，并且原理是什么
+    
     </summary>
     
+      <category term="React" scheme="http://asyncnode.com/categories/React/"/>
+    
+    
+      <category term="React" scheme="http://asyncnode.com/tags/React/"/>
     
   </entry>
   
   <entry>
-    <title>vue-parse</title>
+    <title>vue源码中parse生成AST</title>
     <link href="http://asyncnode.com//blog/vue-parse.html"/>
     <id>http://asyncnode.com//blog/vue-parse.html</id>
     <published>2019-04-26T08:14:45.000Z</published>
-    <updated>2019-04-26T08:14:45.836Z</updated>
+    <updated>2019-06-10T10:06:06.398Z</updated>
     
     <summary type="html">
     
+      vue源码中parse怎么把template parse为AST抽象代码树。
+    
     </summary>
     
+      <category term="Vue" scheme="http://asyncnode.com/categories/Vue/"/>
+    
+    
+      <category term="Vue" scheme="http://asyncnode.com/tags/Vue/"/>
     
   </entry>
   
   <entry>
-    <title>vue-complier</title>
+    <title>vue源码中complier整体流程</title>
     <link href="http://asyncnode.com//blog/vue-complier.html"/>
     <id>http://asyncnode.com//blog/vue-complier.html</id>
     <published>2019-04-23T13:50:49.000Z</published>
-    <updated>2019-04-26T08:13:43.555Z</updated>
+    <updated>2019-06-10T10:07:09.724Z</updated>
     
     <summary type="html">
     
+      vue中把Template生成为render函数，我们一半上线的项目都是经过编译的。
+    
     </summary>
     
+      <category term="Vue" scheme="http://asyncnode.com/categories/Vue/"/>
+    
+    
+      <category term="Vue" scheme="http://asyncnode.com/tags/Vue/"/>
     
   </entry>
   
   <entry>
-    <title>simple-vue-mvvm</title>
+    <title>实现一个简单mvvm双向绑定基础框架</title>
     <link href="http://asyncnode.com//blog/simple-vue-mvvm.html"/>
     <id>http://asyncnode.com//blog/simple-vue-mvvm.html</id>
     <published>2019-04-18T08:16:55.000Z</published>
-    <updated>2019-04-26T08:19:41.002Z</updated>
+    <updated>2019-06-10T10:09:08.356Z</updated>
     
     <summary type="html">
     
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>evenloop</title>
-    <link href="http://asyncnode.com//blog/evenloop.html"/>
-    <id>http://asyncnode.com//blog/evenloop.html</id>
-    <published>2019-04-15T08:42:11.000Z</published>
-    <updated>2019-04-26T08:13:43.555Z</updated>
-    
-    <summary type="html">
+      首先的了解mvvm框架是什么，然后通过javascript实现一个简单mvvm框架。
     
     </summary>
     
+      <category term="JavaScript" scheme="http://asyncnode.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://asyncnode.com/tags/JavaScript/"/>
     
   </entry>
   

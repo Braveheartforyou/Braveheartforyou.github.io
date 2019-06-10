@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="因为高级函数在vue中实现难度比较大,官方推荐使用mixins来实现组件的高复用性，Vue组件中Mixins的使用">
+<meta name="description" content="分析为什么Mixins的代码总是比组件中的函数先执行，还有Mixins是怎么混入的">
 <meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mixins在vue中的使用 vue_mixins实战">
+<meta property="og:title" content="vue源码中Mixins原理和源码解析">
 <meta property="og:url" content="http://asyncnode.com/blog/vue-mixins.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="因为高级函数在vue中实现难度比较大,官方推荐使用mixins来实现组件的高复用性，Vue组件中Mixins的使用">
+<meta property="og:description" content="分析为什么Mixins的代码总是比组件中的函数先执行，还有Mixins是怎么混入的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T09:20:06.029Z">
+<meta property="og:updated_time" content="2019-06-10T09:54:02.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mixins在vue中的使用 vue_mixins实战">
-<meta name="twitter:description" content="因为高级函数在vue中实现难度比较大,官方推荐使用mixins来实现组件的高复用性，Vue组件中Mixins的使用">
+<meta name="twitter:title" content="vue源码中Mixins原理和源码解析">
+<meta name="twitter:description" content="分析为什么Mixins的代码总是比组件中的函数先执行，还有Mixins是怎么混入的">
 
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>mixins在vue中的使用 vue_mixins实战 | asyncnode</title>
+  <title>vue源码中Mixins原理和源码解析 | asyncnode</title>
   
 
 
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mixins在vue中的使用 vue_mixins实战</h1>
+          <h1 class="post-title" itemprop="name headline">vue源码中Mixins原理和源码解析</h1>
         
 
         <div class="post-meta">
@@ -401,6 +401,17 @@
 
           
           
+             <span id="/blog/vue-mixins.html" class="leancloud_visitors" data-flag-title="vue源码中Mixins原理和源码解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -408,7 +419,7 @@
 
           
               <div class="post-description">
-                  因为高级函数在vue中实现难度比较大,官方推荐使用mixins来实现组件的高复用性，Vue组件中Mixins的使用
+                  分析为什么Mixins的代码总是比组件中的函数先执行，还有Mixins是怎么混入的
               </div>
           
 
@@ -422,10 +433,7 @@
       
 
       
-        <blockquote>
-<p>原文: <a href="https://www.w3cplus.com/vue/practical-use-of-components-and-mixins-in-vue-js.html" target="_blank" rel="noopener">https://www.w3cplus.com/vue/practical-use-of-components-and-mixins-in-vue-js.html</a> © w3cplus.com</p>
-</blockquote>
-
+        
       
     </div>
 
@@ -565,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +595,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1130,6 +1138,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

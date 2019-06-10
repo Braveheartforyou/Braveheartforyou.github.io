@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Vue-router整体的流程和源码解析]]></title>
+    <url>%2F%2Fblog%2Fvue-router-flow.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>vue-router</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vue中的next-tick原理和源码解析]]></title>
     <url>%2F%2Fblog%2Fvue-next-tick.html</url>
     <content type="text"></content>
@@ -34,7 +45,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-render]]></title>
+    <title><![CDATA[vue中render源码解析]]></title>
     <url>%2F%2Fblog%2Fvue-update-render-createelement-patch.html</url>
     <content type="text"></content>
       <categories>
@@ -45,7 +56,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-new-vue]]></title>
+    <title><![CDATA[vue源码中new vue都做了什么]]></title>
     <url>%2F%2Fblog%2Fvue-new-vue.html</url>
     <content type="text"></content>
       <categories>
@@ -100,12 +111,18 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-router]]></title>
+    <title><![CDATA[Vue-router的mode源码分析]]></title>
     <url>%2F%2Fblog%2Fvue-router.html</url>
     <content type="text"></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>vue-router</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue中@click和@click.native的区别和实现、vue中eventBus的原理]]></title>
+    <title><![CDATA[vue中的events源码分析]]></title>
     <url>%2F%2Fblog%2Fvue-click-eventbus.html</url>
     <content type="text"></content>
       <categories>
@@ -149,7 +166,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[css-flex]]></title>
+    <title><![CDATA[css3中flex的所有属性详解]]></title>
     <url>%2F%2Fblog%2Fcss-flex.html</url>
     <content type="text"></content>
       <categories>
@@ -160,29 +177,59 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[react-hot]]></title>
+    <title><![CDATA[react中的高阶组件详解]]></title>
     <url>%2F%2Fblog%2Freact-hot.html</url>
     <content type="text"></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-parse]]></title>
+    <title><![CDATA[vue源码中parse生成AST]]></title>
     <url>%2F%2Fblog%2Fvue-parse.html</url>
     <content type="text"></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-complier]]></title>
+    <title><![CDATA[vue源码中complier整体流程]]></title>
     <url>%2F%2Fblog%2Fvue-complier.html</url>
     <content type="text"></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[simple-vue-mvvm]]></title>
+    <title><![CDATA[实现一个简单mvvm双向绑定基础框架]]></title>
     <url>%2F%2Fblog%2Fsimple-vue-mvvm.html</url>
     <content type="text"></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[evenloop]]></title>
+    <title><![CDATA[eventloop图解]]></title>
     <url>%2F%2Fblog%2Fevenloop.html</url>
     <content type="text"></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[arrow-functions（箭头函数）和普通的函数的区别]]></title>
@@ -196,7 +243,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[vue-hoc]]></title>
+    <title><![CDATA[为什么在vue中推荐使用Mixins]]></title>
     <url>%2F%2Fblog%2Fvue-hoc.html</url>
     <content type="text"></content>
       <categories>
@@ -312,9 +359,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[mixins在vue中的使用 vue_mixins实战]]></title>
+    <title><![CDATA[vue源码中Mixins原理和源码解析]]></title>
     <url>%2F%2Fblog%2Fvue-mixins.html</url>
-    <content type="text"><![CDATA[原文: https://www.w3cplus.com/vue/practical-use-of-components-and-mixins-in-vue-js.html © w3cplus.com]]></content>
+    <content type="text"></content>
       <categories>
         <category>Vue</category>
       </categories>

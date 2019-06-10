@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="React,">
+  <meta name="keywords" content="vue-router,">
 
 
 
@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="react的setState是异步的，但是他有没有可能在一定情况下是同步的呢,很多人都是一口断定是异步但是确实是不对的，其实react在一定的条件下是同步的">
-<meta name="keywords" content="React">
+<meta name="description" content="Vue-router的是怎么实现跳转的。">
+<meta name="keywords" content="vue-router">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解 react的 setState 在不同情况下同步异步之间切换（未完待续）">
-<meta property="og:url" content="http://asyncnode.com/blog/react-setState.html">
+<meta property="og:title" content="Vue-router整体的流程和源码解析">
+<meta property="og:url" content="http://asyncnode.com/blog/vue-router-flow.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="react的setState是异步的，但是他有没有可能在一定情况下是同步的呢,很多人都是一口断定是异步但是确实是不对的，其实react在一定的条件下是同步的">
+<meta property="og:description" content="Vue-router的是怎么实现跳转的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T09:20:06.028Z">
+<meta property="og:updated_time" content="2019-06-10T09:48:57.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="理解 react的 setState 在不同情况下同步异步之间切换（未完待续）">
-<meta name="twitter:description" content="react的setState是异步的，但是他有没有可能在一定情况下是同步的呢,很多人都是一口断定是异步但是确实是不对的，其实react在一定的条件下是同步的">
+<meta name="twitter:title" content="Vue-router整体的流程和源码解析">
+<meta name="twitter:description" content="Vue-router的是怎么实现跳转的。">
 
 
 
@@ -154,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/blog/react-setState.html">
+  <link rel="canonical" href="http://asyncnode.com/blog/vue-router-flow.html">
 
 
 
 
 
-  <title>理解 react的 setState 在不同情况下同步异步之间切换（未完待续） | asyncnode</title>
+  <title>Vue-router整体的流程和源码解析 | asyncnode</title>
   
 
 
@@ -322,7 +322,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/react-setState.html">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/vue-router-flow.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="asyncnode">
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">理解 react的 setState 在不同情况下同步异步之间切换（未完待续）</h1>
+          <h1 class="post-title" itemprop="name headline">Vue-router整体的流程和源码解析</h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T16:27:09+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-13T17:47:48+08:00">
+                2019-06-13
               </time>
             
 
@@ -374,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
                   </a>
                 </span>
 
@@ -392,7 +392,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/blog/react-setState.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/blog/vue-router-flow.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -401,7 +401,7 @@
 
           
           
-             <span id="/blog/react-setState.html" class="leancloud_visitors" data-flag-title="理解 react的 setState 在不同情况下同步异步之间切换（未完待续）">
+             <span id="/blog/vue-router-flow.html" class="leancloud_visitors" data-flag-title="Vue-router整体的流程和源码解析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,7 +419,7 @@
 
           
               <div class="post-description">
-                  react的setState是异步的，但是他有没有可能在一定情况下是同步的呢,很多人都是一口断定是异步但是确实是不对的，其实react在一定的条件下是同步的
+                  Vue-router的是怎么实现跳转的。
               </div>
           
 
@@ -433,13 +433,7 @@
       
 
       
-        <p>作者：虹晨<br>链接：<a href="https://juejin.im/post/5b45c57c51882519790c7441" target="_blank" rel="noopener">https://juejin.im/post/5b45c57c51882519790c7441</a><br>来源：掘金</p>
-<h2 id="总结setState在不同环境中同步、异步不同"><a href="#总结setState在不同环境中同步、异步不同" class="headerlink" title="总结setState在不同环境中同步、异步不同"></a>总结setState在不同环境中同步、异步不同</h2><ol>
-<li><font color="red">setState</font> 只在<font color="red">合成事件</font>和<font color="red">钩子函数</font>中是”异步”的,在<font color="red">原生事件</font>和<font color="red">setTimeout</font>中都是<font color="red">同步</font>的。</li>
-<li><font color="red">setState</font>的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”，当然可以通过第二个参数 setState(partialState, callback) 中的<font color="red">callback</font>拿到更新后的结果。</li>
-<li><font color="red">setState</font> 的批量更新优化也是建立在<font color="red">“异步”（合成事件、钩子函数）</font>之上的，在原生事件和setTimeout 中不会批量更新，在“异步”中如果对同一个值进行<font color="red">多次 setState </font>， setState 的批量更新策略会对其进行<font color="red">覆盖</font>，取最后一次的执行，如果是同时 setState 多个不同的值，在更新时会对其进行<font color="red">合并批量更新</font>。</li>
-</ol>
-
+        
       
     </div>
 
@@ -468,7 +462,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+            <a href="/tags/vue-router/" rel="tag"><i class="fa fa-tag"></i> vue-router</a>
           
         </div>
       
@@ -481,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/call-apply-bind-polyfill.html" rel="next" title="自己手动实现call、apply、bind">
-                <i class="fa fa-chevron-left"></i> 自己手动实现call、apply、bind
+              <a href="/blog/vue-next-tick.html" rel="next" title="vue中的next-tick原理和源码解析">
+                <i class="fa fa-chevron-left"></i> vue中的next-tick原理和源码解析
               </a>
             
           </div>
@@ -490,10 +484,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/etag-cache.html" rel="prev" title="利用ETag和If-None-Match字段验证缓存的响应">
-                利用ETag和If-None-Match字段验证缓存的响应 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -565,17 +555,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
           <p class="site-author-name" itemprop="name">asyncnode</p>
@@ -653,22 +634,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结setState在不同环境中同步、异步不同"><span class="nav-number">1.</span> <span class="nav-text">总结setState在不同环境中同步、异步不同</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
