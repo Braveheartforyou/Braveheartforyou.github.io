@@ -6,7 +6,7 @@
 title: asyncnode
 subtitle: asyncnode
 description: asyncnode
-author: Zhang
+author: asyncnode
 language: zh-Hans
 timezone:
 
@@ -81,6 +81,7 @@ search:
 
 # 站内宠物
 live2d:
-  model: hibiki
-  bottom: 30
-  right: 20
+  enable: false
+  # model: hibiki
+  # bottom: 0
+  # right: 0
