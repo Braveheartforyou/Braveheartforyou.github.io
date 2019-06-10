@@ -1,7 +1,7 @@
 ---
-title: vue中@click和@click.native的区别和实现、vue中eventBus的原理
+title: vue中的events源码分析
 date: 2019-05-13 14:55:55
 tags: [Vue]
 categories: [Vue]
-description: 这篇博客讲解vue中@click和@click.native的区别，和vue中eventBus的使用、原理分析。
+description: vue中源码中整体的events分为两类，一类为原生事件（Dom事件）、另一类为事件中心事件
 ---
