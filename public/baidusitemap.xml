@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com//blog/arrow-functions.html</loc>
+    <lastmod>2019-06-12</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com//blog/vue-hoc.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
@@ -82,9 +85,6 @@
     <loc>http://asyncnode.com//blog/Precautions.html</loc>
     <lastmod>2019-05-07</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/arrow-functions.html</loc>
-    <lastmod>2019-04-26</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com//blog/vue-mvvm.html</loc>
     <lastmod>2019-04-10</lastmod>
   </url>  <url>
@@ -136,10 +136,10 @@
     <loc>http://asyncnode.com//blog/js-this.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/mobile-all.html</loc>
+    <loc>http://asyncnode.com//blog/mockData.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/mockData.html</loc>
+    <loc>http://asyncnode.com//blog/mobile-all.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/javascript-oop.html</loc>
@@ -211,10 +211,10 @@
     <loc>http://asyncnode.com//blog/call-apply-bind-polyfill.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-2.html</loc>
+    <loc>http://asyncnode.com//blog/canvas-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-1.html</loc>
+    <loc>http://asyncnode.com//blog/canvas-2.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com//blog/constructor-1.html</loc>
