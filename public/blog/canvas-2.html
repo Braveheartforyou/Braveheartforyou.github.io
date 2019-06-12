@@ -489,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/ArrayObject-deepCopy.html" rel="next" title="Javascript中Array、Object深度复制、数据类型">
-                <i class="fa fa-chevron-left"></i> Javascript中Array、Object深度复制、数据类型
+              <a href="/blog/canvas-1.html" rel="next" title="html5中的canvas基本使用方法">
+                <i class="fa fa-chevron-left"></i> html5中的canvas基本使用方法
               </a>
             
           </div>
@@ -499,8 +499,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/canvas-1.html" rel="prev" title="html5中的canvas基本使用方法">
-                html5中的canvas基本使用方法 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/es6-Number.html" rel="prev" title="ES6中Number一些新增的方法和属性">
+                ES6中Number一些新增的方法和属性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -852,6 +852,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
   
 

@@ -506,9 +506,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/blog/canvas-1.html" itemprop="url">
+            <a class="post-title-link" href="/blog/canvas-2.html" itemprop="url">
               
-                <span itemprop="name">html5中的canvas基本使用方法</span>
+                <span itemprop="name">html5中的canvas的使用方法，实现自定义绘制图形</span>
               
             </a>
         
@@ -532,9 +532,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/blog/canvas-2.html" itemprop="url">
+            <a class="post-title-link" href="/blog/canvas-1.html" itemprop="url">
               
-                <span itemprop="name">html5中的canvas的使用方法，实现自定义绘制图形</span>
+                <span itemprop="name">html5中的canvas基本使用方法</span>
               
             </a>
         
@@ -864,6 +864,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
   
 
