@@ -1,238 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://asyncnode.com//blog/arrow-functions.html</loc>
+    <loc>http://asyncnode.com/blog/arrow-functions.html</loc>
     <lastmod>2019-06-12</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-hoc.html</loc>
+    <loc>http://asyncnode.com/blog/vue-hoc.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/evenloop.html</loc>
+    <loc>http://asyncnode.com/blog/evenloop.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/simple-vue-mvvm.html</loc>
+    <loc>http://asyncnode.com/blog/simple-vue-mvvm.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-complier.html</loc>
+    <loc>http://asyncnode.com/blog/vue-complier.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-parse.html</loc>
+    <loc>http://asyncnode.com/blog/vue-parse.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/react-hot.html</loc>
+    <loc>http://asyncnode.com/blog/react-hot.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/css-flex.html</loc>
+    <loc>http://asyncnode.com/blog/css-flex.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-click-eventbus.html</loc>
+    <loc>http://asyncnode.com/blog/vue-click-eventbus.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-router.html</loc>
+    <loc>http://asyncnode.com/blog/vue-router.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-mixins.html</loc>
+    <loc>http://asyncnode.com/blog/vue-mixins.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-new-vue.html</loc>
+    <loc>http://asyncnode.com/blog/vue-new-vue.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-update-render-createelement-patch.html</loc>
+    <loc>http://asyncnode.com/blog/vue-update-render-createelement-patch.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-router-flow.html</loc>
+    <loc>http://asyncnode.com/blog/vue-router-flow.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-next-tick.html</loc>
+    <loc>http://asyncnode.com/blog/vue-next-tick.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-dep.html</loc>
+    <loc>http://asyncnode.com/blog/vue-dep.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-three-wathcer.html</loc>
+    <loc>http://asyncnode.com/blog/vue-three-wathcer.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-hot-twofuntions.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-hot-twofuntions.html</loc>
     <lastmod>2019-06-03</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-self-plugins.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-self-plugins.html</loc>
     <lastmod>2019-06-03</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-process.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-process.html</loc>
     <lastmod>2019-06-03</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-rely-load.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-rely-load.html</loc>
     <lastmod>2019-06-03</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/jsistype.html</loc>
+    <loc>http://asyncnode.com/blog/jsistype.html</loc>
     <lastmod>2019-05-14</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es-promise.html</loc>
+    <loc>http://asyncnode.com/blog/es-promise.html</loc>
     <lastmod>2019-05-13</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-list-two.html</loc>
+    <loc>http://asyncnode.com/blog/vue-list-two.html</loc>
     <lastmod>2019-05-09</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-list-one.html</loc>
+    <loc>http://asyncnode.com/blog/vue-list-one.html</loc>
     <lastmod>2019-05-08</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Hello.html</loc>
+    <loc>http://asyncnode.com/blog/Hello.html</loc>
     <lastmod>2019-05-07</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/hello-world.html</loc>
+    <loc>http://asyncnode.com/blog/hello-world.html</loc>
     <lastmod>2019-05-07</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Precautions.html</loc>
+    <loc>http://asyncnode.com/blog/Precautions.html</loc>
     <lastmod>2019-05-07</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-mvvm.html</loc>
+    <loc>http://asyncnode.com/blog/vue-mvvm.html</loc>
     <lastmod>2019-04-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-module.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-module.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/hoisting.html</loc>
+    <loc>http://asyncnode.com/blog/http-get-post.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/http-get-post.html</loc>
+    <loc>http://asyncnode.com/blog/hoisting.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/http-tcp.html</loc>
+    <loc>http://asyncnode.com/blog/http-tcp.html</loc>
     <lastmod>2019-03-13</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-debounce-throttle.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-debounce-throttle.html</loc>
     <lastmod>2019-03-04</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/git-rebase.html</loc>
+    <loc>http://asyncnode.com/blog/git-rebase.html</loc>
     <lastmod>2019-03-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-false-true.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-false-true.html</loc>
     <lastmod>2019-03-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-build-iconfont.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-build-iconfont.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-run-build.html</loc>
+    <loc>http://asyncnode.com/blog/vue-run-build.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/webpack-Environment-build.html</loc>
+    <loc>http://asyncnode.com/blog/webpack-Environment-build.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/react-setState.html</loc>
+    <loc>http://asyncnode.com/blog/react-setState.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-build-dll.html</loc>
+    <loc>http://asyncnode.com/blog/vue-build-dll.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/vue-cli-jenkins.html</loc>
+    <loc>http://asyncnode.com/blog/vue-cli-jenkins.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/nginx-gzip.html</loc>
+    <loc>http://asyncnode.com/blog/nginx-gzip.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/node-phantom.html</loc>
+    <loc>http://asyncnode.com/blog/node-phantom.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/js-this.html</loc>
+    <loc>http://asyncnode.com/blog/mobile-all.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/mockData.html</loc>
+    <loc>http://asyncnode.com/blog/js-this.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/mobile-all.html</loc>
+    <loc>http://asyncnode.com/blog/mockData.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-oop.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-oop.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/jenkins-fornt.html</loc>
+    <loc>http://asyncnode.com/blog/jenkins-fornt.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-scope.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-scope.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-IF-False-options.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-IF-False-options.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/ios-bug-border.html</loc>
+    <loc>http://asyncnode.com/blog/ios-bug-border.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/ios-bug-retina.html</loc>
+    <loc>http://asyncnode.com/blog/ios-bug-retina.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/javascript-GC.html</loc>
+    <loc>http://asyncnode.com/blog/javascript-GC.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/ios-bug.html</loc>
+    <loc>http://asyncnode.com/blog/ios-bug.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/git-delete.html</loc>
+    <loc>http://asyncnode.com/blog/git-delete.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/hetamap-draw.html</loc>
+    <loc>http://asyncnode.com/blog/hetamap-draw.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/etag-cache.html</loc>
+    <loc>http://asyncnode.com/blog/extends-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/extends-1.html</loc>
+    <loc>http://asyncnode.com/blog/float-Operation.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/float-Operation.html</loc>
+    <loc>http://asyncnode.com/blog/etag-cache.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-class-extends.html</loc>
+    <loc>http://asyncnode.com/blog/es6-class-extends.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Number.html</loc>
+    <loc>http://asyncnode.com/blog/es6-Number.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-2.html</loc>
+    <loc>http://asyncnode.com/blog/es6-2.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Array1.html</loc>
+    <loc>http://asyncnode.com/blog/es6-Array1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-AsyncFuntion.html</loc>
+    <loc>http://asyncnode.com/blog/es6-AsyncFuntion.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-Array.html</loc>
+    <loc>http://asyncnode.com/blog/es6-Array.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/cookie-function.html</loc>
+    <loc>http://asyncnode.com/blog/cookie-function.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/css3transfrom3D.html</loc>
+    <loc>http://asyncnode.com/blog/css3transfrom3D.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/es6-1.html</loc>
+    <loc>http://asyncnode.com/blog/es6-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/call-apply-bind-polyfill.html</loc>
+    <loc>http://asyncnode.com/blog/canvas-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-1.html</loc>
+    <loc>http://asyncnode.com/blog/constructor-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/canvas-2.html</loc>
+    <loc>http://asyncnode.com/blog/canvas-2.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/constructor-1.html</loc>
+    <loc>http://asyncnode.com/blog/call-apply-bind-polyfill.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/JavaScript-Operator-priority.html</loc>
+    <loc>http://asyncnode.com/blog/JavaScript-Operator-priority.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Call-Apply-Bind.html</loc>
+    <loc>http://asyncnode.com/blog/Classic-layout.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Classic-layout.html</loc>
+    <loc>http://asyncnode.com/blog/Call-Apply-Bind.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/Frame-selection.html</loc>
+    <loc>http://asyncnode.com/blog/Frame-selection.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com//blog/ArrayObject-deepCopy.html</loc>
+    <loc>http://asyncnode.com/blog/ArrayObject-deepCopy.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>
 </urlset>
