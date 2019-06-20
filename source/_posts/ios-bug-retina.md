@@ -1,7 +1,7 @@
 ---
 title: retina屏高清屏的具体原理
 date: 2017-07-27 09:35:19
-tags: [css, html]
+tags: [Css, Html]
 categories: [mobile]
 description: retina屏(高清屏)的原理，对前端的页面制作的影响和解决方案
 ---

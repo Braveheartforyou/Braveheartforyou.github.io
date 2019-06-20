@@ -1,7 +1,7 @@
 ---
 title: ios中1px border解决方法
 date: 2017-07-27 10:29:59
-tags: [css, html]
+tags: [Css]
 categories: [mobile]
 description: 解决retina屏幕时border大于1时产生的兼容性问题
 ---

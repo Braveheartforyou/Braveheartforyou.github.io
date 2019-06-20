@@ -1,7 +1,7 @@
 ---
 title: iOS下的 Fixed + Input BUG现象
 date: 2017-07-26 09:22:32
-tags: [JavaScript, css, html]
+tags: [JavaScript, Css, Html]
 categories: [mobile]
 description: 移动端业务开发，iOS 下经常会有 fixed 元素和输入框(input 元素)同时存在的情况。 但是 fixed 元素在有软键盘唤起的情况下，会出现许多莫名其妙的问题。 这篇文章里就提供一个简单的有输入框情况下的 fixed 布局方案。
 ---
@@ -66,6 +66,7 @@ main {
 ```
 然后看起来就是下面这个样子。拖动页面时 header 和 footer 已经定位在了对应的位置，目测没问题了。
 ![css3 3d transfrom](../images/ios_bug/fixed.png)
+<!-- <img src="../images/ios_bug/fixed.png" alt="ios_bug" title="ios_bug"/> -->
 但接下来问题就来了！如果底部输入框软键盘被唤起以后，再次滑动页面，就会看到如下图所示：
 ![css3 3d transfrom](../images/ios_bug/fixed_bug_0.png) ![css3 3d transfrom](../images/ios_bug/fixed_bug_1.png)
 <font color="red"> 软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。</font>
