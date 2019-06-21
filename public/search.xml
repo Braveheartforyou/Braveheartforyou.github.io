@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Vue-router整体的流程和源码解析]]></title>
+    <title><![CDATA[在网址中输入一个网站后面都做了什么]]></title>
+    <url>%2Fblog%2Fbrowser-html-render.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>Html</category>
+      </categories>
+      <tags>
+        <tag>Html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript_extends]]></title>
+    <url>%2Fblog%2Fjavascript-extends.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vue-router整体的流程和源码解析（一）]]></title>
     <url>%2Fblog%2Fvue-router-flow.html</url>
     <content type="text"></content>
       <categories>
@@ -111,7 +133,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Vue-router的mode源码分析]]></title>
+    <title><![CDATA[Vue-router]]></title>
     <url>%2Fblog%2Fvue-router.html</url>
     <content type="text"></content>
       <categories>
@@ -699,8 +721,7 @@
         <category>mobile</category>
       </categories>
       <tags>
-        <tag>css</tag>
-        <tag>html</tag>
+        <tag>Css</tag>
       </tags>
   </entry>
   <entry>
@@ -711,8 +732,8 @@
         <category>mobile</category>
       </categories>
       <tags>
-        <tag>css</tag>
-        <tag>html</tag>
+        <tag>Html</tag>
+        <tag>Css</tag>
       </tags>
   </entry>
   <entry>
@@ -736,8 +757,8 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-        <tag>css</tag>
-        <tag>html</tag>
+        <tag>Html</tag>
+        <tag>Css</tag>
       </tags>
   </entry>
   <entry>

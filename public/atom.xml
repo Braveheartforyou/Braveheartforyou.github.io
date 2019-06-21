@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asyncnode.com/"/>
-  <updated>2019-06-10T09:48:57.264Z</updated>
+  <updated>2019-06-20T03:17:46.133Z</updated>
   <id>http://asyncnode.com/</id>
   
   <author>
@@ -17,15 +17,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Vue-router整体的流程和源码解析</title>
-    <link href="http://asyncnode.com/blog/vue-router-flow.html"/>
-    <id>http://asyncnode.com/blog/vue-router-flow.html</id>
-    <published>2019-06-13T09:47:48.000Z</published>
-    <updated>2019-06-10T09:48:57.264Z</updated>
+    <title>在网址中输入一个网站后面都做了什么</title>
+    <link href="http://asyncnode.com/blog/browser-html-render.html"/>
+    <id>http://asyncnode.com/blog/browser-html-render.html</id>
+    <published>2019-06-20T03:00:46.000Z</published>
+    <updated>2019-06-20T03:17:46.133Z</updated>
     
     <summary type="html">
     
-      Vue-router的是怎么实现跳转的。
+      Html渲染的流程 文档解析=》生成构建dom树=》计算dom上css属性、生成cssom树=》渲染=》合成=》绘制图形。同时reflow、repaint是发生在什么那个阶段。为什么css要写在头部，js现在底部。
+    
+    </summary>
+    
+      <category term="Html" scheme="http://asyncnode.com/categories/Html/"/>
+    
+    
+      <category term="Html" scheme="http://asyncnode.com/tags/Html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript_extends</title>
+    <link href="http://asyncnode.com/blog/javascript-extends.html"/>
+    <id>http://asyncnode.com/blog/javascript-extends.html</id>
+    <published>2019-06-16T02:55:36.000Z</published>
+    <updated>2019-06-20T03:09:26.137Z</updated>
+    
+    <summary type="html">
+    
+      Javascript中的继承方式总结，和ES6中class关键字的区别，还有new 关键字的实现，new关键字做了那些事情。
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://asyncnode.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://asyncnode.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue-router整体的流程和源码解析（一）</title>
+    <link href="http://asyncnode.com/blog/vue-router-flow.html"/>
+    <id>http://asyncnode.com/blog/vue-router-flow.html</id>
+    <published>2019-06-13T09:47:48.000Z</published>
+    <updated>2019-06-13T09:17:55.204Z</updated>
+    
+    <summary type="html">
+    
+      Vue-router分为四大阶段 路由初始化阶段
     
     </summary>
     
@@ -217,15 +257,15 @@
   </entry>
   
   <entry>
-    <title>Vue-router的mode源码分析</title>
+    <title>Vue-router</title>
     <link href="http://asyncnode.com/blog/vue-router.html"/>
     <id>http://asyncnode.com/blog/vue-router.html</id>
     <published>2019-05-14T15:27:07.000Z</published>
-    <updated>2019-06-10T09:55:47.656Z</updated>
+    <updated>2019-06-14T01:42:46.771Z</updated>
     
     <summary type="html">
     
-      Vue-router的mode有两种状态,分别是hash、history 分别是怎么实现。
+      Vue-router的mode有三种状态,分别是hash、history、abstract 分别是怎么实现。
     
     </summary>
     
@@ -379,46 +419,6 @@
     
     
       <category term="Vue" scheme="http://asyncnode.com/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue源码中complier整体流程</title>
-    <link href="http://asyncnode.com/blog/vue-complier.html"/>
-    <id>http://asyncnode.com/blog/vue-complier.html</id>
-    <published>2019-04-23T13:50:49.000Z</published>
-    <updated>2019-06-10T10:07:09.724Z</updated>
-    
-    <summary type="html">
-    
-      vue中把Template生成为render函数，我们一半上线的项目都是经过编译的。
-    
-    </summary>
-    
-      <category term="Vue" scheme="http://asyncnode.com/categories/Vue/"/>
-    
-    
-      <category term="Vue" scheme="http://asyncnode.com/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实现一个简单mvvm双向绑定基础框架</title>
-    <link href="http://asyncnode.com/blog/simple-vue-mvvm.html"/>
-    <id>http://asyncnode.com/blog/simple-vue-mvvm.html</id>
-    <published>2019-04-18T08:16:55.000Z</published>
-    <updated>2019-06-10T10:09:08.356Z</updated>
-    
-    <summary type="html">
-    
-      首先的了解mvvm框架是什么，然后通过javascript实现一个简单mvvm框架。
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://asyncnode.com/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript" scheme="http://asyncnode.com/tags/JavaScript/"/>
     
   </entry>
   

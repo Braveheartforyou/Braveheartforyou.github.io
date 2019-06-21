@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com/blog/ios-bug.html</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/ios-bug-retina.html</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/browser-html-render.html</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/ios-bug-border.html</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/javascript-extends.html</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue-router.html</loc>
+    <lastmod>2019-06-14</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue-router-flow.html</loc>
+    <lastmod>2019-06-13</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com/blog/arrow-functions.html</loc>
     <lastmod>2019-06-12</lastmod>
   </url>  <url>
@@ -28,9 +49,6 @@
     <loc>http://asyncnode.com/blog/vue-click-eventbus.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue-router.html</loc>
-    <lastmod>2019-06-10</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/vue-mixins.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
@@ -38,9 +56,6 @@
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue-update-render-createelement-patch.html</loc>
-    <lastmod>2019-06-10</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/vue-router-flow.html</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue-next-tick.html</loc>
@@ -91,10 +106,10 @@
     <loc>http://asyncnode.com/blog/javascript-module.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/http-get-post.html</loc>
+    <loc>http://asyncnode.com/blog/hoisting.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/hoisting.html</loc>
+    <loc>http://asyncnode.com/blog/http-get-post.html</loc>
     <lastmod>2019-03-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/http-tcp.html</loc>
@@ -133,10 +148,10 @@
     <loc>http://asyncnode.com/blog/node-phantom.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/mobile-all.html</loc>
+    <loc>http://asyncnode.com/blog/js-this.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/js-this.html</loc>
+    <loc>http://asyncnode.com/blog/mobile-all.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/mockData.html</loc>
@@ -154,16 +169,7 @@
     <loc>http://asyncnode.com/blog/javascript-IF-False-options.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/ios-bug-border.html</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/ios-bug-retina.html</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/javascript-GC.html</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/ios-bug.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/git-delete.html</loc>
@@ -172,13 +178,13 @@
     <loc>http://asyncnode.com/blog/hetamap-draw.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
+    <loc>http://asyncnode.com/blog/etag-cache.html</loc>
+    <lastmod>2019-02-27</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com/blog/extends-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/float-Operation.html</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/etag-cache.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/es6-class-extends.html</loc>
@@ -208,25 +214,25 @@
     <loc>http://asyncnode.com/blog/es6-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/canvas-1.html</loc>
+    <loc>http://asyncnode.com/blog/call-apply-bind-polyfill.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/constructor-1.html</loc>
+    <loc>http://asyncnode.com/blog/canvas-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/canvas-2.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/call-apply-bind-polyfill.html</loc>
+    <loc>http://asyncnode.com/blog/constructor-1.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/JavaScript-Operator-priority.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/Classic-layout.html</loc>
+    <loc>http://asyncnode.com/blog/Call-Apply-Bind.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/Call-Apply-Bind.html</loc>
+    <loc>http://asyncnode.com/blog/Classic-layout.html</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/Frame-selection.html</loc>

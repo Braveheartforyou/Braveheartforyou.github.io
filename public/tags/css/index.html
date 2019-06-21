@@ -118,7 +118,7 @@
 <meta name="description" content="asyncnode">
 <meta property="og:type" content="website">
 <meta property="og:title" content="asyncnode">
-<meta property="og:url" content="http://asyncnode.com/tags/css/index.html">
+<meta property="og:url" content="http://asyncnode.com/tags/Css/index.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="asyncnode">
 <meta property="og:locale" content="zh-Hans">
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/tags/css/">
+  <link rel="canonical" href="http://asyncnode.com/tags/Css/">
 
 
 
 
 
-  <title>标签: css | asyncnode</title>
+  <title>标签: Css | asyncnode</title>
   
 
 
@@ -312,61 +312,9 @@
 
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
-      <h1>css<small>标签</small>
+      <h1>Css<small>标签</small>
       </h1>
     </div>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/css-flex.html" itemprop="url">
-              
-                <span itemprop="name">css3中flex的所有属性详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-02T14:51:36+08:00" content="2019-05-02">
-          05-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/Classic-layout.html" itemprop="url">
-              
-                <span itemprop="name">实现经典的三列布局</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-08-16T13:45:57+08:00" content="2017-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
 
     
       
@@ -447,58 +395,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/css3transfrom3D.html" itemprop="url">
-              
-                <span itemprop="name">css3transfrom3D</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-07-17T16:22:48+08:00" content="2017-07-17">
-          07-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/mobile-all.html" itemprop="url">
-              
-                <span itemprop="name">移动端注意事项 (未完待续)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-07-17T09:33:57+08:00" content="2017-07-17">
-          07-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
   </div>
 
   
@@ -542,7 +438,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -553,7 +449,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -564,7 +460,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1266,6 +1162,19 @@
 <script type="text/javascript" src="/live2d/device.min.js"></script>
 <script type="text/javascript">
 const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>
+ction(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
 (function(){
   if((typeof(device) != 'undefined') && (device.mobile())){
     document.getElementById("live2dcanvas").style.width = '75px';
