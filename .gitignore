@@ -4,4 +4,4 @@ db.json
 *.log
 node_modules/
 .deploy*/
-public/
+./public/
