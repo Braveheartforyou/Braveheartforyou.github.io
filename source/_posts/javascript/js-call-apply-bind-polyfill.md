@@ -1,5 +1,5 @@
 ---
-title: 自己手动实现call、apply、bind
+title: 自己手动实现call、apply、bind this（三）
 date: 2019-01-15 15:31:37
 tags: [JavaScript]
 categories: [JavaScript]

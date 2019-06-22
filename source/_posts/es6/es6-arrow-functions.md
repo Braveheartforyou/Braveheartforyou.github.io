@@ -1,5 +1,5 @@
 ---
-title: arrow-functions（箭头函数）和普通的函数的区别
+title: arrow-functions（箭头函数）和普通的函数的区别 this（二）
 date: 2019-04-10 16:53:14
 tags: [ECMAScript6]
 categories: [ECMAScript6]

@@ -1,7 +1,7 @@
 ---
 title: node中的一个html转pdf、截图、生成图片的库
 date: 2017-08-02 11:55:58
-tags: [Node, phantom]
+tags: [Node]
 categories: [Node]
 description: node中的phantpm库，把当前html页面转为pdf,或者截图等等
 ---
