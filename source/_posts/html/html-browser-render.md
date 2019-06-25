@@ -1,10 +1,17 @@
 ---
-title: 在网址中输入一个网站后面都做了什么
+title: 浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么
 date: 2019-06-20 11:00:46
 tags: [Html]
 categories: [Html]
 description: Html渲染的流程 文档解析=》生成构建dom树=》计算dom上css属性、生成cssom树=》渲染=》合成=》绘制图形。同时reflow、repaint是发生在什么那个阶段。为什么css要写在头部，js现在底部。
 ---
+> [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](http://asyncnode/blog/html/html-style-javascript.html)
+> [浏览器渲染原理 （二）css、javascript、dom阻塞关系](http://asyncnode/blog/html/html-browser-render.html)
+> [浏览器渲染原理 （三） reload和reflow详解](http://asyncnode/blog/html/html-reload-reflow.html)
+
+如果想看更深入的原理，可以看：
+> [别人翻译的外国友人的渲染原理](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout)
+
 ## 浏览器是怎么渲染html的
 <strong>关键渲染路径（Critical Rendering Path）</strong>是指与当前用户操作有关的内容。例如用户刚刚打开一个页面，首屏的显示就是当前用户操作相关的内容，具体就是浏览器收到 HTML、CSS 和 JavaScript 等资源并对其进行处理从而渲染出 Web 页面。
 如下图所示渲染流程：
