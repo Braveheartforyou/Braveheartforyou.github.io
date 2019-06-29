@@ -8,7 +8,7 @@ description: JavaScript中因精度丢失产生的问题和解决方法
 ## 概述
 在用到JavaScript中float类型的值来运算时,会产生精度不准的问题。
 例如：
-![float operation](../images/float/float.jpg)
+![float operation](../../images/float/float.jpg)
 可以看到：
 ```javascript
     console.log(0.1+0.2);
@@ -48,7 +48,7 @@ x + 1 === x // true
 ```
 ## JS 数字丢失精度的原因
 计算机的二进制实现和位数限制有些数无法有限表示。就像一些无理数不能有限表示，如 圆周率 3.1415926...，1.3333... 等。JS 遵循 IEEE 754 规范，采用双精度存储（double precision），占用 64 bit。如图
-![float operation](../images/float/float_bug.png)
+![float operation](../../images/float/float_bug.png)
 ** 意义 **
 - 1位用来表示符号位
 - 11位用来表示指数
