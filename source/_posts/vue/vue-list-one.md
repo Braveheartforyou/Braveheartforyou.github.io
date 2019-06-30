@@ -11,7 +11,7 @@ description: 总结一下Vue生命周期，还有Vue是怎么渲染父子组件�
 一说到Vue的生命周期，大家都能说上来一点.我自己会随着自己对Vue的深入了解，不断的完善自己对Vue的整体认识。
 本文Vue的版本 <font color="blue">Vue 2.x</font> 官方生命周期图解：
 <!-- ![vue-hook]( 200x800) -->
-<img src="../images/vue/vue-hook.png" alt="vue-hook" width="60%" style="margin: 0 auto;"/>
+<img src="../../images/vue/vue-hook.png" alt="vue-hook" width="60%" style="margin: 0 auto;"/>
 
 |      生命周期钩子   |      详细     |
 |:-----------------:|:----------------:|
@@ -112,7 +112,7 @@ description: 总结一下Vue生命周期，还有Vue是怎么渲染父子组件�
 ### 注意事项
 
 ** 1、beforeMount生命周期之前 **
-<img src="../images/vue/vue-hook1.png" alt="vue-hook" width="60%" style="margin: 0 auto;"/>
+<img src="../../images/vue/vue-hook1.png" alt="vue-hook" width="60%" style="margin: 0 auto;"/>
 在这个调用<font color="blue">beforeMount</font>判断vm.$options是否存在<font color="blue">el</font>，如果没有的话则会<font color="blue">停止编译</font>，也就意味着<font color="blue">停止了生命周期</font>，直到在改vue实例上调用<font color="blue">vm.$mount(el)</font>。
 vue的实现代码：如果存在el时
 ```javascript

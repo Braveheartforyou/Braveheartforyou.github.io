@@ -15,7 +15,7 @@ description: 在实际开发中,一些库框架的选择和使用等等
  2、决定应用程序的声明周期
  3、一般来说,集成了大量的库
  如下图所示，框架会在特定的时间要求程序执行某段代码。框架决定了什么时候调用库，决定了什么时候要求代码去执行特定功能
- ![框架流程图](../images/Frame-selection1.png)
+ ![框架流程图](../../images/Frame-selection1.png)
  而实际上，一个库有事也可以称之为框架，而库里面继承的方法称之为库
  框架和库的区别不是由实际大小决定，而是有思考角度来决定。框架和库世界上可以统称为解决方案
 
@@ -93,17 +93,17 @@ description: 在实际开发中,一些库框架的选择和使用等等
  ### 模板
  模板主要包括三类：基于字符串的模板(String-based)、基于DOM的模板(DOM-based)、活动模板(Living Template)
 　　1、基于字符串的模板(String-based)，解决方案包括(dustjs、hogan.js、dot.js)
-   ![模版的组成](../images/Frame-selection2.jpg)
+   ![模版的组成](../../images/Frame-selection2.jpg)
    原理如下：输入一段模板字符串，通过编译之后 ，生成一段Function，通过Function的render或类render函数渲染输入的数据data，输出模板字符串，字符串通过innerHTML或类似的方式渲染成最后的DOM结构。这类模板的问题在于通过字符串生成DOM之后就不再变化，如果在改变输入的数据data，需要重新render，重新生成一个全新的DOM结构，性能较差。但该模板可以在服务器端运行
-   ![模版的组成](../images/Frame-selection3.png)
+   ![模版的组成](../../images/Frame-selection3.png)
    2、基于DOM的模板(DOM-based)，解决方案包括(angularjs、vuejs、knockout)
-   ![模版的组成](../images/Frame-selection4.jpg)
+   ![模版的组成](../../images/Frame-selection4.jpg)
    原理如下：将输入的字符串模板通过innerHTML转换为一个无状态DOM树，然后遍历该节点树，去抓取关键属性或语句，来进行相关的绑定，进而变成了有状态的DOM树，最终导致DOM树会与数据模型model进行绑定。这类模板的特点是修改数据时，会使有状态的DOM树实时更新，运行时性能更好，也会保留 DOM 中的已有事件
-   ![模版的组成](../images/Frame-selection5.png)
+   ![模版的组成](../../images/Frame-selection5.png)
    3、活动模板(Living Template)，解决方案包括(RegularJS、RactiveJS、htmlbar)
-   ![模版的组成](../images/Frame-selection6.jpg)
+   ![模版的组成](../../images/Frame-selection6.jpg)
    原理如下：活动模板融合了字符串模板和DOM模板的技术，模板字符串string通过自定义的解析器DSL-based Parse解析成AST(抽象语法树)，通过遍历AST，使用createElement()、setAttribute()等原生DOM方法，生成DOM树，最终导致DOM树会与数据模型model进行绑定。由于其内部完全不使用innerHTML，所以安全性较高
-   ![模版的组成](../images/Frame-selection7.png)
+   ![模版的组成](../../images/Frame-selection7.png)
  ### 组件
   组件(Component)的主要职责包括以下：
 　　1、提供基础的 CSS 支持
@@ -120,7 +120,7 @@ description: 在实际开发中,一些库框架的选择和使用等等
 　　3、历史管理
 　　4、对目标浏览器的兼容性支持
 　　无论什么框架，在完成配置之后，内部都有如下图所示的类似的路由表。
-![模版的组成](../images/Frame-selection8.png)
+![模版的组成](../../images/Frame-selection8.png)
 #### 【常用方案】
     常用的路由解决方案有page.JS、Director.JS、Stateman、crossroad.JS等
 　　page.JS类似 Express.Router 的路由规则的前端路由库
@@ -139,7 +139,7 @@ description: 在实际开发中,一些库框架的选择和使用等等
 　　Model(数据层或模型层)表示数据实体，它们用于记录应用程序的数据
 　　View(视图层)用于展示界面，界面是数据定制的反映，它包含样式结构定义以及VM享有的声明式数据以及数数据绑定
 ViewModel(控制层)是View与Model的粘合，它通过绑定事件与View交互并可以调用Service处理数据持久化，也可以通过数据绑定将Model的变动反映到View中
-![模版的组成](../images/Frame-selection9.png)
+![模版的组成](../../images/Frame-selection9.png)
 #### 【SPA】
     要特点注意的是，MV* !== SPA(单页系统)
 　　SPA应用程序的逻辑比较复杂，需要一种模式来进行解耦，但并不一定是MV*模式

@@ -10,11 +10,11 @@ description: retina屏(高清屏)的原理，对前端的页面制作的影响�
 - 1、一种具有备超高像素密度的液晶屏
 - 2、同样大小的屏幕上显示的像素点由1个变为多个
 在不同的屏幕上，CSS像素所呈现的物理尺寸是一致的，而不同的是CSS像素所对应的物理像素具数是不一致的。在普通屏幕下1个CSS像素对应1个物理像素，而在Retina屏幕下，1个CSS像素对应的却是4个物理像素。
-![css3 3d transfrom](../images/ios_bug/retina-web-3.jpg)
+![css3 3d transfrom](../../images/ios_bug/retina-web-3.jpg)
 
 ### 物理像素（physical pixel）
 物理像素又被称为设备像素，他是显示设备中一个最微小的物理部件。每个像素可以根据操作系统设置自己的颜色和亮度。正是这些设备像素的微小距离欺骗了我们肉眼看到的图像效果。
-![css3 3d transfrom](../images/ios_bug/retina-web-1.jpg)
+![css3 3d transfrom](../../images/ios_bug/retina-web-1.jpg)
 
 ### 设备独立像素(density-independent pixel)
 设备独立像素也称为密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)，然后由相关系统转换为物理像素。

@@ -96,13 +96,13 @@ description: 'JavaScript没有块级作用域,我们比较熟知的就是函数�
         return sum;
     }
 ```
-![](../images/scope/scope1.jpg)
+![](../../images/scope/scope1.jpg)
 ```javascript
     var total = add(5,10);
 ```
 执行此函数时会创建一个称为“运行期上下文(execution context)”的内部对象，运行期上下文定义函数执行的环境。每个运行期上下文都有自己的作用域链，用于标识符解析，当运行期上下文被创建时，而它的作用域链初始化为当前运行函数的[[Scope]]所包含的对象。
 这些值按照它们出现在函数中的顺序被复制到运行期的上下文的作用域中，它们共同组成一个新的对象，叫“活动对象(activation object)”,该对象包含了函数的所有局部变量、命名参数、参数集合以及this,然后此对象会被推入作用域链前端，当运行期上下文被销毁时，活动对象也随之销毁。
-![](../images/scope/scope2.jpg)
+![](../../images/scope/scope2.jpg)
 在全局作用域中创建的函数,其作用域链会自动成为作用域中的一员。而当函数执行时,其活动对象就会成为作用域中的第一个对象。
 ```javascript
     var name = 'global';

@@ -15,7 +15,7 @@ vue-cli <font color="red">2.x</font>版本，因为自己不太习惯3.x的这�
 - "build:prod": "cross-env API_ROOT=prod node build/build.js"
 
 其中<font color="red">cross-env</font>包是为了兼容liunx和window不同系统都可以把 <font color="green">API_ROOT</font>参数传进进程中.
-![jenkins_vue_cli](../images/vue_build/jenkins_vue_cli.png)
+![jenkins_vue_cli](../../images/vue_build/jenkins_vue_cli.png)
 然后配置<font color="red">config</font>文件夹下的<font color="green">dev.env.js、prod.env.js</font>
 ### dev.env.js
 ```javascript
@@ -71,13 +71,13 @@ switch (process.env.API_ROOT) {
 }
 ```
 最后也是最重要的也就是我们要有一个统一的调用地址，如果不是统一的一个，那就多声明几个模块如<font color="red">PAYMENT、PRODUCT</font>等来区分不同环境的不同后台接口
-![jenkins_vue_cli2](../images/vue_build/jenkins_vue_cli2.png)
+![jenkins_vue_cli2](../../images/vue_build/jenkins_vue_cli2.png)
 # jenkins 配置
 - 新建一个 构建一个自由风格的软件项目
 - 配置》源码管理》Git(git地址和ssh帐号密码、拉去代码的分支)
-    ![jenkins_vue_cli3](../images/vue_build/jenkins_vue_cli3.png)
+    ![jenkins_vue_cli3](../../images/vue_build/jenkins_vue_cli3.png)
 - 锁定编译环境node 版本为 8.9.3或者别的
-    ![jenkins_vue_cli4](../images/vue_build/jenkins_vue_cli4.png)
+    ![jenkins_vue_cli4](../../images/vue_build/jenkins_vue_cli4.png)
 - jenkins前端的构建脚本
-    ![jenkins_vue_cli5](../images/vue_build/jenkins_vue_cli5.png)
+    ![jenkins_vue_cli5](../../images/vue_build/jenkins_vue_cli5.png)
     这个只是最简单的打包发送到对应的服务器，其实你在这个时候还可以做很多其他的事，如运行单元测试、sonar平台质量检测、备份等等

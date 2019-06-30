@@ -23,27 +23,27 @@ JavaScript 有两种比较方式：严格比较运算符和转换类型比较运
 
 非严格比较操作符 == 是会做强制类型转换的，那么根据 ECMA 262 它的规则是：
 ** 图1-1 **
-![! ==](../images/false-true/1.png)
+![! ==](../../images/false-true/1.png)
 ** <font color="blue">ToPrimitive：</font> **
 ** 图1-2 **
-![! ==](../images/false-true/2.png)
+![! ==](../../images/false-true/2.png)
 ** 图1-3 **
-![! ==](../images/false-true/3.png)
+![! ==](../../images/false-true/3.png)
 ** 图1-4 **
-![! ==](../images/false-true/4.png)
+![! ==](../../images/false-true/4.png)
 
 ** <font color="blue">ToBoolean: </font> **
 ** 图1-5 **
-![! ==](../images/false-true/5.png)
+![! ==](../../images/false-true/5.png)
 ** 图1-6 **
-![! ==](../images/false-true/6.png)
+![! ==](../../images/false-true/6.png)
 
 来源： ><font color="blue">http://www.ecma-international.org</font>
 
 ## [] == false or ![] == [] or ![] == false 为true
 mdn运算符优先级参考表
-![! ==](../images/false-true/false-true-1.png)
-![! ==](../images/false-true/false-true-2.png)
+![! ==](../../images/false-true/false-true-1.png)
+![! ==](../../images/false-true/false-true-2.png)
 <font color="red">==</font>的优先级16
 <font color="red">!</font>的优先级10
 ### [] == false 结果为 true

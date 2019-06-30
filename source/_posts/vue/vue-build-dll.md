@@ -11,18 +11,18 @@ description: 在使用了Vue官方的vue-cli时，使用dll优化打包过程，
 运行<font color="red">npm run build --report</font>
 如下图所示：
 在cmd中显示打包信息
-![cmd build](../images/vue_build/vue_build_dos1.jpg)
+![cmd build](../../images/vue_build/vue_build_dos1.jpg)
 在页面中显示打包信息
-![html build](../images/vue_build/vue_build_dos2.jpg)
+![html build](../../images/vue_build/vue_build_dos2.jpg)
 ## 懒加载
 使用vue-router官方推荐的懒加载,基本语法是  <font color="red">component: resolve => require(['../view/ppt_model.vue'], resolve)</font>
 会把每一个页面分开打包成一个js文件，当打包构建应用时，Javascript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
 参考 > https://router.vuejs.org/zh-cn/advanced/lazy-loading.html
 打包如下所示：
 在cmd中显示打包信息
-![cmd build](../images/vue_build/vue_build_dos3.jpg)
+![cmd build](../../images/vue_build/vue_build_dos3.jpg)
 在页面中显示打包信息
-![html build](../images/vue_build/vue_build_dos4.jpg)
+![html build](../../images/vue_build/vue_build_dos4.jpg)
 其中的<font color="red">static/js/0.66e1ff74acbd166fa927.js</font>对应的是<font color="red">ppt_model.vue</font>页面
 <font color="red">static/js/1.f09ddc0b737b2466f148.js</font>对应的是<font color="red">ppt_model1.vue</font>页面
 ## webpack官方提供的DllReferencePlugin
@@ -69,9 +69,9 @@ description: 在使用了Vue官方的vue-cli时，使用dll优化打包过程，
 再运行<font color="red">npm run build --report</font>
 运行结果如图所示：
 在cmd中显示打包信息
-![cmd build](../images/vue_build/vue_build_dos6.jpg)
+![cmd build](../../images/vue_build/vue_build_dos6.jpg)
 在页面中显示打包信息
-![html build](../images/vue_build/vue_build_dos7.jpg)
+![html build](../../images/vue_build/vue_build_dos7.jpg)
 
 <font color="red">__注意__</font>
 在打包前记得在index.html最下方，引入打包生成的js

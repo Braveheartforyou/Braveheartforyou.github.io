@@ -8,14 +8,14 @@ description: css3 3d transfrom
 ## css3 3d transfrom
  参考 > http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/
  ### 3D变化示意图
- ![css3 3d transfrom](../images/3d_axes.png)
+ ![css3 3d transfrom](../../images/3d_axes.png)
  ### 认识 rotate
   - rotateX() 以x轴为中心旋转
-  ![css rotateX](../images/rotateX.png)
+  ![css rotateX](../../images/rotateX.png)
   - rotateY() 以Y轴为中心旋转
-  ![css rotateX](../images/rotateX.png)
+  ![css rotateX](../../images/rotateX.png)
   - rotateZ() 以Z轴为中心旋转
-  ![css rotateX](../images/rotateX.png)
+  ![css rotateX](../../images/rotateX.png)
  ### perspective属性
   perspective的意思是：透视,远景
   CSS3 3D transform的透视点是在浏览器的前方！

@@ -10,7 +10,7 @@ description: 这个是基于vue-cli的一些优化，当然create-react-app也�
 [nginx配置gzip传输]()
 ## source-map、devtool、gzip
 vue-cli 已经配置了一部分优化的，如关闭 <font color="red">source-map</font>、<font color="red">devtool</font>,<font color="red">开启gzip</font> 打包压缩，虽然打包时间变长但是，在配置好服务器的话，用户访问时间会很快 <font color="red">config/index.js</font> 如下
-![vue-cli config](../images/vue_build/jenkins_vue_cli6.png)
+![vue-cli config](../../images/vue_build/jenkins_vue_cli6.png)
 ```javascript
     build: {
     // Template for index.html

@@ -45,7 +45,7 @@ description: 三列布局（中间一列自适应 左右两列固定宽度），
     .container .con_right {float:left;width:200px;background:yellow;}
 ```
 如下图所示：
-![css 圣杯布局](../images/css/shengbei1.jpg)
+![css 圣杯布局](../../images/css/shengbei1.jpg)
 左右栏通过添加<font color="red">负的margin</font>放到正确的位置了
 修改如下：
 ```css
@@ -81,7 +81,7 @@ description: 三列布局（中间一列自适应 左右两列固定宽度），
     .container .con_right {float:left;width:200px;background:yellow;}
 ```
 如下图所示：
-![css 圣杯布局](../images/css/shengbei2.jpg)
+![css 圣杯布局](../../images/css/shengbei2.jpg)
 左右栏通过添加<font color="red">负的margin</font>放到正确的位置了
 修改如下：
 ```css
@@ -94,4 +94,4 @@ description: 三列布局（中间一列自适应 左右两列固定宽度），
     .container .con_continer .item {margin:0 200px 0 180px;}
 ```
 修改后的结局为这样
-![css 圣杯布局](../images/css/shengbei3.jpg)
+![css 圣杯布局](../../images/css/shengbei3.jpg)

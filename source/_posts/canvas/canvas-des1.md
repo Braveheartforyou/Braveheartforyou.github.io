@@ -48,10 +48,10 @@ canvas元素负责在页面中设定一个区域，然后就可以通过JavaScri
 可以获取到<font color="red">canvas</font>dom,再通过<font color="red">getContext('2d')</font>获取到2D上下文，通过fillStyle<font color="red">fillStyle</font>设置填充颜色，通过<font color="red">strokeStyle</font>设置描边颜色（默认显示 #000），fillRect(0, 0, 150, 150)
 设置矩形的位置和长宽
 效果如下所示：
-  ![canvas_1](../images/canvas/canvas_1.jpg)
+  ![canvas_1](../../images/canvas/canvas_1.jpg)
 ### 栅格
 在我们开始画图之前，我们需要了解一下画布栅格（canvas grid）以及坐标空间。栅格的起点为左上角（坐标为（0,0））。所有元素的位置都相对于原点定位。所以图中蓝色方形左上角的坐标为距离左边（X轴）x像素，距离上边（Y轴）y像素（坐标为（x,y））。在课程的最后我们会平移原点到不同的坐标上，旋转网格以及缩放。现在我们还是使用原来的设置。
-  ![canvas_1](../images/canvas/Canvas_default_grid.png)
+  ![canvas_1](../../images/canvas/Canvas_default_grid.png)
 ### fillStyle strokeStyle
 fillStyle、strokeStyle这个两个属性的值可以是字符串、渐变对象或者模式对象，而且他们的默认值都是"#000000"。字符串值可以为颜色值、十六进制码、rgb、rgba、hsl或hsla.
 ### 绘制矩形
@@ -68,7 +68,7 @@ width
 height
 矩形的高度。
 绘制一个
-  ![canvas_1](../images/canvas/canvas_strokeRect.png)
+  ![canvas_1](../../images/canvas/canvas_strokeRect.png)
   ```html
     <canvas id="canvas"></canvas>
 ```
@@ -89,7 +89,7 @@ width
 矩形的宽度。
 height
 矩形的高度。
-  ![canvas_1](../images/canvas/canvas_strokeRect.png)
+  ![canvas_1](../../images/canvas/canvas_strokeRect.png)
 ```html
     <canvas id="canvas"></canvas>
 ```
@@ -111,7 +111,7 @@ width
 height
 矩形的高度。
 这仅是一段简单地使用 clearRect 方法的代码片段。
-  ![canvas_1](../images/canvas/canvas_clearRect.png)
+  ![canvas_1](../../images/canvas/canvas_clearRect.png)
 ```html
 <canvas id="canvas"></canvas>
 ```

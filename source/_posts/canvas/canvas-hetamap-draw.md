@@ -201,4 +201,4 @@ heatmap > https://www.patrick-wied.at/static/heatmapjs/
     </html>
 ```
 如图所示：
-  ![hearmap draw](../images/heatmap/heatmap1.jpg)
+  ![hearmap draw](../../images/heatmap/heatmap1.jpg)
