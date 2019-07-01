@@ -10,9 +10,19 @@ description: 首先我们要知道new 关键字做了什么事情，才能写一
 先看一下new关键字是他都做了什么，让我们通过new实现继承的。
 下面请看代码：
 ```javascript
-function Preson (name, age) {
+function Car(name, year, model) {
     this.name = name;
-    this.age = age;
+    this.year = year;
+    this.model = model;
 }
-
+Car.prototype.getV = function () {
+    return this.name + '--' + this.year + '--' + this.model;
+}
+var carOne = new Car('jeep', '2018', 'Wrangler');
+console.log(carOne.getV());
+console.log(carOne);
 ```
+new关键字进行如下的操作：
+> 1. 创建一个空的JavaScript对象；
+> 2. 链接该对象（即设置该对象的构造函数）到另一个对象；
+> 3. 将不走
