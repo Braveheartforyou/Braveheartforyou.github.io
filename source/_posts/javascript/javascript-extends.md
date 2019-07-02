@@ -134,3 +134,6 @@ new (Foo.getName());
 (new Foo()).getName();
 ```
 对于第一个函数来说，先执行了 Foo.getName() ，所以结果为 1；对于后者来说，先执行 new Foo() 产生了一个实例，然后通过原型链找到了 Foo 上的 getName 函数，所以结果为 2。
+
+> [mdn new 运算符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new)
+> [大佬 new的实现](https://yuchengkai.cn/docs/frontend/#new)
