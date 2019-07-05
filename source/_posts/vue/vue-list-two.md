@@ -6,7 +6,7 @@ categories: [Vue]
 description: 如果是嵌套组件那么父组件和子组件的各个生命周期的执行顺序。
 ---
 ## vue生命周期
-在另一片博客中我已经有详细讲过[vue生命周期](http://asyncnode.com/blog/vue-list-one.html)
+在另一片博客中我已经有详细讲过[vue生命周期](/blog/vue/vue-list-one.html)
 ## 代码
 ```javascript
 <!DOCTYPE html>

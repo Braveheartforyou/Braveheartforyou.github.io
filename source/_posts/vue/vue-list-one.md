@@ -6,7 +6,7 @@ categories: [Vue]
 description: 总结一下Vue生命周期，还有Vue是怎么渲染父子组件的，那些生命周期父组件先执行，那些生命周期在子组件先执行。
 ---
 ## Vue生命周期
-[vue父子组件渲染生命周期执行循序](http://asyncnode.com/blog/vue-list-two.html)
+[vue父子组件渲染生命周期执行循序](/blog/vue/vue-list-two.html)
 ### Vue声明周期表格
 一说到Vue的生命周期，大家都能说上来一点.我自己会随着自己对Vue的深入了解，不断的完善自己对Vue的整体认识。
 本文Vue的版本 <font color="blue">Vue 2.x</font> 官方生命周期图解：
