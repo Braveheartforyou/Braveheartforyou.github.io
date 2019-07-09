@@ -2,6 +2,7 @@
 title: http中get请求和post请求的区别
 date: 2019-03-22 22:59:35
 tags: [Http]
+categories: [Http]
 description: 在http协议中get请求和post请求的区别
 ---
 在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。
