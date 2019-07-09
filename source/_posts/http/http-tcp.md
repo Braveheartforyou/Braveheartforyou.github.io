@@ -2,6 +2,7 @@
 title: (http)tcp三次握手和四次挥手
 date: 2019-03-13 16:21:03
 tags: [Http, Tcp]
+categories: [Http]
 description: tcp三次握手和四次挥手,为什么是三次握手挥手是四次。
 ---
 ## TCP概念
