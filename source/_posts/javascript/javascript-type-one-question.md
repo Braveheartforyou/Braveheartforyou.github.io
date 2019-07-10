@@ -24,8 +24,9 @@ description: JavaScript中的类型转换，如强制转换（显示转换）、
 > 1. ToPrimitive(转换为原始值)
 > 2. valueOf(返回指定对象的原始值)
 > 3. 运算符中的转换（+、-、*、/）
+> 4. ==
 
-再来看一下ToPrimitive把对象转为原始值，当然也有Object.prototype.toString()的介绍，再试valueOf返回对象的原始值，再最后就是运算符在基本类型和object之间的运算。
+再来看一下ToPrimitive把对象转为原始值，当然也有Object.prototype.toString()的介绍，再试valueOf返回对象的原始值，再最后就是运算符在基本类型和object之间的运算，其中最坑的应该是==的隐士转换，因为他的左右规则不同，左右类型不同执行的又不同。
 
 ### ToPrimitive的规则
 我们要用到的ToPrimitive的规则，因为显示转换也会用到ToPrimitive的规则，如果还想所有的转换规则请看.[ecma规则](http://www.ecma-international.org/)
@@ -161,3 +162,20 @@ Number(obj);
 // Uncaught TypeError: Cannot convert object to primitive value 
 ```
 根据上面的输出结果，证明上面的Number()，走了<font color="blue">ToPrimitive(obj, number)</font>的<font color="blue">type</font>为<font color="blue">number</font>的规则。详情见上面。
+
+**其他转变如数组转String或者Number**
+再验证Obejct转换为Number的规则，直接上代码。
+```javascript
+var obj = {
+  toString: function () { console.log('toString'); return {}; },
+  valueOf: function () { console.log('valueOf'); return {};}
+};
+Number(obj);
+// 1. valueOf
+// 2. toString
+// Uncaught TypeError: Cannot convert object to primitive value 
+```
+根据上面的输出结果，证明上面的Number()，走了<font color="blue">ToPrimitive(obj, number)</font>的<font color="blue">type</font>为<font color="blue">number</font>的规则。详情见上面。
+
+### valueOf
+JavaScript 调用 valueOf() 方法用来把对象转换成原始类型的值（数值、字符串和布尔值）。但是我们很少需要自己调用此函数，valueOf 方法一般都会被 JavaScript 自动调用。
