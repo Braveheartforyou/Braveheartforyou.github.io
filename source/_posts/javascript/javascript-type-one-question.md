@@ -179,3 +179,95 @@ Number(obj);
 
 ### valueOf
 JavaScript 调用 valueOf() 方法用来把对象转换成原始类型的值（数值、字符串和布尔值）。但是我们很少需要自己调用此函数，valueOf 方法一般都会被 JavaScript 自动调用。
+- String => 返回字符串值
+- Number => 返回数字值
+- Boolean => 返回Boolean的this值
+- Object => 返回this
+- Date => 返回一个数字，即时间值,字符串中内容是依赖于具体实现的
+
+代码如下：
+```javascript
+console.log('abc'.valueOf()); // 'abc'
+console.log(Number(123).valueOf()); // 123
+console.log(Boolean(true).valueOf()); // true
+console.log({a: 123}.valueOf()) // {a: 123}
+console.log(new Date()); // Sat Apr 20 2019 00:00:00 GMT+0800 (中国标准时间)
+```
+### 运算符中的转换（+、-、*、/)
+在运算符中的转换又分为两种，自动转换为string类型、自动转换为number类型。
+
+#### 自动转换为string类型
+在基础类型中，当一个值为字符串，另一个值非字符串，则后者转为字符串，当有一个是对象时，会走ToPrimitive(obj, number)，ToPrimitive转换请看上面，下面看代码。
+```javascript
+console.log('a' + 1); // 'a1'
+console.log('a' + true); // 'atrue'
+console.log('a' + false); // 'afalse'
+console.log('a' + undefined); // 'aundefined'
+console.log('a' + null); // 'anull'
+console.log('a' + []); // 'a'
+console.log('a' + {toString: function () { return '1' }}); // 'a1'
+console.log('a' + {valueOf: function () { return 1 }}); // 'a1'
+```
+#### 自动转换为number类型
+加法运算符，如果没有一个为string类型的时候，都会优先转换为Number类型，如果有一个为object时，会走ToPrimitive(obj, number)，ToPrimitive转换请看上面。一元运算符，也是需要注意。下面看代码。
+```javascript
+console.log(true + false); // 1
+console.log(true + null); // 1
+console.log(true + undefined); // NaN
+console.log(true + []); // ‘true’
+console.log(true + null); // 1
+console.log(true - false); // 1
+console.log(true - true); // 0
+console.log('1' - '0'); // 1
+console.log('1' * 0); // 0
+console.log('0' * 1); // 0
+console.log('1' - '0'); // 1
+console.log('abc' - 0); // NaN
+console.log('abc' - '0'); // NaN
+console.log(null - 0); // 0
+console.log('1' - 0); //NaN
+console.log(1 - {valueOf: function () { return 1 }}); // 0
+console.log(1 - {valueOf: function () { return {} }, toString: function () { return 1 }}); // 0
+// 一元运算符
+console.log(+'abc'); // NaN
+console.log(-'abc'); // NaN
+console.log(+'1'); // 1
+console.log(-'1'); // -1
+console.log(+true); // 1
+console.log(-false); // -0
+console.log(+true); // 1
+```
+> 注意：null转为数值时为0，而undefined转为数值时为NaN
+
+### == 
+== 抽象相等比较与+运算符不同，不再是String优先，而是Nuber优先。假设左面为x、y为右面，大概的规则如下。
+> 1. 如果x,y都为number,直接比较
+> 2. 如果x为string，y为number，x转换为number比较，反则相反。
+> 3. 如果存在对象，通过ToPrimitive(obj, number)type为number进行转换，再进行比较。
+> 4. 如果x，y有一方存在boolean,按照ToNumber将boolean转换为1或0，再进行比较。
+验证代码如下：
+```javascript
+// x,y 都number 比较
+console.log(1 == 2) // false
+console.log(1 == 1) // true
+
+// 一方为string一方为number
+console.log('1' == 2) // false
+console.log(1 == '1') // true
+
+// 如果一方为 对象
+console.log(null == 2) // false
+console.log(1 == undefined) // false
+// 因为对象的规则比较繁杂，如果普通对象[] 和 ![] 规则不同请看下面文章
+
+// 存在 booelan
+console.log(true == 0); // false
+console.log(true == '0'); // false
+console.log(false == '0'); // true
+```
+在这里就不多赘述了，看我另一篇文章 [![] == []](/blog/javascript/javascript-false-true.html)，通过一道面试题。来讲解基本的转换规则，因为这个规则其实挺复杂的，一两句话讲不清楚。
+
+## 引用
+> [程序员成长指北](https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg)
+> [阮一峰大佬](https://javascript.ruanyifeng.com/grammar/conversion.html)
+> [amandakelake](https://github.com/amandakelake/blog/issues/34)
