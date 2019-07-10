@@ -1,5 +1,5 @@
 ---
-title: 在JavaScript中只有固定的值会转为false
+title: 在JavaScript中if运算符只有固定的值会转为false
 date: 2017-11-03 13:13:39
 tags: [JavaScript]
 categories: [JavaScript]
