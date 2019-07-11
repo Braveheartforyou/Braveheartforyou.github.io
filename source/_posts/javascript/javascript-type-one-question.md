@@ -268,6 +268,6 @@ console.log(false == '0'); // true
 在这里就不多赘述了，看我另一篇文章 [![] == []](/blog/javascript/javascript-false-true.html)，通过一道面试题。来讲解基本的转换规则，因为这个规则其实挺复杂的，一两句话讲不清楚。
 
 ## 引用
-> [程序员成长指北](https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg)
-> [阮一峰大佬](https://javascript.ruanyifeng.com/grammar/conversion.html)
-> [amandakelake](https://github.com/amandakelake/blog/issues/34)
+> [https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg](https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg)
+> [https://javascript.ruanyifeng.com/grammar/conversion.html](https://javascript.ruanyifeng.com/grammar/conversion.html)
+> [https://github.com/amandakelake/blog/issues/34](https://github.com/amandakelake/blog/issues/34)
