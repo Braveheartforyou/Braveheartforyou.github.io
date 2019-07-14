@@ -18,7 +18,7 @@ description: 防止频繁操作dom带来重绘、回流（重排）带来的性�
 实际上对于window的resize事件，实际需求大多为停止改变大小n毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了debounce和throttle两种解决办法。
 
 ## 与函数去抖（debounce）
-当<font color="blue">调用动作n毫秒</font>后，才会执行该动作，若在这<font color="blue">n毫秒</font>内又调用此动作则将<font color="blue">重新</font>计算执行时间。
+当<font color="#ff502c">调用动作n毫秒</font>后，才会执行该动作，若在这<font color="#ff502c">n毫秒</font>内又调用此动作则将<font color="#ff502c">重新</font>计算执行时间。
 ```javascript
 /**
 * timer为第二次要调用间隔的时间，只有大于间隔时间的调用会立即执func，不然要等到timer之后再执行
@@ -85,7 +85,7 @@ var debounce = function (timer, func) {
   };
 ```
 ## 函数节流（throttle）
-预先设定一个<font color="blue">执行周期</font>，当再次调用动作的<font color="blue">时刻</font>大于等于<font color="blue">执行周期</font>则执行该动作，然后进入下一个新周期。
+预先设定一个<font color="#ff502c">执行周期</font>，当再次调用动作的<font color="#ff502c">时刻</font>大于等于<font color="#ff502c">执行周期</font>则执行该动作，然后进入下一个新周期。
 ```javascript
 /**
 * timer为第二次要调用间隔的时间，只有大于间隔时间的调用会立即执func，不然要等到timer之后再执行

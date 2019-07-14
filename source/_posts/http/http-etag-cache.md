@@ -20,11 +20,11 @@ ETag: "usagi-1234"
 ETag: "W/usagi-1234"
 ```
 ## 实现
-1. <font color="red">服务器端</font>会给每份资源分配对应的<font color="red">ETag值</font>。在<font color="red">response</font>中的头部返回给<font color="red">客户端</font>.
+1. <font color="#ff502c">服务器端</font>会给每份资源分配对应的<font color="#ff502c">ETag值</font>。在<font color="#ff502c">response</font>中的头部返回给<font color="#ff502c">客户端</font>.
 ``` http
 etag: "123456"
 ```
-2. <font color="red">第二次客户端</font>请求的时候在<font color="red">request首部字段</font><font color="red">If-None-Match</font>中传递刚才服务端发送到客户端的<font color="red">ETag值</font>。  
+2. <font color="#ff502c">第二次客户端</font>请求的时候在<font color="#ff502c">request首部字段</font><font color="#ff502c">If-None-Match</font>中传递刚才服务端发送到客户端的<font color="#ff502c">ETag值</font>。  
 ``` http
 if-none-match: "123456"
 ```

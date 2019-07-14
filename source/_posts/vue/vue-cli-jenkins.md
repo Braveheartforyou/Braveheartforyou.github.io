@@ -9,7 +9,7 @@ description: 这个是基于vue-cli的一些优化，当然create-react-app也�
 [项目源码](https://github.com/Braveheartforyou/vue-cli-jenkins)
 [nginx配置gzip传输]()
 ## source-map、devtool、gzip
-vue-cli 已经配置了一部分优化的，如关闭 <font color="red">source-map</font>、<font color="red">devtool</font>,<font color="red">开启gzip</font> 打包压缩，虽然打包时间变长但是，在配置好服务器的话，用户访问时间会很快 <font color="red">config/index.js</font> 如下
+vue-cli 已经配置了一部分优化的，如关闭 <font color="#ff502c">source-map</font>、<font color="#ff502c">devtool</font>,<font color="#ff502c">开启gzip</font> 打包压缩，虽然打包时间变长但是，在配置好服务器的话，用户访问时间会很快 <font color="#ff502c">config/index.js</font> 如下
 ![vue-cli config](../../images/vue_build/jenkins_vue_cli6.png)
 ```javascript
     build: {
@@ -50,7 +50,7 @@ vue-cli 已经配置了一部分优化的，如关闭 <font color="red">source-m
 # 安装 sw-precache-webpack-plugin
 yarn add sw-precache-webpack-plugin --save
 ```
-在<font color="red">webpack.prod.conf.js</font>
+在<font color="#ff502c">webpack.prod.conf.js</font>
 ```javascript
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 //在 plugins 数组中写入
@@ -85,7 +85,7 @@ new SWPrecacheWebpackPlugin({
     staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
 })
 ```
-在<font color="red">src文件夹</font>中新建一个文件叫做<font color="red">registerServiceWorker.js</font>的文件写入
+在<font color="#ff502c">src文件夹</font>中新建一个文件叫做<font color="#ff502c">registerServiceWorker.js</font>的文件写入
 ```javascript
 // In production, we register a service worker to serve assets from local cache.
 

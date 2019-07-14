@@ -5,7 +5,7 @@ tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: ECMAScript6 解构赋值(未完待续)
 ---
-## <font color="red">解构赋值</font> 语法是一个Javascript表达式，这使得可以将值从**数组或属性**从对象提取到不同的变量中。
+## <font color="#ff502c">解构赋值</font> 语法是一个Javascript表达式，这使得可以将值从**数组或属性**从对象提取到不同的变量中。
 <!--more-->
 ## 语法
 ```javascript

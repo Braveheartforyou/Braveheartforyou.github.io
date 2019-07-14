@@ -61,16 +61,16 @@ extends关键词被用在类声明或者类表达式上，以创建一个类是�
     ChromeSamples.log('The area of this square is ' + s.area);
 ```
 声明一个父类Polygon，constructor(构造函数中)创建了三个属性 name,height,width,
-<font color="red">Square</font>通过<font color="red">extends</font>关键字,继承了<font color="red">Polygon</font>类中的所有属性和方法。
-子类必须在<font color="red">constructor</font>方法中调用<font color="red">super</font>方法，否则新建实例时会报错。这是因为子类没有自己的<font color="red">this</font>对象，而是继承父类的<font color="red">this</font>对象，然后对其进行加工。如果不调用<font color="red">super</font>方法，子类就得不到<font color="red">this</font>对象。
-检验<font color="red">Square</font>是否<font color="red">继承</font>自<font color="red">Polygon</font>可以通过Object.getPrototypeOf()
+<font color="#ff502c">Square</font>通过<font color="#ff502c">extends</font>关键字,继承了<font color="#ff502c">Polygon</font>类中的所有属性和方法。
+子类必须在<font color="#ff502c">constructor</font>方法中调用<font color="#ff502c">super</font>方法，否则新建实例时会报错。这是因为子类没有自己的<font color="#ff502c">this</font>对象，而是继承父类的<font color="#ff502c">this</font>对象，然后对其进行加工。如果不调用<font color="#ff502c">super</font>方法，子类就得不到<font color="#ff502c">this</font>对象。
+检验<font color="#ff502c">Square</font>是否<font color="#ff502c">继承</font>自<font color="#ff502c">Polygon</font>可以通过Object.getPrototypeOf()
 ```javascript
     Object.getPrototypeOf(Square) === Polygon; // true
 ```
 ### super关键字
-super这个关键字，既可以当作<font color="red">函数</font>使用，也可以当作<font color="red">对象</font>使用。
-<font color="red">子类的构造函数必须执行一次super函数，代表调用父类的构造函数，不然会报错。</font>
-<font color="red">super内部的this指的是Square,相当于Polygon.prototype.constructor.call(this);</font>
+super这个关键字，既可以当作<font color="#ff502c">函数</font>使用，也可以当作<font color="#ff502c">对象</font>使用。
+<font color="#ff502c">子类的构造函数必须执行一次super函数，代表调用父类的构造函数，不然会报错。</font>
+<font color="#ff502c">super内部的this指的是Square,相当于Polygon.prototype.constructor.call(this);</font>
 作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错
 ```javascript
     class Polygon {

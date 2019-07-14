@@ -5,7 +5,7 @@ tags: [css, html]
 categories: [mobile]
 description: 一些移动端常见问题 和解决方案(未完成 2017-7-17)
 ---
-## 一些问题阐述 <font color="red">(未完待续)</font>
+## 一些问题阐述 <font color="#ff502c">(未完待续)</font>
  - 设备更新换代快 + 浏览器厂商不统一———— 兼容问题多
  - 网络更复杂——弱网络，低端机性能差————页面打开慢
  - 未知问题——坑多  
@@ -76,7 +76,7 @@ description: 一些移动端常见问题 和解决方案(未完成 2017-7-17)
 
   ### 什么是Retina 显示屏，带来了什么问题
    retina：一种具备超高像素密度的液晶屏，同样大小的屏幕上显示的像素点由1个变为多个，如在同样带下的屏幕上，苹果设备的retina显示屏中，像素点1个变为4个
-   在高清显示屏中的位图被放大，图片会变得模糊，<font color="red">因此移动端的视觉稿通常会设计为传统PC的2倍</font>
+   在高清显示屏中的位图被放大，图片会变得模糊，<font color="#ff502c">因此移动端的视觉稿通常会设计为传统PC的2倍</font>
    设计稿切出来的图片长宽保证为偶数，并使用backgroud-size把图片缩小为原来的1/2
    ```css
     //例如图片宽高为：200px*200px，那么写法如下
@@ -111,7 +111,7 @@ description: 一些移动端常见问题 和解决方案(未完成 2017-7-17)
    ```css
     .css{-webkit-apperarance:none}
    ```
-   <font color="red">把各个浏览器表单的默认样式重置</font>
+   <font color="#ff502c">把各个浏览器表单的默认样式重置</font>
   ### 伪元素改变number类型input框的默认样式
    ```css
     input[type=number]::-webkit-textfield-decoration-container {

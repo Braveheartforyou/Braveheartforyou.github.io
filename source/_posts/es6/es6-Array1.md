@@ -56,9 +56,9 @@ some(): 对数组中的每一项运行给函数，如果该函数对任何项都
        // undefined.
 ```
 callback 函数会被依次传入三个参数：
-<font color="red">数组当前项的值</font>
-<font color="red">数组当前项的索引</font>
-<font color="red">数组对象本身</font>
+<font color="#ff502c">数组当前项的值</font>
+<font color="#ff502c">数组当前项的索引</font>
+<font color="#ff502c">数组对象本身</font>
 <font color="yellow">注意： 没有办法中止或者跳出 forEach 循环，除了抛出一个异常。如果你需要这样，使用forEach()方法是错误的，你可以用一个简单的循环作为替代。如果您正在测试一个数组里的元素是否符合某条件，且需要返回一个布尔值，那么可使用 Array.every 或 Array.some。如果可用，新方法 find() 或者findIndex() 也可被用于真值测试的提早终止。</font>
 #### map()
 map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
@@ -71,7 +71,7 @@ map() 方法创建一个新数组，其结果是该数组中的每个元素都�
     // 返回值
     // 一个新数组，每个元素都是回调函数的结果。
 ```
-返回值<font color="red">一个新数组，每个元素都是回调函数的结果。</font>
+返回值<font color="#ff502c">一个新数组，每个元素都是回调函数的结果。</font>
 ### 栈方法/队列方法
 栈是一种LIFO(Last-In-First-Out,后进先出)的数据结构，也就是最新添加的项被移除。
 push() 添加到数组末尾

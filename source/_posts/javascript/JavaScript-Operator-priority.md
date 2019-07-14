@@ -10,8 +10,8 @@ description: 在JavaScript中运算符是有明确的有限级的，如*运算�
 ```javascript
     1 + 2 * 3 // 7
 ```
-<font color="red"></font>
-乘法运算符 ("<font color="red">*</font>")比起加法运算符("<font color="red">+</font>")有着更高的优先级，所以它会被最先执行。
+<font color="#ff502c"></font>
+乘法运算符 ("<font color="#ff502c">*</font>")比起加法运算符("<font color="#ff502c">+</font>")有着更高的优先级，所以它会被最先执行。
 ### 结合性
 结合性决定了拥有相同优先级的运算符的执行顺序。考虑下面这个表达式：
 - 左结合

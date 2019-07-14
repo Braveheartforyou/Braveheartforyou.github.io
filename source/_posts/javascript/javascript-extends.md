@@ -21,7 +21,7 @@ Car.prototype.getV = function () {
 var carOne = new Car('jeep', '2018', 'Wrangler');
 console.log(carOne.getV());
 console.log(carOne);
-<font color="blue"></font>
+<font color="#ff502c"></font>
 ```
 new关键字进行如下的操作：
 > 1. 创建一个空的JavaScript对象；
@@ -29,19 +29,19 @@ new关键字进行如下的操作：
 > 3. 将步骤1新创建的对象作为this的上下文；
 > 4. 如果该函数没有返回对象，则返回this。
 
-同时，我们自己写的这个函数接收的<font color="blue">第一个参数</font>就是我们要<font color="blue">继承</font>的对象。
+同时，我们自己写的这个函数接收的<font color="#ff502c">第一个参数</font>就是我们要<font color="#ff502c">继承</font>的对象。
 下面我们就一步一步实现一个自己的new 关键字
 ## 第一步
-第一步比较简单我们要首先定义一个create方法在方法内创建一个<font color="blue">空对象</font>
+第一步比较简单我们要首先定义一个create方法在方法内创建一个<font color="#ff502c">空对象</font>
 ```javascript
 function create () {
     // 创建一个空对象
     let obj = new Object();
 }
 ```
-这个对象会在后面用到，经过后面的处理，如果<font color="blue">没有</font>返回值，就会<font color="blue">返回</font>我们创建的这个<font color="blue">空对象</font>。
+这个对象会在后面用到，经过后面的处理，如果<font color="#ff502c">没有</font>返回值，就会<font color="#ff502c">返回</font>我们创建的这个<font color="#ff502c">空对象</font>。
 ## 第二步
-第二步比较关键，用到了我们基于prototype继承的知识。就是把我们新创建的这个<font color="blue">空对象</font>的<font color="blue">__proto__</font>，指向我们要<font color="blue">继承对象</font>的<font color="blue">prototype</font>。
+第二步比较关键，用到了我们基于prototype继承的知识。就是把我们新创建的这个<font color="#ff502c">空对象</font>的<font color="#ff502c">__proto__</font>，指向我们要<font color="#ff502c">继承对象</font>的<font color="#ff502c">prototype</font>。
 下面我们就在第一步代码的基础上实现
 ```javascript
     function create () {
@@ -53,9 +53,9 @@ function create () {
         obj.__proto__ = Preson.prototype;
     }
 ```
-在这一步我们就是通过<font color="blue">__proto__</font>关联了我们创建的空对象的prototype到我们要继承的<font color="blue">另一个</font>对象。
+在这一步我们就是通过<font color="#ff502c">__proto__</font>关联了我们创建的空对象的prototype到我们要继承的<font color="#ff502c">另一个</font>对象。
 ## 第三步
-第三步，将步骤1新创建的对象作为<font color="blue">this的上下文</font>，我们通过<font color="blue">apply执行构造函数</font>并且改变this指向。
+第三步，将步骤1新创建的对象作为<font color="#ff502c">this的上下文</font>，我们通过<font color="#ff502c">apply执行构造函数</font>并且改变this指向。
 下面我们在第二步的基础上实现
 ```javascript
     function create () {
@@ -70,7 +70,7 @@ function create () {
     }
 ```
 ## 第四步
-判断是否有返回值，如果该函数没有返回对象，则<font color="blue">返回this</font>。
+判断是否有返回值，如果该函数没有返回对象，则<font color="#ff502c">返回this</font>。
 ```javascript
     function create () {
         // 创建一个空对象

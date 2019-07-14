@@ -81,8 +81,8 @@ export default function flow () {
   return 'flow1'; // flow => folw1
 };
 ```
-<font color="blue"></font>
-再运行webpack发现所有的hash都<font color="blue">变化</font>了，如下图所示：
+<font color="#ff502c"></font>
+再运行webpack发现所有的hash都<font color="#ff502c">变化</font>了，如下图所示：
 ![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-4.png)
 ![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-5.png)
 对比发现他们的hash并不相同了，这个时候如果想修改了**chunk1.js**,index.js不产生变化，就要用到chunkhash。

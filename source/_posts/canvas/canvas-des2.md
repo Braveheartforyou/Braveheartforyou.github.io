@@ -13,13 +13,13 @@ description: canvas的基本用法，和用canvas实现绘制高德地图的多�
 4、一旦路径生成，你就能通过描边或填充路径区域来渲染图形。
 ### 常用方法
 #### __beginPath()__
-新建一条路径，生成之后，图形绘制命令会被指向到<font color="red">路径上生成路径。</font>
+新建一条路径，生成之后，图形绘制命令会被指向到<font color="#ff502c">路径上生成路径。</font>
 #### __closePath()__
-闭合路径之后图形绘制命令又<font color="red">重新指向到上下文</font>中
+闭合路径之后图形绘制命令又<font color="#ff502c">重新指向到上下文</font>中
 #### __stroke()__
-通过<font color="red">线条</font>来绘制图像轮廓
+通过<font color="#ff502c">线条</font>来绘制图像轮廓
 #### __fill()__
-通过填充路径的内容区域生成<font color="red">实心的图形</font>。
+通过填充路径的内容区域生成<font color="#ff502c">实心的图形</font>。
 #### __moveTo(x, y)__
 将笔触移动到指定的坐标x以及y上。
 你通常会使用moveTo()函数设置起点，使用moveTo()绘制一些不连续的路径
@@ -43,7 +43,7 @@ description: canvas的基本用法，和用canvas实现绘制高德地图的多�
 ```
  ![css rotateX](../../images/canvas/Canvas_smiley.png)
 #### __lineTo(x, y)__
-<font color="red">绘制直线</font>，需要用到的方法lineTo().
+<font color="#ff502c">绘制直线</font>，需要用到的方法lineTo().
 绘制一条从当前位置到指定x以及y位置的直线
 绘制一个填充、描边的三角形
 ```javascript
@@ -70,8 +70,8 @@ description: canvas的基本用法，和用canvas实现绘制高德地图的多�
 ```
  ![css rotateX](../../images/canvas/Canvas_sanjiao.png)
 ### 注意
-注意：当前路径为空，即调用beginPath()之后，或者canvas刚建的时候，<font color="red">第一条路径</font>构造命令通常被视为是<font color="red">moveTo（）</font>，无论最后的是什么。出于这个原因，你几乎总是要在设置路径之后专门指定你的起始位置。
-注意：当你调用<font color="red">fill()</font>函数时，所有没有闭合的形状都会自动闭合，所以你<font color="red">不需要</font>调用<font color="red">closePath()</font>函数。但是调用<font color="red">stroke()</font>时<font color="red">不会</font>自动闭合。
+注意：当前路径为空，即调用beginPath()之后，或者canvas刚建的时候，<font color="#ff502c">第一条路径</font>构造命令通常被视为是<font color="#ff502c">moveTo（）</font>，无论最后的是什么。出于这个原因，你几乎总是要在设置路径之后专门指定你的起始位置。
+注意：当你调用<font color="#ff502c">fill()</font>函数时，所有没有闭合的形状都会自动闭合，所以你<font color="#ff502c">不需要</font>调用<font color="#ff502c">closePath()</font>函数。但是调用<font color="#ff502c">stroke()</font>时<font color="#ff502c">不会</font>自动闭合。
 ### 实例
 绘制一个
 ```html

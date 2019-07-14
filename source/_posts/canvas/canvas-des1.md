@@ -45,7 +45,7 @@ canvas元素负责在页面中设定一个区域，然后就可以通过JavaScri
     </body>
     </html>
 ```
-可以获取到<font color="red">canvas</font>dom,再通过<font color="red">getContext('2d')</font>获取到2D上下文，通过fillStyle<font color="red">fillStyle</font>设置填充颜色，通过<font color="red">strokeStyle</font>设置描边颜色（默认显示 #000），fillRect(0, 0, 150, 150)
+可以获取到<font color="#ff502c">canvas</font>dom,再通过<font color="#ff502c">getContext('2d')</font>获取到2D上下文，通过fillStyle<font color="#ff502c">fillStyle</font>设置填充颜色，通过<font color="#ff502c">strokeStyle</font>设置描边颜色（默认显示 #000），fillRect(0, 0, 150, 150)
 设置矩形的位置和长宽
 效果如下所示：
   ![canvas_1](../../images/canvas/canvas_1.jpg)

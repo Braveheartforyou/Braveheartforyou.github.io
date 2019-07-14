@@ -6,17 +6,17 @@ categories: [WebPack]
 description: '使用webpack打包 前端应用，并且配置jenkins脚本打包不同环境路径，配置文件如vue-cli、create-react-app都可以配置，后续文章记录常用的webpack优化，从文件大小，传输类型，缓存优化'
 ---
 # vue-cli 配置
-vue-cli <font color="red">2.x</font>版本，因为自己不太习惯3.x的这种配置，很多配置不容易写进去，同时 3.x 也在不断的修bug,所以没有升级.
+vue-cli <font color="#ff502c">2.x</font>版本，因为自己不太习惯3.x的这种配置，很多配置不容易写进去，同时 3.x 也在不断的修bug,所以没有升级.
 最新代码在[github](https://github.com/Braveheartforyou/vue-cli-jenkins.git)，这个项目基本上是一些打包优化，缓存，等等并不是后台模版，你可以在这个项目上再搭建自己的东西，直接只是提供了一个项目比较基础的一些东西。
 ## 配置脚本
-在<font color="red">package.json</font>文件中的<font color="blue">scripts</font>添加三个字段:
+在<font color="#ff502c">package.json</font>文件中的<font color="#ff502c">scripts</font>添加三个字段:
 - "build:sit": "cross-env API_ROOT=sit node build/build.js",
 - "build:uat": "cross-env API_ROOT=uat node build/build.js",
 - "build:prod": "cross-env API_ROOT=prod node build/build.js"
 
-其中<font color="red">cross-env</font>包是为了兼容liunx和window不同系统都可以把 <font color="green">API_ROOT</font>参数传进进程中.
+其中<font color="#ff502c">cross-env</font>包是为了兼容liunx和window不同系统都可以把 <font color="green">API_ROOT</font>参数传进进程中.
 ![jenkins_vue_cli](../../images/vue_build/jenkins_vue_cli.png)
-然后配置<font color="red">config</font>文件夹下的<font color="green">dev.env.js、prod.env.js</font>
+然后配置<font color="#ff502c">config</font>文件夹下的<font color="green">dev.env.js、prod.env.js</font>
 ### dev.env.js
 ```javascript
 'use strict'
@@ -70,7 +70,7 @@ switch (process.env.API_ROOT) {
     break;
 }
 ```
-最后也是最重要的也就是我们要有一个统一的调用地址，如果不是统一的一个，那就多声明几个模块如<font color="red">PAYMENT、PRODUCT</font>等来区分不同环境的不同后台接口
+最后也是最重要的也就是我们要有一个统一的调用地址，如果不是统一的一个，那就多声明几个模块如<font color="#ff502c">PAYMENT、PRODUCT</font>等来区分不同环境的不同后台接口
 ![jenkins_vue_cli2](../../images/vue_build/jenkins_vue_cli2.png)
 # jenkins 配置
 - 新建一个 构建一个自由风格的软件项目

@@ -9,13 +9,13 @@ description: ES6中Number新增了一些方法如Number.isFinite()、Number.isIn
 JavaScript 的 Number 对象是经过封装的能让你处理数字值的对象。Number 对象由 Number() 构造器创建。
 ## 描述
 Number 对象主要用于：
-- <font color="red">如果参数无法被转为数字，则返回NaN.</font>
-- <font color="red">早非构造器上下文中（如：没有new操作符），Number能被用来执行类型转换</font>
+- <font color="#ff502c">如果参数无法被转为数字，则返回NaN.</font>
+- <font color="#ff502c">早非构造器上下文中（如：没有new操作符），Number能被用来执行类型转换</font>
 
 ## 属性
-### <font color="red">Number.EPSTION</font>
+### <font color="#ff502c">Number.EPSTION</font>
 两个可表示(representable)数之间的最小间隔。
-<font color="red">EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。</font>
+<font color="#ff502c">EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。</font>
 ```javascript
     x = 0.2;
     y = 0.3;
@@ -23,11 +23,11 @@ Number 对象主要用于：
     equal = (Math.abs(x - y + z) < Number.EPSILON);
 ```
 
-### <font color="red">Number.MAX_SAFE_INTEGER Number.MIN_SAFE_INTEGER</font>
+### <font color="#ff502c">Number.MAX_SAFE_INTEGER Number.MIN_SAFE_INTEGER</font>
 Number.MAX_SAFE_INTEGER 常量表示在 JavaScript 中最大的安全整数（maxinum safe integer)（253 - 1）。
 Number.MIN_SAFE_INTEGER 代表在 JavaScript中最小的安全的integer型数字 (-(253 - 1)).
-<font color="red">MAX_SAFE_INTEGER 常量值为 9007199254740991。</font>
-<font color="red">MIN_SAFE_INTEGER 的值是-9007199254740991.</font>
+<font color="#ff502c">MAX_SAFE_INTEGER 常量值为 9007199254740991。</font>
+<font color="#ff502c">MIN_SAFE_INTEGER 的值是-9007199254740991.</font>
 ```javascript
     Number.MAX_SAFE_INTEGER // 9007199254740991
     Math.pow(2, 53) - 1     // 9007199254740991
@@ -35,11 +35,11 @@ Number.MIN_SAFE_INTEGER 代表在 JavaScript中最小的安全的integer型数�
     -(Math.pow(2, 53) - 1)  // -9007199254740991
 ```
 
-### <font color="red">Number.MAX_VALUE Number.MIN_VALUE</font>
+### <font color="#ff502c">Number.MAX_VALUE Number.MIN_VALUE</font>
 Number.MAX_VALUE 属性表示在 JavaScript 里所能表示的最大数值
 Number.MIN_VALUE 属性表示在 JavaScript 中所能表示的最小的正值
-<font color="red">MAX_VALUE 属性值接近于 1.79E+308。大于 MAX_VALUE 的值代表 "Infinity"。</font>
-<font color="red">MIN_VALUE 的值约为 5e-324。小于 MIN_VALUE ("underflow values") 的值将会转换为 0。</font>
+<font color="#ff502c">MAX_VALUE 属性值接近于 1.79E+308。大于 MAX_VALUE 的值代表 "Infinity"。</font>
+<font color="#ff502c">MIN_VALUE 的值约为 5e-324。小于 MIN_VALUE ("underflow values") 的值将会转换为 0。</font>
 因为 MAX_VALUE 是 Number 对象的一个静态属性，所有应该直接使用，Number.MAX_VALUE ，而不是作为一个创建的 Number 实例的属性。
 ```javascript
     if (num1 * num2 <= Number.MAX_VALUE) {
@@ -55,13 +55,13 @@ Number.MIN_VALUE 属性表示在 JavaScript 中所能表示的最小的正值
     }
 ```
 
-### <font color="red">Number.NaN Number.prototype</font>
+### <font color="#ff502c">Number.NaN Number.prototype</font>
 Number.NaN 表示“非数字”（Not-A-Number）。和 NaN 相同。
 Number.prototype 属性表示 Number 构造函数的原型。
-<font color="red">所有 Number 实例都继承自 Number.prototype。修改 Number 构造函数的原型对象会影响到所有 Number 实例。.</font>
-<font color="red">不必创建一个 Number 实例来访问该属性，使用 Number.NaN 来访问该静态属性。</font>
+<font color="#ff502c">所有 Number 实例都继承自 Number.prototype。修改 Number 构造函数的原型对象会影响到所有 Number 实例。.</font>
+<font color="#ff502c">不必创建一个 Number 实例来访问该属性，使用 Number.NaN 来访问该静态属性。</font>
 #### 属性
-<font color="red">constructor</font>
+<font color="#ff502c">constructor</font>
 返回创建该实例对象的构造函数。默认为 Number 对象。
 ```javascript
     Properties inherited from Object:
@@ -105,7 +105,7 @@ Number.isSafeInteger() 方法用来判断传入的参数值是否是一个“安
     Number.isSafeInteger(3.0);                  // true
 ```
 #### 注意
-和<font color="red">全局的 isFinite() </font>函数相比，<font color="red">这个方法不会强制将一个非数值的参数转换成数值</font>，这就意味着，只有数值类型的值，且是有穷的（finite），才返回 true。
+和<font color="#ff502c">全局的 isFinite() </font>函数相比，<font color="#ff502c">这个方法不会强制将一个非数值的参数转换成数值</font>，这就意味着，只有数值类型的值，且是有穷的（finite），才返回 true。
 Number.isSafeInteger() 安全整数范围为 -(253 - 1)到 253 - 1 之间的整数，包含 -(253 - 1)和 253 - 1。
 ### Number.isInteger()
 Number.isInteger() 方法用来判断给定的参数是否为整数。
@@ -161,8 +161,8 @@ Number.isNaN() 方法确定传递的值是否为 NaN和其类型是 Number。它
     Number.isNaN(" ");
 ```
 #### 描述
-在 JavaScript 中，NaN 最特殊的地方就是，<font color="red">我们不能使用相等运算符（== 和 ===）来判断一个值是否是 NaN </font>，因为<font color="red"> NaN == NaN </font> 和<font color="red"> NaN === NaN  </font>都会返回<font color="red"> false </font>。因此，必须要有一个判断值是否是 NaN 的方法。
-<font color="red">同样：</font>
+在 JavaScript 中，NaN 最特殊的地方就是，<font color="#ff502c">我们不能使用相等运算符（== 和 ===）来判断一个值是否是 NaN </font>，因为<font color="#ff502c"> NaN == NaN </font> 和<font color="#ff502c"> NaN === NaN  </font>都会返回<font color="#ff502c"> false </font>。因此，必须要有一个判断值是否是 NaN 的方法。
+<font color="#ff502c">同样：</font>
 和全局函数 isNaN() 相比，该方法不会强制将参数转换成数字，只有在参数是真正的数字类型，且值为 NaN 的时候才会返回 true。
 
 ### Number.parseInt() Number.parseFloat()
@@ -188,8 +188,8 @@ Number.parseInt() 方法可以根据给定的进制数把一个字符串解析�
     Number.parseFloat("FF2"); // NaN
 ```
 #### 描述
-<font color="red">该方法和全局的 parseInt() 函数是同一个函数：</font>
-<font color="red">该方法和全局的 parseFloat() 函数是同一个函数：</font>
+<font color="#ff502c">该方法和全局的 parseInt() 函数是同一个函数：</font>
+<font color="#ff502c">该方法和全局的 parseFloat() 函数是同一个函数：</font>
 ```javascript
     验证Number.parseInt、Number.parseFloat与全局的 parseInt、parseFloat是相同的
     Number.parseInt === parseInt; // true
@@ -201,14 +201,14 @@ Number.parseInt() 方法可以根据给定的进制数把一个字符串解析�
     parseInt("Hello", 8); // NaN
     parseInt("546", 2); // NaN
 ```
-parseInt 函数将其第一个参数转换为字符串，解析它，并返回一个整数或NaN。如果不是NaN，返回的值将是作为指定<font color="red">基数（基数）</font>中的数字的第一个参数的整数。
-例如：radix<font color="red">参数为10</font> 将会把第一个参数看作是一个数的<font color="red">十进制</font>表示,如果不属于radix参数所指定的基数中的字符那么该字符和气候的字符创都将被忽略。
+parseInt 函数将其第一个参数转换为字符串，解析它，并返回一个整数或NaN。如果不是NaN，返回的值将是作为指定<font color="#ff502c">基数（基数）</font>中的数字的第一个参数的整数。
+例如：radix<font color="#ff502c">参数为10</font> 将会把第一个参数看作是一个数的<font color="#ff502c">十进制</font>表示,如果不属于radix参数所指定的基数中的字符那么该字符和气候的字符创都将被忽略。
 在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
 - 如果字符串 string 以"0x"或者"0X"开头, 则基数是16 (16进制).
 - 如果字符串 string 以"0"开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决定。ECMAScript 5 规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
 - 如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
 需要注意的是：
-<font color="red">如果第一个字符不能被转换成数字，parseInt返回NaN。</font>
+<font color="#ff502c">如果第一个字符不能被转换成数字，parseInt返回NaN。</font>
 
 ### Number.prototype.toFixed()、Number.prototype.toPrecision()
 toFixed() 方法使用定点表示法来格式化一个数。

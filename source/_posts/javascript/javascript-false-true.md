@@ -15,7 +15,7 @@ JavaScript 有两种比较方式：严格比较运算符和转换类型比较运
 - 当比较一个表达式和一个对象时，仅当两个操作数引用相同的对象（指针指向相同对象）。
 - 对于Null 和 Undefined 类型而言，应使用严格比较运算符比较其自身，使用比较运算符进行互相比较。
 
-参考 ><font color="blue">https://www.h5jun.com/post/why-false-why-true.html</font>
+参考 ><font color="#ff502c">https://www.h5jun.com/post/why-false-why-true.html</font>
 ### 一致/严格相等 (===)
 一致运算符不会进行类型转换，仅当操作数严格相等时返回true
 ### 相等(==)
@@ -24,7 +24,7 @@ JavaScript 有两种比较方式：严格比较运算符和转换类型比较运
 非严格比较操作符 == 是会做强制类型转换的，那么根据 ECMA 262 它的规则是：
 ** 图1-1 **
 ![! ==](../../images/false-true/1.png)
-** <font color="blue">ToPrimitive：</font> **
+** <font color="#ff502c">ToPrimitive：</font> **
 ** 图1-2 **
 ![! ==](../../images/false-true/2.png)
 ** 图1-3 **
@@ -32,20 +32,20 @@ JavaScript 有两种比较方式：严格比较运算符和转换类型比较运
 ** 图1-4 **
 ![! ==](../../images/false-true/4.png)
 
-** <font color="blue">ToBoolean: </font> **
+** <font color="#ff502c">ToBoolean: </font> **
 ** 图1-5 **
 ![! ==](../../images/false-true/5.png)
 ** 图1-6 **
 ![! ==](../../images/false-true/6.png)
 
-来源： ><font color="blue">http://www.ecma-international.org</font>
+来源： ><font color="#ff502c">http://www.ecma-international.org</font>
 
 ## [] == false or ![] == [] or ![] == false 为true
 mdn运算符优先级参考表
 ![! ==](../../images/false-true/false-true-1.png)
 ![! ==](../../images/false-true/false-true-2.png)
-<font color="red">==</font>的优先级16
-<font color="red">!</font>的优先级10
+<font color="#ff502c">==</font>的优先级16
+<font color="#ff502c">!</font>的优先级10
 ### [] == false 结果为 true
 根据图1-1可知
 - 第 7 条：If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).

@@ -11,9 +11,9 @@ description: javascript中的类型判断又分为基础类型判断和引用类
   > 基本类型： Null、Undefined、Symbol（ES6）、Number、Boolean、String
   > 引用类型：Obeject、Array、Date
 
-  - 基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在<font color="blue">栈</font>中，即按值访问。
+  - 基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在<font color="#ff502c">栈</font>中，即按值访问。
 
-  - 引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在<font color="blue">堆(heap)</font>中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。
+  - 引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在<font color="#ff502c">堆(heap)</font>中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。
 
 ### 原始值( primitive values )
   除 Object 以外的所有类型都是不可变的（值本身无法被改变）。例如，与 C 语言不同，JavaScript 中字符串是不可变的（译注：如，JavaScript 中对字符串的操作一定返回了一个新字符串，原始字符串并没有被改变）。我们称这些类型的值为“原始值”。
@@ -205,10 +205,10 @@ description: javascript中的类型判断又分为基础类型判断和引用类
   **以上就是已知的4中检测类型的方法，那个方法都不识最完美的，就看你要检测的是那个对应的类型，就用对应的检测方法。**
 
   我们可以通过四种方式获取数据类型：
-  - <font color="blue">typeof运算符，用来区分对象和原始值</font>
-  - <font color="blue">instanceof运算符，用来分类对象</font>
-  - <font color="blue">constructor，用来创建实例对象的 Object 构造函数的引用</font>
-  - <font color="blue">[[Class]]是一个内部属性字符串，用来给对象分类</font>
+  - <font color="#ff502c">typeof运算符，用来区分对象和原始值</font>
+  - <font color="#ff502c">instanceof运算符，用来分类对象</font>
+  - <font color="#ff502c">constructor，用来创建实例对象的 Object 构造函数的引用</font>
+  - <font color="#ff502c">[[Class]]是一个内部属性字符串，用来给对象分类</font>
 
   > 参考：<https://www.cnblogs.com/onepixel/p/5126046.html>
   > 参考：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor>

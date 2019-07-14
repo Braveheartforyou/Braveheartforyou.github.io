@@ -14,8 +14,8 @@ description: html中的css、javascript、dom之间的解析和相互阻塞关�
 如果还不知道浏览器渲染的原理的，看一看[浏览器渲染原理](/blog/html/html-style-javascript.html)这一篇文章。其实这个就是考验大家对html中的css、javascript、dom之间的解析和相互阻塞关系。
 ## JavaScript会阻塞CSS、DOM吗？
 ### 提出自己观点
-<font color="blue"></font>
-当我们把script标签写到页面的顶部时，dom树在解析的时候检测到script标签是，会加载script里面的内容并且执行。我们假设在<font color="blue">执行</font>javascript会<font color="blue">阻塞dom</font>的解析和渲染，<font color="blue">阻塞css</font>的解析和加载。
+<font color="#ff502c"></font>
+当我们把script标签写到页面的顶部时，dom树在解析的时候检测到script标签是，会加载script里面的内容并且执行。我们假设在<font color="#ff502c">执行</font>javascript会<font color="#ff502c">阻塞dom</font>的解析和渲染，<font color="#ff502c">阻塞css</font>的解析和加载。
 ### 验证自己的观点
 在验证之前我们先把chrome的网速调到40kb每秒的下载和上传数据
 **第一步**
@@ -56,7 +56,7 @@ html代码如下
 </body>
 </html>
 ```
-在<font color="blue">加载到</font>jquery文件后，会先下载远程的jquery并且<font color="blue">执行</font>他，他会<font color="blue">阻塞dom的解析和渲染</font>，<font color="blue">css解析和渲染</font>，一直是白屏，等jquery<font color="blue">执行完成</font>了才接着解析Dom和cssom并且渲染，console.log打印h1标签也是空数组。
+在<font color="#ff502c">加载到</font>jquery文件后，会先下载远程的jquery并且<font color="#ff502c">执行</font>他，他会<font color="#ff502c">阻塞dom的解析和渲染</font>，<font color="#ff502c">css解析和渲染</font>，一直是白屏，等jquery<font color="#ff502c">执行完成</font>了才接着解析Dom和cssom并且渲染，console.log打印h1标签也是空数组。
 如下图所示：
 ![html operation](../../images/html/images/html-gif.gif)
 
@@ -67,7 +67,7 @@ html代码如下
 ## css加载会阻塞JavaScript的加载和执行、会阻塞Dom的解析和渲染？
 
 ### 提出自己观点
-因为上面我们已经验证过JavaScript会阻塞Dom的解析和渲染，同时也会解析cssom的解析和渲染，所以我们假设css的加载会<font color="blue">阻塞</font>Dom的<font color="blue">解析</font>和<font color="blue">渲染</font>，会<font color="blue">阻塞</font>JavaScript的<font color="blue">加载</font>和<font color="blue">执行</font>。
+因为上面我们已经验证过JavaScript会阻塞Dom的解析和渲染，同时也会解析cssom的解析和渲染，所以我们假设css的加载会<font color="#ff502c">阻塞</font>Dom的<font color="#ff502c">解析</font>和<font color="#ff502c">渲染</font>，会<font color="#ff502c">阻塞</font>JavaScript的<font color="#ff502c">加载</font>和<font color="#ff502c">执行</font>。
 ### 验证我们的假设
 在上面的代码基础上修改代码如下：
 ```javascript

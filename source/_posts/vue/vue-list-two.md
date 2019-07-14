@@ -123,20 +123,20 @@ mounted
 4、在挂载父组件
 mounted
 
-总结：<font color="blue">从创建到挂载，是从外到内，再由内到外</font>
+总结：<font color="#ff502c">从创建到挂载，是从外到内，再由内到外</font>
 
 ### ** beforeUpdate 到 updated **
-注： <font color="blue">只有在标签上绑定了data时，data发生改变，才会触发updated钩子函数。如果只是在控制台改变data，而没有反馈到视图上，则无法触发。</font>
+注： <font color="#ff502c">只有在标签上绑定了data时，data发生改变，才会触发updated钩子函数。如果只是在控制台改变data，而没有反馈到视图上，则无法触发。</font>
 1、父组件点击事件更新data中的数据
 <img src="../../images/vue/vue-hook5.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
 他不会重新渲染子组件
-注：<font color="blue">react中如果父组件状态更新，子组件也会跟着更新。稍后的文章会讲怎么解决这种问题。</font>
+注：<font color="#ff502c">react中如果父组件状态更新，子组件也会跟着更新。稍后的文章会讲怎么解决这种问题。</font>
 2、子组件点击事件更新data中的数据
 <img src="../../images/vue/vue-hook6.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
 这个他也不会重新选然父组件
 
-注： <font color="blue">如果是mixins的话当data中的数据改变时，不会触发子组件中的updated函数。触发的顺序仍然是mixins先于组件</font>
-总结：<font color="blue">父子组件update互相不影响</font>
+注： <font color="#ff502c">如果是mixins的话当data中的数据改变时，不会触发子组件中的updated函数。触发的顺序仍然是mixins先于组件</font>
+总结：<font color="#ff502c">父子组件update互相不影响</font>
 ### ** beforeDestroy 到 destroy **
 在浏览器中执行：
 ```javascript
@@ -147,5 +147,5 @@ mounted
 2、子组件beforeDestroy
 3、子组件destroyed
 4、父组件destroyed
-总结：<font color="blue">从外到内，再从内到外</font>
-<font color="blue">**总结：生命周期遵从“从外到内，再从内到外，mixins先于组件”的原则。**</font>
+总结：<font color="#ff502c">从外到内，再从内到外</font>
+<font color="#ff502c">**总结：生命周期遵从“从外到内，再从内到外，mixins先于组件”的原则。**</font>

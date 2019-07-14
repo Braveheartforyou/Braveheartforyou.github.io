@@ -22,7 +22,7 @@ description: retina屏(高清屏)的原理，对前端的页面制作的影响�
 屏幕密度是指一个设备表面上存在的像素数量，它通常以每英寸有多少像素来计算(PPI)。
 ### 设备像素比(device pixel ratio)
 设备像素比简称为dpr，其定义了物理像素和设备独立像素的对应关系。它的值可以按下面的公式计算得到：
-<font color="red">设备像素比 ＝ 物理像素 / 设备独立像素</font>
+<font color="#ff502c">设备像素比 ＝ 物理像素 / 设备独立像素</font>
 在JavaScript中，可以通过window.devicePixelRatio获取到当前设备的dpr。而在CSS中，可以通过-webkit-device-pixel-ratio，-webkit-min-device-pixel-ratio和 -webkit-max-device-pixel-ratio进行媒体查询，对不同dpr的设备，做一些样式适配(这里只针对webkit内核的浏览器和webview)。
 dip或dp,（device independent pixels，设备独立像素）与屏幕密度有关。dip可以用来辅助区分视网膜设备还是非视网膜设备。
 - devicePixelRatio在大多数浏览器是值得信赖的。
@@ -30,11 +30,11 @@ dip或dp,（device independent pixels，设备独立像素）与屏幕密度有�
 - 在Android以及Windows Phone设备，screen.width除以devicePixelRatio得到的是设备独立像素(dips)值。
 ## 解决方法
 通过判断 devicePixelRatio 的值来加载不同尺寸的图片
-- <font color="red">针对普通显示屏(devicePixelRatio = 1.0、1.3)，加载一张1倍的图片</font>
-- <font color="red">针对高清显示屏(devicePixelRatio >= 1.5、2.0、3.0)，加载一张2倍大的图片</font>
+- <font color="#ff502c">针对普通显示屏(devicePixelRatio = 1.0、1.3)，加载一张1倍的图片</font>
+- <font color="#ff502c">针对高清显示屏(devicePixelRatio >= 1.5、2.0、3.0)，加载一张2倍大的图片</font>
 dpr为3的手机比较小，建议用两倍的图片
 ### Media Queries判断当前的dpr
-通过媒体查询结合devicePixelRatio可以区分普通的显示屏和高清显示屏，<font color="red">兼容行比较好</font>
+通过媒体查询结合devicePixelRatio可以区分普通的显示屏和高清显示屏，<font color="#ff502c">兼容行比较好</font>
 ```css
 .css{/* 普通显示屏(设备像素比例小于等于1.3)使用1倍的图 */ 
     background-image: url(img_1x.png);
@@ -51,7 +51,7 @@ dpr为3的手机比较小，建议用两倍的图片
 }
 ```
 ### image-set 设计retina背景图
-image-set，它是Webkit的私有属性，也是Css4的一个属性。<font color="red">目前支持苹果的 retina 显示屏和部分android 显示屏</font>
+image-set，它是Webkit的私有属性，也是Css4的一个属性。<font color="#ff502c">目前支持苹果的 retina 显示屏和部分android 显示屏</font>
 ```css
 .css{
     background: url(../img/bank_ico.png) no-repeat;/* 不支持image-set的显示屏 */ 

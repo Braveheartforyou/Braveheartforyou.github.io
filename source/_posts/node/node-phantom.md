@@ -8,8 +8,8 @@ description: node中的phantpm库，把当前html页面转为pdf,或者截图等
 ## 环境配置
 下载最新的node安装
 下载地址 <https://nodejs.org/en/>
-创建一个行的文件，文件名为 <font color="red">Test</font>
-然后在 <font color="red">Test</font> 运行 <font color="red">npm install phantom</font>或者 安装本地依赖 <font color="red">npm install phantom --save </font>,全局安装<font color="red"> npm install -g phantom</font>
+创建一个行的文件，文件名为 <font color="#ff502c">Test</font>
+然后在 <font color="#ff502c">Test</font> 运行 <font color="#ff502c">npm install phantom</font>或者 安装本地依赖 <font color="#ff502c">npm install phantom --save </font>,全局安装<font color="#ff502c"> npm install -g phantom</font>
 目录：
   ![目录结构](../../images/phantom.jpg)
 创建一个index.js
@@ -227,7 +227,7 @@ description: node中的phantpm库，把当前html页面转为pdf,或者截图等
 </body>
 </html>
 ```
-在 <font color="red">Test</font>中运行 <font color="red">node index.js</font>会生成一个<font color="red">index_2.pdf</font>文件
+在 <font color="#ff502c">Test</font>中运行 <font color="#ff502c">node index.js</font>会生成一个<font color="#ff502c">index_2.pdf</font>文件
 在谷歌中预览为
   ![目录结构](../../images/phantom1.jpg)
 其实phantom可以做很多的事，比如说截图等等，具体可以看<https://github.com/amir20/phantomjs-node>

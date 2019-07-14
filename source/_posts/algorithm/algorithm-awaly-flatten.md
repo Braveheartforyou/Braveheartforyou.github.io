@@ -40,7 +40,7 @@ console.log(newArr);
 arr.toString()
 // "8,5,9,4,1,3,7,5,10,3,4,6,2,4,3,2,4"
 ```
-这列我们就不讨论为什么返回的结果里面不包含<font color="blue">‘[]’</font>这两个字符串，后面我在写一篇博客来说数组，的valueOf、toString方法。
+这列我们就不讨论为什么返回的结果里面不包含<font color="#ff502c">‘[]’</font>这两个字符串，后面我在写一篇博客来说数组，的valueOf、toString方法。
 2、再把字符串通过Array.prototype.split方法转换为数组
 3、再通过Set集合做去重
 4、再通过Array.from把Set集合转为数组

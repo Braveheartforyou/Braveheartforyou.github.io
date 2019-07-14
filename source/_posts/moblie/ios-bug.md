@@ -69,13 +69,13 @@ main {
 <!-- <img src="../../images/ios_bug/fixed.png" alt="ios_bug" title="ios_bug"/> -->
 但接下来问题就来了！如果底部输入框软键盘被唤起以后，再次滑动页面，就会看到如下图所示：
 ![css3 3d transfrom](../../images/ios_bug/fixed_bug_0.png) ![css3 3d transfrom](../../images/ios_bug/fixed_bug_1.png)
-<font color="red"> 软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。</font>
-这就是ios上fixed元素和输入框的bug,其中不仅陷入于<font color="red">type="text"</font>的输入框，凡是软键盘（比如时间选择器、select选择等等）被唤起，都会遇到同样的问题。
+<font color="#ff502c"> 软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。</font>
+这就是ios上fixed元素和输入框的bug,其中不仅陷入于<font color="#ff502c">type="text"</font>的输入框，凡是软键盘（比如时间选择器、select选择等等）被唤起，都会遇到同样的问题。
 
 ### 解决思路
 虽然 isScroll.js 可以很好的解决 fixed 定位滚动的问题，但是不在万不得已的情况下，我们尽量尝试一下不依赖第三方库的布局方案，以简化实现方式。这里抛砖引玉作为参考。
 
-即使在ios下由于软键盘唤出后，页面fixed元素会失效，导致跟随页面一起滚动，那么<font color="red">页面不会过长出现滚动，那么即便fixed元素失效，也无法跟随页面滚动，也不会出现上面的问题了</font>，其实就是内部滚动
+即使在ios下由于软键盘唤出后，页面fixed元素会失效，导致跟随页面一起滚动，那么<font color="#ff502c">页面不会过长出现滚动，那么即便fixed元素失效，也无法跟随页面滚动，也不会出现上面的问题了</font>，其实就是内部滚动
 ```html
 <body class="layout-scroll-fixed">
     <!-- fixed定位的头部 -->

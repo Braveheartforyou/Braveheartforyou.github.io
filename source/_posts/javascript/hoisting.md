@@ -49,7 +49,7 @@ function a () {console.log(1);}
 // 1 这个 a function 输出的
 // undefined 因为 a function没有 return出来任何值，默认return  undefined。
 ```
-为什么会输出 一个 <font color="blue">1</font> 和一个<font color="blue">undefined</font>,我来解释一下,首先console.log(a())，他会<font color="blue">先执行a()</font>方法，<font color="blue">输出 1</font>,但是a方法没有返回值，默认返回<font color="blue">undefined</font>。
+为什么会输出 一个 <font color="#ff502c">1</font> 和一个<font color="#ff502c">undefined</font>,我来解释一下,首先console.log(a())，他会<font color="#ff502c">先执行a()</font>方法，<font color="#ff502c">输出 1</font>,但是a方法没有返回值，默认返回<font color="#ff502c">undefined</font>。
 ```javascript
 console.log(a); // undefined
 console.log(a()); // Uncaught TypeError: a is not a function
@@ -64,7 +64,7 @@ var a = 1;
 function a () {console.log(1);}
 console.log(a); // 1
 ```
-看上面的代码知道<font color="blue">函数提升</font><font color="blue">是<font color="blue">高于变量提升</font>的，因为在javascript中函数是一等公民，<font color="blue">并且不会被变量声明覆盖</font>，但是会被<font color="blue">变量赋值覆盖</font>。其实代码如下
+看上面的代码知道<font color="#ff502c">函数提升</font><font color="#ff502c">是<font color="#ff502c">高于变量提升</font>的，因为在javascript中函数是一等公民，<font color="#ff502c">并且不会被变量声明覆盖</font>，但是会被<font color="#ff502c">变量赋值覆盖</font>。其实代码如下
 ```javascript
 var a = function () {console.log(1);};
 var a;

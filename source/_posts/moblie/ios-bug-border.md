@@ -7,9 +7,9 @@ description: 解决retina屏幕时border大于1时产生的兼容性问题
 ---
 ## 问题描述
 ### 1、引入flexible方案
-可通过 手淘的 <font color="red">flexible方案</font>来解决这个问题
-<font color="red">flexible的原理讲解和使用 <http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html></font>
-<font color="red">flexible 库地址：<https://github.com/amfe/lib-flexible></font>
+可通过 手淘的 <font color="#ff502c">flexible方案</font>来解决这个问题
+<font color="#ff502c">flexible的原理讲解和使用 <http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html></font>
+<font color="#ff502c">flexible 库地址：<https://github.com/amfe/lib-flexible></font>
 #### 基本原理
 在devicePixelRatio = 2 时，输出viewport
 ```html

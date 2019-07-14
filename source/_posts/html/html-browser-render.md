@@ -78,9 +78,9 @@ js改变样式，样式只触发合成属性，不触发 repaint/reflow.附原�
 想理清楚CSS、JavaScript、DOM之间的相互[阻塞关系](http://asyncnode/blog/html/html-browser-render.html)
 
 ## 改变阻塞模式
-我们熟知的<font color="blue">javascript</font>标签上<font color="blue">defer</font>和<font color="blue">async</font>属性，还有可能不太熟知的<font color="blue">link</font>标签上的<font color="blue">preload</font>属性。
+我们熟知的<font color="#ff502c">javascript</font>标签上<font color="#ff502c">defer</font>和<font color="#ff502c">async</font>属性，还有可能不太熟知的<font color="#ff502c">link</font>标签上的<font color="#ff502c">preload</font>属性。
 
-在介绍async和defer之前我们要先看了解两个概念，<font color="blue">load</font>和<font color="blue">DOMContentLoaded</font>的执行时机
+在介绍async和defer之前我们要先看了解两个概念，<font color="#ff502c">load</font>和<font color="#ff502c">DOMContentLoaded</font>的执行时机
 
 ### load和DOMContentLoaded
 **load**
@@ -91,12 +91,12 @@ DOMContentLoaded 事件触发代表初始的 HTML 被完全加载和解析，不
 ### 首先是async和defer
 async和defer他们对于内联脚本无作用（即没有src属性的脚本）
 **async**
-该布尔属性指示浏览器是否在允许的情况下异步执行该脚本。async与 defer 的区别在于，如果已经加载好，就会开始执行——无论此刻是 HTML 解析阶段还是 DOMContentLoaded 触发之后。需要注意的是，这种方式加载的 JavaScript 依然会阻塞 load 事件。换句话说，async-script 可能在 DOMContentLoaded 触发<font color="blue">之前或之后</font>执行，但一定在 load 触发<font color="blue">之前</font>执行。并且多个 async-script 的执行顺序是<font color="blue">不确定</font>的。
+该布尔属性指示浏览器是否在允许的情况下异步执行该脚本。async与 defer 的区别在于，如果已经加载好，就会开始执行——无论此刻是 HTML 解析阶段还是 DOMContentLoaded 触发之后。需要注意的是，这种方式加载的 JavaScript 依然会阻塞 load 事件。换句话说，async-script 可能在 DOMContentLoaded 触发<font color="#ff502c">之前或之后</font>执行，但一定在 load 触发<font color="#ff502c">之前</font>执行。并且多个 async-script 的执行顺序是<font color="#ff502c">不确定</font>的。
 
 **defer**
-defer 属性表示延迟执行引入的 JavaScript，即这段 JavaScript 加载时 HTML 并<font color="blue">未停止</font>解析，这两个过程是<font color="blue">并行</font>的。整个 document 解析完毕且 defer-script 也加载完成之后（这两件事情的顺序无关），会执行所有由 defer-script 加载的 JavaScript 代码，然后<font color="blue">触发</font> DOMContentLoaded 事件。
+defer 属性表示延迟执行引入的 JavaScript，即这段 JavaScript 加载时 HTML 并<font color="#ff502c">未停止</font>解析，这两个过程是<font color="#ff502c">并行</font>的。整个 document 解析完毕且 defer-script 也加载完成之后（这两件事情的顺序无关），会执行所有由 defer-script 加载的 JavaScript 代码，然后<font color="#ff502c">触发</font> DOMContentLoaded 事件。
 
-defer 与相比普通 script，有两点区别：载入 JavaScript 文件时<font color="blue">不阻塞</font> HTML 的解析，执行阶段被放到 HTML 标签<font color="blue">解析完成</font>之后。
+defer 与相比普通 script，有两点区别：载入 JavaScript 文件时<font color="#ff502c">不阻塞</font> HTML 的解析，执行阶段被放到 HTML 标签<font color="#ff502c">解析完成</font>之后。
 
 ### preload和prerender
 **preload**

@@ -39,21 +39,21 @@ ToPrimitive 运算符接受一个值，和一个可选的 期望类型作参数�
 */
 ToPrimitive(obj, type);
 ```
-根据<font color="blue">type</font><font color="blue"></font>的不同会他后面的步骤也不相同，如下所示
+根据<font color="#ff502c">type</font><font color="#ff502c"></font>的不同会他后面的步骤也不相同，如下所示
 
 **type为string**
-> 1. 先调用obj的<font color="blue">toString</font>方法，如果返回<font color="blue">原始值</font>，则不往下执行，如果返回不是原始值，则执行<font color="blue">第二步</font>。
-> 2. 调用obj的<font color="blue">valueOf</font>方法，如果为<font color="blue">原始值</font>，则不往下执行，如果返回不是原值值，则执行<font color="blue">第三步</font>。
-> 3. 抛出<font color="blue">TypeError</font>异常
+> 1. 先调用obj的<font color="#ff502c">toString</font>方法，如果返回<font color="#ff502c">原始值</font>，则不往下执行，如果返回不是原始值，则执行<font color="#ff502c">第二步</font>。
+> 2. 调用obj的<font color="#ff502c">valueOf</font>方法，如果为<font color="#ff502c">原始值</font>，则不往下执行，如果返回不是原值值，则执行<font color="#ff502c">第三步</font>。
+> 3. 抛出<font color="#ff502c">TypeError</font>异常
 
 **type为Number**
-> 1. 先调用obj的<font color="blue">valueOf</font>方法，如果返回<font color="blue">原始值</font>，则不往下执行，如果返回不是原始值，则执行<font color="blue">第二步</font>。
-> 2. 调用obj的<font color="blue">toString</font>方法，如果为<font color="blue">原始值</font>，则不往下执行，如果返回不是原值值，则执行<font color="blue">第三步</font>。
-> 3. 抛出<font color="blue">TypeError</font>异常
+> 1. 先调用obj的<font color="#ff502c">valueOf</font>方法，如果返回<font color="#ff502c">原始值</font>，则不往下执行，如果返回不是原始值，则执行<font color="#ff502c">第二步</font>。
+> 2. 调用obj的<font color="#ff502c">toString</font>方法，如果为<font color="#ff502c">原始值</font>，则不往下执行，如果返回不是原值值，则执行<font color="#ff502c">第三步</font>。
+> 3. 抛出<font color="#ff502c">TypeError</font>异常
 
 **type参数为空**
-> 1. 该对象为<font color="blue">Date，则type被设置为<font color="blue">String</font>
-> 2. 否则，type被设置为<font color="blue">Number</font>
+> 1. 该对象为<font color="#ff502c">Date，则type被设置为<font color="#ff502c">String</font>
+> 2. 否则，type被设置为<font color="#ff502c">Number</font>
 
 这基本上就是object常用的转换的一些规则，在下面会验证ToPrimitive规则是否正确。
 
@@ -123,12 +123,12 @@ console.log(Boolean({})); // true
 console.log(Boolean(new Date())); // 1555689600000
 ```
 在表格上只有基本类型的转换为Boolean的规则，具体的转换规则为：
-- <font color="blue">false</font>
-- <font color="blue">null</font>
-- <font color="blue">undefined</font>
-- <font color="blue">空字符串' '</font>
-- <font color="blue">数字零 0</font>
-- <font color="blue">NaN</font>
+- <font color="#ff502c">false</font>
+- <font color="#ff502c">null</font>
+- <font color="#ff502c">undefined</font>
+- <font color="#ff502c">空字符串' '</font>
+- <font color="#ff502c">数字零 0</font>
+- <font color="#ff502c">NaN</font>
 只有上面的会转为false,其他的都会转为true.
 他和if()条件运算符转换的规则基本上一至，请看[if运算符转换](/blog/javascript/javascript-IF-False-options.html)。
 
@@ -148,7 +148,7 @@ String(obj);
 // 2. valueOf
 // Uncaught TypeError: Cannot convert object to primitive value 
 ```
-根据上面的输出结果，证明上面的String()，走了<font color="blue">ToPrimitive(obj, string)</font>的<font color="blue">type</font>为<font color="blue">string</font>的规则。详情见上面。
+根据上面的输出结果，证明上面的String()，走了<font color="#ff502c">ToPrimitive(obj, string)</font>的<font color="#ff502c">type</font>为<font color="#ff502c">string</font>的规则。详情见上面。
 **Object转Number规则验证**
 再验证Obejct转换为Number的规则，直接上代码。
 ```javascript
@@ -161,7 +161,7 @@ Number(obj);
 // 2. toString
 // Uncaught TypeError: Cannot convert object to primitive value 
 ```
-根据上面的输出结果，证明上面的Number()，走了<font color="blue">ToPrimitive(obj, number)</font>的<font color="blue">type</font>为<font color="blue">number</font>的规则。详情见上面。
+根据上面的输出结果，证明上面的Number()，走了<font color="#ff502c">ToPrimitive(obj, number)</font>的<font color="#ff502c">type</font>为<font color="#ff502c">number</font>的规则。详情见上面。
 
 **其他转变如数组转String或者Number**
 再验证Obejct转换为Number的规则，直接上代码。
@@ -175,7 +175,7 @@ Number(obj);
 // 2. toString
 // Uncaught TypeError: Cannot convert object to primitive value 
 ```
-根据上面的输出结果，证明上面的Number()，走了<font color="blue">ToPrimitive(obj, number)</font>的<font color="blue">type</font>为<font color="blue">number</font>的规则。详情见上面。
+根据上面的输出结果，证明上面的Number()，走了<font color="#ff502c">ToPrimitive(obj, number)</font>的<font color="#ff502c">type</font>为<font color="#ff502c">number</font>的规则。详情见上面。
 
 ### valueOf
 JavaScript 调用 valueOf() 方法用来把对象转换成原始类型的值（数值、字符串和布尔值）。但是我们很少需要自己调用此函数，valueOf 方法一般都会被 JavaScript 自动调用。

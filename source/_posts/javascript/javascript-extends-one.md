@@ -51,7 +51,7 @@ description: js几种继承方式
    console.log(sub2.arr); // [1, 2]
   ```
   ### 核心
-  <font color="red">拿父类实例充当子类原型对象</font>
+  <font color="#ff502c">拿父类实例充当子类原型对象</font>
   ### 优缺点
   #### 优点:
   简单，易于实现
@@ -86,7 +86,7 @@ description: js几种继承方式
   console.log(sub1.fun === sub2.fun) // false
   ```
   ### 核心
-  <font color="red">借父类的构造函数来增强子类实例</font>，等于是把父类的实例属性复制了一份给子类实例装上了（完全没有用到原型）
+  <font color="#ff502c">借父类的构造函数来增强子类实例</font>，等于是把父类的实例属性复制了一份给子类实例装上了（完全没有用到原型）
   ### 优缺点
   #### 优点
   解决了子类实例共享父类引用属性的问题

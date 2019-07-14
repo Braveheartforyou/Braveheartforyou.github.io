@@ -14,8 +14,8 @@ description: vue官方脚手架 vue-cli npm run build 在本地运行
   Opening index.html over file:// won\'t work
  ```
  运行完npm run build,打开项目中的dist目录下的index.html文件！
- 看到index.html的 <font color="red">控制台</font>会出现一片<font color="red">404</font> 如下图：
+ 看到index.html的 <font color="#ff502c">控制台</font>会出现一片<font color="#ff502c">404</font> 如下图：
  ![run_build_console_error](../../images/run_build1.jpg)
  ### 解决方案
-  因为<font color="red"> config </font>目录下的<font color="red"> index.js </font>中的<font color="red"> build </font>配置的<font color="red"> assetsPublicPath </font>为<font color="red"> / </font>绝对路径,所以找不到打包以后的资源
-  我们只要报<font color="red"> build </font>中的<font color="red"> assetsPublicPath </font>改为<font color="red"> ./ </font>就可以了，在运行一次npm run build,再打开index.html就可以在本地看了
+  因为<font color="#ff502c"> config </font>目录下的<font color="#ff502c"> index.js </font>中的<font color="#ff502c"> build </font>配置的<font color="#ff502c"> assetsPublicPath </font>为<font color="#ff502c"> / </font>绝对路径,所以找不到打包以后的资源
+  我们只要报<font color="#ff502c"> build </font>中的<font color="#ff502c"> assetsPublicPath </font>改为<font color="#ff502c"> ./ </font>就可以了，在运行一次npm run build,再打开index.html就可以在本地看了

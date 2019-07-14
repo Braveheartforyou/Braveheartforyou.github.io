@@ -6,7 +6,7 @@ categories: [JavaScript]
 description: 'JavaScript没有块级作用域,我们比较熟知的就是函数级作用域'
 ---
 ## 全局作用域
-<font color="red"></font>
+<font color="#ff502c"></font>
 在代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：
 ### 最外层的函数、变量拥有全局作用域
 ```javascript
@@ -29,7 +29,7 @@ description: 'JavaScript没有块级作用域,我们比较熟知的就是函数�
 ### 所有window对象的属性拥有全局作用域
 
 ## 词法作用域
-词法作用域：<font color="red">函数在定义它们的作用域里运行，而不是在执行它们的作用域里运行。</font>也就是说词法作用域取决于源码，通过静态分析就能确定，因此<font color="red">词法作用域也叫做静态作用域</font>
+词法作用域：<font color="#ff502c">函数在定义它们的作用域里运行，而不是在执行它们的作用域里运行。</font>也就是说词法作用域取决于源码，通过静态分析就能确定，因此<font color="#ff502c">词法作用域也叫做静态作用域</font>
 在通常情况下，变量的查询从最近接的绑定上下文开始，向外部逐渐扩展，直到查询到第一个绑定，一旦完成查找就结束搜索。
 ```javascript
     var gl = '全局变量';
@@ -42,9 +42,9 @@ description: 'JavaScript没有块级作用域,我们比较熟知的就是函数�
 ## 动态作用域
 在编程实践中，最容易低估和过度滥用的概念就是动态作用域，因为很少有语言支持这种方式为绑定解析方案。
 
-动态作用域与词法作用域相对而言的，不同于词法作用域在定义时确定，<font color="red">动态作用域在执行时确定，其生存周期到代码片段执行为止</font>。动态变量存在于动态作用域中，<font color="red">任何给定的绑定的值，在确定调用其函数之前，都是不可知的</font>。
+动态作用域与词法作用域相对而言的，不同于词法作用域在定义时确定，<font color="#ff502c">动态作用域在执行时确定，其生存周期到代码片段执行为止</font>。动态变量存在于动态作用域中，<font color="#ff502c">任何给定的绑定的值，在确定调用其函数之前，都是不可知的</font>。
 
-在代码执行时，对应的作用域链常常是保持静态的。然而当遇到with语句、call方法、apply方法和try-catch中的catch时，会改变作用域链的。以with为例，在遇到with语句时，会将传入的对象属性作为局部变量来显示，使其便于访问，也就是说把一个新的对象添加到了作用域链的顶端，这样必然影响对局部标志符的解析。<font color="red">当with语句执行完毕后，会把作用域链恢复到原始状态</font>。实例如下：
+在代码执行时，对应的作用域链常常是保持静态的。然而当遇到with语句、call方法、apply方法和try-catch中的catch时，会改变作用域链的。以with为例，在遇到with语句时，会将传入的对象属性作为局部变量来显示，使其便于访问，也就是说把一个新的对象添加到了作用域链的顶端，这样必然影响对局部标志符的解析。<font color="#ff502c">当with语句执行完毕后，会把作用域链恢复到原始状态</font>。实例如下：
 ```javascript
     var name = "global";
 
@@ -69,7 +69,7 @@ description: 'JavaScript没有块级作用域,我们比较熟知的就是函数�
     globalThis.apply({name:"jeri"},[]); // 输出:Object {name: "jeri"}
 ```
 ## 函数作用域
-函数作用域，顾名思义就是在定义函数时候产生的作用域，这个作用域也可以称为<font color="red">局部作用域</font>。和全局作用域相反，函数作用域一般只在函数的代码片段内可访问到，外部不能进行变量访问。在函数内部定义的变量存在于函数作用域中，其生命周期随着函数的执行结束而结束。实例如下：
+函数作用域，顾名思义就是在定义函数时候产生的作用域，这个作用域也可以称为<font color="#ff502c">局部作用域</font>。和全局作用域相反，函数作用域一般只在函数的代码片段内可访问到，外部不能进行变量访问。在函数内部定义的变量存在于函数作用域中，其生命周期随着函数的执行结束而结束。实例如下：
 ```javascript
     var name = "global";
     function fun() {
@@ -88,7 +88,7 @@ description: 'JavaScript没有块级作用域,我们比较熟知的就是函数�
     console.log(name); // 输出:global
 ```
 ## 作用域链
-在JavaScript中，<font color="red">函数也是对象</font>，实际上，JavaScript里<font color="red">一切</font>都是<font color="red">对象</font>。函数对象和其它对象一样，拥有可以通过代码访问的属性和一系列仅供JavaScript引擎访问的内部属性。其中一个内部属性是<font color="red">[[Scope]]</font>，由ECMA-262标准第三版定义，该内部属性包含了<font color="red">函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链</font>，<font color="red">它决定了哪些数据能被函数访问</font>。<font color="red">它用来保证对执行环境有权访问的变量和函数的有序访问</font>。
+在JavaScript中，<font color="#ff502c">函数也是对象</font>，实际上，JavaScript里<font color="#ff502c">一切</font>都是<font color="#ff502c">对象</font>。函数对象和其它对象一样，拥有可以通过代码访问的属性和一系列仅供JavaScript引擎访问的内部属性。其中一个内部属性是<font color="#ff502c">[[Scope]]</font>，由ECMA-262标准第三版定义，该内部属性包含了<font color="#ff502c">函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链</font>，<font color="#ff502c">它决定了哪些数据能被函数访问</font>。<font color="#ff502c">它用来保证对执行环境有权访问的变量和函数的有序访问</font>。
 当一个函数创建后，它的作用域会被创建此函数的作用域中可访问的数据对象填充
 ```javascript
     function add(num1,num2) {

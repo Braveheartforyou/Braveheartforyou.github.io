@@ -12,8 +12,8 @@ JavaScript中的内置类型，七中类型中的又分为两大类：基本类�
 所有基本类型的值都是**不可改变**的。但需要注意的是，基本类型本身和一个赋值为基本类型的变量的区别。
 变量会被赋予一个新值，而原值不能像数组、对象以及函数那样被改变。
 
-**基本类型** 是储存在<font color="blue">栈</font>中
-**引用类型** 引用数据类型的<font color="blue">值</font>是保存在<font color="blue">堆内存</font>中的对象。JavaScript<font color="blue">不允许</font>直接访问堆内存中的位置，堆内存中的<font color="blue">值地址引用</font>保存在<font color="blue">栈</font>中，我们都是操作<font color="blue">栈中</font>的地址引用。
+**基本类型** 是储存在<font color="#ff502c">栈</font>中
+**引用类型** 引用数据类型的<font color="#ff502c">值</font>是保存在<font color="#ff502c">堆内存</font>中的对象。JavaScript<font color="#ff502c">不允许</font>直接访问堆内存中的位置，堆内存中的<font color="#ff502c">值地址引用</font>保存在<font color="#ff502c">栈</font>中，我们都是操作<font color="#ff502c">栈中</font>的地址引用。
 
 **如果想看数据结构如堆、栈、链表等等，可以在本站搜索。**
 如下图所示：

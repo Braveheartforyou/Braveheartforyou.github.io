@@ -9,14 +9,14 @@ description: 在浏览器渲染原理（一）中，我们知道了大致的渲�
 > [浏览器渲染原理 （二）css、javascript、dom阻塞关系](/blog/html/html-style-javascript.html)
 > [浏览器渲染原理 （三） repaint(重绘)和reflow(回流)详解](/blog/html/html-reload-reflow.html)
 
-<font color="blue"></font>
+<font color="#ff502c"></font>
 ## 简介
 大多数设备的刷新频率是60Hz，也就说是浏览器对每一帧画面的渲染工作要在16ms内完成,超出这个时间，页面的渲染就会出现卡顿现象，影响用户体验。
 repaint(重绘)和reflow(回流)发生在什么渲染的那个阶段，我们要了解什么叫做repaint(重绘)和reflow(回流).
 ### (重绘)
-repaint就是在<font color="blue">不影响排版的情况下</font>对这个元素重新绘制的过程。例如改变一个元素的背景颜色、字体颜色等。
+repaint就是在<font color="#ff502c">不影响排版的情况下</font>对这个元素重新绘制的过程。例如改变一个元素的背景颜色、字体颜色等。
 ### reflow(回流、重排)
-<font color="blue">当render tree中的一部分（或全部）因为元素的规模尺寸，布局，隐藏等改变而需要重新构建</font>。这就称为回流（其实我觉得叫重新布局更简单明了些）。每个页面至少需要一次回流，就是在页面第一次加载的时候。
+<font color="#ff502c">当render tree中的一部分（或全部）因为元素的规模尺寸，布局，隐藏等改变而需要重新构建</font>。这就称为回流（其实我觉得叫重新布局更简单明了些）。每个页面至少需要一次回流，就是在页面第一次加载的时候。
 **回流必将引起重绘，而重绘不一定会引起回流** 
 
 ### 三种常见的渲染流程

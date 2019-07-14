@@ -6,9 +6,9 @@ categories: [JavaScript]
 description: 自己手动实现一个 call、apply 并且实现 bind的polyfill
 ---
 ## 实现思路
-1. <font color="red">将函数设为对象的属性</font>
-2. <font color="red">执行该函数</font>
-3. <font color="red">删除该函数</font>
+1. <font color="#ff502c">将函数设为对象的属性</font>
+2. <font color="#ff502c">执行该函数</font>
+3. <font color="#ff502c">删除该函数</font>
 ```javascript
   // 第一步
   foo.fn = bar
@@ -18,9 +18,9 @@ description: 自己手动实现一个 call、apply 并且实现 bind的polyfill
   delete foo.fn
 ```
 ## 注意事项：
-1. <font color="red">传入的参数并不确定</font>
-2. <font color="red">this 参数可以传 null，当为 null 的时候，视为指向 window</font>
-3. <font color="red">函数是可以有返回值的！</font>
+1. <font color="#ff502c">传入的参数并不确定</font>
+2. <font color="#ff502c">this 参数可以传 null，当为 null 的时候，视为指向 window</font>
+3. <font color="#ff502c">函数是可以有返回值的！</font>
 ## call 实现代码
 ```javascript
   Function.prototype.call = function (context) {

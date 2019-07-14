@@ -24,7 +24,7 @@ Undefind、Null、Boolean、Number、String
     console.log(num1); // 5967
 ```
 #### 注意事项
-javascript里的<font color="red">基本类型（值类型）</font>是不可以改变的，javascript也没有提供任何一个改变字符串的方法和语法.<font color="red">他不是能当成对象来使用的。</font> 
+javascript里的<font color="#ff502c">基本类型（值类型）</font>是不可以改变的，javascript也没有提供任何一个改变字符串的方法和语法.<font color="#ff502c">他不是能当成对象来使用的。</font> 
 示例：
 ```javascript
     var str = "myobject";
@@ -56,7 +56,7 @@ __Array实现复制__
     console.log(arr); // [1, 2, 3, 4, 5, 6]
     console.log(arr1); // [1, 2, 3, 4, 5, 6]
 ```
-<font color="red">改为：</font>
+<font color="#ff502c">改为：</font>
 ```javascript
     var arr = [1, 2, 3, 4, 5];
     // Array.prototype.slice() 返回一个新的数组，可以切断他们之间的联系
@@ -85,7 +85,7 @@ __Object实现复制__
     console.log(obj); // Object {name: "111", age: 12}
     console.log(obj1); // Object {name: "111", age: 12}
 ```
-<font color="red">改为：</font>、
+<font color="#ff502c">改为：</font>、
 ```javascript
     var obj = {
         name: '111'
@@ -95,7 +95,7 @@ __Object实现复制__
     console.log(obj); // Object {name: "111"}
     console.log(obj1); // Object {name: "111", age: 12}
 ```
-<font color="red">同时Object也是有合并方法的为assgin(),但是他是不能项Array.prototype.concat()实现深度复制</font> 
+<font color="#ff502c">同时Object也是有合并方法的为assgin(),但是他是不能项Array.prototype.concat()实现深度复制</font> 
 ```javascript
    var obj = {
         name: '111'
@@ -105,7 +105,7 @@ __Object实现复制__
     console.log(obj); // Object {name: "111", age: 12} 
     console.log(obj1); // Object {name: "111", age: 12} 
 ```
-<font color="red">最后一种也是比较官方的方法</font>
+<font color="#ff502c">最后一种也是比较官方的方法</font>
 ```javascript
     function copy(obj) {
     var copy = Object.create(Object.getPrototypeOf(obj));

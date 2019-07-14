@@ -121,16 +121,16 @@ git add .
 git rebase --continue
 ```
 ![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-6.png)
-当前HEAD处于<font color="blue">游离状态</font>，实际上，此时所有分支的状态应该是这样:
+当前HEAD处于<font color="#ff502c">游离状态</font>，实际上，此时所有分支的状态应该是这样:
 ![git rebase [startpoint]   [endpoint]  --onto  [branchName]](../images/git/1-7.png
-所以，虽然此时<font color="blue">HEAD</font>所指向的内容正是我们所需要的，但是<font color="blue">dev1</font>分支是没有任何变化的，git只是将<font color="blue">b-c-d</font>部分的提交内容复制一份粘贴到了<font color="blue">dev1</font>所指向的提交后面，我们需要做的就是将<font color="blue">dev1</font>所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
+所以，虽然此时<font color="#ff502c">HEAD</font>所指向的内容正是我们所需要的，但是<font color="#ff502c">dev1</font>分支是没有任何变化的，git只是将<font color="#ff502c">b-c-d</font>部分的提交内容复制一份粘贴到了<font color="#ff502c">dev1</font>所指向的提交后面，我们需要做的就是将<font color="#ff502c">dev1</font>所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
 ```
 git checkout dev1
 git reset --hard 316ad6d
 ```
 这时候就完成了。
-<font color="blue">git rebase [startpoint]   [endpoint]  --onto  [branchName] </font>还有一种用法。
-参考 ><font color="blue">https://blog.csdn.net/endlu/article/details/51605861</font>
+<font color="#ff502c">git rebase [startpoint]   [endpoint]  --onto  [branchName] </font>还有一种用法。
+参考 ><font color="#ff502c">https://blog.csdn.net/endlu/article/details/51605861</font>
 
 ## git cherry-pick
 如果只是复制某一两个提交到其他分支，建议使用更简单的命令:git cherry-pick
