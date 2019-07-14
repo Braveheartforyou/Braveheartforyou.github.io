@@ -5,8 +5,8 @@ tags: [Html]
 categories: [Html]
 description: Html渲染的流程 文档解析=》生成构建dom树=》计算dom上css属性、生成cssom树=》渲染=》合成=》绘制图形。同时reflow、repaint是发生在什么那个阶段。为什么css要写在头部，js现在底部。
 ---
-> [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-style-javascript.html)
-> [浏览器渲染原理 （二）css、javascript、dom阻塞关系](/blog/html/html-browser-render.html)
+> [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-browser-render.html)
+> [浏览器渲染原理 （二）css、javascript、dom阻塞关系](/blog/html/html-style-javascript.html)
 > [浏览器渲染原理 （三） repaint(重绘)和reflow(回流)详解](/blog/html/html-reload-reflow.html)
 
 如果想看更深入的原理，可以看：
@@ -23,6 +23,7 @@ description: Html渲染的流程 文档解析=》生成构建dom树=》计算dom
 > 4. 将DOM树和CSSOM树合并成一个渲染树(rendering tree)；
 > 5. 渲染树的每个元素包含的内容都是计算过的，它被称之为布局layout。浏览器使用一种流式处理的方法，只需要一次pass绘制操作就可以布局所有的元素；
 > 6. 将渲染树的各个节点绘制到屏幕上，这一步被称为绘制painting；
+> 7. 按照合理的顺序合并图层然后显示到屏幕上Composite（渲染层合并）
 
 ### 第一步请求资源
 在我们在浏览器中输入完网址的时候，浏览器其实会先做以下几小步：
@@ -50,11 +51,19 @@ CSS 计算是把 CSS 规则应用到 DOM 树上，为 DOM结构添加显示相�
 ### 第五步渲染树布局(layout of the render tree)
 呈现器在创建完成并添加到呈现树时，并不包含位置和大小信息。计算这些值的过程称为布局或重排。
 布局阶段会从渲染书更新节点开始遍历，由于渲染树的每个节点都是一个Render Object对象，包含宽高，位置，背景色等样式信息。浏览器中渲染这个过程，就是把每一个元素对应的盒变成位图，再把位图合成一个大的位图。
-布局又分为全局布局和增量布局，详情请看<https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout>
+布局又分为全局布局和增量布局，[详情请看](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout)
 
 ### 第六步渲染树绘制（Painting the render tree）
 在绘制阶段，系统会遍历呈现树，并调用呈现器的“paint”方法，将呈现器的内容显示在屏幕上。绘制工作是使用用户界面基础组件完成的。
-绘制又分为全局绘制和增量绘制，并且绘制的属性也会有前后之分，详情请看<详情请看<https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/>
+绘制又分为全局绘制和增量绘制，并且绘制的属性也会有前后之分，[详情请看](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)
+
+### compositor layer 合成渲染层
+渲染过程把元素变成位图，合成把一部分位图变成合成层，最终的绘制过程把合成层显示到屏幕上。
+对于transform/opacity这两种变换，浏览器不会用repaint/reflow处理，而是在已经渲染的元素基础上进行附加工作。
+他的渲染流程为下图所示：
+![只执行 compositor](../../images/html/images/reflow-repaint-1-1.png)
+js改变样式，样式只触发合成属性，不触发 repaint/reflow.附原文链接
+[stick-to-compositor-only-properties-and-manage-layer-count](https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count)
 
 ## 阻塞渲染：CSS、JavaScript、DOM
 谈论资源的阻塞时，我们要清楚，现代浏览器总是并行加载资源。例如，当 HTML 解析器（HTML Parser）被脚本阻塞时，解析器虽然会停止构建 DOM，但仍会识别该脚本后面的资源，并进行预加载。
@@ -66,7 +75,7 @@ CSS 计算是把 CSS 规则应用到 DOM 树上，为 DOM结构添加显示相�
 正是由于以上这些原因，script标签的位置很重要我们在实际开发中应该尽量坚持以下两个原则：
 <strong>在引入顺序上，CSS 资源先于 JavaScript 资源。</strong>
 <strong>JavaScript 应尽量少的去影响 DOM 的构建。</strong>
-想理清楚CSS、JavaScript、DOM之间的相互[阻塞关系](http://asyncnode/blog/html/html-browser-render.html)<font color="blue"></font>
+想理清楚CSS、JavaScript、DOM之间的相互[阻塞关系](http://asyncnode/blog/html/html-browser-render.html)
 
 ## 改变阻塞模式
 我们熟知的<font color="blue">javascript</font>标签上<font color="blue">defer</font>和<font color="blue">async</font>属性，还有可能不太熟知的<font color="blue">link</font>标签上的<font color="blue">preload</font>属性。
@@ -102,8 +111,9 @@ defer 与相比普通 script，有两点区别：载入 JavaScript 文件时<fon
 这个里面基本上了解了浏览器的渲染过程，但是有很多细节没有套路比如说我们都知道浏览器是单线程的，ui线程和javascript线程是怎么协调的，还有一个比较重要的是重绘和回流（重排），这个我再[下一篇]<>中总结
 
 ## 引用
-参考 > https://juejin.im/entry/59e1d31f51882578c3411c77
-参考 > https://www.imooc.com/article/40004
-参考 > https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script
-参考 > https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout
+> [浏览器的渲染：过程与原理](https://juejin.im/entry/59e1d31f51882578c3411c77)
+> [浏览器渲染原理与过程](https://www.imooc.com/article/40004)
+> [HTML <script> 元素用于嵌入或引用可执行脚本。](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)
+> [浏览器的工作原理：新式网络浏览器幕后揭秘](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout)
+> [重绘，回流和合成，了解基本浏览器绘制帮你优化页面性能](https://zhuanlan.zhihu.com/p/23428399)
 

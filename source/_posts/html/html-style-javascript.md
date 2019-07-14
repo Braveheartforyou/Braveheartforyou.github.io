@@ -5,9 +5,10 @@ tags: [Html]
 categories: [Html]
 description: html中的css、javascript、dom之间的解析和相互阻塞关系
 ---
-> [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-style-javascript.html)
-> [浏览器渲染原理 （二）css、javascript、dom阻塞关系](/blog/html/html-browser-render.html)
+> [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-browser-render.html)
+> [浏览器渲染原理 （二）css、javascript、dom阻塞关系](/blog/html/html-style-javascript.html)
 > [浏览器渲染原理 （三） repaint(重绘)和reflow(回流)详解](/blog/html/html-reload-reflow.html)
+
 ## 引子
 我们在看一些前端优化规则的时候，比如雅虎军规等等，都有看到style写在head中，但是外链script写在body的最后，以优化性能，都知道应该怎么做，但是不知道其中的原理。
 如果还不知道浏览器渲染的原理的，看一看[浏览器渲染原理](/blog/html/html-style-javascript.html)这一篇文章。其实这个就是考验大家对html中的css、javascript、dom之间的解析和相互阻塞关系。
@@ -115,3 +116,6 @@ css加载会对后续的JavaScript的执行会造成阻塞。
 如果还不了解整体的渲染流程可以看以前我前面的文章，[浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-style-javascript.html)
 > JavaScript的加载会阻塞Dom的解析和渲染，并且也会阻塞css的解析和渲染。
 > Css的加载会阻塞Dom的渲染，并不会阻塞Dom的解析，也会阻塞JavaScript的执行。
+
+## 引用
+[css加载会造成阻塞吗？](https://juejin.im/post/5b88ddca6fb9a019c7717096)
