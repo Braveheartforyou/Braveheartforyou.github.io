@@ -7,6 +7,7 @@ description: Hook 是 React 16.8 的新增特性。它可以让你在不编写 c
 ---
 ## 简介
 > Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
+
 我们知道，functional component在使用的时候有一些限制，比如需要生命周期、state的时候就不能用functional component。而有了Hooks，你就可以在funtional component里，使用class component的功能:props，state，context，refs，和生命周期函数等等。
 **虽然Hooks已经有要取代正宫class的趋势了，但是react目前没有计划抛弃class，所以不要慌，你还是可以跟往常一样使用class。**
 ## 为什么引入hook
@@ -24,6 +25,26 @@ description: Hook 是 React 16.8 的新增特性。它可以让你在不编写 c
 相比函数，编写一个<font color="#ff502c">class</font>可能需要掌握更多的知识，需要注意的点也越多，比如<font color="#ff502c">this</font>指向、绑定事件等等。另外，计算机理解一个函数比理解一个<font color="#ff502c">class</font>更快。<font color="#ff502c">Hooks</font>让你可以在<font color="#ff502c">class</font>之外使用更多React的新特性。
 
 ### 减少状态逻辑复用的风险
-<font color="#ff502c">Hook</font>和<font color="#ff502c">Mixin</font>在用法上有一定的相似之处，但是<font color="#ff502c">Mixin</font>引入的<font color="#ff502c">逻辑和<font color="#ff502c">状态</font>是可以<font color="#ff502c">相互覆盖</font>的，而多个<font color="#ff502c">Hook</font>之间互不影响，这让我们不需要在把一部分精力放在防止避免逻辑复用的冲突上。
+<font color="#ff502c">Hook</font>和<font color="#ff502c">Mixin</font>在用法上有一定的相似之处，但是<font color="#ff502c">Mixin</font>引入的<font color="#ff502c">逻辑</font>和<font color="#ff502c">状态</font>是可以<font color="#ff502c">相互覆盖</font>的，而多个<font color="#ff502c">Hook</font>之间互不影响，这让我们不需要在把一部分精力放在防止避免逻辑复用的冲突上。
 在不遵守约定的情况下使用<font color="#ff502c">HOC</font>也有可能带来一定冲突，比如<font color="#ff502c">props覆盖</font>等等，使用Hook则可以避免这些问题。
 
+### 函数组件无 this 问题
+不需要通过<font color="#ff502c">bind</font>函数改变事件的<font color="#ff502c">this</font>指向问题。
+## Hook API 索引
+大致所有的<font color="#ff502c">hook</font>都在下面的列表中，但是比较重要的<font color="#ff502c">hook</font>是<font color="#ff502c">State Hook</font>、<font color="#ff502c">Effect Hook</font>这两个hook。
+- 基础 Hook
+  - useState
+  - useEffect
+  - useContext
+- 额外的 Hook
+  - [useReducer](https://react.docschina.org/docs/hooks-reference.html#usereducer)
+  - useCallback
+  - useMemo
+  - useRef
+  - [useImperativeHandle](https://react.docschina.org/docs/hooks-reference.html#useimperativehandle)
+  - [useLayoutEffect](https://react.docschina.org/docs/hooks-reference.html#useLayoutEffect)
+  - [useDebugValue](https://react.docschina.org/docs/hooks-reference.html#useDebugValue)
+
+### State Hook、Effect Hook
+- State Hook(useState 通过在函数组件里调用它来给组件添加一些内部 state。)
+- Effect Hook (useEffect 就是一个 Effect Hook，给函数组件增加了操作副作用的能力。)
