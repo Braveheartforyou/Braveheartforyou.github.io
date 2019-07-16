@@ -31,6 +31,8 @@ description: Hook 是 React 16.8 的新增特性。它可以让你在不编写 c
 ### 函数组件无 this 问题
 不需要通过<font color="#ff502c">bind</font>函数改变事件的<font color="#ff502c">this</font>指向问题。
 ## Hook API 索引
+<hr/>
+
 大致所有的<font color="#ff502c">hook</font>都在下面的列表中，但是比较重要的<font color="#ff502c">hook</font>是<font color="#ff502c">State Hook</font>、<font color="#ff502c">Effect Hook</font>这两个hook。
 - 基础 Hook
   - useState
@@ -226,16 +228,122 @@ export default function UseStateHook() {
         );
     }
 ```
-别忘记 useContext 的参数必须是 context 对象本身：
+别忘记 <font color="#ff502c">useContext</font> 的参数必须是 <font color="#ff502c">context</font> 对象本身：
 - 正确： useContext(ThemeContext)
 - 错误： useContext(ThemeContext.Consumer)
 - 错误： useContext(ThemeContext.Provider)
 
-调用了 useContext 的组件总会在 context 值变化时重新渲染。如果重渲染组件的开销较大，你可以 [通过使用 memoization 来优化](https://github.com/facebook/react/issues/15156#issuecomment-474590693)。
+调用了 <font color="#ff502c">useContext</font> 的组件总会在 <font color="#ff502c">context</font> 值变化时重新渲染。如果重渲染组件的开销较大，你可以 [通过使用 memoization 来优化](https://github.com/facebook/react/issues/15156#issuecomment-474590693)。
 
-> 如果你在接触 Hook 前已经对 context API 比较熟悉，那应该可以理解，useContext(MyContext) 相当于 class 组件中的 static contextType = MyContext 或者 <MyContext.Consumer>。
+> 如果你在接触 <font color="#ff502c">Hook</font> 前已经对 <font color="#ff502c">context API</font> 比较熟悉，那应该可以理解，**useContext(MyContext)** 相当于 class 组件中的 **static contextType = MyContext** 或者 **<MyContext.Consumer>**。
 
-useContext(MyContext) 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 <MyContext.Provider> 来为下层组件提供 context。
+useContext(MyContext) 只是让你能够读取 <font color="#ff502c">context</font> 的值以及订阅 <font color="#ff502c">context</font> 的变化。你仍然需要在上层组件树中使用 <MyContext.Provider> 来为下层组件提供 c<font color="#ff502c">ontext</font>。
 
 ### useCallback
 如果你需要一个不会随着组件更新而重新创建的 callback
+
+
+### useMemo
+<font color="#ff502c">useMemo</font> 可以用来优化函数组件重渲染的性能。函数组价有[React.memo(高阶组件)](https://zh-hans.reactjs.org/docs/react-api.html#reactmemo)，它类似类组件的[React.PureComponent](https://zh-hans.reactjs.org/docs/react-api.html#reactpurecomponent)；它们都是React的顶层API。
+
+**useMemo 与 memo**
+<font color="#ff502c">React.memo</font>针对的是一个函数组件的渲染是否重复执行，而 <font color="#ff502c">useMemo</font> 定义的是一个函数逻辑是否重复执行。
+
+**语法**
+它的语法和<font color="#ff502c">useEffect</font>很像，把“创建”函数和依赖项数组作为参数传入 <font color="#ff502c">useMemo</font>。
+参数：
+- 第一个参数是是需要执行的逻辑函数
+- 第二个参数是这个逻辑依赖输入变量组成的数组，如果不传每次都会执行逻辑函数， 传入空数组只会执行一次。（非必传）
+
+```javascript
+import React, { useState, useMemo } from 'react';
+function Counter () {
+  const [count, setCount] = useState(0);
+  const renderCount = useMemo(() => {
+    console.log(count);
+    console.log('渲染次数：' + count);
+    return '渲染次数：' + count;
+  }, [count]);
+  return (
+    // eslint-disable-next-line react/react-in-jsx-scope
+    <div>
+      <button type="button" onClick={() => {setCount(count + 1)}}>
+        计数按钮
+      </button>
+      <p>{renderCount}</p>
+      <p>{count}</p>
+    </div>
+  );
+}
+export default Counter;
+```
+运行结果如下：
+![reac-hook](../../images/react/react-hook-1-1.png)
+可以在依赖输入做判断优化渲染次数：
+```javascript
+  const renderCount = useMemo(() => {
+    console.log(count);
+    console.log('渲染次数：' + count);
+    return '渲染次数：' + count;
+  }, [count === 2]);
+```
+![reac-hook](../../images/react/react-hook-1-2.png)
+**你可以把 useMemo 作为性能优化的手段，但不要把它当成语义上的保证。**
+> 注意 依赖项数组不会作为参数传给“创建”函数。然虽然从概念上来说它表现为：所有“创建”函数中引用的值都应该出现在依赖项数组中。未来编译器会更加智能，届时自动创建数组将成为可能。
+我们推荐启用 eslint-plugin-react-hooks 中的 exhaustive-deps 规则。此规则会在添加错误依赖时发出警告并给出修复建议。
+
+### useRef
+useRef 返回一个可变的 ref 对象，使用useRef Hook，你可以轻松的获取到dom的ref。
+useRef 主要有两个使用场景：
+- 获取子组件或者 DOM 节点的句柄
+- 渲染周期之间的共享数据的存储
+大家可能会想到 state 也可跨越渲染周期保存，但是 state 的赋值会触发重渲染，但是 ref 不会，从这点看 ref 更像是类属性中的普通成员。
+```javascript
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` 指向已挂载到 DOM 上的文本输入元素
+    inputEl.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+useRef() 和自建一个 {current: ...} 对象的唯一区别是，useRef 会在每次渲染时返回同一个 ref 对象。
+
+**模拟实现ComponentDidUpdate**
+componentDidUpdate就相当于除去第一次调用的useEffect，我们可以借助useRef生成一个标识，来记录是否为第一次执行：
+```javascript
+  function useDidUpdate(callback, prop) {
+  const init = useRef(true);
+  useEffect(() => {
+    if (init.current) {
+      init.current = false;
+    } else {
+      return callback();
+    }
+  }, prop);
+}
+```
+> 请记住，当 ref 对象内容发生变化时，useRef 并不会通知你。变更 .current 属性不会引发组件重新渲染。如果想要在 React 绑定或解绑 DOM 节点的 ref 时运行某些代码，则需要使用回调 ref 来实现。
+
+## hook使用事项
+Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。
+
+### 只在最顶层使用 Hook
+不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。
+
+### 使用范围
+不要在普通的 JavaScript 函数中调用 Hook。只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用。
+Hook的提出主要就是为了解决class组件的一系列问题，所以我们能在class组件中使用它
+
+## 引用
+> [Hook 概览](https://react.docschina.org/docs/hooks-overview.html)
+> [Hook API 索引](https://react.docschina.org/docs/hooks-reference.html)
+> [从Mixin到HOC再到Hook](https://juejin.im/post/5cad39b3f265da03502b1c0a#heading-40)
+> [React 新特性 Hooks 讲解及实例(三)](https://mp.weixin.qq.com/s/PmACWd4XvwXZXuTXggdhsw)
+> [React 新特性 Hooks 讲解及实例(四)](https://mp.weixin.qq.com/s/Tm7_JvMxSOvzsIXgx0rmYQ)
