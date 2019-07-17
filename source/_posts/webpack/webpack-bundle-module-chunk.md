@@ -78,6 +78,6 @@ module.exports = {
 
 通过上面的代码知道，module就是没有被编译之前的代码，通过webpack的根据文件引用关系生成chunk文件，webpack处理好chunk文件后，生成运行在浏览器中的代码bundle。
 
-## 引用
+## 参考
 > [https://juejin.im/post/5cede821f265da1bbd4b5630](https://juejin.im/post/5cede821f265da1bbd4b5630)
 > [http://qingbob.com/webpack-chunks-split-01/](http://qingbob.com/webpack-chunks-split-01/)

@@ -217,5 +217,5 @@ export default function commonJs () {
 hash 所有文件哈希值相同；
 chunkhash 根据不同的入口文件(Entry)进行依赖文件解析、构建对应的 chunk，生成对应的哈希值；
 contenthash 计算与文件内容本身相关，主要用在css抽取css文件时。
-## 引用
+## 参考
 > [https://juejin.im/post/5cede821f265da1bbd4b5630](https://juejin.im/post/5cede821f265da1bbd4b5630)

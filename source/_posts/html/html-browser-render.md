@@ -110,7 +110,7 @@ defer 与相比普通 script，有两点区别：载入 JavaScript 文件时<fon
 ## 总结
 这个里面基本上了解了浏览器的渲染过程，但是有很多细节没有套路比如说我们都知道浏览器是单线程的，ui线程和javascript线程是怎么协调的，还有一个比较重要的是重绘和回流（重排），这个我再[下一篇]<>中总结
 
-## 引用
+## 参考
 > [浏览器的渲染：过程与原理](https://juejin.im/entry/59e1d31f51882578c3411c77)
 > [浏览器渲染原理与过程](https://www.imooc.com/article/40004)
 > [HTML <script> 元素用于嵌入或引用可执行脚本。](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)

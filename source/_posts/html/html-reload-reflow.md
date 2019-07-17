@@ -137,7 +137,7 @@ window.addEventListener('scroll', onScroll);
 ![Chrome DevTools](../../images/html/images/reflow-repaint-1-10.png)
 ## 总结
 在这个上面了解了reflow、repaint的流程和他的触发条件，再后面也有一部分怎么优化性能，结合前面的渲染流程大致知道优化的是那部分的流程。当然在优化性能的时候，一定要结合chrome的性能分析功能。
-## 引用
+## 参考
 > [深度剖析浏览器渲染性能原理，你到底知道多少？](https://www.jianshu.com/p/a32b890c29b1)
 > [回流(reflow)与重绘(repaint)](https://www.cnblogs.com/dll-ft/p/5810639.html)
 > [高性能WEB开发：深入理解页面呈现、重绘、回流](https://www.cnblogs.com/goloving/p/7545954.html)

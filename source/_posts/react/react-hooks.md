@@ -341,7 +341,7 @@ Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规
 不要在普通的 JavaScript 函数中调用 Hook。只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用。
 Hook的提出主要就是为了解决class组件的一系列问题，所以我们能在class组件中使用它
 
-## 引用
+## 参考
 > [Hook 概览](https://react.docschina.org/docs/hooks-overview.html)
 > [Hook API 索引](https://react.docschina.org/docs/hooks-reference.html)
 > [从Mixin到HOC再到Hook](https://juejin.im/post/5cad39b3f265da03502b1c0a#heading-40)

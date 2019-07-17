@@ -117,5 +117,5 @@ css加载会对后续的JavaScript的执行会造成阻塞。
 > JavaScript的加载会阻塞Dom的解析和渲染，并且也会阻塞css的解析和渲染。
 > Css的加载会阻塞Dom的渲染，并不会阻塞Dom的解析，也会阻塞JavaScript的执行。
 
-## 引用
+## 参考
 [css加载会造成阻塞吗？](https://juejin.im/post/5b88ddca6fb9a019c7717096)
