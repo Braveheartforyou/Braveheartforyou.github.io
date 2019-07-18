@@ -1,8 +1,8 @@
 ---
 title: webpack中source-map、WebpackPreload、WebpackPrefetch、WebpackChunkName
 date: 2019-02-12 21:33:45
-tags: [Webpack]
-categories: [Webpack]
+tags: [WebPack]
+categories: [WebPack]
 description: webpack中source-map、preload、prefecth
 ---
 ## 简介
