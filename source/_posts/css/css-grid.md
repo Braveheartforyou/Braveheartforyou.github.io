@@ -395,7 +395,7 @@ grid-auto-flow属性控制没有明确指定位置的grid子项的放置方式�
   grid-row-end: 3;
 }
 ```
-![css grid](../../images/css/grid-1-9.png)
+![css grid](../../images/css/grid-1-10.png)
 
 **网格线的名字**
 ```css
@@ -424,6 +424,72 @@ grid-auto-flow属性控制没有明确指定位置的grid子项的放置方式�
     grid-column-start: span 2;
    grid-row-start: span 2;
 }
-
+```
 ### grid-column和grid-row
+`grid-column`属性是`grid-column-start`和`grid-column-end`的合并简写形式，`grid-row`属性是`grid-row-start`属性和`grid-row-end`的合并简写形式。
+**语法**
+```css
+  grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+  grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+```
 
+改写上面的代码：
+```css
+  .container div:nth-child(1) {
+    grid-column:[第一列]/ span 2;
+    grid-row-start: [第一行]/ span 2;
+  }
+```
+与上面的实现一样。
+
+### grid-area
+`grid-area`表示当前网格所占用的区域。在介绍`grid-template-areas`属性的时候就演示过该属性，我们使用`grid-template-areas`属性自定义一些网格区域，然后使用`grid-area`属性让grid子项指定使用这些区域，就自动进行了区域分布。
+`grid-area`和`grid-column/grid-row`作用都是grid子项的分布，但`grid-area`语义要更好，识别度更佳，非常适合具有功能属性的布局区域（如头部，底部），同时，还支持非规则区域。
+
+**语法**
+```css
+  grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+```
+- <name> 区域名称。由grid-template-areas属性创建。
+- `<row-start> / <column-start> / <row-end> / <column-end>` 占据网格区域的纵横起始位置。
+
+改写上面代码：
+```css 
+    .container div:nth-child(1) {
+      grid-area: 1 / 1 / 3 / 3;
+    }
+```
+### justify-self、align-self、place-self
+`justify-self`属性设置单元格内容的水平位置（左中右），跟`justify-items`属性的用法完全一致，但只作用于单个项目。
+`align-self`属性设置单元格内容的垂直位置（上中下），跟`align-items`属性的用法完全一致，也是只作用于单个项目。
+
+**语法**
+```css
+  justify-self: start | end | center | stretch;
+  align-self: start | end | center | stretch;
+```
+- start：对齐单元格的起始边缘。
+- end：对齐单元格的结束边缘。
+- center：单元格内部居中。
+- stretch：拉伸，占满单元格的整个宽度（默认值）。
+
+示例代码请看
+[justify-self 效果参考 张鑫旭大佬的博客](https://www.zhangxinxu.com/wordpress/2018/11/display-grid-css-css3/#justify-self)
+[align-self 效果参考 张鑫旭大佬的博客](https://www.zhangxinxu.com/wordpress/2018/11/display-grid-css-css3/#align-self)
+
+#### place-self
+place-items可以让align-self和justify-self属性写在单个声明中。
+```css
+  place-self: <align-self> / <justify-self>;
+```
+
+## 总结
+- Grid布局则适用于更大规模的布局（二维布局），而Flexbox布局最适合应用程序的组件和小规模布局（一维布局）
+- 命名虽然支持中文，但由于CSS文件中文存在乱码的风险
+- 在Grid布局中，float，display:inline-block，display:table-cell，vertical-align以及column-*这些属性和声明对grid子项是没有任何作用的。这个可以说是Grid布局中的常识，面试经常会问的，一定要记得。
+- IE10-IE15虽然名义上支持Grid布局，但支持的是老版本语法（本文是介绍的全是2.0全新语法），
+兼容性查询请看[can i use](https://caniuse.com)
+
+## 参考
+[写给自己看的display: grid布局教程](https://www.zhangxinxu.com/wordpress/2018/11/display-grid-css-css3/)
+[CSS Grid 网格布局教程](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
