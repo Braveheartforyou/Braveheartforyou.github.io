@@ -17,7 +17,7 @@ obj 是要在其上定义属性的对象；prop 是要定义或修改的属性�
 
 由于 Vue 会在初始化实例时对属性执行 **getter/setter** 转化过程，所以属性必须在 `data` 对象上存在才能让Vue转换它，这样才能让它是响应的。
 响应式原理大致流程如下图所示：
-![css grid](../../images/vue/vue-defineProperty-1-1.png)
+![vue-defineProperty](../../images/vue/vue-defineProperty-1-1.png)
 Vue数据响应式变化主要涉及**Observer、Watcher、Dep**这三个主要的类。这里主要是响应式对象，后面分别会记录它的依赖收集、派发更新、三种Watcher。
 把普通对象改造为**响应式对象**在Vue中的大致流程为：
 - initState(初始化数据)
