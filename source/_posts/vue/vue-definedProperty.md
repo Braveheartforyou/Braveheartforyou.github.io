@@ -317,7 +317,7 @@ export function defineReactive (
       }
        /*新的值需要重新进行observe，保证数据响应式*/
       childOb = !shallow && observe(newVal)
-       /*dep对象通知所有的观察者*/
+       /*dep对象通知所有的订阅者*/
       dep.notify()
     }
   })
@@ -367,7 +367,7 @@ methodsToPatch.forEach(function (method) {
     // observeArray方法进行一遍观测处理
     if (inserted) ob.observeArray(inserted)
     // notify change
-    /*dep对象通知所有的观察者*/
+    /*dep对象通知所有的订阅者*/
     ob.dep.notify()
     return result
   })
