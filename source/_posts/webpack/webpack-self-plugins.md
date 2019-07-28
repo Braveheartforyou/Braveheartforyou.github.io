@@ -96,4 +96,82 @@ description: 编写一个自己的webpack插件plugin
 大致分为以下几步：
 - 获取`output`路径，也就是出口路径一般为`dist`
 - 绑定钩子事件 `compiler.plugin('done', (stats) => {})`
-- 
+- 编译文件，与原来文件对比，删除未匹配文件 （同时可以options 设置要忽略的文件）
+
+代码实现如下
+
+```javascript
+const recursiveReadSync = require('recursive-readdir-sync');
+const minimatch = require('minimatch');
+const path = require('path');
+const fs = require('fs');
+const union = require('lodash.union');
+
+// 匹配文件
+function getFiles(fromPath, exclude = []) {
+  const files = recursiveReadSync(fromPath)
+    .filter(file =>
+      exclude.every(excluded =>
+        !minimatch(path.relative(fromPath, file), path.join(excluded), { dot: true }),
+      ),
+    );
+  // console.log(files);
+  return files;
+}
+
+class WebpackCleanupPlugin {
+
+  constructor(options = {}) {
+    // 配置文件
+    this.options = options;
+  }
+  apply(compiler) {
+    // 获取output路径
+    const outputPath = compiler.options.output.path;
+    // 绑定钩子事件
+    compiler.plugin('done', (stats) => {
+      if (compiler.outputFileSystem.constructor.name !== 'NodeOutputFileSystem') {
+        return;
+      }
+      // 获取编译完成 文件名
+      const assets = stats.toJson().assets.map(asset => asset.name);
+      console.log(assets);
+      // 多数组合并并且去重
+      const exclude = union(this.options.exclude, assets);
+      console.log(exclude);
+      // console.log('outputPath', outputPath);
+      // 获取未匹配文件
+      const files = getFiles(outputPath, exclude);
+      // const files = [];
+      console.log('files', files);
+      if (this.options.preview) {
+        // console.log('%s file(s) would be deleted:', files.length);
+        // 输出文件
+        files.forEach(file => console.log('    %s', file));
+        // console.log();
+      } else {
+        // 删除未匹配文件
+        files.forEach(fs.unlinkSync);
+      }
+      if (!this.options.quiet) {
+        // console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
+      }
+    });
+  }
+
+}
+module.exports = WebpackCleanupPlugin;
+```
+上面的这个插件实现了一个清除编译文件的效果。在这里就不做实验了，如果有兴趣可以自己把代码copy到本地，运行一下看一下结果。
+
+## 总结
+在上面大致知道怎么写一个简单的清除文件的`webpack`的**插件**，其实还可以做更多的事情如下：
+- 读取输出资源、代码块、模块及其依赖（在 `emit` 事件发生）
+- 监听文件变化 `watch-run`
+- 修改输出资源 `compilation.assets`
+
+具体实现可以看一下一下[webpack深入浅出](http://webpack.wuhaolin.cn/5%E5%8E%9F%E7%90%86/5-4%E7%BC%96%E5%86%99Plugin.html)
+
+## 参考
+> [干货！撸一个webpack插件(内含tapable详解+webpack流程)](https://juejin.im/post/5beb8875e51d455e5c4dd83f)
+> [看清楚真正的 Webpack 插件](https://zoumiaojiang.com/article/what-is-real-webpack-plugin/)
