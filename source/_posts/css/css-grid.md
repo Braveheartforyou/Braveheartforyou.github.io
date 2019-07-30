@@ -1,8 +1,8 @@
 ---
 title: css中的grid布局
 date: 2019-07-17 23:43:23
-tags: [css]
-categories: [css]
+tags: [Css]
+categories: [Css]
 description: css中的grid布局，以后肯定会是grid布局的天下，所以先学起来。
 ---
 ## 简介

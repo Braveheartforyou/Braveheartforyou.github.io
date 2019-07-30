@@ -77,7 +77,7 @@ static getDerivedStateFromProps(nextProps, prevState)
 当<font color="#ff502c">创建时</font>、<font color="#ff502c">接收新的 props 时</font>、<font color="#ff502c">setState 时</font>、<font color="#ff502c">forceUpdate 时</font>会执行这个方法。
 > 注意：v16.3 setState 时、forceUpdate 时不会执行这个方法，v16.4 修复了这个问题。
 
-这个生命周期钩子也经历了一些波折，原本它是被设计成<font color="#ff502c">初始化r</font>、<font color="#ff502c">父组件更新r</font>和<font color="#ff502c">接收到propsr</font>才会触发，现在只要渲染就会触发，也就是<font color="#ff502c">初始化r</font>和<font color="#ff502c">更新阶段r</font>都会触发。
+这个生命周期钩子也经历了一些波折，原本它是被设计成<font color="#ff502c">初始化</font>、<font color="#ff502c">父组件更新</font>和<font color="#ff502c">接收到props</font>才会触发，现在只要渲染就会触发，也就是<font color="#ff502c">初始化</font>和<font color="#ff502c">更新阶段</font>都会触发。
 
 ```javascript
 class ExampleComponent extends React.Component {
@@ -114,11 +114,11 @@ class ExampleComponent extends React.Component {
 
 ### render（会多次执行）
 该方法会创建一个**vnode**，用来表示组件的输出。对于一个组件来讲，<font color="#ff502c">render</font>方法是唯一一个必需的方法。<font color="#ff502c">render</font>方法需要满足下面几点：
-- 1. 只能通过 **this.props** 和 **this.state** 访问数据（不能修改）
-- 2. 可以返回 null,false 或者任何<font color="#ff502c">React</font>组件
-- 3. 只能出现一个顶级组件，不能返回一组元素
-- 4. 不能改变组件的状态(**state**)
-- 5. 不能修改DOM的输出
+1. 只能通过 **this.props** 和 **this.state** 访问数据（不能修改）
+2. 可以返回 null,false 或者任何<font color="#ff502c">React</font>组件
+3. 只能出现一个顶级组件，不能返回一组元素
+4. 不能改变组件的状态(**state**)
+5. 不能修改DOM的输出
 
 可以返回下面几种类型：
 
@@ -173,8 +173,8 @@ class ExampleComponent extends React.Component {
 ### componentWillReceiveProps (nextProps)
 componentWillReceiveProps</font>在接受父组件改变后的**props**需要重新渲染组件。
 它接受一个参数：
-- nextProps
-**通过对比nextProps和this.props，将nextProps setState为当前组件的state，从而重新渲染组件**
+- nextProps **通过对比nextProps和this.props，将nextProps setState为当前组件的state，从而重新渲染组件**
+
 该声明周期函数可能在两种情况下被触发：
 - 组件接收到了新的属性。
 - 组件没有收到新的属性，但是由于父组件重新渲染导致当前组件也被重新渲染。

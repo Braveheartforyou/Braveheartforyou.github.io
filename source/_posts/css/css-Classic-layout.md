@@ -1,8 +1,8 @@
 ---
 title: 实现经典的三列布局
 date: 2017-08-16 13:45:57
-tags: [css]
-categories: [css]
+tags: [Css]
+categories: [Css]
 description: 三列布局（中间一列自适应 左右两列固定宽度），圣杯和双飞翼布局
 ---
 ## 概述
