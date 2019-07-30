@@ -117,13 +117,16 @@ HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP/2使�
 <!-- ![http2.0](../../images/http/http2.0-1-6.png) -->
 **HTTP/0.9**
 <img src="../../images/http/http2.0-1-6.png" alt="http2.0" width="50%"/>
+上图：连接无法复用
 **HTTP/1.0**
 <img src="../../images/http/http2.0-1-7.png" alt="http2.0" width="50%"/>
+上图：设置Connection:Keep-Alive，保持连接在一段时间内不断开。
 **HTTP/1.1**
 <img src="../../images/http/http2.0-1-8.png" alt="http2.0" width="50%"/>
+上图：HTTPpipelining：建立多个连接
 **HTTP/2**
 <img src="../../images/http/http2.0-1-9.png" alt="http2.0" width="50%"/>
-
+上图：多路复用
 ## 参考
 [HTTP 协议入门](https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w)
 [HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事](https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w)
