@@ -426,3 +426,4 @@ WebSocket协议中，数据掩码的作用是增强协议的安全性。但数�
 
 ## 参考
 [WebSocket：5分钟从入门到精通](https://segmentfault.com/a/1190000012709475)
+[WebSocket 通信过程与实现](https://mp.weixin.qq.com/s/sXde-0h7jjGlt4hdwi_Ngw)
