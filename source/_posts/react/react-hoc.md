@@ -79,7 +79,9 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
 <hr/>
 
 ### 操作 props(属性)
+
 > 通过属性代理实现
+
 你可以`读取、添加、编辑、删除`传给 `WrappedComponent` 的 `props(属性)`。在`删除或编辑`重要的 `props(属性)` 时要小心，你应该通过命名空间确保高阶组件的 `props` 不会破坏 `WrappedComponent`。
 ```javascript
     function ppHOC(WrappedComponent) {
@@ -96,7 +98,9 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
 ```
 ### 通过 Refs 访问到组件实例
 `高阶组件`中可获取原组件的`ref`，通过`ref`获取组件`实例`，如下面的代码，当程序初始化完成后调用原组件的log方法。
+
 > 通过属性代理实现
+
 ```javascript
     function refHOC (WrappedComponent) {
         return class RefsHoC extends Component {
@@ -113,7 +117,9 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
 
 ### 组件状态提升
 将原组件的状态提取到`HOC`中进行管理，如下面的代码，我们将`Input`的`value`提取到`HOC`中进行管理，使它变成受控组件，同时不影响它使用`onChange`方法进行一些其他操作。基于这种方式，我们可以实现一个简单的`双向绑定`。
+
 > 通过属性代理实现
+
 示例：在以下提取state(状态)示例中，我们非常规的提取name输入字段的值和onChange处理程序。代码如下：
 ```javascript
     function ppHOC(WrappedComponent) {
@@ -157,7 +163,9 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
 ```
 ### 操作state
 `HOC`可以读取，编辑和删除 `WrappedComponent` 实例的状态，如果需要，还可以添加更多的 `state(状态)`。 请记住，您正在弄乱 `WrappedComponent` 的 `state(状态)`，这会导致您破坏一些东西。 大多数情况下，`HOC` 应限于读取或添加 `state(状态)` ，而添加 `state(状态)` 时应该被命名为不会弄乱 `WrappedComponent` 的 `state(状态)`。
+
 > 通过反向继承实现
+
 示例：通过访问 `WrappedComponent` 的 `props(属性)` 和 `state(状态)` 进行调试
 ```javascript
     export function IIHOCDEBUGGER(WrappedComponent) {
@@ -178,7 +186,9 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
 ```
 这个 `HOC` 用其他元素包裹着 `WrappedComponent` ，并且还显示了 `WrappedComponent` 的实例 `props(属性)` 和 `state(状态)` 。
 ### 渲染劫持(Render Highjacking)
+
 > 通过反向继承实现
+
 它被称为 渲染劫持(Render Highjacking)，因为 HOC 控制了 WrappedComponent 的渲染输出，并且可以用它做各种各样的事情。
 在渲染劫持中，您可以：state(状态)，props(属性)
 - 读取，添加，编辑，删除渲染输出的任何 React 元素中的 props(属性)
@@ -239,10 +249,14 @@ Inheritance Inversion(反向继承)(II) 通过以下方式实现：
         }
     }
 ```
+
 > 注：在 `Props Proxy`(属性代理) 类型的高阶函数中做不到渲染劫持。
+
 虽然可以通过 `WrappedComponent.prototype.render` 访问 `render` 方法，但是您需要模拟 `WrappedComponent` 实例及其 `props`(属性)，并且可能需要自己处理组件生命周期，而不是依赖 `React` 执行它。 在我的实验中不值得这么做，如果你想做渲染劫持(`Render Highjacking`)，你应该使用 `Inheritance Inversion`(反向继承) 而不是 `Props Proxy`(属性代理)。 请记住，React 在内部处理组件实例，而处理实例的唯一方法是通过 this 或 refs 。
 ### 用其他元素包裹 WrappedComponent
+
 > 通过属性代理实现
+
 可以将 WrappedComponent 与其他组件和元素包装在一起，以用于样式，布局或其他目的。 一些基本用法可以通过常规父组件来完成.
 ```javascript
     function ppHOC(WrappedComponent) {
@@ -448,9 +462,13 @@ React Diff算法的原则是：
 
 ### 不要改变原始组件
 官方文档对高阶组件的说明：
+
 > 高阶组件就是一个没有副作用的纯函数。
+
 我们再来看看纯函数的定义：
+
 > 如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。 该函数不会产生任何可观察的副作用，例如网络请求，输入和输出设备或数据突变。
+
 **我们使用高阶组件是为了增强而非改变原组件**。
 
 ### 透传不相关的props
@@ -475,19 +493,21 @@ React Diff算法的原则是：
 
 ## 总结
 **HOC相对于Mixins的好处**：
-- 高阶组件就是一个没有副作用的纯函数，各个高阶组件不会互相依赖耦合
-- 高阶组件也有可能造成冲突，但我们可以在遵守约定的情况下避免这些行为
-- 高阶组件并不关心数据使用的方式和原因，而被包裹的组件也不关心数据来自何处。高阶组件的增加不会为原组件增加负担
+- **高阶组件就是一个没有副作用的纯函数，各个高阶组件不会互相依赖耦合**
+- **高阶组件也有可能造成冲突，但我们可以在遵守约定的情况下避免这些行为**
+- **高阶组件并不关心数据使用的方式和原因，而被包裹的组件也不关心数据来自何处。高阶组件的增加不会为原组件增加负担**
+
 **HOC实现方式有两种**：
-- 通过属性代理实现
-- 通过反向继承实现
+- **通过属性代理实现**
+- **通过反向继承实现**
+
 **高阶组件的使用场景**:
-- 操作 props(属性)(通过属性代理实现、通过反向继承实现)
-- 通过 Refs 访问到组件实例 （通过属性代理实现）
-- 组件状态提升（通过属性代理实现）
-- 操作state （通过反向继承实现）
-- 渲染劫持（通过属性代理实现、通过反向继承实现）
-- 用其他元素包裹 WrappedComponent （通过属性代理实现）
+- **操作 props(属性)(通过属性代理实现、通过反向继承实现)**
+- **通过 Refs 访问到组件实例 （通过属性代理实现）**
+- **组件状态提升（通过属性代理实现）**
+- **操作state （通过反向继承实现）**
+- **渲染劫持（通过属性代理实现、通过反向继承实现）**
+- **用其他元素包裹 WrappedComponent （通过属性代理实现）**
 
 ## 参考
 > [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html)
