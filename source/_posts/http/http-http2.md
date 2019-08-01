@@ -17,6 +17,7 @@ description: http2.0协议和http1.x、http1.0的区别、优化。
 
 ![http2.0](../../images/http/http2.0-1-1.png)
 
+如果想[浅析HTTP/2]()
 ## HTTP协议版本
 大致版本可以分为以下四个：
 - HTTP/0.9
@@ -114,7 +115,6 @@ HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP/2使�
 
 ## 总结
 在HTTP/2中优化在对请求做了很多优化主要是多路复用，各个版本对比大致如下：
-<!-- ![http2.0](../../images/http/http2.0-1-6.png) -->
 **HTTP/0.9**
 <img src="../../images/http/http2.0-1-6.png" alt="http2.0" width="50%"/>
 上图：连接无法复用

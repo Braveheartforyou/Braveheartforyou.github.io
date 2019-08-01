@@ -1,9 +1,9 @@
 ---
-title: javascript中的改变 上下文(this)的方法 bind、call、apply
+title: JavaScript中的call、apply、bind的应用场景（二）
 date: 2017-07-25 15:38:39
-tags: [JavaScript]
+tags: [JavaScript, This]
 categories: [JavaScript]
-description: apply()方法吊用一个函数，其具有一种个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。call()方法的作用和apply()方法类似，只有一个区别，就是call()方法接受的是若干个参数列表，而apply()方法接受的是一个包含多个参数的数组
+description: apply()方法调用一个函数，其具有一种个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。call()方法的作用和apply()方法类似，只有一个区别，就是call()方法接受的是若干个参数列表，而apply()方法接受的是一个包含多个参数的数组。
 ---
 ## 概述
 apply()方法吊用一个函数，其具有一种个指定的this值，<font color="#ff502c"> 以及作为一个数组（或类似数组的对象）提供的参数</font>。call()方法的作用和apply()方法类似，只有一个区别，就是call()方法<font color="#ff502c">接受的是若干个参数列表</font>，而apply()方法接受的是一个包含<font color="#ff502c">多个参数的数组</font>

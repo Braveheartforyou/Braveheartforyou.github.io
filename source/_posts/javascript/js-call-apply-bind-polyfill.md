@@ -17,10 +17,12 @@ description: 自己手动实现一个 call、apply 并且实现 bind的polyfill
   // 第三步
   delete foo.fn
 ```
+
 ## 注意事项：
 1. <font color="#ff502c">传入的参数并不确定</font>
 2. <font color="#ff502c">this 参数可以传 null，当为 null 的时候，视为指向 window</font>
 3. <font color="#ff502c">函数是可以有返回值的！</font>
+
 ## call 实现代码
 ```javascript
   Function.prototype.call = function (context) {
@@ -54,6 +56,7 @@ description: 自己手动实现一个 call、apply 并且实现 bind的polyfill
   }
   calloObj.call(oObj, 25); // "firstName：joy/ lastName：tony/ age：25"
 ```
+
 ## apply 实现代码
 ```javascript
   Function.prototype.apply = function (context, arr) {
@@ -87,7 +90,6 @@ description: 自己手动实现一个 call、apply 并且实现 bind的polyfill
   calloObj.call(oObj, [25]); // "firstName：joy/ lastName：tony/ age：25"
 ```
 ## bind 实现polyfill
-参考：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind>
 ```javascript
 if (!Function.prototype.bind) {
   Function.prototype.bind = function(oThis) {
@@ -122,3 +124,6 @@ if (!Function.prototype.bind) {
   };
 }
 ```
+
+## 参考
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)

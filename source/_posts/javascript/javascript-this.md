@@ -1,7 +1,7 @@
 ---
-title: js中的this指向问题（-）
+title: js中的this指向问题（一）
 date: 2017-07-25 09:25:37
-tags: [JavaScript]
+tags: [JavaScript, This]
 categories: [JavaScript]
 description: 基本的判断是, this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象
 ---
