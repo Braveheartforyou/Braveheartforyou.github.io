@@ -74,6 +74,8 @@ module.exports = {
 
 ### inline-souce-map
 
+## WebpackPreload、WebpackPrefetch、WebpackChunkName
+
 ## 总结
 **devtool**
 - 在dev环境中推荐使用 cheap-module-eval-source-map
