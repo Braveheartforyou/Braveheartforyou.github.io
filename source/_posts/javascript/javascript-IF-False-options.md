@@ -1,11 +1,18 @@
 ---
-title: 在JavaScript中if运算符只有固定的值会转为false
+title: JavaScript中IF运算符只有固定的值会转为false
 date: 2017-11-03 13:13:39
 tags: [JavaScript]
 categories: [JavaScript]
 description: 在用javaScript的if的时候他会把固定的值转换为false，其他的统一认为为true
 ---
 ## 简介
+
+> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+
 <!-- <font color="#ff502c"></font> -->
 在JavaScript中使用if的时候，自己如果不注意的话很可能出现判断进错，其实在JavaScript中只有<font color="#ff502c">固定的几个值会转为false，其它的统一认为为true。
 - <font color="#ff502c">false</font>

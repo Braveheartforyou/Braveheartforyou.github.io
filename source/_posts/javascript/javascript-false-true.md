@@ -6,6 +6,13 @@ categories: [JavaScript]
 description: 在JavaScript中==和===的区别,为什么![] == []为true, [] == false为true, ![] == false为true, !![] == false为false.
 ---
 ## 简介
+
+> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+
 JavaScript 有两种比较方式：严格比较运算符和转换类型比较运算符。对于严格比较运算符（===）来说，仅当两个操作数的类型相同且值相等为 true，而对于被广泛使用的比较运算符（==）来说，会在进行比较之前，将两个操作数转换成相同的类型。
 比较的特点:
 - 对于两个拥有相同字符顺序，相同长度，并且每个字符的位置都匹配的字符串，应该使用严格比较运算符。
