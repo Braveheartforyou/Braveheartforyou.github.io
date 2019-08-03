@@ -1,10 +1,14 @@
 ---
-title: 利用ETag和If-None-Match字段验证缓存的响应
+title: Http中的缓存（二） ETag和If-None-Match字段验证
 date: 2019-01-15 22:29:16
 tags: [Http]
 categories: [Http]
 description: 利用http协议的 首部字段 Etag 和 If-None-Match字段来做接口缓存
 ---
+> [Http中的缓存（一） 强缓存、协商缓存](/blog/http/http-cache.html)
+> [Http中的缓存（二） ETag和If-None-Match字段验证](/blog/http/http-etag-cache.html)
+> [Http中的缓存（三） PWA中的serviceworker](/blog/http/http-cache-serviceworker.html)
+
 ## 简述
 首部字段ETag能告知客户实体标识，它是一种可将资源以字符串形式做唯一性标识的方式。服务器会为每份资源分配对应的ETag值。
 ## 强ETag值和弱ETag值
@@ -29,3 +33,5 @@ etag: "123456"
 if-none-match: "123456"
 ```
 3. 服务器端会拿客户端if-none-match传递的值和ETag的值比对，如果相同，就会把if-none-match的值修改为false,服务器将返回“304 Not Modified”响应。
+
+##

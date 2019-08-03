@@ -1,10 +1,15 @@
 ---
-title: (http)tcp三次握手和四次挥手
+title: Http系列(三) Http/Tcp三次握手和四次挥手
 date: 2019-03-13 16:21:03
 tags: [Http, Tcp]
 categories: [Http]
 description: tcp三次握手和四次挥手,为什么是三次握手挥手是四次。
 ---
+> [Http系列(-) Http发展历史](/blog/http/http-http2.html)
+> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.md)
+> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.md)
+> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.md)
+
 ## TCP概念
 TCP(Transmission Control Protocol 传输控制协议)是一种<font color="#ff502c">面向连接(连接导向)</font>的、<font color="#ff502c">可靠</font>的、 <font color="#ff502c">基于IP的传输层</font>协议。
 首先来看看OSI的七层模型

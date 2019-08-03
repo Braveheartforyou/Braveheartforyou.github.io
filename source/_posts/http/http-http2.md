@@ -1,11 +1,17 @@
 ---
-title: http/0.9、http/1.0、http/1.1、http/2协议(-)
+title: Http系列(-) Http发展历史
 date: 2018-08-26 17:23:12
 tags: [Http, Http2.0]
 categories: [Http]
 description: http2.0协议和http1.x、http1.0的区别、优化。
 ---
+> [Http系列(-) Http发展历史](/blog/http/http-http2.html)
+> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.md)
+> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.md)
+> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.md)
+
 ## 简介
+
 **Hyper Text Transfer Protocol（超文本传输协议）**,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。
 
 **超文本传输​​协议（HTTP）**是用于传输诸如HTML的超媒体文档的**应用层协议**。它被设计用于Web浏览器和Web服务器之间的通信，但它也可以用于其他目的。

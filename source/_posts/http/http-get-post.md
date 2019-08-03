@@ -1,10 +1,17 @@
 ---
-title: http中get请求和post请求的区别
+title: Http系列(四) Http中Get/Post的区别
 date: 2019-03-22 22:59:35
 tags: [Http]
 categories: [Http]
 description: 在http协议中get请求和post请求的区别
 ---
+> [Http系列(-) Http发展历史](/blog/http/http-http2.html)
+> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.md)
+> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.md)
+> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.md)
+
+## 简介
+
 在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。
 - GET - 从指定的资源请求数据。
 - POST - 向指定的资源提交要被处理的数据
@@ -23,13 +30,22 @@ description: 在http协议中get请求和post请求的区别
 | 安全性 | 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分 在发送密码或其他敏感信息时绝不要使用 GET ！ | POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中 |
 | 可见性 | 数据在 URL 中对所有人都是可见的 | 数据不会显示在 URL 中 |
 
+## 区别
 其实GET和POST都是http协议中的两种发送请求的方法。
+- GET在浏览器回退时是无害的，而POST会再次提交请求。
+- GET产生的URL地址可以被Bookmark，而POST不可以。
+- GET请求会被浏览器主动cache，而POST不会，除非手动设置。
+- GET请求只能进行url编码，而POST支持多种编码方式。
+- GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。
+- GET请求在URL中传送的参数是有长度限制的，而POST么有。
+- 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。
+- GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。
+- GET参数通过URL传递，POST放在Request body中。
+- http协议并未规定get和post的长度限制
+- get的最大长度限制是因为浏览器和web服务器限制了URL的长度
+- 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）
 
-1. http协议并未规定get和post的长度限制
-2. get的最大长度限制是因为浏览器和web服务器限制了URL的长度
-3. 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）
-
-其实很多人说get请求比post请求快，主要是底下两条
+### 其实很多人说get请求比post请求快，主要是底下两条
 1. get请求比post请求少一步
 2. get请求可以缓存
 
@@ -46,3 +62,21 @@ post请求过程：
 4. 服务器返回100 Continue响应 
 5. 浏览器发送数据 
 6. 服务器返回200 OK响应
+
+## 总结
+- GET在浏览器回退时是无害的，而POST会再次提交请求。
+- GET产生的URL地址可以被Bookmark，而POST不可以。
+- GET请求会被浏览器主动cache，而POST不会，除非手动设置。
+- GET请求只能进行url编码，而POST支持多种编码方式。
+- GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。
+- GET请求在URL中传送的参数是有长度限制的，而POST么有。
+- 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。
+- GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。
+- GET参数通过URL传递，POST放在Request body中。
+- http协议并未规定get和post的长度限制
+- get的最大长度限制是因为浏览器和web服务器限制了URL的长度
+- 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）
+
+## 参考
+> [HTTP 方法：GET 对比 POST](https://www.w3school.com.cn/tags/html_ref_httpmethods.asp)
+> [GET和POST两种基本请求方法的区别](https://www.cnblogs.com/logsharing/p/8448446.html#!comments)
