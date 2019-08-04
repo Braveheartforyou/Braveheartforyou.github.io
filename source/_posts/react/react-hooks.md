@@ -1,10 +1,14 @@
 ---
-title: react v16.8.0中的Hook
+title: react中Hooks浅析
 date: 2019-07-04 10:23:43
 tags: [React]
 categories: [React]
 description: Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
 ---
+> [react的高阶组件浅析](/blog/react/react-hoc.html)
+> [react中Hooks浅析](/blog/react/react-hooks.html)
+> [react的mixins、hoc、hooks对比](/blog/react/react-mixins-hoc-hooks.html)
+
 ## 简介
 > Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
 
@@ -332,14 +336,14 @@ componentDidUpdate就相当于除去第一次调用的useEffect，我们可以�
 > 请记住，当 ref 对象内容发生变化时，useRef 并不会通知你。变更 .current 属性不会引发组件重新渲染。如果想要在 React 绑定或解绑 DOM 节点的 ref 时运行某些代码，则需要使用回调 ref 来实现。
 
 ## hook使用事项
-Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。
+**Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。**
 
 ### 只在最顶层使用 Hook
-不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。
+<font color="#ff502c">不要</font>在<font color="#ff502c">循环，条件或嵌套函数</font>中<font color="#ff502c">调用 Hook</font>， 确保总是在你的 <font color="#ff502c">React 函数的最顶层调用</font>他们。
 
 ### 使用范围
-不要在普通的 JavaScript 函数中调用 Hook。只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用。
-Hook的提出主要就是为了解决class组件的一系列问题，所以我们能在class组件中使用它
+<font color="#ff502c">不要</font>在<font color="#ff502c">普通的 JavaScript 函数中</font>调用 Hook。只能在<font color="#ff502c"> React 的函数组件中调用 Hook</font>。不要在其他 JavaScript 函数中调用。
+**Hook的提出主要就是为了解决class组件的一系列问题，所以我们能在class组件中使用它**。
 
 ## 参考
 > [Hook 概览](https://react.docschina.org/docs/hooks-overview.html)

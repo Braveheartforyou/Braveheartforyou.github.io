@@ -5,14 +5,14 @@ tags: [JavaScript]
 categories: [JavaScript]
 description: JavaScript中的类型转换，如强制转换（显示转换）、隐式转换
 ---
+> [JavaScript数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
+
 ## 简述
-
-> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
-
 在JavaScript中关于类型转换的规则是不叫混乱的，有强制转换（显示转换）、隐式转换，并且转换的规则没有完整可参考的文档，只有当时的提议书。并且在隐式转换的时候会出现很多不可思议的bug.
 
 > 类型转换发生在静态类型的语言的编译阶段，而强制类型转换则发生在动态类型语言的运行时（runtime）；
@@ -273,6 +273,23 @@ console.log(true == '0'); // false
 console.log(false == '0'); // true
 ```
 在这里就不多赘述了，看我另一篇文章 [![] == []](/blog/javascript/javascript-false-true.html)，通过一道面试题。来讲解基本的转换规则，因为这个规则其实挺复杂的，一两句话讲不清楚。
+
+## 总结
+JavaScript中的类型转换基本上分为**显示转换、隐式转换**。
+### 显示转换
+> 1. ToString
+> 2. ToNumber
+> 3. ToBoolean
+
+首先介绍显示转换中的基本类型互转，字符串、数字、布尔值、null、undefined之间的转换。
+
+### 隐式转换
+> 1. ToPrimitive(转换为原始值)
+> 2. valueOf(返回指定对象的原始值)
+> 3. 运算符中的转换（+、-、*、/）
+> 4. ==
+
+再来看一下ToPrimitive把对象转为原始值，当然也有Object.prototype.toString()的介绍，再试valueOf返回对象的原始值，再最后就是运算符在基本类型和object之间的运算，其中最坑的应该是==的隐士转换，因为他的左右规则不同，左右类型不同执行的又不同。
 
 ## 参考
 > [https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg](https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg)

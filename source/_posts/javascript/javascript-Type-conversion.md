@@ -7,11 +7,12 @@ description: JavaScript中的类型介绍
 ---
 ## 简述
 
-> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
 
 JavaScript中的内置类型，七中类型中的又分为两大类：基本类型（值类型）和引用类型
 基本类型有六种：**null**、**number**、**string**、**undefined**、**boolean**、**symbol**
@@ -136,3 +137,12 @@ JavaScript是一种**弱类型**或者说**动态**语言。这意味着我们�
     var one = 'one'; // one is a String now
     one = 456; // one is a Number now
 ```
+
+## 总结
+JavaScript是一种**弱类型**或者说**动态**语言。
+JavaScript中的内置类型，七中类型中的又分为两大类：基本类型（值类型）和引用类型
+基本类型有六种：**null**、**number**、**string**、**undefined**、**boolean**、**symbol**
+引用类型：**object**
+所有基本类型的值都是**不可改变**的。但需要注意的是，基本类型本身和一个赋值为基本类型的变量的区别。
+**基本类型** 是储存在<font color="#ff502c">栈</font>中
+**引用类型** 引用数据类型的<font color="#ff502c">值</font>是保存在<font color="#ff502c">堆内存</font>中的对象。JavaScript<font color="#ff502c">不允许</font>直接访问堆内存中的位置，堆内存中的<font color="#ff502c">值地址引用</font>保存在<font color="#ff502c">栈</font>中，我们都是操作<font color="#ff502c">栈中</font>的地址引用。

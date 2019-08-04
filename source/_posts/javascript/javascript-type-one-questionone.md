@@ -7,11 +7,12 @@ description: 我们在这篇中记录两个比较经典的面试题
 ---
 ## 简述
 
-> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
 
 在另一篇文章中有表述大致显示转化规则，隐式转换规则，着篇文章中会收集一些前端比较经典的关于类型转换的问题。下面就开始比较经典的面试题。
 ## ![] == []

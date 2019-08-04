@@ -7,11 +7,12 @@ description: 在JavaScript中==和===的区别,为什么![] == []为true, [] == 
 ---
 ## 简介
 
-> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
 
 JavaScript 有两种比较方式：严格比较运算符和转换类型比较运算符。对于严格比较运算符（===）来说，仅当两个操作数的类型相同且值相等为 true，而对于被广泛使用的比较运算符（==）来说，会在进行比较之前，将两个操作数转换成相同的类型。
 比较的特点:
@@ -79,3 +80,6 @@ false == false ，结果为true。
 按照优先级，先执行 !![]，根据规范，实际上是 !!(ToBoolean([]))：
 根据上图可看出，实际上 ToBoolean([]) 会return出true, !![] 就是 true.
 true == false ，结果为 false。
+
+## 总结
+基本上一个**对象转为原始值**的大致过程再进行对比，如果不太清楚可以看另一篇博客[JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)，但是在本篇博客中最重要的时`ToBoolean([])`的转换比较不容易理解。

@@ -7,11 +7,12 @@ description: 在用javaScript的if的时候他会把固定的值转换为false�
 ---
 ## 简介
 
-> [JavaScript类型转换（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-> [JavaScript类型转换（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-> [JavaScript类型转换（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-> [JavaScript类型转换（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-> [JavaScript类型转换（五）== 混乱的转换规则 ](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
+> [JavaScript数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
+> [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
+> [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
+> [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
+> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
 
 <!-- <font color="#ff502c"></font> -->
 在JavaScript中使用if的时候，自己如果不注意的话很可能出现判断进错，其实在JavaScript中只有<font color="#ff502c">固定的几个值会转为false，其它的统一认为为true。
@@ -69,3 +70,12 @@ expr1 && expr2
     n2=!false             // !f 结果为 true
     n3=!"Cat"             // !t 结果为 false
 ```
+
+## 总结
+在JavaScript中使用if的时候，自己如果不注意的话很可能出现判断进错，其实在JavaScript中只有<font color="#ff502c">固定的几个值会转为false，其它的统一认为为true。
+- <font color="#ff502c">false</font>
+- <font color="#ff502c">null</font>
+- <font color="#ff502c">undefined</font>
+- <font color="#ff502c">空字符串' '</font>
+- <font color="#ff502c">数字零 0</font>
+- <font color="#ff502c">NaN</font>

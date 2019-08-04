@@ -5,6 +5,10 @@ tags: [React]
 categories: [React]
 description: 在react中高阶组件是为了解决什么问题而产生，并且会产生什么问题
 ---
+> [react的高阶组件浅析](/blog/react/react-hoc.html)
+> [react中Hooks浅析](/blog/react/react-hooks.html)
+> [react的mixins、hoc、hooks对比](/blog/react/react-mixins-hoc-hooks.html)
+
 ## 简介
 > 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。
 
