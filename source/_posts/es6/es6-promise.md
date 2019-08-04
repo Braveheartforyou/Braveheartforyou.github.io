@@ -1,6 +1,6 @@
 ---
-title: 实现一个自己的Promise
-date: 2019-02-27 21:44:35
+title: Promise系列（二） 实现一个自己的Promise
+date: 2019-02-18 18:23:26
 tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: Promise是我们用来解决地狱回调，我在这篇博客中实现自己的一个Promise.
