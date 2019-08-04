@@ -6,9 +6,9 @@ categories: [Http]
 description: http2.0协议和http1.x、http1.0的区别、优化。
 ---
 > [Http系列(-) Http发展历史](/blog/http/http-http2.html)
-> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.md)
-> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.md)
-> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.md)
+> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.html)
+> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.html)
+> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.html)
 
 ## 简介
 
@@ -98,10 +98,17 @@ HTTP/2的新特性:
 - 服务端推送
 
 ### 二进制分帧：HTTP/2 的所有帧都采用二进制编码
+先理解几个概念：
 - **帧**：客户端与服务器通过交换帧来通信，帧是基于这个新协议通信的最小单位。
 - **消息**：是指逻辑上的 HTTP 消息，比如请求、响应等，由一或多个帧组成。
 - **流**：流是连接中的一个虚拟信道，可以承载双向的消息；每个流都有一个唯一的整数标识符（1、2…N）；
+
+HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二进制协议解析起来更高效。 HTTP / 1 的请求和响应报文，都是由起始行，首部和实体正文（可选）组成，各部分之间以文本换行符分隔。**HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码。**
 ![http2.0](../../images/http/http2.0-1-4.png)
+
+#### 帧、流、消息的关系
+**每个数据流都以消息的形式发送，而消息又由一个或多个帧组成**。
+**帧是流中的数据单位。一个数据报的header 帧可以分成多个 header 帧，data 帧可以分成多个data 帧。**
 
 ### 多路复用 (Multiplexing)
 **多路复用允许同时通过单一的 HTTP/2 连接发起多重的请求-响应消息**。即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。多路复用原理图：
@@ -113,14 +120,35 @@ HTTP/2的新特性:
 - HTTP 2.0 一举解决了所有这些低效的问题：浏览器可以在发现资源时立即分派请求，指定每个流的优先级，让服务器决定最优的响应次序。这样请求就不必排队了，既节省了时间，也最大限度地利用了每个连接。
 
 ### header压缩
-HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP/2使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。
+HTTP1.x的header带有大量信息，而且每次都要**重复发送**，HTTP/2使用encoder来减少需要传输的header大小，通讯双方各自**cache一份header fields表**，既<font color="#ff502c">避免了重复header的传输</font>，又<font color="#ff502c">减小了需要传输的大小</font>。
+为了减少这块的资源消耗并提升性能， HTTP/2对这些首部采取了压缩策略：
+- **HTTP/2在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，不再重复发送header**
+- **首部表在HTTP/2的连接存续期内始终存在，由客户端和服务器共同渐进地更新;**
+- **每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值**
+
+两次请求不相同的header，传说的header如下图所示：
+![http2.0](../../images/http/http2.0-1-10.png)
 
 ### 服务端推送
-服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确地请求。**所有推送的资源都遵守同源策略**。**服务器必须遵循请求- 响应的循环，只能借着对请求的响应推送资源**。
+**Server Push即服务端能通过push的方式将客户端需要的内容预先推送过去，也叫“cache push”**。
+服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确地请求，服务端可以提前给客户端推送必要的资源，这样可以减少请求延迟时间，例如服务端可以主动把JS和CSS文件推送给客户端，而不是等到HTML解析到资源时发送请求，大致过程如下图所示：
+![http2.0](../../images/http/http2.0-1-11.png)
+
+注意：
+**所有推送的资源都遵守同源策略**。
+**服务器必须遵循请求- 响应的循环，只能借着对请求的响应推送资源**。
 
 
 ## 总结
-在HTTP/2中优化在对请求做了很多优化主要是多路复用，各个版本对比大致如下：
+从http/0.9到http/2的发展，有了很多的优化点如下：
+- 二进制分帧：HTTP/2 的所有帧都采用二进制编码
+- 多路复用 (Multiplexing)
+- 请求优先级
+- header压缩
+- 服务端推送
+HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用<font color="#ff502c">二进制编码</font>，HTTP/2的通过支持请求与响应的<font color="#ff502c">多路复用</font>来减少延迟，通过<font color="#ff502c">压缩HTTP首部字段</font>将协议开销降至最低，同时增加对<font color="#ff502c">请求优先级</font>和<font color="#ff502c">服务器端推送</font>的支持。
+在上面也分别描述的大致优化的细节，后面会有一个专门来讲从多个Tcp请求到多路复用的发展。
+<!-- 在HTTP/2中优化在对请求做了很多优化主要是多路复用，各个版本对比大致如下：
 **HTTP/0.9**
 <img src="../../images/http/http2.0-1-6.png" alt="http2.0" width="50%"/>
 上图：连接无法复用
@@ -132,7 +160,7 @@ HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP/2使�
 上图：HTTPpipelining：建立多个连接
 **HTTP/2**
 <img src="../../images/http/http2.0-1-9.png" alt="http2.0" width="50%"/>
-上图：多路复用
+上图：多路复用 -->
 ## 参考
 [HTTP 协议入门](https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w)
 [HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事](https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w)

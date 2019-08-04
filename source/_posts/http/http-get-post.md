@@ -6,9 +6,9 @@ categories: [Http]
 description: 在http协议中get请求和post请求的区别
 ---
 > [Http系列(-) Http发展历史](/blog/http/http-http2.html)
-> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.md)
-> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.md)
-> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.md)
+> [Http系列(二) Http2中的多路复用](/blog/http/http-http2-1.html)
+> [Http系列(三) Http/Tcp三次握手和四次挥手](/blog/http/http-tcp.html)
+> [Http系列(四) Http中Get/Post的区别](/blog/http/http-get-post.html)
 
 ## 简介
 
