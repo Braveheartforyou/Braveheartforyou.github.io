@@ -307,4 +307,5 @@ console.log(testDiv);
 ```
 上面这个实例创建了一个私有作用域，并封装了一个构造函数和对应的方法。需要注意的是在上面的实例中，在声明MyObj这个函数时，使用的是不带var的函数表达式，我们希望产生的是一个全局函数而不是局部的，不然我们依然在外部无法访问。所以，MyObj就成为了一个全局变量，能够在外部进行访问，我们在原型上定义的方法publicMethod也就可以使用，通过这个方法我们也就可以访问私有函数和私有变量了。
 
-本文引用 >http://www.cnblogs.com/syfwhu/p/4839562.html (感觉作者挺可爱的)
+## 参考
+> [http://www.cnblogs.com/syfwhu/p/4839562.html](http://www.cnblogs.com/syfwhu/p/4839562.html)

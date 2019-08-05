@@ -5,6 +5,9 @@ tags: [Http, Socket]
 categories: [Http]
 description: webSocket(一)
 ---
+> [webSocket(一) 浅析](/blog/http/http-web-socket1.html)
+> [webSocket(二) Http中的轮询、长轮询、Websocket、sse](/blog/http/http-web-socket2.html)
+
 ## 简介
 > WebSocket 由多个标准构成: WebSocket API 是 W3C 定义的，而 WebSocket 协议(RFC 6455)及其扩展则由 HyBi Working Group(IETF)定义。
 

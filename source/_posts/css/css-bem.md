@@ -127,3 +127,15 @@ type-block__element_modifier
 ```
 
 ## BEM 解决问题
+组件之间的完全解耦，不会造成命名空间的污染，如：.mod-xxx ul li 的写法带来的潜在的嵌套风险。
+
+## 总结
+BEM规则的应用规则如下：
+- 一个独立的（语义上或视觉上），可以复用而不依赖其它组件的部分，可作为一个块（Block）
+- 属于块的某部分，可作为一个元素（Element）
+- 用于修饰块或元素，体现出外形行为状态等特征的，可作为一个修饰器（Modifier）
+
+## 参考
+> [[规范] CSS BEM 书写规范](https://github.com/Tencent/tmt-workflow/wiki/%E2%92%9B-%5B%E8%A7%84%E8%8C%83%5D--CSS-BEM-%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83)
+> [使用BEM命名规范来组织CSS代码](https://www.cnblogs.com/imwtr/p/8521031.html)
+> [BEM思想之彻底弄清BEM语法](https://www.w3cplus.com/css/mindbemding-getting-your-head-round-bem-syntax.html)

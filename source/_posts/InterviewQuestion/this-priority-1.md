@@ -1,8 +1,8 @@
 ---
 title: 关于this的面试级分析（二）
 date: 2018-12-27 20:46:23
-tags: [Css]
-categories: [Css]
+tags: [JavaScript]
+categories: [JavaScript]
 description: 关于this的面试级分析
 ---
 ## 简介
