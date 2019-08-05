@@ -1,5 +1,5 @@
 ---
-title: JavaScirpt数据类型判断和数据结构判断
+title: JavaScript数据类型（六）多种数据类型判断方法
 date: 2019-05-11 22:24:23
 tags: [JavaScript]
 categories: [JavaScript]
@@ -10,11 +10,10 @@ description: javascript中的类型判断又分为基础类型判断和引用类
 > [JavaScript数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
 > [JavaScript数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
 > [JavaScript数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-> [JavaScript数据类型（六）数据类型转换](/blog/javascript/javascript-bool-type.html)
+> [JavaScript数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
 
 ## 简介
 在ECMAScript规范中，共定义了7种数据类型，分为基本数据类型和引用类型两大类，如下所示：
-
 > 基本类型： Null、Undefined、Symbol（ES6）、Number、Boolean、String
 > 引用类型：Obeject、Array、Date
 
