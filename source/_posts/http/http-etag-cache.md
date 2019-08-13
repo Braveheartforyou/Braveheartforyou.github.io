@@ -33,5 +33,3 @@ etag: "123456"
 if-none-match: "123456"
 ```
 3. 服务器端会拿客户端if-none-match传递的值和ETag的值比对，如果相同，就会把if-none-match的值修改为false,服务器将返回“304 Not Modified”响应。
-
-## 
