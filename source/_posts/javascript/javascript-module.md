@@ -1,6 +1,6 @@
 ---
 title: require和import的区别
-date: 2019-02-27 21:44:57
+date: 2019-03-01 21:44:57
 tags: [JavaScript]
 categories: [JavaScript]
 description: CommonJS/Require和ES6/import的区别
