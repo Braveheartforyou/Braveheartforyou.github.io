@@ -5,3 +5,5 @@ tags: [JavaScript]
 categories: [JavaScript]
 description: Array常用的方法和实现reduce、map、forEach
 ---
+## 简介
+
