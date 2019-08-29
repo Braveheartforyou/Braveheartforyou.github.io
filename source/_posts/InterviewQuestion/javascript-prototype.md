@@ -6,6 +6,8 @@ categories: [InterviewQuestion]
 description: JavaScirpt有关原型一道笔试题
 ---
 ## 简介
+<hr/>
+
 这道面试题考察的比较综合，也有很多要注意的点，如果知道答案就没有必要往下看了。
 ```javascript
   function Preson () {
@@ -49,6 +51,7 @@ description: JavaScirpt有关原型一道笔试题
   // child2.show(); // (6, [1, 2, 1, 11, 12], 5)
 ```
 ## 考察点
+<hr/>
 这道题比较经典考察了`JavaScript`中很多方面的知识，大致如下几点：
 - prototype原型、原型链问题
 - new改变this指向，new 产生实例属性和原型属性
@@ -61,6 +64,7 @@ description: JavaScirpt有关原型一道笔试题
 `...后期添加`
 
 ## 结题需要的知识点
+<hr/>
 大致的知识点如下：
 1. **构造函数有一个`prototype`属性指向原型对象，多个实例属性共享一个原型对象**
 2. **实例中的属性都是独立的互相之间不会影响**
