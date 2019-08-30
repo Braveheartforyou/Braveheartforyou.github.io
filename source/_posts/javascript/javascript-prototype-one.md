@@ -12,5 +12,8 @@ description: JavaScript原型系列（二）什么是原型继承
 ## 简介
 
 * * *
+<img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"/>
 
-在上面一张
+在上一节上面介绍了原型和原型链，即每个对象拥有一个**原型对象**，通过 `__proto__` 指针指向上一个**原型** ，并从中**继承方法和属性**，同时原型对象也可能拥有原型，这样一层一层，最终指向 `null`，这种关系被称为`原型链(prototype chain)`。
+
+`继承`是面向对象编程语的一大核心功能点，虽然`JavaScript`
