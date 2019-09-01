@@ -40,7 +40,6 @@ description: JavaScript原型系列（二）什么是原型继承
     // 将父类的实例作为子类的原型
     Sub.prototype = new SubType();
     var sub = new Sub();
-    
     sub.constructor === SubType; // true
     Sub.prototype.constructor === SubType; // true
     sub.name = 'sub';
@@ -92,6 +91,7 @@ description: JavaScript原型系列（二）什么是原型继承
 子类型原型上的 `constructor` 属性被重写, 执行 `Sub.prototype = new SubType()` 后原型被覆盖，`Sub.prototype` 上丢失了 `constructor` 属性， `Sub.prototype` 指向了 `SubType.prototype`，而 `SubType.prototype.constructor` 指向了 `SubType`，所以 `Sub.prototype.constructor` 指向了 `SubType`。
 如下图所示：
 ![JavaScript-prototype](../../images/javascript/javascript-prototype-1-6.png)
+
 ```javascript
     function SubType () {
         this.name = 'subtype';
@@ -110,6 +110,7 @@ description: JavaScript原型系列（二）什么是原型继承
     Sub.prototype.constrcutor === Sub; // true
     sub.__proto__.constrcutor === Sub; // true
 ```
+
 通过`Sub.prototype.constrcutor = Sub;`把`Sub.prototype.constrcutor`指向`Sub`，如果所示：
 ![JavaScript-prototype](../../images/javascript/javascript-prototype-1-7.png)
 
@@ -168,7 +169,7 @@ description: JavaScript原型系列（二）什么是原型继承
 
 ## 总结
 
-- 每个对象拥有一个原型对象，通过` __proto__` 指针指向上一个原型 ，并从中**继承方法和属性**，同时原型对象也可能拥有原型，这样一层一层，最终指向 `null`，这种关系被称为 **原型链**。
+- 每个对象拥有一个原型对象，通过`__proto__` 指针指向上一个原型 ，并从中**继承方法和属性**，同时原型对象也可能拥有原型，这样一层一层，最终指向 `null`，这种关系被称为 **原型链**。
 - 当访问一个对象的属性 / 方法时，它不仅仅在该对象上查找，还会查找该对象的原型，以及该对象的原型的原型，**一层一层向上查找**，直到找到一个名字匹配的属性 / 方法或到达原型链的末尾**null**。
 - 原型链的构建依赖于 `__proto__`，一层一层最终链接到 `null`。
 - `instanceof` 原理就是一层一层查找 `__proto__`，如果和 `constructor.prototype` 相等则返回 `true`，如果一直没有查找成功则返回 `false`。
