@@ -1,18 +1,33 @@
 ---
-title: javascript（es6）一些常用array的扩展方法
+title: ES6 Array系列(一) 一些常用array的扩展方法
 date: 2017-07-28 16:45:36
 tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: JavaScript 数组对象是用于构造数组的全局对象; 它是高阶，类似列表的对象。
 ---
+
+> [ES6 Array 系列(一) 一些常用array的扩展方法](/blog/es6/es6-Array.html)
+> [ES6 Array 系列(二) 一些常用array的扩展方法（二）](/blog/es6/es6-Array1.html)
+> [ES6 Array系列(三) Array中的forEach方法可以用break、continue跳出循环？](/blog/es6/es6-Array-break-continue.html)
+> [ES6 Array系列(四) Array常用的方法和实现reduce、map、filter、forEach](/blog/es6/es6-Array-function.html)
+
 <!--## Array中常用的属性，或者方法-->
 ## 属性
+
+* * *
+
 ### Array.length
+
 length 属性表示一个无符号 32-bit 整数，返回一个数组中的元素个数。
+
 ## 方法
-### Array.from
+
+## Array.from
+
 Array.from() 方法从一个类似数组或可迭代的对象中创建一个新的数组实例。
-#### 语法
+
+### 语法
+
 ```javascript
     Array.from(arrayLike[, mapFn[, thisArg]])
     // 参数
@@ -21,12 +36,17 @@ Array.from() 方法从一个类似数组或可迭代的对象中创建一个新�
     // thisArg(可选) 可选参数，执行 mapFn 函数时 this 的值。
     // 返回值 返回一个新的Array类型的实例
 ```
-#### 描述
+
+### 描述
+
 Array.from() 允许你从下面两者来创建数组：
+
 - 类数组对象（拥有一个 length 属性和若干索引属性的任意对象）
 - 可遍历对象（你可以从它身上迭代出若干个元素的对象，比如有 Map 和 Set 等）
 Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的数组上再执行一次 map 方法后再返回。也就是说 Array.from(obj, mapFn, thisArg) 就相当于 Array.from(obj).map(mapFn, thisArg), 除非创建的不是可用的中间数组。 这对一些数组的子类,如  typed arrays 来说很重要, 因为中间数组的值在调用 map() 时需要是适当的类型。
-#### 示例
+
+### 示例
+
 ```javascript
     // Array from a String
     Array.from('foo'); 
@@ -62,9 +82,13 @@ Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的�
     Array.from({length: 5}, (v, i) => i);
     // [0, 1, 2, 3, 4]
 ```
-### Array.isArray()
+
+## Array.isArray()
+
 Array.isArray() 用于确定传递的值是否是一个 Array。
-#### 语法
+
+### 语法
+
 ```javascript
     Array.isArray(obj)
     // 参数
@@ -73,10 +97,14 @@ Array.isArray() 用于确定传递的值是否是一个 Array。
     // 返回值
     // 如果对象是 Array，则为true; 否则为false。
 ```
-#### 描述
+
+### 描述
+
 如果对象是 Array ，则返回true，否则为false。
 有关更多详细信息，请参阅文章以绝对精确度确定JavaScript对象是否为数组。
-#### 示例
+
+### 示例
+
 ```javascript
     // 下面的函数调用都返回 true
     Array.isArray([]);
@@ -96,8 +124,11 @@ Array.isArray() 用于确定传递的值是否是一个 Array。
     Array.isArray(false);
     Array.isArray({ __proto__: Array.prototype });
 ```
-#### 兼容性代码
+
+### 兼容性代码
+
 假如不存在 Array.isArray()，则在其他代码之前运行下面的代码将创建该方法。
+
 ```javascript
     if (!Array.isArray) {
         Array.isArray = function(arg) {
@@ -105,8 +136,11 @@ Array.isArray() 用于确定传递的值是否是一个 Array。
         };
     }
 ```
-### 扩展运算符（spread）
+
+## 扩展运算符（spread）
+
 扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。
+
 ```javascript
     function push(array, ...items) {
         array.push(...items);
@@ -119,10 +153,15 @@ Array.isArray() 用于确定传递的值是否是一个 Array。
     var numbers = [4, 38];
     add(...numbers) // 42
 ```
+
 上面代码中，array.push(...items)和add(...numbers)这两行，都是函数的调用，它们的都使用了扩展运算符。该运算符将一个数组，变为参数序列。
-### Array.of()
+
+## Array.of()
+
 Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。
-#### 语法
+
+### 语法
+
 ```javascript
     // 参数
     // elementN
@@ -131,14 +170,18 @@ Array.of() 方法创建一个具有可变数量参数的新数组实例，而不
     // 新的 Array 实例。
     Array.of(element0[, element1[, ...[, elementN]]])
 ```
-#### 示例
+
+### 示例
+
 ```javascript
     Array.of(1);         // [1]
     Array.of(1, 2, 3);   // [1, 2, 3]
     Array.of(undefined); // [undefined]
     Array.of(); // []
 ```
-#### 兼容旧环境
+
+### 兼容旧环境
+
 ```javascript
     if (!Array.of) {
         Array.of = function() {
@@ -146,9 +189,13 @@ Array.of() 方法创建一个具有可变数量参数的新数组实例，而不
         };
     }
 ```
-### Array.prototype.concat()
+
+## Array.prototype.concat()
+
 concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
-#### 语法
+
+### 语法
+
 ```javascript
     var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
     // 参数
@@ -157,11 +204,16 @@ concat() 方法用于合并两个或多个数组。此方法不会更改现有�
     // 返回值
     // 新的 Array 实例。
 ```
-#### 描述
+
+### 描述
+
 concat 方法并不修改调用它的对象(this 指向的对象) 和参数中的各个数组本身的值,而是将他们的每个元素拷贝一份放在组合成的新数组中.原数组中的元素有两种被拷贝的方式:
+
 - 对象引用(非对象直接量):concat 方法会复制对象引用放到组合的新数组里,原数组和新数组中的对象引用都指向同一个实际的对象,所以,当实际的对象被修改时,两个数组也同时会被修改.
 - 字符串和数字(是原始值,而不是包装原始值的 String 和 Number 对象): concat 方法会复制字符串和数字的值放到新数组里.
-#### 示例
+
+### 示例
+
 ```javascript
     // 两个数组合并为一个新数组
     var alpha = ["a", "b", "c"];
@@ -177,9 +229,13 @@ concat 方法并不修改调用它的对象(this 指向的对象) 和参数中�
     // 组成新数组 ["a", "b", "c", 1, 2, 3], 原alpha数组未被修改
     var alphaNumeric1 = alpha.concat(1, [2, 3]);
 ```
-### Array.prototype.copyWithin()
+
+## Array.prototype.copyWithin()
+
 copyWithin() 方法浅复制数组的一部分到同一数组中的另一个位置，并返回它，而不修改其大小。
-#### 语法
+
+### 语法
+
 ```javascript
     arr.copyWithin(target)
     arr.copyWithin(target, start)
@@ -198,14 +254,18 @@ copyWithin() 方法浅复制数组的一部分到同一数组中的另一个位�
     // 返回值
     // 改变了的数组。
 ```
-#### 描述
+
+### 描述
+
 参数target,start和end 必须为整数。
 如果start为负，则其指定的索引位置等同于length+start，length为数组的长度。end也是如此。
 copyWithin方法不要求其this值必须是一个数组对象；除此之外，copyWithin是一个可变方法，它可以改变this对象本身，并且返回它，而不仅仅是它的拷贝。
 copyWithin 就像 C 和 C++ 的 memcpy 函数一样，且它是用来移动 Array 或者 TypedArray 数据的一个高性能的方法。复制以及粘贴序列这两者是为一体的操作;即使复制和粘贴区域重叠，粘贴的序列也会有拷贝来的值。
 copyWithin 函数是设计为通用的，其不要求其 this 值必须是一个数组对象。
 The copyWithin 是一个可变方法，它不会改变 this 的 length，但是会改变 this 本身的内容，且需要时会创建新的属性。
-#### 例子
+
+### 例子
+
 ```javascript
     [1, 2, 3, 4, 5].copyWithin(-2);
     // [1, 2, 3, 1, 2]
@@ -232,11 +292,15 @@ The copyWithin 是一个可变方法，它不会改变 this 的 length，但是�
     [].copyWithin.call(new Int32Array([1, 2, 3, 4, 5]), 0, 3, 4);
     // Int32Array [4, 2, 3, 4, 5]
 ```
-### Array.prototype.entries()、Array.prototype.keys()、Array.prototype.values() 遍历数组
+
+## Array.prototype.entries()、Array.prototype.keys()、Array.prototype.values() 遍历数组
+
 ES6 提供三个新的方法——entries()，keys()和values()——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。
+
 - entries() 方法返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
 - keys() 方法返回一个新的Array迭代器，它包含数组中每个索引的键。
 - values() 方法返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值。
+
 ```javascript
    for (let index of ['a', 'b'].keys()) {
         console.log(index);
@@ -273,10 +337,15 @@ ES6 提供三个新的方法——entries()，keys()和values()——用于遍�
     console.log(eArr.next().value); // o
     console.log(eArr.next().value); // p
 ```
+
 可以通过 for...of来循环数组
-### 转换方法 
+
+## 转换方法 
+
 在javascript中所有的对象都具有 toLocaleString()、toString()、valueOf()方法。
-#### 语法
+
+### 语法
+
 ```javascript
     var colors = ['red', 'blue', 'green'];
     console.log(colors.toString()); // red,blue,green
@@ -285,11 +354,17 @@ ES6 提供三个新的方法——entries()，keys()和values()——用于遍�
     console.log(colors.join(',')); // red,blue,green
     // 在默认情况下都会以逗号分隔的字符串的形式返回数组项
 ```
-#### 描述
+
+### 描述
+
 如果数组中的某一项的值是null或者undefined,那么该只在join()、toLocaleString()、toString()、valueOf()方法返回的结果中以空字符串表示
-### 重排序方法
+
+## 重排序方法
+
 reverse() 方法会反转数组项的顺序。  sort()方法按升序排列数组项
-#### 语法
+
+### 语法
+
 ```javascript
     // reverse() 数组反转
     var values = [1, 3, 4, 5, 6, 7, 8];
@@ -310,3 +385,5 @@ reverse() 方法会反转数组项的顺序。  sort()方法按升序排列数�
     values1.sort(compare);
     console.log(values1); //  [1, "2", 2, 2, 3, 4, 4, 5, 65]
 ```
+
+**未完待续。。。。。**
