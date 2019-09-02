@@ -7,7 +7,7 @@ description: JavaScript原型系列（二）什么是原型继承
 ---
 > [JavaScript原型系列（一）构造函数、原型和原型链](/blog/javascript/javascript-prototype.html)
 > [JavaScript原型系列（二）什么是原型继承](/blog/javascript/javascript-prototype-one.html)
-> [JavaScript原型系列（三）Function、Object、Null等等的关系](/blog/javascript/javascript-prototype-two.html)
+> [JavaScript原型系列（三）Function、Object、Null等等的关系和鸡蛋问题](/blog/javascript/javascript-prototype-two.html)
 
 ## 简介
 
@@ -150,6 +150,8 @@ description: JavaScript原型系列（二）什么是原型继承
 ```
 
 ## 实现一个new
+
+* * *
 
 ```javascript
     function create () {
