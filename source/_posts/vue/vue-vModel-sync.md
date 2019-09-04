@@ -6,6 +6,8 @@ categories: [Vue]
 description: Vue中v-model解析、sync修饰符解析、$attr、$listeners
 ---
 
+_**上善若水，水善利萬物而不爭。——《道德經》**_
+
 ## 简介
 
 ---
@@ -221,9 +223,69 @@ export default {
 ***父组件代码***
 
 ```javascript
+<template>
+  <div class="parent">
+    <Children
+      :message="message"
+      @upDate="upDate"
+      type="del"
+      @input="(event) => { message = event }"
+    />
+  </div>
+</template>
 
+<script>
+import Children from "./Children";
+export default {
+  components: {
+    Children
+  },
+  data() {
+    return {
+      message: "parent",
+      type: "del"
+    };
+  },
+  methods: {
+    upDate (event) {
+      console.log(event);
+      this.type = event;
+    }
+  },
+  watch: {
+    message: function() {
+      console.log("更新message值为" + this.message);
+    }
+  }
+};
+</script>
 ```
 
+***子组件代码***
+
+```javascript
+<template>
+  <div v-bind="$attrs" v-on="$listeners" class="children">{{message}} <span @click="$listeners.upDate('data')">{{$attrs.type}}</span></div>
+</template>
+
+<script>
+export default {
+  props: {
+    message: String
+  },
+  mounted() {
+    // console.log(this.$attrs);
+    // console.log(this.$listeners);
+    setTimeout(() => {
+      this.$emit("input", "children");
+      this.$emit('upDate', 'add')
+    }, 1500);
+  }
+};
+</script>
+```
+
+同时`$attrs`、`$listeners`都是可以跨域父子组件，可以父子子子组件传递，类似于`react`中的`context`，只是一部分设计理念相同。
 
 ## 总结
 
@@ -236,3 +298,9 @@ export default {
 - 在`AST`代码的阶段上，生成可执行代码，这个过程可以叫做`codegen`
 
 `v-model`、`sync`都可以实现父子组件通信，并且可以在子组件中修改父组件传入的值。在平常看法的时候进场可以用到这两种方式，具体选择那种方式看个人喜好。在`element-ui`这个`input`组件也用到相关的属性。
+
+## 参考
+
+> [$attrs](https://cn.vuejs.org/v2/api/#vm-attrs)
+> [自定义组件的-v-model](https://cn.vuejs.org/v2/guide/components-custom-events.html#自定义组件的-v-model)
+> [sync-修饰符](https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-修饰符)
