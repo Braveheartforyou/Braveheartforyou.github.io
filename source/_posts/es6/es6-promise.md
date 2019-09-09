@@ -5,32 +5,42 @@ tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: Promise是我们用来解决地狱回调，我在这篇博客中实现自己的一个Promise.
 ---
+
 ## 简介
-一个 Promise 就是一个对象，它代表了一个异步操作的最终完成或者失败。大多数人仅仅是使用已创建的Promise实例对象，因此本教程将首先说明怎样使用 Promise，之后说明如何创建Promise。
-本质上，Promise 是一个绑定了回调的对象，而不是将回调传进函数内部。
-原生提供了Promise对象。本篇不注重讲解promise的用法，关于用法，可以看阮一峰老师的ECMAScript 6系列里面的Promise部分：
+
+一个 `Promise` 就是一个对象，它代表了一个异步操作的最终完成或者失败。大多数人仅仅是使用已创建的`Promise`实例对象，因此本教程将首先说明怎样使用 `Promise`，之后说明如何创建`Promise`。
+本质上，`Promise` 是一个绑定了回调的对象，而不是将回调传进函数内部。
+原生提供了`Promise`对象。本篇不注重讲解`promise`的用法，关于用法，可以看阮一峰老师的`ECMAScript 6`系列里面的`Promise`部分：
 [ECMAScript 6 : Promise对象](http://es6.ruanyifeng.com/#docs/promise)
-我们在最后实现一个es2015版本的PromiseA.
-注：在本代码中有很多不完善的地方，最后会给出一个es2015的版本，那个版本是比较完善的。
-本篇博客逐步实现，最终使其符合Promises/A+规范
+我们在最后实现一个`es2015`版本的`PromiseA`.
+注：在本代码中有很多不完善的地方，最后会给出一个`es2015`的版本，那个版本是比较完善的。
+本篇博客逐步实现，最终使其符合`Promises/A+`规范
+
 ## 代码实现
+
 逐步实现：
-1、基础版本
-2、支持同步任务
-3、支持状态
-4、支持链式操作
-5、支持串行异步任务
-6、达到PromiseA+规范
-7、实现Promise方法all、resolve、reject、race等方法
-8、实现promiseify方法
-注意事项：这边建议不要使用 setTimeout 作为 Promise 的实现。因为 setTimeout 属于 宏任务， 而 Promise 属于 微任务。
-不理知道宏任务和微任务请看量一篇博客：[evenloop](http://asyncnode.com/blog/evenloop.html)
+
+1. **基础版本**
+2. **支持同步任务**
+3. **支持状态**
+4. **支持链式操作**
+5. **支持串行异步任务**
+6. **达到PromiseA+规范**
+7. **实现Promise方法all、resolve、reject、race等方法**
+8. **实现promiseify方法**
+
+> 注意事项：这边建议不要使用 `setTimeout`作为 `Promise` 的实现。因为 `setTimeout` 属于 宏任务， 而 `Promise` 属于 微任务。
+<!-- 不理知道宏任务和微任务请看量一篇博客：[evenloop](http://asyncnode.com/blog/evenloop.html) -->
+
 ### 基础版本(异步回调)
+
 目标
-- 可以通过new 关键字创建一个 Promise实例。
-- Promise实例传入的异步方法执行成功就执行注册的成功回调函数，失败就执行注册的失败回调函数。
+
+- 可以通过`new` 关键字创建一个 `Promise`实例。
+- `Promise`实例传入的异步方法执行成功就执行注册的成功回调函数，失败就执行注册的失败回调函数。
 
 首先实现两个判断函数：
+
 ```javascript
 // 判断当前传入的参数是否是function
 const isFunction = variable => typeof variable === 'function';
@@ -55,7 +65,7 @@ function callAsync (fn, arg, callback, onError) {
 };
 ```
 
-注：判断传入参数是否为function, 根据当前环境降级实现微任务或宏任务
+注：判断传入参数是否为`function`, 根据当前环境降级实现**微任务或宏任务**
 
 **代码实现**
 
