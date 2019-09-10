@@ -531,5 +531,50 @@ self.onRejectedCallbacks.forEach((callback) => callback(self.value));
 接着修改 `resolve` 和 `reject` ：依次执行队列中的函数
 
 当 `resolve` 或 `reject` 方法执行时，依次提取成功或失败**任务队列**当中的函数开始执行，并**清空队列**，从而实现 `then` 方法的多次调用，实现的代码如下：
+
 ```javascript
+    function resolve (value) {
+        if (this.status !== PENDING) return
+        this.status = FULFILLED
+        // 依次执行成功队列中的函数，并清空队列
+        const runFulfilled = (value) => {
+            let cb;
+            while (cb = this.onFulfilledCallbacks.shift()) {
+                cb(value)
+            }
+        }
+        // 依次执行失败队列中的函数，并清空队列
+        const runRejected = (error) => {
+            let cb
+            while (cb = this.onRejectedCallbacks.shift()) {
+                cb(error)
+            }
+        }
+        /* 如果resolve的参数为Promise对象，则必须等待该Promise对象状态改变后,
+            当前Promsie的状态才会改变，且状态取决于参数Promsie对象的状态
+        */
+        if (val instanceof MyPromise) {
+            val.then(value => {
+            this.value = value
+            runFulfilled(value)
+            }, err => {
+            this.value = err
+            runRejected(err)
+            })
+        } else {
+            this.value = val
+            runFulfilled(val)
+        }
+    }
+    // 添加reject时执行的函数
+    function reject (error) {
+        if (this.status !== PENDING) return
+        // 依次执行失败队列中的函数，并清空队列
+        this.status = REJECTED
+        this.value = err
+        let cb
+        while (cb = this.onRejectedCallbacks.shift()) {
+            cb(err)
+        }
+    }
 ```

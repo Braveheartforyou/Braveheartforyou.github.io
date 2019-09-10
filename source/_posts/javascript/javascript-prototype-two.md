@@ -5,6 +5,9 @@ tags: [JavaScript, Prototype]
 categories: [JavaScript]
 description: JavaScript原型系列（三）Function.prototype、Object.prototype、null、Function.prototype.__proto__、Object.prototype.__proto__、function、object之间的关系
 ---
+
+***將欲廢之，必固興之；將欲奪之，必固與之。——《道德經》***
+
 > [JavaScript原型系列（一）构造函数、原型和原型链](/blog/javascript/javascript-prototype.html)
 > [JavaScript原型系列（二）什么是原型继承](/blog/javascript/javascript-prototype-one.html)
 > [JavaScript原型系列（三）Function、Object、Null等等的关系和鸡蛋问题](/blog/javascript/javascript-prototype-two.html)
