@@ -6,6 +6,7 @@ categories: [ECMAScript6]
 description: ECMAScript6 let && const && var
 ---
 ## let、const、var的区别（let、const 为es5新添加的）
+
  let 允许你声明一个作用域被限制在块级中的变量、语句或者表达式。
  var 声明的变量只能是全局或者整个函数块的。
  const 伪常量 本身的值不能改变 d
@@ -20,6 +21,7 @@ description: ECMAScript6 let && const && var
  ```
 <!--more-->
 ### let const 暂时性死区 （temporal dead zone，简称 TDZ）
+
  #### 只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
  ```javascript
  var tmp = 123;

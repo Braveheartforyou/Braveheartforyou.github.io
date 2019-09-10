@@ -31,6 +31,7 @@ description: Promise是我们用来解决地狱回调，我在这篇博客中实
 
 > 注意事项：这边建议不要使用 `setTimeout`作为 `Promise` 的实现。因为 `setTimeout` 属于 宏任务， 而 `Promise` 属于 微任务。
 <!-- 不理知道宏任务和微任务请看量一篇博客：[evenloop](http://asyncnode.com/blog/evenloop.html) -->
+显示代码请看
 
 ## 基础版本(异步回调)
 
@@ -228,6 +229,10 @@ new PromiseA((resolve, reject) => {
     const FULFILLED = 'fulfilled'
     const REJECTED = 'rejected'
     function PromiseA (handle) {
+
+        if (!isFunction(handle)){
+            throw new Error('Promise resolver handle is not a function');
+        }
         let self = this;
         self.value = undefined;
         self.error = undefined;
@@ -311,7 +316,7 @@ self.onRejectedCallbacks.forEach((callback) => callback(self.value));
 **代码实现**
 
 ```javascript
-        // 判断当前传入的参数是否是function
+    // 判断当前传入的参数是否是function
     const isFunction = variable => typeof variable === 'function';
     // 另一个是判断当前执行环境如果实在node中首先使用process.nextTick如果没有使用setImmediate,如果还没有就使用setTimeout
     let executeAsync = undefined;
@@ -327,6 +332,10 @@ self.onRejectedCallbacks.forEach((callback) => callback(self.value));
     const FULFILLED = 'fulfilled'
     const REJECTED = 'rejected'
     function PromiseA (handle) {
+        if (!isFunction(handle)){
+            throw new Error('Promise resolver handle is not a function');
+        }
+
         let self = this;
         self.value = undefined;
         self.error = undefined;
@@ -365,6 +374,7 @@ self.onRejectedCallbacks.forEach((callback) => callback(self.value));
         //     reject(error);
         // }
     }
+    // 原型上的then方法
     PromiseA.prototype.then = function (onFulfilled, onRejected) {
         if (this.status === PENDING) {
             // this.onFulfilled = onFulfilled;
@@ -398,5 +408,128 @@ self.onRejectedCallbacks.forEach((callback) => callback(self.value));
 
 **目标**
 
-- **使`promise`支持串行异步操作**
-- **支持传入`promise`**
+- **使`PromiseA`支持串行异步操作**
+- **支持传入`PromiseA`对象**
+
+### 实现
+
+在上一步已经实现可以链式调用，但是只支持**同步**的链式调用，现在要实现支持一步串行调用。
+
+代码如下：
+
+```javascript
+    // 第一个promise实例
+    new PromiseA((resolve, reject) => {
+        setTimeout(() => {
+            resolve('first------' + new Date());
+        }, 1000);
+    }).then(first => {
+        console.log(first);
+        // 第二个promise实例
+        return new PromiseA((resolve, reject) => {
+            setTimeout(() => {
+                resolve('second------' + new Date());
+            }, 2000);
+        })
+    }).then(second => {
+        console.log(second);
+        // 第三个promise实例
+        return new PromiseA((resolve, reject) => {
+            setTimeout(() => {
+                resolve('third------' + new Date());
+            }, 3000);
+        })
+    }).then(res => {
+        console.log(res);
+    });
+    // 异步串行
+    // first------Tue Sep 10 2019 14:04:25 GMT+0800 (中国标准时间)
+    // first------Tue Sep 10 2019 14:04:25 GMT+0800 (中国标准时间)
+    // first------Tue Sep 10 2019 14:04:25 GMT+0800 (中国标准时间)
+```
+
+想要的结果是在**1s**之后输出`'first------' + new Date()`结果，再经过**2s**之后执行`'second------' + new Date()`，再等**3s**之后才会执行`'third------' + new Date()`，但是结果和预想的结果不相同。
+实际结果是**1s**之后直接就会输出三次`first------ + new Date()`，因为所有的回调函数都注册在了`PromiseA`中的`onFulfilledCallbacks`队列里，在后面`resolve`后会全部执行，这个并不能满足**异步串行**。
+需要将每个回调函数注册在对应`promise`实例的`onFulfilledCallbacks`里面，然后再返回一下新的`promise`以做到异步串行效果。
+
+改写代码如下：
+
+- 改写`prototype`上的`then`方法
+- 改写`resolve`、`reject`上的代码
+
+### Promise.prototype.then
+
+```javascript
+    // 修改原型上的then方法
+    PromiseA.prototype.then = function (onFulfilled, onRejected) {
+        // 返回一个PromiseA的实例，以控制
+        return new PromiseA((onFulfilledNext, onRejectedNext) => {
+            // 封装一个成功时执行的函数
+            let fulfilled = value => {
+                try {
+                    // 判定onFulfilled是否为function
+                    if (!isFunction(onFulfilled)) {
+                        onFulfilledNext(value);
+                    } else {
+                        // 执行成功回调，并且获取返回值
+                        let res = onFulfilled(value);
+                        // 判断res返回值是否为Promise上的实例
+                        if (res instanceof PromiseA) {
+                            // 如果当前回调函数返回PromiseA实例对象，必须等待其状态改变后在执行下一个回调
+                            res.then(onFulfilledNext, onRejectedNext);
+                        } else {
+                            // 否则会将返回结果直接作为参数，传入下一个then的回调函数，并立即执行下一个then的回调函数
+                            onFulfilledNext(res);
+                        }
+                    }
+                } catch (err) {
+                    onRejectedNext(err);
+                }
+            }
+
+            // 封装一个失败时执行的函数
+            let rejected = error => {
+                try {
+                    // 判定onRejected是否为function
+                    if (!isFunction(onRejected)) {
+                        onRejectedNext(error);
+                    } else {
+                        // 执行成功回调，并且获取返回值
+                        let res = onRejected(error);
+                        // 判断res返回值是否为Promise上的实例
+                        if (res instanceof PromiseA) {
+                            // 如果当前回调函数返回MyPromise对象，必须等待其状态改变后在执行下一个回调
+                            res.then(onFulfilledNext, onRejectedNext)
+                        } else {
+                            //否则会将返回结果直接作为参数，传入下一个then的回调函数，并立即执行下一个then的回调函数
+                            onFulfilledNext(res)
+                        }
+                    }
+                } catch (err) {
+                    // 如果函数执行出错，新的Promise对象的状态为失败
+                    onRejectedNext(err)
+                }
+            }
+            switch (this.status) {
+                // 当状态为pending时，将then方法回调函数加入执行队列等待执行
+                case PENDING:
+                    this.onFulfilledCallbacks.push(onFulfilled);
+                    this.onRejectedCallbacks.push(onRejected);
+                    break;
+                // 当状态已经改变时，立即执行对应的回调函数
+                case FULFILLED:
+                    fulfilled(this.value);
+                    break;
+                case REJECTED:
+                    rejected(this.value);
+                    break;
+            }
+        });
+    }
+```
+
+接着修改 `resolve` 和 `reject` ：依次执行队列中的函数
+
+当 `resolve` 或 `reject` 方法执行时，依次提取成功或失败**任务队列**当中的函数开始执行，并**清空队列**，从而实现 `then` 方法的多次调用，实现的代码如下：
+```javascript
+```
