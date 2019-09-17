@@ -171,3 +171,77 @@ CSRF: 跨站请求伪造`（CSRF）`是一种冒充受信任用户，向服务�
 
 `Session`的超时时间也可以在`web.xml`中修改。 另外，通过调用`Session`的`invalidate()`方法可以使`Session`失效。
 
+三种方法让`Session`失效：
+
+- **服务器意外关闭**。（服务器正常关闭时session是会被服务器保存在服务器的 session.ser 文件中（在work文件夹下））
+- `session自杀`： 调用`session.invalidate()`方法可以立即杀死`session`；
+- 可以在服务器下的`web.xml`文件中的 `<session-timeout> 30 </session-timeout>` 修改这是默认值(默认30分钟)，是以分为单位。
+
+### 浏览器关闭session会失效?
+
+在几年前看很多网上的资料时有的会说`session`会在浏览器关闭时会失效。为什么会失效？怎么能让它不失效？
+
+**为什么会失效？**
+
+下面梳理一下`session`为什么会在浏览器关闭时失效，其实这样说并不准确：
+
+1. 在服务器端生成`session`，并且把`sessionid`通过`set-cookie`发送给浏览器
+2. 以后每次请求除了图片、静态文件请求，其它的请求都会带上**服务端**写入浏览器中`cookie`
+3. **服务端**接收到`sessionid`，通过`sessionid`找到对应的`session`信息
+4. 当浏览器关闭时，当前域名中设置的`cookie`会被清空
+5. 再下次请求使，服务端接收到的`session`为`null`，服务端就会认为当前用户是一个新的用户，重新登录或者直接设置新的`sessionid`
+
+上面也就是为什么会说`session`会在浏览器关闭时会失效。
+
+**怎么能让它不失效？**
+
+在`Set-Cookie`时设置`Expries`或`Max-Age`，其实就是设置`Cookie`的失效时间。
+或者直接把`Sessionid`储存在本地。
+
+## web Storage
+
+**Web Storage API**提供机制， 使浏览器能以一种比使用`Cookie`更直观的方式存储键/值对。
+
+Web Storage 包含如下两种机制：
+
+- `sessionStorage` 为每一个给定的源（given origin）维持一个独立的存储区域，该存储区域在页面会话期间可用（即只要浏览器处于打开状态，包括页面重新加载和恢复）。
+- `localStorage` 同样的功能，但是在浏览器关闭，然后重新打开后数据仍然存在。
+
+**应注意，无论数据存储在 localStorage 还是 sessionStorage ，它们都特定于页面的协议。**
+
+### localStorage
+
+只读的`localStorage` 属性允许你访问一个`Document` 源（`origin`）的对象 `Storage`；存储的数据将保存在浏览器会话中。存储在 `localStorage` 的数据可以长期保留。
+
+### sessionStorage
+
+`sessionStorage` 属性允许你访问一个 `session Storage` 对象。存储在 `sessionStorage` 里面的数据在页面会话结束时会被清除。页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。**在新标签或窗口打开一个页面时会在顶级浏览上下文中初始化一个新的会话**，这点和 session cookies 的运行方式不同。
+
+### localStorage和sessionStorage区别
+
+存储在 `localStorage` 的数据可以长期保留，而存储在 `sessionStorage` 里面的数据在页面会话结束时会被清除。
+
+## 总结
+
+`session`和`cookie`的区别：
+
+- `session`储存在服务端，`cookie`储存在客户端
+- `session`比`cookie`更安全，因为`session`储存在服务端
+- `session`是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中。
+- `cookie`是客户端保存用户信息的一种机制，用来记录用户的一些信息，也是实现`session`的一种方式。
+
+`web storage`和`cookie`的区别：
+
+- `web storages`和`cookie`的作用不同，`web storage`是用于本地大容量存储数据(`web storage`的存储量大到5MB);而`cookie`是用于客户端和服务端间的信息传递；
+- `web storage`有`setItem`、`getItem`、`removeItem`、`clear`等方法，`cookie`需要我们自己来封装`setCookie`、`getCookie`、`removeCookie`
+
+## 参考
+
+[HTTP cookies](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
+[Web Storage API](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API)
+[Window.localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
+[Window.sessionStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage)
+[这一次把cookie给你说透彻！](https://mp.weixin.qq.com/s/RJuHkTYd7pSS_RhHeuh0iQ)
+[深入理解Session和Cookie的区别](https://mp.weixin.qq.com/s/sycJeIBY_2h0h6SwUTWI9A)
+[详解cookie和session的运作机制（上篇）](https://mp.weixin.qq.com/s/VeodMTKbwCdodx0fZjTlhw)
+[面试稳了！这才是cookie，session与token的真正区别](https://mp.weixin.qq.com/s/Idl0eheciAck5WznXqO0Lw)
