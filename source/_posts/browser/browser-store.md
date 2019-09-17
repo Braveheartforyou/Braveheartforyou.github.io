@@ -162,3 +162,12 @@ CSRF: 跨站请求伪造`（CSRF）`是一种冒充受信任用户，向服务�
 `Session`在用户第一次访问服务器的时候自动创建。 需要注意只有访问`JSP、Servlet`等程序时才会创建`Session`， 只访问`HTML、IMAGE`等静态资源并不会创建`Session`。 如果尚未生成`Session`，也可以使用`request.getSession(true)`强制生成`Session`。
 
 `Session`生成后，只要用户继续访问，服务器就会更新`Session`的最后访问时间，并维护该`Session`。 用户每访问服务器一次，无论是否读写`Session`，服务器都认为该用户的`Session"活跃(active)"了一次`。
+
+### Session的有效期
+
+由于会有越来越多的用户访问服务器，因此`Session`也会越来越多。 为防止内存溢出，服务器会把长时间内没有活跃的`Session`从内存删除。 这个时间就是`Session`的超时时间。如果超过了超时时间没访问过服务器，`Session`就自动失效了。
+
+`Session`的超时时间为`maxInactiveInterval`属性， 可以通过对应的`getMaxInactiveInterval()`获取，通过`setMaxInactiveInterval(longinterval)`修改。
+
+`Session`的超时时间也可以在`web.xml`中修改。 另外，通过调用`Session`的`invalidate()`方法可以使`Session`失效。
+
