@@ -214,7 +214,7 @@ description: css3中的flex布局详解，最后会有几个比较常用的flex�
 
 ![flex-main](../../images/css/flex-1-12.png)
 
-## align-content
+### align-content
 
 `align-content`可以看成和`justify-content`是相似且对立的属性，`justify-content`指明水平方向flex子项的对齐和分布方式，而`align-content`则是指明垂直方向每一行`flex`元素的**对齐和分布方式**。如果所有`flex`子项只有一行，则`align-content`属性是没有任何效果的。
 
@@ -238,7 +238,7 @@ description: css3中的flex布局详解，最后会有几个比较常用的flex�
 
 ## 作用在flex子项上的CSS属性
 
-## order
+### order
 
 可以通过设置**order**改变某一个**flex**子项的排序位置。数值越小，排列越靠前，默认为0。
 
@@ -257,7 +257,7 @@ description: css3中的flex布局详解，最后会有几个比较常用的flex�
 如下图所示：
 ![flex-main](../../images/css/flex-1-14.png)
 
-## flex-grow
+### flex-grow
 
 `flex-grow`属性中的`grow`是扩展的意思，扩展的就是`flex`子项所占据的宽度，扩展所侵占的空间就是除去元素外的剩余的空白间隙。
 
