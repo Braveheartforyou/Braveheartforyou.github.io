@@ -1,5 +1,5 @@
 ---
-title: cookie、localStorage、sessionStorage、session深入理解区别
+title: cookie、localStorage、sessionStorage、session深入理解
 date: 2018-09-13 14:32:09
 tags: [JavaScript, Browser]
 categories: [Browser]

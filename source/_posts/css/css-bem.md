@@ -5,29 +5,35 @@ tags: [Css]
 categories: [Css]
 description: BEM到底是什么
 ---
+
 ## 简介
+
 **BEM其实是一种CSS书写规范中的一种**，使用BEM规范来命名CSS，组织HTML中选择器的结构，利于CSS代码的维护，使得代码结构更清晰（弊端主要是名字会稍长）。
 BEM代表的是**块（block）**、**元素（element）**、**修饰符（modifier）**，是由Yandex团队提出的一种前端命名方法论。
 
 在选择其中，由一下三种符号来表示扩展的关系：
-```
--   中划线 ：仅作为连字符使用，表示某个块或者某个子元素的多单词之间的连接记号。
-__  双下划线：双下划线用来连接块和块的子元素
-_   单下划线：单下划线用来描述一个块或者块的子元素的一种状态
 
-type-block__element_modifier
+```javascript
+  -   中划线 ：仅作为连字符使用，表示某个块或者某个子元素的多单词之间的连接记号。
+  __  双下划线：双下划线用来连接块和块的子元素
+  _   单下划线：单下划线用来描述一个块或者块的子元素的一种状态
+
+  type-block__element_modifier
 ```
 
 ## 块（block）
+
 一个快是设计或者布局的一部分，它有具体且唯一的意义，语义上的或视觉上的。
 在大多数情况下，任何**独立的页面元素**（或复杂或简单）都可以被视作一个块。它的HTML容器会有一个**唯一的CSS类名**，也就是这个块的名字。
 针对块的CSS类名会加一些前缀（ ui-），这些前缀在CSS中有类似 **命名空间** 的作用。
 一个块的正式（实际上是半正式的）定义有下面三个基本原则：
+
 1. CSS中只能使用类名（不能是ID）。
 2. 每一个块名应该有一个命名空间（前缀）
 3. 每一条CSS规则必须属于一个块。
 
 一个自定义列表样例如下：
+
 ```html
   // html
   <ul class="list">
@@ -39,11 +45,14 @@ type-block__element_modifier
     .list {}
   </style>
 ```
+
 通常会把`ul`看做一个完整得块，所以在`ul`上面定义一个块的`class`为`list`。
 
 ## 元素（element）
+
 块中的子元素是块的子元素，并且子元素的子元素在 **bem** 里也被认为是块的直接子元素。**一个块中元素的类名必须用父级块的名称作为前缀**。
 在上面的例子上扩展如下：
+
 ```html
   // html
   <ul class="list">
@@ -56,11 +65,14 @@ type-block__element_modifier
     .list__item {}
   </style>
 ```
+
 因为每一个`li`都是`ul`的子元素，所以在`li`上定义一个为`list__item`的`class`。
 
 ## 修饰符（modifier）
+
 一个“修饰符”可以理解为一个块的**特定状态**，标识着它持有一个**特定的属性**。
 在上面的例子上扩展如下：
+
 ```html
   // html
   <ul class="list">
@@ -74,15 +86,19 @@ type-block__element_modifier
     .list__item_active {}
   </style>
 ```
+
 假如`ul`是一个`menu`，它的第一项默认是**选中状态**给第一项添加一个选中的`class`为`list__item_active`。
 
 ## 书写原则
+
 1. **原则上不会出现*2层以上*选择器嵌套**
+
 使用`BEM`原则，用命名来解耦，所有类名都为一层，增加效率和复用性
 
 2. **两层选择器嵌套出现在`.mod-xxx__item_current`子元素的情况**
 
 请看下面一个样例：
+
 ```html
 // html
 <ul class="xxx">
@@ -127,15 +143,19 @@ type-block__element_modifier
 ```
 
 ## BEM 解决问题
+
 组件之间的完全解耦，不会造成命名空间的污染，如：.mod-xxx ul li 的写法带来的潜在的嵌套风险。
 
 ## 总结
+
 BEM规则的应用规则如下：
+
 - 一个独立的（语义上或视觉上），可以复用而不依赖其它组件的部分，可作为一个块（Block）
 - 属于块的某部分，可作为一个元素（Element）
 - 用于修饰块或元素，体现出外形行为状态等特征的，可作为一个修饰器（Modifier）
 
 ## 参考
+
 > [[规范] CSS BEM 书写规范](https://github.com/Tencent/tmt-workflow/wiki/%E2%92%9B-%5B%E8%A7%84%E8%8C%83%5D--CSS-BEM-%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83)
 > [使用BEM命名规范来组织CSS代码](https://www.cnblogs.com/imwtr/p/8521031.html)
 > [BEM思想之彻底弄清BEM语法](https://www.w3cplus.com/css/mindbemding-getting-your-head-round-bem-syntax.html)
