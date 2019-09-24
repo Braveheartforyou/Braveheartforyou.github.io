@@ -1,5 +1,5 @@
 ---
-title: 实现一个简单的react-redux
+title: 实现一个简单的react-redux (未完成)
 date: 2018-10-26 23:15:09
 tags: [React, Redux]
 categories: [React]

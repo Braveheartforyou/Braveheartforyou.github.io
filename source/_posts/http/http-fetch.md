@@ -1,5 +1,5 @@
 ---
-title: http-fetch现在新的fetch请求方法
+title: http-fetch现在新的fetch请求方法 （未完成）
 date: 2018-08-17 12:32:43
 tags: [Http, fetch]
 categories: [Http]
