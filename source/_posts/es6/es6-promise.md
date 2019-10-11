@@ -7,7 +7,7 @@ description: Promise是我们用来解决地狱回调，我在这篇博客中实
 ---
 
 > [Promise系列（二） 实现一个自己的Promise](/blog/es6/es6-promise.html)
-> [Promise系列（三） 实现一个自己的Promise](/blog/es6/es-promise-two.html)
+> [Promise系列（三） 实现一个自己的Promise](/blog/es6/es6-promise-two.html)
 
 ## 简介
 
