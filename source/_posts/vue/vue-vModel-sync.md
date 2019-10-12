@@ -1,12 +1,12 @@
 ---
-title: Vue中v-model解析、sync修饰符解析
+title: 深入Vue系列 Vue中v-model解析、sync修饰符解析
 date: 2019-08-29 20:22:18
 tags: [Vue]
 categories: [Vue]
 description: Vue中v-model解析、sync修饰符解析、$attr、$listeners
 ---
 
-_**上善若水，水善利萬物而不爭。——《道德經》**_
+*上善若水，水善利萬物而不爭。——《道德經》*
 
 ## 简介
 

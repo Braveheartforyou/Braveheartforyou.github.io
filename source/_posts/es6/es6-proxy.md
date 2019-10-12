@@ -3,12 +3,12 @@ title: ES系列 Proxy
 date: 2019-09-20 18:33:44
 tags: [ECMAScript6]
 categories: [ECMAScript6]
-description: Object.defineProperty和Proxy分别是什么，他们之间的区别和优缺点，vue源码中的为什么把Object.defineProperty用proxy重写。
+description: Object.defineProperty和Proxy分别是什么，它们之间的优缺点，实现简单的双向绑定。
 ---
 
-> [ES系列 Object.defineProperty](/blog/es6/es6-definedproperty.html)
-> [ES系列 Proxy](/blog/es6/es6-proxy.html)
-> [ES系列 Object.defineProperty和Proxy的对比](/blog/es6/es6-definedproperty-proxy.html)
+> [ES深入系列 Object.defineProperty](/blog/es6/es6-definedproperty.html)
+> [ES深入系列 Proxy](/blog/es6/es6-proxy.html)
+> [ES深入系列 Object.defineProperty和Proxy的对比](/blog/es6/es6-definedproperty-proxy.html)
 
 ## 简介
 
@@ -497,7 +497,7 @@ Object.isExtensible(p); // TypeError is thrown
 
 `Proxy.revocable`的一个使用场景是，目标对象不允许直接访问，必须通过代理访问，一旦访问结束，就收回代理权，不允许再次访问。
 
-### this 问题
+## this 问题
 
 虽然 `Proxy` 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证与目标对象的行为一致。主要原因就是在 `Proxy` 代理的情况下，目标对象内部的`this`关键字会指向 `Proxy` 代理。
 

@@ -3,7 +3,7 @@ title: ES系列 Object.defineProperty
 date: 2019-09-16 14:23:54
 tags: [ECMAScript6]
 categories: [ECMAScript6]
-description: Object.defineProperty和Proxy分别是什么，他们之间的区别和优缺点，vue源码中的为什么把Object.defineProperty用proxy重写。
+description: Object.defineProperty和Proxy分别是什么，它们之间的优缺点，实现简单的双向绑定。
 ---
 
 > [ES系列 Object.defineProperty](/blog/es6/es6-definedproperty.html)
@@ -11,14 +11,6 @@ description: Object.defineProperty和Proxy分别是什么，他们之间的区�
 > [ES系列 Object.defineProperty和Proxy的对比](/blog/es6/es6-definedproperty-proxy.html)
 
 ## 简介
-
-<!-- 现在的三大框架非常的流行，在数据流中分为两派`React`的单项数据流，`Angluar/Vue`的双向数据流。其实`React`也是实现了的**双向数据绑定**的，只不过要通过`setState`来触发。
-
-在不同框架中实现**双向数据绑定**也是不相同的，大致如下图所示：
-
-![双向绑定](../../images/es/es-defineProperty.png)
-
-`Object.defineProperty`和`proxy`都是`Vue`不同版本的重要组成部分，它们都是可以实现双向绑定， -->
 
 如果用过`VUE`框架的话都听说过他的数据观测在**2.x**是是通过`Object.defineProperty`实现的，其实就是把普通的对象变为**响应式对象**，但是在最近**3.x**中作者要通过**Proxy**重写`Vue`中的双向绑定核心的**响应式对象**实现，在本篇文章中逐渐了解`Object.defineProperty`和`Proxy`是什么，它们之间的区别是什么，和它们之间的有缺点。
 
