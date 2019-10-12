@@ -172,5 +172,5 @@ Array.prototype.some = function(callbackfn, thisArg) {
 
 ## 参考
 
-> [Array.prototype.some()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some) 
+> [Array.prototype.some()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
 > [不再写 break 和 continue 了](https://juejin.im/post/5d08a565e51d45773d468614#heading-2)

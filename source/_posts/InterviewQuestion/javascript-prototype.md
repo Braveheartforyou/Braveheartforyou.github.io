@@ -1,5 +1,5 @@
 ---
-title: JavaScirpt有关原型一道笔试题
+title: JavaScirpt面试题 ———— 有关原型一道笔试题
 date: 2019-08-25 15:34:21
 tags: [InterviewQuestion, JavaScript]
 categories: [InterviewQuestion]
