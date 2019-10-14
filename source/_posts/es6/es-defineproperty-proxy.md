@@ -40,7 +40,7 @@ description: Object.defineProperty和Proxy分别是什么，它们之间的优�
 
 在不同框架中实现**双向数据绑定**也是不相同的，大致如下图所示：
 
-![双向绑定](../../images/es/es-defineProperty.png)
+[双向绑定](../../images/es/es-defineProperty.png)
 
 `Object.defineProperty`和`proxy`都是`Vue`不同版本的重要组成部分，它们都是可以实现双向绑定中的**数据劫持**，其实也就是响应式对象，在以前的文章有[深入Vue系列 Vue中的响应式对象](/blog/vue/vue-definedProperty.html)、
 [深入Vue系列 Vue中的依赖收集](/blog/vue/vue-dep.html)、[深入Vue系列 Vue中的派发更新](/blog/vue/vue-notify.html)，如果感兴趣的可以去看看。
@@ -53,9 +53,60 @@ description: Object.defineProperty和Proxy分别是什么，它们之间的优�
 
 下面写的实例不会这么复杂，当然也会仿照`Vue`源码中的`mvvm`去写。
 
-### Object.defineProperty实现双向绑定
+## Object.defineProperty实现双向绑定
 
-### Proxy实现双向绑定
+### 简单实现
+
+- 劫持对象的`get、set`属性
+- `input`事件更新对象值
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>Static Template</title>
+    </head>
+    <body>
+      <main>
+        <p>请输入：</p>
+        <input type="text" id="mv" />
+        <p id="vm"></p>
+      </main>
+      <script src="index.js"></script>
+    </body>
+  </html>
+```
+
+```javascript
+  // 对象字面量
+  const obj = {};
+  // 对象配置描述符
+  Object.defineProperty(obj, "value", {
+    get: function() {
+      console.log("get value");
+    },
+    set: function(newVal) {
+      console.log("set value");
+      document.getElementById("mv").value = newVal;
+      document.getElementById("vm").innerHTML = newVal;
+    }
+  });
+  // input绑定时间更行对象中的value值
+  const InputDom = document.getElementById("mv");
+  InputDom.addEventListener("input", function(event) {
+    console.log(event.target.value);
+    obj.value = event.target.value;
+  });
+```
+
+上面这个代码只是简单了实现最简单的效果，在`input`中输入代码，同时更新到`p`中。
+
+### 发布订阅者模式
+
+## Proxy实现双向绑定
 
 ## 总结
 

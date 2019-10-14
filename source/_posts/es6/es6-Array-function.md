@@ -311,5 +311,6 @@ Array.prototype.reduceForeach = function(callback, context) {
 
 ## 参考
 
-> [Array.prototype.reduce()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)> [一个合格的中级前端工程师需要掌握的 28 个 JavaScript 技巧](https://juejin.im/post/5cef46226fb9a07eaf2b7516#heading-4)
+> [Array.prototype.reduce()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+> [一个合格的中级前端工程师需要掌握的 28 个 JavaScript 技巧](https://juejin.im/post/5cef46226fb9a07eaf2b7516#heading-4)
 > [JS Array.reduce 实现 Array.map 和 Array.filter](https://juejin.im/post/5c0b7f03e51d452eec725729)
