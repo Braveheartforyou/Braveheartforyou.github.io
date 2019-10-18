@@ -37,6 +37,7 @@ description: 在http协议中get请求和post请求的区别
 ## 区别
 
 ---
+
 **其实`GET`和`POST`都是`http协议中`的两种发送请求的方法。**
 
 - **GET在浏览器回退时是无害的，而POST会再次提交请求。**

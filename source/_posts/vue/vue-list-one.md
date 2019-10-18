@@ -226,5 +226,5 @@ function mountComponent (
 
 ## 参考
 
-[详解vue生命周期](https://segmentfault.com/a/1190000011381906?utm_source=tag-newest)
-[详解 Vue 生命周期实现](https://juejin.im/post/5c6d48e36fb9a049eb3c84ff)
+> [详解vue生命周期](https://segmentfault.com/a/1190000011381906?utm_source=tag-newest)
+> [详解 Vue 生命周期实现](https://juejin.im/post/5c6d48e36fb9a049eb3c84ff)

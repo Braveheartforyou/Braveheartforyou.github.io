@@ -413,4 +413,8 @@ methodsToPatch.forEach(function(method) {
 
 ## 参考
 
-> [Vue 源码](https://github.com/vuejs/vue/tree/dev/src) > [响应式对象](https://ustbhuangyi.github.io/vue-analysis/reactive/reactive-object.html#object-defineproperty) > [Vue 响应式原理其实很好懂](https://mp.weixin.qq.com/s/-pZnJWxrRlz-rOGhdshe7g) > [深入理解 Vue 响应式原理](http://jungahuang.com/2018/02/07/About-responsive-of-Vue/) > [深入解析 Vue 依赖收集原理](https://juejin.im/entry/5bdab35d6fb9a0224e0e5794)
+> [Vue 源码](https://github.com/vuejs/vue/tree/dev/src)
+> [响应式对象](https://ustbhuangyi.github.io/vue-analysis/reactive/reactive-object.html#object-defineproperty)
+> [Vue 响应式原理其实很好懂](https://mp.weixin.qq.com/s/-pZnJWxrRlz-rOGhdshe7g)
+> [深入理解 Vue 响应式原理](http://jungahuang.com/2018/02/07/About-responsive-of-Vue/)
+> [深入解析 Vue 依赖收集原理](https://juejin.im/entry/5bdab35d6fb9a0224e0e5794)

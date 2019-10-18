@@ -1,5 +1,5 @@
 ---
-title: 函数柯里化 (未完成)
+title: 函数编程系列 ———— 函数柯里化 (未完成)
 date: 2018-11-07 18:10:09
 tags: [JavaScript, Funcitonal]
 categories: [JavaScript]

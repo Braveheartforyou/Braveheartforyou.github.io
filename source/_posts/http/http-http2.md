@@ -35,8 +35,9 @@ description: http2.0协议和http1.x、http1.0的区别、优化。
 - HTTP/1.0
 - HTTP/1.1
 - HTTP/2
-  发展的历史如下：
-  ![http2.0](../../images/http/http2.0-1-2.png)
+
+发展的历史如下：
+![http2.0](../../images/http/http2.0-1-2.png)
 
 ### HTTP/0.9
 
@@ -102,22 +103,24 @@ HTTP 是基于 <font color="#ff502c">TCP/IP 协议的应用层协议</font>。**
 - **请求优先级（request prioritization）**。多路复用带来一个新的问题是，在连接共享的基础之上有可能会导致关键请求被阻塞。<font color="#ff502c">SPDY 允许给每个 request 设置优先级</font>，这样重要的请求就会优先得到响应。比如浏览器加载首页，首页的 html 内容应该优先展示，之后才是各种静态资源文件，脚本文件等加载，这样可以保证用户能第一时间看到网页内容。
 - **header 压缩**。前面提到 HTTP1.x 的 header 很多时候都是重复多余的。选择合适的压缩算法可以减小包的大小和数量。
 - **基于 HTTPS 的加密协议传输，大大提高了传输数据的可靠性**。
-- **服务端推送（server push）**，采用了 SPDY 的网页，例如我的网页有一个 sytle.css 的请求，在客户端收到 sytle.css 数据的同时，服务端会将 sytle.js 的文件推送给客户端，当客户端再次尝试获取 sytle.js 时就可以直接从缓存中获取到，不用再发请求了。SPDY 构成图：
-  ![http2.0](../../images/http/http2.0-1-3.png)
+- **服务端推送（server push）**，采用了 SPDY 的网页，例如我的网页有一个 sytle.css 的请求，在客户端收到 sytle.css 数据的同时，服务端会将 sytle.js 的文件推送给客户端，当客户端再次尝试获取 sytle.js 时就可以直接从缓存中获取到，不用再发请求了。
+
+SPDY 构成图：
+![http2.0](../../images/http/http2.0-1-3.png)
 
 ## HTTP/2
 
-HTTP/2 可以说是 SPDY 的升级版（其实原本也是基于 SPDY 设计的），但是，HTTP2.0 跟 SPDY 仍有不同的地方，主要是以下两点：
+`HTTP/2` 可以说是 `SPDY` 的升级版（其实原本也是基于 `SPDY` 设计的），但是`HTTP2.0` 跟 `SPDY` 仍有不同的地方，主要是以下两点：
 
-- HTTP2.0 支持明文 HTTP 传输，而 SPDY 强制使用 HTTPS
-- HTTP2.0 消息头的压缩算法采用 HPACK，而非 SPDY 采用的 DEFLATE
+- `HTTP2.0` 支持明文 `HTTP` 传输，而 `SPDY` 强制使用 `HTTPS`
+- `HTTP2.0` 消息头的压缩算法采用 `HPACK`，而非 `SPDY` 采用的 `DEFLATE`
 
 HTTP/2 的新特性:
 
-- 二进制分帧：HTTP/2 的所有帧都采用二进制编码
-- 多路复用 (Multiplexing)
+- 二进制分帧：`HTTP/2` 的所有帧都采用二进制编码
+- 多路复用 (`Multiplexing`)
 - 请求优先级
-- header 压缩
+- `header` 压缩
 - 服务端推送
 
 ### 二进制分帧：HTTP/2 的所有帧都采用二进制编码
