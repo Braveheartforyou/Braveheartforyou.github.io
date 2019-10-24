@@ -97,7 +97,7 @@ function a() {
 console.log(a); // 1
 ```
 
-看上面的代码知道<font color="#ff502c">函数提升</font><font color="#ff502c">是<font color="#ff502c">高于变量提升</font>的，因为在 javascript 中函数是一等公民，<font color="#ff502c">并且不会被变量声明覆盖</font>，但是会被<font color="#ff502c">变量赋值覆盖</font>。其实代码如下
+看上面的代码知道<font color="#ff502c">函数提升</font>是<font color="#ff502c">高于变量提升</font>的，因为在 javascript 中函数是一等公民，<font color="#ff502c">并且不会被变量声明覆盖</font>，但是会被<font color="#ff502c">变量赋值覆盖</font>。其实代码如下
 
 ```javascript
 var a = function() {
