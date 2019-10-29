@@ -389,6 +389,42 @@ Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
 - **强缓存**中的优先级为： **Cache-Control > Expires**
 - **协商缓存**中的优先级： **Etag/If-None-Match > Last-Modified/Last-Since-Modified**
 - **协商缓存**中，**Last-Modified**不能记录秒级以下的更新缓存，而**Etag可以**。但是**Etag生成唯一资源标识符又比叫困难**，而**Last-Modified实现起来比价简单**
-- **Service Worker**相对于**Disk Cache/Memory Cache**配置会麻烦一点，但是**Service Worker**应用场景更广，性能也会好一点。
-- **Disk Cache**相对于**Memory Cache**，它的优点在于**容量大**，缺点在于**读取速度慢**
+- `Service Worker`相对于`Disk Cache/Memory Cache`配置会麻烦一点，但是`Service Worker`应用场景更广，性能也会好一点。
+- `Service Worker`必须要在`Https`协议中才会生效。
+- **Disk Cache**相对于**Memory Cache**，它的优点在于**容量大、储存周期长、可被多域使用**，缺点在于**读取速度慢**
+- **Memory Cache**相对于**Memory Cache**，它的优点在于**速度快、对前端link字段支持性**，缺点在于**储存周期短（tab也关闭）、空间有限**
 
+它们的值优缺点如上所示，如在**chrome**、**firefox**、**ie**中**Memory cache**和**Disk cache**也是不太相同的。
+
+### 关于 Chrome、FF、IE 的缓存区别
+
+**Chrome**浏览器的速度比其他两个浏览器的速度更快一点，主要是因为**V8**引擎的执行速度更快，另一方面应该就是它的**缓存策略**的使用。
+从这四个方面**强缓存**、**协商缓存**、**Disk Cache**、**Memory Cache**来对比，为什么说**Chrome**执行效果比其它的两个浏览器的执行速度和加载速度更快。
+
+就以百度首页为例看一下**Chrome**和**Firefox**的差别。
+
+在`Chrome`和`Firefox`中打开`https://www.baidu.com/`首页，结果如下图所示
+**Firefox**效果如下：
+![http-cache-public](../../images/http/http-cache-3-9.png)
+**Chrome**效果如下：
+![http-cache-public](../../images/http/http-cache-3-10.png)
+
+我们以百度的`bd_logo1.png`的请求为例，`logo`的请求是一个`Get`请求，同时它被设置了**四个缓存**配置，但是它在两个浏览器中表现并不相同，如下图所示
+
+**Firefox**效果如下：
+![http-cache-public](../../images/http/http-cache-3-12.png)
+**Chrome**效果如下：
+![http-cache-public](../../images/http/http-cache-3-11.png)
+
+首先在**再次请求**时浏览器端都**没有携带协商缓存**需要的头部字段，所以它们肯定走的是**强缓存**，在**强缓存**中`Cache-Control`的优先级是最高的，所以都是走的**Cache-Control**的策略。
+
+可以看到它们的区别如下几点：
+
+- **状态码**： 首先它们返回的状态码是不同的，**Chrome**返回的状态码是`200`,**Firefox**返回的状态码是`304`。
+- **使用的资源**： 可以看到**Chrome**中的资源大小为`0(耗时 0ms，也就是 1ms 以内)`，那么它使用的本地的资源。而**Firefox**中它是从服务器获取的资源。
+
+## 测试实例
+
+在这里我们来一个一个测试`expires/cache-control/etag/last-modified/pragma`它们是否和我们上面所总结的一致。
+
+### expires
