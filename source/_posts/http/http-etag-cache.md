@@ -426,5 +426,75 @@ Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
 ## 测试实例
 
 在这里我们来一个一个测试`expires/cache-control/etag/last-modified/pragma`它们是否和我们上面所总结的一致。
+代码可能写的比较粗糙，但是后面会优化一下，公共代码如下：
 
-### expires
+```javascript
+const Koa = require('koa');
+const Router = require('koa-router');
+const Static = require('koa-static');
+const fs = require('fs-extra');
+const Path = require('path');
+const mime = require('mime');
+
+const app = new Koa();
+const router = new Router();
+
+router.get('/', async (ctx, next) => {
+    ctx.type = mime.getType('.html');
+    // console.log(__dirname)
+    const content = await fs.readFile(Path.resolve(__dirname + '/index/index.html'), 'UTF-8');
+    // console.log(content);
+    ctx.body = content;
+    await next();
+})
+// 待优化
+router.get('/index/rotateX.png', async (ctx, next) => {
+    const { response, path } = ctx;
+    ctx.type = mime.getType(path);
+    const imageBuffer = await fs.readFile(Path.resolve(__dirname, `.${path}`));
+    ctx.body = imageBuffer;
+    await next();
+})
+
+// 待优化
+router.get('/index/index.css', async (ctx, next) => {
+    const { path } = ctx;
+    ctx.type = mime.getType(path);
+
+    const content = await fs.readFile(Path.resolve(__dirname, `.${path}`), 'UTF-8');
+    ctx.body = content;
+
+    await next();
+});
+
+// 待优化
+router.get('/index/index.js', async (ctx, next) => {
+    const { path } = ctx;
+    ctx.type = mime.getType(path);
+
+    const content = await fs.readFile(Path.resolve(__dirname, `.${path}`), 'UTF-8');
+    ctx.body = content;
+
+    await next();
+});
+
+// app.use(Static('./index'))
+app.use(router.routes()).use(router.allowedMethods());
+
+app.listen(3000, function (err) {
+    // console.log()
+    if (err) {
+        console.log(err)
+    } else {
+        console.log('启动成功')
+    }
+})
+```
+
+下面的代码都是在这个代码上修改
+
+### expiress实例
+
+### Cache-Control实例
+
+代码
