@@ -426,7 +426,35 @@ Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
 ## 测试实例
 
 在这里我们来一个一个测试`expires/cache-control/etag/last-modified/pragma`它们是否和我们上面所总结的一致。
+
+测试环境`chrome 78.0.3904.70`、`node 12.9.1`、`koa 2.x`.
+
+整体的目录结构如下图所示：
+![http-cache-public](../../images/http/http-cache-3-13.png)
+
 代码可能写的比较粗糙，但是后面会优化一下，公共代码如下：
+
+**index.html**代码如下
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <link rel="stylesheet" href="/index/index.css">
+      <script src="/index/index.js"></script>
+  </head>
+  <body>
+      测试cache
+      <img src="/index/rotateX.png" alt="">
+  </body>
+  </html>
+```
+
+**app.js**代码如下
 
 ```javascript
 const Koa = require('koa');
@@ -460,7 +488,7 @@ router.get('/index/rotateX.png', async (ctx, next) => {
 router.get('/index/index.css', async (ctx, next) => {
     const { path } = ctx;
     ctx.type = mime.getType(path);
-
+  
     const content = await fs.readFile(Path.resolve(__dirname, `.${path}`), 'UTF-8');
     ctx.body = content;
 
@@ -491,10 +519,254 @@ app.listen(3000, function (err) {
 })
 ```
 
-下面的代码都是在这个代码上修改
-
-### expiress实例
+下面的代码都是在这个代码上修改，`index.js`、`index.css`、`rotateX.png`自己写就可以，或者去网上下载一个稍微超过`2kb`大小的文件。
 
 ### Cache-Control实例
 
-代码
+使用`Cache-Control`缓存测试效果，修改代码如下：
+
+修改**app.js**
+
+```javascript
+  // ...省略代码
+  router.get('/index/rotateX.png', async (ctx, next) => {
+    // ...省略代码
+    // 添加代码
+    ctx.set('Cache-Control', 'max-age=' + 10);
+  })
+  // ...省略代码
+  router.get('/index/index.css', async (ctx, next) => {
+    // ...省略代码
+    // 添加代码
+    ctx.set('Cache-Control', 'max-age=' + 10);
+  })
+  // ...省略代码
+  router.get('/index/index.js', async (ctx, next) => {
+    // ...省略代码
+    // 添加代码
+    ctx.set('Cache-Control', 'max-age=' + 10);
+  })
+```
+
+我们在通过`nodemon app.js`运行代码，运行效果大致如下：
+
+1. 第一个打开`localhost:3000`时，因为没有任何缓存所以资源是`从服务器中请求`来的，如下图所示
+![http-cache-public](../../images/http/http-cache-3-14.png)
+2. 当我们刷新页面时，因为我们设置了`Cache-Control: max-age=10`，所以会走`本地缓存`，如下图所示
+![http-cache-public](../../images/http/http-cache-3-15.png)
+第二次请求，三个请求都来自 `memory cache`。因为我们没有关闭 TAB，所以浏览器把缓存的应用加到了`memory cache`。(耗时 0ms，也就是 1ms 以内)
+3. 当我们跳转到`https://www.baidu.com`，再返回页面时，它也会`走本地缓存`，如下图所示
+![http-cache-public](../../images/http/http-cache-3-16.png)
+因为跳转页面等于是**关闭了 TAB**，`memory cache` 也随之清空。但是 `disk cache` 是持久的，于是所有资源来自 `disk cache`。(大约耗时 3ms，因为文件有点小)而且对比 2 和 3，很明显看到 `memory cache` 还是比 `disk cache`快得多的。
+
+### no-cache和no-store对比
+
+我们来对比一下`no-cache`和`no-store`的区别，修改代码如下：
+
+修改**index.html**
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <link rel="stylesheet" href="/index/index.css">
+      <link rel="stylesheet" href="/index/index.css">
+      <script src="/index/index.js"></script>
+      <script src="/index/index.js"></script>
+  </head>
+  <body>
+      测试cache
+      <img src="/index/rotateX.png" alt="">
+      <img src="/index/rotateX.png" alt="">
+      <!-- 异步请求图片 -->
+      <script>
+          setTimeout(function () {
+              let img = document.createElement('img')
+              img.src = '/index/rotateX.png'
+              document.body.appendChild(img)
+          }, 1000)
+      </script>
+  </body>
+  </html>
+```
+
+我们暂时不修改缓存的配置，通过`nodemon app.js`运行代码，运行效果大致如下：
+
+- 同步请求方面，浏览器会**自动**把当次 `HTML` 中的资源存入到缓存 (`memory cache`)，这样碰到相同 `src` 的图片就会自动读取缓存(但不会在 `Network` 中显示出来)
+- 异步请求方面，浏览器同样是不发请求而**直接读取缓存**返回。但同样不会在 `Network` 中显示。
+
+下面我们修改**app.js**中的代码如下：
+
+```javascript
+  // ...省略代码
+  router.get('/index/rotateX.png', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-cache');
+  })
+  // ...省略代码
+  router.get('/index/index.css', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-cache');
+  })
+  // ...省略代码
+  router.get('/index/index.js', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-cache');
+  })
+```
+
+我们运行代码看的效果如下图所示：
+![http-cache-public](../../images/http/http-cache-3-18.png)
+
+- 同步请求方面，浏览器会**自动**把当次 `HTML` 中的资源存入到缓存 (`memory cache`)，这样碰到相同 `src` 的图片就会自动读取缓存(但不会在 `Network` 中显示出来)
+
+如果把`no-cache`修改为`no-store`
+
+修改**app.js**
+
+```javascript
+  // ...省略代码
+  router.get('/index/rotateX.png', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-store');
+  })
+  // ...省略代码
+  router.get('/index/index.css', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-store');
+  })
+  // ...省略代码
+  router.get('/index/index.js', async (ctx, next) => {
+    // ...省略代码
+    // 替换原来代码
+    ctx.set('Cache-Control', 'no-store');
+  })
+```
+
+我们运行代码看的效果如下图所示：
+![http-cache-public](../../images/http/http-cache-3-17.png)
+
+当我们设置了`Cache-Control: no-store`时，可以看到`css`、`js`文件都被请求了两次，`png`请求了三次。
+
+- 如之前原理所述，虽然 `memory cache` 是无视 `HTTP` 头信息的，但是 `no-store` 是特别的。在这个设置下，`memory cache` 也不得不每次都请求资源。
+- 异步请求和同步遵循相同的规则，在 `no-store` 情况下，依然是每次都发送请求，不进行任何缓存。
+
+### Last-Modified/If-Modified-Since
+
+这里来设置协商缓存`Last-Modified/If-Modified-Since`，代码修改如下：
+
+修改**app.js**
+
+```javascript
+  const responseFile = async (path, context, encoding) => {
+    const fileContent = await fs.readFile(path, encoding);
+    context.type = mime.getType(path);
+    context.body = fileContent;
+  };
+  router.get('/index/rotateX.png', async (ctx, next) => {
+    ctx.set('Pragma', 'no-cache');
+    const { response, request, path } = ctx;
+    const imagePath = Path.resolve(__dirname, `.${path}`);
+    const ifModifiedSince = request.headers['if-modified-since'];
+    console.log(ifModifiedSince)
+    const imageStatus = await fs.stat(imagePath);
+    const lastModified = imageStatus.mtime.toGMTString();
+    if (ifModifiedSince === lastModified) {
+        response.status = 304;
+    } else {
+        response.lastModified = lastModified;
+        await responseFile(imagePath, ctx);
+    }
+    await next();
+  })
+```
+
+大致流程如下：
+
+1. 在`Chrome`中选中`Disable Cache`禁用缓存，可以通过下面图片看到服务器端发送给客户端`Last-Modified: Thu, 24 Oct 2019 05:12:37 GMT`。
+![http-cache-public](../../images/http/http-cache-3-19.png)
+2. 关闭 `disable cache` 后再次访问图片时，发现带上了 `if-modified-since` 请求头，值就是上次请求响应的 `last-modified` 值，因为图片最后修改时间不变，所以 `304 Not Modified`。效果如下图所示
+![http-cache-public](../../images/http/http-cache-3-20.png)
+
+> 启用`Disable Cache`时，我们可以看到**客户端/浏览器端**自动带上了`Pragma':'no-cache'`、`'Cache-Control': 'no-cache'`这两个字段，不适用缓存。
+
+### Etag/If-None-Match
+
+修改**app.js**，通过`npm i crypto -D`安装`crypto`,用于生成`md5`。
+
+```javascript
+  // 处理 css 文件
+router.get('/index/index.css', async (ctx, next) => {
+    const { request, response, path } = ctx;
+    ctx.type = mime.getType(path);
+    response.set('pragma', 'no-cache');
+
+    const ifNoneMatch = request.headers['if-none-match'];
+    const imagePath = Path.resolve(__dirname, `.${path}`);
+    const hash = crypto.createHash('md5');
+    const imageBuffer = await fs.readFile(imagePath);
+    hash.update(imageBuffer);
+    const etag = `"${hash.digest('hex')}"`;
+    if (ifNoneMatch === etag) {
+        response.status = 304;
+    } else {
+        response.set('etag', etag);
+        ctx.body = imageBuffer;
+    }
+
+    await next();
+});
+```
+
+运行效果如下图所示：
+
+![http-cache-public](../../images/http/http-cache-3-20.png)
+
+他的过程和`Last-Modified/If-Modified-Since`，但是因为`Last-Modified/If-Modified-Since`它不能监听`1s`以内的资源变化，所以一般用他来做`Etag/If-None-Match`的补充方案。
+
+## 总结
+
+缓存大致分为：`强缓存`、`协商缓存`。
+
+- `强缓存`: `pragma`、`cache-control`、`expires`
+- `协商缓存`: `last-modified/If-modified-since`、`etag/if-none-match`
+- `强缓存优先级`: `cache-control > pragma > expires`
+- `协商缓存优先级`: `etag/if-none-match > last-modified/If-modified-since`
+
+缓存位置分为： `Service Worker`、`Memory Cache`、`Disk Cache`、`Push Cache`，也是从左到右如果命中就使用。
+
+上面的实例只是比较简单的应用，其实还有很多有意思的实例能加深对缓存的理解，如下：
+
+- `pragma`、`cache-control`、`expires`优先级
+- `last-modified/If-modified-since`、`etag/if-none-match`优先级
+- `cache-control: no-cache`与`cache-control: max-age=0, must-revalidate`效果是否相同
+- `chrome`、`firefox`、`ie`之间的缓存差别
+
+本篇文章有意避开`Service Worker`的详细介绍，因为会有单独的一篇文章来介绍`Service Worker`在真实应用的使用。
+
+> 在线代码，可以**刷新页面（刷新内部页面）**在**控制台**中查看当前效果
+
+<iframe
+src="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14"
+style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+title="agitated-rain-55pzk"
+allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+></iframe>
+
+## 参考
+
+> [一文搞懂浏览器缓存机制](https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&mid=2247484082&idx=1&sn=2efec72057f7fa448a6c0e258fd80370&chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&mpshare=1&scene=1&srcid=&sharer_sharetime=1568210174017&sharer_shareid=491f5e3b572f21d39b90888df1c8829b&key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&ascene=1&uin=MTY4MzM5MzY2Mw%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw)
+> [关于 http 缓存，这些知识点你可能都不懂](https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w)
+> [浏览器缓存策略](https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q)
+> [一文读懂前端缓存](https://zhuanlan.zhihu.com/p/44789005)
+> [通过 koa2 服务器实践探究浏览器HTTP缓存机制](https://juejin.im/post/5d0f9585e51d4510926a7b68)

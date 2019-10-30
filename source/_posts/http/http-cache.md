@@ -1,5 +1,5 @@
 ---
-title: Http中的缓存（一） 强缓存、协商缓存 缓存
+title: Http中的缓存（一） 多级缓存结构
 date: 2018-09-07 10:29:23
 tags: [Http]
 categories: [Http]
