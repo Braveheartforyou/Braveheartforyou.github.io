@@ -1,0 +1,1791 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Http,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
+<meta name="keywords" content="Http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http中的缓存（二） HTTP中的缓存">
+<meta property="og:url" content="http://asyncnode.com/blog/http/http-etag-cache.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-1.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-2.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-3.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-4.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-5.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-6.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-7.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-8.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-9.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-10.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-12.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-11.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-13.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-14.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-15.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-16.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-18.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-17.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-19.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-20.png">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-20.png">
+<meta property="og:updated_time" content="2019-10-30T08:19:35.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http中的缓存（二） HTTP中的缓存">
+<meta name="twitter:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
+<meta name="twitter:image" content="http://asyncnode.com/images/http/http-cache-3-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/http/http-etag-cache.html">
+
+
+
+
+
+  <title>Http中的缓存（二） HTTP中的缓存 | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http/http-etag-cache.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Http中的缓存（二） HTTP中的缓存</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T22:29:16+08:00">
+                2019-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/http/http-etag-cache.html" class="leancloud_visitors" data-flag-title="Http中的缓存（二） HTTP中的缓存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="/blog/http/http-cache.html">Http中的缓存（一） 多级缓存结构</a><br><a href="/blog/http/http-etag-cache.html">Http中的缓存（二） HTTP中的缓存</a><br><a href="/blog/http/http-cache-serviceworker.html">Http中的缓存（三） PWA中的ServiceWorker</a></p>
+</blockquote>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>HTTP缓存</strong>相信都不陌生，因为它是在前端性能优化中必不可少的一个环节。在<strong>首次进入或者请求数据</strong>正常传输数据，而当<strong>再次进入或者请求数据</strong>时，可以走本地或者服务器上的缓存，来<strong>节省流量</strong>、<strong>优化性能</strong>、<strong>提高用户体验</strong>、<strong>降低网络负荷</strong>等等。</p>
+<p><strong>web缓存</strong>主要用来缓存<strong>html文件</strong>、<strong>js文件</strong>、<strong>css文件</strong>、<strong>数据</strong>，基本上都是提升<strong>客户端/浏览器</strong>请求到<strong>服务器</strong>之间的速度，当然也可以结合数据压缩如<strong>gzip</strong>、<strong>7z</strong>等等加快响应数据传输。</p>
+<p>在整个应用中可以错多层缓存结构这里不多做介绍，因为前面已经大致介绍过了，这里主要介绍和前端比较相关的<strong>HTTP缓存</strong>。</p>
+<h2 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h2><p>大致分为下面几步来加深对<strong>HTTP中的缓存</strong>理解和应用场景。</p>
+<ol>
+<li><strong>必知缓存策略的基础</strong></li>
+<li><strong>缓存的判断策略</strong></li>
+<li><strong>用户操作对缓存策略的影响</strong></li>
+<li><strong>缓存储存的位置</strong></li>
+<li><strong>缓存策略之间的对比</strong></li>
+</ol>
+<h2 id="必知缓存策略的基础"><a href="#必知缓存策略的基础" class="headerlink" title="必知缓存策略的基础"></a>必知缓存策略的基础</h2><p>大致把协议分为<strong>强缓存（过期策略）</strong>和<strong>协商缓存（协商策略）</strong>两类缓存，可能不太准确只是自己的现在的见解，<strong>浏览器/客户端</strong>通过这两种策略决定使用<strong>缓存中的副本</strong>还是从<strong>服务器</strong>中获取最新的资源。</p>
+<ul>
+<li><strong>强缓存（过期策略）</strong>：也就是缓存副本有效期。<br>一个缓存副本必须满足以下任一条件，浏览器会认为它是有效的，足够新的，而直接从缓存中获取副本并渲染：<ul>
+<li><em>含有完整的过期时间控制头信息（HTTP协议报头），并且仍在有效期内</em></li>
+<li><em>浏览器已经使用过这个缓存副本，并且在一个会话中已经检查过新鲜度</em></li>
+</ul>
+</li>
+<li><strong>协商缓存（协商策略）</strong>：<em>服务器返回资源的时候有时在控制头信息带上这个资源的实体标签Etag（Entity Tag），它可以用来作为浏览器再次请求过程的校验标识。如果发现校验标识不匹配，说明资源已经被修改或过期，浏览器需求重新获取资源内容。</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">缓存策略</th>
+<th style="text-align:center">首部类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Pragma</td>
+<td style="text-align:center">指定缓存机制（http 1.0 字段）</td>
+<td style="text-align:center">强缓存（过期策略）</td>
+<td style="text-align:center">响应首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">Cache-COntrol</td>
+<td style="text-align:center"><code>Cache-Control</code> 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。</td>
+<td style="text-align:center">强缓存（过期策略）</td>
+<td style="text-align:center">响应/请求首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">Expires</td>
+<td style="text-align:center"><code>Expires</code> 响应头包含日期/时间， 即在此时候之后，响应过期。</td>
+<td style="text-align:center">强缓存（过期策略）</td>
+<td style="text-align:center">响应首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">Last-Modified</td>
+<td style="text-align:center"><code>Last-Modified</code>  是一个响应首部，其中包含源头服务器认定的资源做出修改的日期及时间。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">响应首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">If-Modified-Since</td>
+<td style="text-align:center"><code>If-Modified-Since</code> 是一个条件式请求首部，服务器只在所请求的资源在给定的日期时间之后对内容进行过修改的情况下才会将资源返回，状态码为 <code>200</code>。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">请求首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">ETag</td>
+<td style="text-align:center"><code>ETag</code>HTTP响应头是资源的特定版本的标识符。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">响应首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">If-None-Match</td>
+<td style="text-align:center"><code>If-None-Match</code> 是一个条件式请求首部。对于 <code>GET</code> 和 <code>HEAD</code> 请求方法来说，当且仅当服务器上没有任何资源的 <code>ETag</code> 属性值与这个首部中列出的相匹配的时候，服务器端会才返回所请求的资源，响应码为  <code>200</code>  。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">请求首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">If-Match（辅助）</td>
+<td style="text-align:center"><code>If-Match</code> 的使用表示这是一个条件请求。在请求方法为 <code>GET</code> 和 <code>HEAD</code> 的情况下，服务器仅在请求的资源满足此首部列出的 <code>ETag</code>值时才会返回资源。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">请求首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">If-Unmodified-Since（辅助）</td>
+<td style="text-align:center"><code>If-Unmodified-Since</code> 只有当资源在指定的时间之后没有进行过修改的情况下，服务器才会返回请求的资源，或是接受 <code>POST</code> 或其他 <code>non-safe</code> 方法的请求。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">请求首部字段</td>
+</tr>
+<tr>
+<td style="text-align:center">Vary（辅助）</td>
+<td style="text-align:center"><code>Vary</code> 是一个<code>HTTP</code>响应头部信息，它决定了对于未来的一个请求头，应该用一个缓存的回复(response)还是向源服务器请求一个新的回复。</td>
+<td style="text-align:center">协商缓存（协商策略）</td>
+<td style="text-align:center">响应首部字段</td>
+</tr>
+</tbody>
+</table>
+<!-- 下面四个就多做介绍了，大家可以去**mdn**中观看，下面是mdn中的连接。
+
+- [Pragma](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Pragma)
+- [If-Match](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Match)
+- [If-Unmodified-Since](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Unmodified-Since)
+- [Vary](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Vary) -->
+<p><em>缓存又分为<strong>强缓存和协商缓存</strong>。其中强缓存包括<code>Expires</code>和<code>Cache-Control</code>，<strong>主要是在过期策略生效时应用的缓存</strong>。弱缓存包括<code>Last-Modified</code>和<code>ETag</code>，<strong>是在协商策略后应用的缓存</strong>。<strong>强弱缓存之间的主要区别在于获取资源时是否会发送请求</strong>。</em></p>
+<p><strong>强缓存和协商缓存</strong></p>
+<ul>
+<li>如果本地缓存过期，则要依靠协商缓存</li>
+<li><strong>强缓存</strong>的 http状态码是 <code>200 OK</code></li>
+<li><strong>协商缓存</strong>的 http 状态码是 <code>304 Not Modified</code></li>
+</ul>
+<h2 id="强缓存（过期策略）"><a href="#强缓存（过期策略）" class="headerlink" title="强缓存（过期策略）"></a>强缓存（过期策略）</h2><p>属于<strong>强缓存（过期策略）</strong>的有如下：</p>
+<ul>
+<li>Cache-COntrol</li>
+<li>Expires</li>
+</ul>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p><code>Cache-Control</code>用于指定资源的缓存机制，可以同时在<strong>请求和响应头</strong>中设定。但是<code>Cache-Control</code>中的属性也分为<strong>请求和响应</strong>缓存指令，大致分为如下：</p>
+<p><strong>缓存请求指令</strong><br>客户端可以在<strong>HTTP请求</strong>中使用的标准 <code>Cache-Control</code> 指令。</p>
+<blockquote>
+<p>Cache-Control: max-age=<seconds><br>Cache-Control: max-stale[=<seconds>]<br>Cache-Control: min-fresh=<seconds><br>Cache-control: no-cache<br>Cache-control: no-store<br>Cache-control: no-transform<br>Cache-control: only-if-cached</seconds></seconds></seconds></p>
+</blockquote>
+<p><strong>缓存响应指令</strong><br>服务器可以在<strong>响应</strong>中使用的标准 <code>Cache-Control</code> 指令。</p>
+<blockquote>
+<p>Cache-control: must-revalidate<br>Cache-control: no-cache<br>Cache-control: no-store<br>Cache-control: no-transform<br>Cache-control: public<br>Cache-control: private<br>Cache-control: proxy-revalidate<br>Cache-Control: max-age=<seconds><br>Cache-control: s-maxage=<seconds></seconds></seconds></p>
+</blockquote>
+<p><code>Cache-Control</code>: <code>cache-directive[,cache-directive]</code>。<code>cache-directive</code>为缓存指令，大小写不敏感，共有<strong>12</strong>个与<strong>HTTP</strong>缓存标准相关，如下所示。其中请求指令<em>7</em>种，响应指令<em>9</em>种。<code>Cache-Control</code>可以设置多个缓存指令，以逗号<code>,</code>分隔。</p>
+<h4 id="可缓存性"><a href="#可缓存性" class="headerlink" title="可缓存性"></a>可缓存性</h4><ul>
+<li><strong>public</strong>： 表明响应可以被<strong>任何对象（包括：发送请求的客户端、代理服务器、CDN等中间代理服务器等等）缓存</strong>，如下图所示：<br><img src="../../images/http/http-cache-3-1.png" alt="http-cache-public"></li>
+<li><strong>private</strong>：表明响应只能被<strong>单个用户缓存</strong>，<strong>不能作为共享缓存（即代理服务器不能缓存它）</strong>。<br><img src="../../images/http/http-cache-3-2.png" alt="http-cache-public"></li>
+<li><strong>no-cache</strong>：指定<strong>不缓存响应</strong>，表明资源<strong>不进行缓存</strong>，但是设置了 <code>no-cache</code> 之后并不代表<strong>浏览器</strong>不缓存，而是在<strong>获取缓存前</strong>要向<strong>服务器确认资源</strong>是否被更改。相当于<code>max-age: 0, must-revalidate</code></li>
+<li><strong>no-store</strong>： <strong>绝对禁止缓存，请求和响应都不缓存，每次请求都从服务器获取完整资源</strong>。</li>
+</ul>
+<h4 id="到期"><a href="#到期" class="headerlink" title="到期"></a>到期</h4><ul>
+<li><strong>max-age=<seconds></seconds></strong>: 设置<strong>缓存存储的最大周期</strong>，超过这个时间缓存被认为过期(<strong>单位秒</strong>)。</li>
+<li><strong>s-maxage=<seconds></seconds></strong>: 覆盖<code>max-age</code>或者<code>Expires</code>头，但是<strong>仅适用于</strong>共享缓存(比如各个代理)，私有缓存会忽略它。</li>
+<li><strong>max-stale[=<seconds>]</seconds></strong>: <strong>指定时间内，即使缓存过期，资源依然有效</strong>。</li>
+<li><strong>min-fresh=<seconds></seconds></strong>：<strong>表示客户端希望获取一个能在指定的秒数内保持其最新状态的响应</strong>。</li>
+</ul>
+<h4 id="重新验证和重新加载"><a href="#重新验证和重新加载" class="headerlink" title="重新验证和重新加载"></a>重新验证和重新加载</h4><ul>
+<li><strong>muse-revalidate</strong>: 使用缓存资源之前，<strong>必须先验证状态</strong>，如果页面是<strong>过期的(如max-age)</strong>，则去服务器进行<strong>获取</strong>。</li>
+<li><strong>proxy-revalidate</strong>： 与<code>must-revalidate</code>作用相同，但它<strong>仅适用于共享缓存（例如代理）</strong>，并被私有缓存忽略。</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><strong>no-transform</strong>：强制要求代理服务器不要对资源进行转换，禁止代理服务器对<code>Content-Encoding</code>、<code>Content-Range</code>、<code>Content-Type</code>等字段的修改，因此代理服务器的<code>gzip</code>压缩将<strong>不被允许</strong>。</li>
+</ul>
+<h4 id="no-cache和no-store"><a href="#no-cache和no-store" class="headerlink" title="no-cache和no-store"></a>no-cache和no-store</h4><p>还有一点需要注意的是，<code>no-cache</code>并不是指<strong>不缓存文件</strong>，<code>no-store</code>才是指<strong>不缓存文件</strong>。<code>no-cache</code>仅仅是表明<strong>跳过强缓存</strong>，强制进入<strong>协商策略</strong>。</p>
+<h4 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h4><p><strong>禁止缓存</strong><br><code>Cache-Control: no-cache, no-store, must-revalidate</code></p>
+<p><strong>缓存静态资源</strong><br><code>Cache-Control:public, max-age=86400</code></p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p><code>Expires</code>指定缓存的<strong>过期时间</strong>，为绝对时间，即某一时刻。</p>
+<blockquote>
+<p>注意：参考<strong>本地时间</strong>进行比对，在指定时刻后过期。<strong>RFC 2616建议最大值不要超过1年</strong>。</p>
+</blockquote>
+<h3 id="max-age与Expires"><a href="#max-age与Expires" class="headerlink" title="max-age与Expires"></a>max-age与Expires</h3><p><code>Cache-Control</code>中的<code>max-age</code>指令用于指定<strong>缓存过期的相对时间</strong>。资源达到指定时间后过期。该功能与<code>Expires</code>类似。但其<strong>优先级高于Expires</strong>，如果同时设置<code>max-age</code>和<code>Expires</code>，<code>max-age</code>生效，忽略<code>Expires</code>。</p>
+<blockquote>
+<p>Cache-Control &gt; Expires</p>
+</blockquote>
+<h3 id="强缓存大致流程"><a href="#强缓存大致流程" class="headerlink" title="强缓存大致流程"></a>强缓存大致流程</h3><p>强缓的设置流程图大致如下：<br><img src="../../images/http/http-cache-3-3.png" alt="http-cache-public"></p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>在没有<strong>强缓存</strong>时，就会走协商缓存，协商缓存大致流程：</p>
+<ul>
+<li>第一次请求时，服务端返回给客户端一个<strong>key(如Etag的资源值、Last-Modified最后修改时间)</strong>和资源</li>
+<li>第二次请求时，客户端带上第一次服务端返回的key</li>
+<li>服务器端验证当前的key是否和上次返回给客户端的是否一致，一致返回304使用缓存，不一致重新返回key和新的资源</li>
+</ul>
+<p>属于<strong>协商缓存（协商策略）</strong>的有如下：</p>
+<ul>
+<li>Last-Modified/If-Modified-Since/If-Unmodified-Since</li>
+<li>ETag/If-Match/If-None-Match</li>
+</ul>
+<h3 id="Last-Modified-If-Modified-Since-If-Unmodified-Since"><a href="#Last-Modified-If-Modified-Since-If-Unmodified-Since" class="headerlink" title="Last-Modified/If-Modified-Since/If-Unmodified-Since"></a>Last-Modified/If-Modified-Since/If-Unmodified-Since</h3><p><code>Last-Modified/If-Modified-Since</code>大致流程如下：</p>
+<ul>
+<li>第一次请求时，服务器会获取资源的最后修改时间通过设置<code>Last-Modified</code>，返回给客户端</li>
+<li>后面请求时，客户端(浏览器)会自动带上<code>If-Modified-Since</code>字段</li>
+<li>服务器从新获取修改时间与<code>If-Modified-Since</code>中的时间对比，如果没有变化返回<code>304</code>状态码（浏览器得知304状态码，资源从缓存中获取），如果改变返回<code>200</code>并且更新资源、更新<code>Last-Modified</code></li>
+</ul>
+<p>上面的流程是在设置不使用<strong>强缓存</strong>时的场景，这个只是现在的理解可能有很多的不太完善的地方。</p>
+<h4 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h4><p><code>Last-Modified</code>用于标记<strong>请求资源的最后一次修改时间</strong>。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Last-Modified: &lt;day-name&gt;, &lt;day&gt; &lt;month&gt; &lt;year&gt; &lt;hour&gt;:&lt;minute&gt;:&lt;second&gt; GMT</span><br><span class="line"></span><br><span class="line">Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li><strong>GMT(格林尼治标准时间)</strong></li>
+<li><code>Last-Modified</code>只能精确到秒，因此不适合在一秒内多次改变的资源。</li>
+</ul>
+<h4 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h4><p><code>If-Modified-Since</code> 是一个条件式请求首部，与<code>Last-Modified</code>何用。有两种结果如下：</p>
+<ul>
+<li><code>If-Modified-Since/Last-Modified</code>相同返回<code>304</code>状态码，客户端使用缓存</li>
+<li><code>If-Modified-Since/Last-Modified</code>不相同返回<code>200</code>状态码，返回新的资源</li>
+</ul>
+<blockquote>
+<p><code>If-Modified-Since</code> 只可以用在 <code>GET</code> 或 <code>HEAD</code> 请求中。</p>
+</blockquote>
+<h4 id="If-Unmodified-Since"><a href="#If-Unmodified-Since" class="headerlink" title="If-Unmodified-Since"></a>If-Unmodified-Since</h4><p><code>If-Unmodified-Since</code>表示资源未修改则正常执行更新，否则返回<code>412(Precondition Failed)</code>状态码的响应。主要有如下两种场景。</p>
+<ol>
+<li>用于不安全的请求中从而是请求具备条件性（如POST或者其他不安全的方法），如请求更新wiki文档，<strong>文档未修改时才执行更新</strong>。</li>
+<li>与<code>If-Range</code>字段同时使用时，可以用来保证新的片段请求来自一个未修改的文档。</li>
+</ol>
+<h3 id="ETag-If-Match-If-None-Match"><a href="#ETag-If-Match-If-None-Match" class="headerlink" title="ETag/If-Match/If-None-Match"></a>ETag/If-Match/If-None-Match</h3><p>根据实体内容生成一段<strong>唯一hash字符串</strong>，标识资源的状态，由服务端产生。浏览器会将这<strong>串字符串传回服务器</strong>，验证资源是否已经修改，如果没有修改，过程如下：</p>
+<p><img src="../../images/http/http-cache-3-4.png" alt="http-cache-public"></p>
+<p><code>ETag</code> <strong>HTTP响应头</strong>是资源的特定版本的标识符。<br><strong>语法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ETag: W/<span class="string">"&lt;etag_value&gt;"</span></span><br><span class="line">ETag: <span class="string">"&lt;etag_value&gt;"</span></span><br></pre></td></tr></table></figure>
+<p><strong>W/ 可选</strong><br><strong>‘W/‘(大小写敏感) </strong>表示使用<strong>弱验证器</strong>。 弱验证器很<strong>容易</strong>生成，但<strong>不利</strong>于比较。 强验证器是<strong>比较的理想</strong>选择，但<strong>很难</strong>有效地生成。</p>
+<p><strong>“&lt;etag_value&gt;”</strong><br>实体标签唯一地表示所请求的资源。 它们是位于<strong>双引号</strong>之间的ASCII字符串（如“675af34563dc-tr34”）。</p>
+<blockquote>
+<p>注意：ETag和If-None-Match的值均为双引号包裹的。<br><code>ETag</code>的优先级高于<code>Last-Modified</code>。当<code>ETag</code>和<code>Last-Modified</code>，<code>ETag</code>优先级更高，但不会忽略<code>Last-Modified</code>，需要服务端实现。</p>
+</blockquote>
+<p><code>ETag</code> 和 <code>If-None-Match</code> 常被用来处理<strong>协商缓存</strong>。而 <code>ETag</code> 和 <code>If-Match</code> 可以 <strong>避免“空中碰撞”</strong>。</p>
+<p><code>ETag</code> HTTP 响应头是资源的特定版本的标识符。这可以让缓存更高效，并节省带宽，因为如果内容没有改变，Web 服务器不需要发送完整的响应。而如果内容发生了变化，使用 <code>ETag</code> 有助于防止资源的<strong>同时更新相互覆盖（“空中碰撞”）</strong>。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>当编辑MDN时，当前的WIki内容被散列，并在相应中放入<code>Etag</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ETag: <span class="string">"33a64df551425fcc55e4d42a148795d9f25f89d4"</span></span><br></pre></td></tr></table></figure>
+<p>将更改保存到WIKI页面（发布数据）时，POST请求将包含有<code>ETag</code>值的<code>If-Match</code>头来检车是否为最新版本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If-Match: <span class="string">"33a64df551425fcc55e4d42a148795d9f25f89d4"</span></span><br></pre></td></tr></table></figure>
+<p>如果哈希值不匹配，则意味着文档已经被编辑，抛出 <code>412 ( Precondition Failed)</code> 前提条件失败错误。</p>
+<p><code>If-None-Match</code> 是客户端发送给服务器时的请求头，其值是服务器返回给客户端的 <code>ETag</code>，当 <code>If-None-Match</code> 和服务器资源最新的 <code>Etag</code> 不同时，返回最新的资源及其 <code>Etag</code>。</p>
+<h2 id="缓存的判断策略"><a href="#缓存的判断策略" class="headerlink" title="缓存的判断策略"></a>缓存的判断策略</h2><p>缓存策略分为<strong>强缓存</strong>和<strong>协商缓存</strong>，首先经过<strong>强缓存</strong>的<strong>过期策略</strong>，才会走后面的<strong>协商缓存</strong>的<strong>协商策略</strong>，大致把缓存分为三个阶段<strong>本地缓存阶段（强缓存）</strong>、<strong>协商缓存阶段（本地+服务器）</strong>、<strong>缓存失败阶段</strong>。</p>
+<p>大致在每个阶段中做的什么判断：</p>
+<ol>
+<li><strong>本地缓存阶段</strong>：如果设置了<strong>强缓存</strong>，那么会现在本地查找该资源，如果发现该资源，而且该资源还没有过期，就使用这个资源副本，完全不会发起<code>http</code>请求到服务器。（主要应用是<strong>强缓存</strong>、<strong>serverWorker</strong>）;</li>
+<li><strong>协商缓存阶段</strong>：如果在<strong>本地缓存</strong>找到对应的资源，但是不知道该资源<strong>是否过期或者已经过期</strong>，则发一个http请求到服务器，然后服务器<strong>判断</strong>这个请求，如果请求的资源在服务器上没有改动过，则返回<code>304</code>，让浏览器使用本地找到的那个资源；</li>
+<li><strong>缓存失败阶段</strong>: 当服务器发现请求的资源<strong>已经修改过</strong>，或者这是一个新的请求(在本来没有找到资源)，服务器则返回该资源的数据，并且返回<code>200</code>， 当然这个是指找到资源的情况下，如果服务器上没有这个资源，则返回<code>404</code>。</li>
+</ol>
+<p>大致流程如下图所示：</p>
+<p><img src="../../images/http/http-cache-3-5.png" alt="http-cache-public"></p>
+<p>这张图中没有包含<code>serverWorker</code>的缓存判断流程b，但是在后面会有一篇文章专门介绍<strong>serverWorker</strong>，因为他是属于<strong>PWA</strong>中的内容。</p>
+<blockquote>
+<p><strong>存储策略</strong>发生在<strong>收到请求响应后</strong>，用于决定<strong>是否缓存</strong>相应资源；<strong>过期策略</strong>发生在<strong>请求前</strong>，用于判断缓存<strong>是否过期</strong>；<strong>协商策略</strong>发生在<strong>请求中</strong>，用于判断缓存资源<strong>是否更新</strong>。</p>
+</blockquote>
+<h2 id="用户操作对缓存策略的影响"><a href="#用户操作对缓存策略的影响" class="headerlink" title="用户操作对缓存策略的影响"></a>用户操作对缓存策略的影响</h2><p>在用户刷新页面（F5）时，会对缓存产生影响，这里就会记录用户操作对缓存产生的影响。用户操作事项如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户操作</th>
+<th style="text-align:center">强缓存</th>
+<th style="text-align:center">协商缓存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(新标签)地址栏回车</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">(地址不变)地址栏回车</td>
+<td style="text-align:center">兼容性问题Chrome(失效)/Firefox(有效)</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">链接跳转</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">前进/后退</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">从收藏栏打开链接</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">(window.open)新开窗口</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">刷新（Command/Ctrl + R / F5）</td>
+<td style="text-align:center">失效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">强制刷新（Command + Shift + R / Ctrl + F5）</td>
+<td style="text-align:center">失效</td>
+<td style="text-align:center">失效</td>
+</tr>
+</tbody>
+</table>
+<p>基本上包含了一些常见的用户操作对<strong>强缓存</strong>和<strong>协商缓存</strong>的影响，大致的判断流程如下：</p>
+<p><img src="../../images/http/http-cache-3-6.png" alt="http-cache-public"></p>
+<p><strong>注意</strong></p>
+<blockquote>
+<ul>
+<li>(地址不变)地址栏回车：它比较特殊，为什么它在<strong>Chrome</strong>是<strong>失效</strong>，在<strong>Firefox</strong>中是<strong>有效</strong>。因为<strong>Chrome</strong>把<strong>地址不变回车</strong>等同于<strong>刷新当前页面</strong>，而在<strong>Firefox</strong>都是作为<strong>新地址回车</strong>处理的。</li>
+<li><code>webkit(Chrome内核)</code>资源分为<strong>主资源</strong>和<strong>派生资源</strong>。<strong>主资源</strong>是地址栏输入的URL请求返回的<strong>资源</strong>，<strong>派生资源</strong>是主资源中所引用<strong>的JS、CSS、图片等资源</strong>。</li>
+<li>在<code>Chrome</code>下刷新时，只有主资源的缓存应用方式如上图所示，<strong>派生资源</strong>的<strong>缓存应用方式与新标签打开类似</strong>，会判断缓存是否过期。强缓存生效时的区别在于新标签打开为<code>from disk cache</code>，而当前页刷新派生资源是<code>from memory cache</code>。</li>
+<li>而在<code>Firefox</code>下，当前页面刷新，所有资源都会如上图所示。</li>
+</ul>
+</blockquote>
+<h2 id="缓存储存的位置"><a href="#缓存储存的位置" class="headerlink" title="缓存储存的位置"></a>缓存储存的位置</h2><p>从缓存的位置上来说分为<strong>四种</strong>，并且各自有优先级，当<strong>依次由上到下</strong>查找缓存且<strong>都没有命中</strong>的时候，才会去请求网络，大致如下：</p>
+<ul>
+<li>Service Worker</li>
+<li>Memory Cache</li>
+<li>Disk Cache</li>
+<li>Push Cache</li>
+</ul>
+<h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h3><p><strong>Service Worker</strong> 是一种独立于主线程之外的 <strong>Javascript</strong> 线程。它可以帮我们实现<strong>离线缓存</strong>、<strong>消息推送</strong>和<strong>网络代理</strong>等功能。</p>
+<blockquote>
+<p>使用 <code>Service Worker</code>的话，传输协议<strong>必须</strong>为 <code>HTTPS</code>。因为 <code>Service Worker</code> 中涉及到请求拦截，所以必须使用 <code>HTTPS</code> 协议来保障安全。</p>
+</blockquote>
+<p><strong>Service Worker</strong> 实现缓存大致分为以下几个步骤：</p>
+<ul>
+<li>首先需要在页面的 <strong>JavaScript 主线程中注册 Service Worker</strong>。</li>
+<li>注册成功后后台开始安装步骤， 通常在安装的过程中需要缓存一些静态资源。</li>
+<li>安装成功后开始<strong>激活 Service Worker</strong></li>
+<li>激活成功后 <strong>Service Worker</strong> 可以控制页面了（<strong>监听 fetch 和 message 事件</strong>），但是只针对在成功注册了 <strong>Service Worker</strong> 后打开的页面。</li>
+</ul>
+<p>在这里就不细说了，后面有一个单独的章节来讲述<strong>Service Worker</strong>, <strong>Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的</strong>。</p>
+<h3 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h3><p><strong>Memory Cache</strong> 是内存中的缓存。主要包含的是当前页面中请求到的数据如<strong>图片（base64）</strong>、<strong>脚本（JavaScript）</strong>、<strong>样式（css）</strong>等静态数据。读取内存中的数据肯定比磁盘中的<strong>快</strong>，但是内存中的<strong>缓存持续性很短</strong>，它会随着当前<strong>Tab页面关闭，内存中的缓存也就被释放</strong>。</p>
+<p>比如在<strong>百度首页</strong>刷新页面，效果如下图所示：<br><img src="../../images/http/http-cache-3-7.png" alt="http-cache-public"></p>
+<p><strong>preload</strong><br><code>&lt;link&gt;</code> 元素的 <code>rel</code> 属性的属性值<code>preload</code>，<code>&lt;link rel=&quot;preload&quot;&gt;</code>来显示的指定的预加载资源，也会被放入<code>memory cache</code>中。</p>
+<p><strong>prefetch</strong><br><code>&lt;link rel=&quot;prefetch&quot;&gt;</code> 已经被许多浏览器支持了相当长的时间，但它是意图预获取一些资源，以备下一个导航/页面使用（比如，当你去到下一个页面时）。<br>浏览器会给使用<code>prefetch</code>的资源一个<strong>相对较低的优先</strong>级与使用<code>preload</code>的资源相比。</p>
+<p><strong>subresource</strong><br><code>&lt;link rel=&quot;subresource&quot;&gt;</code>被Chrome支持了有一段时间，并且已经有些搔到预加载当前导航/页面（所含有的资源）的痒处了。这些资源会以一个<strong>相当低的优先级</strong>被加载。<br><code>Memory Cache</code>不会轻易的命中一个请求，除了要有<strong>匹配的URL</strong>，还要有相同的<strong>资源类型</strong>、<strong>CORS模式</strong>以及一些<strong>其他特性</strong>。<br><code>Memory Cache</code>是不关心<code>HTTP语义</code>的，比如<code>Cache-Control: max-age=0</code>的资源，仍然可以在同一个导航中被重用。但是在特定的情况下，<code>Memory Cache</code>会遵守<code>Cache-Control: no-store</code>指令，不缓存相应的资源。</p>
+<blockquote>
+<p><code>Memory Cache</code>匹配规则在标准中没有详尽的描述，所以不同的浏览器内核在实现上会有所不同。</p>
+</blockquote>
+<h3 id="Disk-Cache-HTTP-Cache"><a href="#Disk-Cache-HTTP-Cache" class="headerlink" title="Disk Cache/HTTP Cache"></a>Disk Cache/HTTP Cache</h3><p><code>HTTP Cache</code>也被叫做<code>Disk Cache</code>。从字面的意思上理解<code>Disk Cache</code>就是储存在硬盘上的<strong>缓存</strong>，因此它是持久存储的，是实际存在于文件系统中的。<br>而且<strong>它允许相同的资源在跨会话</strong>，甚至<strong>跨站点</strong>的情况下使用，例如<strong>两个站点都使用了同一张图片</strong>。</p>
+<p><code>HTTP Cache</code>会根据<code>HTTP Herder</code>中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源已经过期需要重新请求。<br>当<strong>命中缓存</strong>之后，浏览器会从<strong>硬盘中读取资源</strong>，虽然比起从内存中<strong>读取慢</strong>了一些，但比起网络请求还是快了不少的。绝大部分的缓存都来自 <code>disk cache</code>。</p>
+<blockquote>
+<p>凡是<strong>持久性存储</strong>都会面临<strong>容量增长</strong>的问题，<code>disk cache</code> 也不例外。在<strong>浏览器自动清理</strong>时，会有神秘的算法去把“最老的”或者“最可能过时的”资源删除，因此是一个一个删除的。不过每个浏览器识别“最老的”和“最可能过时的”资源的算法不尽相同，可能也是它们差异性的体现。</p>
+</blockquote>
+<h3 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h3><p><code>Push Cache</code>（推送缓存）是 <code>HTTP/2</code> 中的内容，当以上三种缓存都没有命中时，它才会被使用。<br><strong>它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂</strong>，在Chrome浏览器中只有5分钟左右，同时它也<strong>并非严格执行HTTP头中的缓存指令</strong>。</p>
+<p><code>Push Cache</code> 在国内能够查到的资料很少，也是因为 <code>HTTP/2</code> 在国内不够普及。这里推荐阅读<code>Jake Archibald</code>的 <a href="https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/" target="_blank" rel="noopener">HTTP/2 push is tougher than I thought</a> 这篇文章，文章中的几个结论：</p>
+<ul>
+<li>所有的资源都能被推送，并且能够被缓存,但是 Edge 和 Safari 浏览器支持相对比较差</li>
+<li>可以推送 no-cache 和 no-store 的资源</li>
+<li>一旦连接被关闭，Push Cache 就被释放</li>
+<li>多个页面可以使用同一个HTTP/2的连接，也就可以使用同一个Push Cache。这主要还是依赖浏览器的实现而定，出于对性能的考虑，有的浏览器会对相同域名但不同的tab标签使用同一个HTTP连接。</li>
+<li>Push Cache 中的缓存只能被使用一次</li>
+<li>浏览器可以拒绝接受已经存在的资源推送</li>
+<li>你可以给其他域名推送资源</li>
+</ul>
+<p>如果以上<strong>四种缓存都没有命中</strong>的话，那么只能发起<strong>请求来获取资源</strong>了。</p>
+<p>那么为了性能上的考虑，大部分的接口都应该选择好缓存策略，通常浏览器缓存策略分为两种：<strong>强缓存和协商缓存</strong>，并且缓存策略都是通过设置 <code>HTTP Header</code> 来实现的。</p>
+<h3 id="关于-memory-cache-和-disk-cache"><a href="#关于-memory-cache-和-disk-cache" class="headerlink" title="关于 memory cache 和 disk cache"></a>关于 memory cache 和 disk cache</h3><p>这两种缓存类型存在于 Chrome 中。<br><code>disk cache</code> 存在硬盘，可以存很多，容量上限比内容缓存高很多，而 <code>memory cache</code> 从内存直接读取，速度上占优势，这两个各有各的好处！</p>
+<p>因为关于在什么时候用到什么缓存的文档相当的少所以真的不好判断，是当前使用的是哪个缓存，比如下面这个例子：</p>
+<p><img src="../../images/http/http-cache-3-8.png" alt="http-cache-public"></p>
+<h2 id="缓存策略之间的对比"><a href="#缓存策略之间的对比" class="headerlink" title="缓存策略之间的对比"></a>缓存策略之间的对比</h2><p>其实缓存之间也没有太好的对比性，大致可以从<strong>缓存策略</strong>和<strong>缓存位置</strong>两个角度对比缓存的优缺点。</p>
+<ul>
+<li><strong>强缓存</strong>返回 <strong>http 200 OK状态码</strong>，而<strong>协商缓存</strong>返回<strong>http 304 Not Modified 状态码</strong></li>
+<li><strong>强缓存</strong>中的优先级为： <strong>Cache-Control &gt; Expires</strong></li>
+<li><strong>协商缓存</strong>中的优先级： <strong>Etag/If-None-Match &gt; Last-Modified/Last-Since-Modified</strong></li>
+<li><strong>协商缓存</strong>中，<strong>Last-Modified</strong>不能记录秒级以下的更新缓存，而<strong>Etag可以</strong>。但是<strong>Etag生成唯一资源标识符又比叫困难</strong>，而<strong>Last-Modified实现起来比价简单</strong></li>
+<li><code>Service Worker</code>相对于<code>Disk Cache/Memory Cache</code>配置会麻烦一点，但是<code>Service Worker</code>应用场景更广，性能也会好一点。</li>
+<li><code>Service Worker</code>必须要在<code>Https</code>协议中才会生效。</li>
+<li><strong>Disk Cache</strong>相对于<strong>Memory Cache</strong>，它的优点在于<strong>容量大、储存周期长、可被多域使用</strong>，缺点在于<strong>读取速度慢</strong></li>
+<li><strong>Memory Cache</strong>相对于<strong>Memory Cache</strong>，它的优点在于<strong>速度快、对前端link字段支持性</strong>，缺点在于<strong>储存周期短（tab也关闭）、空间有限</strong></li>
+</ul>
+<p>它们的值优缺点如上所示，如在<strong>chrome</strong>、<strong>firefox</strong>、<strong>ie</strong>中<strong>Memory cache</strong>和<strong>Disk cache</strong>也是不太相同的。</p>
+<h3 id="关于-Chrome、FF、IE-的缓存区别"><a href="#关于-Chrome、FF、IE-的缓存区别" class="headerlink" title="关于 Chrome、FF、IE 的缓存区别"></a>关于 Chrome、FF、IE 的缓存区别</h3><p><strong>Chrome</strong>浏览器的速度比其他两个浏览器的速度更快一点，主要是因为<strong>V8</strong>引擎的执行速度更快，另一方面应该就是它的<strong>缓存策略</strong>的使用。<br>从这四个方面<strong>强缓存</strong>、<strong>协商缓存</strong>、<strong>Disk Cache</strong>、<strong>Memory Cache</strong>来对比，为什么说<strong>Chrome</strong>执行效果比其它的两个浏览器的执行速度和加载速度更快。</p>
+<p>就以百度首页为例看一下<strong>Chrome</strong>和<strong>Firefox</strong>的差别。</p>
+<p>在<code>Chrome</code>和<code>Firefox</code>中打开<code>https://www.baidu.com/</code>首页，结果如下图所示<br><strong>Firefox</strong>效果如下：<br><img src="../../images/http/http-cache-3-9.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="../../images/http/http-cache-3-10.png" alt="http-cache-public"></p>
+<p>我们以百度的<code>bd_logo1.png</code>的请求为例，<code>logo</code>的请求是一个<code>Get</code>请求，同时它被设置了<strong>四个缓存</strong>配置，但是它在两个浏览器中表现并不相同，如下图所示</p>
+<p><strong>Firefox</strong>效果如下：<br><img src="../../images/http/http-cache-3-12.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="../../images/http/http-cache-3-11.png" alt="http-cache-public"></p>
+<p>首先在<strong>再次请求</strong>时浏览器端都<strong>没有携带协商缓存</strong>需要的头部字段，所以它们肯定走的是<strong>强缓存</strong>，在<strong>强缓存</strong>中<code>Cache-Control</code>的优先级是最高的，所以都是走的<strong>Cache-Control</strong>的策略。</p>
+<p>可以看到它们的区别如下几点：</p>
+<ul>
+<li><strong>状态码</strong>： 首先它们返回的状态码是不同的，<strong>Chrome</strong>返回的状态码是<code>200</code>,<strong>Firefox</strong>返回的状态码是<code>304</code>。</li>
+<li><strong>使用的资源</strong>： 可以看到<strong>Chrome</strong>中的资源大小为<code>0(耗时 0ms，也就是 1ms 以内)</code>，那么它使用的本地的资源。而<strong>Firefox</strong>中它是从服务器获取的资源。</li>
+</ul>
+<h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><p>在这里我们来一个一个测试<code>expires/cache-control/etag/last-modified/pragma</code>它们是否和我们上面所总结的一致。</p>
+<p>测试环境<code>chrome 78.0.3904.70</code>、<code>node 12.9.1</code>、<code>koa 2.x</code>.</p>
+<p>整体的目录结构如下图所示：<br><img src="../../images/http/http-cache-3-13.png" alt="http-cache-public"></p>
+<p>代码可能写的比较粗糙，但是后面会优化一下，公共代码如下：</p>
+<p><strong>index.html</strong>代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/index/index.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    测试cache</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/index/rotateX.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>app.js</strong>代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> Static = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs-extra'</span>);</span><br><span class="line"><span class="keyword">const</span> Path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mime = <span class="built_in">require</span>(<span class="string">'mime'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.type = mime.getType(<span class="string">'.html'</span>);</span><br><span class="line">    <span class="comment">// console.log(__dirname)</span></span><br><span class="line">    <span class="keyword">const</span> content = <span class="keyword">await</span> fs.readFile(Path.resolve(__dirname + <span class="string">'/index/index.html'</span>), <span class="string">'UTF-8'</span>);</span><br><span class="line">    <span class="comment">// console.log(content);</span></span><br><span class="line">    ctx.body = content;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 待优化</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; response, path &#125; = ctx;</span><br><span class="line">    ctx.type = mime.getType(path);</span><br><span class="line">    <span class="keyword">const</span> imageBuffer = <span class="keyword">await</span> fs.readFile(Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>));</span><br><span class="line">    ctx.body = imageBuffer;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 待优化</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; path &#125; = ctx;</span><br><span class="line">    ctx.type = mime.getType(path);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">const</span> content = <span class="keyword">await</span> fs.readFile(Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>), <span class="string">'UTF-8'</span>);</span><br><span class="line">    ctx.body = content;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 待优化</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; path &#125; = ctx;</span><br><span class="line">    ctx.type = mime.getType(path);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> content = <span class="keyword">await</span> fs.readFile(Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>), <span class="string">'UTF-8'</span>);</span><br><span class="line">    ctx.body = content;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// app.use(Static('./index'))</span></span><br><span class="line">app.use(router.routes()).use(router.allowedMethods());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log()</span></span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'启动成功'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>下面的代码都是在这个代码上修改，<code>index.js</code>、<code>index.css</code>、<code>rotateX.png</code>自己写就可以，或者去网上下载一个稍微超过<code>2kb</code>大小的文件。</p>
+<h3 id="Cache-Control实例"><a href="#Cache-Control实例" class="headerlink" title="Cache-Control实例"></a>Cache-Control实例</h3><p>使用<code>Cache-Control</code>缓存测试效果，修改代码如下：</p>
+<p>修改<strong>app.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们在通过<code>nodemon app.js</code>运行代码，运行效果大致如下：</p>
+<ol>
+<li>第一个打开<code>localhost:3000</code>时，因为没有任何缓存所以资源是<code>从服务器中请求</code>来的，如下图所示<br><img src="../../images/http/http-cache-3-14.png" alt="http-cache-public"></li>
+<li>当我们刷新页面时，因为我们设置了<code>Cache-Control: max-age=10</code>，所以会走<code>本地缓存</code>，如下图所示<br><img src="../../images/http/http-cache-3-15.png" alt="http-cache-public"><br>第二次请求，三个请求都来自 <code>memory cache</code>。因为我们没有关闭 TAB，所以浏览器把缓存的应用加到了<code>memory cache</code>。(耗时 0ms，也就是 1ms 以内)</li>
+<li>当我们跳转到<code>https://www.baidu.com</code>，再返回页面时，它也会<code>走本地缓存</code>，如下图所示<br><img src="../../images/http/http-cache-3-16.png" alt="http-cache-public"><br>因为跳转页面等于是<strong>关闭了 TAB</strong>，<code>memory cache</code> 也随之清空。但是 <code>disk cache</code> 是持久的，于是所有资源来自 <code>disk cache</code>。(大约耗时 3ms，因为文件有点小)而且对比 2 和 3，很明显看到 <code>memory cache</code> 还是比 <code>disk cache</code>快得多的。</li>
+</ol>
+<h3 id="no-cache和no-store对比"><a href="#no-cache和no-store对比" class="headerlink" title="no-cache和no-store对比"></a>no-cache和no-store对比</h3><p>我们来对比一下<code>no-cache</code>和<code>no-store</code>的区别，修改代码如下：</p>
+<p>修改<strong>index.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/index/index.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/index/index.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    测试cache</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/index/rotateX.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/index/rotateX.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 异步请求图片 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span></span><br><span class="line"><span class="javascript">            img.src = <span class="string">'/index/rotateX.png'</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.body.appendChild(img)</span></span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们暂时不修改缓存的配置，通过<code>nodemon app.js</code>运行代码，运行效果大致如下：</p>
+<ul>
+<li>同步请求方面，浏览器会<strong>自动</strong>把当次 <code>HTML</code> 中的资源存入到缓存 (<code>memory cache</code>)，这样碰到相同 <code>src</code> 的图片就会自动读取缓存(但不会在 <code>Network</code> 中显示出来)</li>
+<li>异步请求方面，浏览器同样是不发请求而<strong>直接读取缓存</strong>返回。但同样不会在 <code>Network</code> 中显示。</li>
+</ul>
+<p>下面我们修改<strong>app.js</strong>中的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们运行代码看的效果如下图所示：<br><img src="../../images/http/http-cache-3-18.png" alt="http-cache-public"></p>
+<ul>
+<li>同步请求方面，浏览器会<strong>自动</strong>把当次 <code>HTML</code> 中的资源存入到缓存 (<code>memory cache</code>)，这样碰到相同 <code>src</code> 的图片就会自动读取缓存(但不会在 <code>Network</code> 中显示出来)</li>
+</ul>
+<p>如果把<code>no-cache</code>修改为<code>no-store</code></p>
+<p>修改<strong>app.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们运行代码看的效果如下图所示：<br><img src="../../images/http/http-cache-3-17.png" alt="http-cache-public"></p>
+<p>当我们设置了<code>Cache-Control: no-store</code>时，可以看到<code>css</code>、<code>js</code>文件都被请求了两次，<code>png</code>请求了三次。</p>
+<ul>
+<li>如之前原理所述，虽然 <code>memory cache</code> 是无视 <code>HTTP</code> 头信息的，但是 <code>no-store</code> 是特别的。在这个设置下，<code>memory cache</code> 也不得不每次都请求资源。</li>
+<li>异步请求和同步遵循相同的规则，在 <code>no-store</code> 情况下，依然是每次都发送请求，不进行任何缓存。</li>
+</ul>
+<h3 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h3><p>这里来设置协商缓存<code>Last-Modified/If-Modified-Since</code>，代码修改如下：</p>
+<p>修改<strong>app.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> responseFile = <span class="keyword">async</span> (path, context, encoding) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileContent = <span class="keyword">await</span> fs.readFile(path, encoding);</span><br><span class="line">  context.type = mime.getType(path);</span><br><span class="line">  context.body = fileContent;</span><br><span class="line">&#125;;</span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.set(<span class="string">'Pragma'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; response, request, path &#125; = ctx;</span><br><span class="line">  <span class="keyword">const</span> imagePath = Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> ifModifiedSince = request.headers[<span class="string">'if-modified-since'</span>];</span><br><span class="line">  <span class="built_in">console</span>.log(ifModifiedSince)</span><br><span class="line">  <span class="keyword">const</span> imageStatus = <span class="keyword">await</span> fs.stat(imagePath);</span><br><span class="line">  <span class="keyword">const</span> lastModified = imageStatus.mtime.toGMTString();</span><br><span class="line">  <span class="keyword">if</span> (ifModifiedSince === lastModified) &#123;</span><br><span class="line">      response.status = <span class="number">304</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      response.lastModified = lastModified;</span><br><span class="line">      <span class="keyword">await</span> responseFile(imagePath, ctx);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>大致流程如下：</p>
+<ol>
+<li>在<code>Chrome</code>中选中<code>Disable Cache</code>禁用缓存，可以通过下面图片看到服务器端发送给客户端<code>Last-Modified: Thu, 24 Oct 2019 05:12:37 GMT</code>。<br><img src="../../images/http/http-cache-3-19.png" alt="http-cache-public"></li>
+<li>关闭 <code>disable cache</code> 后再次访问图片时，发现带上了 <code>if-modified-since</code> 请求头，值就是上次请求响应的 <code>last-modified</code> 值，因为图片最后修改时间不变，所以 <code>304 Not Modified</code>。效果如下图所示<br><img src="../../images/http/http-cache-3-20.png" alt="http-cache-public"></li>
+</ol>
+<blockquote>
+<p>启用<code>Disable Cache</code>时，我们可以看到<strong>客户端/浏览器端</strong>自动带上了<code>Pragma&#39;:&#39;no-cache&#39;</code>、<code>&#39;Cache-Control&#39;: &#39;no-cache&#39;</code>这两个字段，不适用缓存。</p>
+</blockquote>
+<h3 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>修改<strong>app.js</strong>，通过<code>npm i crypto -D</code>安装<code>crypto</code>,用于生成<code>md5</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 处理 css 文件</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; request, response, path &#125; = ctx;</span><br><span class="line">    ctx.type = mime.getType(path);</span><br><span class="line">    response.set(<span class="string">'pragma'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> ifNoneMatch = request.headers[<span class="string">'if-none-match'</span>];</span><br><span class="line">    <span class="keyword">const</span> imagePath = Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">const</span> hash = crypto.createHash(<span class="string">'md5'</span>);</span><br><span class="line">    <span class="keyword">const</span> imageBuffer = <span class="keyword">await</span> fs.readFile(imagePath);</span><br><span class="line">    hash.update(imageBuffer);</span><br><span class="line">    <span class="keyword">const</span> etag = <span class="string">`"<span class="subst">$&#123;hash.digest(<span class="string">'hex'</span>)&#125;</span>"`</span>;</span><br><span class="line">    <span class="keyword">if</span> (ifNoneMatch === etag) &#123;</span><br><span class="line">        response.status = <span class="number">304</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        response.set(<span class="string">'etag'</span>, etag);</span><br><span class="line">        ctx.body = imageBuffer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行效果如下图所示：</p>
+<p><img src="../../images/http/http-cache-3-20.png" alt="http-cache-public"></p>
+<p>他的过程和<code>Last-Modified/If-Modified-Since</code>，但是因为<code>Last-Modified/If-Modified-Since</code>它不能监听<code>1s</code>以内的资源变化，所以一般用他来做<code>Etag/If-None-Match</code>的补充方案。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>缓存大致分为：<code>强缓存</code>、<code>协商缓存</code>。</p>
+<ul>
+<li><code>强缓存</code>: <code>pragma</code>、<code>cache-control</code>、<code>expires</code></li>
+<li><code>协商缓存</code>: <code>last-modified/If-modified-since</code>、<code>etag/if-none-match</code></li>
+<li><code>强缓存优先级</code>: <code>cache-control &gt; pragma &gt; expires</code></li>
+<li><code>协商缓存优先级</code>: <code>etag/if-none-match &gt; last-modified/If-modified-since</code></li>
+</ul>
+<p>缓存位置分为： <code>Service Worker</code>、<code>Memory Cache</code>、<code>Disk Cache</code>、<code>Push Cache</code>，也是从左到右如果命中就使用。</p>
+<p>上面的实例只是比较简单的应用，其实还有很多有意思的实例能加深对缓存的理解，如下：</p>
+<ul>
+<li><code>pragma</code>、<code>cache-control</code>、<code>expires</code>优先级</li>
+<li><code>last-modified/If-modified-since</code>、<code>etag/if-none-match</code>优先级</li>
+<li><code>cache-control: no-cache</code>与<code>cache-control: max-age=0, must-revalidate</code>效果是否相同</li>
+<li><code>chrome</code>、<code>firefox</code>、<code>ie</code>之间的缓存差别</li>
+</ul>
+<p>本篇文章有意避开<code>Service Worker</code>的详细介绍，因为会有单独的一篇文章来介绍<code>Service Worker</code>在真实应用的使用。</p>
+<blockquote>
+<p>在线代码，可以<strong>刷新页面（刷新内部页面）</strong>在<strong>控制台</strong>中查看当前效果</p>
+</blockquote>
+<iframe src="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="agitated-rain-55pzk" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&amp;mid=2247484082&amp;idx=1&amp;sn=2efec72057f7fa448a6c0e258fd80370&amp;chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1568210174017&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b&amp;key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&amp;ascene=1&amp;uin=MTY4MzM5MzY2Mw%3D%3D&amp;devicetype=Windows+10&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw" target="_blank" rel="noopener">一文搞懂浏览器缓存机制</a><br><a href="https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w" target="_blank" rel="noopener">关于 http 缓存，这些知识点你可能都不懂</a><br><a href="https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q" target="_blank" rel="noopener">浏览器缓存策略</a><br><a href="https://zhuanlan.zhihu.com/p/44789005" target="_blank" rel="noopener">一文读懂前端缓存</a><br><a href="https://juejin.im/post/5d0f9585e51d4510926a7b68" target="_blank" rel="noopener">通过 koa2 服务器实践探究浏览器HTTP缓存机制</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Http/" rel="tag"><i class="fa fa-tag"></i> Http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/react/react-setState.html" rel="next" title="理解 react的 setState 在不同情况下同步异步之间切换（未完待续）">
+                <i class="fa fa-chevron-left"></i> 理解 react的 setState 在不同情况下同步异步之间切换（未完待续）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/vue/vue-mixins.html" rel="prev" title="vue源码中Mixins原理和源码解析 (未完成)">
+                vue源码中Mixins原理和源码解析 (未完成) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP缓存"><span class="nav-number">2.</span> <span class="nav-text">HTTP缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必知缓存策略的基础"><span class="nav-number">3.</span> <span class="nav-text">必知缓存策略的基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强缓存（过期策略）"><span class="nav-number">4.</span> <span class="nav-text">强缓存（过期策略）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">4.1.</span> <span class="nav-text">Cache-Control</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可缓存性"><span class="nav-number">4.1.1.</span> <span class="nav-text">可缓存性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到期"><span class="nav-number">4.1.2.</span> <span class="nav-text">到期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新验证和重新加载"><span class="nav-number">4.1.3.</span> <span class="nav-text">重新验证和重新加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">4.1.4.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#no-cache和no-store"><span class="nav-number">4.1.5.</span> <span class="nav-text">no-cache和no-store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用设置"><span class="nav-number">4.1.6.</span> <span class="nav-text">常用设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires"><span class="nav-number">4.2.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-age与Expires"><span class="nav-number">4.3.</span> <span class="nav-text">max-age与Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强缓存大致流程"><span class="nav-number">4.4.</span> <span class="nav-text">强缓存大致流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协商缓存"><span class="nav-number">5.</span> <span class="nav-text">协商缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified-If-Modified-Since-If-Unmodified-Since"><span class="nav-number">5.1.</span> <span class="nav-text">Last-Modified/If-Modified-Since/If-Unmodified-Since</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Last-Modified"><span class="nav-number">5.1.1.</span> <span class="nav-text">Last-Modified</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Modified-Since"><span class="nav-number">5.1.2.</span> <span class="nav-text">If-Modified-Since</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Unmodified-Since"><span class="nav-number">5.1.3.</span> <span class="nav-text">If-Unmodified-Since</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETag-If-Match-If-None-Match"><span class="nav-number">5.2.</span> <span class="nav-text">ETag/If-Match/If-None-Match</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">5.2.1.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存的判断策略"><span class="nav-number">6.</span> <span class="nav-text">缓存的判断策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户操作对缓存策略的影响"><span class="nav-number">7.</span> <span class="nav-text">用户操作对缓存策略的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存储存的位置"><span class="nav-number">8.</span> <span class="nav-text">缓存储存的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Worker"><span class="nav-number">8.1.</span> <span class="nav-text">Service Worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Cache"><span class="nav-number">8.2.</span> <span class="nav-text">Memory Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disk-Cache-HTTP-Cache"><span class="nav-number">8.3.</span> <span class="nav-text">Disk Cache/HTTP Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-Cache"><span class="nav-number">8.4.</span> <span class="nav-text">Push Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-memory-cache-和-disk-cache"><span class="nav-number">8.5.</span> <span class="nav-text">关于 memory cache 和 disk cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存策略之间的对比"><span class="nav-number">9.</span> <span class="nav-text">缓存策略之间的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-Chrome、FF、IE-的缓存区别"><span class="nav-number">9.1.</span> <span class="nav-text">关于 Chrome、FF、IE 的缓存区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试实例"><span class="nav-number">10.</span> <span class="nav-text">测试实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control实例"><span class="nav-number">10.1.</span> <span class="nav-text">Cache-Control实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-cache和no-store对比"><span class="nav-number">10.2.</span> <span class="nav-text">no-cache和no-store对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified-If-Modified-Since"><span class="nav-number">10.3.</span> <span class="nav-text">Last-Modified/If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag-If-None-Match"><span class="nav-number">10.4.</span> <span class="nav-text">Etag/If-None-Match</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">12.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共189.1k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>
