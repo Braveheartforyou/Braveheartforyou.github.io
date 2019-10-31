@@ -6,8 +6,8 @@ categories: [Http]
 description: 大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。
 ---
 
-> [Http中的缓存（一） 多级缓存结构](/blog/http/http-cache.html)
-> [Http中的缓存（二） HTTP中的缓存](/blog/http/http-etag-cache.html)
+> [Http中的缓存（一） 多级缓存结构](/blog/http-cache-multiple.html)
+> [Http中的缓存（二） HTTP中的缓存](/blog/http/http-cache-http.html)
 > [Http中的缓存（三） PWA中的ServiceWorker](/blog/http/http-cache-serviceworker.html)
 
 ## 简介
