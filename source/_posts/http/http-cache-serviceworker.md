@@ -63,9 +63,10 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 ![http-cache-serviceworker](../../images/http/http-cache-4-1.png)
 
 - `注册`： 用户**首次访问**SW控制的网站或页面时，sw.js会立刻被下载和解析。会执行`Register`，同时会触发`install`事件，作响
-- `安装`： 执行过程即使`installing`过程，此时会触发`install`事件。状态转换为`installed`。
-- `激活`： 立即进入 `activating` 状态；并触发 `activate` 事件，处理相关事件内容。执行完成后，变成 `activated` 状态。
-- `失败`： 如果安装失败会走失败状态。
+- `安装(Installing & Installed)`： 执行过程即使`installing`过程，此时会触发`install`事件。状态转换为`installed`。
+- `激活(Activating)`： 立即进入 `activating` 状态；并触发 `activate` 事件，处理相关事件内容。这个阶段可以管理旧版本Service Worker的缓存。
+- `激活后(Activated)`：成功激活，进入`activated` 状态。
+- `失败(Redundant)`： 安装失败, 或者激活失败, 或者被新的 Service Worker 替代掉，会进入redundant状态。
 
 <!-- **第一步**注册一个`Service Worker`，代码如下：
 
@@ -81,5 +82,4 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 
 ### 第二次访问
 
-在退出浏览器进程时，`SW`线程也会关闭，但是并不会**销毁**。
-当第二次访问时，会再次
+第二次访问走的`SW`的唤醒场景，
