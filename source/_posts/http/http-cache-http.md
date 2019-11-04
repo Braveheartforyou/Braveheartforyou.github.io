@@ -729,7 +729,7 @@ router.get('/index/index.css', async (ctx, next) => {
 
 运行效果如下图所示：
 
-![http-cache-public](../../images/http/http-cache-3-20.png)
+![http-cache-public](../../images/http/http-cache-3-21.png)
 
 他的过程和`Last-Modified/If-Modified-Since`，但是因为`Last-Modified/If-Modified-Since`它不能监听`1s`以内的资源变化，所以一般用他来做`Etag/If-None-Match`的补充方案。
 
@@ -753,15 +753,7 @@ router.get('/index/index.css', async (ctx, next) => {
 
 本篇文章有意避开`Service Worker`的详细介绍，因为会有单独的一篇文章来介绍`Service Worker`在真实应用的使用。
 
-> 在线代码，可以**刷新页面（刷新内部页面）**在**控制台**中查看当前效果
-
-<iframe
-src="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14"
-style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-title="agitated-rain-55pzk"
-allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-></iframe>
+> [在线代码](https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14)，可以**刷新页面（刷新内部页面）**在**控制台**中查看当前效果
 
 ## 参考
 

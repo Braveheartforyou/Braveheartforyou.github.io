@@ -23,8 +23,10 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 - SW特性
 - SW生命周期和使用
 - SW中的缓存策略
-- SW中的消息推送
 - SW一些注意事项
+- SW几种缓存策略
+- SW中的消息推送
+- Workerbox使用
 
 ## SW的特性
 
@@ -279,7 +281,6 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 2. 获得响应后，**确保响应有效。**、**检查并确保响应的状态为 200。**、**确保响应类型为 basic，亦即由自身发起的请求。 这意味着，对第三方资产的请求也不会添加到缓存。**
 3. 如果**通过检查**，则克隆响应。
 
-
 没有缓存新请求时效果如下：
 ![http-cache-serviceworker](../../images/http/http-cache-4-8.png)
 
@@ -302,4 +303,475 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 3. 此时，**旧** `SW` 仍**控制着**当前页面，因此**新** `SW` 将进入 `waiting` 状态。
 4. 如果`新 Worker` 出现**不正常状态代码**（例如，404）、解析失败，在执行中**引发错误**或**在安装期间被拒**，则系统`将舍弃新 Worker`，但`当前 Worker 仍处于活动状态`。
 5. 安装成功后，`更新的 Worker 将 wait`，直到`现有 Worker` 控制零个客户端。（注意，在刷新期间客户端会重叠。）
-6. 
+6. `self.skipWaiting()` 可防止出现等待情况，这意味着 `Service Worker` 在安装完后立即激活。
+
+### 更新SW代码
+
+更新一个叫做`sw_cache_v2`的新的`SW`缓存，代码如下：
+
+```javascript
+    const CACHE_NAME = 'sw_cache_v2';
+
+    self.addEventListener('install', (event) => {
+        event.waitUntil(
+            // cacheStorage API 可直接用caches来替代
+            // open方法创建/打开缓存空间，并会返回promise实例
+            // then来接收返回的cache对象索引
+            caches.open(CACHE_NAME)
+            // cache对象addAll方法解析（同fetch）并缓存所有的文件
+            .then(function(cache) {
+                return cache.add('index_copy.png')
+            })
+        );
+        // 一般注册以后，激活需要等到再次刷新页面后再激活
+        // 可防止出现等待的情况，这意味着服务工作线程在安装完后立即激活
+        self.skipWaiting();
+    })
+    self.addEventListener('activate', function (event) {
+        // 若缓存数据更改，则在这里更新缓存
+        var cacheDeletePromise = caches.keys()
+        .then(keyList => {
+            Promise.all(keyList.map(key => {
+                if (key !== CACHE_NAME) {
+                    var deletePromise = caches.delete(key)
+                    return deletePromise
+                } else {
+                    Promise.resolve()
+                }
+            }));
+        });
+        event.waitUntil(
+            Promise.all([cacheDeletePromise]).then(res => {
+                this.clients.claim()
+            })
+        );
+    });
+    self.addEventListener('fetch', function(event) {
+        event.respondWith(
+            caches.match(event.request)
+            .then(function(response) {
+                // Cache hit - return response
+                if (response) {
+                return response;
+                }
+                return fetch(event.request);
+            }
+            )
+        );
+    });
+```
+
+代码执行效果如下图所示：
+
+![http-cache-serviceworker](../../images/http/http-cache-4-10.png)
+
+整个过程我们大致经过了`install => waiting => activate`三个过程。
+
+### 更新Install
+
+我们在代码中把`sw_cache_v1`更改为`sw_cache_v2`，我们重新`Install`了一个新的缓存`sw_cache_v2`，并且通过添加了一个缓存进去`cache.add('index_copy.png')`。
+
+### 更新Waiting
+
+如果新的缓存安装成功`SW`后，更新的`SW`将延迟激活，直到现有`SW`不再控制任何客户端。此状态为`waiting`，这是浏览器确保每次只运行一个`SW`版本的样式。
+
+### 激活Activate
+
+旧 `SW` 退出时将触发 `Activate`，新 `SW` 将能够控制客户端。此时，您可以执行在仍使用旧 `Worker` 时无法执行的操作，如迁移数据库和清除缓存。
+在上面的演示中，我维护了一个期望保存的缓存列表，并且在 `activate`事件中，我删除了所有其他缓存，从而也移除了旧的 `sw_cache_v1` 缓存。
+> 不要更新以前的版本。它可能是许多旧版本的 `SW`。
+
+如果您将一个 `promise` 传递到 `event.waitUntil()`，它将缓冲功能事件（`fetch、push、sync` 等），直到 `promise` 进行解析。因此，当您的 `fetch` 事件触发时，激活已全部完成。
+> `Cache storage API` 属于“源存储”（如 `localStorage` 和 `IndexedDB`）。如果您在同源上运行许多网站（例如，`yourname.github.io/myapp`），请注意，不要删除其他网站的缓存。为避免此问题，可以为您的缓存名称提供一个在当前网站上具有唯一性的前缀（例如，myapp-static-v1），并且不要删除缓存，除非它们以 myapp- 开头。
+
+### 跳过等待阶段skipWaiting
+
+等待阶段表示您每次只能运行一个网站版本，但如果您不需要该功能，您可以通过调用 `self.skipWaiting()` 尽快将新 `SW` 激活。
+这会导致您的 `SW` 将当前活动的 `Worker` 逐出，并在进入**等待阶段**时尽快激活自己（或**立即激活**，前提是已经处于**等待阶段**）。这不能让您的 `Worker` **跳过安装**，只是**跳过等待阶段**。
+`skipWaiting()` 在等待期间调用还是在之前调用并没有什么不同。一般情况下是在 `install` 事件中调用它：
+
+```javascript
+    self.addEventListener('install', event => {
+        self.skipWaiting();
+        event.waitUntil(
+            // caching etc
+        );
+    });
+```
+
+与 `clients.claim()` 一样，它是一个竞态。
+
+> `skipWaiting()` 意味着新 Service Worker 可能会控制使用较旧 `Worker` 加载的页面。这意味着页面提取的部分数据将由旧 Service Worker 处理，而新 Service Worker 处理后来提取的数据。如果这会导致问题，则不要使用 `skipWaiting()`。
+
+### 手动更新update
+
+当页面**刷新或者执行功能性事件时**，浏览器会**自动**检查更新，其实我们也可以**手动**的来触发更新：
+
+```javascript
+    navigator.serviceWorker.register("/sw.js").then(reg => {
+        // sometime later…
+        reg.update();
+    });
+```
+
+如果你希望你的用户访问页面很长时间而且不用刷新，那么你可以每个一段时间调用一次`update()`。
+
+### 避免改变 SW 的 URL
+
+你可能会考虑给每个 `SW` 不同的 `URL`。**千万不要这么做！**在 `SW` 中这么做是“最差实践”，要在原地址上修改 `SW`。
+
+举个例子来说明为什么：
+
+1. `index.html`注册了`sw-v1.js`作为`SW`。
+
+2. `sw-v1.js`对`index.html`做了缓存，也就是缓存优先（`offline-first`）。
+
+3. 你更新了`index.html`重新注册了在新地址的 SW `sw-v2.js`.
+
+如果你像上面那么做，用户永远也拿不到`sw-v2.js`，因为`index.html`在`sw-v1.js`缓存中，这样的话，如果你想更新为`sw-v2.js`，还需要更改原来的`sw-v1.js`。
+
+## SW一些注意事项
+
+这里主要分为：
+
+- **更新的小技巧**
+- **sync事件**
+
+### 更新小技巧
+
+`SW` 生命周期是专为用户构建的，这就给开发工作带来一定的困难。幸运的是，我们可通过以下几个工具解决这个问题：
+
+#### Update on reload
+
+![http-cache-serviceworker](../../images/http/http-cache-4-11.png)
+
+这可使生命周期变得对开发者友好。每次浏览时都将：
+
+1. 重新提取 `SW`。
+2. 即使**字节完全相同**，也将其作为新版本安装，这表示运行 `install` 事件并**更新缓存**。
+3. **跳过等待阶段**，以**激活**新 `SW`。
+4. 浏览页面。这意味着**每次浏览时（包括刷新）都将进行更新**，无需重新加载两次或关闭标签。
+
+#### Skip waiting
+
+![http-cache-serviceworker](../../images/http/http-cache-4-12.png)
+
+如果您有一个 `Worker` 在等待，您可以按 `DevTools` 中的“`skip waiting`”以立即将其提升到“`active`”。同时也可以通过`self.skipWaiting()`来实现。
+
+#### Shift-reload
+
+如果您强制重新加载页面 `(shift-reload)`，则将完全绕过 `SW`。页面将变得不受控制。此功能已列入规范，因此，它在其他支持 `SW` 的浏览器中也适用。
+
+#### 处理更新周期
+
+为支持尽可能多的模式，整个更新周期都是可观察的：
+
+```javascript
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+        reg.installing; // the installing worker, or undefined
+        reg.waiting; // the waiting worker, or undefined
+        reg.active; // the active worker, or undefined
+
+        reg.addEventListener('updatefound', () => {
+            // A wild service worker has appeared in reg.installing!
+            const newWorker = reg.installing;
+
+            newWorker.state;
+            // "installing" - the install event has fired, but not yet complete
+            // "installed"  - install complete
+            // "activating" - the activate event has fired, but not yet complete
+            // "activated"  - fully active
+            // "redundant"  - discarded. Either failed install, or it's been
+            //                replaced by a newer version
+
+            newWorker.addEventListener('statechange', () => {
+            // newWorker.state has changed
+            });
+        });
+    });
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        // This fires when the service worker controlling this page
+        // changes, eg a new worker has skipped waiting and become
+        // the new active worker.
+    });
+```
+
+### sync事件
+
+`Sync事件`让你可以先将网络相关任务延迟到用户**有网络**的时候**再执行**。这个功能常被称作“**背景同步**”。这功能可以用于保证任何用户**在离线**的时候所产生**对于网络有依赖**的操作，最终可以在网络再次可用的时候抵达它们的目标。
+
+代码示例如下
+
+```javascript
+    navigator.serviceWorker.ready.then(registration => {
+        document.getElementById('submit').addEventListener('click', () => {
+            registration.sync.register('submit').then(() => {
+                console.log('sync registered!');
+            });
+        });
+    });
+```
+
+我们指定在一个按钮的点击事件里，在一个全局的 `ServiceWorkerRegistration` 对象身上调用 `sync.register`。
+
+简单地讲，任何你需要确保在**有网络时立刻执行**或者**等到有网再执行**的操作，都需要注册为一个`sync事件`。
+
+这操作可以是发送一个评论，或者获取用户信息，在SW的事件监听器里会如下定义：
+
+```javascript
+    // sw.js
+    self.addEventListener('sync', event => {  
+        if (event.tag === 'submit') {
+            console.log('sync!');
+        }
+    });
+```
+
+我们监听一个 `sync 事件`，然后在 `SyncEvent` 对象上检查 `tag` 是否匹配我们在点击事件里所设定的 `'submit'`。
+
+如果多个 `tag` 标记为 `submit` 的 `sync`事件被注册了，`sync` 事件处理器只会运行一次。
+
+所以在这个例子里，如果用户离线了，然后点击按钮7次，当网络再次连上，所有的`sync`注册都会合而为一，`sync`事件只会触发一次。
+
+#### Sync事件是什么时候触发
+
+如果用户的网络时联通的，那么`sync事件`会**立刻触发**并且**立刻执行**你所定义的任务。
+
+而如果用户离线了，`sync 事件`会在网络恢复后**第一时间触发**。
+
+## SW几种缓存策略
+
+- 渐进式缓存
+- 仅使用缓存
+- 仅使用网络
+- 缓存优先
+- 网络优先
+- 速度优先
+
+### 渐进式缓存
+
+对于在`install`中发现没有缓存，页面**又依赖但又不经常变化**的资源，可以在页面打开或发生用户交互时触发`fetch`然后使用`fetch api`再去网络拉取，将返回正常的`response缓存`起来以便下次使用。
+
+**progressive-cache**
+
+```javascript
+    self.addEventListener('fetch', function(event) {
+        event.respondWith(
+            caches.match(event.request)
+            .then(function(response) {
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                // return fetch(event.request);
+                var requestClone = event.request.clone();
+                return fetch(requestClone).then(response => {
+                    if(!response || response.status !== 200 || response.type !== 'basic') {
+                        return response;
+                    }
+                    var responseToCache = response.clone();
+                    caches.open(CACHE_NAME)
+                    .then(function(cache) {
+                        cache.put(event.request, responseToCache);
+                    });
+                    return response;
+                });
+            })
+        );
+    });
+```
+
+### 仅使用缓存
+
+在`fetch事件`中，**仅去匹配资源**，若匹配失败，表现出来的就是前端页面对于该 **资源加载失败**。这里**容错性比较差**，适用于页面资源都是**静态资源**的，且不能使用**不影响安装的资源预缓存**。
+
+**cache-only**
+
+```javascript
+    // SW请求拦截事件
+    self.addEventListener('fetch', (event) => {
+        event.respondWith(
+            caches.open(OFFLINE_CACHE_NAME).then((cache) => {
+                // 匹配资源如果命中返回缓存
+                return cache.macth(event.request.url);
+            });
+        );
+    });
+```
+
+### 仅使用网络
+
+在`fetch事件`中，仅将`request`重新抽出用`fetch`去网络加载并返回给前端页面。适用于资源大多是**动态资源**、**实时性要求高**的场景。
+
+**network-only**
+
+```javascript
+    // SW请求拦截事件
+    self.addEventListener('fetch', (event) => {
+        // 仅使用网络加载
+        event.respondWith(fetch(event.request));
+    });
+```
+
+### 缓存优先
+
+简单的资源缓存中使用的就是**缓存优先策略**，**先去缓存匹配**，**匹配失败折回网络**，这算是**最常用、容错性能**好的一种策略。
+
+**firstCache**
+
+```javascript
+    function firstCache (cacheName, request) {
+        // 打开SW
+        return caches.open(cacheName).then(cache => {
+            // 匹配请求路径
+            return cache.match(request).then(response => {
+                // fetch请求
+                var fetchServer = function() {
+                    return fetch(request).then(newResponse => {
+                        cache.put(request, newResponse.clone());
+                        return newResponse;
+                    });
+                }
+                // 如果缓存中有数据则返回，否则请求网络数据
+                if (response) {
+                    return response;
+                } else {
+                    return fetchServer();
+                }
+            });
+        });
+    }
+```
+
+### 网络优先
+
+在`fetch事件`中先去`网络fetch`，当出现服务器**故障或者网络不良时**，**折回本地缓存**，目的是为了展示最新的数据，对实时性要求比较高但又能够带来良好体验的应用，比如天气类型应用。
+
+**firstNet**
+
+```javascript
+    function firstNet(cacheName, request) {
+        // 请求网络数据并缓存
+        return fetch(request).then(response => {
+            // 响应clone
+            var responseCopy = response.clone();
+            caches.open(cacheName).then(cache => {
+                // fetch请求
+                cache.put(request, responseCopy);
+            });
+            return response;
+        }).catch(() => {
+            // fetch失败走本地缓存
+            return caches.open(cacheName).then(cache => {
+                return cache.match(request);
+            });
+        });
+    }
+```
+
+### 速度优先
+
+在`fetch事件`中**同时发起本地缓存匹配及网络请求**，**谁先返回使用谁的**，该方案**适用于对性能要求比较高**的站点，缩短了缓存优先策略中有可能缓存中没有资源再折回网络的时间消耗。
+
+```javascript
+function networkCacheRace(cacheName, request) {
+    var timer, TIMEOUT = 500;
+    /**
+     * 网络好的情况下给网络请求500ms, 若超时则从缓存中取数据
+     * 若网络较差且没有缓存, 由于第一个 Promise 会一直处于 pending, 故此时等待网络请求响应
+     */
+    return Promise.race([new Promise((resolve, reject) => {
+        // 缓存请求
+        timer = setTimeout(() => {
+            caches.open(cacheName).then( cache => {
+                cache.match(request).then( response => {
+                    if (response) {
+                        resolve(response);
+                    }
+                });
+            });
+        }, TIMEOUT);
+    }), fetch(request).then( response => {
+        // 网络请求
+        clearTimeout(timer);
+        var responseCopy = response.clone();
+        caches.open(cacheName).then( cache => {
+            cache.put(request, responseCopy);
+        });
+        return response;
+    }).catch(() => {
+        clearTimeout(timer);
+        return caches.open(cacheName).then( cache => {
+            return cache.match(request);
+        });
+    })]);
+}
+```
+
+现在我们可以在 `sw.js` 中更改一下缓存策略，从而达到最理想的效果。
+
+```javascript
+    // sw.js
+    self.addEventListener('fetch', event => {
+        // ...
+        if ( /\.(js|css)$/.test(url) ) {
+            (cacheName = cacheMaps.cache_file) 
+            && e.respondWith(networkCacheRace(cacheName, request));
+        }
+        // ...
+    })
+```
+
+## SW中的消息推送
+
+**Push消息**
+
+在`SW`里，通过 `push 事件`以及浏览器的 `Push API`，可以实现`push消息`的功能。
+在说道`web push消息`的时候，其实涉及到两个正在完善中的技术：`消息提醒` 与 `信息推送`。
+
+### 消息提醒
+
+用`SW`实现消息提醒挺简单直接：
+
+```javascript
+    // app.js
+    // ask for permission
+    Notification.requestPermission(permission => {  
+        console.log('permission:', permission);
+    });
+
+    // display notification
+    function displayNotification() {  
+        if (Notification.permission == 'granted') {
+            navigator.serviceWorker.getRegistration()
+            .then(registration => {
+                registration.showNotification('this is a notification!');
+            });
+        }
+    }
+```
+
+```javascript
+    // sw.js
+    self.addEventListener('notificationclick', event => {  
+        // 消息提醒被点击的事件
+    });
+
+    self.addEventListener('notificationclose', event => {  
+        // 消息提醒被关闭的事件
+    });
+```
+
+你需要先向用户寻求让你的网页产生消息提醒的权限。之后，你就可以弹出提示信息，然后处理某些事件，比如用户把消息关掉的事件。
+
+### 信息推送
+
+信息推送涉及到利用浏览器提供的`Push API`以及后端的配合实现。要讲解如何使用`Push API`完全可以再写一篇文章，不过基本的套路如下：
+
+![http-cache-serviceworker](../../images/http/http-cache-4-13.png)
+
+这是个略微复杂难懂的过程，已经超出这篇文章的讨论范围。
+
+## 更好的方案 - Workbox
+
