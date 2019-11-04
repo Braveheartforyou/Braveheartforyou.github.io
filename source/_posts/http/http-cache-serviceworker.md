@@ -775,3 +775,175 @@ function networkCacheRace(cacheName, request) {
 
 ## 更好的方案 - Workbox
 
+什么是 Workbox ?
+
+> Workbox is a library that bakes in a set of best practices and removes the boilerplate every developer writes when working with service workers.
+
+其大概意思是它对常见的 `SW` 操作进行了一层封装, 根据最佳实践方便了开发者的使用。因此在我们快速开发自己的 `PWA` 应用时使用 `Workbox` 是最合适不过的了。
+
+它主要有以下几大功能 :
+
+- Precaching  ~  预缓存
+- Runtime caching  ~  运行时缓存
+- Strategies  ~  缓存策略
+- Request routing  ~  请求路由控制
+- Background sync  ~  后台同步
+- Helpful debugge
+
+### 简单应用
+
+直接修改`sw.js`的代码，如下：
+
+```js
+    // sw.js
+    // 导入谷歌提供的 Workbox 库
+    importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js');
+
+    if ( !workbox ) { 
+        console.log(`Workbox didn't load.`);
+        return;
+    }
+
+    // Workbox 注册成功, 可以进行下一步的操作
+
+    // 立即激活, 跳过等待
+    workbox.skipWaiting();
+    workbox.clientsClaim();
+
+    // workbox.routing.registerRoute()...
+```
+
+如果浏览器支持，可以直接引用API接口：
+
+1. `precaching`可以在注册成功后直接缓存的文件；
+2. `routing`匹配符合规则的`url`与`strategies`合作来完成文件的缓存。
+
+代码如下：
+
+```js
+// 注册完成后，即缓存对应的文件列表
+workbox.precaching.precacheAndRoute([
+    '/src/static/js/index.js',
+    '/src/static/css/index/css'
+])
+
+// routing方法匹配请求文件路径，strategies用来存储对应文件
+workbox.routing.registerRoute(
+    matchFunction,  // 字符串或者是正则表达式
+    handler // 可以使用workbox.strategies缓存策略来缓存
+)
+```
+
+### workbox缓存策略
+
+`workbox.strategies`缓存策略有：
+
+1. `staleWhileRevalidate` 使用已有的缓存，然后发起请求，用请求结果来更新缓存；
+2. `networkFirst` 先发起请求，请求成功后会缓存结果。如果失败，则使用最新的缓存；
+3. `cacheFirst` 总是先使用缓存，如果无匹配的缓存，则发起网络请求并缓存结果；
+4. `networkOnly` 强制发起请求；
+5. `cacheOnly` 强制使用缓存。
+
+官方也有给了实现逻辑如下。
+
+#### Cache Only
+
+只从缓存中读取，当缓存中没有数据时，读取失败。
+
+![http-cache-serviceworker](../../images/http/http-cache-4-15.png)
+
+#### NetWork Only
+
+只通过网络请求进行资源请求，若请求失败，则返回失败响应。
+
+![http-cache-serviceworker](../../images/http/http-cache-4-16.png)
+
+#### NetWork First
+
+- 优先网络请求
+- 网络请求成功时，将结果写入缓存，并将结果直接返回。
+- 网络请求失败时，从缓存中读取结果，若读取结果，则返回，若未读取到，则请求失败。
+
+不难看出，这种策略是为了保证在**第一次请求成功之后**，后面多次的请求始终都能返回结果。
+
+![http-cache-serviceworker](../../images/http/http-cache-4-17.png)
+
+```js
+    workbox.routing.registerRoute(/\.(js|css)$/,
+        workbox.strategies.networkFirst({
+            // 给网络请求0.5秒，若仍未返回则从缓存中取数据
+            networkTimetoutSeconds: 0.5,
+            cacheName: 'css.js',
+        }),
+    );
+```
+
+#### Cache First
+
+- 优先从缓存中读取结果
+- 若缓存中不存在结果，则进行网络请求
+- 网络请求成功时，将结果写入缓存并返回
+- 网络请求失败时，返回失败响应
+
+![http-cache-serviceworker](../../images/http/http-cache-4-18.png)
+
+```js
+    workbox.routing.registerRoute(/\.(png|jpg|jpeg|gif|webp)$/,
+        // 对于图片资源使用缓存优先
+        workbox.strategies.cacheFirst({
+            cacheName: 'images',
+            // 设置最大缓存数量以及过期时间
+            plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 60,
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+            }),
+            ],
+        }),
+    );
+```
+
+#### Stale-While-Revalidate
+
+- 优先查缓存，并同时发起网络请求
+- 若缓存命中且网络请求成功，返回缓存结果，并更新缓存（下次从缓存中读取的数据就是最新的了）
+- 若缓存未命中，则看网络请求是否成功，成功则更新缓存并返回结果，失败则返回失败响应。
+
+![http-cache-serviceworker](../../images/http/http-cache-4-14.png)
+
+```js
+    workbox.routing.registerRoute(/\.(js|css)$/,
+        workbox.strategies.staleWhileRevalidate({
+            cacheName: 'css.js',
+        }),
+    );
+```
+
+## 总结
+
+在本篇文章中详细的记录了有关`SW`的主要功能和能给我们带来的好处。一般在开发中还是推荐使用`workbox`，最后如果个人有兴趣的可以自己编写示例来验证文章中的代码示例。
+
+**SW主要作用**
+
+- **可以用来做缓存，以达到提升体验、节省浏览等等**
+- **SW 是一种可编程网络代理，让您能够控制页面所发送网络请求的处理方式。**
+- **离线缓存接口请求及文件，更新、清除缓存内容；**
+- **可分配给 Service Worker 一些任务，并在使用基于 Promise 的方法当任务完成时收到结果。**
+- **Service Worker处于空闲状态会被终止，在下一次需要时重启。**
+
+**SW几种策略**
+
+- **渐进式缓存**
+- **仅使用缓存**
+- **仅使用网络**
+- **缓存优先**
+- **网络优先**
+- **速度优先**
+
+## 参考
+
+> [Service Worker：简介  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN)
+> [Service Worker 生命周期  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-CN#install)
+> [用 Service Worker 实现前端性能优化](https://mp.weixin.qq.com/s/SLG_cDxDo7BaoQqAyLGa-Q)
+> [service worker 实现离线缓存](https://mp.weixin.qq.com/s/aboA9dtCK6t0fzs0JU58Iw)
+> [【前-workbox-网络摘要】WorkBox缓存策略](https://www.jianshu.com/p/3fb5615f18cf)
