@@ -53,20 +53,21 @@ function b() {
 
 ### 三点注意
 
-    允许在块级作用域内声明函数。
-    函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
-    同时，函数声明还会提升到所在的块级作用域的头部。
-    上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。
-    ```javascript
-    // 浏览器的 ES6 环境
-    function f() { console.log('I am outside!'); }
-    (function () {
-      var f = undefined;
-      if (false) {
-        function f() { console.log('I am inside!'); }
-      }
+允许在块级作用域内声明函数。
+函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
+同时，函数声明还会提升到所在的块级作用域的头部。
+上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。
 
-      f();
-    }());
-    // Uncaught TypeError: f is not a function
-    ```
+```javascript
+// 浏览器的 ES6 环境
+function f() { console.log('I am outside!'); }
+(function () {
+  var f = undefined;
+  if (false) {
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+// Uncaught TypeError: f is not a function
+```
