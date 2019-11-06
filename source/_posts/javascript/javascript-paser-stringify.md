@@ -186,6 +186,6 @@ description: 本篇文章会介绍JSON.stringify和JSON.parse用来深拷贝时�
         let IsQueto = (getType(item) === 'Number' || getType(item) === 'Boolean' || getType(item) === 'Null') ? '' : '"';
         // 拼接数组字段
         json.push((arr ? IsQueto : '"' + key + '": "') + String(item) + IsQueto);
-        // 。。。省略代码
+        // 。。。省略代
     }
 ```
