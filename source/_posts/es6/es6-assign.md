@@ -100,15 +100,29 @@ ES6中拷贝对象的方法，接受的第一个参数是拷贝的`目标target`
 
 ### 自己实现一个assgin
 
+**实现目标**
+
 - 第一个`target`
-- 支持多个对象
+- 支持多个对象合并
+- 与Object.assign表现一至
+
+大致分为下面几步：
+
+- 判断传入`target`如果不为对象，或者 传入为`null`时直接返回`Object(target)`
+- 获取所有参数，参数列表转为`Array`类型
+- 循环上一步生成数组，获取每一个传入的对象
+- 通过 `for...in`循环上一步获取的对象，并且通过`hasOwnProperty`判断当前属性是否是本身上的属性（不是原型上的）
+- 上一步通过判断的属性，赋值给`target`对象
+- 最后返回`target`对象
+
+**函数版本**
 
 ```javascript
+    // 函数版本
     function assign (target) {
         // 验证第一个参数是否为object
-        if (typeof target !== 'object') {
-            console.log('细节，细节');
-            return target;
+        if (typeof target !== 'object' || target == null) {
+            return Object(target);
         }
         // arguments转为数组
         let copyList = Array.prototype.slice.call(arguments, 1);
@@ -118,7 +132,7 @@ ES6中拷贝对象的方法，接受的第一个参数是拷贝的`目标target`
             let item = copyList[i];
             // 获取当前对象的属性
             for (key in item) {
-                // 判断属性是否可被枚举
+                // 判断属性是否在对象本身上
                 if (item.hasOwnProperty(key)) {
                     // 复制给目标对象
                     target[key] = item[key]
@@ -150,6 +164,51 @@ ES6中拷贝对象的方法，接受的第一个参数是拷贝的`目标target`
     newSource.age = 22;
     console.log(source); // {firstname: "target", age: 21, lastname: "source"}
     console.log(newSource); // {firstname: "target", age: 22, lastname: "source"}
+```
+
+**Object.defineProperty**版本
+
+```javascript
+    if (typeof Object.newAssign !== 'function') {
+        Object.defineProperty(Object, 'newAssign', {
+            writable: true,
+            configurable: true,
+            enumberable: false,
+            value: function (target) {
+                // 验证第一个参数是否为object
+                if (typeof target !== 'object' || target == null) {
+                    return Object(target);
+                }
+                // arguments转为数组
+                let copyList = Array.prototype.slice.call(arguments, 1);
+                let len = copyList.length;
+                // 循环复制多个对象的属性
+                for (let i = 0; i < len; i++) {
+                    let item = copyList[i];
+                    // 获取当前对象的属性
+                    for (key in item) {
+                        // 判断属性是否在对象本身上
+                        if (item.hasOwnProperty(key)) {
+                            // 复制给目标对象
+                            target[key] = item[key]
+                        }
+                    }
+                }
+                // 返回目标对象
+                return target;
+            }
+        })
+    }
+
+    // 测试代码
+    Object.newAssign('abc', false); // String {"abc"}
+    Object.assign('abc', false); // String {"abc"}
+
+    Object.newAssign({}, 'abc'); // {0: "a", 1: "b", 2: "c"}
+    Object.assign({}, 'abc'); // {0: "a", 1: "b", 2: "c"}
+
+    Object.newAssign({}, 'abc', false, 123); // {0: "a", 1: "b", 2: "c"}
+    Object.assign({}, 'abc', false, 123); // {0: "a", 1: "b", 2: "c"}
 ```
 
 ### Array.prototype.slice()
@@ -269,7 +328,7 @@ ES6中拷贝对象的方法，接受的第一个参数是拷贝的`目标target`
         }
         // 循环获取传入对象属性
         for (key in oldObj) {
-            // 验证是否为可枚举属性
+            // 判断属性是否在对象本身上
             if (oldObj.hasOwnProperty(key)) {
                 // 把属性复制给新对象
                 newObj[key] = oldObj[key]
