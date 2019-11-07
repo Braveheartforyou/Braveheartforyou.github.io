@@ -119,7 +119,7 @@
 <meta name="keywords" content="Http">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Http中的缓存（二） HTTP中的缓存">
-<meta property="og:url" content="http://asyncnode.com/blog/http/http-etag-cache.html">
+<meta property="og:url" content="http://asyncnode.com/blog/http/http-cache-http.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
 <meta property="og:locale" content="zh-Hans">
@@ -143,8 +143,8 @@
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-17.png">
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-19.png">
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-20.png">
-<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-20.png">
-<meta property="og:updated_time" content="2019-10-30T08:19:35.675Z">
+<meta property="og:image" content="http://asyncnode.com/images/http/http-cache-3-21.png">
+<meta property="og:updated_time" content="2019-11-04T02:54:16.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http中的缓存（二） HTTP中的缓存">
 <meta name="twitter:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
@@ -176,7 +176,7 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/blog/http/http-etag-cache.html">
+  <link rel="canonical" href="http://asyncnode.com/blog/http/http-cache-http.html">
 
 
 
@@ -354,7 +354,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http/http-etag-cache.html">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http/http-cache-http.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="asyncnode">
@@ -423,7 +423,7 @@
 
           
           
-             <span id="/blog/http/http-etag-cache.html" class="leancloud_visitors" data-flag-title="Http中的缓存（二） HTTP中的缓存">
+             <span id="/blog/http/http-cache-http.html" class="leancloud_visitors" data-flag-title="Http中的缓存（二） HTTP中的缓存">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -456,7 +456,7 @@
 
       
         <blockquote>
-<p><a href="/blog/http/http-cache.html">Http中的缓存（一） 多级缓存结构</a><br><a href="/blog/http/http-etag-cache.html">Http中的缓存（二） HTTP中的缓存</a><br><a href="/blog/http/http-cache-serviceworker.html">Http中的缓存（三） PWA中的ServiceWorker</a></p>
+<p><a href="/blog/http-cache-multiple.html">Http中的缓存（一） 多级缓存结构</a><br><a href="/blog/http/http-cache-http.html">Http中的缓存（二） HTTP中的缓存</a><br><a href="/blog/http/http-cache-serviceworker.html">Http中的缓存（三） PWA中的ServiceWorker</a></p>
 </blockquote>
 <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>HTTP缓存</strong>相信都不陌生，因为它是在前端性能优化中必不可少的一个环节。在<strong>首次进入或者请求数据</strong>正常传输数据，而当<strong>再次进入或者请求数据</strong>时，可以走本地或者服务器上的缓存，来<strong>节省流量</strong>、<strong>优化性能</strong>、<strong>提高用户体验</strong>、<strong>降低网络负荷</strong>等等。</p>
 <p><strong>web缓存</strong>主要用来缓存<strong>html文件</strong>、<strong>js文件</strong>、<strong>css文件</strong>、<strong>数据</strong>，基本上都是提升<strong>客户端/浏览器</strong>请求到<strong>服务器</strong>之间的速度，当然也可以结合数据压缩如<strong>gzip</strong>、<strong>7z</strong>等等加快响应数据传输。</p>
@@ -867,7 +867,7 @@
 <h3 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>修改<strong>app.js</strong>，通过<code>npm i crypto -D</code>安装<code>crypto</code>,用于生成<code>md5</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 处理 css 文件</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; request, response, path &#125; = ctx;</span><br><span class="line">    ctx.type = mime.getType(path);</span><br><span class="line">    response.set(<span class="string">'pragma'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> ifNoneMatch = request.headers[<span class="string">'if-none-match'</span>];</span><br><span class="line">    <span class="keyword">const</span> imagePath = Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">const</span> hash = crypto.createHash(<span class="string">'md5'</span>);</span><br><span class="line">    <span class="keyword">const</span> imageBuffer = <span class="keyword">await</span> fs.readFile(imagePath);</span><br><span class="line">    hash.update(imageBuffer);</span><br><span class="line">    <span class="keyword">const</span> etag = <span class="string">`"<span class="subst">$&#123;hash.digest(<span class="string">'hex'</span>)&#125;</span>"`</span>;</span><br><span class="line">    <span class="keyword">if</span> (ifNoneMatch === etag) &#123;</span><br><span class="line">        response.status = <span class="number">304</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        response.set(<span class="string">'etag'</span>, etag);</span><br><span class="line">        ctx.body = imageBuffer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>运行效果如下图所示：</p>
-<p><img src="../../images/http/http-cache-3-20.png" alt="http-cache-public"></p>
+<p><img src="../../images/http/http-cache-3-21.png" alt="http-cache-public"></p>
 <p>他的过程和<code>Last-Modified/If-Modified-Since</code>，但是因为<code>Last-Modified/If-Modified-Since</code>它不能监听<code>1s</code>以内的资源变化，所以一般用他来做<code>Etag/If-None-Match</code>的补充方案。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>缓存大致分为：<code>强缓存</code>、<code>协商缓存</code>。</p>
 <ul>
@@ -886,10 +886,8 @@
 </ul>
 <p>本篇文章有意避开<code>Service Worker</code>的详细介绍，因为会有单独的一篇文章来介绍<code>Service Worker</code>在真实应用的使用。</p>
 <blockquote>
-<p>在线代码，可以<strong>刷新页面（刷新内部页面）</strong>在<strong>控制台</strong>中查看当前效果</p>
+<p><a href="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14" target="_blank" rel="noopener">在线代码</a>，可以<strong>刷新页面（刷新内部页面）</strong>在<strong>控制台</strong>中查看当前效果</p>
 </blockquote>
-<iframe src="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="agitated-rain-55pzk" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&amp;mid=2247484082&amp;idx=1&amp;sn=2efec72057f7fa448a6c0e258fd80370&amp;chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1568210174017&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b&amp;key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&amp;ascene=1&amp;uin=MTY4MzM5MzY2Mw%3D%3D&amp;devicetype=Windows+10&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw" target="_blank" rel="noopener">一文搞懂浏览器缓存机制</a><br><a href="https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w" target="_blank" rel="noopener">关于 http 缓存，这些知识点你可能都不懂</a><br><a href="https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q" target="_blank" rel="noopener">浏览器缓存策略</a><br><a href="https://zhuanlan.zhihu.com/p/44789005" target="_blank" rel="noopener">一文读懂前端缓存</a><br><a href="https://juejin.im/post/5d0f9585e51d4510926a7b68" target="_blank" rel="noopener">通过 koa2 服务器实践探究浏览器HTTP缓存机制</a></p>
 </blockquote>
@@ -1170,7 +1168,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共203.4k字</span>
 </div> -->
 
         

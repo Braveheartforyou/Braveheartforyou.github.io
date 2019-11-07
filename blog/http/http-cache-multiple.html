@@ -118,8 +118,8 @@
 <meta name="description" content="大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。">
 <meta name="keywords" content="Http">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Http中的缓存（一） 强缓存、协商缓存 缓存">
-<meta property="og:url" content="http://asyncnode.com/blog/http/http-cache.html">
+<meta property="og:title" content="Http中的缓存（一） 多级缓存结构">
+<meta property="og:url" content="http://asyncnode.com/blog/http/http-cache-multiple.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。">
 <meta property="og:locale" content="zh-Hans">
@@ -134,9 +134,9 @@
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-1-8.png">
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-1-9.png">
 <meta property="og:image" content="http://asyncnode.com/images/http/http-cache-1-10.png">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.946Z">
+<meta property="og:updated_time" content="2019-10-31T03:12:08.486Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Http中的缓存（一） 强缓存、协商缓存 缓存">
+<meta name="twitter:title" content="Http中的缓存（一） 多级缓存结构">
 <meta name="twitter:description" content="大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。">
 <meta name="twitter:image" content="http://asyncnode.com/images/http/http-cache-1-1.png">
 
@@ -166,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="http://asyncnode.com/blog/http/http-cache.html">
+  <link rel="canonical" href="http://asyncnode.com/blog/http/http-cache-multiple.html">
 
 
 
 
 
-  <title>Http中的缓存（一） 强缓存、协商缓存 缓存 | asyncnode</title>
+  <title>Http中的缓存（一） 多级缓存结构 | asyncnode</title>
   
 
 
@@ -344,7 +344,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http/http-cache.html">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/http/http-cache-multiple.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="asyncnode">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Http中的缓存（一） 强缓存、协商缓存 缓存</h1>
+          <h1 class="post-title" itemprop="name headline">Http中的缓存（一） 多级缓存结构</h1>
         
 
         <div class="post-meta">
@@ -413,7 +413,7 @@
 
           
           
-             <span id="/blog/http/http-cache.html" class="leancloud_visitors" data-flag-title="Http中的缓存（一） 强缓存、协商缓存 缓存">
+             <span id="/blog/http/http-cache-multiple.html" class="leancloud_visitors" data-flag-title="Http中的缓存（一） 多级缓存结构">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -446,7 +446,7 @@
 
       
         <blockquote>
-<p><a href="/blog/http/http-cache.html">Http中的缓存（一） 多级缓存结构</a><br><a href="/blog/http/http-etag-cache.html">Http中的缓存（二） HTTP中的缓存</a><br><a href="/blog/http/http-cache-serviceworker.html">Http中的缓存（三） PWA中的ServiceWorker</a></p>
+<p><a href="/blog/http-cache-multiple.html">Http中的缓存（一） 多级缓存结构</a><br><a href="/blog/http/http-cache-http.html">Http中的缓存（二） HTTP中的缓存</a><br><a href="/blog/http/http-cache-serviceworker.html">Http中的缓存（三） PWA中的ServiceWorker</a></p>
 </blockquote>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>缓存</strong>相信现在这个词大家都不陌生，因为在当前的应用中被广泛的应用。因为<strong>缓存</strong>会带来更高的<strong>性能</strong>、<strong>用户体验</strong>，同时也会<strong>节省流量</strong>、<strong>离线体验</strong>等等好处。</p>
 <p>关于缓存的文章分为三篇：<strong>多级缓存结构</strong>、<strong>HTTP缓存详解</strong>、<strong>离线缓存</strong></p>
@@ -895,7 +895,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共203.4k字</span>
 </div> -->
 
         

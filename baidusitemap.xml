@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://asyncnode.com/blog/http/http-etag-cache.html</loc>
-    <lastmod>2019-10-30</lastmod>
+    <loc>http://asyncnode.com/blog/javascript/javascript-deepcopy.html</loc>
+    <lastmod>2019-11-07</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/javascript/javascript-paser-stringify.html</loc>
+    <lastmod>2019-11-07</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/es6/es6-assign.html</loc>
+    <lastmod>2019-11-07</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/http/http-cache-serviceworker.html</loc>
+    <lastmod>2019-11-06</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/es6/es6-Number.html</loc>
+    <lastmod>2019-11-05</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/es6/es6-let-const-var.html</loc>
+    <lastmod>2019-11-05</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/http/http-cache-http.html</loc>
+    <lastmod>2019-11-04</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/http/http-cache-multiple.html</loc>
+    <lastmod>2019-10-31</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/webpack/webpack-hot-twofuntions.html</loc>
     <lastmod>2019-10-24</lastmod>
@@ -34,10 +55,10 @@
     <loc>http://asyncnode.com/blog/webpack/webpack-cli-sap.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/vue-router-flow.html</loc>
+    <loc>http://asyncnode.com/blog/vue/vue-router.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/vue-router.html</loc>
+    <loc>http://asyncnode.com/blog/vue/vue-router-flow.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue/vue-run-build.html</loc>
@@ -151,10 +172,10 @@
     <loc>http://asyncnode.com/blog/other/hello-world.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/other/nginx-gzip.html</loc>
+    <loc>http://asyncnode.com/blog/other/jenkins-fornt.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/other/jenkins-fornt.html</loc>
+    <loc>http://asyncnode.com/blog/other/nginx-gzip.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/performance/preformance-awaly.html</loc>
@@ -244,9 +265,6 @@
     <loc>http://asyncnode.com/blog/javascript/javascript-this-three.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/javascript-paser-stringify.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/javascript-prototype-one.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
@@ -307,9 +325,6 @@
     <loc>http://asyncnode.com/blog/javascript/javascript-debounce-throttle.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/javascript-deepcopy.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/javascript-extends-five.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
@@ -346,10 +361,10 @@
     <loc>http://asyncnode.com/blog/javascript/evenloop.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/hoisting.html</loc>
+    <loc>http://asyncnode.com/blog/javascript/float-Operation.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/float-Operation.html</loc>
+    <loc>http://asyncnode.com/blog/javascript/hoisting.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/http/http-http2.html</loc>
@@ -370,12 +385,6 @@
     <loc>http://asyncnode.com/blog/http/http-tcp.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/http/http-cache-serviceworker.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/http/http-cache.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/http/http-fetch.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
@@ -385,10 +394,10 @@
     <loc>http://asyncnode.com/blog/http/http-http2-1.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/git/git-merge.html</loc>
+    <loc>http://asyncnode.com/blog/git/git-precommit.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/git/git-precommit.html</loc>
+    <loc>http://asyncnode.com/blog/git/git-merge.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/git/git-rebase.html</loc>
@@ -397,10 +406,10 @@
     <loc>http://asyncnode.com/blog/html/html-browser-render.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/html/html-style-javascript.html</loc>
+    <loc>http://asyncnode.com/blog/html/html-reload-reflow.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/html/html-reload-reflow.html</loc>
+    <loc>http://asyncnode.com/blog/html/html-style-javascript.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-rest.html</loc>
@@ -427,9 +436,6 @@
     <loc>http://asyncnode.com/blog/es6/es6-for-of.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-let-const-var.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-promise-one.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
@@ -445,9 +451,6 @@
     <loc>http://asyncnode.com/blog/es6/es6-arrow-functions.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-assign.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-babel-async.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
@@ -460,10 +463,10 @@
     <loc>http://asyncnode.com/blog/es6/es6-definedproperty.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-Array-break-continue.html</loc>
+    <loc>http://asyncnode.com/blog/es6/es6-Array-function.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-Array-function.html</loc>
+    <loc>http://asyncnode.com/blog/es6/es6-Array-break-continue.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-Array.html</loc>
@@ -475,13 +478,10 @@
     <loc>http://asyncnode.com/blog/es6/es6-AsyncFuntion.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-Number.html</loc>
+    <loc>http://asyncnode.com/blog/css/css-relative.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/css/css-padding.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/css/css-relative.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/css/css3-flex.html</loc>
@@ -538,10 +538,10 @@
     <loc>http://asyncnode.com/blog/algorithm/algorithm-tailCall.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/browser/browser-store.html</loc>
+    <loc>http://asyncnode.com/blog/canvas/canvas-des1.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/canvas/canvas-des1.html</loc>
+    <loc>http://asyncnode.com/blog/browser/browser-store.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/canvas/canvas-des2.html</loc>
@@ -571,10 +571,10 @@
     <loc>http://asyncnode.com/blog/InterviewQuestion/css-padding.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/InterviewQuestion/extends-javascript.html</loc>
+    <loc>http://asyncnode.com/blog/InterviewQuestion/javascript-prototype.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/InterviewQuestion/javascript-prototype.html</loc>
+    <loc>http://asyncnode.com/blog/InterviewQuestion/extends-javascript.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>
 </urlset>

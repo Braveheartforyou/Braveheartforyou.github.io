@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="ECMAScript6 let &amp;&amp; const &amp;&amp; var">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.943Z">
+<meta property="og:updated_time" content="2019-11-05T06:37:36.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="es6中let、const和var之间的关联、区别">
 <meta name="twitter:description" content="ECMAScript6 let &amp;&amp; const &amp;&amp; var">
@@ -439,12 +439,9 @@
 <h3 id="let-const-暂时性死区-（temporal-dead-zone，简称-TDZ）"><a href="#let-const-暂时性死区-（temporal-dead-zone，简称-TDZ）" class="headerlink" title="let const 暂时性死区 （temporal dead zone，简称 TDZ）"></a>let const 暂时性死区 （temporal dead zone，简称 TDZ）</h3><h4 id="只要块级作用域内存在-let-命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。"><a href="#只要块级作用域内存在-let-命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。" class="headerlink" title="只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。"></a>只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  tmp = <span class="string">"abc"</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="keyword">let</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="必须在声明以后才能使用"><a href="#必须在声明以后才能使用" class="headerlink" title="必须在声明以后才能使用"></a>必须在声明以后才能使用</h4><p>ES6 规定暂时性死区和 let、const 语句不出现变量提升，主要是为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。<br>参考 &gt; <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let</a> 兼容性查询</p>
 <h3 id="let-不允许被重复声明"><a href="#let-不允许被重复声明" class="headerlink" title="let 不允许被重复声明"></a>let 不允许被重复声明</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Uncaught SyntaxError: Identifier 'q' has already been declared</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="三点注意"><a href="#三点注意" class="headerlink" title="三点注意"></a>三点注意</h3><pre><code>允许在块级作用域内声明函数。
-函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
-同时，函数声明还会提升到所在的块级作用域的头部。
-上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。
+<h3 id="三点注意"><a href="#三点注意" class="headerlink" title="三点注意"></a>三点注意</h3><p>允许在块级作用域内声明函数。<br>函数声明类似于var，即会提升到全局作用域或函数作用域的头部。<br>同时，函数声明还会提升到所在的块级作用域的头部。<br>上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器的 ES6 环境</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> f = <span class="literal">undefined</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br><span class="line"><span class="comment">// Uncaught TypeError: f is not a function</span></span><br></pre></td></tr></table></figure>
-</code></pre>
+
       
     </div>
 
@@ -721,7 +718,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共203.4k字</span>
 </div> -->
 
         

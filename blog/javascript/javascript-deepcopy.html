@@ -123,10 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="本篇文章会介绍通过递归实现一个深拷贝，并且解决JSON.parse和JSON.stringify存在的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.950Z">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-clone-deep-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-clone-deep-1-2.png">
+<meta property="og:updated_time" content="2019-11-07T10:29:42.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深拷贝系列 ———— 自己通过递归实现一个深拷贝">
 <meta name="twitter:description" content="本篇文章会介绍通过递归实现一个深拷贝，并且解决JSON.parse和JSON.stringify存在的问题。">
+<meta name="twitter:image" content="http://asyncnode.com/images/javascript/javascript-clone-deep-1-1.png">
 
 
 
@@ -433,7 +436,73 @@
       
 
       
-        
+        <blockquote>
+<p><a href="/blog/es6/es6-assign.html">深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign</a><br><a href="/blog/javascript/javascript-paser-stringify.html">深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse</a><br><a href="/blog/javascript/javascript-deepcopy.html">深拷贝系列 ———— 自己通过递归实现一个深拷贝</a><br><a href="/blog/javascript/javascript-loadsh-deepcopy.html">深拷贝系列 ———— 分析 lodash 中的 deepcopy</a></p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在上篇文章中我们深入了解了<code>JSON.parse/JSON.stringify</code>，并且自己实现了一个<code>JSON.parse/JSON.stringify</code>，在这篇文章中我们要自己实现一个<strong>深拷贝</strong>，并且解决<code>JSON.parse/JSON.stringify</code>中出现的问题。</p>
+<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p><strong>实现目标</strong></p>
+<ul>
+<li>我们通过递归实现一个简单的深拷贝</li>
+<li>判断<code>Object</code>和<code>Array</code></li>
+</ul>
+<p><strong>实现步骤</strong></p>
+<ul>
+<li>提前声明一个判断类型函数<code>getType</code></li>
+<li>声明函数<code>cloneDeep</code>，首先判断<code>原对象</code>是否为<code>object</code>类型，如果不是直接返回原值</li>
+<li>声明一个新的目标对象<code>newTarget</code>，它的类型根据入参决定<code>（Array、Object）</code></li>
+<li>通过<code>for...in</code>循环<code>原对象</code>，并且通过<code>hasOwnProperty</code>判断属性是否为本身属性</li>
+<li>如果是本身属性递归调用<code>cloneDeep</code></li>
+<li>最后返回新对象<code>newTarget</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getType</span>(<span class="params">attr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> type = <span class="built_in">Object</span>.prototype.toString.call(attr);</span><br><span class="line">    <span class="keyword">let</span> newType = type.substr(<span class="number">8</span>, type.length - <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">return</span> newType;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 声明一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cloneDeep</span> (<span class="params">target</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否传入类型为Object</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> target !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 声明新对象</span></span><br><span class="line">    <span class="keyword">let</span> newTarget = getType(target) === <span class="string">'Array'</span> ? [] : &#123;&#125;;</span><br><span class="line">    <span class="comment">// 循环对象 递归复制给新对象</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> target) &#123;</span><br><span class="line">        <span class="comment">// 判断属性是否在对象本身上</span></span><br><span class="line">        <span class="keyword">if</span> (target.hasOwnProperty(key)) &#123;</span><br><span class="line">            <span class="comment">// 递归调用</span></span><br><span class="line">            newTarget[key] = cloneDeep(target[key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> newTarget;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line"><span class="keyword">const</span> target = &#123;</span><br><span class="line">    val1: <span class="number">1</span>,</span><br><span class="line">    val2: <span class="literal">undefined</span>,</span><br><span class="line">    val4: <span class="string">'target'</span>,</span><br><span class="line">    val5: &#123;</span><br><span class="line">        name: <span class="string">'target'</span>,</span><br><span class="line">        age: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">        sym: <span class="built_in">Symbol</span>(<span class="string">'setter'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> targetArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, &#123;<span class="attr">name</span>: <span class="string">'123'</span>, <span class="attr">age</span>: <span class="number">789</span>&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(cloneDeep(target));</span><br><span class="line"><span class="built_in">console</span>.log(cloneDeep(targetArray));</span><br></pre></td></tr></table></figure>
+<p>测试效果图如下：</p>
+<p><img src="../../images/javascript/javascript-clone-deep-1-1.png" alt="深拷贝/浅拷贝"></p>
+<p>在上面的代码中，已经解决了<code>JSON.stringify/JSON.parse</code>中的忽略<code>undefined/function</code>的问题，下面会逐渐解决问题，并且优化到类似与<code>lodash</code>库中的问题。</p>
+<h2 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h2><p><strong>实现目标</strong></p>
+<ul>
+<li>解决循环引用对象问题</li>
+<li>解决引用丢失问题</li>
+</ul>
+<p><strong>实现步骤</strong></p>
+<ul>
+<li>首先了解<code>Map</code>、<code>WeakMap</code>是什么</li>
+<li>通过<code>Map</code>、<code>WeakMap</code>、<code>Array</code>储存属性对象</li>
+<li>如果再次使用，直接从<code>Map</code>、<code>WeakMap</code>、<code>Array</code>中取出(这样既解决了循环引用，又解决了引用丢失)</li>
+</ul>
+<p>测试循环引用代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;</span><br><span class="line">    val1: <span class="number">1</span>,</span><br><span class="line">    val2: <span class="literal">undefined</span>,</span><br><span class="line">    val4: <span class="string">"target"</span>,</span><br><span class="line">    val5: &#123;</span><br><span class="line">        name: <span class="string">"target"</span>,</span><br><span class="line">        age: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">        sym: <span class="built_in">Symbol</span>(<span class="string">"setter"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">target.target = target;</span><br><span class="line"><span class="built_in">console</span>.log(cloneDeep(target));</span><br></pre></td></tr></table></figure>
+<p>执行效果如下图所示：<br><img src="../../images/javascript/javascript-clone-deep-1-2.png" alt="深拷贝/浅拷贝"></p>
+<h3 id="Map-weakMap"><a href="#Map-weakMap" class="headerlink" title="Map/weakMap"></a>Map/weakMap</h3><p><code>Map</code>和<code>WeakMap</code>都是ES6中的新出的数据类型。如果有兴趣可以去<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank" rel="noopener">WeakMap mdn</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">Map mdn</a>，或者<a href="http://es6.ruanyifeng.com/#docs/set-map" target="_blank" rel="noopener">Set 和 Map 数据结构</a>去了解它们的<code>api</code>和<code>使用场景</code>等。</p>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p><code>Map</code>对象保存键值对。任何值(对象或者原始值) 都可以作为一个键或一个值。</p>
+<p><strong>语法</strong></p>
+<p><code>new Map([iterable])</code></p>
+<ul>
+<li><code>iterable</code>: <code>Iterable</code> 可以是一个<code>数组</code>或者其他 <code>iterable 对象</code>，其元素为键值对(两个元素的数组，例如: [[ 1, ‘one’ ],[ 2, ‘two’ ]])。 每个键值对都会添加到新的<code>Map</code>。<code>null</code> 会被当做 <code>undefined</code>。</li>
+</ul>
+<p><strong>常用方法</strong></p>
+<ul>
+<li><code>Map.prototype.get(key)</code>: 返回键对应的值，如果不存在，则返回<code>undefined</code>。</li>
+<li><code>Map.prototype.set(key, value)</code>: 设置<code>Map</code>对象中键的值。返回该<code>Map对象</code>。</li>
+<li><code>Map.prototype.has(key)</code>: 返回一个<code>布尔值</code>，表示<code>Map实例</code>是否包含键对应的值。</li>
+<li><code>Map.prototype.delete(key)</code>: 如果 <code>Map对象</code>中存在该元素，则移除它并返回 <code>true</code>；否则如果该元素不存在则返回 <code>false</code>。</li>
+</ul>
+<p>这里只介绍了常用的<code>操作方法</code>，<code>Map</code>还有<code>循环方法</code>、<code>其他方法</code>等等。</p>
+<p><strong>实例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oneMap = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">var</span> keyObj = &#123;</span><br><span class="line">    name: <span class="string">'keyObj'</span></span><br><span class="line">&#125;;</span><br><span class="line">oneMap.set(<span class="string">'name'</span>, <span class="string">'test'</span>); <span class="comment">// &#123;"name" =&gt; "test"&#125;</span></span><br><span class="line">oneMap.set(keyObj, <span class="string">'keyObj'</span>); <span class="comment">// &#123;"name" =&gt; "test", keyObj =&gt; "keyObj"&#125; 这里的keyObj是上面声明的对象</span></span><br><span class="line"></span><br><span class="line">oneMap.get(<span class="string">'name'</span>); <span class="comment">// "test"</span></span><br><span class="line">oneMap.get(keyObj); <span class="comment">// "keyObj"</span></span><br><span class="line"></span><br><span class="line">oneMap.has(<span class="string">'name'</span>); <span class="comment">// true</span></span><br><span class="line">oneMap.has(keyObj); <span class="comment">// true</span></span><br><span class="line">oneMap.has(<span class="string">'age'</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">oneMap.delete(<span class="string">'name'</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h4><p><code>WeakMap</code> 对象是一组<code>键/值对</code>的集合，其中的键是<code>弱引用</code>的。其键<code>必须是对象</code>，而值可以是<code>任意</code>的。</p>
+<p>它的语法、参数与<code>Map</code>是一至的，只有两点区别：</p>
+<ul>
+<li><code>WeakMap</code>只接受<code>对象</code>作为<code>键</code>名（<code>null除外</code>），<code>不接受其他类型的值作为键名</code>。</li>
+<li><code>WeakMap</code> <code>弱引用</code>的<code>只是键名</code>，而<code>不是键值</code>。<code>键值</code>依然是<code>正常引用</code>。</li>
+</ul>
+<p>同时<code>WeakMap</code>只有上面<code>get/set/has/delete</code>四种方法，其它的方法它都是没有的。</p>
+<p><strong>实例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line">map.set(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// TypeError: 1 is not an object!</span></span><br><span class="line">map.set(<span class="built_in">Symbol</span>(), <span class="number">2</span>)</span><br><span class="line"><span class="comment">// TypeError: Invalid value used as weak map key</span></span><br><span class="line">map.set(<span class="literal">null</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// TypeError: Invalid value used as weak map key</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="keyword">let</span> key = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">foo</span>: <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">wm.set(key, obj);</span><br><span class="line">obj = <span class="literal">null</span>;</span><br><span class="line">wm.get(key)</span><br><span class="line"><span class="comment">// Object &#123;foo: 1&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里就不测试它的操作方法了，它的操作方法与<code>Map</code>一至。</p>
+<h3 id="通过Map解决"><a href="#通过Map解决" class="headerlink" title="通过Map解决"></a>通过Map解决</h3><p>在这里我们通过<code>Map</code>来解决循环引用，修改代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cloneDeep</span> (<span class="params">target, map = new Map(</span>)) </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否传入类型为Object</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> target !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 声明新对象</span></span><br><span class="line">    <span class="keyword">let</span> newTarget = getType(target) === <span class="string">'Array'</span> ? [] : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;!------新增代码开始------!&gt;</span></span><br><span class="line">    <span class="comment">// 查询map中是否有存在原对象（target），如果存在直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (map.get(target)) &#123;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果map中不存在原对象（target），则储存进map中</span></span><br><span class="line">    map.set(target, newTarget);</span><br><span class="line">    <span class="comment">// &lt;!------新增代码结束------!&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环对象 递归复制给新对象</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> target) &#123;</span><br><span class="line">        <span class="comment">// 判断属性是否在对象本身上</span></span><br><span class="line">        <span class="keyword">if</span> (target.hasOwnProperty(key)) &#123;</span><br><span class="line">            <span class="comment">// 递归调用</span></span><br><span class="line">            newTarget[key] = cloneDeep(target[key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回新对象</span></span><br><span class="line">    <span class="keyword">return</span> newTarget;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行测试代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -559,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
           <p class="site-author-name" itemprop="name">asyncnode</p>
@@ -639,6 +717,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归实现"><span class="nav-number">2.</span> <span class="nav-text">递归实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环引用"><span class="nav-number">3.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-weakMap"><span class="nav-number">3.1.</span> <span class="nav-text">Map/weakMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">3.1.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WeakMap"><span class="nav-number">3.1.2.</span> <span class="nav-text">WeakMap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过Map解决"><span class="nav-number">3.2.</span> <span class="nav-text">通过Map解决</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -687,7 +781,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共203.4k字</span>
 </div> -->
 
         
