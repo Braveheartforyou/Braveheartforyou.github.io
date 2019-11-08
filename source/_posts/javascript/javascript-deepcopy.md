@@ -91,7 +91,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 
 - 首先了解`Map`、`WeakMap`是什么
 - 通过`Map`、`WeakMap`、`Array`储存属性对象
-- 如果再次使用，直接从`Map`、`WeakMap`、`Array`中取出(这样既解决了循环引用，又解决了引用丢失)
+- 如果再次使用，直接从`Map`、`WeakMap`中取出(这样既解决了循环引用，又解决了引用丢失)
 
 测试循环引用代码：
 
@@ -125,7 +125,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 
 `new Map([iterable])`
 
-- `iterable`: `Iterable` 可以是一个`数组`或者其他 `iterable 对象`，其元素为键值对(两个元素的数组，例如: [[ 1, 'one' ],[ 2, 'two' ]])。 每个键值对都会添加到新的`Map`。`null` 会被当做 `undefined`。
+- `iterable`: `Iterable` 可以是一个`数组`或者其他 `iterable 对象`，其元素为键值对(两个元素的数组，例如: `[[ 1, 'one' ],[ 2, 'two' ]]`)。 每个键值对都会添加到新的`Map`。`null` 会被当做 `undefined`。
 
 **常用方法**
 
@@ -227,7 +227,32 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 ```
 
 执行测试代码如下：
+![深拷贝/浅拷贝](../../images/javascript/javascript-clone-deep-1-3.png)
+
+我们可以看到`target`变为一个`Circular`类型的对象，这个是在`node环境`中运行的，如果在`浏览器`对还是会`报错（爆栈）`。
+到这里我们只做到了让他没有报错，但是也并没有完美的解决循环引用的问题，下面就要到`WeakMap`登场了。
+
+### WeakMap解决
+
+上面我们已经讲解过`Map`和`WeakMap`的不同点和相同点，为什么说`WeakMap`在解决循环引用会比`Map`好很多呢，就是因为`WeakMap`它的`键值`是弱引用的。
+什么是弱引用，即`垃圾回收机制`不考虑 `WeakMap` 对该对象的引用，也就是说，如果其他对象都`不再引用`该对象，那么`垃圾回收机制`会`自动回收`该对象所占用的`内存`，不考虑该对象还存在于 `WeakMap` 之中。
+要深入理解`弱引用`这个又会涉及到`Node`和`JavaScript`底层垃圾回收机制，因为它们的垃圾回收机制都是使用的`标记法`，又分为`新生代`和`老生代`，所以这里就不多做赘述了。后面会有一系列文章来讲述`Node`和`JavaScript`中的相同和异同点。
+
+修改代码如下：
 
 ```js
-
+    // 只是把Map修改为WeakMap
+    map = new WeakMap()
 ```
+
+这样无论是在`浏览器端`还是`node`中都可以正常的运行。
+
+## 类型问题
+
+我们在上面只考虑了`Array/Object`其实就是`Object`类型的数据处理，其他的数据都是走的直接返回。
+
+- 改写`Object`的判断，并且分别处理`Array/Object`方法
+- 处理`Function/undefined/`
+- 处理`Symbol`、`不可循环类型（Number/String）`
+- 处理`RegExp/Map/Set`
+

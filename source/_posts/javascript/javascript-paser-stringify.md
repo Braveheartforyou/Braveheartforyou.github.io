@@ -6,10 +6,7 @@ categories: [JavaScript]
 description: 本篇文章会介绍JSON.stringify和JSON.parse用来深拷贝时存在什么问题，并且自己手动实现一个。
 ---
 
-> [深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign](/blog/es6/es6-assign.html)
-> [深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse](/blog/javascript/javascript-paser-stringify.html)
-> [深拷贝系列 ———— 自己通过递归实现一个深拷贝](/blog/javascript/javascript-deepcopy.html)
-> [深拷贝系列 ———— 分析 lodash 中的 deepcopy](/blog/javascript/javascript-loadsh-deepcopy.html)
+> [深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign](/blog/es6/es6-assign.html) > [深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse](/blog/javascript/javascript-paser-stringify.html) > [深拷贝系列 ———— 自己通过递归实现一个深拷贝](/blog/javascript/javascript-deepcopy.html) > [深拷贝系列 ———— 分析 lodash 中的 deepcopy](/blog/javascript/javascript-loadsh-deepcopy.html)
 
 ## 简介
 
@@ -232,7 +229,45 @@ if (item === obj) {
 }
 ```
 
-### Stringify总结
+### JSON.stingify 其他参数
+
+`JSON.stringify`它可以传入三个参数。
+
+**语法**： `JSON.stringify(value[, replacer [, space]])`
+
+**参数**
+
+- `value`：将要序列化成 一个 JSON 字符串的值。
+- `replacer(可选)`：如果该参数是一个`函数`，则在序列化过程中，被序列化的值的`每个属性都会`经过该函数的`转换和处理`；如果该参数是一个`数组`，则`只有包含`在这个数组中的`属性名`才会被序列化到最终的 `JSON` 字符串中；
+- `space`：指定缩进用的`空白字符串`，用于`美化输出（pretty-print）`；
+
+这里主要记录`replacer`的实现，首先我们要知道`replacer`参数的使用才能自己实现。
+
+**replacer**实例
+
+```js
+let oJson = {
+	name: "oJson",
+	age: 20,
+	sex: "man",
+	calss: "one"
+};
+JSON.stringify(oJson, ["sex", "name"]); // "{"sex":"man","name":"oJson"}"
+// 两个参数 key/value的形式
+JSON.stringify(oJson, function(key, value) {
+	if (typeof value === "string") {
+		return undefined;
+	}
+	return value;
+}); // "{"age":20}"
+```
+
+**实现**
+
+```js
+```
+
+### Stringify 总结
 
 到此自己实现`JSON.stringify`到此结束了，完整代码如下：
 
@@ -375,7 +410,7 @@ if (
 }
 ```
 
-### Parse总结
+### Parse 总结
 
 其实无论在什么时候都不太推荐`eval`和`function`，因为它很容造成入侵。
 如果有兴趣可以去看一下[JSON.parse 三种实现方式](https://juejin.im/entry/5a98f1ef518825558001a859)，它有涉及到递归实现，状态机实现，讲的也不错。
@@ -386,5 +421,4 @@ if (
 
 ## 参考
 
-> [无敌秘籍之 — JavaScript手写代码](https://mp.weixin.qq.com/s?__biz=Mzg5NDEyMzA2NQ==&mid=2247484039&idx=1&sn=a2adb13a072b889eec096523ef14ea98&chksm=c0252fd1f752a6c7b56b1fa268c34194a76d72e2be09bb4aa92b630bd7ffac120d82c50011e9&mpshare=1&scene=1&srcid=0817FYhsdmgAzbulSCdGAfOd&sharer_sharetime=1566046217540&sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd)
-> [JSON.parse 三种实现方式](https://juejin.im/entry/5a98f1ef518825558001a859)
+> [无敌秘籍之 — JavaScript 手写代码](https://mp.weixin.qq.com/s?__biz=Mzg5NDEyMzA2NQ==&mid=2247484039&idx=1&sn=a2adb13a072b889eec096523ef14ea98&chksm=c0252fd1f752a6c7b56b1fa268c34194a76d72e2be09bb4aa92b630bd7ffac120d82c50011e9&mpshare=1&scene=1&srcid=0817FYhsdmgAzbulSCdGAfOd&sharer_sharetime=1566046217540&sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd) > [JSON.parse 三种实现方式](https://juejin.im/entry/5a98f1ef518825558001a859)
