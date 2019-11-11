@@ -76,7 +76,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 
 测试效果图如下：
 
-![深拷贝/浅拷贝](../../images/javascript/javascript-clone-deep-1-1.png)
+<img src="../../images/javascript/javascript-clone-deep-1-1.png" width="80%" height="60%" />
 
 在上面的代码中，已经解决了`JSON.stringify/JSON.parse`中的忽略`undefined/function`的问题，下面会逐渐解决问题，并且优化到类似与`lodash`库中的问题。
 
@@ -227,7 +227,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 ```
 
 执行测试代码如下：
-![深拷贝/浅拷贝](../../images/javascript/javascript-clone-deep-1-3.png)
+<img src="../../images/javascript/javascript-clone-deep-1-3.png" width="80%" height="60%" />
 
 我们可以看到`target`变为一个`Circular`类型的对象，这个是在`node环境`中运行的，如果在`浏览器`对还是会`报错（爆栈）`。
 到这里我们只做到了让他没有报错，但是也并没有完美的解决循环引用的问题，下面就要到`WeakMap`登场了。
@@ -255,4 +255,5 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 - 处理`Function/undefined/`
 - 处理`Symbol`、`不可循环类型（Number/String）`
 - 处理`RegExp/Map/Set`
+
 
