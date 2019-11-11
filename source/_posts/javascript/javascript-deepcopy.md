@@ -306,3 +306,17 @@ if (isFunc) {
 
 ### Symbol
 
+数据类型 `“symbol”` 是一种原始数据类型，该类型的性质在于这个类型的值可以用来`创建匿名的对象属性`。
+我们可以拷贝`symbol`类型的属性名？
+
+首先我们可以通过`typeof、Object.prototype.toString.call()`来检测`symbol`的类型，但是我们怎么获取到`symbol`.
+
+**示例**代码
+
+```js
+    var test = Symbol('name');
+    typeof test; // symbol
+    Object.prototype.toString.call(test); // [object Symbol]
+```
+
+我们可以通过两种方法获取
