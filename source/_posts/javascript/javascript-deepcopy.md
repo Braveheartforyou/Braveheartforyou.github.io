@@ -252,8 +252,57 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 我们在上面只考虑了`Array/Object`其实就是`Object`类型的数据处理，其他的数据都是走的直接返回。
 
 - 改写`Object`的判断，并且分别处理`Array/Object`方法
-- 处理`Function/undefined/`
-- 处理`Symbol`、`不可循环类型（Number/String）`
+- 处理`Function`
+- 处理`Symbol`
+- 处理`不可循环类型（Number/String）`
 - 处理`RegExp/Map/Set`
 
+我们就按上面的步骤一步一步分拆不同类型走不同的处理，已解决在`JSON.stringify`遇到的问题。
+
+### Object类型判断
+
+在上面的代码中我们只是简单的判断了`Object`，如果不是`Object`直接返回，其实是没有考虑到`null`这个特殊情况的。我们现在就要加上`null`的怕判断并且后面也要独立处理`Function`类型的`copy`。
+
+**实现目标**：
+
+- `null`的判断
+- `function`的判断
+- `Array/Object`的分别处理
+
+**代码实现**：
+
+```js
+    // 新增判断属性
+    function isObject(value) {
+        // 储存传入值的类型
+        const type = typeof value
+        // 过滤null
+        return value != null && (type === 'object' || type === 'function')
+    }
+
+    // 声明一个函数
+    function cloneDeep (target, map = new Map()) {
+        // 判断是否传入类型为Object
+        if (!isObject) {
+            return target;
+        }
+        // 。。。省略代码
+        // 其实还可以通过Array.isArray()来检测是否为数组
+    }
+```
+
+### Function
+
+**function**处理：
+
+其实即使`function`指向同一个内存地址，他也是没有任何问题的，所以可以直接可以返回`return value`。
+
+```js
+const isFunc = typeof value === 'function';
+if (isFunc) {
+    return value;
+}
+```
+
+### Symbol
 
