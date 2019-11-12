@@ -254,7 +254,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
 - 改写`Object`的判断，并且分别处理`Array/Object`方法
 - 处理`Function`
 - 处理`Symbol`
-- 处理`不可循环类型（Number/String）`
+- 处理`不可循环类型（Number/String/Date/Boolean）`
 - 处理`RegExp/Map/Set`
 
 我们就按上面的步骤一步一步分拆不同类型走不同的处理，已解决在`JSON.stringify`遇到的问题。
@@ -319,4 +319,439 @@ if (isFunc) {
     Object.prototype.toString.call(test); // [object Symbol]
 ```
 
-我们可以通过两种方法获取
+我们可以通过两种方法获取的到`symbol`.
+
+- `Object.getOwnPropertySymbols(...)`: `Object.getOwnPropertySymbols(...)`可以查找一个给定对象的符号属性时返回一个 `symbol` 类型的数组。
+- `Reflect.ownKeys(...)`: 返回一个由目标对象自身的`属性键`组成的数组。
+
+> 注意： 每个初始化的对象都是没有自己的 symbol 属性的，因此这个数组可能为空，除非你已经在对象上设置了 symbol 属性。
+`Reflect.ownKeys(...)`的返回值等同于`Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))`。
+
+**示例**代码
+
+```js
+    var sName = Symbol('name');
+    var age = Symbol('age');
+
+    var testObj = {
+        firstSex: 'man'
+    };
+    testObj[sName] = 'name';
+    testObj[age] = 19;
+    testObj.lastSex = 'girl'
+
+    objectSymbols = Object.getOwnPropertySymbols(testObj);
+    console.log(objectSymbols.length); // 2
+    console.log(objectSymbols)         // [Symbol('name'), Symbol('age')]
+    console.log(objectSymbols[0])      // Symbol('name')
+
+
+    Reflect.ownKeys(testObj); // ["firstSex", "lastSex", Symbol(name), Symbol(age)]
+    // 注意顺序
+```
+
+这个只能获取到当前的值，但是我们怎么拷贝这个属性呢？
+
+我们可以通过`valueOf`来获取`symbol`的原始值，然后再复制当前的属性和值。
+`valueOf()`方法返回当前 `symbol` 对象所包含的 `symbol` 原始值。
+
+```js
+    function cloneSymbol (symbol) {
+        // 保存方法
+        const symbolValueOf = Symbol.prototype.valueOf;
+        return Object(symbolValueOf.call(symbol))
+    }
+```
+
+### 不可循环类型
+
+我们常用的不可循环的类型，比如`Number/String/Date/Boolean`，如果是一些字面量**直接赋值**给新的对象也是没有问题，但是我们通过创建一个新的对象自然更好。
+
+```js
+    function cloneStatic (target) {
+        // 获取构造函数
+        const Ctor = targe.constructor;
+        // 实例化一个同类型的属性
+        return new Ctor(target);
+    }
+```
+
+### RegExp/Map/Set
+
+首先处理`RegExp`正则，我们这里直接使用`lodash`中的，其实和静态的方法类似，都是生成一个新的`RegExp`对象。
+
+```js
+    function cloneRegExp(regexp) {
+        const reFlags = /\w*$/;
+        const result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+        result.lastIndex = regexp.lastIndex;
+        return result;
+    }
+```
+
+#### Map/Set
+
+我们要考虑`Map/Set`类型的处理，因为它们也是可以循环的，并且他们可以的`key-value`也可以为可循环的值。
+
+```js
+    function cloneMap (target) {
+        // 声明一个新的Map
+        let newMap = new Map();
+        // 循环复制到新Map
+        target.forEach((value, key) => {
+            // 因为值有可能是一个对象、数组，所以要递归调用
+            newMap.set(key, cloneDeep);
+        });
+        return newMap();
+    }
+    function cloneSet (target) {
+        // 声明一个新的Set
+        let newSet = new Set();
+        // 循环复制到新Set
+        target.forEach((value, key) => {
+            // 因为值有可能是一个对象、数组，所以要递归调用
+            newSet.add(key, cloneDeep);
+        });
+        return newSet();
+    }
+```
+
+### 总结
+
+我们考虑了大部分类型的实现，下面是完整的代码：
+
+```js
+    // <!------------工具函数开始----------------------------!>
+    // 获取类型
+    function getType(attr) {
+        let type = Object.prototype.toString.call(attr);
+        let newType = type.substr(8, type.length - 9);
+        return newType;
+    }
+    // 判断是否为引用类型
+    function isObject(value) {
+        // 储存传入值的类型
+        const type = typeof value;
+        // 过滤null
+        return value != null && (type === "object" || type === "function");
+    }
+    // 克隆function
+    function cloneFunc(value) {
+        const isFunc = typeof value === "function";
+        if (isFunc) {
+            return value;
+        }
+    }
+
+    // 克隆symbol
+    function cloneSymbol(symbol) {
+        // 保存方法
+        const symbolValueOf = Symbol.prototype.valueOf;
+        // 返回key
+        return Object(symbolValueOf.call(symbol));
+    }
+
+    // 克隆RegExp
+    function cloneRegExp(regexp) {
+        const reFlags = /\w*$/;
+        const result = new regexp.constructor(
+            regexp.source,
+            reFlags.exec(regexp)
+        );
+        result.lastIndex = regexp.lastIndex;
+        return result;
+    }
+
+    // 不可循环的类型 Number/String/Date/Boolean
+    function cloneStatic(target) {
+        // 获取构造函数
+        const Ctor = targe.constructor;
+        // 实例化一个同类型的属性
+        return new Ctor(target);
+    }
+    // <!------------工具函数结束----------------------------!>
+    // <!------------克隆逻辑开始----------------------------!>
+    // 声明一个函数
+    function cloneDeep(target, map = new WeakMap()) {
+        // 判断类型
+        console.log(isObject(target));
+        if (isObject(target)) {
+            return target;
+        } else {
+            switch (getType(target)) {
+                case "Number":
+                case "String":
+                case "Boolean":
+                case "Date":
+                    return cloneStatic(target);
+                case "RegExp":
+                    return cloneRegExp(target);
+                case "Function":
+                    return cloneFunc(target);
+                default:
+                    return null;
+            }
+        }
+        // 声明新对象
+        let newTarget = getType(target) === "Array" ? [] : {};
+
+        // 查询map中是否有存在原对象（target），如果存在直接返回
+        if (map.has(target)) {
+            return target;
+        }
+        // 如果map中不存在原对象（target），则储存进map中
+        map.set(target, newTarget);
+
+        // 拷贝Map
+        if (getType(target) === "Map") {
+            // 循环复制到新Map
+            target.forEach((value, key) => {
+                // 因为值有可能是一个对象、数组，所以要递归调用
+                newTarget.set(key, cloneDeep);
+            });
+            return newTarget;
+        }
+        // 拷贝Set
+        if (getType(target) === "set") {
+            // 循环复制到新Map
+            target.forEach((value, key) => {
+                // 因为值有可能是一个对象、数组，所以要递归调用
+                newTarget.add(key, cloneDeep);
+            });
+            return newTarget;
+        }
+
+        // 循环对象 递归复制给新对象
+        for (let key in target) {
+            // 判断属性是否在对象本身上
+            if (target.hasOwnProperty(key)) {
+                // 递归调用
+                newTarget[key] = cloneDeep(target[key], map); // <!------新增代码 参数map------!>
+            }
+        }
+        // 返回新对象
+        return newTarget;
+    }
+    // <!------------克隆逻辑开始----------------------------!>
+```
+
+上面的代码就是全部的代码了，下面我们直接测试一下我们上面的代码是否可以实现分类型的深拷贝。
+
+```js
+    // 实例化symbol
+    let oneSymbol = Symbol('name');
+    // 实例化Map
+    let newMap = new Map();
+    newMap.set('name', {name: 'everybody'});
+    // 实例化Set
+    let newSet = new Set();
+    newSet.add('age', {age: 18});
+    const target = {
+        val1: 1,
+        val2: undefined,
+        val4: "target",
+        val5: {
+            name: "target",
+            age: function () {
+                console.log('永远18岁');
+            },
+            sym: Symbol("setter")
+        },
+        val32: new Boolean(true),
+        val23: new String(true),
+        val443: new Number(true),
+        date: new Date(),
+        reg: /\d+/,
+        empty: null,
+        newMap,
+        newSet,
+        arrowFunc: () => {
+            console.log('test111');
+        }
+    };
+    target[oneSymbol] = 'name';
+    console.log(cloneDeep(target));
+```
+
+执行结果：
+
+<img src="../../images/javascript/javascript-clone-deep-1-4.png" width="80%" height="60%" />
+
+## 性能问题
+
+在上面我们使用的循环是`for...in`，但是他的性能并不是最高的，我们现在来对比一下`for...in`、`for`、`while`、`forEach`三个循环谁的速度更快。
+我们可以通过每个循环`100000`次，在浏览器端通过`console.time()`、`console.timeend()`统计当前执行的循环效率。代码如下：
+
+```js
+    // 生成数据
+    let initData = [];
+    var len = 100000;
+    for (let i = 0; i < len; i++) {
+        let item = {
+            name: 'name',
+            age: 18,
+            sex: 'man',
+            class: 'first'
+        };
+        initData.push(item);
+    }
+    var sum = 0;
+
+    // 记录for循环时间
+    console.time();
+    for (let i = 0; i < len; i++) {
+        sum += initData[i].age;
+    }
+    console.timeEnd();
+
+    // 记录for...in循环时间
+    console.time();
+    for (let item in initData) {
+        sum += initData[item];
+    }
+    console.timeEnd();
+
+    // 记录while循环时间
+    let i = 0;
+    console.time();
+    while (i < len) {
+        sum += initData[i].age;
+        i++;
+    }
+    console.timeEnd();
+    // 记录forEach循环时间
+    console.time();
+    initData.forEach((item, index, soruce) => {
+        sum += item;
+    })
+    console.timeEnd();
+```
+
+多次执行效果相差不多，执行效果如下：
+<img src="../../images/javascript/javascript-clone-deep-1-5.png" width="80%" height="60%" />
+
+图上的四个时间分别对应的顺序是：
+
+- `for`: 2.8ms
+- `for...in`: 17.7ms
+- `while`: 4.4ms
+- `forEach`: 45.2ms
+
+这个测试环境是在`mac pro i7 16G`、`Chrome 78.0.3904.87`这个进行的只是简单测试，大致结果`for > while > for...in > forEach`。
+
+但是我看到`lodash`中是用的`while`，并且别人测试的是和我测试相反的。这里就不再多做追究了，免的喧宾夺主后面会独立一篇文章好好探讨一下谁的速度更快。
+我们也通过`while`改写代码吧。
+
+```js
+    function arrayEach(array, iteratee) {
+        let index = -1;
+        // 获取数组长度
+        const length = array.length;
+        // 循环体
+        while (++index < length) {
+            // 执行回调
+            if (iteratee(array[index], index, array) === false) {
+                break
+            }
+        }
+        return array
+    }
+```
+
+修改循环逻辑的代码如下
+
+```js
+// 原代码如下
+// 循环对象 递归复制给新对象
+for (let key in target) {
+    // 判断属性是否在对象本身上
+    if (target.hasOwnProperty(key)) {
+        // 递归调用
+        newTarget[key] = cloneDeep(target[key], map); // <!------新增代码 参数map------!>
+    }
+}
+
+// 修改为
+
+const keys = getType(target) === "Array" ? undefined : Object.keys(target);
+let i = 0;
+arrayEach(keys || target, (value, key) => {
+    if (keys) {
+        key = value;
+    }
+    if (target.hasOwnProperty(key)) {
+        newTarget[key] = cloneDeep(target[key], map); // <!------新增代码 参数map------!>
+    }
+});
+
+```
+
+测试代码
+
+```js
+    // 实例化symbol
+    let oneSymbol = Symbol("name");
+    // 实例化Map
+    let newMap = new Map();
+    newMap.set("name", { name: "everybody" });
+    // 实例化Set
+    let newSet = new Set();
+    newSet.add("age", { age: 18 });
+    const target = {
+        val1: 1,
+        val2: undefined,
+        val4: "target",
+        val5: {
+            name: "target",
+            age: function() {
+                console.log("永远18岁");
+            },
+            sym: Symbol("setter")
+        },
+        val32: new Boolean(true),
+        val23: new String(true),
+        val443: new Number(true),
+        date: new Date(),
+        reg: /\d+/,
+        empty: null,
+        newMap,
+        newSet,
+        arrowFunc: () => {
+            console.log("test111");
+        },
+        deepObj: createData(100, 1000)
+    };
+    target[oneSymbol] = "name";
+
+
+    // console.log('');
+
+    console.time();
+    const ss1 = cloneDeepTwo(target)
+    console.timeEnd();
+
+    console.time();
+    const ss = clone(target)
+    console.timeEnd();
+```
+
+分开测试执行时间相差是`1ms-2ms`，其实并不相差太大，不能一起测试，因为一起测试的话，第一次执行的一些变量会被储存在内存中，第二次执行的速度自然会很快，所以一起测试的时间并不准确。
+
+### 递归爆栈
+
+我们测试使用的数据深度为`100`，广度为`1000`，这样还是不会造成递归爆栈，但是当我们把深度广度都提升到`10000`次就会造成递归爆栈。
+解决递归爆栈的方法有三种：
+
+- 加大阈值
+- 循环改写
+- 尾递归优化
+
+因为`JavaScript`是会运行在浏览器端的，我们不能加大它的内存占用。
+
+以前在`V8`中是已经是实现了`尾递归`的，但是它会影响`JavaScript`的栈的调用顺序，所以最后又删除掉了。
+如果有兴趣可以去看我另一篇文章[尾递归](/blog/algorithm/algorithm-tailCall.html)
+
+我们这里只用循环实现防止递归爆栈。
+
+
+
