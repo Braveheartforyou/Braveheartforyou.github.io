@@ -218,7 +218,7 @@ description: 本篇文章会介绍通过递归实现一个深拷贝，并且解�
             // 判断属性是否在对象本身上
             if (target.hasOwnProperty(key)) {
                 // 递归调用
-                newTarget[key] = cloneDeep(target[key]);
+                newTarget[key] = cloneDeep(target[key], map);
             }
         }
         // 返回新对象
@@ -421,156 +421,176 @@ if (isFunc) {
 我们考虑了大部分类型的实现，下面是完整的代码：
 
 ```js
-    // <!------------工具函数开始----------------------------!>
-    // 获取类型
-    function getType(attr) {
-        let type = Object.prototype.toString.call(attr);
-        let newType = type.substr(8, type.length - 9);
-        return newType;
+   // <!------------工具函数开始----------------------------!>
+// 创建数据
+function createData(deep, breadth) {
+  var data = {};
+  var temp = data;
+
+  for (var i = 0; i < deep; i++) {
+    temp = temp["data"] = {};
+    for (var j = 0; j < breadth; j++) {
+      temp[j] = j;
     }
-    // 判断是否为引用类型
-    function isObject(value) {
-        // 储存传入值的类型
-        const type = typeof value;
-        // 过滤null
-        return value != null && (type === "object" || type === "function");
+  }
+  return data;
+}
+// 获取类型
+function getType(attr) {
+  let type = Object.prototype.toString.call(attr);
+  let newType = type.substr(8, type.length - 9);
+  return newType;
+}
+// 判断是否为引用类型
+function isObject(value) {
+  // 储存传入值的类型
+  const type = typeof value;
+  // 过滤null
+  return value != null && (type === "object" || type === "function");
+}
+// 克隆function
+function cloneFunc(value) {
+  const isFunc = typeof value === "function";
+  if (isFunc) {
+    return value;
+  }
+}
+
+// 克隆symbol
+function cloneSymbol(symbol) {
+  // 保存方法
+  const symbolValueOf = Symbol.prototype.valueOf;
+  // 返回key
+  return Object(symbolValueOf.call(symbol));
+}
+
+// 克隆RegExp
+function cloneRegExp(regexp) {
+  const reFlags = /\w*$/;
+  const result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+  result.lastIndex = regexp.lastIndex;
+  return result;
+}
+
+// 不可循环的类型 Number/String/Date/Boolean
+function cloneStatic(target) {
+  // 获取构造函数
+  const Ctor = target.constructor;
+  // 实例化一个同类型的属性
+  return new Ctor(target);
+}
+// <!------------工具函数结束----------------------------!>
+// <!------------克隆逻辑开始----------------------------!>
+// 声明一个函数
+function cloneDeep(target, map = new WeakMap()) {
+  // 判断类型
+  // console.log(isObject(target));
+  if (!isObject(target)) {
+    return target;
+  }
+  // console.log(111);
+  let newTarget = {};
+  switch (getType(target)) {
+    case "Number":
+    case "String":
+    case "Boolean":
+    case "Date":
+      return cloneStatic(target);
+    case "RegExp":
+      return cloneRegExp(target);
+    case "Function":
+      return cloneFunc(target);
+    case "Array":
+      newTarget = [];
+      break;
+    case "Map":
+      newTarget = new Map();
+      break;
+    case "Set":
+      newTarget = new Set();
+      break;
+  }
+
+  // 查询map中是否有存在原对象（target），如果存在直接返回
+  if (map.has(target)) {
+    return target;
+  }
+  // 如果map中不存在原对象（target），则储存进map中
+  map.set(target, newTarget);
+
+  // 拷贝Map
+  if (getType(target) === "Map") {
+    // 循环复制到新Map
+    target.forEach((value, key) => {
+      // 因为值有可能是一个对象、数组，所以要递归调用
+      newTarget.set(key, cloneDeep(value, map));
+    });
+    return newTarget;
+  }
+  // 拷贝Set
+  if (getType(target) === "Set") {
+    // 循环复制到新Map
+    target.forEach((value, key) => {
+      // 因为值有可能是一个对象、数组，所以要递归调用
+      newTarget.add(key, cloneDeep(value, map));
+    });
+    return newTarget;
+  }
+
+  // 循环对象 递归复制给新对象
+  for (let key in target) {
+    // 判断属性是否在对象本身上
+    if (target.hasOwnProperty(key)) {
+      // 递归调用
+      newTarget[key] = cloneDeep(target[key], map); // <!------新增代码 参数map------!>
     }
-    // 克隆function
-    function cloneFunc(value) {
-        const isFunc = typeof value === "function";
-        if (isFunc) {
-            return value;
-        }
-    }
+  }
+  // 返回新对象
+  return newTarget;
+}
+// <!------------克隆逻辑结束----------------------------!>
 
-    // 克隆symbol
-    function cloneSymbol(symbol) {
-        // 保存方法
-        const symbolValueOf = Symbol.prototype.valueOf;
-        // 返回key
-        return Object(symbolValueOf.call(symbol));
-    }
+// 测试代码
 
-    // 克隆RegExp
-    function cloneRegExp(regexp) {
-        const reFlags = /\w*$/;
-        const result = new regexp.constructor(
-            regexp.source,
-            reFlags.exec(regexp)
-        );
-        result.lastIndex = regexp.lastIndex;
-        return result;
-    }
+// 实例化symbol
+let oneSymbol = Symbol("name");
+// 实例化Map
+let newMap = new Map();
+newMap.set("name", { name: "everybody" });
+// 实例化Set
+let newSet = new Set();
+newSet.add("age", { age: 18 });
+const target = {
+  val1: 1,
+  val2: undefined,
+  val4: "target",
+  val5: {
+    name: "target",
+    age: function() {
+      console.log("永远18岁");
+    },
+    sym: Symbol("setter")
+  },
+  val32: new Boolean(true),
+  val23: new String(true),
+  val443: new Number(true),
+  date: new Date(),
+  reg: /\d+/,
+  empty: null,
+  newMap,
+  newSet,
+  arrowFunc: () => {
+    console.log("test111");
+  },
+  deepObj: createData(10, 100)
+};
+target[oneSymbol] = "name";
+console.time();
+const ss = cloneDeep(target);
+console.timeEnd();
 
-    // 不可循环的类型 Number/String/Date/Boolean
-    function cloneStatic(target) {
-        // 获取构造函数
-        const Ctor = targe.constructor;
-        // 实例化一个同类型的属性
-        return new Ctor(target);
-    }
-    // <!------------工具函数结束----------------------------!>
-    // <!------------克隆逻辑开始----------------------------!>
-    // 声明一个函数
-    function cloneDeep(target, map = new WeakMap()) {
-        // 判断类型
-        console.log(isObject(target));
-        if (isObject(target)) {
-            return target;
-        } else {
-            switch (getType(target)) {
-                case "Number":
-                case "String":
-                case "Boolean":
-                case "Date":
-                    return cloneStatic(target);
-                case "RegExp":
-                    return cloneRegExp(target);
-                case "Function":
-                    return cloneFunc(target);
-                default:
-                    return null;
-            }
-        }
-        // 声明新对象
-        let newTarget = getType(target) === "Array" ? [] : {};
+console.log(ss);
 
-        // 查询map中是否有存在原对象（target），如果存在直接返回
-        if (map.has(target)) {
-            return target;
-        }
-        // 如果map中不存在原对象（target），则储存进map中
-        map.set(target, newTarget);
-
-        // 拷贝Map
-        if (getType(target) === "Map") {
-            // 循环复制到新Map
-            target.forEach((value, key) => {
-                // 因为值有可能是一个对象、数组，所以要递归调用
-                newTarget.set(key, cloneDeep);
-            });
-            return newTarget;
-        }
-        // 拷贝Set
-        if (getType(target) === "set") {
-            // 循环复制到新Map
-            target.forEach((value, key) => {
-                // 因为值有可能是一个对象、数组，所以要递归调用
-                newTarget.add(key, cloneDeep);
-            });
-            return newTarget;
-        }
-
-        // 循环对象 递归复制给新对象
-        for (let key in target) {
-            // 判断属性是否在对象本身上
-            if (target.hasOwnProperty(key)) {
-                // 递归调用
-                newTarget[key] = cloneDeep(target[key], map); // <!------新增代码 参数map------!>
-            }
-        }
-        // 返回新对象
-        return newTarget;
-    }
-    // <!------------克隆逻辑开始----------------------------!>
-```
-
-上面的代码就是全部的代码了，下面我们直接测试一下我们上面的代码是否可以实现分类型的深拷贝。
-
-```js
-    // 实例化symbol
-    let oneSymbol = Symbol('name');
-    // 实例化Map
-    let newMap = new Map();
-    newMap.set('name', {name: 'everybody'});
-    // 实例化Set
-    let newSet = new Set();
-    newSet.add('age', {age: 18});
-    const target = {
-        val1: 1,
-        val2: undefined,
-        val4: "target",
-        val5: {
-            name: "target",
-            age: function () {
-                console.log('永远18岁');
-            },
-            sym: Symbol("setter")
-        },
-        val32: new Boolean(true),
-        val23: new String(true),
-        val443: new Number(true),
-        date: new Date(),
-        reg: /\d+/,
-        empty: null,
-        newMap,
-        newSet,
-        arrowFunc: () => {
-            console.log('test111');
-        }
-    };
-    target[oneSymbol] = 'name';
-    console.log(cloneDeep(target));
 ```
 
 执行结果：
@@ -753,5 +773,76 @@ arrayEach(keys || target, (value, key) => {
 
 我们这里只用循环实现防止递归爆栈。
 
+当我们的对象层级特别深事，我们通过递归循环时，会造成递归爆栈，因为一些临时变量会储存在堆栈中，通多深层递归调用，它们的不会被回收，当调用的层级越深自然储存的就越多，最后会导致栈储存不下，也就会造成递归爆栈。
 
+我们可通过自己`创建一个栈`，`栈`中储存当前要拷贝的节点，一层一层往下拷贝，所以是一个深度优先的优化。
 
+```js
+    function cloneLoop(x) {
+        const root = {};
+
+        // 栈
+        const loopList = [
+            {
+                parent: root,
+                key: undefined,
+                data: x,
+            }
+        ];
+
+        while(loopList.length) {
+            // 深度优先
+            const node = loopList.pop();
+            const parent = node.parent;
+            const key = node.key;
+            const data = node.data;
+
+            // 初始化赋值目标，key为undefined则拷贝到父元素，否则拷贝到子元素
+            let res = parent;
+            if (typeof key !== 'undefined') {
+                res = parent[key] = {};
+            }
+
+            for(let k in data) {
+                if (data.hasOwnProperty(k)) {
+                    if (typeof data[k] === 'object') {
+                        // 下一次循环
+                        loopList.push({
+                            parent: res,
+                            key: k,
+                            data: data[k],
+                        });
+                    } else {
+                        res[k] = data[k];
+                    }
+                }
+            }
+        }
+
+        return root;
+    }
+```
+
+详细内容见[深拷贝的终极探索](https://mp.weixin.qq.com/s/iDbDyWeSDgShqR_nQ1po_g)
+
+到此就一个`深拷贝`就结束了
+
+## 全文总结
+
+我们是在原来的基础上一步一步优化我们自己的`深拷贝`实现，但是最后的`递归爆栈`如果在当前文章书写的话，会让当前文章很乱，所以会独立出来一篇文章来记录什么是`斐波拉契数列`相关的。
+
+我们的大致实现步骤是：
+
+- 用递归实现一个简单的深拷贝
+- 考虑循环引用问题，通过`WeakMap`解决
+- 考虑类型问题，处理`Function、Map、Set`等等
+- 考虑性能问题，递归爆栈问题
+
+到此基本上就实现一个可以使用的**深拷贝**。
+
+## 参考
+
+> [lodash cloneDeep](https://github.com/lodash/lodash/blob/master/cloneDeep.js)
+> [深浅拷贝原理](https://muyiy.cn/blog/4/4.1.html#%E4%B8%80%E3%80%81%E8%B5%8B%E5%80%BC%EF%BC%88copy%EF%BC%89)
+> [如何写出一个惊艳面试官的深拷贝](https://mp.weixin.qq.com/s/gQhfwoaxqHh4hRG1BQqKow)
+> [深拷贝的终极探索](https://mp.weixin.qq.com/s/iDbDyWeSDgShqR_nQ1po_g)
