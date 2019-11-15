@@ -194,6 +194,9 @@ safari中是好的
     }
 ```
 
+> 尾调用优化只在严格模式下有效。
+尾调用优化后，每次return的内层函数的调用记录会取代外层函数的调用记录，调用栈中始终只保持了一条调用帧。
+
 ### 尾递归作用
 
 比如我们要实现一个阶加，可以用尾递归实现，下面直接上代码。
@@ -217,7 +220,230 @@ safari中是好的
 即使加上`"use strict";`也还是会报错。
 
 > `尾调用优化`和`尾递归`在`firfox`和`chrome`中会报错，`safari`在`尾优化不会报错`但是`尾递归还是会报错`。
-如果真的想感受尾优化的威力可以去`node v.6.x`版本中通过`--harmony_tailcalls参数`，新的版本并已经移除了这个参数
+如果真的想感受尾优化的威力可以去`node v.6.x`版本中通过`--harmony_tailcalls参数`，`node`新的版本并已经移除了这个参数
 
 ## 斐波拉契数列
+
+> `斐波那契数列（Fibonacci sequence）`，又称`黄金分割数列`、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……
+
+简单的说，斐波那契数列中的`每一项都是前两项的和`。
+即`F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n>2，n∈N*）`
+
+### 基础版本
+
+我们通过递归实现
+
+```js
+    function factorial (num) {
+        if (num === 0 || num === 1) { return num; }
+        console.trace();
+        // console.log(factorial(num - 1) + factorial(num - 2));
+        return factorial(num - 1) + factorial(num - 2)
+    }
+```
+
+我们通过`console.trace()`可以看到在执行过程中，`调用栈`中最多会存在`4`个函数信息，这十个信息是每一层次调用的详细信息（如参数、局部变量、返回地址等等），以确保该层次的操作完成，这也是造成`栈溢出`的原因。
+
+测试代码：
+
+```js
+    factorial(4);
+    // 展开来看如下
+    factorial(3) + factorial(2)
+    (factorial(2) + factorial(1)) + (factorial(1) + factorial(0))
+    (factorial(1)) + (factorial(0)) + factorial(1)
+```
+
+### 尾递归版本
+
+通过`尾递归来优化`上面的问题，其实在现在`浏览器`或者`node`中都没有作用。
+
+```js
+    "use strict";
+    function factorial (num, num1 = 0, num2 = 1) {
+        if (num === 0) { return num1; }
+        console.trace();
+        return factorial(num - 1, num2, num1 + num2);
+    }
+```
+
+测试代码：
+
+```js
+    // 测试代码
+    factorial(5); // 5
+    // 展开显示
+    factorial(5, 0, 1);
+    factorial(4, 1, 1);
+    factorial(3, 1, 2);
+    factorial(2, 2, 3);
+    factorial(1, 3, 5);
+    factorial(0, 5, 8);
+
+    // 当num-1为0时，直接返回num1
+```
+
+可以发现当使用尾递归优化时，展开看到的`调用栈`中只会有当前执行的函数，不会储存上层的数据，这样就会减少内存的使用。
+`尾递归`的本质实际上就是将方法需要的上下文通过方法的参数传递进下一次调用之中，以达到去除上层依赖。
+
+> chrome/firefox测试无效，node新版本测试无效
+Proper tail calls have been implemented but not yet shipped given that a change to the feature is currently under discussion at TC39.意思就是人家已经做好了，但是就是还不能。
+
+### 尾递归的问题
+
+- 首先，由于引擎`消除尾递归是隐式的`，函数是否符合尾调用而被消除了尾递归很难被程序员自己辨别。
+- 其次，尾调用优化`要求除掉尾调用执行时的调用堆栈`，这将导致执行流中的`堆栈信息丢失`。
+
+### 多种实现方式
+
+**循环实现**
+
+可以通过循环实现，代码如下：
+
+```js
+    function factorial (n) {
+        if (n === 0 || n === 1) {
+            return n;
+        }
+        let x = 0;
+        let y = 1;
+        let sum = 0;
+        for (let i = 2; i <= n; i++) {
+            sum = x + y;
+            x = y;
+            y = sum;
+        }
+        return sum
+    }
+
+    // 测试代码
+    factorial(5); // 5
+```
+
+**公式实现**
+
+通过`Math`来实现，代码如下：
+
+```js
+    // 公式法
+    function factorial(n) {
+        if (n <= 0)
+            return 0;
+        else {
+            const sqrtFive = Math.sqrt(5);
+            const res = (Math.pow(0.5 + sqrtFive / 2, n) - Math.pow(0.5 - sqrtFive / 2, n)) / sqrtFive;
+            return Math.round(res);
+        }
+    }
+    // 测试代码
+    factorial(5);
+```
+
+**函数柯里化**
+
+通过柯里化实现，代码如下
+
+```js
+    function tailCalls (num, num1, num2) {
+        if (num === 0) { return num1; }
+        console.trace();
+        return tailCalls(num - 1, num2, num1 + num2);
+    }
+
+    function factorial (num) {
+        return tailCalls(num, 0, 1);
+    }
+```
+
+其实上面的柯里化只能称为模仿柯里化实现。
+
+**性能对比**
+
+我们把`普通递归`、`尾递归`、`普通循环`、`公式法`、`柯里化`它们的性能对比。
+
+```js
+    // 普通递归
+    function factorial (num) {
+        if (num === 0 || num === 1) { return num; }
+        return factorial(num - 1) + factorial(num - 2);
+    }
+
+    // 尾递归
+    "use strict";
+    function tailfactorial (num, num1 = 0, num2 = 1) {
+        if (num === 0) { return num1; }
+        return factorial(num - 1, num2, num1 + num2);
+    }
+
+    // 循环实现
+    function loopfactorial (n) {
+        if (n === 0 || n === 1) {
+            return n;
+        }
+        let x = 0;
+        let y = 1;
+        let sum = 0;
+        for (let i = 2; i <= n; i++) {
+            sum = x + y;
+            x = y;
+            y = sum;
+        }
+        return sum
+    }
+
+    // 公式法
+    function mathfactorial(n) {
+        if (n <= 0)
+            return 0;
+        else {
+            const sqrtFive = Math.sqrt(5);
+            const res = (Math.pow(0.5 + sqrtFive / 2, n) - Math.pow(0.5 - sqrtFive / 2, n)) / sqrtFive;
+            return Math.round(res);
+        }
+    }
+
+    // 柯里化
+    function tailCalls (num, num1, num2) {
+        if (num === 0) { return num1; }
+        return tailCalls(num - 1, num2, num1 + num2);
+    }
+
+    function curryfactorial (num) {
+        return tailCalls(num, 0, 1);
+    }
+
+    // 测试代码
+    console.time();
+    factorial(20);
+    console.timeEnd();
+
+    console.time();
+    tailfactorial(20);
+    console.timeEnd();
+
+    console.time();
+    loopfactorial(20);
+    console.timeEnd();
+
+    console.time();
+    mathfactorial(20);
+    console.timeEnd();
+
+    console.time();
+    curryfactorial(20);
+    console.timeEnd();
+
+    // default: 0.10205078125ms 普通递归
+    // default: 0.112060546875ms 尾递归
+    // default: 0.052978515625ms 循环
+    // default: 0.06591796875ms 公式
+    // default: 0.052978515625ms 柯里化
+```
+
+我们可以通过上面的测试，可以看到`递归`速度都是比较慢的，`循环`的速度是比较快的。
+
+- **慎用直接递归的方式，不仅会带来极差的运行效率，同时会导致浏览器直接无响应。**
+- **尾递归**有着与循环同样优秀的计算性能，使用尾递归可以同时拥有着**循环的性能**以及递归的数学表达能力。
+
+## PTC与STC
 
