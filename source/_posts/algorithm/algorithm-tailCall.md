@@ -447,3 +447,112 @@ Proper tail calls have been implemented but not yet shipped given that a change 
 
 ## PTC与STC
 
+ES6标准规定了 [尾调用不会创建额外的调用帧](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-preparefortailcall)。
+在严格模式下 [尾调用不会造成调用栈溢出](https://v8.dev/blog/modern-javascript)。
+`Proper Tail Calls(PTC)`已经实现了，但是还未部署，该功能仍然在[TC39](https://github.com/tc39/ecma262)标准委员会中讨论。
+
+### PTC
+
+什么是`Proper Tail Calls(PTC)`?如果有兴趣可以去看原文的解释[原文](https://webkit.org/blog/6240/ecmascript-6-proper-tail-calls-in-webkit/)。
+
+> Typically when calling a function, stack space is allocated for the data associated with making a function call. This data includes the return address, prior stack pointer, arguments to the function, and space for the function’s local values. This space is called a stack frame. A call made to a function in tail position will reuse the stack space of the calling function. 
+
+简单来说就是**比如说一个递归程序，我们调用函数时，内存会帮函数分配返回地址、先前堆栈指针、内部变量参数称为stack frame。在尾部位置对函数的调用将重用调用函数的堆栈空间。**
+
+要触发`PTC`就要满足一下条件：
+
+- `strict mode`严格模式下
+- 普通函数或者箭头函数
+- 不能是生成器(generator)函数
+- 被调用函数的返回值由调用函数返回。
+
+`PTC`是能提升性能的一种策略，但是他也存在很多的限制。
+
+**PTC**存在的限制
+
+**兼容性**
+
+因为在推行一些新的策略或者方案是，就是标准是否支持它，也就是兼容性。标准的兼容性、浏览器的兼容性是一段很长的路。
+
+**调试难度**
+
+在`PTC`的实现中，许多调用帧都`被抛弃`了，导致很难再调用栈中调试他们的代码。
+
+```js
+    // 举个例子
+    function foo(n) {
+    return bar(n*2);// 尾调用
+    }
+
+    function bar() {
+    throw new Error();
+    }
+
+    foo(1);
+    // 由于尾调用优化
+    // 在Error.stack或者开发者工具中，foo的调用帧被丢掉了。
+```
+
+**Error.stack**
+
+启用`PTC`导致`Javascript异常`有了不一致的`error.stack`信息。
+
+```js
+    /*
+    output without PTC
+    Error
+        at bar
+        at foo
+        at Global Code
+
+    output with PTC (note how it appears that bar is called from Global Code)
+    Error
+        at bar
+        at Global Code
+    */
+```
+
+### STC
+
+语义上的尾调用（`Syntactic Tail Call`）是针对上述`PTC`的问题而提出的建议。
+
+`STC`采用类似于 `return continue` 的语法来明确标识出要进行`尾调用优化`，而在`非尾调用`的场景下使用该语法会`抛出语法错误异常`。
+该语法有三种实现形式：
+
+**语法级**
+
+```js
+function factorial(n, acc = 1) {
+    if (n === 1) {
+        return acc;
+    }
+    return continue factorial(n - 1, acc * n)
+}
+```
+
+**函数级**
+
+```js
+#function() { /* all calls in tail position are tail calls */ }
+```
+
+**表达式/调用点**
+
+```js
+    function () {
+        !return expr
+    }
+```
+
+## 总结
+
+通过本篇文章了解了什么是`调用栈`、`尾调用`、`尾调用`、`斐波拉切数列`，怎么实现`斐波拉切数列`，多种方法对比。
+尽量少使用`递归`因为递归的比较消耗性能，虽然有`尾递归优化`但是各大浏览器都并没有部署，所以尽量使用循环来实现。
+
+## 参考
+
+[JavaScript 调用栈、尾递归和手动优化](https://juejin.im/entry/592e8a2d0ce463006b510b34)
+[尾调用优化——记一道面试题的思考](https://segmentfault.com/a/1190000014747296)
+[朋友你听说过尾递归吗](https://imweb.io/topic/584d33049be501ba17b10aaf#5-1-ptc-)
+[尾递归的后续探究](https://imweb.io/topic/5a244260a192c3b460fce275)
+[尾调用和尾递归](https://juejin.im/post/5acdd7486fb9a028ca53547c)
