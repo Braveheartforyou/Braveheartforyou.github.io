@@ -5,3 +5,7 @@ tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: Promise的使用
 ---
+
+## 简介
+
+[高级进阶：深度揭秘 Promise 注册微任务和执行过程](https://mp.weixin.qq.com/s/op3EaSXKTCXwYt_uRvhePg)

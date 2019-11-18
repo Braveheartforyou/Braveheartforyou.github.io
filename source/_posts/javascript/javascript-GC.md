@@ -1,5 +1,5 @@
 ---
-title: javascript中垃圾回收机制 （-）
+title: javascript中垃圾回收机制
 date: 2017-10-31 21:20:13
 tags: [JavaScript]
 categories: [JavaScript]
@@ -7,6 +7,8 @@ description: JavaScript创建变量（对象，字符串等）时分配内存，
 ---
 
 ## 简介
+
+[Chrome 浏览器垃圾回收机制与内存泄漏分析](https://mp.weixin.qq.com/s/m_cwfM0PgivmmCKaK-TviQ)
 
 <font color="#ff502c">JavaScript 创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。</font> 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让 JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。<font color="#ff502c">而不是别人所说的:编写 JavaScript 程序时，所需内存的分配以及无用内存的回收完全实现自动管理</font>但是他会按照固定的时间间隔（或代码执行中预定的收集时间）周期性地执行这一操作
 
