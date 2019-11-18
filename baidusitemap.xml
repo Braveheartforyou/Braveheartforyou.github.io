@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com/blog/algorithm/algorithm-tailCall.html</loc>
+    <lastmod>2019-11-18</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/javascript-deepcopy.html</loc>
-    <lastmod>2019-11-07</lastmod>
+    <lastmod>2019-11-13</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/javascript-paser-stringify.html</loc>
-    <lastmod>2019-11-07</lastmod>
+    <lastmod>2019-11-11</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-assign.html</loc>
     <lastmod>2019-11-07</lastmod>
@@ -55,10 +58,10 @@
     <loc>http://asyncnode.com/blog/webpack/webpack-cli-sap.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/vue-router.html</loc>
+    <loc>http://asyncnode.com/blog/vue/vue-router-flow.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/vue-router-flow.html</loc>
+    <loc>http://asyncnode.com/blog/vue/vue-router.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue/vue-run-build.html</loc>
@@ -394,10 +397,10 @@
     <loc>http://asyncnode.com/blog/http/http-http2-1.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/git/git-precommit.html</loc>
+    <loc>http://asyncnode.com/blog/git/git-merge.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/git/git-merge.html</loc>
+    <loc>http://asyncnode.com/blog/git/git-precommit.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/git/git-rebase.html</loc>
@@ -412,16 +415,16 @@
     <loc>http://asyncnode.com/blog/html/html-style-javascript.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-rest.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-variable.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/funcitonal/functional-currying.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/funcitonal/functional-introduction.html</loc>
+    <lastmod>2019-10-24</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/es6/es6-rest.html</loc>
+    <lastmod>2019-10-24</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/es6/es6-variable.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/git/git-delete.html</loc>
@@ -463,10 +466,10 @@
     <loc>http://asyncnode.com/blog/es6/es6-definedproperty.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-Array-function.html</loc>
+    <loc>http://asyncnode.com/blog/es6/es6-Array-break-continue.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/es6/es6-Array-break-continue.html</loc>
+    <loc>http://asyncnode.com/blog/es6/es6-Array-function.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/es6/es6-Array.html</loc>
@@ -478,10 +481,10 @@
     <loc>http://asyncnode.com/blog/es6/es6-AsyncFuntion.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/css/css-relative.html</loc>
+    <loc>http://asyncnode.com/blog/css/css-padding.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/css/css-padding.html</loc>
+    <loc>http://asyncnode.com/blog/css/css-relative.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/css/css3-flex.html</loc>
@@ -535,13 +538,10 @@
     <loc>http://asyncnode.com/blog/algorithm/algorithm-awaly-treeTwo.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/algorithm/algorithm-tailCall.html</loc>
+    <loc>http://asyncnode.com/blog/browser/browser-store.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/canvas/canvas-des1.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/browser/browser-store.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/canvas/canvas-des2.html</loc>
