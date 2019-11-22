@@ -28,7 +28,7 @@ description: this的产生
 ## “调用栈”
 
 什么是`调用栈`其实也是常说的`执行栈`，它其实应该叫做`执行上下文堆栈`会更准确一些。我们还是把它简称为`执行栈`。
-因为JavaScript解释器被实现为单线程。这意味着`JavaScript 引擎`只能同时执行一件事，其它需要执行的事情会被放到一个栈里面储存，这个栈就叫做`执行栈`。
+因为 JavaScript 解释器被实现为单线程。这意味着`JavaScript 引擎`只能同时执行一件事，其它需要执行的事情会被放到一个栈里面储存，这个栈就叫做`执行栈`。
 `执行栈`是一种拥有`LIFO（后进先出）`数据结构的栈，被用来存储代码运行时创建的所有执行上下文。
 
 ### 执行栈执行过程
@@ -44,18 +44,18 @@ description: this的产生
 一个简单的实例，代码如下：
 
 ```js
-    let name = "global name";
+let name = "global name";
 
-    function first () {
-        console.log('inside first function');
-        second();
-    }
-    function second () {
-        console.log('inside second function');
-        three();
-    }
-    first();
-    console.log('inside global Execution Context');
+function first() {
+  console.log("inside first function");
+  second();
+}
+function second() {
+  console.log("inside second function");
+  three();
+}
+first();
+console.log("inside global Execution Context");
 ```
 
 执行效果如下图所示：
@@ -67,7 +67,7 @@ description: this的产生
 当从 `first()` 函数内部调用 `second()` 函数时，`JavaScript 引擎`为 `second()` 函数创建了一个`新的执行上下文`并把它压入当前`执行栈的顶部`。当 `second()` 函数执行完毕，它的`执行上下文`会从当前栈`弹出`，并且控制流程到达下一个`执行上下文`，即 `first()` 函数的执行上下文。
 当 `first()` 执行完毕，它的执行上下文从栈`弹出`，控制流程到达全局执行上下文。一旦所有代码执行完毕，JavaScript 引擎从当前栈中`移除`全局执行上下文。
 
-有5个需要记住的关键点，关于**执行栈（调用栈）**：
+有 5 个需要记住的关键点，关于**执行栈（调用栈）**：
 
 - 单线程。
 - 同步执行。
@@ -77,9 +77,9 @@ description: this的产生
 
 **一个在线实例**
 
-因为代码太多了这里就不展示了，gif也比较大，所以只放了一个外国友人的在线实例。有兴趣的可以去看一下。
+因为代码太多了这里就不展示了，gif 也比较大，所以只放了一个外国友人的在线实例。有兴趣的可以去看一下。
 
-在线代码体验[执行栈执行过程](https://codepen.io/njmcode/pen/dMPmGq)，如果访问比较慢可以看[执行栈执行过程demo](https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack)把代码下载到本地运行查看。
+在线代码体验[执行栈执行过程](https://codepen.io/njmcode/pen/dMPmGq)，如果访问比较慢可以看[执行栈执行过程 demo](https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack)把代码下载到本地运行查看。
 
 ## 执行上下文周期
 
@@ -92,7 +92,7 @@ description: this的产生
 - 执行阶段
 - 回收阶段
 
-### 创建阶段
+## 创建阶段
 
 **创建阶段**
 
@@ -118,7 +118,7 @@ description: this的产生
 
 > 其实作用域的本质是一套规则，它定义了变量的可访问范围，控制变量的可见性和生命周期。
 
-#### 创建作用域链
+### 创建作用域链
 
 作用域链又可以叫做`词法环境`，[官方的 ES6](http://ecma-international.org/ecma-262/6.0/) 文档把词法环境定义为。
 
@@ -171,9 +171,200 @@ description: this的产生
     }
 ```
 
-#### 创建变量 
+### 创建变量
 
-在创建**变量**
+在`创建变量`之前首先要`创建变量环境`，什么是`变量环境`呢？
 
-### 执行阶段
+`变量环境`也是一个词法环境，它也有`环境记录器`用来记录`变量声明语句`在执行上下文中创建的绑定关系。
 
+`变量环境`和`词法环境`的区别在于`变量环境`被用来`存储函数`声明和`变量（let 和 const）绑定`，而`词法环境`只用来`存储 var 变量绑定`。
+
+```js
+let a = 20;
+const b = 30;
+var c;
+
+function multiply(e, f) {
+  var g = 20;
+  return e * f * g;
+}
+
+c = multiply(20, 30);
+```
+
+执行上下文看起来像这样：
+
+```js
+    GlobalExectionContext = {
+
+        ThisBinding: <Global Object>,
+        LexicalEnvironment: {
+            EnvironmentRecord: {
+            Type: "Object",
+            // 在这里绑定标识符
+            a: < uninitialized >,
+            b: < uninitialized >,
+            multiply: < func >
+            }
+            outer: <null>
+        },
+        VariableEnvironment: {
+            EnvironmentRecord: {
+            Type: "Object",
+            // 在这里绑定标识符
+            c: undefined,
+            }
+            outer: <null>
+        }
+    }
+
+    FunctionExectionContext = {
+        ThisBinding: <Global Object>,
+        LexicalEnvironment: {
+            EnvironmentRecord: {
+            Type: "Declarative",
+            // 在这里绑定标识符
+            Arguments: {0: 20, 1: 30, length: 2},
+            },
+            outer: <GlobalLexicalEnvironment>
+        },
+        VariableEnvironment: {
+            EnvironmentRecord: {
+            Type: "Declarative",
+            // 在这里绑定标识符
+            g: undefined
+            },
+            outer: <GlobalLexicalEnvironment>
+        }
+    }
+```
+
+- 只有遇到调用函数 `multiply` 时，`函数执行上下文`才会被创建。
+
+可能你已经注意到 `let` 和 `const` 定义的变量并没有关联任何值，但 `var` 定义的变量被设成了 `undefined`。
+这是因为在创建阶段时，引擎检查代码找出`变量和函数声明`，虽然`函数声明完全存储在环境`中，但是变量最初设置为 `undefined`（`var` 情况下），或者未初始化（`let` 和 `const` 情况下）。
+
+这就是为什么你可以在声明之前访问 `var` 定义的变量（虽然是 `undefined`），但是在声明之前访问 `let` 和 `const` 的变量会得到一个引用错误。
+
+### 总结
+
+大致创建过程如下：
+
+- 初始化作用域链：
+- 创建变量对象：
+  - 创建arguments对象，检查上下文，初始化参数名称和值并创建引用的复制。
+  - 扫描上下文的函数声明：
+    - 为发现的每一个函数，在变量对象上创建一个属性——确切的说是函数的名字——其有一个指向函数在内存中的引用。
+    - 如果函数的名字已经存在，引用指针将被重写。
+  - 扫面上下文的变量声明：
+    - 为发现的每个变量声明，在变量对象上创建一个属性——就是变量的名字，并且将变量的值初始化为undefined
+    - 如果变量的名字已经在变量对象里存在，将不会进行任何操作并继续扫描。
+- 求出上下文内部“this”的值。
+
+`词法环境`分为两种**全局环境**、**函数环境**，`函数环境`又包含两个概念**环境记录器**、**引用的外部环境**，而`环境记录器`又分为两种**声明式环境记录器**、**对象环境记录器**。
+
+在上面只是简单的讲解了`变量提升`，如果有兴趣再多了解一下`变量声明提升、函数声明提升`可以去看我的另一篇文章[JavaScript中的变量提升](/blog/javascript/hoisting.html)，里面又很多比较好的实例。
+
+## 执行阶段
+
+在上面我们介绍了`创建阶段`，现在主要介绍一下`执行阶段`。
+**激活/代码执行阶段**
+
+- 在**当前上下文上运行/解释函数代码**，并随着代码一行行执行指派变量的值。
+
+一个**实例**
+
+```js
+    let name;
+    const age;
+    var firstName = 'everybody';
+    function test (args) {
+        var lastName = 'lastName';
+        function testTwo () {
+        }
+    }
+    test('testArgs');
+```
+
+`创建阶段`我们用伪代码来表示一下：
+
+```js
+    // 全局执行上下文
+    GlobalExectionContext = {
+        scopeChain: {...}, // 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用
+        variableObject: {
+            // name 未初始化
+            // age 未初始化
+            firstName: undefined
+        },
+        this: {....}
+    }
+    // 函数执行上下文
+    testExecutionContext = {
+        scopeChain: {...}, // 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用
+        variableObject: {
+            args: {
+                0: 'testArgs',
+                length: 1
+            },
+            args: 'testArgs',
+            lastName: undefined,
+            testTwo: pointer to function testTwo()
+        },
+        this: {....}
+    }
+```
+
+`执行阶段`我们用伪代码描述一下：
+
+```js
+    // 全局执行上下文
+    GlobalExectionContext = {
+        scopeChain: {...}, // 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用
+        variableObject: {
+            name: undefined, // 初始化 没有找到变量的值，它被复制为 undefined
+            age: undefined, // 初始化 没有找到变量的值，它被复制为 undefined
+            firstName: 'everybody' // 赋值为 everybody
+        },
+        this: {....}
+    }
+    // 函数执行上下文
+    testExecutionContext = {
+        scopeChain: {...}, // 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用
+        variableObject: {
+            args: {
+                0: 'testArgs',
+                length: 1
+            },
+            args: 'testArgs',
+            lastName: 'lastName', // 赋值为lastName
+            testTwo: pointer to function testTwo()
+        },
+        this: {....}
+    }
+```
+
+`let/const`是在`执行阶段`才初始化的，初始化完成就会被赋值。
+`arguments`是在`创建阶段`就被创建和赋值。
+`functions`也是在`创建阶段`就被创建和赋值。
+`variables`是在`创建阶段`被创建，但是没有赋值，在`执行阶段`被赋值。
+
+**functions 赋值式**只会声明不会赋值。
+
+> 如果 `JavaScript 引擎`不能在源码中声明的实际位置找到 `let 变量的值`，它会被赋值为 `undefined`。
+
+## 回收阶段
+
+就是在函数执行完成会把当前的执行上下文回收掉，但是全局执行上下文是不会被回收的，只有关闭当前线程/进程才会把全局执行上下文清楚掉。
+
+## 总结全文
+
+到现在我们知道`this`是`执行上下文`中的一部分，它产生在`创建阶段`，绑定在发生在`执行阶段`.
+我们也知道什么是`执行栈`它是怎么运转的，也知道了`执行上下文`的生命周期的细节，所以本篇文章到此为止。
+如果有哪里有问题欢迎留言，谢谢！
+
+## 参考
+
+[What is the Execution Context & Stack in JavaScript?](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)
+[了解JavaScript的执行上下文](https://yanhaijing.com/javascript/2014/04/29/what-is-the-execution-context-in-javascript/)
+[[译] 理解 JavaScript 中的执行上下文和执行栈](https://juejin.im/post/5ba32171f265da0ab719a6d7)
