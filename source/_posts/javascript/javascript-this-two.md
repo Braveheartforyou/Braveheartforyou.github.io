@@ -109,3 +109,63 @@ description: this的绑定
 ```
 
 但是即使通过`call`or`apply`改变的`this`值也是会丢失的，在传递的过程中，其实通过显示绑定也并不能保证我们的`this`一直是绑定的一个值。
+
+我们可以通过在外层包裹一层函数来绑定`this`，示例代码如下：
+
+```js
+    function scopeFunc () {
+        console.log(this.name, arguments);
+    }
+
+    var globalObj = {
+        name: 'globalObj'
+    };
+
+    function simpleBind (fn, obj) {
+        return function () {
+            return fn.call(obj, arguments);
+        }
+    }
+
+    var func = simpleBind(scopeFunc, globalObj);
+
+    func(3); // globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+    func.call(null, 3); // globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]
+```
+
+可以看到我们通过`simpleBind`中返回一个匿名函数，这样通过`call`或`apply`它也只能改变外部匿名函数的`this`，在**匿名函数内部**我们通过`fn.call(obj)`给方法默认绑定一个`this`，这个只是一个简单的`bind`实现。
+
+也可以直接通过`Function.prototype.bind`来实现，`bind`返回一个硬绑定的函数。
+
+```js
+    function scopeFunc (args) {
+        console.log(this.name, args);
+    }
+    var globalObj = {
+        name: 'globalObj'
+    };
+    var func = scopeFunc.bind(globalObj);
+
+    func(3); // globalObj 3
+
+    func.call(null, 3); // globalObj 3
+```
+
+还有一种方式就是高阶函数，我们传入一下函数来获取当前执行上下文，比如`map`、`forEach`等等。
+
+```js
+    var aData = [{name: 'firstName', age: 18}, {name: 'lastName', age: 20}];
+
+    aData.forEach(item => {
+        console.log(item);
+    });
+```
+
+它的内部也是使用了`call`或者`apply`来改变传入函数的`this`。如果有兴趣去看一下另一篇博客[Array常用的方法和实现reduce、map、filter、forEach](https://juejin.im/post/5d786452e51d4561eb0b2719)来深入了解一下。
+
+### new绑定、Object.create()绑定
+
+`new`关键字和`Object.create()`方法也是可以改变`this`的指向的。
+
+
