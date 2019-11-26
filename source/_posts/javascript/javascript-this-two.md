@@ -52,6 +52,12 @@ description: this的绑定
 
 在普通模式下，如果我们是在浏览器端运行代码，`this`指向`window`。它在**严格模式**下`this`会是`undefined`。
 
+默认绑定多种方式：
+
+- 全局调用函数
+- IIFE(自执行函数)
+- 匿名函数
+
 ### 隐式绑定
 
 **隐式绑定**，其实就是当前调用函数的`this`会指向当前调用该函数的执行上下文。隐式绑定`this`是不可靠的，他会因为调用者的不同而不同。
@@ -234,7 +240,7 @@ description: this的绑定
 
 ### 软绑定
 
-硬绑定可以把`this`强制绑定到指定的对象（`new`除外），防止函数调用应用**默认绑定规则**。但是会降低函数的灵活性，使用**硬绑定之后就无法使用隐式绑定或者显式绑定来修改**`this`。
+硬绑定可以把`this`强制绑定到指定的对象（`new除外`），防止函数调用应用**默认绑定规则**。但是会降低函数的灵活性，使用**硬绑定之后就无法使用隐式绑定或者显式绑定来修改**`this`。
 
 如果给**默认绑定指定一个全局对象和undefined以外的值**，那就可以实现和硬绑定相同的效果，同时**保留隐式绑定或者显示绑定修改this的能力**。
 
@@ -246,8 +252,108 @@ description: this的绑定
             var currArgs = Array.prototype.slice.call(arguments, 1);
 
             var bound = function () {
-                return fn.apply()
+                let funStack = (!this || this === (window || global)) ? obj : this;
+                return fn.apply(funStack, currArgs);
             }
+            bound.prototype = Object.create(fn.prototype);
+            return bound;
         }
     }
 ```
+
+使用：软绑定版本的`foo()`可以手动将`this`绑定到`obj2`或者`obj3`上，但如果应用默认绑定，则会将`this`绑定到`obj`。
+
+```js
+    function foo() {
+        console.log("name:" + this.name);
+    }
+
+    var obj = { name: "obj" },
+        obj2 = { name: "obj2" },
+        obj3 = { name: "obj3" };
+
+    // 默认绑定，应用软绑定，软绑定把this绑定到默认对象obj
+    var fooOBJ = foo.softBind(obj);
+    fooOBJ(); // name: obj
+
+    // 隐式绑定规则
+    obj2.foo = foo.softBind(obj);
+    obj2.foo(); // name: obj2 <---- 看！！！
+
+    // 显式绑定规则
+    fooOBJ.call(obj3); // name: obj3 <---- 看！！！
+
+    // 绑定丢失，应用软绑定
+    setTimeout(obj2.foo, 10); // name: obj
+```
+
+## 绑定优先级
+
+我们对比`显示绑定`、`隐式绑定`、`new 绑定`、`默认绑定`，不包含`箭头函数`的对比，因为`箭头函数`它本身没有`this`，它会从它外层的普通函数或者全局获取。
+
+大致对比过程：
+
+- `显示绑定`与`隐式绑定`对比
+- `默认绑定`与`隐式绑定`对比
+- `new 绑定`与`显示绑定`对比
+
+我们就通过代码一步一步的记录。
+
+### `显示绑定`与`隐式绑定`
+
+我们直接通过代码来对比。
+
+```js
+    function test () {
+        console.log(this.name);
+    }
+
+    var yinObj = {
+        name: 'yinObj',
+        func: test
+    }
+    // 首先我们通过隐式绑定
+    yinObj.func(); // yinObj
+    // 二次显示绑定
+    yinObj.func.call({name: 'xianObj'}); // xianObj
+```
+
+通过上面的代码我们知道了`显示绑定 > 隐式绑定`。
+
+### `默认绑定`与`隐式绑定`
+
+`默认绑定`与`隐式绑定`对比直接上代码
+
+```js
+    var name = 'GlobalName';
+    function test () {
+        console.log(this.name);
+    }
+
+    var yinObj = {
+        name: 'yinObj',
+        func: test
+    }
+    // 默认绑定
+    test(); // GlobalName
+
+    // 首先我们通过隐式绑定
+    yinObj.func(); // yinObj
+```
+
+我们首相声明一个函数`test`，然后把这个函数赋值给一个对象`yinObj`的`func`属性，然后我们分别在全局和对象中调用`test`函数，在全局中调用`test`函数得出的结果是`GlobalName`，`yinObj.func()`得出的结果是`yinObj`。可以得出结果`隐式绑定>默认绑定`。
+
+### `new 绑定`与`显示绑定`
+
+我们通过代码看`new 绑定`与`显示绑定`他们之间的优先级。
+
+```js
+
+```
+
+在本篇文章中我们记录了多种绑定方式，下面就会测试各个优先级。
+
+## 参考
+
+> [如何理解javascript中this的绑定？](https://mp.weixin.qq.com/s/LCdthN5snKZvh_5lFDIU3g)
+> [JavaScript深入之史上最全--5种this绑定全面解析](https://muyiy.cn/blog/3/3.1.html#_1-%E8%B0%83%E7%94%A8%E4%BD%8D%E7%BD%AE)
