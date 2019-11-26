@@ -166,6 +166,88 @@ description: this的绑定
 
 ### new绑定、Object.create()绑定
 
-`new`关键字和`Object.create()`方法也是可以改变`this`的指向的。
+`new运算符`和`Object.create()`方法也是可以改变`this`的指向的。
+首先我们要理解`new运算符`它具体做了什么操作，大致过程如下：
 
+- 创建一个空的简单JavaScript对象（即`{}`）；
+- 链接该对象（即设置该对象的构造函数）到另一个对象 ；
+- 将步骤1新创建的对象作为`this`的上下文 ；
+- 如果该函数没有返回对象，则返回`this`。
 
+可以看到在`new 运算符`中有修改过`this`的指向，下面我们通过一个示例代码来了解一下。
+
+```js
+    function globalFunc () {
+        this.name = 'globalFunc';
+    }
+
+    var exampleFunc = new globalFunc();
+
+    console.log(exampleFunc); // globalFunc {name: "globalFunc"}
+```
+
+我们通过`new 运算符`调用`globalFunc`时，我们可以看到`globalFunc`中的`name`在`exampleFunc`中也可以访问到相同的`name`。
+
+其实我们也可以通过`Object.create()`来也可以实现一样的效果，代码如下：
+
+```js
+    function globalFunc () {
+        this.name = 'globalFunc';
+    }
+
+    var exampleFunc = Object.create(globalFunc);
+
+    console.log(exampleFunc); // globalFunc {name: "globalFunc"}
+```
+
+其实`Object.create`内部和new有点类似，但是`Object.create`它调用的是`new Func()`用于生成一个对象实例。
+
+### 箭头函数
+
+**箭头函数外层没有普通函数，严格模式和非严格模式下它的this都会指向window(全局对象)**
+**this对象的指向是可变的，但是在箭头函数中，它是固定的。**
+
+普通函数与箭头函数的对比如下表所示：
+
+|      对比     |      普通函数      |     箭头函数     |
+|:------------:|:-------------:|:-------------:|
+| `this`指向规则 |  `this`总是指向调用它的那个对象| 1.所有箭头函数本身没有`this` </br>2.箭头函数的this在定义的时候捕获自外层第一个普通函数的`this` </br> 3.如果箭头函数外层没有普通函数,严格模式和非严格模式下它的`this`都会指向`window`(全局对象) |
+| 有无`prototype` |   有   | 箭头函数没有<font color="#ff502c">prototype</font>(原型) |
+| 可否`new` |   可以   | 箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有`constructor`),不能使用new,不然会报错 |
+| 有无`arguments` |   有   | 1.箭头函数的`this`指向全局,使用会报未声明的错误 </br> 2.箭头函数的`this`指向普通函数时,它的<font color="#ff502c">argumens</font>继承于改普通函数 |
+| 可否`new` |   可以   | 箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有`constructor`),不能使用new,不然会报错 |
+| 可否改变`this`指向 |   可以通过`call、apply、bind`改变`this`的指向  | 箭头函数本身的`this`指向不能改变,但是可以修改它要捕获的对象的`this` |
+
+如果有兴趣的话可以去看另一篇[arrow-functions（箭头函数）和普通的函数的区别 this（二）](/blog/es6/es6-arrow-functions.html)
+
+## 注意事项
+
+### new 注意事项
+
+`new`可以很方便构造调用一个函数并且声称一个实例，但是如果我们使用不太小心的话也会带来很多不必要的麻烦。
+
+**忘记写new**运算符，那样我们就得不到我们想要的结果，如果实在全局环境中，那么**函数**的`this`会绑定到全局。如果实在**严格模式**`this`会绑定为`undefined`。
+
+### bind/call、bind注意事项
+
+把`null`或者`undefined`作为`this`的绑定对象传入`call、apply`或者`bind`，这些值在调用时会被忽略，实际应用的是默认规则。
+
+### 软绑定
+
+硬绑定可以把`this`强制绑定到指定的对象（`new`除外），防止函数调用应用**默认绑定规则**。但是会降低函数的灵活性，使用**硬绑定之后就无法使用隐式绑定或者显式绑定来修改**`this`。
+
+如果给**默认绑定指定一个全局对象和undefined以外的值**，那就可以实现和硬绑定相同的效果，同时**保留隐式绑定或者显示绑定修改this的能力**。
+
+```js
+    if (!Function.prototype.softBind) {
+        Function.prototype.softBind = function (obj) {
+            var fn = this;
+
+            var currArgs = Array.prototype.slice.call(arguments, 1);
+
+            var bound = function () {
+                return fn.apply()
+            }
+        }
+    }
+```
