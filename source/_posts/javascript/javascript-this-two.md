@@ -11,12 +11,13 @@ description: this的绑定
 在[上一篇文章](/blog/javascript/javascript-this-one.html)中我们记录了`执行栈`、`执行上下文`、`执行上下文生命周期`、`this的产生`等等，在这一篇文章中我们来记录一下`this的绑定`也就是`this`的值确定。
 `this`在`创建阶段`被创建(确定默认值)，但是在`执行阶段`会改变`this`的值。所以一般我们都会说`确定this`是在`执行阶段`。
 
-大致过程分为：
+本篇文章章节大致如下：
 
 - 多种绑定`this`方式
 - 改变`this`方式 `new`、`Object.create`
 - 另外三种改变`this`的方式`bind`、`call`、`apply`
 - 异类`箭头函数`
+- 优先级
 
 下面我们就慢慢开始一步一步了解`this`。
 
@@ -348,10 +349,39 @@ description: this的绑定
 我们通过代码看`new 绑定`与`显示绑定`他们之间的优先级。
 
 ```js
+    function foo (name) {
+        this.name = name;
+    }
+    let obj1 = {};
+    let bound = foo.bind(obj1);
+    // 返回一个新函数bound，这个新函数内的this指向了obj1
+    bar('bind name');
+    console.log(obj1.name); // bind name
 
+    var newObject = new bar('new Name');
+    // 调用new 操作符后，bar函数的this指向了返回的新实例baz
+    newObject.name; // new Name
+    obj1.name; // bind name
 ```
 
-在本篇文章中我们记录了多种绑定方式，下面就会测试各个优先级。
+在 `JavaScript`内部，会判断硬绑定函数是否是被 `new` 调用，如果是的话就会使用新创建的 `this` 替换硬绑定的 `this`。
+
+## 总结
+
+`this`在`创建阶段`被创建(确定默认值)，但是在`执行阶段`会改变`this`的值。所以一般我们都会说`确定this`是在`执行阶段`。
+
+在本篇文章中我们知道了多种绑定方式如下：
+
+- **默认绑定**：多种绑定方式**全局调用函数**、**IIFE(自执行函数)**、**匿名函数**
+- **显示绑定**：可以通过`call`、`apply`、`bind`来显示改变`this`绑定。
+- **隐式绑定**：通过**赋值的方式**实现隐式绑定。但是很容易丢失。
+- **bind、call、apply绑定**：和显示绑定相同。
+- **new绑定、Object.create()绑定**：和显示绑定相同。
+- **箭头函数**: `ES6`的实现，它本身没有`this`，它的`this`从**外层普通函数**或者**全局**获取。
+
+多种绑定方式的优先级：`new 绑定 > 显示绑定 > 隐式绑定 > 默认绑定`
+
+下一篇文章我们自己来实现多种绑定放法。
 
 ## 参考
 
