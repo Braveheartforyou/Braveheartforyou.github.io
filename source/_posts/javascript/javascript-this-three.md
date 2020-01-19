@@ -37,6 +37,8 @@ description: 在上一篇文章中我们知道了多种绑定方式，这篇文�
     testFunc.apply({name: 'apply', age: 20}, ['apply', 20]) // apply 20
 ```
 
+
+
 ## new和Object.create
 
 `new 运算符`创建一个用户定义的`对象类型的实例`或具有构造函数的`内置对象的实例`。会在`new`的内部改变新生成的`对象实例`的`this`，我们可以通过下面的样例看一下：
