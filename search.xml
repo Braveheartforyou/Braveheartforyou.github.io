@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2019年年度终结</title>
+    <url>/blog/annualReport/2019.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Other</category>
+      </categories>
+      <tags>
+        <tag>annual</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout实现原理和EventLoop的关系</title>
+    <url>/blog/mode/mode_setTimeout.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/GI6entTJl2EtP5rRzmQFTw" target="_blank" rel="noopener">setTimeout 的实现原理和使用注意</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式系列 ———— 单例模式和设计模式的作用</title>
+    <url>/blog/mode/mode_simple_des.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/7QDxcAVFmLVGbKGdtE7dRg" target="_blank" rel="noopener">深入理解JavaScript的设计模式</a></p>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码评审</title>
+    <url>/blog/other/code_review.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Other</category>
+      </categories>
+      <tags>
+        <tag>编码相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lighthouse的使用</title>
+    <url>/blog/performance/performance-lighthouse.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/EuFDLOCg53IxvieaQDeYug" target="_blank" rel="noopener">网易云音乐前端性能监控实践</a></p>
+]]></content>
+      <categories>
+        <category>Browser</category>
+      </categories>
+      <tags>
+        <tag>Browser</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>typeScript中的interface （未完成）</title>
+    <url>/blog/typeScript/typeScript_decorator.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/06iBhb4ye6-1cAxgLX7ybA" target="_blank" rel="noopener">TypeScript真香系列——接口篇</a></p>
+]]></content>
+      <categories>
+        <category>TypeScript</category>
+      </categories>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>react中使用useState （未完成）</title>
+    <url>/blog/react/react-useState.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/ydApE7akeJ0VO3R1r365mQ" target="_blank" rel="noopener">简单易懂的 React useState() Hook 指南（长文建议收藏）</a></p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node中的线程和进程，父子进程的关联 （未完成）</title>
+    <url>/blog/node/node_process.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/VzXnnfn4gCBMd5wea3LRIg" target="_blank" rel="noopener">深入理解 Node.js 进程与线程</a></p>
+]]></content>
+      <categories>
+        <category>Node</category>
+      </categories>
+      <tags>
+        <tag>Node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>typeScript中的interface （未完成）</title>
+    <url>/blog/typeScript/typeScript_interface.html</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/06iBhb4ye6-1cAxgLX7ybA" target="_blank" rel="noopener">TypeScript真香系列——接口篇</a></p>
+]]></content>
+      <categories>
+        <category>TypeScript</category>
+      </categories>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>设计模式系列 ———— mvc和mvvm到底是什么</title>
     <url>/blog/mode/mode-mvc-mvvm.html</url>
     <content><![CDATA[]]></content>
@@ -300,26 +406,28 @@
     <content><![CDATA[<blockquote>
 <p><a href="/blog/es6/es6-assign.html">深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign</a><br><a href="/blog/javascript/javascript-paser-stringify.html">深拷贝系列 ———— 自己实现一个JSON.stringify和JSON.parse</a><br><a href="/blog/javascript/javascript-deepcopy.html">深拷贝系列 ———— 自己通过递归实现一个深拷贝</a><br><a href="/blog/javascript/javascript-loadsh-deepcopy.html">深拷贝系列 ———— 分析lodash中的deepcopy</a></p>
 </blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先我们要了解什么是<strong>深拷贝</strong>、<strong>浅拷贝</strong>，要了解<strong>深拷贝/浅拷贝</strong>首先要了解浅拷贝<strong>JavaScript</strong>中的数据类型。</p>
-<p><strong>JavaScript</strong>中的数据类型分为两类：</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先我们要了解什么是<code>深拷贝</code>、<code>浅拷贝</code>，要了解<code>深拷贝/浅拷贝</code>首先要了解浅拷贝<code>JavaScript</code>中的数据类型。</p>
+<p><code>JavaScript</code>中的数据类型分为两类：</p>
 <ul>
-<li><strong>值类型/原始类型/基本类型：String、Number、Boolean、null、undefined、Symbol</strong></li>
-<li><strong>引用类型/“指针”类型：Object、Array、Window等等</strong></li>
+<li><code>值类型/原始类型/基本类型：String、Number、Boolean、null、undefined、Symbol</code></li>
+<li><code>引用类型/“指针”类型：Object、Array、Window等等</code></li>
 </ul>
-<p><strong>基本类型</strong>是储存在栈(stack)中的数据。<br><strong>引用类型</strong>真实数据是储存在堆中的，而它的引用地址储存在栈中。</p>
+<p><code>基本类型</code>是储存在栈(stack)中的数据。<br><code>引用类型</code>真实数据是储存在堆中的，而它的引用地址储存在栈中。</p>
 <p><img src="../../images/es/es-assign-1-1.png" alt="深拷贝/浅拷贝"></p>
-<p>如果有兴趣了解<strong>JavaScript</strong>中的类型的话，可以看一下我往期的文章<a href="/blog/javascript/javascript-Type-conversion.html">JavaScript数据类型（一） 常见数据类型</a>，这个只是其中的一篇，有关<strong>JavaScript</strong>类型的常见的概念基本上都有提及。</p>
-<p><strong>基本类型</strong>是不存在<strong>深拷贝</strong>和<strong>浅拷贝</strong>的，因为<strong>基本类型</strong>是不可变的，无论是<strong>修改</strong>、<strong>重新赋值</strong>、<strong>赋值给别的变量</strong>都是一个新的值，和原来的值再无关联。</p>
+<p>如果有兴趣了解<code>JavaScript</code>中的类型的话，可以看一下我往期的文章<a href="/blog/javascript/javascript-Type-conversion.html">JavaScript数据类型（一） 常见数据类型</a>，这个只是其中的一篇，有关<code>JavaScript</code>类型的常见的概念基本上都有提及。</p>
+<p><code>基本类型</code>是不存在<code>深拷贝</code>和<code>浅拷贝</code>的，因为<code>基本类型</code>是不可变的，无论是<code>修改</code>、<code>重新赋值</code>、<code>赋值给别的变量</code>都是一个新的值，和原来的值再无关联。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'abc'</span>,</span><br><span class="line">    b = a;</span><br><span class="line">b = <span class="string">'abcd'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a, b); <span class="comment">// abc, abcd</span></span><br></pre></td></tr></table></figure>
-<p><strong>引用类型</strong>因为是地址引用，所以会存在<strong>深拷贝</strong>和<strong>浅拷贝</strong>，下面就开始介绍。</p>
-<p><strong>浅拷贝</strong></p>
-<p>创建一个新对象，这个对象有着<strong>原始对象属性值</strong>的一份精确拷贝。如果属性是基本类型，拷贝的就是<strong>基本类型的值</strong>，如果属性是引用类型，拷贝的就是<strong>内存地址</strong> ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
+<p><code>引用类型</code>因为是地址引用，所以会存在<code>深拷贝</code>和<code>浅拷贝</code>，下面就开始介绍。</p>
+<ul>
+<li><code>浅拷贝简介</code>: 创建一个新对象，这个对象有着<code>原始对象属性值</code>的一份精确拷贝。如果属性是基本类型，拷贝的就是<code>基本类型的值</code>，如果属性是引用类型，拷贝的就是<code>内存地址</code> ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。</li>
+</ul>
 <p><img src="../../images/es/es-assign-1-2.png" alt="深拷贝/浅拷贝"></p>
-<p><strong>深拷贝</strong></p>
-<p>创建一个新的对象把原始对象的<strong>所有属性</strong>的拷贝一份，并且<strong>引用类型的引用地址和内存空间都会被拷贝一份，重新分配内存空间</strong>。<strong>修改新对象不会影响原始对象</strong>。</p>
+<ul>
+<li><code>深拷贝</code>: 创建一个新的对象把原始对象的<code>所有属性</code>的拷贝一份，并且<code>引用类型的引用地址和内存空间都会被拷贝一份，重新分配内存空间</code>。<code>修改新对象不会影响原始对象</code>。</li>
+</ul>
 <p><img src="../../images/es/es-assign-1-3.png" alt="深拷贝/浅拷贝"></p>
-<p>本章主要记录<strong>深拷贝/浅拷贝</strong>，主要讲解浅拷贝相关的如<code>assign、解构、扩展运算符、slice</code>等等，后面的文章会<strong>由浅到深的</strong>的介绍<strong>深拷贝</strong>相关的。</p>
-<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>虽然看着<strong>浅拷贝</strong>比较简单，其实它就是比较简单，但是它相关的东西也不少，下面就开始吧。</p>
+<p>本章主要记录<code>深拷贝/浅拷贝</code>，主要讲解浅拷贝相关的如<code>assign、解构、扩展运算符、slice</code>等等，后面的文章会<code>由浅到深的</code>的介绍<code>深拷贝</code>相关的。</p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>虽然看着<code>浅拷贝</code>比较简单，其实它就是比较简单，但是它相关的东西也不少，下面就开始吧。</p>
 <ul>
 <li>Object.assign() &amp; 自己实现一个Object.assign()</li>
 <li>Array.prototype.slice()</li>
@@ -329,8 +437,8 @@
 <li>jquery.extend()</li>
 <li>自己实现一个浅拷贝</li>
 </ul>
-<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><p><strong>语法</strong>: <code>Object.assign(target, ...sources)</code>;<br><strong>返回值</strong>: <code>target对象</code></p>
-<p>ES6中拷贝对象的方法，接受的第一个参数是拷贝的<code>目标target</code>，剩下的参数是拷贝的<code>源对象sources</code>（<strong>可以是多个</strong>）</p>
+<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><p><code>语法</code>: <code>Object.assign(target, ...sources)</code>;<br><code>返回值</code>: <code>target对象</code></p>
+<p>ES6中拷贝对象的方法，接受的第一个参数是拷贝的<code>目标target</code>，剩下的参数是拷贝的<code>源对象sources</code>（<code>可以是多个</code>）</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> target = &#123; <span class="attr">firstname</span>: <span class="string">'target'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> source = &#123; <span class="attr">lastname</span>: <span class="string">'source'</span>, <span class="attr">age</span>: <span class="number">21</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> newtarget = <span class="built_in">Object</span>.assign(target, source);</span><br><span class="line"><span class="comment">// target与newtarget指向同一个内存地址</span></span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget === target); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改newtarget的age属性，target属性也跟着变化，而source不会变化</span></span><br><span class="line">newtarget.age = <span class="number">22</span>;</span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(source); <span class="comment">// &#123; lastname: 'source', age: 21 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过Object.assgin()第一个传入一个空对象，结果和上方相同</span></span><br><span class="line"><span class="keyword">const</span> newSource = <span class="built_in">Object</span>.assign(&#123;&#125;, source);</span><br><span class="line"><span class="built_in">console</span>.log(newSource); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"></span><br><span class="line">newSource.age = <span class="number">22</span>;</span><br><span class="line"><span class="built_in">console</span>.log(source); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newSource); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br></pre></td></tr></table></figure>
 <p>在上面的代码中我们可以看到通过<code>Object.assign(target, source);</code>会返回一个新的值<code>newtarget</code>，这个值的引用地址与<code>target</code>是同一个地址，所以修改<code>newtarget.age = 22;</code>后<code>target</code>和<code>newtarget</code>都会变化。<br><code>Object.assign({}, source)</code>返回的<code>newSource</code>它被修改不会影响到<code>source</code>的变化，因为他的<code>target</code>传入的是一个空对象。</p>
 <h3 id="自己实现一个assgin"><a href="#自己实现一个assgin" class="headerlink" title="自己实现一个assgin"></a>自己实现一个assgin</h3><p><strong>实现目标</strong></p>
@@ -352,7 +460,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 函数版本</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assign</span> (<span class="params">target</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 验证第一个参数是否为object</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> target !== <span class="string">'object'</span> || target == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>(target);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// arguments转为数组</span></span><br><span class="line">    <span class="keyword">let</span> copyList = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> len = copyList.length;</span><br><span class="line">    <span class="comment">// 循环复制多个对象的属性</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> item = copyList[i];</span><br><span class="line">        <span class="comment">// 获取当前对象的属性</span></span><br><span class="line">        <span class="keyword">for</span> (key <span class="keyword">in</span> item) &#123;</span><br><span class="line">            <span class="comment">// 判断属性是否在对象本身上</span></span><br><span class="line">            <span class="keyword">if</span> (item.hasOwnProperty(key)) &#123;</span><br><span class="line">                <span class="comment">// 复制给目标对象</span></span><br><span class="line">                target[key] = item[key]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回目标对象</span></span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 验证assign代码</span></span><br><span class="line"><span class="keyword">var</span> target = &#123; <span class="attr">firstname</span>: <span class="string">'target'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> source = &#123; <span class="attr">lastname</span>: <span class="string">'source'</span>, <span class="attr">age</span>: <span class="number">21</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> newtarget = <span class="built_in">Object</span>.assign(target, source);</span><br><span class="line"><span class="comment">// target与newtarget指向同一个内存地址</span></span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget === target); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改newtarget的age属性，target属性也跟着变化，而source不会变化</span></span><br><span class="line">newtarget.age = <span class="number">22</span>;</span><br><span class="line"><span class="built_in">console</span>.log(target); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newtarget); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(source); <span class="comment">// &#123; lastname: 'source', age: 21 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过Object.assgin()第一个传入一个空对象，结果和上方相同</span></span><br><span class="line"><span class="keyword">const</span> newSource = <span class="built_in">Object</span>.assign(&#123;&#125;, source);</span><br><span class="line"><span class="built_in">console</span>.log(newSource); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"></span><br><span class="line">newSource.age = <span class="number">22</span>;</span><br><span class="line"><span class="built_in">console</span>.log(source); <span class="comment">// &#123;firstname: "target", age: 21, lastname: "source"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newSource); <span class="comment">// &#123;firstname: "target", age: 22, lastname: "source"&#125;</span></span><br></pre></td></tr></table></figure>
 <p><strong>Object.defineProperty</strong>版本</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Object</span>.newAssign !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(<span class="built_in">Object</span>, <span class="string">'newAssign'</span>, &#123;</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        enumberable: <span class="literal">false</span>,</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span> (<span class="params">target</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 验证第一个参数是否为object</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> target !== <span class="string">'object'</span> || target == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Object</span>(target);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// arguments转为数组</span></span><br><span class="line">            <span class="keyword">let</span> copyList = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">let</span> len = copyList.length;</span><br><span class="line">            <span class="comment">// 循环复制多个对象的属性</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> item = copyList[i];</span><br><span class="line">                <span class="comment">// 获取当前对象的属性</span></span><br><span class="line">                <span class="keyword">for</span> (key <span class="keyword">in</span> item) &#123;</span><br><span class="line">                    <span class="comment">// 判断属性是否在对象本身上</span></span><br><span class="line">                    <span class="keyword">if</span> (item.hasOwnProperty(key)) &#123;</span><br><span class="line">                        <span class="comment">// 复制给目标对象</span></span><br><span class="line">                        target[key] = item[key]</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 返回目标对象</span></span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line"><span class="built_in">Object</span>.newAssign(<span class="string">'abc'</span>, <span class="literal">false</span>); <span class="comment">// String &#123;"abc"&#125;</span></span><br><span class="line"><span class="built_in">Object</span>.assign(<span class="string">'abc'</span>, <span class="literal">false</span>); <span class="comment">// String &#123;"abc"&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.newAssign(&#123;&#125;, <span class="string">'abc'</span>); <span class="comment">// &#123;0: "a", 1: "b", 2: "c"&#125;</span></span><br><span class="line"><span class="built_in">Object</span>.assign(&#123;&#125;, <span class="string">'abc'</span>); <span class="comment">// &#123;0: "a", 1: "b", 2: "c"&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.newAssign(&#123;&#125;, <span class="string">'abc'</span>, <span class="literal">false</span>, <span class="number">123</span>); <span class="comment">// &#123;0: "a", 1: "b", 2: "c"&#125;</span></span><br><span class="line"><span class="built_in">Object</span>.assign(&#123;&#125;, <span class="string">'abc'</span>, <span class="literal">false</span>, <span class="number">123</span>); <span class="comment">// &#123;0: "a", 1: "b", 2: "c"&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h3><p><code>slice()</code> 方法返回一个新的<strong>数组对象</strong>，这一对象是一个由 <code>begin</code>和 <code>end</code>（不包括end）决定的原数组的<code>浅拷贝</code>。原始数组不会被改变。<br><code>slice()</code> 它的定义其实是复制一个数组。</p>
+<h3 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h3><p><code>slice()</code> 方法返回一个新的<code>数组对象</code>，这一对象是一个由 <code>begin</code>和 <code>end</code>（不包括end）决定的原数组的<code>浅拷贝</code>。原始数组不会被改变。<br><code>slice()</code> 它的定义其实是复制一个数组。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> old = [<span class="string">'a'</span>, <span class="string">'b'</span>, [<span class="string">'c'</span>, <span class="string">'d'</span>]];</span><br><span class="line"><span class="comment">// 通过slice复制当前数组</span></span><br><span class="line"><span class="keyword">let</span> newValue = old.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// ['a', 'b', ['c', 'd']];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改原数组的下标为0的值，新对象没有受到影响，因为下标为0的是基本类型，它们的内存地址是不同的</span></span><br><span class="line">old[<span class="number">0</span>] = <span class="string">'f'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// ['a', 'b', ['c', 'd']];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改原数组的下标为2的值，新对象受到影响，因为下标为2的是引用类型，它们的值指向同一个内存地址</span></span><br><span class="line">old[<span class="number">2</span>][<span class="number">0</span>] = <span class="string">''</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// ['a', 'b', ['', 'd']];</span></span><br></pre></td></tr></table></figure>
 <h3 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat()"></a>Array.prototype.concat()</h3><p><code>concat()</code> 方法用于<strong>合并两个或多个数组</strong>。此方法<strong>不会更改</strong>现有数组，而是返回一个<strong>新数组</strong>。</p>
 <p><strong>语法</strong></p>
@@ -5748,7 +5856,8 @@
   <entry>
     <title>Promise系列（一） Promise的使用 (未完成)</title>
     <url>/blog/es6/es6-promise-one.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/op3EaSXKTCXwYt_uRvhePg" target="_blank" rel="noopener">高级进阶：深度揭秘 Promise 注册微任务和执行过程</a></p>
+]]></content>
       <categories>
         <category>ECMAScript6</category>
       </categories>
@@ -6679,7 +6788,7 @@
       </tags>
   </entry>
   <entry>
-    <title>自己手动实现call、apply、bind this（三）</title>
+    <title>自己手动实现call、apply、bind</title>
     <url>/blog/javascript/js-call-apply-bind-polyfill.html</url>
     <content><![CDATA[<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><ol>
 <li><font color="#ff502c">将函数设为对象的属性</font></li>
@@ -6709,8 +6818,8 @@
       </tags>
   </entry>
   <entry>
-    <title>手写一个stringify、parse (未完成)</title>
-    <url>/blog/InterviewQuestion/javascript-stringify-parse.html</url>
+    <title>javascript对于继承的面试题 (未完成)</title>
+    <url>/blog/InterviewQuestion/extends-javascript.html</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>InterviewQuestion</category>
@@ -6721,8 +6830,8 @@
       </tags>
   </entry>
   <entry>
-    <title>javascript对于继承的面试题 (未完成)</title>
-    <url>/blog/InterviewQuestion/extends-javascript.html</url>
+    <title>手写一个stringify、parse (未完成)</title>
+    <url>/blog/InterviewQuestion/javascript-stringify-parse.html</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>InterviewQuestion</category>
@@ -7081,9 +7190,26 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript中的this（三）this的绑定优先级 (未完成)</title>
+    <title>JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等</title>
     <url>/blog/javascript/javascript-this-three.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在上面我们已经了解了多种绑定方式，<strong>默认绑定</strong>、<strong>隐式绑定</strong>、<strong>显示绑定</strong>、<strong>new绑定、Object.create绑定</strong>、<strong>箭头函数</strong>。<br>我们本篇文章通过实现多种显示绑定的方法，来加深对<code>this</code>的指向理解和应对开发时不同的场景使用不同的绑定方法。其实还有一部分原因就是在面试的时候，一般来说一面都会笔试或者电话面试都会遇到，让你手写一个<code>call/apply/bind/new/Object.create</code>等等。后面的文章会越来越深入的去理解<code>JavaScript</code>这门语言，等再后面的框架，架构能让我们更好的晋升。</p>
+<p>我们首先要实现一个<code>call/apply</code>，因为无论是后面的<code>bind</code>还是<code>new/Object.create</code>都会用到<code>call/apply</code>。</p>
+<p>文章大致章节：</p>
+<ul>
+<li><code>call/apply</code>: <code>call/apply</code>的使用场景，它们两个运行速度，谁更快一点，自己实现<code>call/apply</code></li>
+<li><code>bind</code>: <code>bind</code>的使用场景，实现一个<code>bind</code></li>
+<li><code>new/Object.create</code>: <code>new/Object.create</code>使用场景，分别实现他们</li>
+</ul>
+<h2 id="call-apply"><a href="#call-apply" class="headerlink" title="call/apply"></a>call/apply</h2><p><code>call()/apply()</code> 方法使用一个指定的 <code>this</code> 值和单独给出的一个或多个参数来调用一个函数。</p>
+<blockquote>
+<p>注意：该方法的语法和作用与 <code>apply()</code> 方法类似，只有一个区别，就是 <code>call()</code> 方法接受的是一个参数列表，而 <code>apply()</code> 方法接受的是一个包含多个参数的数组。</p>
+</blockquote>
+<p><code>call/apply</code>是怎么使用，简单使用如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> testFunc = <span class="function"><span class="keyword">function</span> (<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testFunc.call(&#123;<span class="attr">name</span>: <span class="string">'call'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, <span class="string">'call'</span>, <span class="number">20</span>) <span class="comment">// call、20</span></span><br><span class="line">testFunc.apply(&#123;<span class="attr">name</span>: <span class="string">'apply'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, [<span class="string">'apply'</span>, <span class="number">20</span>]) <span class="comment">// apply 20</span></span><br></pre></td></tr></table></figure>
+<h2 id="new和Object-create"><a href="#new和Object-create" class="headerlink" title="new和Object.create"></a>new和Object.create</h2><p><code>new 运算符</code>创建一个用户定义的<code>对象类型的实例</code>或具有构造函数的<code>内置对象的实例</code>。会在<code>new</code>的内部改变新生成的<code>对象实例</code>的<code>this</code>，我们可以通过下面的样例看一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">make, model, year</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">    <span class="keyword">this</span>.year = year;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> Car(<span class="string">'Eagle'</span>, <span class="string">'Talon TSi'</span>, <span class="number">1993</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(car1.make);</span><br><span class="line"><span class="comment">// expected output: "Eagle"</span></span><br><span class="line"></span><br><span class="line">car1.__proto__ === Car.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看到在通过<code>new</code>关键字生成的新的对象，它复刻了<code>Car</code>中声明了的多个变量，并且这些变量在<code>Car</code>中都是绑定在<code>Car</code>中的<code>this</code>上。而新生成的<strong>实例对象</strong>同时也拥有所有的属性。我们可以知道<code>new</code>运行的时候会新创建一个对象，这个对象包含所有<code>Car</code>中的<code>this</code>上的对象。</p>
+]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -7092,9 +7218,159 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript中的this（二）this的绑定 (未完成)</title>
+    <title>JavaScript中的this（二）this的多种绑定方式</title>
     <url>/blog/javascript/javascript-this-two.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<a href="/blog/javascript/javascript-this-one.html">上一篇文章</a>中我们记录了<code>执行栈</code>、<code>执行上下文</code>、<code>执行上下文生命周期</code>、<code>this的产生</code>等等，在这一篇文章中我们来记录一下<code>this的绑定</code>也就是<code>this</code>的值确定。<br><code>this</code>在<code>创建阶段</code>被创建(确定默认值)，但是在<code>执行阶段</code>会改变<code>this</code>的值。所以一般我们都会说<code>确定this</code>是在<code>执行阶段</code>。</p>
+<p>本篇文章章节大致如下：</p>
+<ul>
+<li>多种绑定<code>this</code>方式</li>
+<li>改变<code>this</code>方式 <code>new</code>、<code>Object.create</code></li>
+<li>另外三种改变<code>this</code>的方式<code>bind</code>、<code>call</code>、<code>apply</code></li>
+<li>异类<code>箭头函数</code></li>
+<li>优先级</li>
+</ul>
+<p>下面我们就慢慢开始一步一步了解<code>this</code>。</p>
+<h2 id="多种绑定this方式"><a href="#多种绑定this方式" class="headerlink" title="多种绑定this方式"></a>多种绑定<code>this</code>方式</h2><p>无论是默认的绑定<code>this</code>的规则，还是后面改变<code>this</code>的方法，我们尽量深入的记录，大致目录如下：</p>
+<ul>
+<li>默认绑定</li>
+<li>显示绑定</li>
+<li>隐式绑定</li>
+<li>bind、call、apply绑定</li>
+<li>new绑定、Object.create()绑定</li>
+<li>箭头函数</li>
+</ul>
+<p>我们都知道<code>this</code>的值是在运行时绑定的，并且谁调用它，它指向谁。下面我们就开始一步一步的了解<code>this</code>绑定的细节和实现。</p>
+<h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><p><strong>默认绑定</strong>其实就是在<strong>全局中声明函数</strong>，并且在<strong>全局中调用函数</strong>，这样它不会受到任何调用对象和修饰符的干扰。代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defalutsFunc</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">defalutsFunc(); <span class="comment">// windows</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defalutsFuncTwo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// use strict</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">defalutsFuncTwo(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>在普通模式下，如果我们是在浏览器端运行代码，<code>this</code>指向<code>window</code>。它在<strong>严格模式</strong>下<code>this</code>会是<code>undefined</code>。</p>
+<p>默认绑定多种方式：</p>
+<ul>
+<li>全局调用函数</li>
+<li>IIFE(自执行函数)</li>
+<li>匿名函数</li>
+</ul>
+<h3 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h3><p><strong>隐式绑定</strong>，其实就是当前调用函数的<code>this</code>会指向当前调用该函数的执行上下文。隐式绑定<code>this</code>是不可靠的，他会因为调用者的不同而不同。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scopeObj = &#123;</span><br><span class="line">    name: <span class="string">'scopeObj'</span>,</span><br><span class="line">    scopeFunc: globalFunc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'globalFunc'</span>;</span><br><span class="line"></span><br><span class="line">scopeObj.scopeFunc(); <span class="comment">// scopeObj</span></span><br><span class="line">globalFunc(); <span class="comment">// globalFunc</span></span><br></pre></td></tr></table></figure>
+<p>在<code>scopeObj.scopeFunc()</code>我们其实是在<code>scopeObj</code>这个<code>作用域</code>中调用<code>scopeFunc</code>，这样<code>scopeFunc</code>的<code>this</code>指向<code>scopeObj</code>创建的上下文。 但是<strong>隐式绑定</strong>在传递过程中会丢失<code>this</code>，其实还是看调用它的执行上下文是那个，它的<code>this</code>就会指向当前<strong>执行上下文</strong>。修改代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> funcObj = scopeObj.scopeFunc;</span><br><span class="line">funcObj(); <span class="comment">// globalFunc</span></span><br></pre></td></tr></table></figure>
+<p>我们又把<code>scopeObj.scopeFunc</code>赋值给了一个普通变量<code>funcObj</code>，在全局作用域中调用了赋值的这个<code>funcObj</code>，所以<code>funcObj</code>的this指向了<code>全局</code>的执行上下文。</p>
+<blockquote>
+<p>其实<code>参数</code>也是一样的效果。</p>
+</blockquote>
+<h3 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h3><p>因为隐式绑定的丢失问题，所以有了后面的显示绑定<code>call</code>、<code>apply</code>、<code>bind</code>等等的方式。</p>
+<p>我们可以通过<code>call</code>、<code>apply</code>它们可以显示的改变<code>this</code>的绑定.</p>
+<ul>
+<li><code>call</code>: <code>fun.call(thisArg, arg1, arg2, ...)</code>第一个参数<code>this</code>要绑定的值，后面多个参数是要传入方法的参数。</li>
+<li><code>apply</code>: <code>func.apply(thisArg, [argsArray])</code> 第一个参数<code>this</code>要绑定的值，可选的。一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 <code>func</code> 函数。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span> (<span class="params">age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scopeObj = &#123;</span><br><span class="line">    name: <span class="string">'scopeObj'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'globalFunc'</span>;</span><br><span class="line"></span><br><span class="line">globalFunc.call(scopeObj, <span class="number">18</span>); <span class="comment">// scopeObj, 18</span></span><br><span class="line">globalFunc.apply(scopeObj, [<span class="number">18</span>]); <span class="comment">// scopeObj, 18</span></span><br><span class="line"></span><br><span class="line">globalFunc(<span class="number">18</span>); <span class="comment">// globalFunc, 18</span></span><br></pre></td></tr></table></figure>
+<p>但是即使通过<code>call</code>or<code>apply</code>改变的<code>this</code>值也是会丢失的，在传递的过程中，其实通过显示绑定也并不能保证我们的<code>this</code>一直是绑定的一个值。</p>
+<p>我们可以通过在外层包裹一层函数来绑定<code>this</code>，示例代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scopeFunc</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> globalObj = &#123;</span><br><span class="line">    name: <span class="string">'globalObj'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">simpleBind</span> (<span class="params">fn, obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn.call(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = simpleBind(scopeFunc, globalObj);</span><br><span class="line"></span><br><span class="line">func(<span class="number">3</span>); <span class="comment">// globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br><span class="line"></span><br><span class="line">func.call(<span class="literal">null</span>, <span class="number">3</span>); <span class="comment">// globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br></pre></td></tr></table></figure>
+<p>可以看到我们通过<code>simpleBind</code>中返回一个匿名函数，这样通过<code>call</code>或<code>apply</code>它也只能改变外部匿名函数的<code>this</code>，在<strong>匿名函数内部</strong>我们通过<code>fn.call(obj)</code>给方法默认绑定一个<code>this</code>，这个只是一个简单的<code>bind</code>实现。</p>
+<p>也可以直接通过<code>Function.prototype.bind</code>来实现，<code>bind</code>返回一个硬绑定的函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scopeFunc</span> (<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, args);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> globalObj = &#123;</span><br><span class="line">    name: <span class="string">'globalObj'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> func = scopeFunc.bind(globalObj);</span><br><span class="line"></span><br><span class="line">func(<span class="number">3</span>); <span class="comment">// globalObj 3</span></span><br><span class="line"></span><br><span class="line">func.call(<span class="literal">null</span>, <span class="number">3</span>); <span class="comment">// globalObj 3</span></span><br></pre></td></tr></table></figure>
+<p>还有一种方式就是高阶函数，我们传入一下函数来获取当前执行上下文，比如<code>map</code>、<code>forEach</code>等等。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> aData = [&#123;<span class="attr">name</span>: <span class="string">'firstName'</span>, <span class="attr">age</span>: <span class="number">18</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">'lastName'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;];</span><br><span class="line"></span><br><span class="line">aData.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>它的内部也是使用了<code>call</code>或者<code>apply</code>来改变传入函数的<code>this</code>。如果有兴趣去看一下另一篇博客<a href="https://juejin.im/post/5d786452e51d4561eb0b2719" target="_blank" rel="noopener">Array常用的方法和实现reduce、map、filter、forEach</a>来深入了解一下。</p>
+<h3 id="new绑定、Object-create-绑定"><a href="#new绑定、Object-create-绑定" class="headerlink" title="new绑定、Object.create()绑定"></a>new绑定、Object.create()绑定</h3><p><code>new运算符</code>和<code>Object.create()</code>方法也是可以改变<code>this</code>的指向的。<br>首先我们要理解<code>new运算符</code>它具体做了什么操作，大致过程如下：</p>
+<ul>
+<li>创建一个空的简单JavaScript对象（即<code>{}</code>）；</li>
+<li>链接该对象（即设置该对象的构造函数）到另一个对象 ；</li>
+<li>将步骤1新创建的对象作为<code>this</code>的上下文 ；</li>
+<li>如果该函数没有返回对象，则返回<code>this</code>。</li>
+</ul>
+<p>可以看到在<code>new 运算符</code>中有修改过<code>this</code>的指向，下面我们通过一个示例代码来了解一下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'globalFunc'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exampleFunc = <span class="keyword">new</span> globalFunc();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(exampleFunc); <span class="comment">// globalFunc &#123;name: "globalFunc"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们通过<code>new 运算符</code>调用<code>globalFunc</code>时，我们可以看到<code>globalFunc</code>中的<code>name</code>在<code>exampleFunc</code>中也可以访问到相同的<code>name</code>。</p>
+<p>其实我们也可以通过<code>Object.create()</code>来也可以实现一样的效果，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'globalFunc'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exampleFunc = <span class="built_in">Object</span>.create(globalFunc);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(exampleFunc); <span class="comment">// globalFunc &#123;name: "globalFunc"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其实<code>Object.create</code>内部和new有点类似，但是<code>Object.create</code>它调用的是<code>new Func()</code>用于生成一个对象实例。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><strong>箭头函数外层没有普通函数，严格模式和非严格模式下它的this都会指向window(全局对象)</strong><br><strong>this对象的指向是可变的，但是在箭头函数中，它是固定的。</strong></p>
+<p>普通函数与箭头函数的对比如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对比</th>
+<th style="text-align:center">普通函数</th>
+<th style="text-align:center">箭头函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>this</code>指向规则</td>
+<td style="text-align:center"><code>this</code>总是指向调用它的那个对象</td>
+<td style="text-align:center">1.所有箭头函数本身没有<code>this</code> <br>2.箭头函数的this在定义的时候捕获自外层第一个普通函数的<code>this</code> <br> 3.如果箭头函数外层没有普通函数,严格模式和非严格模式下它的<code>this</code>都会指向<code>window</code>(全局对象)</td>
+</tr>
+<tr>
+<td style="text-align:center">有无<code>prototype</code></td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">箭头函数没有<font color="#ff502c">prototype</font>(原型)</td>
+</tr>
+<tr>
+<td style="text-align:center">可否<code>new</code></td>
+<td style="text-align:center">可以</td>
+<td style="text-align:center">箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有<code>constructor</code>),不能使用new,不然会报错</td>
+</tr>
+<tr>
+<td style="text-align:center">有无<code>arguments</code></td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">1.箭头函数的<code>this</code>指向全局,使用会报未声明的错误 <br> 2.箭头函数的<code>this</code>指向普通函数时,它的<font color="#ff502c">argumens</font>继承于改普通函数</td>
+</tr>
+<tr>
+<td style="text-align:center">可否<code>new</code></td>
+<td style="text-align:center">可以</td>
+<td style="text-align:center">箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有<code>constructor</code>),不能使用new,不然会报错</td>
+</tr>
+<tr>
+<td style="text-align:center">可否改变<code>this</code>指向</td>
+<td style="text-align:center">可以通过<code>call、apply、bind</code>改变<code>this</code>的指向</td>
+<td style="text-align:center">箭头函数本身的<code>this</code>指向不能改变,但是可以修改它要捕获的对象的<code>this</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果有兴趣的话可以去看另一篇<a href="/blog/es6/es6-arrow-functions.html">arrow-functions（箭头函数）和普通的函数的区别 this（二）</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="new-注意事项"><a href="#new-注意事项" class="headerlink" title="new 注意事项"></a>new 注意事项</h3><p><code>new</code>可以很方便构造调用一个函数并且声称一个实例，但是如果我们使用不太小心的话也会带来很多不必要的麻烦。</p>
+<p><strong>忘记写new</strong>运算符，那样我们就得不到我们想要的结果，如果实在全局环境中，那么<strong>函数</strong>的<code>this</code>会绑定到全局。如果实在<strong>严格模式</strong><code>this</code>会绑定为<code>undefined</code>。</p>
+<h3 id="bind-call、bind注意事项"><a href="#bind-call、bind注意事项" class="headerlink" title="bind/call、bind注意事项"></a>bind/call、bind注意事项</h3><p>把<code>null</code>或者<code>undefined</code>作为<code>this</code>的绑定对象传入<code>call、apply</code>或者<code>bind</code>，这些值在调用时会被忽略，实际应用的是默认规则。</p>
+<h3 id="软绑定"><a href="#软绑定" class="headerlink" title="软绑定"></a>软绑定</h3><p>硬绑定可以把<code>this</code>强制绑定到指定的对象（<code>new除外</code>），防止函数调用应用<strong>默认绑定规则</strong>。但是会降低函数的灵活性，使用<strong>硬绑定之后就无法使用隐式绑定或者显式绑定来修改</strong><code>this</code>。</p>
+<p>如果给<strong>默认绑定指定一个全局对象和undefined以外的值</strong>，那就可以实现和硬绑定相同的效果，同时<strong>保留隐式绑定或者显示绑定修改this的能力</strong>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.softBind) &#123;</span><br><span class="line">    <span class="built_in">Function</span>.prototype.softBind = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> currArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> bound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> funStack = (!<span class="keyword">this</span> || <span class="keyword">this</span> === (<span class="built_in">window</span> || global)) ? obj : <span class="keyword">this</span>;</span><br><span class="line">            <span class="keyword">return</span> fn.apply(funStack, currArgs);</span><br><span class="line">        &#125;</span><br><span class="line">        bound.prototype = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">        <span class="keyword">return</span> bound;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用：软绑定版本的<code>foo()</code>可以手动将<code>this</code>绑定到<code>obj2</code>或者<code>obj3</code>上，但如果应用默认绑定，则会将<code>this</code>绑定到<code>obj</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"name:"</span> + <span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">"obj"</span> &#125;,</span><br><span class="line">    obj2 = &#123; <span class="attr">name</span>: <span class="string">"obj2"</span> &#125;,</span><br><span class="line">    obj3 = &#123; <span class="attr">name</span>: <span class="string">"obj3"</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认绑定，应用软绑定，软绑定把this绑定到默认对象obj</span></span><br><span class="line"><span class="keyword">var</span> fooOBJ = foo.softBind(obj);</span><br><span class="line">fooOBJ(); <span class="comment">// name: obj</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 隐式绑定规则</span></span><br><span class="line">obj2.foo = foo.softBind(obj);</span><br><span class="line">obj2.foo(); <span class="comment">// name: obj2 &lt;---- 看！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式绑定规则</span></span><br><span class="line">fooOBJ.call(obj3); <span class="comment">// name: obj3 &lt;---- 看！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 绑定丢失，应用软绑定</span></span><br><span class="line">setTimeout(obj2.foo, <span class="number">10</span>); <span class="comment">// name: obj</span></span><br></pre></td></tr></table></figure>
+<h2 id="绑定优先级"><a href="#绑定优先级" class="headerlink" title="绑定优先级"></a>绑定优先级</h2><p>我们对比<code>显示绑定</code>、<code>隐式绑定</code>、<code>new 绑定</code>、<code>默认绑定</code>，不包含<code>箭头函数</code>的对比，因为<code>箭头函数</code>它本身没有<code>this</code>，它会从它外层的普通函数或者全局获取。</p>
+<p>大致对比过程：</p>
+<ul>
+<li><code>显示绑定</code>与<code>隐式绑定</code>对比</li>
+<li><code>默认绑定</code>与<code>隐式绑定</code>对比</li>
+<li><code>new 绑定</code>与<code>显示绑定</code>对比</li>
+</ul>
+<p>我们就通过代码一步一步的记录。</p>
+<h3 id="显示绑定与隐式绑定"><a href="#显示绑定与隐式绑定" class="headerlink" title="显示绑定与隐式绑定"></a><code>显示绑定</code>与<code>隐式绑定</code></h3><p>我们直接通过代码来对比。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yinObj = &#123;</span><br><span class="line">    name: <span class="string">'yinObj'</span>,</span><br><span class="line">    func: test</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 首先我们通过隐式绑定</span></span><br><span class="line">yinObj.func(); <span class="comment">// yinObj</span></span><br><span class="line"><span class="comment">// 二次显示绑定</span></span><br><span class="line">yinObj.func.call(&#123;<span class="attr">name</span>: <span class="string">'xianObj'</span>&#125;); <span class="comment">// xianObj</span></span><br></pre></td></tr></table></figure>
+<p>通过上面的代码我们知道了<code>显示绑定 &gt; 隐式绑定</code>。</p>
+<h3 id="默认绑定与隐式绑定"><a href="#默认绑定与隐式绑定" class="headerlink" title="默认绑定与隐式绑定"></a><code>默认绑定</code>与<code>隐式绑定</code></h3><p><code>默认绑定</code>与<code>隐式绑定</code>对比直接上代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'GlobalName'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yinObj = &#123;</span><br><span class="line">    name: <span class="string">'yinObj'</span>,</span><br><span class="line">    func: test</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 默认绑定</span></span><br><span class="line">test(); <span class="comment">// GlobalName</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 首先我们通过隐式绑定</span></span><br><span class="line">yinObj.func(); <span class="comment">// yinObj</span></span><br></pre></td></tr></table></figure>
+<p>我们首相声明一个函数<code>test</code>，然后把这个函数赋值给一个对象<code>yinObj</code>的<code>func</code>属性，然后我们分别在全局和对象中调用<code>test</code>函数，在全局中调用<code>test</code>函数得出的结果是<code>GlobalName</code>，<code>yinObj.func()</code>得出的结果是<code>yinObj</code>。可以得出结果<code>隐式绑定&gt;默认绑定</code>。</p>
+<h3 id="new-绑定与显示绑定"><a href="#new-绑定与显示绑定" class="headerlink" title="new 绑定与显示绑定"></a><code>new 绑定</code>与<code>显示绑定</code></h3><p>我们通过代码看<code>new 绑定</code>与<code>显示绑定</code>他们之间的优先级。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> bound = foo.bind(obj1);</span><br><span class="line"><span class="comment">// 返回一个新函数bound，这个新函数内的this指向了obj1</span></span><br><span class="line">bar(<span class="string">'bind name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj1.name); <span class="comment">// bind name</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newObject = <span class="keyword">new</span> bar(<span class="string">'new Name'</span>);</span><br><span class="line"><span class="comment">// 调用new 操作符后，bar函数的this指向了返回的新实例baz</span></span><br><span class="line">newObject.name; <span class="comment">// new Name</span></span><br><span class="line">obj1.name; <span class="comment">// bind name</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>JavaScript</code>内部，会判断硬绑定函数是否是被 <code>new</code> 调用，如果是的话就会使用新创建的 <code>this</code> 替换硬绑定的 <code>this</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>this</code>在<code>创建阶段</code>被创建(确定默认值)，但是在<code>执行阶段</code>会改变<code>this</code>的值。所以一般我们都会说<code>确定this</code>是在<code>执行阶段</code>。</p>
+<p>在本篇文章中我们知道了多种绑定方式如下：</p>
+<ul>
+<li><strong>默认绑定</strong>：多种绑定方式<strong>全局调用函数</strong>、<strong>IIFE(自执行函数)</strong>、<strong>匿名函数</strong></li>
+<li><strong>显示绑定</strong>：可以通过<code>call</code>、<code>apply</code>、<code>bind</code>来显示改变<code>this</code>绑定。</li>
+<li><strong>隐式绑定</strong>：通过<strong>赋值的方式</strong>实现隐式绑定。但是很容易丢失。</li>
+<li><strong>bind、call、apply绑定</strong>：和显示绑定相同。</li>
+<li><strong>new绑定、Object.create()绑定</strong>：和显示绑定相同。</li>
+<li><strong>箭头函数</strong>: <code>ES6</code>的实现，它本身没有<code>this</code>，它的<code>this</code>从<strong>外层普通函数</strong>或者<strong>全局</strong>获取。</li>
+</ul>
+<p>多种绑定方式的优先级：<code>new 绑定 &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</code></p>
+<p>下一篇文章我们自己来实现多种绑定放法。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a href="https://mp.weixin.qq.com/s/LCdthN5snKZvh_5lFDIU3g" target="_blank" rel="noopener">如何理解javascript中this的绑定？</a><br><a href="https://muyiy.cn/blog/3/3.1.html#_1-%E8%B0%83%E7%94%A8%E4%BD%8D%E7%BD%AE" target="_blank" rel="noopener">JavaScript深入之史上最全–5种this绑定全面解析</a></p>
+</blockquote>
+]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -7103,9 +7379,142 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript中的this（一）this的产生 (未完成)</title>
+    <title>JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？</title>
     <url>/blog/javascript/javascript-this-one.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>this</code>如论是在平常开发中，还是在面试时都是经常会听到，所以有了这篇文章来更系统的记录<code>this</code>从产生到使用。到最后会有一整篇的面试题来介绍<code>this</code>。</p>
+<p><code>this</code>是在什么时候产生的呢？<code>this</code>的作用是什么，首先要知道一个概念就是<code>执行上下文</code>。要了解清楚<code>执行上下文</code>，又要了解<code>&quot;调用栈&quot;</code>，要了解调用栈，又要了解<code>作用域</code>中的<code>动态作用域</code>。其实后面还有<code>event loop</code>、<code>线程执行</code>等等，所以学无止境，回头是岸。</p>
+<p>还是回到<code>&quot;调用栈&quot;</code>和<code>执行上下文</code>，首先了解这两个概念就能知道<code>this</code>是什么时候产生的，<code>this</code>是什么。</p>
+<p>首先介绍几个概念：</p>
+<ul>
+<li><code>ECS</code>: 执行环境栈，<strong>Execution Context Stack</strong>。</li>
+<li><code>EC</code>: 函数执行环境（或执行上下文），<strong>Execution Context</strong>。</li>
+<li><code>VO</code>: 变量对象，<strong>variable Object</strong>。</li>
+<li><code>AO</code>: 活动对象，<strong>Active Object</strong>。</li>
+<li><code>S</code>: 作用域，<strong>Scope</strong>。</li>
+<li><code>SC</code>: 作用域链，<strong>Scope Chain</strong>。</li>
+</ul>
+<p>首先<code>执行栈</code>中包含<code>执行上下文</code>，<code>执行上下文</code>中包含有<code>活动变量</code>、<code>变量对象</code>、<code>作用域</code>，一层一层的作用域又会形成<code>作用域链</code>。它们之间都是有关联的。</p>
+<h2 id="“调用栈”"><a href="#“调用栈”" class="headerlink" title="“调用栈”"></a>“调用栈”</h2><p>什么是<code>调用栈</code>其实也是常说的<code>执行栈</code>，它其实应该叫做<code>执行上下文堆栈</code>会更准确一些。我们还是把它简称为<code>执行栈</code>。<br>因为 JavaScript 解释器被实现为单线程。这意味着<code>JavaScript 引擎</code>只能同时执行一件事，其它需要执行的事情会被放到一个栈里面储存，这个栈就叫做<code>执行栈</code>。<br><code>执行栈</code>是一种拥有<code>LIFO（后进先出）</code>数据结构的栈，被用来存储代码运行时创建的所有执行上下文。</p>
+<h3 id="执行栈执行过程"><a href="#执行栈执行过程" class="headerlink" title="执行栈执行过程"></a>执行栈执行过程</h3><p>当 <code>JavaScript 引擎</code>第一次遇到你的脚本时，它会创建一个<code>全局</code>的<code>执行上下文</code>并且压入当前<code>执行栈</code>。每当引擎遇到一个函数调用，它会为该函数创建一个<code>新的执行上下文并</code>压入栈的<code>顶部</code>。</p>
+<p>引擎会执行那些<code>执行上下文位于栈顶的函数</code>。当该函数执行结束时，执行上下文<code>从栈中弹出</code>，控制流程到达当前栈中的下一个上下文。</p>
+<p>首先我们看一张比较经典的图。</p>
+<p><img src="../../images/javascript/javascript-this-1-1.jpg" alt="this-one"></p>
+<p>一个简单的实例，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"global name"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"inside first function"</span>);</span><br><span class="line">  second();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">second</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"inside second function"</span>);</span><br><span class="line">  three();</span><br><span class="line">&#125;</span><br><span class="line">first();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"inside global Execution Context"</span>);</span><br></pre></td></tr></table></figure>
+<p>执行效果如下图所示：</p>
+<p><img src="../../images/javascript/javascript-this-1-2.png" alt="this-one"></p>
+<p>当上述代码在浏览器加载时，<code>JavaScript 引擎</code>创建了一个<code>全局执行上下文</code>并把它压入当前<code>执行栈</code>。当遇到 <code>first()</code> 函数调用时，<code>JavaScript 引擎</code>为该函数<code>创建</code>一个新的<code>执行上下文</code>并把它压入<code>当前执行栈</code>的顶部。</p>
+<p>当从 <code>first()</code> 函数内部调用 <code>second()</code> 函数时，<code>JavaScript 引擎</code>为 <code>second()</code> 函数创建了一个<code>新的执行上下文</code>并把它压入当前<code>执行栈的顶部</code>。当 <code>second()</code> 函数执行完毕，它的<code>执行上下文</code>会从当前栈<code>弹出</code>，并且控制流程到达下一个<code>执行上下文</code>，即 <code>first()</code> 函数的执行上下文。<br>当 <code>first()</code> 执行完毕，它的执行上下文从栈<code>弹出</code>，控制流程到达全局执行上下文。一旦所有代码执行完毕，JavaScript 引擎从当前栈中<code>移除</code>全局执行上下文。</p>
+<p>有 5 个需要记住的关键点，关于<strong>执行栈（调用栈）</strong>：</p>
+<ul>
+<li>单线程。</li>
+<li>同步执行。</li>
+<li>一个全局上下文。</li>
+<li>无限制函数上下文。</li>
+<li>每次函数被调用创建新的执行上下文，包括调用自己。</li>
+</ul>
+<p><strong>一个在线实例</strong></p>
+<p>因为代码太多了这里就不展示了，gif 也比较大，所以只放了一个外国友人的在线实例。有兴趣的可以去看一下。</p>
+<p>在线代码体验<a href="https://codepen.io/njmcode/pen/dMPmGq" target="_blank" rel="noopener">执行栈执行过程</a>，如果访问比较慢可以看<a href="https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack" target="_blank" rel="noopener">执行栈执行过程 demo</a>把代码下载到本地运行查看。</p>
+<h2 id="执行上下文周期"><a href="#执行上下文周期" class="headerlink" title="执行上下文周期"></a>执行上下文周期</h2><p>在上面执行栈整个过程中，我们知道每次调用函数时都会创建一个<strong>执行上下文</strong>，现在我们要了解在<code>JavaScript 引擎</code>内部是怎么创建<strong>执行上下文</strong>.<br>在创建完成之后会执行上下文，当执行完成之后会回收当前上下文。</p>
+<p>创建执行上下文大致分为三步：</p>
+<ul>
+<li>创建阶段</li>
+<li>执行阶段</li>
+<li>回收阶段</li>
+</ul>
+<h2 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h2><p><strong>创建阶段</strong></p>
+<p>在每次执行函数时都会走<code>创建执行上下文</code>，创建上下文会经历下面这几个事件：</p>
+<ul>
+<li>创建<code>作用域</code>并且形成<code>作用域链（Scope Chain）</code>：定义了变量的可访问范围，控制变量的生命周期。</li>
+<li>创建<code>变量(variables)</code>、<code>函数(functions)</code>、<code>参数(arguments)</code>： 变量和函数在创建时都会存在<code>Hosting(变量提升)</code>，就是会提前到最前面声明，但是不赋值。</li>
+<li>确定<code>this</code>的值：<code>this</code>的复杂之处就在于它不是声明时就能确定，一般情况来说它是调用时确定的。(箭头函数除外)</li>
+</ul>
+<p>我看的有挺多文章的创建的整体顺序是不太一样的，我认为他的顺序是当前我文章中的顺序。会先创建<code>作用域</code>再会创建<code>变量</code>，最后确定<code>this</code>的值。</p>
+<p><strong>伪代码</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">executionContextObj = &#123;</span><br><span class="line">    <span class="string">'scopeChain'</span>: &#123;<span class="comment">// 作用域链&#125;,</span></span><br><span class="line">    <span class="string">'variables'</span>: &#123;<span class="comment">// 变量、函数、参数&#125;,</span></span><br><span class="line">    <span class="string">'this'</span>: &#123;<span class="comment">// 运行时才能确定&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到现在我们知道什么是<code>执行上下文</code>，我们也知道<code>this</code>就是<code>执行上下文</code>创建中产生的。但是它的值并不能在创建的时候确定，而是要到调用时才知道。</p>
+<blockquote>
+<p>其实作用域的本质是一套规则，它定义了变量的可访问范围，控制变量的可见性和生命周期。</p>
+</blockquote>
+<h3 id="创建作用域链"><a href="#创建作用域链" class="headerlink" title="创建作用域链"></a>创建作用域链</h3><p>作用域链又可以叫做<code>词法环境</code>，<a href="http://ecma-international.org/ecma-262/6.0/" target="_blank" rel="noopener">官方的 ES6</a> 文档把词法环境定义为。</p>
+<blockquote>
+<p><strong>词法环境</strong>是一种规范类型，基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联。一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成。</p>
+</blockquote>
+<p>简单来说词法环境是一种持有<strong>标识符—变量映射</strong>的结构。（这里的<strong>标识符</strong>指的是变量/函数的名字，而<strong>变量</strong>是对实际对象[包含函数类型对象]或原始数据的引用）。</p>
+<p>词法环境有两种类型：</p>
+<ul>
+<li><code>全局环境（在全局执行上下文中）</code>: 是<code>没有</code>外部环境引用的<code>词法环境</code>。全局环境的外部环境引用是 <code>null</code>。它的<code>this</code>的值指向全局对象。</li>
+<li><code>函数环境</code>: 函数内部用户定义的变量存储在<code>环境记录器</code>中。并且<code>引用的外部环境</code>可能是全局环境，或者任何包含此内部函数的外部函数。</li>
+</ul>
+<p>在<code>函数环境</code>中，有两个概念来保证它既可以访问管理自己内部的变量等等，又可以访问外部的变量，下面我们就来介绍这两个概念：</p>
+<ul>
+<li><strong>环境记录器</strong>：是存储变量和函数声明的实际位置。</li>
+<li><strong>外部环境的引用</strong>：它可以访问其父级词法环境（作用域）。</li>
+</ul>
+<p><strong>环境记录器</strong>又分为两种：</p>
+<ul>
+<li><strong>声明式环境记录器</strong>：存储变量、函数和参数<code>（在函数环境中）</code>。</li>
+<li><strong>对象环境记录器</strong>：用来定义出现在<strong>全局上下文</strong>中的变量和函数的关系 <code>(在全局环境中)</code>。</li>
+</ul>
+<p>总结一下<code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。来张图解释一下吧。</p>
+<p><img src="../../images/javascript/javascript-this-1-3.png" alt="this-one"></p>
+<p><strong>注意</strong></p>
+<ul>
+<li>对于<code>函数环境</code>，<code>声明式环境记录器</code>还包含了一个传递给函数的 <code>arguments</code> 对象（此对象存储索引和参数的映射）和传递给函数的参数的 <code>length</code>。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    LexicalEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: <span class="string">"Object"</span>,</span><br><span class="line">        <span class="comment">// 在这里绑定标识符</span></span><br><span class="line">        &#125;</span><br><span class="line">        outer: <span class="xml"><span class="tag">&lt;<span class="name">null</span>&gt;</span></span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">FunctionExectionContext = &#123;</span></span><br><span class="line"><span class="xml">    LexicalEnvironment: &#123;</span></span><br><span class="line"><span class="xml">        EnvironmentRecord: &#123;</span></span><br><span class="line"><span class="xml">        Type: "Declarative",</span></span><br><span class="line"><span class="xml">        // 在这里绑定标识符</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line">        outer: &lt;Global or outer function environment reference&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h3><p>在<code>创建变量</code>之前首先要<code>创建变量环境</code>，什么是<code>变量环境</code>呢？</p>
+<p><code>变量环境</code>也是一个词法环境，它也有<code>环境记录器</code>用来记录<code>变量声明语句</code>在执行上下文中创建的绑定关系。</p>
+<p><code>变量环境</code>和<code>词法环境</code>的区别在于<code>变量环境</code>被用来<code>存储函数</code>声明和<code>变量（let 和 const）绑定</code>，而<code>词法环境</code>只用来<code>存储 var 变量绑定</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">var</span> c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">e, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> g = <span class="number">20</span>;</span><br><span class="line">  <span class="keyword">return</span> e * f * g;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c = multiply(<span class="number">20</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>执行上下文看起来像这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">GlobalExectionContext = &#123;</span><br><span class="line"></span><br><span class="line">    ThisBinding: <span class="xml"><span class="tag">&lt;<span class="name">Global</span> <span class="attr">Object</span>&gt;</span>,</span></span><br><span class="line"><span class="xml">    LexicalEnvironment: &#123;</span></span><br><span class="line"><span class="xml">        EnvironmentRecord: &#123;</span></span><br><span class="line"><span class="xml">        Type: "Object",</span></span><br><span class="line"><span class="xml">        // 在这里绑定标识符</span></span><br><span class="line"><span class="xml">        a: <span class="tag">&lt; <span class="attr">uninitialized</span> &gt;</span>,</span></span><br><span class="line"><span class="xml">        b: <span class="tag">&lt; <span class="attr">uninitialized</span> &gt;</span>,</span></span><br><span class="line"><span class="xml">        multiply: <span class="tag">&lt; <span class="attr">func</span> &gt;</span></span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line">        outer: &lt;null&gt;</span><br><span class="line">    &#125;,</span><br><span class="line">    VariableEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Object",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        c: undefined,</span><br><span class="line">        &#125;</span><br><span class="line">        outer: &lt;null&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FunctionExectionContext = &#123;</span><br><span class="line">    ThisBinding: &lt;Global Object&gt;,</span><br><span class="line">    LexicalEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Declarative",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        Arguments: &#123;0: 20, 1: 30, length: 2&#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        outer: &lt;GlobalLexicalEnvironment&gt;</span><br><span class="line">    &#125;,</span><br><span class="line">    VariableEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Declarative",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        g: undefined</span><br><span class="line">        &#125;,</span><br><span class="line">        outer: &lt;GlobalLexicalEnvironment&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有遇到调用函数 <code>multiply</code> 时，<code>函数执行上下文</code>才会被创建。</li>
+</ul>
+<p>可能你已经注意到 <code>let</code> 和 <code>const</code> 定义的变量并没有关联任何值，但 <code>var</code> 定义的变量被设成了 <code>undefined</code>。<br>这是因为在创建阶段时，引擎检查代码找出<code>变量和函数声明</code>，虽然<code>函数声明完全存储在环境</code>中，但是变量最初设置为 <code>undefined</code>（<code>var</code> 情况下），或者未初始化（<code>let</code> 和 <code>const</code> 情况下）。</p>
+<p>这就是为什么你可以在声明之前访问 <code>var</code> 定义的变量（虽然是 <code>undefined</code>），但是在声明之前访问 <code>let</code> 和 <code>const</code> 的变量会得到一个引用错误。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大致创建过程如下：</p>
+<ul>
+<li>初始化作用域链：</li>
+<li>创建变量对象：<ul>
+<li>创建arguments对象，检查上下文，初始化参数名称和值并创建引用的复制。</li>
+<li>扫描上下文的函数声明：<ul>
+<li>为发现的每一个函数，在变量对象上创建一个属性——确切的说是函数的名字——其有一个指向函数在内存中的引用。</li>
+<li>如果函数的名字已经存在，引用指针将被重写。</li>
+</ul>
+</li>
+<li>扫面上下文的变量声明：<ul>
+<li>为发现的每个变量声明，在变量对象上创建一个属性——就是变量的名字，并且将变量的值初始化为undefined</li>
+<li>如果变量的名字已经在变量对象里存在，将不会进行任何操作并继续扫描。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>求出上下文内部“this”的值。</li>
+</ul>
+<p><code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。</p>
+<p>在上面只是简单的讲解了<code>变量提升</code>，如果有兴趣再多了解一下<code>变量声明提升、函数声明提升</code>可以去看我的另一篇文章<a href="/blog/javascript/hoisting.html">JavaScript中的变量提升</a>，里面又很多比较好的实例。</p>
+<h2 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h2><p>在上面我们介绍了<code>创建阶段</code>，现在主要介绍一下<code>执行阶段</code>。<br><strong>激活/代码执行阶段</strong></p>
+<ul>
+<li>在<strong>当前上下文上运行/解释函数代码</strong>，并随着代码一行行执行指派变量的值。</li>
+</ul>
+<p>一个<strong>实例</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">const</span> age;</span><br><span class="line"><span class="keyword">var</span> firstName = <span class="string">'everybody'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lastName = <span class="string">'lastName'</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">'testArgs'</span>);</span><br></pre></td></tr></table></figure>
+<p><code>创建阶段</code>我们用伪代码来表示一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 全局执行上下文</span></span><br><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        <span class="comment">// name 未初始化</span></span><br><span class="line">        <span class="comment">// age 未初始化</span></span><br><span class="line">        firstName: <span class="literal">undefined</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">this</span>: &#123;....&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 函数执行上下文</span></span><br><span class="line">testExecutionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        args: &#123;</span><br><span class="line">            <span class="number">0</span>: <span class="string">'testArgs'</span>,</span><br><span class="line">            length: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        args: <span class="string">'testArgs'</span>,</span><br><span class="line">        lastName: <span class="literal">undefined</span>,</span><br><span class="line">        testTwo: pointer to <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    &#125;,</span></span><br><span class="line"><span class="function">    <span class="title">this</span>: </span>&#123;....&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>执行阶段</code>我们用伪代码描述一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 全局执行上下文</span></span><br><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        name: <span class="literal">undefined</span>, <span class="comment">// 初始化 没有找到变量的值，它被复制为 undefined</span></span><br><span class="line">        age: <span class="literal">undefined</span>, <span class="comment">// 初始化 没有找到变量的值，它被复制为 undefined</span></span><br><span class="line">        firstName: <span class="string">'everybody'</span> <span class="comment">// 赋值为 everybody</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">this</span>: &#123;....&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 函数执行上下文</span></span><br><span class="line">testExecutionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        args: &#123;</span><br><span class="line">            <span class="number">0</span>: <span class="string">'testArgs'</span>,</span><br><span class="line">            length: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        args: <span class="string">'testArgs'</span>,</span><br><span class="line">        lastName: <span class="string">'lastName'</span>, <span class="comment">// 赋值为lastName</span></span><br><span class="line">        testTwo: pointer to <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    &#125;,</span></span><br><span class="line"><span class="function">    <span class="title">this</span>: </span>&#123;....&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>let/const</code>是在<code>执行阶段</code>才初始化的，初始化完成就会被赋值。<br><code>arguments</code>是在<code>创建阶段</code>就被创建和赋值。<br><code>functions</code>也是在<code>创建阶段</code>就被创建和赋值。<br><code>variables</code>是在<code>创建阶段</code>被创建，但是没有赋值，在<code>执行阶段</code>被赋值。</p>
+<p><strong>functions 赋值式</strong>只会声明不会赋值。</p>
+<blockquote>
+<p>如果 <code>JavaScript 引擎</code>不能在源码中声明的实际位置找到 <code>let 变量的值</code>，它会被赋值为 <code>undefined</code>。</p>
+</blockquote>
+<h2 id="回收阶段"><a href="#回收阶段" class="headerlink" title="回收阶段"></a>回收阶段</h2><p>就是在函数执行完成会把当前的执行上下文回收掉，但是全局执行上下文是不会被回收的，只有关闭当前线程/进程才会把全局执行上下文清楚掉。</p>
+<h2 id="总结全文"><a href="#总结全文" class="headerlink" title="总结全文"></a>总结全文</h2><p>到现在我们知道<code>this</code>是<code>执行上下文</code>中的一部分，它产生在<code>创建阶段</code>(绑定默认值)，<code>改变this</code>在发生在<code>执行阶段</code>.<br>我们也知道什么是<code>执行栈</code>它是怎么运转的，也知道了<code>执行上下文</code>的生命周期的细节，所以本篇文章到此为止。<br>如果有哪里有问题欢迎留言，谢谢！</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/" target="_blank" rel="noopener">What is the Execution Context &amp; Stack in JavaScript?</a><br><a href="https://yanhaijing.com/javascript/2014/04/29/what-is-the-execution-context-in-javascript/" target="_blank" rel="noopener">了解JavaScript的执行上下文</a><br><a href="https://juejin.im/post/5ba32171f265da0ab719a6d7" target="_blank" rel="noopener">[译] 理解 JavaScript 中的执行上下文和执行栈</a></p>
+]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -8517,7 +8926,8 @@
   <entry>
     <title>常用的页面性能优化 （未完成）</title>
     <url>/blog/performance/preformance-awaly.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/PDD3GxFyYptwEl0q_XaW2g" target="_blank" rel="noopener">深度系统梳理前端性能优化</a></p>
+]]></content>
       <categories>
         <category>Browser</category>
       </categories>
@@ -9139,9 +9549,10 @@
       </tags>
   </entry>
   <entry>
-    <title>javascript中垃圾回收机制 （-）</title>
+    <title>javascript中垃圾回收机制</title>
     <url>/blog/javascript/javascript-GC.html</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><font color="#ff502c">JavaScript 创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。</font> 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让 JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。<font color="#ff502c">而不是别人所说的:编写 JavaScript 程序时，所需内存的分配以及无用内存的回收完全实现自动管理</font>但是他会按照固定的时间间隔（或代码执行中预定的收集时间）周期性地执行这一操作<br><br>## 内存生命周期<br><br>其实别的语言的内存声明周期基本是那个是一致的：<br><br>1. 分配你所需要的内存<br>2. 使用分配到内存（读、写）<br>3. 不需要时将其释放\归还<br><br>### JavaScript 的内存分配<br><br>1. JavaScript 在定义变量时就完成了内存分配<br>2. 通过函数调用分配内存<br><br>### 内存释放<br><br>当内存不再需要使用时释放，高级语言解释器嵌入了“垃圾回收器”，它的主要工作是跟踪内存的分配和使用，以便当分配的内存不再使用时，自动释放它。<br><br>## 两种垃圾回收方式<br><br>浏览器的内存处理基本分为两种，<font color="#ff502c">引用技术垃圾收集</font>、<font color="#ff502c">标记清除</font>两种，下面一一介绍。<br><br>### 引用计数<br><br>这是最简单的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。<br><font color="#ff502c">但是他有比较大的限制，就是当对象循环引用，引用计数不会回收它</font>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/m_cwfM0PgivmmCKaK-TviQ" target="_blank" rel="noopener">Chrome 浏览器垃圾回收机制与内存泄漏分析</a></p>
+<font color="#ff502c">JavaScript 创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。</font> 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让 JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。<font color="#ff502c">而不是别人所说的:编写 JavaScript 程序时，所需内存的分配以及无用内存的回收完全实现自动管理</font>但是他会按照固定的时间间隔（或代码执行中预定的收集时间）周期性地执行这一操作<br><br>## 内存生命周期<br><br>其实别的语言的内存声明周期基本是那个是一致的：<br><br>1. 分配你所需要的内存<br>2. 使用分配到内存（读、写）<br>3. 不需要时将其释放\归还<br><br>### JavaScript 的内存分配<br><br>1. JavaScript 在定义变量时就完成了内存分配<br>2. 通过函数调用分配内存<br><br>### 内存释放<br><br>当内存不再需要使用时释放，高级语言解释器嵌入了“垃圾回收器”，它的主要工作是跟踪内存的分配和使用，以便当分配的内存不再使用时，自动释放它。<br><br>## 两种垃圾回收方式<br><br>浏览器的内存处理基本分为两种，<font color="#ff502c">引用技术垃圾收集</font>、<font color="#ff502c">标记清除</font>两种，下面一一介绍。<br><br>### 引用计数<br><br>这是最简单的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。<br><font color="#ff502c">但是他有比较大的限制，就是当对象循环引用，引用计数不会回收它</font>
 
 <h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>垃圾收集器会按照固定的时间间隔周期性的执行这一操作。<br>从 2012 年起，所有现代浏览器都使用了标记-清除垃圾回收算法。所有对 JavaScript 垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。<br>简单来讲就是，当变量进入环境时，就是将变量标记为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。<br>收集器在运行时会给存储在内存中的所有变量都加上标记，然后它会去掉环境中的变量以及被环境中的变量引用的变量的标记。剩下的在被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量。最后，垃圾收集器完成内存清除，销毁那些带有标记的值并收回它们所占用的内存空间。<br>这中算法是没有循环引用限制的</p>
 ]]></content>
@@ -9902,28 +10313,29 @@
   <entry>
     <title>框架选型</title>
     <url>/blog/other/Frame-selection.html</url>
-    <content><![CDATA[<h2 id="框架和库"><a href="#框架和库" class="headerlink" title="框架和库"></a>框架和库</h2><p> 库(lib)具有一下三个特点：<br> 1、是针对特定问题的解答，具有专业性<br> 2、你控制应用的流程<br> 3、被动的被调用<br> 框架(framework)具有以下三个特点：<br> 1、具有控制反转(inverse of control)的功能<br> 2、决定应用程序的声明周期<br> 3、一般来说,集成了大量的库<br> 如下图所示，框架会在特定的时间要求程序执行某段代码。框架决定了什么时候调用库，决定了什么时候要求代码去执行特定功能<br> <img src="../../images/Frame-selection1.png" alt="框架流程图"><br> 而实际上，一个库有事也可以称之为框架，而库里面继承的方法称之为库<br> 框架和库的区别不是由实际大小决定，而是有思考角度来决定。框架和库世界上可以统称为解决方案</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p> 前端开发中的解决方案主要用于解决以下7各方面的问题：<br> 1、DOM<br> 2、Communication(通信)<br> 3、Utililty(工具库)<br> 4、Templating(模版集成)<br> 5、Component(组件)<br> 6、Routing(router路由)<br> 7、architecture(架构)<br> 为什么使用外部的解决方案<br> 1、提高开发效率<br> 2、可靠性高(浏览器兼容性，测试覆盖)<br> 3、配备优良，如文档、demo及工具等<br> 4、代码设计合理、更优雅<br> 5、专业性高<br> 如果问题过于简单，或者备选框架的质量和可靠性无法保证，再或者无法满足业务需求，则不应该选择外部的框架。如果团队中已经有相关的累积，就更不需要使用了<br> 一般地，解决方案要实际开发中有以下3种使用方式：<br> 1、开放式：基于外部模块系统，并自由组合<br> 2、半开放式：基于一个定制的模块系统，内部外部解决方案共存<br> 3、封闭式：深度定制的模块系统，很少需要引入外部模块</p>
-<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>  接下来，将针对解决方案中提到的7个问题进行分别介绍，首先是DOM<br>  关于DOM，主要包括Selector(选择器)、Manipulation(DOM操作)、Event(事件)、Animation(动画)这四个部分<br>  DOM相关的解决方案主要用于提供以下操作　<br>　1、提供便利的 DOM 查询、操作、移动等操作<br>　2、提供事件绑定及事件代理支持<br>　3、提供浏览器特性检测及 UserAgent 侦测<br>　4、提供节点属性、样式、类名的操作<br>　5、保证目标平台的跨浏览器支持</p>
+    <content><![CDATA[<h2 id="框架和库"><a href="#框架和库" class="headerlink" title="框架和库"></a>框架和库</h2><p>库(lib)具有一下三个特点：<br>1、是针对特定问题的解答，具有专业性<br>2、你控制应用的流程<br>3、被动的被调用<br>框架(framework)具有以下三个特点：<br>1、具有控制反转(inverse of control)的功能<br>2、决定应用程序的声明周期<br>3、一般来说,集成了大量的库<br>如下图所示，框架会在特定的时间要求程序执行某段代码。框架决定了什么时候调用库，决定了什么时候要求代码去执行特定功能<br><img src="../../images/Frame-selection1.png" alt="框架流程图"><br>而实际上，一个库有事也可以称之为框架，而库里面继承的方法称之为库<br>框架和库的区别不是由实际大小决定，而是有思考角度来决定。框架和库世界上可以统称为解决方案</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>前端开发中的解决方案主要用于解决以下 7 各方面的问题：<br>1、DOM<br>2、Communication(通信)<br>3、Utililty(工具库)<br>4、Templating(模版集成)<br>5、Component(组件)<br>6、Routing(router 路由)<br>7、architecture(架构)<br>为什么使用外部的解决方案<br>1、提高开发效率<br>2、可靠性高(浏览器兼容性，测试覆盖)<br>3、配备优良，如文档、demo 及工具等<br>4、代码设计合理、更优雅<br>5、专业性高<br>如果问题过于简单，或者备选框架的质量和可靠性无法保证，再或者无法满足业务需求，则不应该选择外部的框架。如果团队中已经有相关的累积，就更不需要使用了<br>一般地，解决方案要实际开发中有以下 3 种使用方式：<br>1、开放式：基于外部模块系统，并自由组合<br>2、半开放式：基于一个定制的模块系统，内部外部解决方案共存<br>3、封闭式：深度定制的模块系统，很少需要引入外部模块</p>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>接下来，将针对解决方案中提到的 7 个问题进行分别介绍，首先是 DOM<br>关于 DOM，主要包括 Selector(选择器)、Manipulation(DOM 操作)、Event(事件)、Animation(动画)这四个部分<br>DOM 相关的解决方案主要用于提供以下操作　<br>　 1、提供便利的 DOM 查询、操作、移动等操作<br>　 2、提供事件绑定及事件代理支持<br>　 3、提供浏览器特性检测及 UserAgent 侦测<br>　 4、提供节点属性、样式、类名的操作<br>　 5、保证目标平台的跨浏览器支持</p>
 <h4 id="【常用方案】"><a href="#【常用方案】" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><pre><code>常用的DOM解决方案有 jQuery、zepto.JS、MOOTOO.JS等
-</code></pre><p>　　jQuery是曾经风靡一时的最流行的前端解决方案，jQuery特有的链式调用的方式简化了javascript的复杂操作，而且使人们不再需要关心兼容性，并提供了大量的实用方法<br>　　zepto是jQuery的精简版，针对移动端去除了大量jQuery的兼容代码，提供了简单的手势，部分API的实现方式不同<br>　　mootools源码清晰易懂，严格遵循Command-Query(命令-查询)的接口规范，没有诸如jQuery的两义性接口。还有一个不得不提的特点是，使用选择器获取的是DOM原生对象，而不是被包装过的对象。而它支持的诸多方法则是通过直接扩展DOM原生对象实现的，这也是它的争议所在<br>　　相比较而言，最稳妥的DOM解决方案是jQuery</p>
-<h4 id="【专业领域】"><a href="#【专业领域】" class="headerlink" title="【专业领域】"></a>【专业领域】</h4><p>   上面的解决方案用于解决DOM一般的通用问题。随着技术的发展，DOM的专业领域出现一些小而精致的解决方案<br>　　1、手势<br>　　Hammer.JS包括了常见手势封装（Tab、Hold、Transform、Swifp）并支持自定义扩展<br>　　2、局部滚动<br>　　iscroll.JS是移动端position:fix + overflow:scroll的救星<br>　　3、高级动画<br>　　Velocity.JS可以复杂动画序列实现，不仅局限于 DOM<br>　　4、视频播放<br>　　Video.JS类似原生 video 标签的使用方式，对低级浏览器使用 flash 播放器</p>
-<h3 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h3><p>  关于通信，主要包括XMLHttpRequest、Form、JSONP、Socket等<br>　　通信相关的解决方案主要用于提供以下操作<br>　　1、处理与服务器的请求与相应<br>　　2、预处理请求数据与响应数据 Error/Success 的判断封装<br>　　3、多类型请求，统一接口（XMLHttpRequest1/2、JSONP、iFrame）<br>　　4、处理浏览器兼容性</p>
+</code></pre><p>jQuery 是曾经风靡一时的最流行的前端解决方案，jQuery 特有的链式调用的方式简化了 javascript 的复杂操作，而且使人们不再需要关心兼容性，并提供了大量的实用方法<br>　　 zepto 是 jQuery 的精简版，针对移动端去除了大量 jQuery 的兼容代码，提供了简单的手势，部分 API 的实现方式不同<br>　　 mootools 源码清晰易懂，严格遵循 Command-Query(命令-查询)的接口规范，没有诸如 jQuery 的两义性接口。还有一个不得不提的特点是，使用选择器获取的是 DOM 原生对象，而不是被包装过的对象。而它支持的诸多方法则是通过直接扩展 DOM 原生对象实现的，这也是它的争议所在<br>　　相比较而言，最稳妥的 DOM 解决方案是 jQuery</p>
+<h4 id="【专业领域】"><a href="#【专业领域】" class="headerlink" title="【专业领域】"></a>【专业领域】</h4><p>上面的解决方案用于解决 DOM 一般的通用问题。随着技术的发展，DOM 的专业领域出现一些小而精致的解决方案<br>　　 1、手势<br>　　 Hammer.JS 包括了常见手势封装（Tab、Hold、Transform、Swifp）并支持自定义扩展<br>　　 2、局部滚动<br>　　 iscroll.JS 是移动端 position:fix + overflow:scroll 的救星<br>　　 3、高级动画<br>　　 Velocity.JS 可以复杂动画序列实现，不仅局限于 DOM<br>　　 4、视频播放<br>　　 Video.JS 类似原生 video 标签的使用方式，对低级浏览器使用 flash 播放器</p>
+<h3 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h3><p>关于通信，主要包括 XMLHttpRequest、Form、JSONP、Socket 等<br>　　通信相关的解决方案主要用于提供以下操作<br>　　 1、处理与服务器的请求与相应<br>　　 2、预处理请求数据与响应数据 Error/Success 的判断封装<br>　　 3、多类型请求，统一接口（XMLHttpRequest1/2、JSONP、iFrame）<br>　　 4、处理浏览器兼容性</p>
 <h4 id="【常用方案】-1"><a href="#【常用方案】-1" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><pre><code>除了jQuery等，其他常用的通信解决方案有Reqwest、qwest等
-</code></pre><p>　　Reqwest支持JSONP，稳定性高，IE6+支持，CORS 跨域，Promise/A 支持<br>　　qwest代码少、支持XMLHttpRequest2、CORS 跨域、支持高级数据类型（ArrayBuffer、Blob、FormData）</p>
-<h4 id="【专业领域】-1"><a href="#【专业领域】-1" class="headerlink" title="【专业领域】"></a>【专业领域】</h4><p>　　对于实时性要求较高的需求可以使用socket.io，它实时性高，支持二进制数据流，智能自动回退支持，且支持多种后端语言</p>
-<h3 id="工具包"><a href="#工具包" class="headerlink" title="工具包"></a>工具包</h3><p> 工具包(Utililty)的主要职责包括以下：<br>　　1、提供 JavaScript 原生不提供的功能<br>　　2、包装原生方法，使其便于使用<br>　　3、异步队列及流程控制</p>
-<h4 id="【常用方案】-2"><a href="#【常用方案】-2" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><p> 常用的工具包解决方案有es5-shim、es6-shim、underscore、Lodash等　　<br>　　上面提到的shim，也是经常听到的一个词，翻译过来是垫片的意思。对于es5、es6等标准包括的一些新方法，由于浏览器兼容性不高，所以无法直接使用它们。这时，就需要在保证实现与规范一致的基础上，来扩展原型方法，这种做法就叫做shim。好处在于，实际上就是在使用javascript的语法，但不用去考虑低版本浏览器的兼容性问题<br>　　es5-shim 提供 ES3 环境下的 ES5 支持<br>　　es6-shim 提供 ES5 环境下的 ES6支持<br>　　underscore 提供兼容 IE6+ 的扩展功能函数<br>　　Lodash是underscore 的高性能版本，方法多为 runtime 编译出来的</p>
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p> 模板主要包括三类：基于字符串的模板(String-based)、基于DOM的模板(DOM-based)、活动模板(Living Template)<br>　　1、基于字符串的模板(String-based)，解决方案包括(dustjs、hogan.js、dot.js)<br>   <img src="../../images/Frame-selection2.jpg" alt="模版的组成"><br>   原理如下：输入一段模板字符串，通过编译之后 ，生成一段Function，通过Function的render或类render函数渲染输入的数据data，输出模板字符串，字符串通过innerHTML或类似的方式渲染成最后的DOM结构。这类模板的问题在于通过字符串生成DOM之后就不再变化，如果在改变输入的数据data，需要重新render，重新生成一个全新的DOM结构，性能较差。但该模板可以在服务器端运行<br>   <img src="../../images/Frame-selection3.png" alt="模版的组成"><br>   2、基于DOM的模板(DOM-based)，解决方案包括(angularjs、vuejs、knockout)<br>   <img src="../../images/Frame-selection4.jpg" alt="模版的组成"><br>   原理如下：将输入的字符串模板通过innerHTML转换为一个无状态DOM树，然后遍历该节点树，去抓取关键属性或语句，来进行相关的绑定，进而变成了有状态的DOM树，最终导致DOM树会与数据模型model进行绑定。这类模板的特点是修改数据时，会使有状态的DOM树实时更新，运行时性能更好，也会保留 DOM 中的已有事件<br>   <img src="../../images/Frame-selection5.png" alt="模版的组成"><br>   3、活动模板(Living Template)，解决方案包括(RegularJS、RactiveJS、htmlbar)<br>   <img src="../../images/Frame-selection6.jpg" alt="模版的组成"><br>   原理如下：活动模板融合了字符串模板和DOM模板的技术，模板字符串string通过自定义的解析器DSL-based Parse解析成AST(抽象语法树)，通过遍历AST，使用createElement()、setAttribute()等原生DOM方法，生成DOM树，最终导致DOM树会与数据模型model进行绑定。由于其内部完全不使用innerHTML，所以安全性较高<br>   <img src="../../images/Frame-selection7.png" alt="模版的组成"></p>
-<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>  组件(Component)的主要职责包括以下：<br>　　1、提供基础的 CSS 支持<br>　　2、提供常见的组件，如slider、Modal等<br>　　3、提供声明式的调用方式（类似 Bootstrap）</p>
-<h4 id="【常用方案】-3"><a href="#【常用方案】-3" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><p>  常用的组件解决方案有Bootstrap、Foundation等，两者具有移动端first的流式栅格系统，由sass组织，可定制UI<br>  Bootstrap封装了常用的组件，是目前最火的组件解决方案<br>　Foundation在国内知名度不高</p>
-<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p> 路由在单页系统中非常重要，主要职责如下<br>　　1、监听 URL 变化，并通知注册的模块<br>　　2、通过 JavaScript 进行主动跳转<br>　　3、历史管理<br>　　4、对目标浏览器的兼容性支持<br>　　无论什么框架，在完成配置之后，内部都有如下图所示的类似的路由表。<br><img src="../../images/Frame-selection8.png" alt="模版的组成"></p>
+</code></pre><p>Reqwest 支持 JSONP，稳定性高，IE6+支持，CORS 跨域，Promise/A 支持<br>　　 qwest 代码少、支持 XMLHttpRequest2、CORS 跨域、支持高级数据类型（ArrayBuffer、Blob、FormData）</p>
+<h4 id="【专业领域】-1"><a href="#【专业领域】-1" class="headerlink" title="【专业领域】"></a>【专业领域】</h4><p>对于实时性要求较高的需求可以使用 socket.io，它实时性高，支持二进制数据流，智能自动回退支持，且支持多种后端语言</p>
+<h3 id="工具包"><a href="#工具包" class="headerlink" title="工具包"></a>工具包</h3><p>工具包(Utililty)的主要职责包括以下：<br>　　 1、提供 JavaScript 原生不提供的功能<br>　　 2、包装原生方法，使其便于使用<br>　　 3、异步队列及流程控制</p>
+<h4 id="【常用方案】-2"><a href="#【常用方案】-2" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><p>常用的工具包解决方案有 es5-shim、es6-shim、underscore、Lodash 等　　<br>　　上面提到的 shim，也是经常听到的一个词，翻译过来是垫片的意思。对于 es5、es6 等标准包括的一些新方法，由于浏览器兼容性不高，所以无法直接使用它们。这时，就需要在保证实现与规范一致的基础上，来扩展原型方法，这种做法就叫做 shim。好处在于，实际上就是在使用 javascript 的语法，但不用去考虑低版本浏览器的兼容性问题<br>　　 es5-shim 提供 ES3 环境下的 ES5 支持<br>　　 es6-shim 提供 ES5 环境下的 ES6 支持<br>　　 underscore 提供兼容 IE6+ 的扩展功能函数<br>　　 Lodash 是 underscore 的高性能版本，方法多为 runtime 编译出来的</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>模板主要包括三类：基于字符串的模板(String-based)、基于 DOM 的模板(DOM-based)、活动模板(Living Template)<br>　　 1、基于字符串的模板(String-based)，解决方案包括(dustjs、hogan.js、dot.js)<br><img src="../../images/Frame-selection2.jpg" alt="模版的组成"><br>原理如下：输入一段模板字符串，通过编译之后 ，生成一段 Function，通过 Function 的 render 或类 render 函数渲染输入的数据 data，输出模板字符串，字符串通过 innerHTML 或类似的方式渲染成最后的 DOM 结构。这类模板的问题在于通过字符串生成 DOM 之后就不再变化，如果在改变输入的数据 data，需要重新 render，重新生成一个全新的 DOM 结构，性能较差。但该模板可以在服务器端运行<br><img src="../../images/Frame-selection3.png" alt="模版的组成"><br>2、基于 DOM 的模板(DOM-based)，解决方案包括(angularjs、vuejs、knockout)<br><img src="../../images/Frame-selection4.jpg" alt="模版的组成"><br>原理如下：将输入的字符串模板通过 innerHTML 转换为一个无状态 DOM 树，然后遍历该节点树，去抓取关键属性或语句，来进行相关的绑定，进而变成了有状态的 DOM 树，最终导致 DOM 树会与数据模型 model 进行绑定。这类模板的特点是修改数据时，会使有状态的 DOM 树实时更新，运行时性能更好，也会保留 DOM 中的已有事件<br><img src="../../images/Frame-selection5.png" alt="模版的组成"><br>3、活动模板(Living Template)，解决方案包括(RegularJS、RactiveJS、htmlbar)<br><img src="../../images/Frame-selection6.jpg" alt="模版的组成"><br>原理如下：活动模板融合了字符串模板和 DOM 模板的技术，模板字符串 string 通过自定义的解析器 DSL-based Parse 解析成 AST(抽象语法树)，通过遍历 AST，使用 createElement()、setAttribute()等原生 DOM 方法，生成 DOM 树，最终导致 DOM 树会与数据模型 model 进行绑定。由于其内部完全不使用 innerHTML，所以安全性较高<br><img src="../../images/Frame-selection7.png" alt="模版的组成"></p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>组件(Component)的主要职责包括以下：<br>　　 1、提供基础的 CSS 支持<br>　　 2、提供常见的组件，如 slider、Modal 等<br>　　 3、提供声明式的调用方式（类似 Bootstrap）</p>
+<h4 id="【常用方案】-3"><a href="#【常用方案】-3" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><p>常用的组件解决方案有 Bootstrap、Foundation 等，两者具有移动端 first 的流式栅格系统，由 sass 组织，可定制 UI<br>Bootstrap 封装了常用的组件，是目前最火的组件解决方案<br>　 Foundation 在国内知名度不高</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>路由在单页系统中非常重要，主要职责如下<br>　　 1、监听 URL 变化，并通知注册的模块<br>　　 2、通过 JavaScript 进行主动跳转<br>　　 3、历史管理<br>　　 4、对目标浏览器的兼容性支持<br>　　无论什么框架，在完成配置之后，内部都有如下图所示的类似的路由表。<br><img src="../../images/Frame-selection8.png" alt="模版的组成"></p>
 <h4 id="【常用方案】-4"><a href="#【常用方案】-4" class="headerlink" title="【常用方案】"></a>【常用方案】</h4><pre><code>常用的路由解决方案有page.JS、Director.JS、Stateman、crossroad.JS等
-</code></pre><p>　　page.JS类似 Express.Router 的路由规则的前端路由库<br>　　Director.JS可以前后端使用同一套规则定义路由<br>　　Stateman处理深层复杂路由的独立路优库<br>　　crossroad.JS老牌路由库，API 功能较为繁琐</p>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>所有的架构(architecture)都是一个目的，就是解耦。解耦有很多方式，可以通过事件、分层等<br>市面上，有很多架构模式，包括MVC、MVVM、MV*等<br>　　架构的职责主要包括以下：<br>　　1、提供一种范式帮助（强制）开发者进行模块解耦<br>　　2、视图与模型分离<br>　　3、容易进行单元测试<br>　　4、容易实现应用扩展<br>　　以MVVM为例，如下图所示。它包括Model(数据层或模型层)、View(视图层)、ViewModel(控制层)<br>　　Model(数据层或模型层)表示数据实体，它们用于记录应用程序的数据<br>　　View(视图层)用于展示界面，界面是数据定制的反映，它包含样式结构定义以及VM享有的声明式数据以及数数据绑定<br>ViewModel(控制层)是View与Model的粘合，它通过绑定事件与View交互并可以调用Service处理数据持久化，也可以通过数据绑定将Model的变动反映到View中<br><img src="../../images/Frame-selection9.png" alt="模版的组成"></p>
+</code></pre><p>page.JS 类似 Express.Router 的路由规则的前端路由库<br>　　 Director.JS 可以前后端使用同一套规则定义路由<br>　　 Stateman 处理深层复杂路由的独立路优库<br>　　 crossroad.JS 老牌路由库，API 功能较为繁琐</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>所有的架构(architecture)都是一个目的，就是解耦。解耦有很多方式，可以通过事件、分层等<br>市面上，有很多架构模式，包括 MVC、MVVM、MV*等<br>　　架构的职责主要包括以下：<br>　　 1、提供一种范式帮助（强制）开发者进行模块解耦<br>　　 2、视图与模型分离<br>　　 3、容易进行单元测试<br>　　 4、容易实现应用扩展<br>　　以 MVVM 为例，如下图所示。它包括 Model(数据层或模型层)、View(视图层)、ViewModel(控制层)<br>　　 Model(数据层或模型层)表示数据实体，它们用于记录应用程序的数据<br>　　 View(视图层)用于展示界面，界面是数据定制的反映，它包含样式结构定义以及 VM 享有的声明式数据以及数数据绑定<br>ViewModel(控制层)是 View 与 Model 的粘合，它通过绑定事件与 View 交互并可以调用 Service 处理数据持久化，也可以通过数据绑定将 Model 的变动反映到 View 中<br><img src="../../images/Frame-selection9.png" alt="模版的组成"></p>
 <h4 id="【SPA】"><a href="#【SPA】" class="headerlink" title="【SPA】"></a>【SPA】</h4><pre><code>要特点注意的是，MV* !== SPA(单页系统)
-</code></pre><p>　　SPA应用程序的逻辑比较复杂，需要一种模式来进行解耦，但并不一定是MV*模式</p>
-<p>####<br>最后推荐一个框架选型网站<a href="https://www.javascripting.com，该网站根据不同的需求的选择，给出当下流行的框架选型" target="_blank" rel="noopener">https://www.javascripting.com，该网站根据不同的需求的选择，给出当下流行的框架选型</a></p>
+</code></pre><p>SPA 应用程序的逻辑比较复杂，需要一种模式来进行解耦，但并不一定是 MV*模式</p>
+<p>####</p>
+<p>最后推荐一个框架选型网站<a href="https://www.javascripting.com，该网站根据不同的需求的选择，给出当下流行的框架选型" target="_blank" rel="noopener">https://www.javascripting.com，该网站根据不同的需求的选择，给出当下流行的框架选型</a></p>
 ]]></content>
       <categories>
         <category>框架选型</category>

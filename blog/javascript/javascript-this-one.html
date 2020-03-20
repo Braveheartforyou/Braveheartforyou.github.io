@@ -118,15 +118,19 @@
 <meta name="description" content="this的产生">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的this（一）this的产生 (未完成)">
+<meta property="og:title" content="JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？">
 <meta property="og:url" content="http://asyncnode.com/blog/javascript/javascript-this-one.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="this的产生">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.954Z">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-this-1-1.jpg">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-this-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-this-1-3.png">
+<meta property="og:updated_time" content="2019-11-22T08:20:11.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的this（一）this的产生 (未完成)">
+<meta name="twitter:title" content="JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？">
 <meta name="twitter:description" content="this的产生">
+<meta name="twitter:image" content="http://asyncnode.com/images/javascript/javascript-this-1-1.jpg">
 
 
 
@@ -160,7 +164,7 @@
 
 
 
-  <title>JavaScript中的this（一）this的产生 (未完成) | asyncnode</title>
+  <title>JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？ | asyncnode</title>
   
 
 
@@ -349,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的this（一）this的产生 (未完成)</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？</h1>
         
 
         <div class="post-meta">
@@ -401,7 +405,7 @@
 
           
           
-             <span id="/blog/javascript/javascript-this-one.html" class="leancloud_visitors" data-flag-title="JavaScript中的this（一）this的产生 (未完成)">
+             <span id="/blog/javascript/javascript-this-one.html" class="leancloud_visitors" data-flag-title="JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,7 +437,140 @@
       
 
       
-        
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>this</code>如论是在平常开发中，还是在面试时都是经常会听到，所以有了这篇文章来更系统的记录<code>this</code>从产生到使用。到最后会有一整篇的面试题来介绍<code>this</code>。</p>
+<p><code>this</code>是在什么时候产生的呢？<code>this</code>的作用是什么，首先要知道一个概念就是<code>执行上下文</code>。要了解清楚<code>执行上下文</code>，又要了解<code>&quot;调用栈&quot;</code>，要了解调用栈，又要了解<code>作用域</code>中的<code>动态作用域</code>。其实后面还有<code>event loop</code>、<code>线程执行</code>等等，所以学无止境，回头是岸。</p>
+<p>还是回到<code>&quot;调用栈&quot;</code>和<code>执行上下文</code>，首先了解这两个概念就能知道<code>this</code>是什么时候产生的，<code>this</code>是什么。</p>
+<p>首先介绍几个概念：</p>
+<ul>
+<li><code>ECS</code>: 执行环境栈，<strong>Execution Context Stack</strong>。</li>
+<li><code>EC</code>: 函数执行环境（或执行上下文），<strong>Execution Context</strong>。</li>
+<li><code>VO</code>: 变量对象，<strong>variable Object</strong>。</li>
+<li><code>AO</code>: 活动对象，<strong>Active Object</strong>。</li>
+<li><code>S</code>: 作用域，<strong>Scope</strong>。</li>
+<li><code>SC</code>: 作用域链，<strong>Scope Chain</strong>。</li>
+</ul>
+<p>首先<code>执行栈</code>中包含<code>执行上下文</code>，<code>执行上下文</code>中包含有<code>活动变量</code>、<code>变量对象</code>、<code>作用域</code>，一层一层的作用域又会形成<code>作用域链</code>。它们之间都是有关联的。</p>
+<h2 id="“调用栈”"><a href="#“调用栈”" class="headerlink" title="“调用栈”"></a>“调用栈”</h2><p>什么是<code>调用栈</code>其实也是常说的<code>执行栈</code>，它其实应该叫做<code>执行上下文堆栈</code>会更准确一些。我们还是把它简称为<code>执行栈</code>。<br>因为 JavaScript 解释器被实现为单线程。这意味着<code>JavaScript 引擎</code>只能同时执行一件事，其它需要执行的事情会被放到一个栈里面储存，这个栈就叫做<code>执行栈</code>。<br><code>执行栈</code>是一种拥有<code>LIFO（后进先出）</code>数据结构的栈，被用来存储代码运行时创建的所有执行上下文。</p>
+<h3 id="执行栈执行过程"><a href="#执行栈执行过程" class="headerlink" title="执行栈执行过程"></a>执行栈执行过程</h3><p>当 <code>JavaScript 引擎</code>第一次遇到你的脚本时，它会创建一个<code>全局</code>的<code>执行上下文</code>并且压入当前<code>执行栈</code>。每当引擎遇到一个函数调用，它会为该函数创建一个<code>新的执行上下文并</code>压入栈的<code>顶部</code>。</p>
+<p>引擎会执行那些<code>执行上下文位于栈顶的函数</code>。当该函数执行结束时，执行上下文<code>从栈中弹出</code>，控制流程到达当前栈中的下一个上下文。</p>
+<p>首先我们看一张比较经典的图。</p>
+<p><img src="../../images/javascript/javascript-this-1-1.jpg" alt="this-one"></p>
+<p>一个简单的实例，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"global name"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"inside first function"</span>);</span><br><span class="line">  second();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">second</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"inside second function"</span>);</span><br><span class="line">  three();</span><br><span class="line">&#125;</span><br><span class="line">first();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"inside global Execution Context"</span>);</span><br></pre></td></tr></table></figure>
+<p>执行效果如下图所示：</p>
+<p><img src="../../images/javascript/javascript-this-1-2.png" alt="this-one"></p>
+<p>当上述代码在浏览器加载时，<code>JavaScript 引擎</code>创建了一个<code>全局执行上下文</code>并把它压入当前<code>执行栈</code>。当遇到 <code>first()</code> 函数调用时，<code>JavaScript 引擎</code>为该函数<code>创建</code>一个新的<code>执行上下文</code>并把它压入<code>当前执行栈</code>的顶部。</p>
+<p>当从 <code>first()</code> 函数内部调用 <code>second()</code> 函数时，<code>JavaScript 引擎</code>为 <code>second()</code> 函数创建了一个<code>新的执行上下文</code>并把它压入当前<code>执行栈的顶部</code>。当 <code>second()</code> 函数执行完毕，它的<code>执行上下文</code>会从当前栈<code>弹出</code>，并且控制流程到达下一个<code>执行上下文</code>，即 <code>first()</code> 函数的执行上下文。<br>当 <code>first()</code> 执行完毕，它的执行上下文从栈<code>弹出</code>，控制流程到达全局执行上下文。一旦所有代码执行完毕，JavaScript 引擎从当前栈中<code>移除</code>全局执行上下文。</p>
+<p>有 5 个需要记住的关键点，关于<strong>执行栈（调用栈）</strong>：</p>
+<ul>
+<li>单线程。</li>
+<li>同步执行。</li>
+<li>一个全局上下文。</li>
+<li>无限制函数上下文。</li>
+<li>每次函数被调用创建新的执行上下文，包括调用自己。</li>
+</ul>
+<p><strong>一个在线实例</strong></p>
+<p>因为代码太多了这里就不展示了，gif 也比较大，所以只放了一个外国友人的在线实例。有兴趣的可以去看一下。</p>
+<p>在线代码体验<a href="https://codepen.io/njmcode/pen/dMPmGq" target="_blank" rel="noopener">执行栈执行过程</a>，如果访问比较慢可以看<a href="https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack" target="_blank" rel="noopener">执行栈执行过程 demo</a>把代码下载到本地运行查看。</p>
+<h2 id="执行上下文周期"><a href="#执行上下文周期" class="headerlink" title="执行上下文周期"></a>执行上下文周期</h2><p>在上面执行栈整个过程中，我们知道每次调用函数时都会创建一个<strong>执行上下文</strong>，现在我们要了解在<code>JavaScript 引擎</code>内部是怎么创建<strong>执行上下文</strong>.<br>在创建完成之后会执行上下文，当执行完成之后会回收当前上下文。</p>
+<p>创建执行上下文大致分为三步：</p>
+<ul>
+<li>创建阶段</li>
+<li>执行阶段</li>
+<li>回收阶段</li>
+</ul>
+<h2 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h2><p><strong>创建阶段</strong></p>
+<p>在每次执行函数时都会走<code>创建执行上下文</code>，创建上下文会经历下面这几个事件：</p>
+<ul>
+<li>创建<code>作用域</code>并且形成<code>作用域链（Scope Chain）</code>：定义了变量的可访问范围，控制变量的生命周期。</li>
+<li>创建<code>变量(variables)</code>、<code>函数(functions)</code>、<code>参数(arguments)</code>： 变量和函数在创建时都会存在<code>Hosting(变量提升)</code>，就是会提前到最前面声明，但是不赋值。</li>
+<li>确定<code>this</code>的值：<code>this</code>的复杂之处就在于它不是声明时就能确定，一般情况来说它是调用时确定的。(箭头函数除外)</li>
+</ul>
+<p>我看的有挺多文章的创建的整体顺序是不太一样的，我认为他的顺序是当前我文章中的顺序。会先创建<code>作用域</code>再会创建<code>变量</code>，最后确定<code>this</code>的值。</p>
+<p><strong>伪代码</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">executionContextObj = &#123;</span><br><span class="line">    <span class="string">'scopeChain'</span>: &#123;<span class="comment">// 作用域链&#125;,</span></span><br><span class="line">    <span class="string">'variables'</span>: &#123;<span class="comment">// 变量、函数、参数&#125;,</span></span><br><span class="line">    <span class="string">'this'</span>: &#123;<span class="comment">// 运行时才能确定&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到现在我们知道什么是<code>执行上下文</code>，我们也知道<code>this</code>就是<code>执行上下文</code>创建中产生的。但是它的值并不能在创建的时候确定，而是要到调用时才知道。</p>
+<blockquote>
+<p>其实作用域的本质是一套规则，它定义了变量的可访问范围，控制变量的可见性和生命周期。</p>
+</blockquote>
+<h3 id="创建作用域链"><a href="#创建作用域链" class="headerlink" title="创建作用域链"></a>创建作用域链</h3><p>作用域链又可以叫做<code>词法环境</code>，<a href="http://ecma-international.org/ecma-262/6.0/" target="_blank" rel="noopener">官方的 ES6</a> 文档把词法环境定义为。</p>
+<blockquote>
+<p><strong>词法环境</strong>是一种规范类型，基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联。一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成。</p>
+</blockquote>
+<p>简单来说词法环境是一种持有<strong>标识符—变量映射</strong>的结构。（这里的<strong>标识符</strong>指的是变量/函数的名字，而<strong>变量</strong>是对实际对象[包含函数类型对象]或原始数据的引用）。</p>
+<p>词法环境有两种类型：</p>
+<ul>
+<li><code>全局环境（在全局执行上下文中）</code>: 是<code>没有</code>外部环境引用的<code>词法环境</code>。全局环境的外部环境引用是 <code>null</code>。它的<code>this</code>的值指向全局对象。</li>
+<li><code>函数环境</code>: 函数内部用户定义的变量存储在<code>环境记录器</code>中。并且<code>引用的外部环境</code>可能是全局环境，或者任何包含此内部函数的外部函数。</li>
+</ul>
+<p>在<code>函数环境</code>中，有两个概念来保证它既可以访问管理自己内部的变量等等，又可以访问外部的变量，下面我们就来介绍这两个概念：</p>
+<ul>
+<li><strong>环境记录器</strong>：是存储变量和函数声明的实际位置。</li>
+<li><strong>外部环境的引用</strong>：它可以访问其父级词法环境（作用域）。</li>
+</ul>
+<p><strong>环境记录器</strong>又分为两种：</p>
+<ul>
+<li><strong>声明式环境记录器</strong>：存储变量、函数和参数<code>（在函数环境中）</code>。</li>
+<li><strong>对象环境记录器</strong>：用来定义出现在<strong>全局上下文</strong>中的变量和函数的关系 <code>(在全局环境中)</code>。</li>
+</ul>
+<p>总结一下<code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。来张图解释一下吧。</p>
+<p><img src="../../images/javascript/javascript-this-1-3.png" alt="this-one"></p>
+<p><strong>注意</strong></p>
+<ul>
+<li>对于<code>函数环境</code>，<code>声明式环境记录器</code>还包含了一个传递给函数的 <code>arguments</code> 对象（此对象存储索引和参数的映射）和传递给函数的参数的 <code>length</code>。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    LexicalEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: <span class="string">"Object"</span>,</span><br><span class="line">        <span class="comment">// 在这里绑定标识符</span></span><br><span class="line">        &#125;</span><br><span class="line">        outer: <span class="xml"><span class="tag">&lt;<span class="name">null</span>&gt;</span></span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">FunctionExectionContext = &#123;</span></span><br><span class="line"><span class="xml">    LexicalEnvironment: &#123;</span></span><br><span class="line"><span class="xml">        EnvironmentRecord: &#123;</span></span><br><span class="line"><span class="xml">        Type: "Declarative",</span></span><br><span class="line"><span class="xml">        // 在这里绑定标识符</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line">        outer: &lt;Global or outer function environment reference&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h3><p>在<code>创建变量</code>之前首先要<code>创建变量环境</code>，什么是<code>变量环境</code>呢？</p>
+<p><code>变量环境</code>也是一个词法环境，它也有<code>环境记录器</code>用来记录<code>变量声明语句</code>在执行上下文中创建的绑定关系。</p>
+<p><code>变量环境</code>和<code>词法环境</code>的区别在于<code>变量环境</code>被用来<code>存储函数</code>声明和<code>变量（let 和 const）绑定</code>，而<code>词法环境</code>只用来<code>存储 var 变量绑定</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">var</span> c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">e, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> g = <span class="number">20</span>;</span><br><span class="line">  <span class="keyword">return</span> e * f * g;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c = multiply(<span class="number">20</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>执行上下文看起来像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">GlobalExectionContext = &#123;</span><br><span class="line"></span><br><span class="line">    ThisBinding: <span class="xml"><span class="tag">&lt;<span class="name">Global</span> <span class="attr">Object</span>&gt;</span>,</span></span><br><span class="line"><span class="xml">    LexicalEnvironment: &#123;</span></span><br><span class="line"><span class="xml">        EnvironmentRecord: &#123;</span></span><br><span class="line"><span class="xml">        Type: "Object",</span></span><br><span class="line"><span class="xml">        // 在这里绑定标识符</span></span><br><span class="line"><span class="xml">        a: <span class="tag">&lt; <span class="attr">uninitialized</span> &gt;</span>,</span></span><br><span class="line"><span class="xml">        b: <span class="tag">&lt; <span class="attr">uninitialized</span> &gt;</span>,</span></span><br><span class="line"><span class="xml">        multiply: <span class="tag">&lt; <span class="attr">func</span> &gt;</span></span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line">        outer: &lt;null&gt;</span><br><span class="line">    &#125;,</span><br><span class="line">    VariableEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Object",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        c: undefined,</span><br><span class="line">        &#125;</span><br><span class="line">        outer: &lt;null&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FunctionExectionContext = &#123;</span><br><span class="line">    ThisBinding: &lt;Global Object&gt;,</span><br><span class="line">    LexicalEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Declarative",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        Arguments: &#123;0: 20, 1: 30, length: 2&#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        outer: &lt;GlobalLexicalEnvironment&gt;</span><br><span class="line">    &#125;,</span><br><span class="line">    VariableEnvironment: &#123;</span><br><span class="line">        EnvironmentRecord: &#123;</span><br><span class="line">        Type: "Declarative",</span><br><span class="line">        // 在这里绑定标识符</span><br><span class="line">        g: undefined</span><br><span class="line">        &#125;,</span><br><span class="line">        outer: &lt;GlobalLexicalEnvironment&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有遇到调用函数 <code>multiply</code> 时，<code>函数执行上下文</code>才会被创建。</li>
+</ul>
+<p>可能你已经注意到 <code>let</code> 和 <code>const</code> 定义的变量并没有关联任何值，但 <code>var</code> 定义的变量被设成了 <code>undefined</code>。<br>这是因为在创建阶段时，引擎检查代码找出<code>变量和函数声明</code>，虽然<code>函数声明完全存储在环境</code>中，但是变量最初设置为 <code>undefined</code>（<code>var</code> 情况下），或者未初始化（<code>let</code> 和 <code>const</code> 情况下）。</p>
+<p>这就是为什么你可以在声明之前访问 <code>var</code> 定义的变量（虽然是 <code>undefined</code>），但是在声明之前访问 <code>let</code> 和 <code>const</code> 的变量会得到一个引用错误。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大致创建过程如下：</p>
+<ul>
+<li>初始化作用域链：</li>
+<li>创建变量对象：<ul>
+<li>创建arguments对象，检查上下文，初始化参数名称和值并创建引用的复制。</li>
+<li>扫描上下文的函数声明：<ul>
+<li>为发现的每一个函数，在变量对象上创建一个属性——确切的说是函数的名字——其有一个指向函数在内存中的引用。</li>
+<li>如果函数的名字已经存在，引用指针将被重写。</li>
+</ul>
+</li>
+<li>扫面上下文的变量声明：<ul>
+<li>为发现的每个变量声明，在变量对象上创建一个属性——就是变量的名字，并且将变量的值初始化为undefined</li>
+<li>如果变量的名字已经在变量对象里存在，将不会进行任何操作并继续扫描。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>求出上下文内部“this”的值。</li>
+</ul>
+<p><code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。</p>
+<p>在上面只是简单的讲解了<code>变量提升</code>，如果有兴趣再多了解一下<code>变量声明提升、函数声明提升</code>可以去看我的另一篇文章<a href="/blog/javascript/hoisting.html">JavaScript中的变量提升</a>，里面又很多比较好的实例。</p>
+<h2 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h2><p>在上面我们介绍了<code>创建阶段</code>，现在主要介绍一下<code>执行阶段</code>。<br><strong>激活/代码执行阶段</strong></p>
+<ul>
+<li>在<strong>当前上下文上运行/解释函数代码</strong>，并随着代码一行行执行指派变量的值。</li>
+</ul>
+<p>一个<strong>实例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">const</span> age;</span><br><span class="line"><span class="keyword">var</span> firstName = <span class="string">'everybody'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lastName = <span class="string">'lastName'</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">'testArgs'</span>);</span><br></pre></td></tr></table></figure>
+<p><code>创建阶段</code>我们用伪代码来表示一下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局执行上下文</span></span><br><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        <span class="comment">// name 未初始化</span></span><br><span class="line">        <span class="comment">// age 未初始化</span></span><br><span class="line">        firstName: <span class="literal">undefined</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">this</span>: &#123;....&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 函数执行上下文</span></span><br><span class="line">testExecutionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        args: &#123;</span><br><span class="line">            <span class="number">0</span>: <span class="string">'testArgs'</span>,</span><br><span class="line">            length: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        args: <span class="string">'testArgs'</span>,</span><br><span class="line">        lastName: <span class="literal">undefined</span>,</span><br><span class="line">        testTwo: pointer to <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    &#125;,</span></span><br><span class="line"><span class="function">    <span class="title">this</span>: </span>&#123;....&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>执行阶段</code>我们用伪代码描述一下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局执行上下文</span></span><br><span class="line">GlobalExectionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 只存在环境记录器（它的记录器叫做对象环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        name: <span class="literal">undefined</span>, <span class="comment">// 初始化 没有找到变量的值，它被复制为 undefined</span></span><br><span class="line">        age: <span class="literal">undefined</span>, <span class="comment">// 初始化 没有找到变量的值，它被复制为 undefined</span></span><br><span class="line">        firstName: <span class="string">'everybody'</span> <span class="comment">// 赋值为 everybody</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">this</span>: &#123;....&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 函数执行上下文</span></span><br><span class="line">testExecutionContext = &#123;</span><br><span class="line">    scopeChain: &#123;...&#125;, <span class="comment">// 存在环境记录器（它的记录器叫做声明式环境记录器） 不存在外部环境的引用</span></span><br><span class="line">    variableObject: &#123;</span><br><span class="line">        args: &#123;</span><br><span class="line">            <span class="number">0</span>: <span class="string">'testArgs'</span>,</span><br><span class="line">            length: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        args: <span class="string">'testArgs'</span>,</span><br><span class="line">        lastName: <span class="string">'lastName'</span>, <span class="comment">// 赋值为lastName</span></span><br><span class="line">        testTwo: pointer to <span class="function"><span class="keyword">function</span> <span class="title">testTwo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    &#125;,</span></span><br><span class="line"><span class="function">    <span class="title">this</span>: </span>&#123;....&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>let/const</code>是在<code>执行阶段</code>才初始化的，初始化完成就会被赋值。<br><code>arguments</code>是在<code>创建阶段</code>就被创建和赋值。<br><code>functions</code>也是在<code>创建阶段</code>就被创建和赋值。<br><code>variables</code>是在<code>创建阶段</code>被创建，但是没有赋值，在<code>执行阶段</code>被赋值。</p>
+<p><strong>functions 赋值式</strong>只会声明不会赋值。</p>
+<blockquote>
+<p>如果 <code>JavaScript 引擎</code>不能在源码中声明的实际位置找到 <code>let 变量的值</code>，它会被赋值为 <code>undefined</code>。</p>
+</blockquote>
+<h2 id="回收阶段"><a href="#回收阶段" class="headerlink" title="回收阶段"></a>回收阶段</h2><p>就是在函数执行完成会把当前的执行上下文回收掉，但是全局执行上下文是不会被回收的，只有关闭当前线程/进程才会把全局执行上下文清楚掉。</p>
+<h2 id="总结全文"><a href="#总结全文" class="headerlink" title="总结全文"></a>总结全文</h2><p>到现在我们知道<code>this</code>是<code>执行上下文</code>中的一部分，它产生在<code>创建阶段</code>(绑定默认值)，<code>改变this</code>在发生在<code>执行阶段</code>.<br>我们也知道什么是<code>执行栈</code>它是怎么运转的，也知道了<code>执行上下文</code>的生命周期的细节，所以本篇文章到此为止。<br>如果有哪里有问题欢迎留言，谢谢！</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/" target="_blank" rel="noopener">What is the Execution Context &amp; Stack in JavaScript?</a><br><a href="https://yanhaijing.com/javascript/2014/04/29/what-is-the-execution-context-in-javascript/" target="_blank" rel="noopener">了解JavaScript的执行上下文</a><br><a href="https://juejin.im/post/5ba32171f265da0ab719a6d7" target="_blank" rel="noopener">[译] 理解 JavaScript 中的执行上下文和执行栈</a></p>
+
       
     </div>
 
@@ -485,8 +622,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/javascript/javascript-this-two.html" rel="prev" title="JavaScript中的this（二）this的绑定 (未完成)">
-                JavaScript中的this（二）this的绑定 (未完成) <i class="fa fa-chevron-right"></i>
+              <a href="/blog/javascript/javascript-this-two.html" rel="prev" title="JavaScript中的this（二）this的多种绑定方式">
+                JavaScript中的this（二）this的多种绑定方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -557,8 +694,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
           <p class="site-author-name" itemprop="name">asyncnode</p>
@@ -571,7 +717,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-count">201</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +728,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -593,7 +739,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -637,6 +783,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“调用栈”"><span class="nav-number">2.</span> <span class="nav-text">“调用栈”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行栈执行过程"><span class="nav-number">2.1.</span> <span class="nav-text">执行栈执行过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文周期"><span class="nav-number">3.</span> <span class="nav-text">执行上下文周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建阶段"><span class="nav-number">4.</span> <span class="nav-text">创建阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建作用域链"><span class="nav-number">4.1.</span> <span class="nav-text">创建作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建变量"><span class="nav-number">4.2.</span> <span class="nav-text">创建变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行阶段"><span class="nav-number">5.</span> <span class="nav-text">执行阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回收阶段"><span class="nav-number">6.</span> <span class="nav-text">回收阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结全文"><span class="nav-number">7.</span> <span class="nav-text">总结全文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -654,7 +816,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -685,7 +847,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共212.0k字</span>
+  <span class="post-count">博客全站共219.7k字</span>
 </div> -->
 
         

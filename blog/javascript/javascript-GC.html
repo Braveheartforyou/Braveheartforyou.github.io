@@ -118,14 +118,14 @@
 <meta name="description" content="JavaScript创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放，不是人们所说的完全的垃圾回收机制。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript中垃圾回收机制 （-）">
+<meta property="og:title" content="javascript中垃圾回收机制">
 <meta property="og:url" content="http://asyncnode.com/blog/javascript/javascript-GC.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="JavaScript创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放，不是人们所说的完全的垃圾回收机制。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.949Z">
+<meta property="og:updated_time" content="2019-11-18T07:37:02.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript中垃圾回收机制 （-）">
+<meta name="twitter:title" content="javascript中垃圾回收机制">
 <meta name="twitter:description" content="JavaScript创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放，不是人们所说的完全的垃圾回收机制。">
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>javascript中垃圾回收机制 （-） | asyncnode</title>
+  <title>javascript中垃圾回收机制 | asyncnode</title>
   
 
 
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">javascript中垃圾回收机制 （-）</h1>
+          <h1 class="post-title" itemprop="name headline">javascript中垃圾回收机制</h1>
         
 
         <div class="post-meta">
@@ -401,7 +401,7 @@
 
           
           
-             <span id="/blog/javascript/javascript-GC.html" class="leancloud_visitors" data-flag-title="javascript中垃圾回收机制 （-）">
+             <span id="/blog/javascript/javascript-GC.html" class="leancloud_visitors" data-flag-title="javascript中垃圾回收机制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,7 +433,8 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><font color="#ff502c">JavaScript 创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。</font> 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让 JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。<font color="#ff502c">而不是别人所说的:编写 JavaScript 程序时，所需内存的分配以及无用内存的回收完全实现自动管理</font>但是他会按照固定的时间间隔（或代码执行中预定的收集时间）周期性地执行这一操作<br><br>## 内存生命周期<br><br>其实别的语言的内存声明周期基本是那个是一致的：<br><br>1. 分配你所需要的内存<br>2. 使用分配到内存（读、写）<br>3. 不需要时将其释放\归还<br><br>### JavaScript 的内存分配<br><br>1. JavaScript 在定义变量时就完成了内存分配<br>2. 通过函数调用分配内存<br><br>### 内存释放<br><br>当内存不再需要使用时释放，高级语言解释器嵌入了“垃圾回收器”，它的主要工作是跟踪内存的分配和使用，以便当分配的内存不再使用时，自动释放它。<br><br>## 两种垃圾回收方式<br><br>浏览器的内存处理基本分为两种，<font color="#ff502c">引用技术垃圾收集</font>、<font color="#ff502c">标记清除</font>两种，下面一一介绍。<br><br>### 引用计数<br><br>这是最简单的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。<br><font color="#ff502c">但是他有比较大的限制，就是当对象循环引用，引用计数不会回收它</font>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://mp.weixin.qq.com/s/m_cwfM0PgivmmCKaK-TviQ" target="_blank" rel="noopener">Chrome 浏览器垃圾回收机制与内存泄漏分析</a></p>
+<font color="#ff502c">JavaScript 创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。</font> 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让 JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。<font color="#ff502c">而不是别人所说的:编写 JavaScript 程序时，所需内存的分配以及无用内存的回收完全实现自动管理</font>但是他会按照固定的时间间隔（或代码执行中预定的收集时间）周期性地执行这一操作<br><br>## 内存生命周期<br><br>其实别的语言的内存声明周期基本是那个是一致的：<br><br>1. 分配你所需要的内存<br>2. 使用分配到内存（读、写）<br>3. 不需要时将其释放\归还<br><br>### JavaScript 的内存分配<br><br>1. JavaScript 在定义变量时就完成了内存分配<br>2. 通过函数调用分配内存<br><br>### 内存释放<br><br>当内存不再需要使用时释放，高级语言解释器嵌入了“垃圾回收器”，它的主要工作是跟踪内存的分配和使用，以便当分配的内存不再使用时，自动释放它。<br><br>## 两种垃圾回收方式<br><br>浏览器的内存处理基本分为两种，<font color="#ff502c">引用技术垃圾收集</font>、<font color="#ff502c">标记清除</font>两种，下面一一介绍。<br><br>### 引用计数<br><br>这是最简单的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。<br><font color="#ff502c">但是他有比较大的限制，就是当对象循环引用，引用计数不会回收它</font>
 
 <h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>垃圾收集器会按照固定的时间间隔周期性的执行这一操作。<br>从 2012 年起，所有现代浏览器都使用了标记-清除垃圾回收算法。所有对 JavaScript 垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。<br>简单来讲就是，当变量进入环境时，就是将变量标记为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。<br>收集器在运行时会给存储在内存中的所有变量都加上标记，然后它会去掉环境中的变量以及被环境中的变量引用的变量的标记。剩下的在被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量。最后，垃圾收集器完成内存清除，销毁那些带有标记的值并收回它们所占用的内存空间。<br>这中算法是没有循环引用限制的</p>
 
@@ -583,7 +584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-count">201</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -594,7 +595,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -605,7 +606,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -682,7 +683,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -713,7 +714,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共212.0k字</span>
+  <span class="post-count">博客全站共219.7k字</span>
 </div> -->
 
         

@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="this的绑定优先级">
+<meta name="description" content="在上一篇文章中我们知道了多种绑定方式，这篇文章中我们自己实现bind、call、apply、new、Object.create等函数">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的this（三）this的绑定优先级 (未完成)">
+<meta property="og:title" content="JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等">
 <meta property="og:url" content="http://asyncnode.com/blog/javascript/javascript-this-three.html">
 <meta property="og:site_name" content="asyncnode">
-<meta property="og:description" content="this的绑定优先级">
+<meta property="og:description" content="在上一篇文章中我们知道了多种绑定方式，这篇文章中我们自己实现bind、call、apply、new、Object.create等函数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.954Z">
+<meta property="og:updated_time" content="2020-01-15T07:30:41.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的this（三）this的绑定优先级 (未完成)">
-<meta name="twitter:description" content="this的绑定优先级">
+<meta name="twitter:title" content="JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等">
+<meta name="twitter:description" content="在上一篇文章中我们知道了多种绑定方式，这篇文章中我们自己实现bind、call、apply、new、Object.create等函数">
 
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>JavaScript中的this（三）this的绑定优先级 (未完成) | asyncnode</title>
+  <title>JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等 | asyncnode</title>
   
 
 
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的this（三）this的绑定优先级 (未完成)</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等</h1>
         
 
         <div class="post-meta">
@@ -401,7 +401,7 @@
 
           
           
-             <span id="/blog/javascript/javascript-this-three.html" class="leancloud_visitors" data-flag-title="JavaScript中的this（三）this的绑定优先级 (未完成)">
+             <span id="/blog/javascript/javascript-this-three.html" class="leancloud_visitors" data-flag-title="JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,7 +419,7 @@
 
           
               <div class="post-description">
-                  this的绑定优先级
+                  在上一篇文章中我们知道了多种绑定方式，这篇文章中我们自己实现bind、call、apply、new、Object.create等函数
               </div>
           
 
@@ -433,7 +433,24 @@
       
 
       
-        
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在上面我们已经了解了多种绑定方式，<strong>默认绑定</strong>、<strong>隐式绑定</strong>、<strong>显示绑定</strong>、<strong>new绑定、Object.create绑定</strong>、<strong>箭头函数</strong>。<br>我们本篇文章通过实现多种显示绑定的方法，来加深对<code>this</code>的指向理解和应对开发时不同的场景使用不同的绑定方法。其实还有一部分原因就是在面试的时候，一般来说一面都会笔试或者电话面试都会遇到，让你手写一个<code>call/apply/bind/new/Object.create</code>等等。后面的文章会越来越深入的去理解<code>JavaScript</code>这门语言，等再后面的框架，架构能让我们更好的晋升。</p>
+<p>我们首先要实现一个<code>call/apply</code>，因为无论是后面的<code>bind</code>还是<code>new/Object.create</code>都会用到<code>call/apply</code>。</p>
+<p>文章大致章节：</p>
+<ul>
+<li><code>call/apply</code>: <code>call/apply</code>的使用场景，它们两个运行速度，谁更快一点，自己实现<code>call/apply</code></li>
+<li><code>bind</code>: <code>bind</code>的使用场景，实现一个<code>bind</code></li>
+<li><code>new/Object.create</code>: <code>new/Object.create</code>使用场景，分别实现他们</li>
+</ul>
+<h2 id="call-apply"><a href="#call-apply" class="headerlink" title="call/apply"></a>call/apply</h2><p><code>call()/apply()</code> 方法使用一个指定的 <code>this</code> 值和单独给出的一个或多个参数来调用一个函数。</p>
+<blockquote>
+<p>注意：该方法的语法和作用与 <code>apply()</code> 方法类似，只有一个区别，就是 <code>call()</code> 方法接受的是一个参数列表，而 <code>apply()</code> 方法接受的是一个包含多个参数的数组。</p>
+</blockquote>
+<p><code>call/apply</code>是怎么使用，简单使用如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testFunc = <span class="function"><span class="keyword">function</span> (<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testFunc.call(&#123;<span class="attr">name</span>: <span class="string">'call'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, <span class="string">'call'</span>, <span class="number">20</span>) <span class="comment">// call、20</span></span><br><span class="line">testFunc.apply(&#123;<span class="attr">name</span>: <span class="string">'apply'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, [<span class="string">'apply'</span>, <span class="number">20</span>]) <span class="comment">// apply 20</span></span><br></pre></td></tr></table></figure>
+<h2 id="new和Object-create"><a href="#new和Object-create" class="headerlink" title="new和Object.create"></a>new和Object.create</h2><p><code>new 运算符</code>创建一个用户定义的<code>对象类型的实例</code>或具有构造函数的<code>内置对象的实例</code>。会在<code>new</code>的内部改变新生成的<code>对象实例</code>的<code>this</code>，我们可以通过下面的样例看一下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">make, model, year</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">    <span class="keyword">this</span>.year = year;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> Car(<span class="string">'Eagle'</span>, <span class="string">'Talon TSi'</span>, <span class="number">1993</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(car1.make);</span><br><span class="line"><span class="comment">// expected output: "Eagle"</span></span><br><span class="line"></span><br><span class="line">car1.__proto__ === Car.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看到在通过<code>new</code>关键字生成的新的对象，它复刻了<code>Car</code>中声明了的多个变量，并且这些变量在<code>Car</code>中都是绑定在<code>Car</code>中的<code>this</code>上。而新生成的<strong>实例对象</strong>同时也拥有所有的属性。我们可以知道<code>new</code>运行的时候会新创建一个对象，这个对象包含所有<code>Car</code>中的<code>this</code>上的对象。</p>
+
       
     </div>
 
@@ -475,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/javascript/javascript-this-two.html" rel="next" title="JavaScript中的this（二）this的绑定 (未完成)">
-                <i class="fa fa-chevron-left"></i> JavaScript中的this（二）this的绑定 (未完成)
+              <a href="/blog/javascript/javascript-this-two.html" rel="next" title="JavaScript中的this（二）this的多种绑定方式">
+                <i class="fa fa-chevron-left"></i> JavaScript中的this（二）this的多种绑定方式
               </a>
             
           </div>
@@ -557,8 +574,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
           <p class="site-author-name" itemprop="name">asyncnode</p>
@@ -571,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-count">201</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +608,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -593,7 +619,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -637,6 +663,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-apply"><span class="nav-number">2.</span> <span class="nav-text">call/apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new和Object-create"><span class="nav-number">3.</span> <span class="nav-text">new和Object.create</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -654,7 +696,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -685,7 +727,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共212.0k字</span>
+  <span class="post-count">博客全站共219.7k字</span>
 </div> -->
 
         

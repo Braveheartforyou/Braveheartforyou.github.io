@@ -1154,6 +1154,19 @@ pre .javascript .function {
     text-align: justify;
   }
 }
+.posts-expand .post-body > p {
+  text-indent: 20px;
+}
+.posts-expand .post-body td > code {
+  color: #ff502c;
+}
+.posts-expand .post-body h2 {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ff502c;
+  text-align: center;
+  color: #ff502c;
+}
 .posts-expand .post-body h2,
 .posts-expand .post-body h3,
 .posts-expand .post-body h4,
@@ -1693,7 +1706,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9cffff;
+  background: #69c7e3;
 }
 .links-of-blogroll {
   font-size: 13px;
