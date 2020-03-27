@@ -196,7 +196,7 @@ export default {
   }
 ```
 
-我们在`breadcrumb`组件中添加如下代码。
+我们在`breadcrumb-item`组件中添加如下代码。
 
 ```html
 <template>
