@@ -1,5 +1,5 @@
 ---
-title: 深入Vue系列 ———— Vue中v-model解析、sync修饰符解析
+title: 深入Vue系列 ———— Vue中v-model、sync、$attre/$lisrener、provied/inject修饰符解析
 date: 2019-08-29 20:22:18
 tags: [Vue]
 categories: [Vue]
