@@ -232,7 +232,7 @@ export default {
     // 是否使用repalce替换push跳转
     replace: Boolean
   },
-  data: function () {
+  data () {
     return {
       // TODO: 接受父组件传入的 分隔符
       separator: '',
