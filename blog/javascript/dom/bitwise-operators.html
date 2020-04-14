@@ -1,0 +1,1451 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="通过本篇博客让我们了解JavaScript中的位运算符，并且在什么情况下我们可以用到位运算符。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript了解JS中的位运算符">
+<meta property="og:url" content="http://asyncnode.com/blog/javascript/dom/bitwise-operators.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="通过本篇博客让我们了解JavaScript中的位运算符，并且在什么情况下我们可以用到位运算符。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/btye-1.webp">
+<meta property="og:updated_time" content="2020-04-14T06:39:13.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript了解JS中的位运算符">
+<meta name="twitter:description" content="通过本篇博客让我们了解JavaScript中的位运算符，并且在什么情况下我们可以用到位运算符。">
+<meta name="twitter:image" content="http://asyncnode.com/images/javascript/btye-1.webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/javascript/dom/bitwise-operators.html">
+
+
+
+
+
+  <title>JavaScript了解JS中的位运算符 | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/javascript/dom/bitwise-operators.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript了解JS中的位运算符</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-15T10:43:12+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/javascript/dom/bitwise-operators.html" class="leancloud_visitors" data-flag-title="JavaScript了解JS中的位运算符">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  通过本篇博客让我们了解JavaScript中的位运算符，并且在什么情况下我们可以用到位运算符。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaScript中的按位操作符"><a href="#JavaScript中的按位操作符" class="headerlink" title="JavaScript中的按位操作符"></a>JavaScript中的按位操作符</h2><p>JavaScript提供了几种运算符，可以对一些简单的值进行基本操作，比如<code>算术运算符</code>、<code>赋值运算符</code>、<code>逻辑运算符</code>、<code>按位操作符</code>等。其他的操作运算符都是经常用到的，比如算数运算符的<code>+、-、*、/</code>；赋值运算符的<code>=、+=、-=</code>；逻辑运算符的<code>||、&amp;&amp;、!</code>等等。但是<code>按位操作符</code>操作符是比较来说不常用的，很多人也不知道都有什么<code>按位操作符</code>?</p>
+<p>本章内容大致分为：</p>
+<ul>
+<li>有哪些<code>按位操作符</code>?简单的应用</li>
+<li>在日常开发是<code>按位操作符</code>可以做哪些事情？</li>
+</ul>
+<p>会一步一步从了解<code>按位操作符</code>到能把它运用到项目中来，以使自己的编码更简洁、更方便。</p>
+<h2 id="简单了解按位操作符"><a href="#简单了解按位操作符" class="headerlink" title="简单了解按位操作符"></a>简单了解按位操作符</h2><p>首先来了解一下<code>按位操作符</code>的定义是什么： <strong><code>按位操作符（Bitwise operators） 将其操作数（operands）当作32位的比特序列（由0和1组成），而不是十进制、十六进制或八进制数值</code></strong>。其实<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators" target="_blank" rel="noopener">mdn 中 按位操作符</a>讲的有点晦涩，不太好理解通过对下面的介绍可能会好理解一点。</p>
+<p>JavaScript内部<code>Number</code>是以<code>64位浮点数</code>的形式储存，但是做位运算的时候，是以<code>32位带符号的整数</code>进行运算的，并且返回值也是一个<code>32位带符号的整数</code>。</p>
+<p>JavaScript中有七中按位操作符，如下表格所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">按位与（ AND）</td>
+<td style="text-align:center">a &amp; b</td>
+<td style="text-align:center">对于每一个比特位，只有两个操作数相应的比特位都是1时，结果才为1，否则为0。</td>
+</tr>
+<tr>
+<td style="text-align:center">按位或（OR）</td>
+<td style="text-align:center">a 丨 b</td>
+<td style="text-align:center">对于每一个比特位，当两个操作数相应的比特位至少有一个1时，结果为1，否则为0。</td>
+</tr>
+<tr>
+<td style="text-align:center">按位异或（XOR）</td>
+<td style="text-align:center">a ^ b</td>
+<td style="text-align:center">对于每一个比特位，当两个操作数相应的比特位有且只有一个1时，结果为1，否则为0。</td>
+</tr>
+<tr>
+<td style="text-align:center">按位非（NOT）</td>
+<td style="text-align:center">~ a</td>
+<td style="text-align:center">反转操作数的比特位，即0变成1，1变成0。</td>
+</tr>
+<tr>
+<td style="text-align:center">左移（Left shift）</td>
+<td style="text-align:center">a &lt;&lt; b</td>
+<td style="text-align:center">将 a 的二进制形式向左移 b (&lt; 32) 比特位，右边用0填充。</td>
+</tr>
+<tr>
+<td style="text-align:center">有符号右移</td>
+<td style="text-align:center">a &gt;&gt; b</td>
+<td style="text-align:center">将 a 的二进制表示向右移 b (&lt; 32) 位，丢弃被移出的位。</td>
+</tr>
+<tr>
+<td style="text-align:center">无符号右移</td>
+<td style="text-align:center">a &gt;&gt;&gt; b</td>
+<td style="text-align:center">将 a 的二进制表示向右移 b (&lt; 32) 位，丢弃被移出的位，并使用 0 在左侧填充。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="简单了解二进制"><a href="#简单了解二进制" class="headerlink" title="简单了解二进制"></a>简单了解二进制</h2><p>已经知道计算机中，所有数据最终都是使用二进制数表达。<br><code>10进制</code>转换为<code>2进制</code>or<code>16进制</code>如下图所示：</p>
+<p><img src="../../../images/javascript/btye-1.webp" alt="二进制"></p>
+<p><strong>原码</strong>: <code>一个整数，按照绝对值大小转换成的二进制数，称为原码。</code><br>其实就是一个数值的二进制比特位码，比如说<code>5</code>转换成二制是<code>101</code>, <code>Number/Int</code>类型的数占用<code>4字节(32位)</code>，它们为会默认填充<code>0</code>,所以<code>5</code>的二进制位<code>00000000 00000000 00000000 00000101</code>。</p>
+<p><strong>反码</strong>: <code>将二进制数按位取反，所得的新二进制数称为原二进制数的反码。</code><br>取反操作指：原为<code>1</code>取反为<code>0</code>；原为<code>0</code>取反为<code>1</code>.<br>比如：将<code>00000000 00000000 00000000 00000101</code>每一位取反，得<code>11111111 11111111 11111111 11111010</code>。<br>称：<code>11111111 11111111 11111111 11111010</code>是 <code>00000000 00000000 00000000 00000101</code> 的反码。<br>反码是相互的，所以也可称：<br><code>11111111 11111111 11111111 11111010</code> 和<code>00000000 00000000 00000000 00000101</code> 互为反码。</p>
+<p><strong>补码</strong>：<code>反码加1称为补码。</code><br>也就是说，要得到一个数的<code>补码</code>，先得到<code>反码</code>，然后将<code>反码加上1</code>，所得数称为<code>补码</code>。<br>比如：<code>00000000 00000000 00000000 00000101</code>的反码是：<code>11111111 11111111 11111111 11111010</code>。<br>那么，补码为：<br><code>11111111 11111111 11111111 11111010 + 1 = 11111111 11111111 11111111 11111011</code><br>所以，-5 在计算机中表达为：<code>11111111 11111111 11111111 11111011</code>。<br>转换为十六进制：<code>0xFFFFFFFB</code>。</p>
+<p><strong>负值在二进制中</strong>： 二进制为了区分<code>正数</code>和<code>负数</code>，在<code>最高位</code>拿出来当作<code>符号位</code>，<code>0表示正数，1表示负数</code>。</p>
+<p>比如我们就拿<code>-1</code>来做一下分析：</p>
+<ul>
+<li><code>1</code>的原码为：<code>00000000 00000000 00000000 00000001</code></li>
+<li><code>1</code>的反码为：<code>11111111 11111111 11111111 11111110</code></li>
+<li><code>1</code>的补码为：<code>11111111 11111111 11111111 11111110 + 1 = 11111111 11111111 11111111 11111111</code>，也就是<code>-1</code>的二进制</li>
+</ul>
+<h2 id="JavaScript中七中操作符"><a href="#JavaScript中七中操作符" class="headerlink" title="JavaScript中七中操作符"></a>JavaScript中七中操作符</h2><h3 id="按位与（-AND）-amp"><a href="#按位与（-AND）-amp" class="headerlink" title="按位与（ AND）&amp;"></a>按位与（ AND）<code>&amp;</code></h3><p><code>&amp;</code>以特定的方式组合操作<code>二进制</code>数中对应的位，如果对应的位都为<code>1</code>，那么结果就是<code>1</code>， 如果任意一个位是<code>0</code> 则结果就是<code>0</code>。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>&amp;<span class="number">2</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>&amp;<span class="number">3</span>) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p><strong>1&amp;2对比过程</strong>: 因为<code>1</code>和<code>2</code>它们的比特位没有相同的位置都为<code>1</code>，所以会返回一个<code>00000000 00000000 00000000 00000000</code>的<code>32位二进制</code>，转换位10进制就是<code>0</code><br><strong>1&amp;3对比过程</strong>: 因为<code>1</code>和<code>3</code>它们的最低位比特位都为<code>1</code>，所以会返回一个<code>00000000 00000000 00000000 00000001</code>的<code>32位二进制</code>，转换位10进制就是<code>1</code></p>
+<h3 id="按位或-OR"><a href="#按位或-OR" class="headerlink" title="按位或(OR)|"></a>按位或(OR)<code>|</code></h3><p><code>|</code> 运算符跟 <code>&amp;</code> 的区别在于如果对应的位中<code>任一个</code>比特位为<code>1</code> 那么结果就是<code>1</code>。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>|<span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>|<span class="number">3</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p><strong>1|2对比过程</strong>: 因为<code>1</code>和<code>2</code>它们的比特位为<code>1</code>的并集就是<code>00000000 00000000 00000000 00000011</code>的<code>32位二进制</code>，转换位10进制就是<code>3</code><br><strong>1|3对比过程</strong>: 因为<code>1</code>和<code>3</code>它们的比特位为<code>1</code>的并集就是<code>00000000 00000000 00000000 00000011</code>的<code>32位二进制</code>，转换位10进制就是<code>3</code></p>
+<h3 id="按位异或-XOR"><a href="#按位异或-XOR" class="headerlink" title="按位异或(XOR)^"></a>按位异或(XOR)<code>^</code></h3><p><code>^</code>如果对应两个操作位有且仅有一个<code>1</code>时结果为<code>1</code>，其他都是<code>0</code>。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>^<span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>^<span class="number">3</span>) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p><strong>1^2对比过程</strong>: 因为<code>1</code>和<code>2</code>它们的比特位中只有其中一个为<code>1</code>的组合出来是<code>00000000 00000000 00000000 00000011</code>的<code>32位二进制</code>，转换位10进制就是<code>3</code><br><strong>1^3对比过程</strong>: 因为<code>1</code>和<code>3</code>它们的比特位中只有其中一个为<code>1</code>的组合出来<code>00000000 00000000 00000000 00000010</code>的<code>32位二进制</code>，转换位10进制就是<code>2</code></p>
+<h3 id="按位非-NOT"><a href="#按位非-NOT" class="headerlink" title="按位非(NOT)~"></a>按位非(NOT)<code>~</code></h3><p><code>~</code>运算符是对位求反，<code>1</code>变<code>0</code>, <code>0</code>变<code>1</code>，也就是求二进制的反码。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="built_in">console</span>.log(~<span class="number">1</span>) <span class="comment">// -2</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>1</code>的二进制反码表示为<code>11111111 11111111 11111111 11111110</code>.</li>
+<li>因为<code>1</code>的<code>反码`</code>最高位为1<code>表示它是</code>负数<code>，</code>负数<code>又是以</code>补码<code>形式存储的，所以我们要反推一下</code>补码`</li>
+<li>那么<code>1</code>的<code>反码 - 1</code>为<code>11111111 11111111 11111111 11111101</code>，我们要再把得到的<code>反码 - 1</code>再取<code>反码</code>为<code>00000000 00000000 00000000 00000010</code>,同时要加上一个负号<code>-</code>，最后转换为<code>10进制</code>就是<code>-2</code></li>
+</ul>
+<p>如果不理解<code>反码</code>、<code>原码</code>、<code>补码</code>可以看本篇文章上面的章节。</p>
+<h3 id="左移（Left-shift）-lt-lt"><a href="#左移（Left-shift）-lt-lt" class="headerlink" title="左移（Left shift）&lt;&lt;"></a>左移（Left shift）<code>&lt;&lt;</code></h3><p><code>&lt;&lt;运算符</code>使指定值的二进制数<code>所有位都左移指定次数</code>，其移动规则：<code>丢弃高位</code>，低位<code>补0</code>即按二进制形式把所有的数字向<code>左移动对应的位数，高位移出(舍弃)，低位的空位补零</code>。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> &lt;&lt; <span class="number">1</span>) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="有符号右移-gt-gt"><a href="#有符号右移-gt-gt" class="headerlink" title="有符号右移 &gt;&gt;"></a>有符号右移 <code>&gt;&gt;</code></h3><p><code>&gt;&gt;该操作符</code>会将指定操作数的二进制位<code>向右移动指定的位数</code>。<code>向右被移出的位被丢弃，拷贝最左侧的位以填充左侧</code>。由于新的最左侧的位总是和以前相同，符号位没有被改变。所以被称作“<code>符号传播</code>”。请看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span> &gt;&gt; <span class="number">1</span>) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="无符号右移-gt-gt-gt"><a href="#无符号右移-gt-gt-gt" class="headerlink" title="无符号右移&gt;&gt;&gt;"></a>无符号右移<code>&gt;&gt;&gt;</code></h3><p><code>&gt;&gt;&gt;该操作符</code>会将第一个操作数向右移动指定的位数。<code>向右被移出的位被丢弃，左侧用0填充</code>。因为符号位变成了 0，所以结果<code>总是非负</code>的。（译注：即便<code>右移 0 个比特，结果也是非负的</code>。）<br>对于非负数，有符号右移和无符号右移总是返回相同的结果。例如， <code>9 &gt;&gt;&gt; 2</code>得到 <code>2</code> 和 <code>9 &gt;&gt; 2</code> 相同。</p>
+<h2 id="位操作符使用技巧"><a href="#位操作符使用技巧" class="headerlink" title="位操作符使用技巧"></a>位操作符使用技巧</h2><h3 id="判断奇偶"><a href="#判断奇偶" class="headerlink" title="判断奇偶"></a>判断奇偶</h3><p>通过<code>按位与（ AND） &amp;</code>来判断奇偶性 代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isOdd</span> (<span class="params">int</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (int &amp; <span class="number">1</span>) === <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEven</span> (<span class="params">int</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (int &amp; <span class="number">1</span>) === <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isOdd(<span class="number">1</span>))</span><br><span class="line"><span class="built_in">console</span>.log(isOdd(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">console</span>.log(isEven(<span class="number">3</span>))</span><br><span class="line"><span class="built_in">console</span>.log(isEven(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p>我们就拿<code>1 &amp; 1</code>和<code>1 &amp; 2</code>来分析它是什么执行对比的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line">(<span class="number">1</span> &amp; <span class="number">3</span>) === <span class="number">1</span> <span class="literal">true</span></span><br><span class="line">(<span class="number">1</span> &amp; <span class="number">2</span>) === <span class="number">0</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><code>(1 &amp; 1)</code>:  <code>1</code>的二进制简写为<code>01</code>，<code>3</code>的二进制简写为<code>11</code>，因为它们的<code>最低位</code>都为<code>1</code>，所以<code>按位与（ AND） &amp;</code>的结果就是<code>00000000 00000000 00000000 00000001</code>，最后转换为10进制<code>1</code>.<br><code>(1 &amp; 2)</code>: <code>1</code>的二进制简写为<code>01</code>，<code>2</code>的二进制简写为<code>10</code>，它们没有相同比特位为<code>1</code>，所以<code>按位与（ AND） &amp;</code>的结果就是<code>00000000 00000000 00000000 00000000</code>，最后转换为10进制<code>0</code>.</p>
+<h3 id="取整"><a href="#取整" class="headerlink" title="取整"></a>取整</h3><p><code>&gt;&gt;，&lt;&lt;，|，~~</code>取整：它们无论是正数还是负数都不会受到影响，同时它们都是向下取整。<br><code>&gt;&gt;&gt;</code>取整：<code>&gt;&gt;&gt;</code>它只能对正数向下取整。</p>
+<h4 id="gt-gt-，-lt-lt-，-，"><a href="#gt-gt-，-lt-lt-，-，" class="headerlink" title="&gt;&gt;，&lt;&lt;，|，~~"></a>&gt;&gt;，&lt;&lt;，|，~~</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.floor(<span class="number">4.5</span>) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="number">-4.5</span>) <span class="comment">// -5</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">4.5</span>) <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">-4.5</span>) <span class="comment">// -4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用 &gt;&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.6</span> &gt;&gt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.3</span> &gt;&gt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.6</span> &gt;&gt; <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.3</span> &gt;&gt; <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用 &lt;&lt;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.6</span> &lt;&lt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.3</span> &lt;&lt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.6</span> &lt;&lt; <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.3</span> &lt;&lt; <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用 |</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.6</span> | <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.3</span> | <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.6</span> | <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.3</span> | <span class="number">0</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">24.6</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">24.3</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">-24.6</span>) <span class="comment">// -24 向上取整</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">-24.3</span>) <span class="comment">// -24 向上取整</span></span><br></pre></td></tr></table></figure>
+<p><code>&gt;&gt;，&lt;&lt;，|</code>无论是正负数都会向下取整。</p>
+<h4 id="gt-gt-gt-，"><a href="#gt-gt-gt-，" class="headerlink" title="&gt;&gt;&gt;，~~"></a><code>&gt;&gt;&gt;，~~</code></h4><p><strong>&gt;&gt;&gt;</strong>: 它只能对<code>正数</code>做向下取整，不能用于对<code>负数</code>取整。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用 &gt;&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.6</span> &gt;&gt;&gt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">24.3</span> &gt;&gt;&gt; <span class="number">0</span>) <span class="comment">// 24 向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.6</span> &gt;&gt;&gt; <span class="number">0</span>) <span class="comment">// 4294967272</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-24.3</span> &gt;&gt;&gt; <span class="number">0</span>) <span class="comment">// 4294967272</span></span><br></pre></td></tr></table></figure>
+<h3 id="交换值"><a href="#交换值" class="headerlink" title="交换值"></a>交换值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1的二进制表示为: 00000000 00000000 00000000 00000001</span></span><br><span class="line"><span class="comment">// 2的二进制表示为: 00000000 00000000 00000000 00000010</span></span><br><span class="line"><span class="comment">// 3的二进制表示为: 00000000 00000000 00000000 00000011</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>,</span><br><span class="line">  b = <span class="number">2</span>;</span><br><span class="line">a = a ^ b; <span class="comment">// 00000000 00000000 00000000 00000011 为 3 a = 3</span></span><br><span class="line">b = a ^ b; <span class="comment">// 00000000 00000000 00000000 00000001 为 1 b = 1</span></span><br><span class="line">a = a ^ b; <span class="comment">// 00000000 00000000 00000000 00000010 为 2 a = 2</span></span><br></pre></td></tr></table></figure>
+<p>我们简单分析一下执行过程：<br><code>a = a ^ b</code>: 现在<code>a = 1; b = 2</code>我们知道<code>1</code>和<code>2</code>的二进制，通过<code>^(相同的比特位只有一个为1，就会返回1，否则返回0)</code>计算得出<code>00000000 00000000 00000000 00000011</code>，转换为<code>10进制</code>的话就是<code>3</code>，所以现在<code>a = 3</code>。<br><code>b = a ^ b</code>: 现在<code>a = 3; b = 2</code>我们知道<code>2</code>和<code>3</code>的二进制，通过<code>^(相同的比特位只有一个为1，就会返回1，否则返回0)</code>计算得出<code>00000000 00000000 00000000 00000001</code>，转换为<code>10进制</code>的话就是<code>1</code>，所以现在<code>b = 1</code>。<br><code>a = a ^ b</code>: 现在<code>a = 3; b = 1</code>我们知道<code>1</code>和<code>3</code>的二进制，通过<code>^(相同的比特位只有一个为1，就会返回1，否则返回0)</code>计算得出<code>00000000 00000000 00000000 00000010</code>，转换为<code>10进制</code>的话就是<code>2</code>，所以现在<code>a = 2</code>。<br>最后就是<code>a = 2; b = 1</code></p>
+<h3 id="HEX-lt-gt-RGB-互转"><a href="#HEX-lt-gt-RGB-互转" class="headerlink" title="HEX &lt;=&gt; RGB 互转"></a>HEX &lt;=&gt; RGB 互转</h3><h4 id="颜色转换：RGB转为十六进制"><a href="#颜色转换：RGB转为十六进制" class="headerlink" title="颜色转换：RGB转为十六进制"></a>颜色转换：RGB转为十六进制</h4><p><code>左移位（&lt;）运算符</code>的一个非常有用的应用程序是将颜色从<code>RGB</code>表示转换为<code>十六进制</code>表示。<br><code>RGB颜色</code>的每个组件的<code>颜色值</code>在<code>0-255</code>之间。简单地说，每个颜色值可以用<code>8位</code>完美地表示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">0</span> =&gt; <span class="number">0b00000000</span> (<span class="number">2</span>进制) =&gt; <span class="number">0x00</span> (<span class="number">16</span>进制)</span><br><span class="line"><span class="number">255</span> =&gt; <span class="number">0b11111111</span> (<span class="number">2</span>进制) =&gt; <span class="number">0xff</span> (<span class="number">16</span>进制)</span><br></pre></td></tr></table></figure>
+<p>因此，颜色本身可以完美地用<code>24位</code>来表示（<code>红色、绿色和蓝色分量各8位</code>）。从<code>右边</code>开始的前<code>8位</code>表示<code>蓝色</code>分量，接下来的<code>8位</code>表示<code>绿色</code>分量，之后的<code>8位</code>表示<code>红色</code>分量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(binary) =&gt; <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br><span class="line">(red) =&gt; <span class="number">11111111</span> =&gt; <span class="function"><span class="params">ff</span> =&gt;</span> <span class="number">255</span></span><br><span class="line">(green) =&gt; <span class="number">00100011</span> =&gt; <span class="number">23</span> =&gt; <span class="number">35</span></span><br><span class="line">(blue) =&gt; <span class="number">00010100</span> =&gt; <span class="number">14</span> =&gt; <span class="number">20</span></span><br><span class="line">(hex) =&gt; ff2314</span><br></pre></td></tr></table></figure>
+<p>既然我们已经了解了如何将<code>颜色表示为24位序列</code>，那么让我们来看看如何从颜色的各个组件的值组成<code>颜色的24位</code>。假设我们有一个用<code>RGB（255、35、20）</code>表示的颜色。以下是我们如何组合这些位：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(red) =&gt; <span class="number">255</span> =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">(green) =&gt;  <span class="number">35</span> =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00100011</span></span><br><span class="line">(blue) =&gt;  <span class="number">20</span> =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00010100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们使用`&lt;&lt;` 左移动符把 red 的二进制 向高位移动 16位</span></span><br><span class="line">(red) =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00000000</span> <span class="number">00000000</span></span><br><span class="line"><span class="comment">// 我们使用`&lt;&lt;` 左移动符把 green 的二进制 向高位移动 8位</span></span><br><span class="line">(green) =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00100011</span> <span class="number">00000000</span></span><br><span class="line"><span class="comment">// blue不动</span></span><br><span class="line">(blue) =&gt;  <span class="number">20</span> =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00010100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 让后我们再通过`|按位或（OR）`合并 red | green | blue.  执行结果如下：</span></span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00000000</span> <span class="number">00000000</span></span><br><span class="line">| <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00100011</span> <span class="number">00000000</span></span><br><span class="line">| <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00010100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 得到最终的二进制，再通过toString(16)转为16进制</span></span><br><span class="line"><span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br></pre></td></tr></table></figure>
+<p>下面我们封装一个函数来实现上面的伪代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RGBToHex</span>(<span class="params">[red = <span class="number">0</span>, green = <span class="number">0</span>, blue = <span class="number">0</span>] = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`#<span class="subst">$&#123;(red &lt;&lt; <span class="number">16</span> | green &lt;&lt; <span class="number">8</span> | blue).toString(<span class="number">16</span>)&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line">RGBToHex([<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>]) <span class="comment">// #ffffff</span></span><br><span class="line">RGBToHex([<span class="number">255</span>, <span class="number">21</span>, <span class="number">32</span>]) <span class="comment">// #ff1520</span></span><br></pre></td></tr></table></figure>
+<h4 id="颜色转换：十六进制转为RGB"><a href="#颜色转换：十六进制转为RGB" class="headerlink" title="颜色转换：十六进制转为RGB"></a>颜色转换：十六进制转为RGB</h4><p>简单来说就是通过<code>右移（&gt;&gt;）运算符</code>逆推还原原来的颜色值，下面用伪代码大致整理一下思路。<br><code>有符号右移（&gt;&gt;）运算符</code>的一个非常好的应用是从颜色中<code>提取RGB颜色值</code>。当颜色以RGB表示时，很容易区分<code>红色</code>、<code>绿色</code>和<code>蓝色</code>颜色分量值。但是，对于以十六进制表示的颜色，这将花费更多的精力。</p>
+<p>假设我们有一个用<code>十六进制</code>表示法<code>#ff2314</code>表示的颜色。下面是颜色的储存为<code>二进制</code>的编码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(color) =&gt; ff2314 (hexadecimal) =&gt; <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span> (binary)</span><br><span class="line"><span class="comment">// 32-bit representation of color</span></span><br><span class="line"><span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br></pre></td></tr></table></figure>
+<p>为了获得单个部分，我们将根据需要将颜色位<code>按8的倍数右移</code>，直到从右边得到目标组件位作为<code>前8位</code>。由于颜色的32位中的符号标志位是0，因此我们可以安全地使用符号传播<code>右移位（&gt;&gt;）运算符</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">color =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br><span class="line"><span class="comment">// 我们使用`&gt;&gt;` 右移动符把 red 的二进制 向低位移动 16位</span></span><br><span class="line">red =&gt; color &gt;&gt; <span class="number">16</span></span><br><span class="line">    =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span> &gt;&gt; <span class="number">16</span></span><br><span class="line">    =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line"><span class="comment">// 我们使用`&gt;&gt;` 右移动符把 green 的二进制 向低位移动 8位</span></span><br><span class="line">green =&gt; color &gt;&gt; <span class="number">8</span></span><br><span class="line">    =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span> &gt;&gt; <span class="number">8</span></span><br><span class="line">    =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span></span><br><span class="line"><span class="comment">// blue不需要位移</span></span><br><span class="line">blue =&gt; color &gt;&gt; <span class="number">0</span> =&gt; color</span><br><span class="line">    =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br></pre></td></tr></table></figure>
+<p>现在我们将目标颜色位作为<code>右前8位</code>，我们需要一种方法来屏蔽除<code>前8位之外</code>的所有其他位。这使我们回到和<code>（&amp;）运算符</code>。请记住，<code>&amp;运算符</code>可用于确保关闭某些位。<br>让我们从创建所需的位掩码开始。就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mask =&gt; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">  =&gt; <span class="number">0b11111111</span> (binary)</span><br><span class="line">  =&gt; <span class="number">0xff</span> (hexadecimal)</span><br></pre></td></tr></table></figure>
+<p>准备好位掩码后，我们可以对上<code>一次右移</code>操作的每个<code>结果执行与（&amp;）操作</code>，使用位掩码提取目标颜色。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">color =&gt; <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在上一步 color &gt;&gt; 16 执行结果为 00000000 00000000 00000000 11111111</span></span><br><span class="line"><span class="comment">// 在(color &gt;&gt; 16)执行的结果上 再执行 00000000 00000000 00000000 11111111 &amp; 0xff (00000000 00000000 00000000 11111111)  得到 (00000000 00000000 00000000 11111111)</span></span><br><span class="line">red =&gt; color &gt;&gt; <span class="number">16</span> &amp; <span class="number">0xff</span></span><br><span class="line">    =&gt;   <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">    =&gt; &amp; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">    =&gt; = <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">    =&gt;   <span class="number">255</span> (decimal) <span class="comment">// 转为10进制</span></span><br><span class="line"><span class="comment">// 在上一步 color &gt;&gt; 8 执行结果为 00000000 00000000 11111111 00100011</span></span><br><span class="line"><span class="comment">// 在(color &gt;&gt; 8)执行的结果上 再执行 00000000 00000000 11111111 00100011 &amp; 0xff (00000000 00000000 00000000 11111111) 得到 (00000000 00000000 00000000 00100011)</span></span><br><span class="line">green =&gt; color &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xff</span></span><br><span class="line">    =&gt;   <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span></span><br><span class="line">    =&gt; &amp; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">    =&gt; = <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00100011</span></span><br><span class="line">    =&gt;   <span class="number">35</span> (decimal) <span class="comment">// 转为10进制</span></span><br><span class="line"><span class="comment">// 直接执行 00000000 11111111 00100011 00010100 &amp; 0xff (00000000 00000000 00000000 11111111) 得到 (00000000 00000000 00000000 00010100)</span></span><br><span class="line"> blue =&gt; color &amp; <span class="number">0xff</span></span><br><span class="line">    =&gt;   <span class="number">00000000</span> <span class="number">11111111</span> <span class="number">00100011</span> <span class="number">00010100</span></span><br><span class="line">    =&gt; &amp; <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">11111111</span></span><br><span class="line">    =&gt; = <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00010100</span></span><br><span class="line">    =&gt;   <span class="number">20</span> (decimal) <span class="comment">// 转为10进制</span></span><br></pre></td></tr></table></figure>
+<p>基于上面的伪代码，下面下面实现一个简单的函数，它会把传入的<code>hex 16进制颜色值</code>转换为<code>rgb颜色值组</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hex 16进制转换 =》 rgb 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HEXToRGB</span> (<span class="params">hex</span>) </span>&#123;</span><br><span class="line">  hex = hex.replace(<span class="regexp">/^#?([0-9a-f]&#123;6&#125;)$/i</span>, <span class="string">'$1'</span>);</span><br><span class="line">  hex = <span class="built_in">Number</span>(<span class="string">`0x<span class="subst">$&#123;hex&#125;</span>`</span>)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    red: hex &gt;&gt; <span class="number">16</span> &amp; <span class="number">0xff</span>,</span><br><span class="line">    green: hex &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xff</span>,</span><br><span class="line">    blue: hex &amp; <span class="number">0xff</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line">HEXToRGB(<span class="string">'#ffffff'</span>) <span class="comment">// &#123;red: 255, green: 255, blue: 255&#125;</span></span><br><span class="line">HEXToRGB(<span class="string">'#000000'</span>) <span class="comment">// &#123;red: 0, green: 0, blue: 0&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为一道面试题引申出来的<code>JavaScript</code>中的按位操作符，才有了这篇文章记录JavaScript中的<code>按位操作符</code>和它们具体用来做什么。当然这个只是最简单的使用，在通信、加密中它们得到更多的应用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/faceTime/javascirpt-exchange-variable.html" rel="next" title="JavaScript中交换变量a/b的多种方法">
+                <i class="fa fa-chevron-left"></i> JavaScript中交换变量a/b的多种方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">216</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中的按位操作符"><span class="nav-number">1.</span> <span class="nav-text">JavaScript中的按位操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单了解按位操作符"><span class="nav-number">2.</span> <span class="nav-text">简单了解按位操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单了解二进制"><span class="nav-number">3.</span> <span class="nav-text">简单了解二进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中七中操作符"><span class="nav-number">4.</span> <span class="nav-text">JavaScript中七中操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按位与（-AND）-amp"><span class="nav-number">4.1.</span> <span class="nav-text">按位与（ AND）&amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位或-OR"><span class="nav-number">4.2.</span> <span class="nav-text">按位或(OR)|</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位异或-XOR"><span class="nav-number">4.3.</span> <span class="nav-text">按位异或(XOR)^</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位非-NOT"><span class="nav-number">4.4.</span> <span class="nav-text">按位非(NOT)~</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#左移（Left-shift）-lt-lt"><span class="nav-number">4.5.</span> <span class="nav-text">左移（Left shift）&lt;&lt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有符号右移-gt-gt"><span class="nav-number">4.6.</span> <span class="nav-text">有符号右移 &gt;&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号右移-gt-gt-gt"><span class="nav-number">4.7.</span> <span class="nav-text">无符号右移&gt;&gt;&gt;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位操作符使用技巧"><span class="nav-number">5.</span> <span class="nav-text">位操作符使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断奇偶"><span class="nav-number">5.1.</span> <span class="nav-text">判断奇偶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取整"><span class="nav-number">5.2.</span> <span class="nav-text">取整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-gt-，-lt-lt-，-，"><span class="nav-number">5.2.1.</span> <span class="nav-text">&gt;&gt;，&lt;&lt;，|，~~</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-gt-gt-，"><span class="nav-number">5.2.2.</span> <span class="nav-text">&gt;&gt;&gt;，~~</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换值"><span class="nav-number">5.3.</span> <span class="nav-text">交换值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HEX-lt-gt-RGB-互转"><span class="nav-number">5.4.</span> <span class="nav-text">HEX &lt;=&gt; RGB 互转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色转换：RGB转为十六进制"><span class="nav-number">5.4.1.</span> <span class="nav-text">颜色转换：RGB转为十六进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色转换：十六进制转为RGB"><span class="nav-number">5.4.2.</span> <span class="nav-text">颜色转换：十六进制转为RGB</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共227.9k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>
