@@ -1,7 +1,7 @@
 ---
 title: css中的BFC简介
 date: 2018-09-23 15:23:22
-tags: [Css, Docs]
+tags: [Css, docs]
 categories: [Css]
 description: BFC到底是什么
 ---
@@ -229,4 +229,6 @@ p {
 
 ## 参考
 
-> [理解 CSS 布局和 BFC](https://mp.weixin.qq.com/s/ifg6jtxK9iwIc6JfUkT8OQ) > [CSS 中重要的 BFC](https://mp.weixin.qq.com/s/gS-HPWZnrwaEM-X3vDEPyQ) > [前端进阶之你真的知道 BFC 是什么吗？](https://mp.weixin.qq.com/s/Ywxlr3nex--2-qTG2KjLGA)
+[理解 CSS 布局和 BFC](https://mp.weixin.qq.com/s/ifg6jtxK9iwIc6JfUkT8OQ)
+[CSS 中重要的 BFC](https://mp.weixin.qq.com/s/gS-HPWZnrwaEM-X3vDEPyQ)
+[前端进阶之你真的知道 BFC 是什么吗？](https://mp.weixin.qq.com/s/Ywxlr3nex--2-qTG2KjLGA)
