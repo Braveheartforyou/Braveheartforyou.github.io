@@ -6,10 +6,12 @@ categories: [Html]
 description: html中的css、javascript、dom之间的解析和相互阻塞关系
 ---
 
-***将欲取之，必先与之，是谓微明。柔弱胜刚强。——老子***
+**_将欲取之，必先与之，是谓微明。柔弱胜刚强。——老子_**
 
 > [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-browser-render.html)
+
 > [浏览器渲染原理 （二）css、javascript、dom 阻塞关系](/blog/html/html-style-javascript.html)
+
 > [浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解](/blog/html/html-reload-reflow.html)
 
 ## 引子
@@ -132,15 +134,15 @@ css 加载会对后续的 JavaScript 的执行会造成阻塞。
 
 ### 总结
 
-***css 加载对 Dom 的解析没有阻塞，但是对于 Dom 的渲染造成了阻塞。***
-***css 加载对 JavaScript 的执行会造成阻塞***
+**_css 加载对 Dom 的解析没有阻塞，但是对于 Dom 的渲染造成了阻塞。_**
+**_css 加载对 JavaScript 的执行会造成阻塞_**
 
 ## 总结
 
 如果还不了解整体的渲染流程可以看以前我前面的文章，[浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-style-javascript.html)
 
-- ***JavaScript 的加载会阻塞 Dom 的解析和渲染，并且也会阻塞 css 的解析和渲染。***
-- ***Css 的加载会阻塞 Dom 的渲染，并不会阻塞 Dom 的解析，也会阻塞 JavaScript 的执行。***
+- **_JavaScript 的加载会阻塞 Dom 的解析和渲染，并且也会阻塞 css 的解析和渲染。_**
+- **_Css 的加载会阻塞 Dom 的渲染，并不会阻塞 Dom 的解析，也会阻塞 JavaScript 的执行。_**
 
 ## 参考
 

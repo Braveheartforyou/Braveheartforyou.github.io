@@ -6,15 +6,18 @@ categories: [Html]
 description: 在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。
 ---
 
-***知足则不辱，知止则不殆。——老子***
+**_知足则不辱，知止则不殆。——老子_**
 
 > [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-browser-render.html)
+
 > [浏览器渲染原理 （二）css、javascript、dom 阻塞关系](/blog/html/html-style-javascript.html)
+
 > [浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解](/blog/html/html-reload-reflow.html)
 
 ## 简介
 
 ---
+
 大多数设备的刷新频率是**60Hz**，也就说是浏览器对每一帧画面的渲染工作要在 **16ms** 内完成,超出这个时间，页面的渲染就会出现**卡顿**现象，影响用户体验。
 **repaint(重绘)**和 **reflow(回流)**发生在什么渲染的那个阶段，我们要了解什么叫做 **repaint(重绘)**和 **reflow(回流)**.
 
@@ -44,6 +47,7 @@ repaint 就是在<font color="#ff502c">不影响排版的情况下</font>对这�
 ## repaint(重绘)和 reflow(回流)
 
 ---
+
 上面大致已经记录了 repaint、reflow 的流程和为什么要关注它，下面记录一下它们的触发条件、和 eventLoop 的关系。
 
 ### 触发 repaint、reflow
@@ -80,25 +84,25 @@ repaint 就是在<font color="#ff502c">不影响排版的情况下</font>对这�
 
 ---
 
-- ***减少重绘和回流***
-- ***优化 JavaScript 的执行效率***
-- ***对用户输入事件的处理函数去抖动***
-- ***优先使用渲染层合并属性、控制层数量***
-- ***结合 chrome 工具分析性能***
+- **_减少重绘和回流_**
+- **_优化 JavaScript 的执行效率_**
+- **_对用户输入事件的处理函数去抖动_**
+- **_优先使用渲染层合并属性、控制层数量_**
+- **_结合 chrome 工具分析性能_**
 
 ### 减少重绘和回流
 
-- ***避免逐项更改样式***。最好一次性更改 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。
-- ***避免循环操作 DOM***。创建一个 documentFragment 或 div，在它上面应用所有 DOM 操作，最后再把它添加到 window.document。
-- ***避免多次读取 offsetLeft 等属性***。无法避免则将它们缓存到变量。
-- ***将复杂的元素绝对定位或固定定位，使它脱离文档流***。否则回流代价十分高
-- ***不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局***
-- ***动画实现的速度的选择***，动画速度越快，回流次数越多，也可以选择使用 requestAnimationFrame
-- ***CSS 选择符从右往左匹配查找，避免 DOM 深度过深***
-- ***使用 visibility 替换 display: none*** ，因为前者只会引起重绘，后者会引发回流（改变了布局）
-- ***使用 translate 替代 top***
-- ***把 DOM 离线后修改***，比如：先把 DOM 给 display:none (有一次 Reflow)，然后你修改 100 次，然后再把它显示出来
-- ***使用 flexbox 替代老的布局模型***
+- **_避免逐项更改样式_**。最好一次性更改 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。
+- **_避免循环操作 DOM_**。创建一个 documentFragment 或 div，在它上面应用所有 DOM 操作，最后再把它添加到 window.document。
+- **_避免多次读取 offsetLeft 等属性_**。无法避免则将它们缓存到变量。
+- **_将复杂的元素绝对定位或固定定位，使它脱离文档流_**。否则回流代价十分高
+- **_不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局_**
+- **_动画实现的速度的选择_**，动画速度越快，回流次数越多，也可以选择使用 requestAnimationFrame
+- **_CSS 选择符从右往左匹配查找，避免 DOM 深度过深_**
+- **_使用 visibility 替换 display: none_** ，因为前者只会引起重绘，后者会引发回流（改变了布局）
+- **_使用 translate 替代 top_**
+- **_把 DOM 离线后修改_**，比如：先把 DOM 给 display:none (有一次 Reflow)，然后你修改 100 次，然后再把它显示出来
+- **_使用 flexbox 替代老的布局模型_**
   还有很多在这里就不一一列举了，主要思想就是减少 reflow、repaint 的次数。
 
 ### 优化 JavaScript 的执行效率
@@ -157,7 +161,7 @@ function onScroll(evt) {
   requestAnimationFrame(readAndUpdatePage);
 }
 
-window.addEventListener("scroll", onScroll);
+window.addEventListener('scroll', onScroll);
 ```
 
 ### chrome 分析结合
@@ -182,5 +186,7 @@ window.addEventListener("scroll", onScroll);
 ## 参考
 
 > [深度剖析浏览器渲染性能原理，你到底知道多少？](https://www.jianshu.com/p/a32b890c29b1)
+
 > [回流(reflow)与重绘(repaint)](https://www.cnblogs.com/dll-ft/p/5810639.html)
+
 > [高性能 WEB 开发：深入理解页面呈现、重绘、回流](https://www.cnblogs.com/goloving/p/7545954.html)

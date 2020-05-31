@@ -1,16 +1,16 @@
 ---
 title: Vue-Ui 手写实现以下breadcrumb面包屑组件(初级难度)
 date: 2019-11-20 09:42:12
-tags: [Ui框架]
-categories: [Vue, Ui框架]
+tags: [HP, Vue]
+categories: [HP]
 description: 在日常开发中会用到很多Ui框架，本系列文章会从简单到复杂实现一套自己Ui。本篇文章中从0开始手写一个面包屑组件breadcrumb。
 ---
 
 ## 简介
 
-我们开始只关注组件的功能实现，不考虑css分装、webpack配置、整体结构设计、单元测试等等，因为在后面会一步一步完善。让大家一起进步，实现一套简单的组件库。
+我们开始只关注组件的功能实现，不考虑 css 分装、webpack 配置、整体结构设计、单元测试等等，因为在后面会一步一步完善。让大家一起进步，实现一套简单的组件库。
 
-在日常我们开发PC页面时经常会用到一个面包屑导航的功能，其实这个功能算是比较简单的功能，基本上用过`Vue`这个框架的人都能自己写出来。但是既然要写一个通用的可能就不是那么容易实现，我们首先要了解`breadcrumb`它都有什么功能。下面我们就先分析它都有什么功能，可以参考`element/iview`这种流行的`Ui框架`。
+在日常我们开发 PC 页面时经常会用到一个面包屑导航的功能，其实这个功能算是比较简单的功能，基本上用过`Vue`这个框架的人都能自己写出来。但是既然要写一个通用的可能就不是那么容易实现，我们首先要了解`breadcrumb`它都有什么功能。下面我们就先分析它都有什么功能，可以参考`element/iview`这种流行的`Ui框架`。
 
 1. 分析`breadcrumb`组件功能
 2. 构思代码、编写代码
@@ -24,12 +24,12 @@ description: 在日常开发中会用到很多Ui框架，本系列文章会从�
 **示例**
 
 ```html
-  <el-breadcrumb separator="/">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-  </el-breadcrumb>
+<el-breadcrumb separator="/">
+  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+  <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+  <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+  <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+</el-breadcrumb>
 ```
 
 效果图：
@@ -67,58 +67,56 @@ description: 在日常开发中会用到很多Ui框架，本系列文章会从�
   </div>
 </template>
 <script>
-export default {
-  name: 'breadcrumb',
-  props: {
-    // 分隔符
-    separator: {
-      type: String,
-      default: '/'
+  export default {
+    name: 'breadcrumb',
+    props: {
+      // 分隔符
+      separator: {
+        type: String,
+        default: '/'
+      },
+      // 分隔符
+      separatorClass: {
+        type: String,
+        default: ''
+      }
     },
-    // 分隔符
-    separatorClass: {
-      type: String,
-      default: ''
-    }
-  },
-  /**
-   * TODO: 通过provide注入当前组件实例
-   * @return {Object} 返回一个对象
-   */
-  provide () {
-    return {
-      breadcrumbEl: this
-    }
-  },
-  mounted () { }
-}
+    /**
+     * TODO: 通过provide注入当前组件实例
+     * @return {Object} 返回一个对象
+     */
+    provide() {
+      return {
+        breadcrumbEl: this
+      };
+    },
+    mounted() {}
+  };
 </script>
 <style lang="scss" scoped>
-.clearfix {
-  &::after, &::before {
-   content: '';
-   display: table;
+  .clearfix {
+    &::after,
+    &::before {
+      content: '';
+      display: table;
+    }
+    &::after {
+      clear: both;
+    }
   }
-  &::after {
-    clear: both
+  .breadcrumb {
+    font-size: 14px;
+    line-height: 1;
+    @extend .clearfix;
   }
-}
-.breadcrumb {
-  font-size: 14px;
-  line-height: 1;
-  @extend .clearfix;
-}
 </style>
-
 ```
 
 另一个组件`**breadcrumb-item**`
 
 ```html
 <template>
-  <span
-    class="breadcrumb-item"
-  >
+  <span class="breadcrumb-item">
     <span :class="['breadcrumb-inner']">
       <slot />
     </span>
@@ -128,43 +126,43 @@ export default {
   </span>
 </template>
 <script>
-export default {
-  name: 'breadcrumbItem',
-  props: {
-    // 跳转路径
-    // eslint-disable-next-line vue/require-default-prop
-    to: [String, Object],
-    // 是否使用repalce替换push跳转
-    replace: Boolean
-  },
-  data: function () {
-    return {
-      // TODO: 接受父组件传入的 分隔符
-      separator: '',
-      // TODO: 接受父组件传入的 分隔符 class
-      separatorClass: ''
+  export default {
+    name: 'breadcrumbItem',
+    props: {
+      // 跳转路径
+      // eslint-disable-next-line vue/require-default-prop
+      to: [String, Object],
+      // 是否使用repalce替换push跳转
+      replace: Boolean
+    },
+    data: function () {
+      return {
+        // TODO: 接受父组件传入的 分隔符
+        separator: '',
+        // TODO: 接受父组件传入的 分隔符 class
+        separatorClass: ''
+      };
+    },
+    // TODO: 通过inject接受父组件注入的对象
+    inject: ['breadcrumbEl'],
+    mounted() {
+      this.separator = this.breadcrumbEl.separator;
+      this.separatorClass = this.breadcrumbEl.separatorClass;
+      console.log('this.breadcrumbEl: ', this.breadcrumbEl);
     }
-  },
-  // TODO: 通过inject接受父组件注入的对象
-  inject: ['breadcrumbEl'],
-  mounted () {
-    this.separator = this.breadcrumbEl.separator
-    this.separatorClass = this.breadcrumbEl.separatorClass
-    console.log('this.breadcrumbEl: ', this.breadcrumbEl)
-  }
-}
+  };
 </script>
 <style lang="scss" scoped>
-.breadcrumb {
-  @at-root #{&}-item {
-    float: left;
+  .breadcrumb {
+    @at-root #{&}-item {
+      float: left;
+    }
+    @at-root #{&}-separator {
+      margin: 0 9px;
+      font-weight: 700;
+      color: #c0c4cc;
+    }
   }
-  @at-root #{&}-separator {
-    margin: 0 9px;
-    font-weight: 700;
-    color: #c0c4cc;
-  }
-}
 </style>
 ```
 
@@ -198,13 +196,8 @@ export default {
 
 ```html
 <template>
-  <span
-    class="breadcrumb-item"
-  >
-    <span
-      ref="link"
-      :class="['breadcrumb-inner', to ? 'is-link': '']"
-    >
+  <span class="breadcrumb-item">
+    <span ref="link" :class="['breadcrumb-inner', to ? 'is-link': '']">
       <slot />
     </span>
     <i
@@ -212,79 +205,75 @@ export default {
       class="breadcrumb-separator"
       :class="separatorClass"
     />
-    <span
-      v-else
-      class="breadcrumb-separator"
-      role="presentation"
-    >
+    <span v-else class="breadcrumb-separator" role="presentation">
       {{ separator }}
     </span>
   </span>
 </template>
 <script>
-export default {
-  name: 'breadcrumbItem',
-  props: {
-    // 跳转路径
-    to: [String, Object],
-    // 是否使用repalce替换push跳转
-    replace: Boolean
-  },
-  data () {
-    return {
-      // TODO: 接受父组件传入的 分隔符
-      separator: '',
-      // TODO: 接受父组件传入的 分隔符 class
-      separatorClass: ''
+  export default {
+    name: 'breadcrumbItem',
+    props: {
+      // 跳转路径
+      to: [String, Object],
+      // 是否使用repalce替换push跳转
+      replace: Boolean
+    },
+    data() {
+      return {
+        // TODO: 接受父组件传入的 分隔符
+        separator: '',
+        // TODO: 接受父组件传入的 分隔符 class
+        separatorClass: ''
+      };
+    },
+    // TODO: 通过inject接受父组件注入的对象
+    inject: ['breadcrumbEl'],
+    mounted() {
+      this.separator = this.breadcrumbEl.separator;
+      this.separatorClass = this.breadcrumbEl.separatorClass;
+      // 获取当前Link实例
+      let linkEl = this.$refs.link;
+      linkEl.setAttribute('role', 'link');
+      linkEl.addEventListener('click', (event) => {
+        //
+        let { to, replace, $router } = this;
+        // 判断是否传入to 是否存在$router不存在直接返回
+        if (!to || !$router) {
+          return false;
+        }
+        // 根据replace的值，调用push or replace
+        replace ? $router.replace(to) : $router.push(to);
+      });
+      console.log('this.breadcrumbEl: ', this.breadcrumbEl);
     }
-  },
-  // TODO: 通过inject接受父组件注入的对象
-  inject: ['breadcrumbEl'],
-  mounted () {
-    this.separator = this.breadcrumbEl.separator
-    this.separatorClass = this.breadcrumbEl.separatorClass
-    // 获取当前Link实例
-    let linkEl = this.$refs.link
-    linkEl.setAttribute('role', 'link')
-    linkEl.addEventListener('click', event => {
-      //
-      let { to, replace, $router } = this
-      // 判断是否传入to 是否存在$router不存在直接返回
-      if (!to || !$router) {
-        return false
-      }
-      // 根据replace的值，调用push or replace
-      replace ? $router.replace(to) : $router.push(to)
-    })
-    console.log('this.breadcrumbEl: ', this.breadcrumbEl)
-  }
-}
+  };
 </script>
 <style lang="scss" scoped>
-.breadcrumb {
-  @at-root #{&}-item {
-    float: left;
-  }
+  .breadcrumb {
+    @at-root #{&}-item {
+      float: left;
+    }
 
-  @at-root #{&}-separator {
-    margin: 0 9px;
-    font-weight: 700;
-    color: #c0c4cc;
-  }
-  @at-root #{&}-inner {
-    &.is-link:hover, & a:hover {
-      color: #409eff;
-      cursor: pointer;
+    @at-root #{&}-separator {
+      margin: 0 9px;
+      font-weight: 700;
+      color: #c0c4cc;
+    }
+    @at-root #{&}-inner {
+      &.is-link:hover,
+      & a:hover {
+        color: #409eff;
+        cursor: pointer;
+      }
+    }
+    & .breadcrumb-item:last-child {
+      .breadcrumb-separator {
+        display: none;
+      }
     }
   }
-  & .breadcrumb-item:last-child {
-    .breadcrumb-separator {
-      display: none;
-    }
-  }
-}
 </style>
-
 ```
 
 我们通过`breadcrumb-item:last-child`把最后一个`/`隐藏掉。
@@ -292,6 +281,7 @@ export default {
 到此我们就实现了一个自己可用的`Breadcrum`组件。
 
 在线代码：
+
 <iframe
   src="https://codesandbox.io/embed/awesome-worker-wvecw?fontsize=14&hidenavigation=1&theme=dark"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -302,4 +292,4 @@ export default {
 
 ## 总结
 
-在本篇文章中即实现了自己的ui组件`breadcrumb`，又学习了两个比较常用的`Vue`知识点。如果不了解[solt](https://cn.vuejs.org/v2/api/?#slot)可以去看`vue`官方文档。另一个[provide/inject](https://cn.vuejs.org/v2/api/?#provide-inject)它类似于`react`中的`context`，如果想了解`vue`中其他好玩的`属性`、`内置组件`、`修饰符`可以关注我。
+在本篇文章中即实现了自己的 ui 组件`breadcrumb`，又学习了两个比较常用的`Vue`知识点。如果不了解[solt](https://cn.vuejs.org/v2/api/?#slot)可以去看`vue`官方文档。另一个[provide/inject](https://cn.vuejs.org/v2/api/?#provide-inject)它类似于`react`中的`context`，如果想了解`vue`中其他好玩的`属性`、`内置组件`、`修饰符`可以关注我。

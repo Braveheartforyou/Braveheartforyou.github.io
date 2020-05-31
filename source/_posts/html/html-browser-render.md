@@ -6,19 +6,22 @@ categories: [Html]
 description: Html渲染的流程 文档解析=》生成构建dom树=》计算dom上css属性、生成cssom树=》渲染=》合成=》绘制图形。同时reflow、repaint是发生在什么那个阶段。为什么css要写在头部，js现在底部。
 ---
 
-***人法地，地法天，天法道，道法自然。***
+**_人法地，地法天，天法道，道法自然。_**
 
 > [浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么](/blog/html/html-browser-render.html)
+
 > [浏览器渲染原理 （二）css、javascript、dom 阻塞关系](/blog/html/html-style-javascript.html)
+
 > [浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解](/blog/html/html-reload-reflow.html)
 
-如果想看更深入的原理，可以看：
+如果想看更深入的了解渲染细节，可以看：
 
 > [别人翻译的外国友人的渲染原理](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout)
 
 ## 浏览器是怎么渲染 html 的
 
 ---
+
 `关键渲染路径（Critical Rendering Path）`是指与当前用户操作有关的内容。例如用户刚刚打开一个页面，首屏的显示就是当前用户操作相关的内容，具体就是浏览器收到`HTML、CSS 和 JavaScript` 等资源并对其进行处理从而渲染出 `Web` 页面。
 如下图所示渲染流程：
 ![bowser-render](../../images/html/images/bowser-render.png)
@@ -91,8 +94,8 @@ js 改变样式，样式只触发合成属性，不触发 repaint/reflow.附原�
 > 3. 存在`阻塞的 CSS 资源`时，浏览器会`延迟 JavaScript 的执行和 DOM 构建`。
 
 正是由于以上这些原因，`script 标签`的位置很重要我们在实际开发中应该尽量坚持以下两个原则：
-***在引入顺序上，CSS 资源先于 JavaScript 资源。***
-***JavaScript 应尽量少的去影响 DOM 的构建。***
+**_在引入顺序上，CSS 资源先于 JavaScript 资源。_**
+**_JavaScript 应尽量少的去影响 DOM 的构建。_**
 想理清楚 `CSS、JavaScript、DOM` 之间的相互[阻塞关系](http://asyncnode/blog/html/html-browser-render.html)
 
 ## 改变阻塞模式
@@ -137,7 +140,11 @@ defer 与相比普通 script，有两点区别：载入 JavaScript 文件时`不
 ## 参考
 
 > [浏览器的渲染：过程与原理](https://juejin.im/entry/59e1d31f51882578c3411c77)
+
 > [浏览器渲染原理与过程](https://www.imooc.com/article/40004)
+
 > [HTML <script> 元素用于嵌入或引用可执行脚本。](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)
+
 > [浏览器的工作原理：新式网络浏览器幕后揭秘](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#Layout)
+
 > [重绘，回流和合成，了解基本浏览器绘制帮你优化页面性能](https://zhuanlan.zhihu.com/p/23428399)
