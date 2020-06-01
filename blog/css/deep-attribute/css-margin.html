@@ -1,0 +1,1501 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Css,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。">
+<meta name="keywords" content="Css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解 css中margin">
+<meta property="og:url" content="http://asyncnode.com/blog/css/deep-attribute/css-margin.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-11.png">
+<meta property="og:updated_time" content="2020-06-01T01:39:11.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解 css中margin">
+<meta name="twitter:description" content="margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。">
+<meta name="twitter:image" content="http://asyncnode.com/blog/images/css/css-margin-1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/css/deep-attribute/css-margin.html">
+
+
+
+
+
+  <title>深入理解 css中margin | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/css/deep-attribute/css-margin.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解 css中margin</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T14:23:34+08:00">
+                2019-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/" itemprop="url" rel="index">
+                    <span itemprop="name">Css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/css/deep-attribute/css-margin.html" class="leancloud_visitors" data-flag-title="深入理解 css中margin">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在平常开发过程中经常用到<strong>margin</strong>属性，但是也会遇到很多的问题，比如说<strong>margin 重叠（BFC）</strong>、<strong>负 margin</strong>等等问题，下面就一个一个来记录问什么会这样。</p>
+<p><strong>标准盒模型</strong></p>
+<p><img src="../../images/css/css-margin-1-1.png" alt="css margin"></p>
+<p>要了解<strong>margin</strong>就要先了解<strong>css</strong>中的<strong>盒子模型（Box Model）</strong>，<strong>标准盒模型</strong>可以分为：外边距(margin)、边框（border）、内边距（padding）、内容区域（content）。在<strong>标准盒模型</strong>中平常所说道的高度只是<strong>content</strong>的高度，不包含<strong>border</strong>的高度，而在<strong>ie 盒模型</strong>中是把<strong>border</strong>算在内的。</p>
+<p><strong>margin 属性</strong></p>
+<p>margin 有四个属性<strong>margin-top</strong>、<strong>margin-left</strong>、<strong>margin-bottom</strong>、<strong>margin-right</strong>，它们的值可以为<strong>百分比</strong>、<strong>数值（左右可为负数）</strong>、<strong>em、rem、vh、vw</strong>、<strong>auto</strong>等等。</p>
+<h2 id="margin-与容器尺寸"><a href="#margin-与容器尺寸" class="headerlink" title="margin 与容器尺寸"></a>margin 与容器尺寸</h2><p>元素尺寸：① 可视尺寸 clientWidth（标准）；② 占据尺寸</p>
+<p><img src="../../images/css/css-margin-1-2.png" alt="css margin"></p>
+<p>margin 与可视尺寸：<strong>① 适用于没有设定 width/height 的普通 block 元素；② 只适用于水平方向尺寸</strong><br>margin 与占据尺寸：<strong>①block/inline-block 水平元素均适用；② 与有没有设定 width/height 无关；</strong></p>
+<p>③ 适用于水平方向和垂直方向。可用于页面的上下留白（padding 兼容性不好）。</p>
+<h3 id="margin-与可视尺寸"><a href="#margin-与可视尺寸" class="headerlink" title="margin 与可视尺寸"></a>margin 与可视尺寸</h3><p>特性：</p>
+<ul>
+<li>适用于没有设定<code>width/height</code>的普通<code>block</code>元素</li>
+<li><strong>只适用于水平方向尺寸</strong></li>
+</ul>
+<p>应用：一侧定宽自适应</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"150px"</span> <span class="attr">style</span>=<span class="string">"float:left"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"margin-left:170px;"</span>&gt;</span>图片左浮动....<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="../../images/css/css-margin-1-3.png" alt="css margin"></p>
+<h3 id="margin-与占据尺寸"><a href="#margin-与占据尺寸" class="headerlink" title="margin 与占据尺寸"></a>margin 与占据尺寸</h3><p>特性：</p>
+<ul>
+<li><code>block、inline-block</code>水平元素均适应</li>
+<li>与有没有设定<code>width、height</code>值无关</li>
+<li>适应于水平方向和垂直方向</li>
+</ul>
+<h2 id="margin-与百分比单位"><a href="#margin-与百分比单位" class="headerlink" title="margin 与百分比单位"></a>margin 与百分比单位</h2><ul>
+<li>普通元素的百分比：<strong>相对于容器宽度计算</strong>。</li>
+<li>绝对定位元素的百分比：<strong>相对于第一个定位的祖先容器的宽度计算的</strong>。</li>
+</ul>
+<h2 id="margin-中的重叠"><a href="#margin-中的重叠" class="headerlink" title="margin 中的重叠"></a>margin 中的重叠</h2><h3 id="margin-重叠通常特性"><a href="#margin-重叠通常特性" class="headerlink" title="margin 重叠通常特性"></a>margin 重叠通常特性</h3><ol>
+<li><code>block</code>水平元素（不包括<code>float</code>和<code>absolute</code>元素）</li>
+<li>不考虑<code>writing-mode</code>，只发生垂直方向（<code>margin-top/margin-bottom</code>）</li>
+</ol>
+<h3 id="margin-重叠的-3-种情景"><a href="#margin-重叠的-3-种情景" class="headerlink" title="margin 重叠的 3 种情景"></a>margin 重叠的 3 种情景</h3><ol>
+<li><strong>相邻的兄弟元素</strong></li>
+<li><strong>父级和第一个/最后一个子元素</strong></li>
+<li><strong>空的 block 元素</strong></li>
+</ol>
+<h3 id="父子-margin-重叠其他条件"><a href="#父子-margin-重叠其他条件" class="headerlink" title="父子 margin 重叠其他条件"></a>父子 margin 重叠其他条件</h3><p><strong>margin-top 重叠</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">margin-top 重叠</th>
+<th style="text-align:center">解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">父元素<strong>非块状格式化上下文</strong>元素</td>
+<td style="text-align:center">设置父元素<code>overflow</code>：<code>hidden</code></td>
+</tr>
+<tr>
+<td style="text-align:center">父元素没有<code>border-top</code>设值</td>
+<td style="text-align:center">设置父元素<code>border</code></td>
+</tr>
+<tr>
+<td style="text-align:center">父元素没有<code>padding-top</code>值</td>
+<td style="text-align:center">设置父元素<code>padding-top</code></td>
+</tr>
+<tr>
+<td style="text-align:center">父元素和第一个子元素之间没有<code>inline</code>元素分隔</td>
+<td style="text-align:center"><strong>插入一个内联元素如空格&bsp;</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>margin-bottom 重叠</strong></p>
+<ol>
+<li>父元素<strong>非块状格式化上下文</strong>元素</li>
+<li>父元素没有<code>border-bottom</code>设置</li>
+<li>父元素没有<code>padding-bottom</code>值</li>
+<li>父元素和最后一个子元素之间没有<code>inline</code>元素分隔</li>
+<li>父元素没有<code>height</code>相关声明</li>
+</ol>
+<h3 id="空-block-元素-margin-重叠"><a href="#空-block-元素-margin-重叠" class="headerlink" title="空 block 元素 margin 重叠"></a>空 block 元素 margin 重叠</h3><p>条件限制：</p>
+<ol>
+<li>元素没有<code>border</code>设置</li>
+<li>元素没有<code>padding</code>值</li>
+<li>里面没有<code>inline</code>元素</li>
+<li>没有<code>height、或者min-height</code></li>
+</ol>
+<h3 id="重叠的计算规则"><a href="#重叠的计算规则" class="headerlink" title="重叠的计算规则"></a>重叠的计算规则</h3><ul>
+<li><strong>正正取大值</strong></li>
+<li><strong>正负值相加</strong></li>
+<li><strong>负负最负值</strong></li>
+</ul>
+<h3 id="理解-CSS-中的-margin-auto"><a href="#理解-CSS-中的-margin-auto" class="headerlink" title="理解 CSS 中的 margin:auto"></a>理解 CSS 中的 margin:auto</h3><p><code>margin:auto</code>的作用机制：<strong>自动分配剩余空间</strong></p>
+<h3 id="垂直居中方法-margin-实现"><a href="#垂直居中方法-margin-实现" class="headerlink" title="垂直居中方法(margin 实现)"></a>垂直居中方法(margin 实现)</h3><p><strong>writing-mode</strong></p>
+<p>更改流为垂直方向，但是水平居中失效</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">writing-mode</span>: vertical-lr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/css/css-margin-1-4.png" alt="css margin"></p>
+<p><strong>绝对定位元素的 margin:auto 居中</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/css/css-margin-1-5.png" alt="css margin"></p>
+<h2 id="margin-负值"><a href="#margin-负值" class="headerlink" title="margin 负值"></a>margin 负值</h2><p>为了方便理解负值<code>margin</code>，我们引入参考线的定义，参考线就是就是<code>margin</code>移动的基准点，而<code>margin</code>的值就是移动的数值。<br><code>margin</code>的参考线有两类，一类是<code>top、left</code>，它们以外元素作为参考线;<br>另一类是<code>right、bottom</code>，它们以自身作为参考线。<br>简单点说就是：</p>
+<ul>
+<li><code>top</code>负值就是以包含块<code>(Containing block)</code> 内容区域的上边或者上方相连元素 <code>margin</code> 的下边线为参考线;</li>
+<li><code>left</code>负值就是以包含块<code>(Containing block)</code> 内容区域的左边或者左方相连元素 <code>margin</code> 的右边为参考线;</li>
+<li><code>right</code>负值就是以元素本身<code>border</code>的右边为参考线；</li>
+<li><code>bottom</code>负值就是以元素本身<code>border</code>的下边为参考线；</li>
+</ul>
+<p>另外关于包含块的定义具体<a href="http://w3help.org/zh-cn/kb/008/" target="_blank" rel="noopener">请参考 KB008 包含块(Containing block)</a>。</p>
+<p><img src="../../images/css/css-margin-1-6.png" alt="css margin"></p>
+<p><strong>公用代码</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    margin: auto;</span><br><span class="line">    border: 1px black solid;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.one</span> &#123;</span></span><br><span class="line">    background: orange;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.two</span> &#123;</span></span><br><span class="line">    background: green;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"one"</span>&gt;</span>one<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"two"</span>&gt;</span>two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="margin-top-和-margin-left-负值"><a href="#margin-top-和-margin-left-负值" class="headerlink" title="margin-top 和 margin-left 负值"></a>margin-top 和 margin-left 负值</h3><h4 id="margin-top"><a href="#margin-top" class="headerlink" title="margin-top"></a>margin-top</h4><p>修改 css 代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="../../images/css/css-margin-1-7.png" alt="css margin"></p>
+<p>当设置<code>.two</code>的<code>div</code>的<code>margin-top: -50px</code>的时候，它的参考线是<code>div.one</code>的下边，整个<code>div.two</code>向上移动<code>-50px</code>使得<code>div.two</code>覆盖<code>div.one</code>。</p>
+<h4 id="margin-left"><a href="#margin-left" class="headerlink" title="margin-left"></a>margin-left</h4><p>修改 css 代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="../../images/css/css-margin-1-8.png" alt="css margin"></p>
+<p>当设置<code>.two</code>的<code>div</code>的<code>margin-left: -50px</code>的时候，它的参考线是<code>div.one</code>的右边线，整个<code>div.two</code>向左移动<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
+<h3 id="margin-right-和-margin-bottom-负值"><a href="#margin-right-和-margin-bottom-负值" class="headerlink" title="margin-right 和 margin-bottom 负值"></a>margin-right 和 margin-bottom 负值</h3><h4 id="margin-right"><a href="#margin-right" class="headerlink" title="margin-right"></a>margin-right</h4><p>修改 css 代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">  <span class="attribute">margin-right</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="../../images/css/css-margin-1-8.png" alt="css margin"></p>
+<p>当设置<code>.one</code>的<code>div</code>的<code>margin-right: -50px</code>的时候，它的参考线是<code>div.one</code>的右边线，整个<code>div.one</code>向左收缩<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
+<h4 id="margin-bottom"><a href="#margin-bottom" class="headerlink" title="margin-bottom"></a>margin-bottom</h4><p>修改 css 代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: static;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="../../images/css/css-margin-1-7.png" alt="css margin"></p>
+<p>当设置<code>.one</code>的<code>div</code>的<code>margin-bottom: -50px</code>的时候，它的参考线是<code>div.one</code>的下边线，整个<code>div.one</code>向上收缩<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p><strong>margin 负值下的两端对齐：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  * &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 1200px;</span><br><span class="line">    margin: auto;</span><br><span class="line">    background: orange;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.ul</span> &#123;</span></span><br><span class="line">    list-style: none;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    margin-right: -20px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.li</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">width</span>: 386<span class="selector-class">.66px</span>;</span></span><br><span class="line">    height: 300px;</span><br><span class="line">    margin-right: 20px;</span><br><span class="line">    background: green;</span><br><span class="line">    float: left;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="../../images/css/css-margin-1-9.png" alt="css margin"></p>
+<p><strong>margin 负值下的等高布局：</strong></p>
+<p><img src="../../images/css/css-margin-1-10.png" alt="css margin"></p>
+<p><strong>margin 负值下的两栏自适应布局：</strong></p>
+<p><img src="../../images/css/css-margin-1-11.png" alt="css margin"></p>
+<h2 id="margin-无效情形解析"><a href="#margin-无效情形解析" class="headerlink" title="margin 无效情形解析"></a>margin 无效情形解析</h2><ol>
+<li><code>inline</code>水平元素的垂直<code>margin</code>无效前提：</li>
+</ol>
+<ul>
+<li>非替换元素，例如不是<code>&lt;img&gt;</code>元素；</li>
+<li>正常书写模式。</li>
+</ul>
+<ol start="2">
+<li><code>margin</code>重叠</li>
+<li><code>display:table-cell</code>与<code>margin：display:table-cell/display:table-row</code>等声明的<code>margin</code>无效。</li>
+<li><code>position:absolute</code>与<code>margin</code>：绝对定位元素未设置定位方向的<code>margin</code>值”无效“。例如，<code>img{top:10%}</code>的<code>margin-top</code>有效其他均无效。</li>
+<li>内联特性导致的<code>margin</code>无效：</li>
+</ol>
+<h2 id="了解-margin-start-margin-end-属"><a href="#了解-margin-start-margin-end-属" class="headerlink" title="了解 margin-start/margin-end 属"></a>了解 margin-start/margin-end 属</h2><h3 id="webkit-margin-start、-webkit-margin-end"><a href="#webkit-margin-start、-webkit-margin-end" class="headerlink" title="-webkit-margin-start、-webkit-margin-end"></a>-webkit-margin-start、-webkit-margin-end</h3><ul>
+<li>正常的流向，<code>margin-start</code>等同于<code>margin-left</code>，两者重叠不累加</li>
+<li>如果水平流是从右往左，<code>margin-start</code>等同于<code>margin-right</code></li>
+<li>在垂直流下（<code>writing-mode:vertical-*;</code>）,<code>margin-start</code>等同于<code>margin-top</code></li>
+</ul>
+<h3 id="margin-collaps"><a href="#margin-collaps" class="headerlink" title="margin-collaps"></a>margin-collaps</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-webkit-margin-collaps: &lt;collaps&gt; | &lt;discard&gt; | &lt;separate&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>collaps</code>,默认，重叠</li>
+<li><code>discard</code>，取消重叠，使<code>margin</code>无效</li>
+<li><code>separate</code>，取消重叠，不合并</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本篇文章中介绍主要的<code>margin百分比</code>、<code>margin重叠条件</code>、<code>margin在盒模型中的区域</code>，但是本文总结的<code>margin负值</code>并不是全部情况，比如说<code>div.two</code>设置为<code>margin-right: -50px</code>为什么不会收缩自己的宽度等等。希望大家多多做补充。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.imooc.com/learn/565" target="_blank" rel="noopener">CSS 深入理解之 relative</a><br><a href="https://www.kancloud.cn/dunizb/web-dev-marrow/647633#11_margin_2" target="_blank" rel="noopener">CSS 深入理解之 margin</a><br><a href="https://cloud.tencent.com/developer/article/1053594" target="_blank" rel="noopener">CSS 深入理解学习笔记之 margin</a><br><a href="https://zhuanlan.zhihu.com/p/25892372" target="_blank" rel="noopener">浅谈 margin 负值</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css/" rel="tag"><i class="fa fa-tag"></i> Css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/css/deep-attribute/css-relative.html" rel="next" title="深入理解css系列 css中relative">
+                <i class="fa fa-chevron-left"></i> 深入理解css系列 css中relative
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/interview-question/css/css-padding.html" rel="prev" title="Css怎么实现一个 高度随宽度变化 1:1 或者别的比例的布局">
+                Css怎么实现一个 高度随宽度变化 1:1 或者别的比例的布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin-与容器尺寸"><span class="nav-number">2.</span> <span class="nav-text">margin 与容器尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-与可视尺寸"><span class="nav-number">2.1.</span> <span class="nav-text">margin 与可视尺寸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-与占据尺寸"><span class="nav-number">2.2.</span> <span class="nav-text">margin 与占据尺寸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin-与百分比单位"><span class="nav-number">3.</span> <span class="nav-text">margin 与百分比单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin-中的重叠"><span class="nav-number">4.</span> <span class="nav-text">margin 中的重叠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-重叠通常特性"><span class="nav-number">4.1.</span> <span class="nav-text">margin 重叠通常特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-重叠的-3-种情景"><span class="nav-number">4.2.</span> <span class="nav-text">margin 重叠的 3 种情景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父子-margin-重叠其他条件"><span class="nav-number">4.3.</span> <span class="nav-text">父子 margin 重叠其他条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空-block-元素-margin-重叠"><span class="nav-number">4.4.</span> <span class="nav-text">空 block 元素 margin 重叠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重叠的计算规则"><span class="nav-number">4.5.</span> <span class="nav-text">重叠的计算规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解-CSS-中的-margin-auto"><span class="nav-number">4.6.</span> <span class="nav-text">理解 CSS 中的 margin:auto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直居中方法-margin-实现"><span class="nav-number">4.7.</span> <span class="nav-text">垂直居中方法(margin 实现)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin-负值"><span class="nav-number">5.</span> <span class="nav-text">margin 负值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-top-和-margin-left-负值"><span class="nav-number">5.1.</span> <span class="nav-text">margin-top 和 margin-left 负值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-top"><span class="nav-number">5.1.1.</span> <span class="nav-text">margin-top</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-left"><span class="nav-number">5.1.2.</span> <span class="nav-text">margin-left</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-right-和-margin-bottom-负值"><span class="nav-number">5.2.</span> <span class="nav-text">margin-right 和 margin-bottom 负值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-right"><span class="nav-number">5.2.1.</span> <span class="nav-text">margin-right</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-bottom"><span class="nav-number">5.2.2.</span> <span class="nav-text">margin-bottom</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际应用"><span class="nav-number">5.3.</span> <span class="nav-text">实际应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin-无效情形解析"><span class="nav-number">6.</span> <span class="nav-text">margin 无效情形解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解-margin-start-margin-end-属"><span class="nav-number">7.</span> <span class="nav-text">了解 margin-start/margin-end 属</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webkit-margin-start、-webkit-margin-end"><span class="nav-number">7.1.</span> <span class="nav-text">-webkit-margin-start、-webkit-margin-end</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin-collaps"><span class="nav-number">7.2.</span> <span class="nav-text">margin-collaps</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共216.6k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>

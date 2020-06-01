@@ -127,7 +127,7 @@
 <meta property="og:image" content="http://asyncnode.com/images/html/images/html-2.png">
 <meta property="og:image" content="http://asyncnode.com/images/html/images/html-gif.gif">
 <meta property="og:image" content="http://asyncnode.com/images/html/images/html-gif1.gif">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.945Z">
+<meta property="og:updated_time" content="2020-06-01T00:18:43.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器渲染原理 （二）html中的css、javascript、dom之间的解析和相互阻塞关系">
 <meta name="twitter:description" content="html中的css、javascript、dom之间的解析和相互阻塞关系">
@@ -440,14 +440,20 @@
       
         <p><strong><em>将欲取之，必先与之，是谓微明。柔弱胜刚强。——老子</em></strong></p>
 <blockquote>
-<p><a href="/blog/html/html-browser-render.html">浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么</a><br><a href="/blog/html/html-style-javascript.html">浏览器渲染原理 （二）css、javascript、dom 阻塞关系</a><br><a href="/blog/html/html-reload-reflow.html">浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解</a></p>
+<p><a href="/blog/html/html-browser-render.html">浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么</a></p>
+</blockquote>
+<blockquote>
+<p><a href="/blog/html/html-style-javascript.html">浏览器渲染原理 （二）css、javascript、dom 阻塞关系</a></p>
+</blockquote>
+<blockquote>
+<p><a href="/blog/html/html-reload-reflow.html">浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解</a></p>
 </blockquote>
 <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><hr>
 <p>我们在看一些前端优化规则的时候，比如雅虎军规等等，都有看到 style 写在 head 中，但是外链 script 写在 body 的最后，以优化性能，都知道应该怎么做，但是不知道其中的原理。<br>如果还不知道浏览器渲染的原理的，看一看<a href="/blog/html/html-style-javascript.html">浏览器渲染原理</a>这一篇文章。其实这个就是考验大家对 html 中的 css、javascript、dom 之间的解析和相互阻塞关系。</p>
 <h2 id="JavaScript-会阻塞-CSS、DOM-吗"><a href="#JavaScript-会阻塞-CSS、DOM-吗" class="headerlink" title="JavaScript 会阻塞 CSS、DOM 吗"></a>JavaScript 会阻塞 CSS、DOM 吗</h2><h3 id="提出自己观点"><a href="#提出自己观点" class="headerlink" title="提出自己观点"></a>提出自己观点</h3><p>当我们把 script 标签写到页面的顶部时，dom 树在解析的时候检测到 script 标签是，会加载 script 里面的内容并且执行。我们假设在<font color="#ff502c">执行</font>javascript 会<font color="#ff502c">阻塞 dom</font>的解析和渲染，<font color="#ff502c">阻塞 css</font>的解析和加载。</p>
 <h3 id="验证自己的观点"><a href="#验证自己的观点" class="headerlink" title="验证自己的观点"></a>验证自己的观点</h3><p>在验证之前我们先把 chrome 的网速调到 40kb 每秒的下载和上传数据<br><strong>第一步</strong><br><img src="../../images/html/images/html-1.png" alt="html operation"><br><strong>第二步</strong><br><img src="../../images/html/images/html-2.png" alt="html operation"></p>
 <p>我们来验证这个结论:<br>html 代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script&gt;</span></span><br><span class="line"><span class="regexp">        console.log('start load');</span></span><br><span class="line"><span class="regexp">        function h () &#123;</span></span><br><span class="line"><span class="regexp">            console.log(document.querySelectorAll('h1'))</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">        setTimeout(h, 0);</span></span><br><span class="line"><span class="regexp">    &lt;/</span>script&gt;</span><br><span class="line">    &lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.4.1/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        h1 &#123;</span><br><span class="line">            color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script&gt;</span></span><br><span class="line"><span class="regexp">        console.log('end load');</span></span><br><span class="line"><span class="regexp">        setTimeout(h, 0);</span></span><br><span class="line"><span class="regexp">    &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1&gt;测试阻塞加载&lt;/</span>h1&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script&gt;</span></span><br><span class="line"><span class="regexp">        console.log('start load');</span></span><br><span class="line"><span class="regexp">        function h () &#123;</span></span><br><span class="line"><span class="regexp">            console.log(document.querySelectorAll('h1'))</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">        setTimeout(h, 0);</span></span><br><span class="line"><span class="regexp">    &lt;/</span>script&gt;</span><br><span class="line">    &lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.4.1/jquery.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        h1 &#123;</span><br><span class="line">            color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script&gt;</span></span><br><span class="line"><span class="regexp">        console.log('end load');</span></span><br><span class="line"><span class="regexp">        setTimeout(h, 0);</span></span><br><span class="line"><span class="regexp">    &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1&gt;测试阻塞加载&lt;/</span>h1&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
 <p>在<font color="#ff502c">加载到</font>jquery 文件后，会先下载远程的 jquery 并且<font color="#ff502c">执行</font>他，他会<font color="#ff502c">阻塞 dom 的解析和渲染</font>，<font color="#ff502c">css 解析和渲染</font>，一直是白屏，等 jquery<font color="#ff502c">执行完成</font>了才接着解析 Dom 和 cssom 并且渲染，console.log 打印 h1 标签也是空数组。<br>如下图所示：<br><img src="../../images/html/images/html-gif.gif" alt="html operation"></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
 <p>javascript 加载会阻塞 css 解析和渲染<br>javascript 加载会阻塞 dom 解析和渲染</p>
@@ -507,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/javascript/javascript-constructor-propotype.html" rel="next" title="JavaScript中的继承对比 继承（二）（未完成）">
-                <i class="fa fa-chevron-left"></i> JavaScript中的继承对比 继承（二）（未完成）
+              <a href="/blog/javascript/extends/javascript-constructor-propotype.html" rel="next" title="JavaScript中的继承对比 继承（二）">
+                <i class="fa fa-chevron-left"></i> JavaScript中的继承对比 继承（二）
               </a>
             
           </div>
@@ -517,8 +523,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/react/react-immutable.html" rel="prev" title="react中的使用immutable作用和如何优化项目 (未完成)">
-                react中的使用immutable作用和如何优化项目 (未完成) <i class="fa fa-chevron-right"></i>
+              <a href="/blog/react/lib/react-immutable.html" rel="prev" title="react中的使用immutable作用和如何优化项目">
+                react中的使用immutable作用和如何优化项目 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -612,7 +618,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">216</span>
+                <span class="site-state-item-count">191</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +629,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -634,7 +640,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -742,7 +748,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共227.9k字</span>
+  <span class="post-count">博客全站共216.6k字</span>
 </div> -->
 
         

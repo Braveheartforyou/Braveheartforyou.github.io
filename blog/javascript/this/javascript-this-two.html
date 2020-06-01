@@ -1,0 +1,1481 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,This,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="this的绑定">
+<meta name="keywords" content="JavaScript,This">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的this（二）this的多种绑定方式">
+<meta property="og:url" content="http://asyncnode.com/blog/javascript/this/javascript-this-two.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="this的绑定">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-01T00:18:43.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的this（二）this的多种绑定方式">
+<meta name="twitter:description" content="this的绑定">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/javascript/this/javascript-this-two.html">
+
+
+
+
+
+  <title>JavaScript中的this（二）this的多种绑定方式 | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/javascript/this/javascript-this-two.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript中的this（二）this的多种绑定方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T14:23:43+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/javascript/this/javascript-this-two.html" class="leancloud_visitors" data-flag-title="JavaScript中的this（二）this的多种绑定方式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  this的绑定
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<a href="/blog/javascript/javascript-this-one.html">上一篇文章</a>中我们记录了<code>执行栈</code>、<code>执行上下文</code>、<code>执行上下文生命周期</code>、<code>this的产生</code>等等，在这一篇文章中我们来记录一下<code>this的绑定</code>也就是<code>this</code>的值确定。<br><code>this</code>在<code>创建阶段</code>被创建(确定默认值)，但是在<code>执行阶段</code>会改变<code>this</code>的值。所以一般我们都会说<code>确定this</code>是在<code>执行阶段</code>。</p>
+<p>本篇文章章节大致如下：</p>
+<ul>
+<li>多种绑定<code>this</code>方式</li>
+<li>改变<code>this</code>方式 <code>new</code>、<code>Object.create</code></li>
+<li>另外三种改变<code>this</code>的方式<code>bind</code>、<code>call</code>、<code>apply</code></li>
+<li>异类<code>箭头函数</code></li>
+<li>优先级</li>
+</ul>
+<p>下面我们就慢慢开始一步一步了解<code>this</code>。</p>
+<h2 id="多种绑定this方式"><a href="#多种绑定this方式" class="headerlink" title="多种绑定this方式"></a>多种绑定<code>this</code>方式</h2><p>无论是默认的绑定<code>this</code>的规则，还是后面改变<code>this</code>的方法，我们尽量深入的记录，大致目录如下：</p>
+<ul>
+<li>默认绑定</li>
+<li>显示绑定</li>
+<li>隐式绑定</li>
+<li>bind、call、apply 绑定</li>
+<li>new 绑定、Object.create()绑定</li>
+<li>箭头函数</li>
+</ul>
+<p>我们都知道<code>this</code>的值是在运行时绑定的，并且谁调用它，它指向谁。下面我们就开始一步一步的了解<code>this</code>绑定的细节和实现。</p>
+<h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><p><strong>默认绑定</strong>其实就是在<strong>全局中声明函数</strong>，并且在<strong>全局中调用函数</strong>，这样它不会受到任何调用对象和修饰符的干扰。代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defalutsFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">defalutsFunc(); <span class="comment">// windows</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defalutsFuncTwo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// use strict</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">defalutsFuncTwo(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>在普通模式下，如果我们是在浏览器端运行代码，<code>this</code>指向<code>window</code>。它在<strong>严格模式</strong>下<code>this</code>会是<code>undefined</code>。</p>
+<p>默认绑定多种方式：</p>
+<ul>
+<li>全局调用函数</li>
+<li>IIFE(自执行函数)</li>
+<li>匿名函数</li>
+</ul>
+<h3 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h3><p><strong>隐式绑定</strong>，其实就是当前调用函数的<code>this</code>会指向当前调用该函数的执行上下文。隐式绑定<code>this</code>是不可靠的，他会因为调用者的不同而不同。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scopeObj = &#123;</span><br><span class="line">  name: <span class="string">'scopeObj'</span>,</span><br><span class="line">  scopeFunc: globalFunc</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'globalFunc'</span>;</span><br><span class="line"></span><br><span class="line">scopeObj.scopeFunc(); <span class="comment">// scopeObj</span></span><br><span class="line">globalFunc(); <span class="comment">// globalFunc</span></span><br></pre></td></tr></table></figure>
+<p>在<code>scopeObj.scopeFunc()</code>我们其实是在<code>scopeObj</code>这个<code>作用域</code>中调用<code>scopeFunc</code>，这样<code>scopeFunc</code>的<code>this</code>指向<code>scopeObj</code>创建的上下文。 但是<strong>隐式绑定</strong>在传递过程中会丢失<code>this</code>，其实还是看调用它的执行上下文是那个，它的<code>this</code>就会指向当前<strong>执行上下文</strong>。修改代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcObj = scopeObj.scopeFunc;</span><br><span class="line">funcObj(); <span class="comment">// globalFunc</span></span><br></pre></td></tr></table></figure>
+<p>我们又把<code>scopeObj.scopeFunc</code>赋值给了一个普通变量<code>funcObj</code>，在全局作用域中调用了赋值的这个<code>funcObj</code>，所以<code>funcObj</code>的 this 指向了<code>全局</code>的执行上下文。</p>
+<blockquote>
+<p>其实<code>参数</code>也是一样的效果。</p>
+</blockquote>
+<h3 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h3><p>因为隐式绑定的丢失问题，所以有了后面的显示绑定<code>call</code>、<code>apply</code>、<code>bind</code>等等的方式。</p>
+<p>我们可以通过<code>call</code>、<code>apply</code>它们可以显示的改变<code>this</code>的绑定.</p>
+<ul>
+<li><code>call</code>: <code>fun.call(thisArg, arg1, arg2, ...)</code>第一个参数<code>this</code>要绑定的值，后面多个参数是要传入方法的参数。</li>
+<li><code>apply</code>: <code>func.apply(thisArg, [argsArray])</code> 第一个参数<code>this</code>要绑定的值，可选的。一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 <code>func</code> 函数。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scopeObj = &#123;</span><br><span class="line">  name: <span class="string">'scopeObj'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'globalFunc'</span>;</span><br><span class="line"></span><br><span class="line">globalFunc.call(scopeObj, <span class="number">18</span>); <span class="comment">// scopeObj, 18</span></span><br><span class="line">globalFunc.apply(scopeObj, [<span class="number">18</span>]); <span class="comment">// scopeObj, 18</span></span><br><span class="line"></span><br><span class="line">globalFunc(<span class="number">18</span>); <span class="comment">// globalFunc, 18</span></span><br></pre></td></tr></table></figure>
+<p>但是即使通过<code>call</code>or<code>apply</code>改变的<code>this</code>值也是会丢失的，在传递的过程中，其实通过显示绑定也并不能保证我们的<code>this</code>一直是绑定的一个值。</p>
+<p>我们可以通过在外层包裹一层函数来绑定<code>this</code>，示例代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scopeFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> globalObj = &#123;</span><br><span class="line">  name: <span class="string">'globalObj'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">simpleBind</span>(<span class="params">fn, obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(obj, <span class="built_in">arguments</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = simpleBind(scopeFunc, globalObj);</span><br><span class="line"></span><br><span class="line">func(<span class="number">3</span>); <span class="comment">// globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br><span class="line"></span><br><span class="line">func.call(<span class="literal">null</span>, <span class="number">3</span>); <span class="comment">// globalObj Arguments [Arguments(1), callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br></pre></td></tr></table></figure>
+<p>可以看到我们通过<code>simpleBind</code>中返回一个匿名函数，这样通过<code>call</code>或<code>apply</code>它也只能改变外部匿名函数的<code>this</code>，在<strong>匿名函数内部</strong>我们通过<code>fn.call(obj)</code>给方法默认绑定一个<code>this</code>，这个只是一个简单的<code>bind</code>实现。</p>
+<p>也可以直接通过<code>Function.prototype.bind</code>来实现，<code>bind</code>返回一个硬绑定的函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scopeFunc</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, args);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> globalObj = &#123;</span><br><span class="line">  name: <span class="string">'globalObj'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> func = scopeFunc.bind(globalObj);</span><br><span class="line"></span><br><span class="line">func(<span class="number">3</span>); <span class="comment">// globalObj 3</span></span><br><span class="line"></span><br><span class="line">func.call(<span class="literal">null</span>, <span class="number">3</span>); <span class="comment">// globalObj 3</span></span><br></pre></td></tr></table></figure>
+<p>还有一种方式就是高阶函数，我们传入一下函数来获取当前执行上下文，比如<code>map</code>、<code>forEach</code>等等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aData = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'firstName'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'lastName'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">aData.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>它的内部也是使用了<code>call</code>或者<code>apply</code>来改变传入函数的<code>this</code>。如果有兴趣去看一下另一篇博客<a href="https://juejin.im/post/5d786452e51d4561eb0b2719" target="_blank" rel="noopener">Array 常用的方法和实现 reduce、map、filter、forEach</a>来深入了解一下。</p>
+<h3 id="new-绑定、Object-create-绑定"><a href="#new-绑定、Object-create-绑定" class="headerlink" title="new 绑定、Object.create()绑定"></a>new 绑定、Object.create()绑定</h3><p><code>new运算符</code>和<code>Object.create()</code>方法也是可以改变<code>this</code>的指向的。<br>首先我们要理解<code>new运算符</code>它具体做了什么操作，大致过程如下：</p>
+<ul>
+<li>创建一个空的简单 JavaScript 对象（即<code>{}</code>）；</li>
+<li>链接该对象（即设置该对象的构造函数）到另一个对象 ；</li>
+<li>将步骤 1 新创建的对象作为<code>this</code>的上下文 ；</li>
+<li>如果该函数没有返回对象，则返回<code>this</code>。</li>
+</ul>
+<p>可以看到在<code>new 运算符</code>中有修改过<code>this</code>的指向，下面我们通过一个示例代码来了解一下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'globalFunc'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exampleFunc = <span class="keyword">new</span> globalFunc();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(exampleFunc); <span class="comment">// globalFunc &#123;name: "globalFunc"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们通过<code>new 运算符</code>调用<code>globalFunc</code>时，我们可以看到<code>globalFunc</code>中的<code>name</code>在<code>exampleFunc</code>中也可以访问到相同的<code>name</code>。</p>
+<p>其实我们也可以通过<code>Object.create()</code>来也可以实现一样的效果，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'globalFunc'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exampleFunc = <span class="built_in">Object</span>.create(globalFunc);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(exampleFunc); <span class="comment">// globalFunc &#123;name: "globalFunc"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其实<code>Object.create</code>内部和 new 有点类似，但是<code>Object.create</code>它调用的是<code>new Func()</code>用于生成一个对象实例。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><strong>箭头函数外层没有普通函数，严格模式和非严格模式下它的 this 都会指向 window(全局对象)</strong><br><strong>this 对象的指向是可变的，但是在箭头函数中，它是固定的。</strong></p>
+<p>普通函数与箭头函数的对比如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对比</th>
+<th style="text-align:center">普通函数</th>
+<th style="text-align:center">箭头函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>this</code>指向规则</td>
+<td style="text-align:center"><code>this</code>总是指向调用它的那个对象</td>
+<td style="text-align:center">1.所有箭头函数本身没有<code>this</code> <br>2.箭头函数的 this 在定义的时候捕获自外层第一个普通函数的<code>this</code> <br> 3.如果箭头函数外层没有普通函数,严格模式和非严格模式下它的<code>this</code>都会指向<code>window</code>(全局对象)</td>
+</tr>
+<tr>
+<td style="text-align:center">有无<code>prototype</code></td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">箭头函数没有<font color="#ff502c">prototype</font>(原型)</td>
+</tr>
+<tr>
+<td style="text-align:center">可否<code>new</code></td>
+<td style="text-align:center">可以</td>
+<td style="text-align:center">箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有<code>constructor</code>),不能使用 new,不然会报错</td>
+</tr>
+<tr>
+<td style="text-align:center">有无<code>arguments</code></td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">1.箭头函数的<code>this</code>指向全局,使用会报未声明的错误 <br> 2.箭头函数的<code>this</code>指向普通函数时,它的<font color="#ff502c">argumens</font>继承于改普通函数</td>
+</tr>
+<tr>
+<td style="text-align:center">可否<code>new</code></td>
+<td style="text-align:center">可以</td>
+<td style="text-align:center">箭头函数作为匿名函数,是不能作为构造函数的(因为箭头函数没有<code>constructor</code>),不能使用 new,不然会报错</td>
+</tr>
+<tr>
+<td style="text-align:center">可否改变<code>this</code>指向</td>
+<td style="text-align:center">可以通过<code>call、apply、bind</code>改变<code>this</code>的指向</td>
+<td style="text-align:center">箭头函数本身的<code>this</code>指向不能改变,但是可以修改它要捕获的对象的<code>this</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果有兴趣的话可以去看另一篇<a href="/blog/es6/es6-arrow-functions.html">arrow-functions（箭头函数）和普通的函数的区别 this（二）</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="new-注意事项"><a href="#new-注意事项" class="headerlink" title="new 注意事项"></a>new 注意事项</h3><p><code>new</code>可以很方便构造调用一个函数并且声称一个实例，但是如果我们使用不太小心的话也会带来很多不必要的麻烦。</p>
+<p><strong>忘记写 new</strong>运算符，那样我们就得不到我们想要的结果，如果实在全局环境中，那么<strong>函数</strong>的<code>this</code>会绑定到全局。如果实在<strong>严格模式</strong><code>this</code>会绑定为<code>undefined</code>。</p>
+<h3 id="bind-call、bind-注意事项"><a href="#bind-call、bind-注意事项" class="headerlink" title="bind/call、bind 注意事项"></a>bind/call、bind 注意事项</h3><p>把<code>null</code>或者<code>undefined</code>作为<code>this</code>的绑定对象传入<code>call、apply</code>或者<code>bind</code>，这些值在调用时会被忽略，实际应用的是默认规则。</p>
+<h3 id="软绑定"><a href="#软绑定" class="headerlink" title="软绑定"></a>软绑定</h3><p>硬绑定可以把<code>this</code>强制绑定到指定的对象（<code>new除外</code>），防止函数调用应用<strong>默认绑定规则</strong>。但是会降低函数的灵活性，使用<strong>硬绑定之后就无法使用隐式绑定或者显式绑定来修改</strong><code>this</code>。</p>
+<p>如果给<strong>默认绑定指定一个全局对象和 undefined 以外的值</strong>，那就可以实现和硬绑定相同的效果，同时<strong>保留隐式绑定或者显示绑定修改 this 的能力</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.softBind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.softBind = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> currArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> bound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> funStack = !<span class="keyword">this</span> || <span class="keyword">this</span> === (<span class="built_in">window</span> || global) ? obj : <span class="keyword">this</span>;</span><br><span class="line">      <span class="keyword">return</span> fn.apply(funStack, currArgs);</span><br><span class="line">    &#125;;</span><br><span class="line">    bound.prototype = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">    <span class="keyword">return</span> bound;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用：软绑定版本的<code>foo()</code>可以手动将<code>this</code>绑定到<code>obj2</code>或者<code>obj3</code>上，但如果应用默认绑定，则会将<code>this</code>绑定到<code>obj</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'name:'</span> + <span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">'obj'</span> &#125;,</span><br><span class="line">  obj2 = &#123; <span class="attr">name</span>: <span class="string">'obj2'</span> &#125;,</span><br><span class="line">  obj3 = &#123; <span class="attr">name</span>: <span class="string">'obj3'</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认绑定，应用软绑定，软绑定把this绑定到默认对象obj</span></span><br><span class="line"><span class="keyword">var</span> fooOBJ = foo.softBind(obj);</span><br><span class="line">fooOBJ(); <span class="comment">// name: obj</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 隐式绑定规则</span></span><br><span class="line">obj2.foo = foo.softBind(obj);</span><br><span class="line">obj2.foo(); <span class="comment">// name: obj2 &lt;---- 看！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式绑定规则</span></span><br><span class="line">fooOBJ.call(obj3); <span class="comment">// name: obj3 &lt;---- 看！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 绑定丢失，应用软绑定</span></span><br><span class="line">setTimeout(obj2.foo, <span class="number">10</span>); <span class="comment">// name: obj</span></span><br></pre></td></tr></table></figure>
+<h2 id="绑定优先级"><a href="#绑定优先级" class="headerlink" title="绑定优先级"></a>绑定优先级</h2><p>我们对比<code>显示绑定</code>、<code>隐式绑定</code>、<code>new 绑定</code>、<code>默认绑定</code>，不包含<code>箭头函数</code>的对比，因为<code>箭头函数</code>它本身没有<code>this</code>，它会从它外层的普通函数或者全局获取。</p>
+<p>大致对比过程：</p>
+<ul>
+<li><code>显示绑定</code>与<code>隐式绑定</code>对比</li>
+<li><code>默认绑定</code>与<code>隐式绑定</code>对比</li>
+<li><code>new 绑定</code>与<code>显示绑定</code>对比</li>
+</ul>
+<p>我们就通过代码一步一步的记录。</p>
+<h3 id="显示绑定与隐式绑定"><a href="#显示绑定与隐式绑定" class="headerlink" title="显示绑定与隐式绑定"></a><code>显示绑定</code>与<code>隐式绑定</code></h3><p>我们直接通过代码来对比。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yinObj = &#123;</span><br><span class="line">  name: <span class="string">'yinObj'</span>,</span><br><span class="line">  func: test</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 首先我们通过隐式绑定</span></span><br><span class="line">yinObj.func(); <span class="comment">// yinObj</span></span><br><span class="line"><span class="comment">// 二次显示绑定</span></span><br><span class="line">yinObj.func.call(&#123; <span class="attr">name</span>: <span class="string">'xianObj'</span> &#125;); <span class="comment">// xianObj</span></span><br></pre></td></tr></table></figure>
+<p>通过上面的代码我们知道了<code>显示绑定 &gt; 隐式绑定</code>。</p>
+<h3 id="默认绑定与隐式绑定"><a href="#默认绑定与隐式绑定" class="headerlink" title="默认绑定与隐式绑定"></a><code>默认绑定</code>与<code>隐式绑定</code></h3><p><code>默认绑定</code>与<code>隐式绑定</code>对比直接上代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'GlobalName'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yinObj = &#123;</span><br><span class="line">  name: <span class="string">'yinObj'</span>,</span><br><span class="line">  func: test</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 默认绑定</span></span><br><span class="line">test(); <span class="comment">// GlobalName</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 首先我们通过隐式绑定</span></span><br><span class="line">yinObj.func(); <span class="comment">// yinObj</span></span><br></pre></td></tr></table></figure>
+<p>我们首相声明一个函数<code>test</code>，然后把这个函数赋值给一个对象<code>yinObj</code>的<code>func</code>属性，然后我们分别在全局和对象中调用<code>test</code>函数，在全局中调用<code>test</code>函数得出的结果是<code>GlobalName</code>，<code>yinObj.func()</code>得出的结果是<code>yinObj</code>。可以得出结果<code>隐式绑定&gt;默认绑定</code>。</p>
+<h3 id="new-绑定与显示绑定"><a href="#new-绑定与显示绑定" class="headerlink" title="new 绑定与显示绑定"></a><code>new 绑定</code>与<code>显示绑定</code></h3><p>我们通过代码看<code>new 绑定</code>与<code>显示绑定</code>他们之间的优先级。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> bound = foo.bind(obj1);</span><br><span class="line"><span class="comment">// 返回一个新函数bound，这个新函数内的this指向了obj1</span></span><br><span class="line">bar(<span class="string">'bind name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj1.name); <span class="comment">// bind name</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newObject = <span class="keyword">new</span> bar(<span class="string">'new Name'</span>);</span><br><span class="line"><span class="comment">// 调用new 操作符后，bar函数的this指向了返回的新实例baz</span></span><br><span class="line">newObject.name; <span class="comment">// new Name</span></span><br><span class="line">obj1.name; <span class="comment">// bind name</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>JavaScript</code>内部，会判断硬绑定函数是否是被 <code>new</code> 调用，如果是的话就会使用新创建的 <code>this</code> 替换硬绑定的 <code>this</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>this</code>在<code>创建阶段</code>被创建(确定默认值)，但是在<code>执行阶段</code>会改变<code>this</code>的值。所以一般我们都会说<code>确定this</code>是在<code>执行阶段</code>。</p>
+<p>在本篇文章中我们知道了多种绑定方式如下：</p>
+<ul>
+<li><strong>默认绑定</strong>：多种绑定方式<strong>全局调用函数</strong>、<strong>IIFE(自执行函数)</strong>、<strong>匿名函数</strong></li>
+<li><strong>显示绑定</strong>：可以通过<code>call</code>、<code>apply</code>、<code>bind</code>来显示改变<code>this</code>绑定。</li>
+<li><strong>隐式绑定</strong>：通过<strong>赋值的方式</strong>实现隐式绑定。但是很容易丢失。</li>
+<li><strong>bind、call、apply 绑定</strong>：和显示绑定相同。</li>
+<li><strong>new 绑定、Object.create()绑定</strong>：和显示绑定相同。</li>
+<li><strong>箭头函数</strong>: <code>ES6</code>的实现，它本身没有<code>this</code>，它的<code>this</code>从<strong>外层普通函数</strong>或者<strong>全局</strong>获取。</li>
+</ul>
+<p>多种绑定方式的优先级：<code>new 绑定 &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</code></p>
+<p>下一篇文章我们自己来实现多种绑定放法。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mp.weixin.qq.com/s/LCdthN5snKZvh_5lFDIU3g" target="_blank" rel="noopener">如何理解 javascript 中 this 的绑定？</a><br><a href="https://muyiy.cn/blog/3/3.1.html#_1-%E8%B0%83%E7%94%A8%E4%BD%8D%E7%BD%AE" target="_blank" rel="noopener">JavaScript 深入之史上最全–5 种 this 绑定全面解析</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/This/" rel="tag"><i class="fa fa-tag"></i> This</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/javascript/this/javascript-this-one.html" rel="next" title="JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？">
+                <i class="fa fa-chevron-left"></i> JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/javascript/this/javascript-this-three.html" rel="prev" title="JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等">
+                JavaScript中的this（三）自己实现绑定相关方法bind、call、apply、new、Object.create等等 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多种绑定this方式"><span class="nav-number">2.</span> <span class="nav-text">多种绑定this方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认绑定"><span class="nav-number">2.1.</span> <span class="nav-text">默认绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式绑定"><span class="nav-number">2.2.</span> <span class="nav-text">隐式绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示绑定"><span class="nav-number">2.3.</span> <span class="nav-text">显示绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-绑定、Object-create-绑定"><span class="nav-number">2.4.</span> <span class="nav-text">new 绑定、Object.create()绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">2.5.</span> <span class="nav-text">箭头函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new-注意事项"><span class="nav-number">3.1.</span> <span class="nav-text">new 注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-call、bind-注意事项"><span class="nav-number">3.2.</span> <span class="nav-text">bind/call、bind 注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软绑定"><span class="nav-number">3.3.</span> <span class="nav-text">软绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定优先级"><span class="nav-number">4.</span> <span class="nav-text">绑定优先级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示绑定与隐式绑定"><span class="nav-number">4.1.</span> <span class="nav-text">显示绑定与隐式绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认绑定与隐式绑定"><span class="nav-number">4.2.</span> <span class="nav-text">默认绑定与隐式绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-绑定与显示绑定"><span class="nav-number">4.3.</span> <span class="nav-text">new 绑定与显示绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共216.6k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>

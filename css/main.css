@@ -307,6 +307,10 @@ blockquote {
   padding: 0 15px;
   color: #666;
   border-left: 4px solid #ff502c;
+  background-color: #fff6f4;
+}
+blockquote code {
+  background-color: transparent;
 }
 blockquote cite::before {
   content: "-";
@@ -496,7 +500,8 @@ p code {
   color: #ff502c;
 }
 li code {
-  color: #749cf9;
+  background-color: #f7f7f7;
+  color: #ff502c;
 }
 pre code {
   padding: 0;
@@ -1154,19 +1159,6 @@ pre .javascript .function {
     text-align: justify;
   }
 }
-.posts-expand .post-body > p {
-  text-indent: 20px;
-}
-.posts-expand .post-body td > code {
-  color: #ff502c;
-}
-.posts-expand .post-body h2 {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ff502c;
-  text-align: center;
-  color: #ff502c;
-}
 .posts-expand .post-body h2,
 .posts-expand .post-body h3,
 .posts-expand .post-body h4,
@@ -1198,6 +1190,22 @@ pre .javascript .function {
 .posts-expand .post-body h5:hover .header-anchor,
 .posts-expand .post-body h6:hover .header-anchor {
   visibility: visible;
+}
+.posts-expand .post-body td > code {
+  color: #ff502c;
+}
+.posts-expand .post-body h2 {
+  margin-bottom: 10px;
+  padding: 2px 0 2px 6px;
+  background-color: #ff502c;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+.posts-expand .post-body h3 {
+  margin-bottom: 10px;
+  padding: 2px 0 2px 6px;
+  border-bottom: 2px solid #ff502c;
+  color: #ff502c;
 }
 .posts-expand .post-body ul li {
   list-style: circle;
@@ -1706,7 +1714,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff33e5;
+  background: #4104d4;
 }
 .links-of-blogroll {
   font-size: 13px;

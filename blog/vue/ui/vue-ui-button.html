@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Ui框架,">
+  <meta name="keywords" content="Vue,HP,">
 
 
 
@@ -116,17 +116,19 @@
 
 
 <meta name="description" content="在日常开发中会用到很多Ui框架，本系列文章会从简单到复杂实现一套自己Ui框架。本篇文章中从0开始手写一个Ui框架级别的Button按钮组件。">
-<meta name="keywords" content="Ui框架">
+<meta name="keywords" content="Vue,HP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue-Ui框架 手写实现一个Ui框架级别的 Button组件(初级难度)">
 <meta property="og:url" content="http://asyncnode.com/blog/vue/ui/vue-ui-button.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="在日常开发中会用到很多Ui框架，本系列文章会从简单到复杂实现一套自己Ui框架。本篇文章中从0开始手写一个Ui框架级别的Button按钮组件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-10T01:39:17.927Z">
+<meta property="og:image" content="http://asyncnode.com/images/vue-ui/button-1.png">
+<meta property="og:updated_time" content="2020-06-01T00:18:43.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue-Ui框架 手写实现一个Ui框架级别的 Button组件(初级难度)">
 <meta name="twitter:description" content="在日常开发中会用到很多Ui框架，本系列文章会从简单到复杂实现一套自己Ui框架。本篇文章中从0开始手写一个Ui框架级别的Button按钮组件。">
+<meta name="twitter:image" content="http://asyncnode.com/images/vue-ui/button-1.png">
 
 
 
@@ -384,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/HP/" itemprop="url" rel="index">
+                    <span itemprop="name">HP</span>
                   </a>
                 </span>
 
@@ -395,8 +397,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/Ui框架/" itemprop="url" rel="index">
-                    <span itemprop="name">Ui框架</span>
+                  <a href="/categories/HP/未完成/" itemprop="url" rel="index">
+                    <span itemprop="name">未完成</span>
                   </a>
                 </span>
 
@@ -444,8 +446,8 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>我们开始只关注组件的功能实现，不考虑css分装、webpack配置、整体结构设计、单元测试等等，因为在后面会一步一步完善。让大家一起进步，实现一套简单的组件库。</p>
-<p><code>Button</code>组件也是经常用到的，首先我么也要了解<code>Button</code>都有什么功能，一样的可以参考<code>element/iview</code>中<code>button</code>功能。再结合我们的业务场景定制一些，适合自己项目的通用组件库。最后我们会把写好的UI框架库发布到npm中。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>我们开始只关注组件的功能实现，不考虑 css 分装、webpack 配置、整体结构设计、单元测试等等，因为在后面会一步一步完善。让大家一起进步，实现一套简单的组件库。</p>
+<p><code>Button</code>组件也是经常用到的，首先我么也要了解<code>Button</code>都有什么功能，一样的可以参考<code>element/iview</code>中<code>button</code>功能。再结合我们的业务场景定制一些，适合自己项目的通用组件库。最后我们会把写好的 UI 框架库发布到 npm 中。</p>
 <p>本组件的开发步骤和前面<a href="/blog/vue/ui/vue-ui-breadcrumb.html">breadcrumb</a>基本上一至，因为它们都是比较简单的组件，不需要分成多个模块来编写。大致步骤如下：</p>
 <ol>
 <li>分析<code>button</code>组件功能</li>
@@ -453,11 +455,14 @@
 <li>测试组件效果，(编写单元测试)</li>
 </ol>
 <h2 id="分析组件功能"><a href="#分析组件功能" class="headerlink" title="分析组件功能"></a>分析组件功能</h2><p>首先要明确的了解要写的<code>button</code>组件要包含哪些功能，这样更有利于组件整体的构思和实现。如下图所示：</p>
+<p><img src="../../../images/vue-ui/button-1.png" alt="button"></p>
 <h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>在很多<code>ui框架</code>中可以看到它们的<code>button</code>都是有(状态/类型)的，结合自己使用的场景大致分为<code>defalut</code>、<code>primary</code>、<code>success</code>、<code>warning</code>、<code>info</code>、<code>error</code>这个都可以通过通过一个<code>type</code>传入我们的<code>button</code>组件以切换我们组件的状态。</p>
 <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>同时有不同类型的按钮类型比如<code>dashed</code>、<code>ghost</code>、<code>text</code>、<code>icon</code>、<code>round</code>、<code>circle</code>、<code>loading</code>、<code>disabled</code>类型。</p>
 <h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p>支持设置大小<code>lg</code>、<code>md</code>、<code>sm</code>、<code>xs</code></p>
 <h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h3><p>支持路由跳转<code>to</code>,支持<code>replace</code>跳转,支持自动获取原生<code>type</code>属性，同时支持<code>icon</code>传入和自定义<code>icon</code>图标。下面我们就根据上面的的计划一步一步实现功能。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2>
+<p>支持设置<code>html标签</code>为<code>a</code>标签。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>首先实现简单的<code>type类型</code></p>
+
       
     </div>
 
@@ -486,7 +491,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ui框架/" rel="tag"><i class="fa fa-tag"></i> Ui框架</a>
+            <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+          
+            <a href="/tags/HP/" rel="tag"><i class="fa fa-tag"></i> HP</a>
           
         </div>
       
@@ -604,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">216</span>
+                <span class="site-state-item-count">191</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -615,7 +622,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -626,7 +633,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -734,7 +741,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共227.9k字</span>
+  <span class="post-count">博客全站共216.6k字</span>
 </div> -->
 
         

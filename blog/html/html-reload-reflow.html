@@ -133,7 +133,7 @@
 <meta property="og:image" content="http://asyncnode.com/images/html/images/reflow-repaint-1-8.png">
 <meta property="og:image" content="http://asyncnode.com/images/html/images/reflow-repaint-1-9.png">
 <meta property="og:image" content="http://asyncnode.com/images/html/images/reflow-repaint-1-10.png">
-<meta property="og:updated_time" content="2019-10-24T05:12:36.945Z">
+<meta property="og:updated_time" content="2020-06-01T00:18:43.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解">
 <meta name="twitter:description" content="在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。">
@@ -446,7 +446,13 @@
       
         <p><strong><em>知足则不辱，知止则不殆。——老子</em></strong></p>
 <blockquote>
-<p><a href="/blog/html/html-browser-render.html">浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么</a><br><a href="/blog/html/html-style-javascript.html">浏览器渲染原理 （二）css、javascript、dom 阻塞关系</a><br><a href="/blog/html/html-reload-reflow.html">浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解</a></p>
+<p><a href="/blog/html/html-browser-render.html">浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么</a></p>
+</blockquote>
+<blockquote>
+<p><a href="/blog/html/html-style-javascript.html">浏览器渲染原理 （二）css、javascript、dom 阻塞关系</a></p>
+</blockquote>
+<blockquote>
+<p><a href="/blog/html/html-reload-reflow.html">浏览器渲染原理 （三） repaint(重绘)和 reflow(回流)详解</a></p>
 </blockquote>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
 <p>大多数设备的刷新频率是<strong>60Hz</strong>，也就说是浏览器对每一帧画面的渲染工作要在 <strong>16ms</strong> 内完成,超出这个时间，页面的渲染就会出现<strong>卡顿</strong>现象，影响用户体验。<br><strong>repaint(重绘)</strong>和 <strong>reflow(回流)</strong>发生在什么渲染的那个阶段，我们要了解什么叫做 <strong>repaint(重绘)</strong>和 <strong>reflow(回流)</strong>.</p>
@@ -518,13 +524,19 @@
 <h4 id="避免使用运行时间过长的输入事件处理函数"><a href="#避免使用运行时间过长的输入事件处理函数" class="headerlink" title="避免使用运行时间过长的输入事件处理函数"></a>避免使用运行时间过长的输入事件处理函数</h4><p>输入事件处理函数，比如 <code>scroll/touch 事件</code>的处理，都会在 <code>requestAnimationFrame</code> 之前被调用执行。<br>因此，如果你在上述输入事件的处理函数中做了<strong>修改样式属性</strong>的操作，那么这些操作就会被浏览器<strong>暂存</strong>起来，然后在调用 <code>requestAnimationFrame</code> 的时候，如果你在一开始就做了<strong>读取样式属性</strong>的操作，那么将会触发浏览器的强制同步布局操作。</p>
 <p><img src="../../images/html/images/reflow-repaint-1-7.png" alt="去抖"></p>
 <h4 id="对滚动事件处理函数去抖动"><a href="#对滚动事件处理函数去抖动" class="headerlink" title="对滚动事件处理函数去抖动"></a>对滚动事件处理函数去抖动</h4><p>通过 requestAnimationFrame 可以对样式修改操作去抖动，同时也可以使你的事件处理函数变得更轻</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScroll</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Store the scroll value for laterz.</span></span><br><span class="line">  lastScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prevent multiple rAF callbacks.</span></span><br><span class="line">  <span class="keyword">if</span> (scheduledAnimationFrame) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  scheduledAnimationFrame = <span class="literal">true</span>;</span><br><span class="line">  requestAnimationFrame(readAndUpdatePage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"scroll"</span>, onScroll);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScroll</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Store the scroll value for laterz.</span></span><br><span class="line">  lastScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prevent multiple rAF callbacks.</span></span><br><span class="line">  <span class="keyword">if</span> (scheduledAnimationFrame) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  scheduledAnimationFrame = <span class="literal">true</span>;</span><br><span class="line">  requestAnimationFrame(readAndUpdatePage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, onScroll);</span><br></pre></td></tr></table></figure>
 <h3 id="chrome-分析结合"><a href="#chrome-分析结合" class="headerlink" title="chrome 分析结合"></a>chrome 分析结合</h3><p>使用 Chrome DevTools 来了解页面的渲染层情况</p>
 <h4 id="Chrome-DevTools-gt-Preformance"><a href="#Chrome-DevTools-gt-Preformance" class="headerlink" title="Chrome DevTools &gt; Preformance"></a>Chrome DevTools &gt; Preformance</h4><p>通过 Chrome DevTools 的 Preformance 来录制一段操作，并且开启 More tools 的 Layers、Rendering 功能，如果下图所示:<br><img src="../../images/html/images/reflow-repaint-1-8.png" alt="Chrome DevTools"><br><img src="../../images/html/images/reflow-repaint-1-9.png" alt="Chrome DevTools"></p>
 <h4 id="借助-Chrome-暴露在-window-上的-preformance-对象"><a href="#借助-Chrome-暴露在-window-上的-preformance-对象" class="headerlink" title="借助 Chrome 暴露在 window 上的 preformance 对象"></a>借助 Chrome 暴露在 window 上的 preformance 对象</h4><p>可以用 preformance 对象来做一些前端的性能分析和统计，如下图所示：<br><img src="../../images/html/images/reflow-repaint-1-10.png" alt="Chrome DevTools"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这个上面了解了 reflow、repaint 的流程和他的触发条件，再后面也有一部分怎么优化性能，结合前面的渲染流程大致知道优化的是那部分的流程。当然在优化性能的时候，一定要结合 chrome 的性能分析功能。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="noopener">深度剖析浏览器渲染性能原理，你到底知道多少？</a><br><a href="https://www.cnblogs.com/dll-ft/p/5810639.html" target="_blank" rel="noopener">回流(reflow)与重绘(repaint)</a><br><a href="https://www.cnblogs.com/goloving/p/7545954.html" target="_blank" rel="noopener">高性能 WEB 开发：深入理解页面呈现、重绘、回流</a></p>
+<p><a href="https://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="noopener">深度剖析浏览器渲染性能原理，你到底知道多少？</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/dll-ft/p/5810639.html" target="_blank" rel="noopener">回流(reflow)与重绘(repaint)</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/goloving/p/7545954.html" target="_blank" rel="noopener">高性能 WEB 开发：深入理解页面呈现、重绘、回流</a></p>
 </blockquote>
 
       
@@ -578,7 +590,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/algorithm/algorithm-awaly-flatten.html" rel="prev" title="JavaScript实现flatten多种方法">
+              <a href="/blog/algorithm/other/algorithm-other-flatten.html" rel="prev" title="JavaScript实现flatten多种方法">
                 JavaScript实现flatten多种方法 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -673,7 +685,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">216</span>
+                <span class="site-state-item-count">191</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -684,7 +696,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -695,7 +707,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -803,7 +815,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共227.9k字</span>
+  <span class="post-count">博客全站共216.6k字</span>
 </div> -->
 
         

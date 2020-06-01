@@ -1,0 +1,1507 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="React,HOC,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="在react中高阶组件是为了解决什么问题而产生，并且会产生什么问题">
+<meta name="keywords" content="React,HOC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react中的高阶组件(hoc)浅析">
+<meta property="og:url" content="http://asyncnode.com/blog/react/optimization/react-hoc.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="在react中高阶组件是为了解决什么问题而产生，并且会产生什么问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-hoc-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-hoc-1-2.png">
+<meta property="og:updated_time" content="2020-06-01T00:18:43.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react中的高阶组件(hoc)浅析">
+<meta name="twitter:description" content="在react中高阶组件是为了解决什么问题而产生，并且会产生什么问题">
+<meta name="twitter:image" content="http://asyncnode.com/blog/images/react/react-hoc-1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/react/optimization/react-hoc.html">
+
+
+
+
+
+  <title>react中的高阶组件(hoc)浅析 | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/react/optimization/react-hoc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react中的高阶组件(hoc)浅析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T10:36:56+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/react/optimization/react-hoc.html" class="leancloud_visitors" data-flag-title="react中的高阶组件(hoc)浅析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在react中高阶组件是为了解决什么问题而产生，并且会产生什么问题
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="/blog/react/react-hoc.html">react 的高阶组件浅析</a><br><a href="/blog/react/react-hooks.html">react 中 Hooks 浅析</a><br><a href="/blog/react/react-mixins-hoc-hooks.html">react 的 mixins、hoc、hooks 对比</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
+</blockquote>
+<p>高阶组件可以看作 React 对装饰模式的一种实现，<strong>高阶组件就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件</strong>。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> EnhancedComponent = higherOrderComponent(WrappedComponent);</span><br></pre></td></tr></table></figure>
+<p>可以从下面几个方面探索 HOC。<br><img src="../../images/react/react-hoc-1-1.png" alt="reac-hoc"></p>
+<p><strong>HOC 的实现方式</strong></p>
+<ul>
+<li>属性代理</li>
+<li>反向继承</li>
+</ul>
+<p><strong>高阶组件的使用场景</strong></p>
+<ul>
+<li>操作 props(属性)</li>
+<li>通过 Refs 访问到组件实例</li>
+<li>组件状态提升</li>
+<li>操作 state</li>
+<li>渲染劫持</li>
+<li>用其他元素包裹 WrappedComponent</li>
+</ul>
+<h2 id="HOC-的实现方式"><a href="#HOC-的实现方式" class="headerlink" title="HOC 的实现方式"></a>HOC 的实现方式</h2><p><font color="#ff502c"></font><br><code>React</code> 中实现 <code>HOC</code> 的两种主要方式：<code>Props Proxy</code>(属性代理)（PP）和 <code>Inheritance Inversion</code>(反向继承)(II) 。 两者都支持不同的方式来操作 <strong>WrappedComponent</strong> 。</p>
+<p>这里不会详细介绍生命周期方法来做什么，因为它不是 <code>HOC</code> 的特性，而是 <code>React</code> 的特性。 但请注意，使用 <code>Inheritance Inversion(反向继承)</code>，您可以为 <code>WrappedComponent</code> 创建新的生命周期方法。 记得总是这样调用 <code>super[lifecycleHook]</code> ，这样就不会破坏 <code>WrappedComponent</code> 。</p>
+<h3 id="属性代理-Props-Proxy"><a href="#属性代理-Props-Proxy" class="headerlink" title="属性代理 Props Proxy"></a>属性代理 Props Proxy</h3><p>Props Proxy(属性代理)(PP) 以下列方式实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里的重要部分是 HOC 得 render 方法<strong>返回</strong>WrappedComponent 类型的 React 元素。我们还通过 HOC 接收到得<code>props</code>(属性)，这就是名字<code>Props Proxy</code>的由来。</p>
+<p>对比原生组件增强的项：</p>
+<ul>
+<li>操作 props</li>
+<li>可操作组件的生命周期</li>
+<li>通过 Refs 访问到组件实例</li>
+<li>用其他元素包裹 WrappedComponent</li>
+<li>提取 state(状态)</li>
+</ul>
+<h3 id="Inheritance-Inversion-反向继承"><a href="#Inheritance-Inversion-反向继承" class="headerlink" title="Inheritance Inversion(反向继承)"></a>Inheritance Inversion(反向继承)</h3><p>Inheritance Inversion(反向继承)(II) 通过以下方式实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iiHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">Enhancer</span> <span class="keyword">extends</span> <span class="title">WrappedComponent</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">super</span>.render();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的 HOC 类<font color="#ff502c">Enhancer</font> <strong>继承（extends）了</strong>WrappedComponent。它被成为<font color="#ff502c">Inheritance Inversion(反向继承)</font>，因为它不是用 WrappedComponent 来继承某些<font color="#ff502c">Enhancer</font>类。而是被<font color="#ff502c">Enhancer</font>被动继承。通过这种方式，他们之间的关系似乎是<strong>反向（inverse）</strong>。</p>
+<p><font color="#ff502c">反向继承</font>允许 <font color="#ff502c">HOC</font> 通过 <font color="#ff502c">this</font> 访问 <font color="#ff502c">WrappedComponent</font> 实例，这意味着它可以访问 <font color="#ff502c">state(状态)</font>，<font color="#ff502c">props(属性)</font>，<font color="#ff502c">组件生命周期方法</font>和 <font color="#ff502c">render</font> 方法。<br>对比原生组件增强的项：</p>
+<ul>
+<li>可操作所有传入的 props</li>
+<li>可操作组件的生命周期</li>
+<li>获取 refs</li>
+<li>可操作 state</li>
+<li>可以渲染劫持</li>
+</ul>
+<h2 id="高阶组件的使用场景"><a href="#高阶组件的使用场景" class="headerlink" title="高阶组件的使用场景"></a>高阶组件的使用场景</h2><hr>
+
+<h3 id="操作-props-属性"><a href="#操作-props-属性" class="headerlink" title="操作 props(属性)"></a>操作 props(属性)</h3><blockquote>
+<p>通过属性代理实现</p>
+</blockquote>
+<p>你可以<code>读取、添加、编辑、删除</code>传给 <code>WrappedComponent</code> 的 <code>props(属性)</code>。在<code>删除或编辑</code>重要的 <code>props(属性)</code> 时要小心，你应该通过命名空间确保高阶组件的 <code>props</code> 不会破坏 <code>WrappedComponent</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> newProps = &#123;</span><br><span class="line">        ...this.props,</span><br><span class="line">        userName: <span class="string">'asyncnode'</span></span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...newProps</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过-Refs-访问到组件实例"><a href="#通过-Refs-访问到组件实例" class="headerlink" title="通过 Refs 访问到组件实例"></a>通过 Refs 访问到组件实例</h3><p><code>高阶组件</code>中可获取原组件的<code>ref</code>，通过<code>ref</code>获取组件<code>实例</code>，如下面的代码，当程序初始化完成后调用原组件的 log 方法。</p>
+<blockquote>
+<p>通过属性代理实现</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">refHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">RefsHoC</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.wrapperRef.log();</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;WrappedComponent</span><br><span class="line">          &#123;...this.props&#125;</span><br><span class="line">          ref=&#123;(ref) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>.wrapperRef = ref;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用高阶组件的时候并不能获取到原组件的真实 ref，需要手动进行传递，<a href="https://zh-hans.reactjs.org/docs/forwarding-refs.html#forwarding-refs-to-dom-components" target="_blank" rel="noopener">详情请看</a></p>
+<h3 id="组件状态提升"><a href="#组件状态提升" class="headerlink" title="组件状态提升"></a>组件状态提升</h3><p>将原组件的状态提取到<code>HOC</code>中进行管理，如下面的代码，我们将<code>Input</code>的<code>value</code>提取到<code>HOC</code>中进行管理，使它变成受控组件，同时不影响它使用<code>onChange</code>方法进行一些其他操作。基于这种方式，我们可以实现一个简单的<code>双向绑定</code>。</p>
+<blockquote>
+<p>通过属性代理实现</p>
+</blockquote>
+<p>示例：在以下提取 state(状态)示例中，我们非常规的提取 name 输入字段的值和 onChange 处理程序。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        value: <span class="string">''</span></span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.onChange = <span class="keyword">this</span>.onChange.bind(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    onChange(event) &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; onChange &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">      <span class="keyword">this</span>.setState(</span><br><span class="line">        &#123;</span><br><span class="line">          name: event.target.value</span><br><span class="line">        &#125;,</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> onChange === <span class="string">'function'</span>) &#123;</span><br><span class="line">            onChange(event);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; value &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">      <span class="keyword">const</span> newProps = &#123;</span><br><span class="line">        value: name,</span><br><span class="line">        onChange: <span class="keyword">this</span>.onChange</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; &#123;<span class="attr">...newProps</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以像这样使用它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@ppHOC <span class="comment">//装饰器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="操作-state"><a href="#操作-state" class="headerlink" title="操作 state"></a>操作 state</h3><p><code>HOC</code>可以读取，编辑和删除 <code>WrappedComponent</code> 实例的状态，如果需要，还可以添加更多的 <code>state(状态)</code>。 请记住，您正在弄乱 <code>WrappedComponent</code> 的 <code>state(状态)</code>，这会导致您破坏一些东西。 大多数情况下，<code>HOC</code> 应限于读取或添加 <code>state(状态)</code> ，而添加 <code>state(状态)</code> 时应该被命名为不会弄乱 <code>WrappedComponent</code> 的 <code>state(状态)</code>。</p>
+<blockquote>
+<p>通过反向继承实现</p>
+</blockquote>
+<p>示例：通过访问 <code>WrappedComponent</code> 的 <code>props(属性)</code> 和 <code>state(状态)</code> 进行调试</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">IIHOCDEBUGGER</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">II</span> <span class="keyword">extends</span> <span class="title">WrappedComponent</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;h2&gt;HOC Debugger Component&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">          &lt;p&gt;Props&lt;/</span>p&gt; <span class="xml"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>&#123;JSON.stringify(this.props, null, 2)&#125;<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span></span><br><span class="line">          &lt;p&gt;State&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">          &lt;pre&gt;&#123;JSON.stringify(this.state, null, 2)&#125;&lt;/</span>pre&gt;</span><br><span class="line">          &#123;<span class="keyword">super</span>.render()&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这个 <code>HOC</code> 用其他元素包裹着 <code>WrappedComponent</code> ，并且还显示了 <code>WrappedComponent</code> 的实例 <code>props(属性)</code> 和 <code>state(状态)</code> 。</p>
+<h3 id="渲染劫持-Render-Highjacking"><a href="#渲染劫持-Render-Highjacking" class="headerlink" title="渲染劫持(Render Highjacking)"></a>渲染劫持(Render Highjacking)</h3><blockquote>
+<p>通过反向继承实现</p>
+</blockquote>
+<p>它被称为 渲染劫持(Render Highjacking)，因为 HOC 控制了 WrappedComponent 的渲染输出，并且可以用它做各种各样的事情。<br>在渲染劫持中，您可以：state(状态)，props(属性)</p>
+<ul>
+<li>读取，添加，编辑，删除渲染输出的任何 React 元素中的 props(属性)</li>
+<li>读取并修改 render 输出的 React 元素树</li>
+<li>有条件地渲染元素树</li>
+<li>把样式包裹进元素树（就像在 Props Proxy(属性代理) 中的那样）<br>注：render 是指 WrappedComponent.render 方法<br>通过<strong>渲染劫持</strong>可以做到<strong>组合渲染</strong>和<strong>条件渲染</strong>.<br>示例 1：<strong>条件渲染</strong>。除非 <code>this.props.loggedIn</code> 不为 <code>true</code> ，否则此 <code>HOC</code> 将准确渲染 <code>WrappedComponent</code> 将渲染的内容。（假设 HOC 将收到 loggedIn props(属性)）.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过反向继承实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iiHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">Enhancer</span> <span class="keyword">extends</span> <span class="title">WrappedComponent</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.props.loggedIn) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.render();</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 通过属性代理实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.props.loggedIn) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">      &#125; else &#123;</span></span><br><span class="line"><span class="xml">        return null;</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>示例 2：<strong>组合渲染</strong>。 新增一个 title。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过反向继承实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iiHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">Enhancer</span> <span class="keyword">extends</span> <span class="title">WrappedComponent</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;div className=<span class="string">'title'</span>&gt;&#123;<span class="keyword">this</span>.props.title&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &#123;super.render()&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>React.Fragment&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 通过属性代理实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;div className=<span class="string">'title'</span>&gt;&#123;<span class="keyword">this</span>.props.title&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;WrappedComponent &#123;...this.props&#125; /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/React.Fragment&gt;;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在 <code>Props Proxy</code>(属性代理) 类型的高阶函数中做不到渲染劫持。</p>
+</blockquote>
+<p>虽然可以通过 <code>WrappedComponent.prototype.render</code> 访问 <code>render</code> 方法，但是您需要模拟 <code>WrappedComponent</code> 实例及其 <code>props</code>(属性)，并且可能需要自己处理组件生命周期，而不是依赖 <code>React</code> 执行它。 在我的实验中不值得这么做，如果你想做渲染劫持(<code>Render Highjacking</code>)，你应该使用 <code>Inheritance Inversion</code>(反向继承) 而不是 <code>Props Proxy</code>(属性代理)。 请记住，React 在内部处理组件实例，而处理实例的唯一方法是通过 this 或 refs 。</p>
+<h3 id="用其他元素包裹-WrappedComponent"><a href="#用其他元素包裹-WrappedComponent" class="headerlink" title="用其他元素包裹 WrappedComponent"></a>用其他元素包裹 WrappedComponent</h3><blockquote>
+<p>通过属性代理实现</p>
+</blockquote>
+<p>可以将 WrappedComponent 与其他组件和元素包装在一起，以用于样式，布局或其他目的。 一些基本用法可以通过常规父组件来完成.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ppHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PP</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div style=&#123;&#123; <span class="attr">display</span>: <span class="string">'block'</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;WrappedComponent &#123;...this.props&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><p>使用 <code>HOC</code> 包裹组件时，会丢失原始 <code>WrappedComponent</code> 的名称，这可能会在开发和调试时影响到您。人们通常做的是通过获取 <code>WrappedComponent</code> 的名称并预先添加某些内容来自定义 <code>HOC</code> 的名称。 以下内容摘自 <code>React-Redux</code> 。用 <code>HOC</code> 包裹了一个组件会使它失去原本 <code>WrappedComponent</code> 的名字，可能会影响开发和调试。通常会用 <code>WrappedComponent</code> 的名字加上一些 前缀作为 HOC 的名字。下面的代码来自 React-Redux:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDisplayName</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> WrappedComponent.displayName || WrappedComponent.name || <span class="string">'Component'</span>;</span><br><span class="line">&#125;</span><br><span class="line">HOC.displayName = <span class="string">`HOC(<span class="subst">$&#123;getDisplayName(WrappedComponent)&#125;</span>)`</span></span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HOC</span> <span class="keyword">extends</span> ... </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> displayName = <span class="string">`HOC(<span class="subst">$&#123;getDisplayName(WrappedComponent)&#125;</span>)`</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何使用-HOC"><a href="#如何使用-HOC" class="headerlink" title="如何使用 HOC"></a>如何使用 HOC</h2><p>上面的示例代码都写的是如何声明一个<code>HOC</code>，<code>HOC</code>实际上是一个函数，所以我们将要增强的组件作为参数调用<code>HOC</code>函数，得到增强后的组件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>原组件<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> inheritHOC(myComponent);</span><br></pre></td></tr></table></figure>
+<h3 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h3><p>假设现在我们有 logger，visible，style 等多个 HOC，现在要同时增强一个 Input 组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger(visible(style(Input)));</span><br></pre></td></tr></table></figure>
+<p>这种代码非常的难以阅读，我们可以手动封装一个简单的函数组合工具，将写法改写如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compose = <span class="function">(<span class="params">...fns</span>) =&gt;</span> fns.reduce(<span class="function">(<span class="params">f, g</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> g(f(...args)));</span><br><span class="line">compose(logger, visible, style)(Input);</span><br></pre></td></tr></table></figure>
+<p><code>compose</code>函数返回一个所有函数组合后的函数，<code>compose(f, g, h)</code> 和 <code>(...args) =&gt; f(g(h(...args)))</code>是一样的。<br>很多第三方库都提供了类似<code>compose</code>的函数，例如<code>lodash.flowRight</code>，<code>Redux</code>提供的<code>combineReducers</code>函数等。</p>
+<h3 id="Decorators"><a href="#Decorators" class="headerlink" title="Decorators"></a>Decorators</h3><p>我们还可以借助 ES7 为我们提供的 Decorators 来让我们的写法变的更加优雅：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@logger</span><br><span class="line">@visible</span><br><span class="line">@style</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Input</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Decorators</code>是<code>ES7</code>的一个提案，还没有被标准化，但目前<code>Babel</code>转码器已经支持，我们需要提前配置<code>babel-plugin-transform-decorators-legacy</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"plugins"</span>: [<span class="string">"transform-decorators-legacy"</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="HOC-的实际应用"><a href="#HOC-的实际应用" class="headerlink" title="HOC 的实际应用"></a>HOC 的实际应用</h2><p>多个组件拥有类似的逻辑，我们要对重复的逻辑进行复用， 官方文档中<a href="https://zh-hans.reactjs.org/docs/higher-order-components.html" target="_blank" rel="noopener">CommentList</a>的示例也是解决了代码复用问题。</p>
+<h3 id="日志打点"><a href="#日志打点" class="headerlink" title="日志打点"></a>日志打点</h3><p>某些页面需要记录用户行为，性能指标等等，通过高阶组件做这些事情可以省去很多重复代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logHoc</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.start = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.end = <span class="built_in">Date</span>.now();</span><br><span class="line">      <span class="built_in">console</span>.log(</span><br><span class="line">        <span class="string">`<span class="subst">$&#123;WrappedComponent.dispalyName&#125;</span> 渲染时间：<span class="subst">$&#123;<span class="keyword">this</span>.end - <span class="keyword">this</span>.start&#125;</span> ms`</span></span><br><span class="line">      );</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;user&#125;</span>进入<span class="subst">$&#123;WrappedComponent.dispalyName&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    componentWillUnmount() &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;user&#125;</span>退出<span class="subst">$&#123;WrappedComponent.dispalyName&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="可用、权限控制"><a href="#可用、权限控制" class="headerlink" title="可用、权限控制"></a>可用、权限控制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; visible, auth, display = <span class="literal">null</span>, ...props &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">      <span class="keyword">if</span> (visible === <span class="literal">false</span> || (auth &amp;&amp; authList.indexOf(auth) === <span class="number">-1</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> display;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>authList</code>是我们在进入程序时向后端请求的所有权限列表，当组件所需要的权限不列表中，或者设置的 visible 是 false，我们将其显示为传入的组件样式，或者<code>null</code>。我们可以将任何需要进行权限校验的组件应用<code>HOC</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@auth</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Input</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  ...  &#125;</span><br><span class="line">@auth</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  ...  &#125;</span><br><span class="line"></span><br><span class="line">&lt;Button auth=<span class="string">"user/addUser"</span>&gt;添加用户&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">&lt;Input auth="user/</span>search<span class="string">" visible=&#123;false&#125; &gt;添加用户&lt;/Input&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h3><p>在<code>vue</code>中，绑定一个变量后可实现双向数据绑定，即表单中的值改变后绑定的变量也会自动改变。而<code>React</code>中没有做这样的处理，在默认情况下，表单元素都是非受控组件。给表单元素绑定一个状态后，往往需要手动书写<code>onChange</code>方法来将其改写为<strong>受控组件</strong>，在表单元素非常多的情况下这些重复操作是非常痛苦的。<br>我们可以借助高阶组件来实现一个简单的双向绑定，代码略长，可以结合下面的思维导图进行理解。<br><img src="../../images/react/react-hoc-1-2.png" alt="reac-hoc"><br>…代码未完成（后续补上）</p>
+<h3 id="表单校验"><a href="#表单校验" class="headerlink" title="表单校验"></a>表单校验</h3><p>基于上面的双向绑定的例子，我们再来一个表单验证器，表单验证器可以包含验证函数以及提示信息，当验证不通过时，展示错误信息：<br>…代码未完成（后续补上）</p>
+<h2 id="使用-HOC-的注意事项"><a href="#使用-HOC-的注意事项" class="headerlink" title="使用 HOC 的注意事项"></a>使用 HOC 的注意事项</h2><hr>
+
+<h3 id="静态属性拷贝"><a href="#静态属性拷贝" class="headerlink" title="静态属性拷贝"></a>静态属性拷贝</h3><p>当我们应用<code>HOC</code>去增强另一个组件时，我们实际使用的组件已经不是原组件了，所以我们拿不到原组件的任何静态属性，我们可以在<code>HOC</code>的结尾手动拷贝他们：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxyHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">HOCComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">  HOCComponent.staticMethod = WrappedComponent.staticMethod;</span></span><br><span class="line"><span class="xml">  // ...</span></span><br><span class="line"><span class="xml">  return HOCComponent;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果原组件有非常多的静态属性，这个过程是非常痛苦的，而且你需要去了解需要增强的所有组件的静态属性是什么，我们可以使用<code>hoist-non-react-statics</code>来帮助我们解决这个问题，它可以自动帮我们拷贝所有非 React 的静态方法，使用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hoistNonReactStatic <span class="keyword">from</span> <span class="string">'hoist-non-react-statics'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxyHOC</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">HOCComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">  hoistNonReactStatic(HOCComponent, WrappedComponent);</span></span><br><span class="line"><span class="xml">  return HOCComponent;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="传递-refs"><a href="#传递-refs" class="headerlink" title="传递 refs"></a>传递 refs</h3><p>使用高阶组件后，获取到的<code>ref</code>实际上是<code>最外层</code>的<code>容器组件</code>，而非<code>原组件</code>，但是很多情况下我们需要用到<code>原组件的ref</code>。<br>高阶组件并不能像透传 props 那样将 refs 透传，我们可以用一个回调函数来完成 ref 的传递：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hoc</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    getWrappedRef = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.wrappedRef;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;WrappedComponent</span><br><span class="line">          ref=&#123;(ref) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>.wrappedRef = ref;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">          &#123;...this.props&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">@hoc</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Input</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Input</span><br><span class="line">        ref=&#123;(ref) =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.inpitRef = ref.getWrappedRef();</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;<span class="xml"><span class="tag">&lt;/<span class="name">Input</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>React 16.3</code>版本提供了一个<code>forwardRef API</code>来帮助我们进行<code>refs</code>传递，这样我们在高阶组件上获取的<code>ref</code>就是原组件的 ref 了，而不需要再手动传递，如果你的<code>React</code>版本大于<code>16.3</code>，可以使用下面的方式:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hoc</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">HOC</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; forwardedRef, ...props &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">ref</span>=<span class="string">&#123;forwardedRef&#125;</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">  return React.forwardRef((props, ref) =&gt; &#123;</span></span><br><span class="line">    return &lt;HOC forwardedRef=&#123;ref&#125; &#123;...props&#125; /&gt;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="不要在-render-方法中使用-HOC"><a href="#不要在-render-方法中使用-HOC" class="headerlink" title="不要在 render 方法中使用 HOC"></a>不要在 render 方法中使用 HOC</h3><p>React Diff 算法的原则是：</p>
+<ul>
+<li>使用组件标识确定是卸载还是更新组件</li>
+<li>如果组件的和前一次渲染时标识是相同的，递归更新子组件</li>
+<li>如果标识不同卸载组件重新挂载新组件</li>
+</ul>
+<p>每次调用<strong>高阶组件</strong>生成的都是是一个<strong>全新</strong>的组件，组件的<strong>唯一标识</strong>响应的也会改变，如果在 render 方法调用了高阶组件，这会导致组件每次都会被<strong>卸载后重新挂载</strong>。</p>
+<h3 id="不要改变原始组件"><a href="#不要改变原始组件" class="headerlink" title="不要改变原始组件"></a>不要改变原始组件</h3><p>官方文档对高阶组件的说明：</p>
+<blockquote>
+<p>高阶组件就是一个没有副作用的纯函数。</p>
+</blockquote>
+<p>我们再来看看纯函数的定义：</p>
+<blockquote>
+<p>如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。 该函数不会产生任何可观察的副作用，例如网络请求，输入和输出设备或数据突变。</p>
+</blockquote>
+<p><strong>我们使用高阶组件是为了增强而非改变原组件</strong>。</p>
+<h3 id="透传不相关的-props"><a href="#透传不相关的-props" class="headerlink" title="透传不相关的 props"></a>透传不相关的 props</h3><p>使用高阶组件，我们可以代理所有的<code>props</code>，但往往特定的 HOC 只会用到其中的一个或几个<code>props</code>。我们需要把其他不相关的<code>props</code>透传给原组件，如下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">visible</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; visible, ...props &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">      <span class="keyword">if</span> (visible === <span class="literal">false</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们只使用<code>visible</code>属性来控制组件的显示可隐藏，把其他<code>props</code>。</p>
+<h2 id="HOC-的缺陷"><a href="#HOC-的缺陷" class="headerlink" title="HOC 的缺陷"></a>HOC 的缺陷</h2><ul>
+<li><code>HOC</code>需要在原组件上进行包裹或者嵌套，如果大量使用<code>HOC</code>，将会产生非常多的嵌套，这让调试变得非常困难。</li>
+<li><code>HOC</code>可以劫持<code>props</code>，在不遵守约定的情况下也可能造成冲突。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>HOC 相对于 Mixins 的好处</strong>：</p>
+<ul>
+<li><strong>高阶组件就是一个没有副作用的纯函数，各个高阶组件不会互相依赖耦合</strong></li>
+<li><strong>高阶组件也有可能造成冲突，但我们可以在遵守约定的情况下避免这些行为</strong></li>
+<li><strong>高阶组件并不关心数据使用的方式和原因，而被包裹的组件也不关心数据来自何处。高阶组件的增加不会为原组件增加负担</strong></li>
+</ul>
+<p><strong>HOC 实现方式有两种</strong>：</p>
+<ul>
+<li><strong>通过属性代理实现</strong></li>
+<li><strong>通过反向继承实现</strong></li>
+</ul>
+<p><strong>高阶组件的使用场景</strong>:</p>
+<ul>
+<li><strong>操作 props(属性)(通过属性代理实现、通过反向继承实现)</strong></li>
+<li><strong>通过 Refs 访问到组件实例 （通过属性代理实现）</strong></li>
+<li><strong>组件状态提升（通过属性代理实现）</strong></li>
+<li><strong>操作 state （通过反向继承实现）</strong></li>
+<li><strong>渲染劫持（通过属性代理实现、通过反向继承实现）</strong></li>
+<li><strong>用其他元素包裹 WrappedComponent （通过属性代理实现）</strong></li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh-hans.reactjs.org/docs/higher-order-components.html" target="_blank" rel="noopener">高阶组件</a><br><a href="https://www.html.cn/archives/9462" target="_blank" rel="noopener">深入理解 React 高阶组件（Higher Order Component，简称：HOC）</a><br><a href="https://juejin.im/post/5cad39b3f265da03502b1c0a#heading-13" target="_blank" rel="noopener">【React 深入】从 Mixin 到 HOC 再到 Hook</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          
+            <a href="/tags/HOC/" rel="tag"><i class="fa fa-tag"></i> HOC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/javascript/type/javascript-type-one-questionone.html" rel="next" title="JavaScript类型转换（三）常见的面试题">
+                <i class="fa fa-chevron-left"></i> JavaScript类型转换（三）常见的面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/css/deep-attribute/css3-flex.html" rel="prev" title="css3中flex的所有属性详解">
+                css3中flex的所有属性详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOC-的实现方式"><span class="nav-number">2.</span> <span class="nav-text">HOC 的实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性代理-Props-Proxy"><span class="nav-number">2.1.</span> <span class="nav-text">属性代理 Props Proxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inheritance-Inversion-反向继承"><span class="nav-number">2.2.</span> <span class="nav-text">Inheritance Inversion(反向继承)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶组件的使用场景"><span class="nav-number">3.</span> <span class="nav-text">高阶组件的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作-props-属性"><span class="nav-number">3.1.</span> <span class="nav-text">操作 props(属性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Refs-访问到组件实例"><span class="nav-number">3.2.</span> <span class="nav-text">通过 Refs 访问到组件实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件状态提升"><span class="nav-number">3.3.</span> <span class="nav-text">组件状态提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作-state"><span class="nav-number">3.4.</span> <span class="nav-text">操作 state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染劫持-Render-Highjacking"><span class="nav-number">3.5.</span> <span class="nav-text">渲染劫持(Render Highjacking)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用其他元素包裹-WrappedComponent"><span class="nav-number">3.6.</span> <span class="nav-text">用其他元素包裹 WrappedComponent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名"><span class="nav-number">4.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-HOC"><span class="nav-number">5.</span> <span class="nav-text">如何使用 HOC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compose"><span class="nav-number">5.1.</span> <span class="nav-text">compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decorators"><span class="nav-number">5.2.</span> <span class="nav-text">Decorators</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOC-的实际应用"><span class="nav-number">6.</span> <span class="nav-text">HOC 的实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志打点"><span class="nav-number">6.1.</span> <span class="nav-text">日志打点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可用、权限控制"><span class="nav-number">6.2.</span> <span class="nav-text">可用、权限控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向绑定"><span class="nav-number">6.3.</span> <span class="nav-text">双向绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单校验"><span class="nav-number">6.4.</span> <span class="nav-text">表单校验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-HOC-的注意事项"><span class="nav-number">7.</span> <span class="nav-text">使用 HOC 的注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态属性拷贝"><span class="nav-number">7.1.</span> <span class="nav-text">静态属性拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传递-refs"><span class="nav-number">7.2.</span> <span class="nav-text">传递 refs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要在-render-方法中使用-HOC"><span class="nav-number">7.3.</span> <span class="nav-text">不要在 render 方法中使用 HOC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要改变原始组件"><span class="nav-number">7.4.</span> <span class="nav-text">不要改变原始组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透传不相关的-props"><span class="nav-number">7.5.</span> <span class="nav-text">透传不相关的 props</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOC-的缺陷"><span class="nav-number">8.</span> <span class="nav-text">HOC 的缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">10.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共216.6k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>
