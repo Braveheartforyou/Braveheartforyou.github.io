@@ -8,16 +8,7 @@ description: JavaScript中的类型介绍
 
 **_莫逆于心，遂相与为友。——庄子_**
 
-[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-[JavaScript 数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-[JavaScript 数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-[JavaScript 数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-[JavaScript 数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-[JavaScript 数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
-
 ## 简述
-
----
 
 JavaScript 中的内置类型，七中类型中的又分为两大类：**基本类型（值类型）和引用类型**
 基本类型有六种：**null**、**number**、**string**、**undefined**、**boolean**、**symbol**
@@ -32,9 +23,9 @@ JavaScript 中的内置类型，七中类型中的又分为两大类：**基本�
 
 如下图所示：
 
-<img src="../../images/javascript/javascript-type.png" alt="javascript-type" width="60%" style="margin: 0 auto;"/>
+<img src="../../../images/javascript/javascript-type.png" alt="javascript-type" width="60%" style="margin: 0 auto;"/>
 
-如果不知道怎么判断数据类型的请看另一篇文章 [JavaScript 类型判断](/blog/javascript/javascript-bool-type.html)
+如果不知道怎么判断数据类型的请看另一篇文章 [JavaScript 类型判断](/blog/javascript/type/javascript-bool-type.html)
 
 ### 基本类型
 
@@ -63,9 +54,9 @@ null = '111';
 |         enumerable         | false |
 |        configurable        | false |
 
-在现代浏览器（JavaScript 1.8.5/Firefox 4+），自 ECMAscript5 标准以来 undefined 是一个不能被配置（non-configurable），不能被重写（non-writable）的属性。即便事实并非如此，也要避免去重写它。
+在现代浏览器`（JavaScript 1.8.5/Firefox 4+）`，自 `ECMAscript5` 标准以来 `undefined` 是一个不能被配置`（non-configurable）`，`不能被重写（non-writable）的属性`。即便事实并非如此，也要避免去重写它。
 
-如果我们在浏览器中赋值 **undefined**, 因为他的 writable 是为 false,所以我们的赋值没有生效，如下所示：
+如果我们在浏览器中赋值 **undefined**, 因为他的 `writable` 是为 `false`,所以我们的赋值没有生效，如下所示：
 
 ```javascript
 // chrome Google Chrome 已是最新版本
@@ -76,8 +67,8 @@ undefined === undefined; // true
 
 #### NaN
 
-**全局属性** NaN 的值表示**不是**一个数字（Not-A-Number），`NaN`是一种特殊的`Number`类型.
-`NaN` 属性的初始值就是 `NaN`，和 `Number.NaN` 的值一样。在现代浏览器中（ES5 中），`NaN` 属性是一个不可配置（non-configurable），不可写（non-writable）的属性。但在 ES3 中，这个属性的值是可以被更改的，但是也应该避免覆盖。
+**全局属性** `NaN` 的值表示**不是**一个数字（Not-A-Number），`NaN`是一种特殊的`Number`类型.
+`NaN` 属性的初始值就是 `NaN`，和 `Number.NaN` 的值一样。在现代浏览器中（ES5 中），`NaN` 属性是一个不可配置（non-configurable），不可写`（non-writable）`的属性。但在 ES3 中，这个属性的值是可以被更改的，但是也应该避免覆盖。
 
 | **NaN** 属性的属性特性： |       |
 | :----------------------: | :---: |

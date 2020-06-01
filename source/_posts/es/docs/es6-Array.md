@@ -1,7 +1,7 @@
 ---
 title: ES6 Array系列(一) 一些常用array的扩展方法
 date: 2017-07-28 16:45:36
-tags: [ECMAScript6, JavaScript]
+tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: JavaScript 数组对象是用于构造数组的全局对象; 它是高阶，类似列表的对象。
 ---

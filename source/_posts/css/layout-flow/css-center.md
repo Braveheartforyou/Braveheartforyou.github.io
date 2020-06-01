@@ -1,5 +1,5 @@
 ---
-title: css中的多种垂直水平居中
+title: css中的实现垂直水平居中其中方法
 date: 2019-08-10 20:13:12
 tags: [Css]
 categories: [Css]
@@ -8,20 +8,20 @@ description: css中的多种垂直水平居中
 
 ## 简介
 
-在面试的时候**css 面试题**里面基本上都会问一个元素**垂直水平居中**，其实这个有多种方式实现，同时元素可以是**固定宽高、不固定宽高**的。
+在面试的时候**css 面试题**里面基本上都会问一个元素`垂直水平居中`，其实这个有多种方式实现，同时元素可以是**固定宽高、不固定宽高**的。
 
 **固定宽高**
 
-- position absolute + 负 margin
-- position absolute + margin auto
-- position absolute + calc
+- 方式一：`position absolute + 负 margin`
+- 方式二：`position absolute + margin auto`
+- 方式三：`position absolute + calc`
 
 **不固定宽高**
 
-- position absolute + transform
-- css-table
-- flex
-- grid
+- 方式四：`position absolute + transform`
+- 方式五：`css-table`
+- 方式六：`flex`
+- 方式七：`grid`
 
 下面就直接上代码，公用的`html代码`和`css代码`就写在这里后面都会在这个基础上增加代码。
 **html 公用代码**：
@@ -95,7 +95,7 @@ css 代码如下：
 }
 ```
 
-这种方式通过设置各个方向的距离都是 0，此时再讲 margin 设为 auto，就可以在各个方向上居中了。
+这种方式通过设置各个方向的距离都是 `0`，此时再讲 `margin` 设为 `auto`，就可以在各个方向上居中了。
 
 ### position absolute + calc
 
@@ -117,7 +117,7 @@ css 代码如下：
 
 ## 不固定宽高
 
-固定宽高的意思就是要居中的这个元素它的**宽高都是不固定的值**，不固定宽高的方法是可以覆盖上面固定宽高的方法，下面一个一个用代码实现。
+固定宽高的意思就是要居中的这个元素它的`宽高都是不固定的值`，不固定宽高的方法是可以覆盖上面固定宽高的方法，下面一个一个用代码实现。
 
 ### position absolute + transform
 
@@ -277,4 +277,4 @@ css 代码如下：
 
 ## 参考
 
-> [CSS 实现水平垂直居中的 1010 种方式 原创](https://yanhaijing.com/css/2018/01/17/horizontal-vertical-center/)
+[CSS 实现水平垂直居中的 1010 种方式 原创](https://yanhaijing.com/css/2018/01/17/horizontal-vertical-center/)

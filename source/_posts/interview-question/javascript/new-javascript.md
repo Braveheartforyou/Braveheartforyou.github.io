@@ -89,7 +89,7 @@ Foo.prototype.getName = function () {
 首先看一下`Foo.getName`会在`Foo.prototype.constructor`中添加一个`getName`属性，如果直接调用`Foo.getName`他就直接调用`Foo.prototype.constructor`上得`getName`属性。
 如果没有通过`new`关键字调用`Foo`的话，是不能访问`prototype`中的`getName`属性。
 代码结果如下：
-![interviewquestion-javascript](../../images/interviewquestion/interviewquestion-javascirpt-1-1.png)
+![interviewquestion-javascript](../../../images/interviewquestion/interviewquestion-javascirpt-1-1.png)
 
 ## 第一问
 
@@ -159,7 +159,7 @@ new Foo.getName(); // 第五问
 ```
 
 第五问主要考察的是`JS中的运算符优先级`，所以首先要了解**JS 中的运算符优先级**，可以通过[MDN 运算符优先级](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)学习这里就不多展示，只展示用到的如下图所示：
-![interviewquestion-javascript](../../images/interviewquestion/interviewquestion-javascirpt-1-2.png)
+![interviewquestion-javascript](../../../images/interviewquestion/interviewquestion-javascirpt-1-2.png)
 可以在上面看到一下两点：
 
 - 成员访问`.`的优先级为**(19)**比 new 无参数列表**(18)**优先级高

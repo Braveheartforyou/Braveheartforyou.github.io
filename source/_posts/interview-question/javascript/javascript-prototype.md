@@ -121,7 +121,7 @@ Child.prototype.constructor === Preson; // true
 ```
 
 `child1`、`child2`的结构如下图所示：
-![javascript-prototype](../../images/interviewquestion/javascript-prototype-1-1.png)
+![javascript-prototype](../../../images/interviewquestion/javascript-prototype-1-1.png)
 
 `child1`、`child2`都是`Child`构造函数实例化产生的，所以`child1.show() child2.show()`是调用的`Child.prototype`上的方法，但是注意`child1`、`child2`的对象上都声明了一个新属性`a`。
 根据上面第`6`条知识点可知结果为`11, [1, 2, 1], 5)`、`12, [1, 2, 1], 5`；

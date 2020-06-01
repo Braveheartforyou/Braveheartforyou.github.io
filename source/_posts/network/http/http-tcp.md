@@ -6,19 +6,10 @@ categories: [Http]
 description: tcp三次握手和四次挥手,为什么是三次握手挥手是四次。
 ---
 
-**_见素抱朴、少私寡欢。——老子_**
-
-- [Http 系列(-) Http 发展历史](/blog/http/http-http2.html)
-- [Http 系列(二) Http2 中的多路复用](/blog/http/http-http2-1.html)
-- [Http 系列(三) Http/Tcp 三次握手和四次挥手](/blog/http/http-tcp.html)
-- [Http 系列(四) Http 中 Get/Post 的区别](/blog/http/http-get-post.html)
-
 ## TCP 概念
 
----
-
-`TCP(Transmission Control Protocol 传输控制协议)`是一种面向连接(连接导向)`的、`可靠`的、`基于 IP 的传输层`协议。 首先来看看 OSI 的七层模型 ![OSI](../../images/http/1.jpg) 我们需要知道`TCP`工作在网络 OSI 的七层模型中的第四层——`传输层，IP 在第三层——网络层，ARP 在第二层——数据链路层`;同时，我们需要简单的知道，数据从应用层发下来，会在每一层都会加上**头部信息**，进行 封装，然后再发送到数据接收端。这个基本的流程你需要知道，就是每个数据都会经过数据的封装和解封 装的过程。在 OSI 七层模型中，每一层的作用和对应的协议如下：
-![OSI](../../images/http/http-1-1.jpg)
+`TCP(Transmission Control Protocol 传输控制协议)`是一种面向连接(连接导向)`的、`可靠`的、`基于 IP 的传输层`协议。 首先来看看 OSI 的七层模型 ![OSI](./http-tcp/1.jpg) 我们需要知道`TCP`工作在网络 OSI 的七层模型中的第四层——`传输层，IP 在第三层——网络层，ARP 在第二层——数据链路层`;同时，我们需要简单的知道，数据从应用层发下来，会在每一层都会加上**头部信息**，进行 封装，然后再发送到数据接收端。这个基本的流程你需要知道，就是每个数据都会经过数据的封装和解封 装的过程。在 OSI 七层模型中，每一层的作用和对应的协议如下：
+![OSI](./http-tcp/http-1-1.jpg)
 
 **标志位**
 要理解三次握手四次挥手，首先要理解几个比较重要的标示如 SYN、ACK，如下面的表格所示：
@@ -38,12 +29,12 @@ description: tcp三次握手和四次挥手,为什么是三次握手挥手是四
 - 确认序号：Ack 序号，占 32 位，只有 ACK 标志位为 1 时，确认序号字段才有效，Ack=Seq+1。
 
 三次握手四次挥手整体的流程如下图所示：
-<img src="../../images/http/http-1-3.jpg" width="50%"/>
+<img src="./http-tcp/http-1-3.jpg" width="50%"/>
 
 ## 三次握手
 
 三次握手的过程大致如下图所示：
-![OSI](../../images/http/http-1-2.png)
+![OSI](./http-tcp/http-1-2.png)
 大致步骤如下：
 
 ### 第一次握手
@@ -72,21 +63,21 @@ description: tcp三次握手和四次挥手,为什么是三次握手挥手是四
 ## 数据传输过程
 
 建立连接后，两台主机就可以相互传输数据了。如下图所示：
-<img src="../../images/http/http-1-4.png" width="50%"/>
+<img src="./http-tcp/http-1-4.png" width="50%"/>
 
 - **主机 A 初始 seq 为 1200,滑动窗体为 100,向主机 B 传递数据的过程**。
 - 假设主机 B 在完全成功接收数据的基础上,那么主机 B 为了确认这一点，向主机 A 发送 ACK 包，并将 Ack 号设置为 1301。因此按如下的公式确认 Ack 号：Ack 号 = Seq 号 + 传递的字节数 + 1 （这是在完全接受成功的情况下）
 - 主机 A 获得 B 传来的 ack(1301)后,开始发送 seq 为 1301,滑动窗体为 100 的数据。
 
 与三次握手协议相同，最后加 1 是为了告诉对方要传递的 Seq 号。上面说了，主机 B 完全成功接收 A 发来的数据才是这样的,如果存在丢包该如何。下面分析传输过程中数据包丢失的情况，如下图所示：
-<img src="../../images/http/http-1-5.png" width="50%"/>
+<img src="./http-tcp/http-1-5.png" width="50%"/>
 
 上图表示通过 Seq 1301 数据包向主机 B 传递 100 字节的数据，但中间发生了错误，主机 B 未收到。经过一段时间后，主机 A 仍未收到对于 Seq 1301 的 ACK 确认，因此尝试重传数据。为了完成数据包的重传，TCP 套接字每次发送数据包时都会启动定时器，如果在一定时间内没有收到目标机器传回的 ACK 包，那么定时器超时，数据包会重传。
 
 ## 四次挥手
 
 四次挥手流程大致如下图所示：
-![OSI](../../images/http/http-1-6.png)
+![OSI](./http-tcp/http-1-6.png)
 
 ### 第一次挥手
 
@@ -161,6 +152,6 @@ client 发送了第一个连接的请求报文，但是由于网络不好，这�
 
 ## 参考
 
-- [TCP 三次握手和四次挥手](https://www.cnblogs.com/qdhxhz/p/8470997.html)
-- [TCP 的三次握手与四次挥手理解及面试题（很全面）](https://blog.csdn.net/qq_38950316/article/details/81087809)
-- [通俗大白话来理解 TCP 协议的三次握手和四次分手](https://mp.weixin.qq.com/s/efON3efZoDmHJg1os_3nqA)
+[TCP 三次握手和四次挥手](https://www.cnblogs.com/qdhxhz/p/8470997.html)
+[TCP 的三次握手与四次挥手理解及面试题（很全面）](https://blog.csdn.net/qq_38950316/article/details/81087809)
+[通俗大白话来理解 TCP 协议的三次握手和四次分手](https://mp.weixin.qq.com/s/efON3efZoDmHJg1os_3nqA)

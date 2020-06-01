@@ -6,16 +6,7 @@ categories: [Http]
 description: HTTP/2相对于HTTP/1.x有二进制分帧、多路复用、请求优先级、header压缩等，这里主要讲解多路复用。
 ---
 
-**_重为轻根，静为躁君。——老子_**
-
-- [Http 系列(-) Http 发展历史](/blog/http/http-http2.html)
-- [Http 系列(二) Http2 中的多路复用](/blog/http/http-http2-1.html)
-- [Http 系列(三) Http/Tcp 三次握手和四次挥手](/blog/http/http-tcp.html)
-- [Http 系列(四) Http 中 Get/Post 的区别](/blog/http/http-get-post.html)
-
 ## 简介
-
----
 
 `多路复用`代替原来的`序列和阻塞机制`，所有就是请求的都是通过`一个 TCP 连接并发`完成。同时也很好的解决了`浏览器限制同一个域名下`的`请求数量`的问题。
 
@@ -26,8 +17,6 @@ description: HTTP/2相对于HTTP/1.x有二进制分帧、多路复用、请求�
 - **数据流以消息的形式发送，而消息又由一个或多个帧组成，多个帧之间可以乱序发送，因为根据帧首部的流标识可以重新组装。每个请求都可以带一个 31bit 的优先值，0 表示最高优先级， 数值越大优先级越低**。
 
 ## 帧（frame）和流（stream）
-
----
 
 在 HTTP/2 中，有两个非常重要的概念：帧（frame）和流（stream）。
 
@@ -61,14 +50,12 @@ HTTP/2 长连接中的数据包是不按请求-响应顺序发送的，一个完
 
 ## 发展历程
 
----
-
 从 Http/0.9 到 Http/2 要发送多个请求，从**多个 Tcp 连接=>keep-alive=>管道化=>多路复用**不断的减少多次创建 Tcp 等等带来的性能损耗。
 
 ### 多个 Tcp 连接
 
 在最早的时候没有`keep-alive`只能创建多个`Tcp`连接来做多次请求。多次 http 请求效果如下图所示：
-<img src="../../images/http/http2.0-1-6.png" alt="http2.0" width="50%"/>
+<img src="./http-http2-1/http2.0-1-6.png" alt="http2.0" width="50%"/>
 一次请求完成就会关闭本次的 Tcp 连接，下个请求又要从新建立 Tcp 连接传输完成数据再关闭，造成很大的性能损耗。
 
 ### Keep-Alive
@@ -76,7 +63,7 @@ HTTP/2 长连接中的数据包是不按请求-响应顺序发送的，一个完
 `Keep-Alive`解决的核心问题是： 一定时间内，同一域名多次请求数据，只建立一次 HTTP 请求，其他请求可复用每一次建立的连接通道，以达到提高请求效率的问题。这里面所说的一定时间是**可以配置**的，不管你用的是`Apache`还是`nginx`。
 以往，浏览器判断响应数据是否接收完毕，是看连接是否关闭。在使用持久连接后，就不能这样了，这就要求服务器对持久连接的响应头部一定要返回`content-length`标识`body的`长度，供浏览器判断界限。有时，`content-length`的方法并不是太准确，也可以使用 `Transfer-Encoding: chunked` 头部发送一串一串的数据，最后由长度为 0 的`chunked`标识结束。
 多次 http 请求效果如下图所示：
-<img src="../../images/http/http2.0-1-7.png" alt="http2.0" width="50%"/>
+<img src="./http-http2-1/http2.0-1-7.png" alt="http2.0" width="50%"/>
 上图：设置 Connection:Keep-Alive，保持连接在一段时间内不断开。
 
 `Keep-Alive`还是存在如下问题：
@@ -87,13 +74,13 @@ HTTP/2 长连接中的数据包是不按请求-响应顺序发送的，一个完
 ### 管线化
 
 `HTTP 管线化`可以`克服同域并行请求限制带来的阻塞`，它是建立在**持久连接**之上，是把所有请求一并发给服务器，但是服务器需要按照**顺序一个一个响应**，而不是等到一个响应回来才能发下一个请求，这样就节省了很多请求到服务器的时间。不过，HTTP 管线化**仍旧**有阻塞的问题，若上一响应迟迟不回，**后面的响应**都会被阻塞到。
-<img src="../../images/http/http2.0-1-8.png" alt="http2.0" width="50%"/>
+<img src="./http-http2-1/http2.0-1-8.png" alt="http2.0" width="50%"/>
 上图：HTTPpipelining：建立多个连接
 
 ### 多路复用
 
 多路复用代替原来的`序列和阻塞机制`。所有就是请求的都是通过`一个 TCP 连接并发`完成。因为在多路复用之前所有的传输是基于`基础文本的`，在多路复用中是基于`二进制数据帧`的传输、`消息`、`流`，所以可以做到乱序的传输。`多路复用`对同一域名下所有请求都是基于`流`，所以`不存在`同域并行的阻塞。多次请求如下图：
-<img src="../../images/http/http2.0-1-9.png" alt="http2.0" width="50%"/>
+<img src="./http-http2-1/http2.0-1-9.png" alt="http2.0" width="50%"/>
 上图：多路复用
 
 ## 总结
@@ -108,4 +95,7 @@ HTTP/2 长连接中的数据包是不按请求-响应顺序发送的，一个完
 
 ## 参考
 
-> [多路复用](https://www.kancloud.cn/digest/web-performance-http2/74825) > [一文读懂 HTTP/2 及 HTTP/3 特性](https://segmentfault.com/a/1190000018401534) > [一文读懂 HTTP/2 特性](https://zhuanlan.zhihu.com/p/26559480) > [浅析 HTTP/2 的多路复用](https://segmentfault.com/a/1190000011172823)
+[多路复用](https://www.kancloud.cn/digest/web-performance-http2/74825)
+[一文读懂 HTTP/2 及 HTTP/3 特性](https://segmentfault.com/a/1190000018401534)
+[一文读懂 HTTP/2 特性](https://zhuanlan.zhihu.com/p/26559480)
+[浅析 HTTP/2 的多路复用](https://segmentfault.com/a/1190000011172823)

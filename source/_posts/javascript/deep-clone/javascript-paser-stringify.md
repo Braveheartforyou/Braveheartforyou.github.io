@@ -6,11 +6,6 @@ categories: [JavaScript]
 description: 本篇文章会介绍JSON.stringify和JSON.parse用来深拷贝时存在什么问题，并且自己手动实现一个。
 ---
 
-[深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign](/blog/es6/es6-assign.html)
-[深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse](/blog/javascript/javascript-paser-stringify.html)
-[深拷贝系列 ———— 自己通过递归实现一个深拷贝](/blog/javascript/javascript-deepcopy.html)
-[深拷贝系列 ———— 分析 lodash 中的 deepcopy](/blog/javascript/javascript-loadsh-deepcopy.html)
-
 ## 简介
 
 在上篇文章我们已经了解什么是**深拷贝**和**浅拷贝**，也着重介绍了**浅拷贝**相关的一下实现方法，或者自己实现一个浅拷贝等等。本篇文章主要介绍深拷贝的一种简单实现方式`JSON.parse/JSON.stringify`。在平常开发时我们可以经常的看到别人使用，或者在不那么了解深拷贝时自己也有使用。
@@ -88,7 +83,7 @@ var newFirstObj = JSON.parse(JSON.stringify(firstObj));
 ```
 
 如果循环引用报错如下图所示：
-![JSON.parse/JSON.stringify](../../images/es/es-assign-1-4.png)
+![JSON.parse/JSON.stringify](../../../images/es/es-assign-1-4.png)
 
 一个生成**任意深度、广度**对象方法。
 

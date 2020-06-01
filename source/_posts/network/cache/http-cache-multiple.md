@@ -6,10 +6,6 @@ categories: [Http]
 description: 大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。
 ---
 
-- [Http 中的缓存（一） 多级缓存结构](/blog/http-cache-multiple.html)
-- [Http 中的缓存（二） HTTP 中的缓存](/blog/http/http-cache-http.html)
-- [Http 中的缓存（三） PWA 中的 ServiceWorker](/blog/http/http-cache-serviceworker.html)
-
 ## 简介
 
 **缓存**相信现在这个词大家都不陌生，因为在当前的应用中被广泛的应用。因为**缓存**会带来更高的**性能**、**用户体验**，同时也会**节省流量**、**离线体验**等等好处。
@@ -30,7 +26,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 可以在下面几层做缓存大致如下：
 
-<img src="../../images/http/http-cache-1-1.png" height="300" alt="http-cache"/>
+<img src="./http-cache-multiple/http-cache-1-1.png" height="300" alt="http-cache"/>
 
 ### 多层缓存流程
 
@@ -81,7 +77,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 当用户的操作比如**地址栏回车**、**前进回退**、**F5 刷新**、**Ctrl+F5 强制刷新**等等对缓存的影响。大致如下图所示：
 
-![http-cache](../../images/http/http-cache-1-2.png)
+![http-cache](./http-cache-multiple/http-cache-1-2.png)
 
 在这里就不细究了不然这篇文章太长了。
 
@@ -93,7 +89,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 ### CDN 流程
 
 **CDN**缓存流程大致如下：
-![http-cache](../../images/http/http-cache-1-3.png)
+![http-cache](./http-cache-multiple/http-cache-1-3.png)
 
 - 客户端发送 `URL` 给 `DNS` 服务器。
 - `DNS` 通过域名解析，把请求指向 `CDN` 网络中的 `DNS` 负载均衡器。
@@ -111,7 +107,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 虽说它的主要工作是对**应用服务器进行负载均衡**，但是它也可以作**缓存**。可以把一些修改频率不高的数据缓存在这里，例如：用户信息，配置信息。通过服务定期刷新这个缓存就行了。
 
-![http-cache](../../images/http/http-cache-1-4.png)
+![http-cache](./http-cache-multiple/http-cache-1-4.png)
 
 以 `Nginx` 为例，我们看看它是如何工作的：
 
@@ -148,7 +144,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 应用在**修改完自身缓存数据和数据库数据**之后，给消息队列**发送数据变化通知**，其他**应用订阅了消息通知**，在收到通知的时候**修改缓存数据**。
 
-![http-cache](../../images/http/http-cache-1-5.png)
+![http-cache](./http-cache-multiple/http-cache-1-5.png)
 
 ### Timer 修改方案
 
@@ -156,7 +152,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 不过在有的应用更新数据库后，其他节点通过 Timer 获取数据之间，会读到脏数据。这里需要控制好 Timer 的频率，以及应用与对实时性要求不高的场景。
 
-![http-cache](../../images/http/http-cache-1-11.png)
+![http-cache](./http-cache-multiple/http-cache-1-11.png)
 
 ### 应用场景
 
@@ -170,7 +166,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 分布式缓存是与应用分离的缓存服务，最大的特点是，自身是一个独立的应用/服务，与本地应用隔离，**多个应用可直接共享一个或者多个缓存应用/服务**。
 
-<img src="../../images/http/http-cache-1-6.png" height="300" alt="http-cache"/>
+<img src="./http-cache-multiple/http-cache-1-6.png" height="300" alt="http-cache"/>
 
 既然是分布式缓存，缓存的数据会分布到不同的缓存节点上，每个缓存节点缓存的数据大小通常也是**有限制**的。
 
@@ -204,7 +200,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 我们想把这三条数据放到三个缓存节点中，可以把这个结果分别对 3 这个数字取模得到余数，这个余数就是这三条记录分别放置的缓存节点。
 
-![http-cache](../../images/http/http-cache-1-7.png)
+![http-cache](./http-cache-multiple/http-cache-1-7.png)
 
 **Hash 算法是某种程度上的平均放置，策略比较简单，如果要增加缓存节点，对已经存在的数据会有较大的变动。**
 
@@ -214,15 +210,15 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 如果要缓存数据，通过数据的**关键值（Key）**在环上找到自己存放的位置。这些数据按照自身的 `ID` 取 `Hash` 之后得到的值按照**顺序**在**环上排列**。
 
-![http-cache](../../images/http/http-cache-1-8.png)
+![http-cache](./http-cache-multiple/http-cache-1-8.png)
 
 如果这个时候要**插入**一条新的数据其 `ID` 是 `115`，那么就应该插入到如下图的位置
 
-![http-cache](../../images/http/http-cache-1-9.png)
+![http-cache](./http-cache-multiple/http-cache-1-9.png)
 
 同理如果要**增加**一个**缓存节点** `N4 150`，也可以放到如下图的位置。
 
-![http-cache](../../images/http/http-cache-1-10.png)
+![http-cache](./http-cache-multiple/http-cache-1-10.png)
 
 **这种算法对于增加缓存数据，和缓存节点的开销相对比较小。**
 
@@ -277,7 +273,7 @@ description: 大家都知道缓存的重要性，这里介绍一下有多少层�
 
 解决方案：导致问题的原因是在同一时间读/写缓存，所以**只有保证同一时间只有一个线程写**，写完成以后，其他的请求再使用缓存就可以了。
 
-比较常用的做法是使用 **mutex（互斥锁）**。在缓存失效的时候，不是立即写入缓存，而是先设置一个** mutex（互斥锁）**。当缓存被写入完成以后，再放开这个锁让请求进行访问。
+比较常用的做法是使用 **mutex（互斥锁）**。在缓存失效的时候，不是立即写入缓存，而是先设置一个`**mutex（互斥锁）**`。当缓存被写入完成以后，再放开这个锁让请求进行访问。
 
 ## 总结
 

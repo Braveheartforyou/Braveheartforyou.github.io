@@ -6,17 +6,9 @@ categories: [JavaScript]
 description: JavaScript原型系列（二）什么是原型继承
 ---
 
-**_將欲歙之，必固張之；將欲弱之，必固強之；——《道德經》_**
-
-[JavaScript 原型系列（一）构造函数、原型和原型链](/blog/javascript/javascript-prototype.html)
-[JavaScript 原型系列（二）什么是原型继承](/blog/javascript/javascript-prototype-one.html)
-[JavaScript 原型系列（三）Function、Object、Null 等等的关系和鸡蛋问题](/blog/javascript/javascript-prototype-two.html)
-
 ## 简介
 
----
-
-<img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"/>
+<img src="./javascript-prototype-one/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"/>
 
 在上一节上面介绍了原型和原型链，即每个对象拥有一个**原型对象**，通过 `__proto__` 指针指向上一个**原型** ，并从中**继承方法和属性**，同时原型对象也可能拥有原型，这样一层一层，最终指向 `null`，这种关系被称为`原型链(prototype chain)`。
 
@@ -25,8 +17,6 @@ description: JavaScript原型系列（二）什么是原型继承
 会用一篇文章来介绍什么面向对象，`javascript`是怎么实现`继承`、`封装`、`多态`和`javascript`面向对象的特殊之处。
 
 ## 原型链继承
-
----
 
 `JavaScript` 对象是动态的属性“包”（指其自己的属性）。`JavaScript` 对象有一个指向一个**原型对象**的链。当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该对象的原型，以及该对象的原型的原型，**依次层层**向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。
 
@@ -94,7 +84,7 @@ sub2.Arr; // ["sub", "subtype", "Sub", "push"]
 
 子类型原型上的 `constructor` 属性被重写, 执行 `Sub.prototype = new SubType()` 后原型被覆盖，`Sub.prototype` 上丢失了 `constructor` 属性， `Sub.prototype` 指向了 `SubType.prototype`，而 `SubType.prototype.constructor` 指向了 `SubType`，所以 `Sub.prototype.constructor` 指向了 `SubType`。
 如下图所示：
-![JavaScript-prototype](../../images/javascript/javascript-prototype-1-6.png)
+![JavaScript-prototype](./javascript-prototype-one/javascript-prototype-1-6.png)
 
 ```javascript
 function SubType() {
@@ -116,7 +106,7 @@ sub.__proto__.constrcutor === Sub; // true
 ```
 
 通过`Sub.prototype.constrcutor = Sub;`把`Sub.prototype.constrcutor`指向`Sub`，如果所示：
-![JavaScript-prototype](../../images/javascript/javascript-prototype-1-7.png)
+![JavaScript-prototype](./javascript-prototype-one/javascript-prototype-1-7.png)
 
 > 给子类型原型添加属性和方法必须在替换原型之后，原因在第二点已经解释过了，因为子类型的原型会被覆盖。
 

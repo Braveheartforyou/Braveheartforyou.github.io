@@ -8,13 +8,9 @@ description: var和let、const对比
 
 ## 简介
 
-<hr/>
-
 在**ECMAScript6**中新增两个变量声明的指令`let`和`const`，以前经常用的`var`有什么区别。
 
 ## var 声明
-
-<hr/>
 
 `var` **声明语句**声明一个变量，并可选地将其初始化为一个值。
 
@@ -69,8 +65,6 @@ console.log(window.sum); // 2
 
 ## let 声明
 
-<hr/>
-
 `let`允许你声明一个作用域被限制在 `块级中的变量`、`语句或者表达式`。与 `var` 关键字不同的是， `var`声明的变量只能是`全局`或者`整个函数块`的。
 
 - 不可重复声明，可以重复赋值
@@ -124,7 +118,7 @@ function letTest() {
 ```
 
 在执行完`let count = 1;`，效果如下图所示：
-![let](../../images/es/es-let.png)
+![let](../../../images/es/es-let.png)
 当**javascript**执行完成后，`scope`也会被清空。
 
 ### 暂存死区/不存在变量提升
@@ -140,8 +134,6 @@ var sum = 2;
 ```
 
 ## const 声明
-
-<hr/>
 
 常量是块级作用域，很像使用 `let` 语句定义的变量。常量的值**不能**通过重新赋值来改变，并且**不能**重新声明。
 
@@ -201,8 +193,9 @@ user.name = '大家好';
 
 他们的特性基本上如上面表格所示，可以根据各个不同的需要，选择 var、let、const 来声明变量。
 
-> [JavaScript 类型转换（一） 常见数据类型](http://asyncnode.com/blog/javascript/javascript-Type-conversion.html)
-
 ## 参考
 
-> [var 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var) > [let 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let) > [const 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const) > [JS 系列一：var、let、const、解构、展开、函数](https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&mid=2247483812&idx=1&sn=9bab06614e079bd9cc533a3b2cd02a75&chksm=faec857ccd9b0c6a9b58e49f747651ffdf484acdd6fc82318a0964e4c339dbda6586e340ca4d&mpshare=1&scene=1&srcid=082024th073paIFjxG2PXq8C&sharer_sharetime=1566313518851&sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd) > [ES6 中 let、const 与 var 的区别](https://mp.weixin.qq.com/s?__biz=Mzg4MjAyMzY1OQ==&mid=2247483768&idx=1&sn=328166a7f78be132b77215060e96128b&chksm=cf5c4cfcf82bc5ea327e302b81401165663f3ad91d35270ee4e537f7b27081cad4fecffc4776&mpshare=1&scene=1&srcid=0820mIdzuPo1JIpEQKyVpaGY&sharer_sharetime=1566313451138&sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd)
+[var 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var)
+[let 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let)
+[const 声明语句](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const)
+[JS 系列一：var、let、const、解构、展开、函数](https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&mid=2247483812&idx=1&sn=9bab06614e079bd9cc533a3b2cd02a75&chksm=faec857ccd9b0c6a9b58e49f747651ffdf484acdd6fc82318a0964e4c339dbda6586e340ca4d&mpshare=1&scene=1&srcid=082024th073paIFjxG2PXq8C&sharer_sharetime=1566313518851&sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd)

@@ -1,14 +1,10 @@
 ---
 title: Http中的缓存（三） PWA中的serviceworker
 date: 2019-02-07 18:43:53
-tags: [Http]
+tags: [Http, Cache, PWA]
 categories: [Http]
 description: ServiceWorker其实很早就已经出来了，但是因为浏览器的差别
 ---
-
-- [Http 中的缓存（一） 多级缓存结构](/blog/http-cache-multiple.html)
-- [Http 中的缓存（二） HTTP 中的缓存](/blog/http/http-cache-http.html)
-- [Http 中的缓存（三） PWA 中的 ServiceWorker](/blog/http/http-cache-serviceworker.html)
 
 ## 简介
 
@@ -69,7 +65,7 @@ description: ServiceWorker其实很早就已经出来了，但是因为浏览器
 ## 初始安装时
 
 初始安装时大致流程大致如下图：
-![http-cache-serviceworker](../../images/http/http-cache-4-1.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-1.png)
 
 大致可以分为`注册SW => 安装SW => 激活 => 空闲 => (缓存和返回请求/终止)`，在初始安装时会大致分为这几个步骤，下面就按照这几个步结合代码实现。
 
@@ -106,7 +102,7 @@ if ('serviceWorker' in navigator) {
 
 因为现在`sw.js`中我们的代码是空的，所以在浏览器中的`cache stoage`是空的，运行效果如下：
 
-<img src="../../images/http/http-cache-4-4.png" />
+<img src="./http-cache-serviceworker/http-cache-4-4.png" />
 
 ### 安装 Service Worker
 
@@ -149,7 +145,7 @@ self.addEventListener('install', function (installEvent) {
 
 当我们安装成功时，效果如下图所示：
 
-![http-cache-serviceworker](../../images/http/http-cache-4-5.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-5.png)
 
 会多了一个`skipWaiting`，还有在`cache stroage`中的当前域名下的`service worker`对应的缓存文件列表。这个时候我们即使刷新也不会走`service worker`的缓存的。
 
@@ -181,7 +177,7 @@ self.addEventListener('activate', function (event) {
 
 一般在书写的时候，会在`install()`注册之后直接通过`self.skipWaiting();`激活当前的`SW`，在`activate`中书写**打开缓存等等**的逻辑，就不会出现上面还要**刷新或者手动激活**的问题。效果图如下：
 
-![http-cache-serviceworker](../../images/http/http-cache-4-6.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-6.png)
 
 但是如果出现**更新 SW**，并且**更新了缓存列表**或者**出现异步资源时**，我们可以通过`clients.claim()`更新缓存列表。
 
@@ -251,7 +247,7 @@ self.addEventListener('fetch', function (event) {
 
 在定义的`fetch`事件中，我们在`event.respondWith()`中传入来自`caches.match()`的一个`promise`。`caches.match()`这个方法检视该请求，并从服务工作线程所创建的任何缓存中查找缓存的结果。如果命中返回缓存值，否则，将调用`fetch`以发出网络请求。运行效果如下：
 
-![http-cache-serviceworker](../../images/http/http-cache-4-7.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-7.png)
 
 如果我们想把新的请求也缓存掉，修改代码如下：
 
@@ -287,10 +283,10 @@ self.addEventListener('fetch', function (event) {
 3. 如果**通过检查**，则克隆响应。
 
 没有缓存新请求时效果如下：
-![http-cache-serviceworker](../../images/http/http-cache-4-8.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-8.png)
 
 当使用我们下面的代码时，效果图如下：
-![http-cache-serviceworker](../../images/http/http-cache-4-9.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-9.png)
 即使异步请求的`png`图片也被加入了缓存中。
 
 ## 更新 SW
@@ -368,7 +364,7 @@ self.addEventListener('fetch', function (event) {
 
 代码执行效果如下图所示：
 
-![http-cache-serviceworker](../../images/http/http-cache-4-10.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-10.png)
 
 整个过程我们大致经过了`install => waiting => activate`三个过程。
 
@@ -451,7 +447,7 @@ navigator.serviceWorker.register('/sw.js').then((reg) => {
 
 #### Update on reload
 
-![http-cache-serviceworker](../../images/http/http-cache-4-11.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-11.png)
 
 这可使生命周期变得对开发者友好。每次浏览时都将：
 
@@ -462,7 +458,7 @@ navigator.serviceWorker.register('/sw.js').then((reg) => {
 
 #### Skip waiting
 
-![http-cache-serviceworker](../../images/http/http-cache-4-12.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-12.png)
 
 如果您有一个 `Worker` 在等待，您可以按 `DevTools` 中的“`skip waiting`”以立即将其提升到“`active`”。同时也可以通过`self.skipWaiting()`来实现。
 
@@ -782,7 +778,7 @@ self.addEventListener('notificationclose', (event) => {
 
 信息推送涉及到利用浏览器提供的`Push API`以及后端的配合实现。要讲解如何使用`Push API`完全可以再写一篇文章，不过基本的套路如下：
 
-![http-cache-serviceworker](../../images/http/http-cache-4-13.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-13.png)
 
 这是个略微复杂难懂的过程，已经超出这篇文章的讨论范围。
 
@@ -865,13 +861,13 @@ workbox.routing.registerRoute(
 
 只从缓存中读取，当缓存中没有数据时，读取失败。
 
-![http-cache-serviceworker](../../images/http/http-cache-4-15.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-15.png)
 
 #### NetWork Only
 
 只通过网络请求进行资源请求，若请求失败，则返回失败响应。
 
-![http-cache-serviceworker](../../images/http/http-cache-4-16.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-16.png)
 
 #### NetWork First
 
@@ -881,7 +877,7 @@ workbox.routing.registerRoute(
 
 不难看出，这种策略是为了保证在**第一次请求成功之后**，后面多次的请求始终都能返回结果。
 
-![http-cache-serviceworker](../../images/http/http-cache-4-17.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-17.png)
 
 ```js
 workbox.routing.registerRoute(
@@ -901,7 +897,7 @@ workbox.routing.registerRoute(
 - 网络请求成功时，将结果写入缓存并返回
 - 网络请求失败时，返回失败响应
 
-![http-cache-serviceworker](../../images/http/http-cache-4-18.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-18.png)
 
 ```js
 workbox.routing.registerRoute(
@@ -926,7 +922,7 @@ workbox.routing.registerRoute(
 - 若缓存命中且网络请求成功，返回缓存结果，并更新缓存（下次从缓存中读取的数据就是最新的了）
 - 若缓存未命中，则看网络请求是否成功，成功则更新缓存并返回结果，失败则返回失败响应。
 
-![http-cache-serviceworker](../../images/http/http-cache-4-14.png)
+![http-cache-serviceworker](./http-cache-serviceworker/http-cache-4-14.png)
 
 ```js
 workbox.routing.registerRoute(
@@ -960,10 +956,7 @@ workbox.routing.registerRoute(
 
 ## 参考
 
-> [Service Worker：简介  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN)
-
-> [Service Worker 生命周期  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-CN#install)
-
-> [用 Service Worker 实现前端性能优化](https://mp.weixin.qq.com/s/SLG_cDxDo7BaoQqAyLGa-Q)
-
-> [service worker 实现离线缓存](https://mp.weixin.qq.com/s/aboA9dtCK6t0fzs0JU58Iw) > [【前-workbox-网络摘要】WorkBox 缓存策略](https://www.jianshu.com/p/3fb5615f18cf)
+[Service Worker：简介  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN)
+[Service Worker 生命周期  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-CN#install)
+[用 Service Worker 实现前端性能优化](https://mp.weixin.qq.com/s/SLG_cDxDo7BaoQqAyLGa-Q)
+[service worker 实现离线缓存](https://mp.weixin.qq.com/s/aboA9dtCK6t0fzs0JU58Iw) > [【前-workbox-网络摘要】WorkBox 缓存策略](https://www.jianshu.com/p/3fb5615f18cf)

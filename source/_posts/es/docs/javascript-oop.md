@@ -1,7 +1,7 @@
 ---
 title: es6中 class（类）的用法
 date: 2017-07-26 18:11:13
-tags: [ECMAScript6, JavaScript, Extends]
+tags: [ECMAScript6, Extends]
 categories: [JavaScript]
 description: javascript中实现面向对象编程简单实现和理解
 ---

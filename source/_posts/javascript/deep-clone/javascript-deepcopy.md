@@ -6,11 +6,6 @@ categories: [JavaScript]
 description: 本篇文章会介绍通过递归实现一个深拷贝，并且解决JSON.parse和JSON.stringify存在的问题。
 ---
 
-[深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign](/blog/es6/es6-assign.html)
-[深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse](/blog/javascript/javascript-paser-stringify.html)
-[深拷贝系列 ———— 自己通过递归实现一个深拷贝](/blog/javascript/javascript-deepcopy.html)
-[深拷贝系列 ———— 分析 lodash 中的 deepcopy](/blog/javascript/javascript-loadsh-deepcopy.html)
-
 ## 简介
 
 在上篇文章中我们深入了解了`JSON.parse/JSON.stringify`，并且自己实现了一个`JSON.parse/JSON.stringify`，在这篇文章中我们要自己实现一个**深拷贝**，并且解决`JSON.parse/JSON.stringify`中出现的问题。
@@ -76,7 +71,7 @@ console.log(cloneDeep(targetArray));
 
 测试效果图如下：
 
-<img src="../../images/javascript/javascript-clone-deep-1-1.png" width="80%" height="60%" />
+<img src="./javascript-deepcopy/javascript-clone-deep-1-1.png" width="80%" height="60%" />
 
 在上面的代码中，已经解决了`JSON.stringify/JSON.parse`中的忽略`undefined/function`的问题，下面会逐渐解决问题，并且优化到类似与`lodash`库中的问题。
 
@@ -111,7 +106,7 @@ console.log(cloneDeep(target));
 ```
 
 执行效果如下图所示：
-![深拷贝/浅拷贝](../../images/javascript/javascript-clone-deep-1-2.png)
+![深拷贝/浅拷贝](./javascript-deepcopy/javascript-clone-deep-1-2.png)
 
 ### Map/weakMap
 
@@ -227,7 +222,7 @@ function cloneDeep(target, map = new Map()) {
 ```
 
 执行测试代码如下：
-<img src="../../images/javascript/javascript-clone-deep-1-3.png" width="80%" height="60%" />
+<img src="./javascript-deepcopy/javascript-clone-deep-1-3.png" width="80%" height="60%" />
 
 我们可以看到`target`变为一个`Circular`类型的对象，这个是在`node环境`中运行的，如果在`浏览器`对还是会`报错（爆栈）`。
 到这里我们只做到了让他没有报错，但是也并没有完美的解决循环引用的问题，下面就要到`WeakMap`登场了。
@@ -593,7 +588,7 @@ console.log(ss);
 
 执行结果：
 
-<img src="../../images/javascript/javascript-clone-deep-1-4.png" width="80%" height="60%" />
+<img src="./javascript-deepcopy/javascript-clone-deep-1-4.png" width="80%" height="60%" />
 
 ## 性能问题
 
@@ -646,7 +641,7 @@ console.timeEnd();
 ```
 
 多次执行效果相差不多，执行效果如下：
-<img src="../../images/javascript/javascript-clone-deep-1-5.png" width="80%" height="60%" />
+<img src="./javascript-deepcopy/javascript-clone-deep-1-5.png" width="80%" height="60%" />
 
 图上的四个时间分别对应的顺序是：
 

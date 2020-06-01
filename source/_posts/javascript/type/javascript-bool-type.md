@@ -8,25 +8,16 @@ description: javascript中的类型判断又分为基础类型判断和引用类
 
 **_日极则仄，月满则亏。物极则反，命曰环流。——《管子·白心》_**
 
-[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-[JavaScript 数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-[JavaScript 数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-[JavaScript 数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-[JavaScript 数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-[JavaScript 数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
-
 ## 简介
-
----
 
 在 ECMAScript 规范中，共定义了 7 种数据类型，分为基本数据类型和引用类型两大类，如下所示：
 
 > 基本类型： **Null、Undefined、Symbol（ES6）、Number、Boolean、String**
 > 引用类型： **Obeject、Array、Date**等等
 
-- 基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在<font color="#ff502c">栈</font>中，即按值访问。
+- 基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在`栈`中，即按值访问。
 
-- 引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在<font color="#ff502c">堆(heap)</font>中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。
+- 引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在`堆(heap)`中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。
 
 ### 原始值( primitive values )
 
@@ -113,8 +104,6 @@ typeof []; // object
 
 ## instanceof 运算符
 
----
-
 **instanceof 运算符用于测试构造函数的 prototype 属性是否出现在对象的原型链中的任何位置**.
 原始值使用`instanceof`都会返回`false`，如果使用`new` 声明 是可以检测出来。对于是使用`new`声明的类型，它还可以检测出多层继承关系。
 
@@ -158,7 +147,7 @@ c2 instanceof C; // false
 
 从 `instanceof` 能够判断出 `[ ].__proto__` 指向 `Array.prototype`，而 `Array.prototype.__proto__` 又指向了`Object.prototype`，最终 `Object.prototype.__proto__` 指向了`null`，标志着原型链的结束。因此，`[]、Array、Object` 就在内部形成了一条原型链：
 
-<img src="../../images/javascript/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"/>
+<img src="../../../images/javascript/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"/>
 
 从原型链可以看出，`[]` 的 `__proto__` 直接指向`Array.prototype`，间接指向 `Object.prototype`，所以按照 `instanceof` 的判断规则，`[]` 就是`Object`的实例。依次类推，类似的 `new Date()、new Person()` 也会形成一条对应的原型链 。**因此，instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型。**
 
@@ -197,7 +186,7 @@ instance_of([], Object); // true
 
 当一个函数 F 被定义时，JS 引擎会为 F 添加 `prototype` 原型，然后再在 `prototype`上添加一个 `constructor` 属性，并让其指向 F 的引用。如下所示：
 
-<img src="../../images/javascript/javascript2.png" alt="constructor"  style="margin: 0 auto;"/>
+<img src="../../../images/javascript/javascript2.png" alt="constructor"  style="margin: 0 auto;"/>
 
 当执行 `var f = new F()` 时，F 被当成了构造函数，f 是 F 的实例对象，此时 F 原型上的 `constructor` 传递到了 f 上，因此 `f.constructor === F`.
 
@@ -252,10 +241,10 @@ Object.prototype.toString.call(window); //[object global] window 是全局对象
 
 我们可以通过四种方式获取数据类型：
 
-- <font color="#ff502c">typeof 运算符，用来区分对象和原始值</font>
-- <font color="#ff502c">instanceof 运算符，用来分类对象</font>
-- <font color="#ff502c">constructor，用来创建实例对象的 Object 构造函数的引用</font>
-- <font color="#ff502c">[[Class]]是一个内部属性字符串，用来给对象分类</font>
+- `typeof 运算符，用来区分对象和原始值`
+- `instanceof 运算符，用来分类对象`
+- `constructor，用来创建实例对象的 Object 构造函数的引用`
+- `[[Class]]是一个内部属性字符串，用来给对象分类`
 
 ## 参考
 

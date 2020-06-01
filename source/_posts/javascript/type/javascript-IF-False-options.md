@@ -8,16 +8,7 @@ description: 在用javaScript的if的时候他会把固定的值转换为false�
 
 **_多言多败，多事多害。——《训蒙增广》_**
 
-[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-[JavaScript 数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-[JavaScript 数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-[JavaScript 数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-[JavaScript 数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-[JavaScript 数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
-
 ## 简介
-
----
 
 在 JavaScript 中使用 if 的时候，自己如果不注意的话很可能出现判断进错，其实在 JavaScript 中只有`固定的几个值会转为 false，其它的统一认为为 true。
 
@@ -46,7 +37,7 @@ false && (true || true); // 结果为 false
 - 将 OR 转换为 AND
 - 删除嵌套的 AND
 - 删除嵌套的 OR
-  可参考>https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators
+  可参考 >https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators
 
 ### 逻辑与(&&)
 

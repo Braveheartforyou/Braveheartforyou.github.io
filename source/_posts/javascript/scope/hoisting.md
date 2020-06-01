@@ -92,7 +92,7 @@ console.log(aa); // aaaa 输出最后的覆盖值
 ```
 
 其实我们可以通过`chrome`浏览器调试效果大致如下图所示：
-![hosting-debugger](../../images/javascript/javascirpt-hosting-1.png)
+![hosting-debugger](./hoisting/javascirpt-hosting-1.png)
 
 到这里就大致知道`变量提升`、`函数提升`它们的大致过程和它们之间的`优先级`。下面我们来说一下它们和`块级作用域`和`函数作用域`的关系。
 
@@ -295,32 +295,32 @@ console.log(aa); // 1 ?这个确定对？
 **`function aa () {}; aa = 1;`执行过程**
 
 1. 执行序号 1 时： 进入`if`内部执行，在`scope`中会多出来一个`block`，也就是在`作用域链`中会多出来一个`block`，这个作用域中有`aa = function aa () {}`。如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-2.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-2.png)
    这个时候`block`是`function aa() {}`而全局的`window.aa`现在还是`aaaa`
 
 2. 执行序号 2 时： 执行`console.log(aa)`,这个只是一个输出语法并不会改变变量的值,执行效果没有变。
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-3.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-3.png)
 
 3. 执行序号 3 时: 执行`function aa() {}`, 我们可以看到`block`和`全局作用域`的`aa`变量都改变为`function aa () {}`，如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-4.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-4.png)
 
 4. 执行序号 4 时: 它会执行的代码`aa = 1`，这个时候根据作用域链的规则，就近获取和修改变量。所以`block`内的`aa = 1`,而全局变量`window.aa = function aa () {}` 如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-5.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-5.png)
 
 **`aa = 1; function aa () {};`执行过程**
 
 1. 执行序号 5 时： 进入`if`内部执行，在`scope`中会多出来一个`block`，也就是在`作用域链`中会多出来一个`block`，这个作用域中有`aa = function aa () {}`。如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-2.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-2.png)
    这个时候`block`是`function aa() {}`而全局的`window.aa`现在还是`aaaa`
 
 2. 执行序号 6 时： 执行`console.log(aa)`,这个只是一个输出语法并不会改变变量的值,执行效果没有变。
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-3.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-3.png)
 
 3. 执行序号 7 时: 执行`aa = 1`, 我们可以看到`block`作用域的变量`aa`被赋值为了`1`，而`全局作用域`中的变量`aa`还是`aaaa`。如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-6.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-6.png)
 
 4. 执行序号 8 时: 它会执行的代码`function aa() {}`，当前代码执行完成时，我们会发现`全局作用域`中的变量`aa`也被赋值为`1`. 如下图所示：
-   ![hosting-debugger](../../images/javascript/javascirpt-hosting-7.png)
+   ![hosting-debugger](./hoisting/javascirpt-hosting-7.png)
 
 **`aa = 1;`执行过程**
 当没有`function aa () {};`函数声明时，我们会发现不会产生一个临时的`block`作用域，也不会存在奇特的现象。

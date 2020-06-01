@@ -39,7 +39,7 @@ description: this的产生
 
 首先我们看一张比较经典的图。
 
-![this-one](../../images/javascript/javascript-this-1-1.jpg)
+![this-one](./javascript-this-one/javascript-this-1-1.jpg)
 
 一个简单的实例，代码如下：
 
@@ -60,7 +60,7 @@ console.log('inside global Execution Context');
 
 执行效果如下图所示：
 
-![this-one](../../images/javascript/javascript-this-1-2.png)
+![this-one](./javascript-this-one/javascript-this-1-2.png)
 
 当上述代码在浏览器加载时，`JavaScript 引擎`创建了一个`全局执行上下文`并把它压入当前`执行栈`。当遇到 `first()` 函数调用时，`JavaScript 引擎`为该函数`创建`一个新的`执行上下文`并把它压入`当前执行栈`的顶部。
 
@@ -143,7 +143,7 @@ console.log('inside global Execution Context');
 
 总结一下`词法环境`分为两种**全局环境**、**函数环境**，`函数环境`又包含两个概念**环境记录器**、**引用的外部环境**，而`环境记录器`又分为两种**声明式环境记录器**、**对象环境记录器**。来张图解释一下吧。
 
-![this-one](../../images/javascript/javascript-this-1-3.png)
+![this-one](./javascript-this-one/javascript-this-1-3.png)
 
 **注意**
 
@@ -263,7 +263,7 @@ c = multiply(20, 30);
 
 `词法环境`分为两种**全局环境**、**函数环境**，`函数环境`又包含两个概念**环境记录器**、**引用的外部环境**，而`环境记录器`又分为两种**声明式环境记录器**、**对象环境记录器**。
 
-在上面只是简单的讲解了`变量提升`，如果有兴趣再多了解一下`变量声明提升、函数声明提升`可以去看我的另一篇文章[JavaScript 中的变量提升](/blog/javascript/hoisting.html)，里面又很多比较好的实例。
+在上面只是简单的讲解了`变量提升`，如果有兴趣再多了解一下`变量声明提升、函数声明提升`可以去看我的另一篇文章[JavaScript 中的变量提升](/blog/javascript/scope/hoisting.html)，里面又很多比较好的实例。
 
 ## 执行阶段
 

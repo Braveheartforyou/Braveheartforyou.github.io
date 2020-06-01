@@ -1,7 +1,7 @@
 ---
 title: 深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign
 date: 2019-09-23 09:45:21
-tags: [ECMAScript6, DeepClone]
+tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: 本篇文章会介绍什么是深拷贝、什么是浅拷贝，Object.assgin、解构、扩展运算符是深拷贝还是浅拷贝，自己实现一个Object.assgin。
 ---
@@ -18,7 +18,7 @@ description: 本篇文章会介绍什么是深拷贝、什么是浅拷贝，Obje
 `基本类型`是储存在栈(stack)中的数据。
 `引用类型`真实数据是储存在堆中的，而它的引用地址储存在栈中。
 
-![深拷贝/浅拷贝](../../images/es/es-assign-1-1.png)
+![深拷贝/浅拷贝](./es6-assign/es-assign-1-1.png)
 
 如果有兴趣了解`JavaScript`中的类型的话，可以看一下我往期的文章[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)，这个只是其中的一篇，有关`JavaScript`类型的常见的概念基本上都有提及。
 
@@ -35,11 +35,11 @@ console.log(a, b); // abc, abcd
 
 - `浅拷贝简介`: 创建一个新对象，这个对象有着`原始对象属性值`的一份精确拷贝。如果属性是基本类型，拷贝的就是`基本类型的值`，如果属性是引用类型，拷贝的就是`内存地址` ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
 
-![深拷贝/浅拷贝](../../images/es/es-assign-1-2.png)
+![深拷贝/浅拷贝](./es6-assign/es-assign-1-2.png)
 
 - `深拷贝`: 创建一个新的对象把原始对象的`所有属性`的拷贝一份，并且`引用类型的引用地址和内存空间都会被拷贝一份，重新分配内存空间`。`修改新对象不会影响原始对象`。
 
-![深拷贝/浅拷贝](../../images/es/es-assign-1-3.png)
+![深拷贝/浅拷贝](./es6-assign/es-assign-1-3.png)
 
 本章主要记录`深拷贝/浅拷贝`，主要讲解浅拷贝相关的如`assign、解构、扩展运算符、slice`等等，后面的文章会`由浅到深的`的介绍`深拷贝`相关的。
 
@@ -358,6 +358,5 @@ console.log(newValue); // {name: "old", attr: {age: 20, sex: "man"}}
 
 ## 参考
 
-> [https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice](https://developer.mozilla.org/zh-CN/docs/Web)
-
-> [一文搞懂 JS 中的赋值·浅拷贝·深拷贝](https://mp.weixin.qq.com/s/bvYqA16mU_rRYT1G37onug)
+[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice](https://developer.mozilla.org/zh-CN/docs/Web)
+[一文搞懂 JS 中的赋值·浅拷贝·深拷贝](https://mp.weixin.qq.com/s/bvYqA16mU_rRYT1G37onug)

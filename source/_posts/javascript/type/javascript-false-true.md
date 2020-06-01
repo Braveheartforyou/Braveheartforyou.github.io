@@ -8,16 +8,7 @@ description: 在JavaScript中==和===的区别,为什么![] == []为true, [] == 
 
 **_察见渊鱼者不详，智料隐匿者有殃。——《列子·说符》_**
 
-[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-[JavaScript 数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-[JavaScript 数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-[JavaScript 数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-[JavaScript 数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-[JavaScript 数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
-
 ## 简介
-
----
 
 JavaScript 有两种比较方式：**严格比较运算符**和**转换类型比较运算符**。对于严格比较运算符（===）来说，仅当两个操作数的**类型相同且值相等**为 `true`，而对于被广泛使用的比较运算符（==）来说，会在进行比较之前，将两个操作数**转换成相同的类型**。
 
@@ -30,7 +21,7 @@ JavaScript 有两种比较方式：**严格比较运算符**和**转换类型比
 - **当比较一个表达式和一个对象时，仅当两个操作数引用相同的对象（指针指向相同对象）。**
 - **对于 Null 和 Undefined 类型而言，应使用严格比较运算符比较其自身，使用比较运算符进行互相比较。**
 
-[](https://www.h5jun.com/post/why-false-why-true.html)
+[false/true](https://www.h5jun.com/post/why-false-why-true.html)
 
 ### 一致/严格相等 (===)
 
@@ -43,35 +34,35 @@ JavaScript 有两种比较方式：**严格比较运算符**和**转换类型比
 非严格比较操作符 == 是会做强制类型转换的，那么根据 ECMA 262 它的规则是：
 
 **图 1-1**
-![! ==](../../images/false-true/1.png)
-**<font color="#ff502c">ToPrimitive：</font>**
+![! ==](./javascript-false-true/1.png)
+**`ToPrimitive：`**
 
 **图 1-2**
-![! ==](../../images/false-true/2.png)
+![! ==](./javascript-false-true/2.png)
 
 **图 1-3**
-![! ==](../../images/false-true/3.png)
+![! ==](./javascript-false-true/3.png)
 
 **图 1-4**
-![! ==](../../images/false-true/4.png)
-**<font color="#ff502c">ToBoolean: </font>**
+![! ==](./javascript-false-true/4.png)
+**`ToBoolean:`**
 
 **图 1-5**
 
-![! ==](../../images/false-true/5.png)
+![! ==](./javascript-false-true/5.png)
 **图 1-6**
-![! ==](../../images/false-true/6.png)
+![! ==](./javascript-false-true/6.png)
 
 [ecma 规则](http://www.ecma-international.org)
 
 ## [] == false or ![] == [] or ![] == false 为 true
 
 mdn 运算符优先级参考表
-![! ==](../../images/false-true/false-true-1.png)
-![! ==](../../images/false-true/false-true-2.png)
+![! ==](./javascript-false-true/false-true-1.png)
+![! ==](./javascript-false-true/false-true-2.png)
 
-<font color="#ff502c">==</font>的优先级 16
-<font color="#ff502c">!</font>的优先级 10
+`==`的优先级 16
+`!`的优先级 10
 
 ### [] == false 结果为 true
 

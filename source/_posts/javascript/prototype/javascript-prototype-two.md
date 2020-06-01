@@ -6,23 +6,13 @@ categories: [JavaScript]
 description: Function.prototype、Object.prototype、null、Function.prototype.__proto__、Object.prototype.__proto__、function、object之间的关系
 ---
 
-**_將欲廢之，必固興之；將欲奪之，必固與之。——《道德經》_**
-
-[JavaScript 原型系列（一）构造函数、原型和原型链](/blog/javascript/javascript-prototype.html)
-[JavaScript 原型系列（二）什么是原型继承](/blog/javascript/javascript-prototype-one.html)
-[JavaScript 原型系列（三）Function、Object、Null 等等的关系和鸡蛋问题](/blog/javascript/javascript-prototype-two.html)
-
 ## 简介
 
----
-
-<img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"/>
+<img src="./javascript-prototype-two/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"/>
 
 基本上都知道原型链的尽头指向`null`，那么`Function.prototype`、`Object.prototype`、`null`、`Function.prototype.__proto__`、`Object.prototype.__proto__`、`function、object`之间的关系是什么，下面慢慢来记录一下。
 
 ## Object
-
----
 
 **Object** 构造函数创建一个对象包装器。**JavaScript**中的所有对象都来自 `Object`；所有对象从`Object.prototype`继承方法和属性，尽管它们可能被覆盖。
 
@@ -32,7 +22,7 @@ description: Function.prototype、Object.prototype、null、Function.prototype._
 Object.__proto__ === Function.prototype; // true
 ```
 
-![JavaScript-prototype](../../images/javascript/javascript-prototype-1-9.png)
+![JavaScript-prototype](./javascript-prototype-two/javascript-prototype-1-9.png)
 
 ### Object.prototype
 
@@ -55,8 +45,6 @@ obj.__proto__ === Object.prototype; // true
 ```
 
 ## Function
-
----
 
 [摘录来自 ECMAScript 5.1 规范](http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4)
 
@@ -99,7 +87,7 @@ Function.prototype.__proto__ === Object.prototype; // true
 Function.__proto__ === Function.prototype; // true
 ```
 
-![JavaScript-prototype](../../images/javascript/javascript-prototype-1-8.png)
+![JavaScript-prototype](./javascript-prototype-two/javascript-prototype-1-8.png)
 
 ### function
 
@@ -113,15 +101,13 @@ foo.__proto__ === Function.prototype; // true
 
 ## Object 和 Function 的鸡和蛋的问题
 
----
-
 经过上面对`Object`和`Function`的阐述，延伸出来几个问题如下：
 
 - 在忽滤`null`在原型链上时，原型链的尽头（root）是`Object.prototype`。所有对象均从`Object.prototype`继承属性。
-  ![JavaScript-prototype](../../images/javascript/javascript-prototype-1-10.png)
+  ![JavaScript-prototype](./javascript-prototype-two/javascript-prototype-1-10.png)
 
 - `Function.prototype`和`Function.__proto__`为同一对象。
-  ![JavaScript-prototype](../../images/javascript/javascript-prototype-1-11.png)
+  ![JavaScript-prototype](./javascript-prototype-two/javascript-prototype-1-11.png)
   这意味着： `Object/Array/String`等等**构造函数**本质上和`Function`一样，均继承于`Function.prototype`。
 
 - `Function.prototype`直接继承 root（`Object.prototype`）。
@@ -163,8 +149,6 @@ Function instanceof Function; // true
 为什么`Function instanceof Object`为`true`，`Object instanceof Function`也为`true`，那么他们到底是什么关系？
 
 ## 解答
-
----
 
 先要了解清楚`Function.prototype`和`Object构造函数`如下：
 回归规范，摘录 2 点：
@@ -220,8 +204,6 @@ Function instanceof Function; // true
 总结一下：**先有 `Object.prototype`（原型链顶端），`Function.prototype` 继承 `Object.prototype` 而产生，最后，`Function` 和 `Object` 和其它构造函数继承 `Function.prototype` 而产生。**
 
 ## 总结
-
----
 
 - `Object.prototype`是浏览器底层根据 `ECMAScript` 规范创造的一个对象。
 - `Function.prototype`直接继承的`Object.prototype`，同样它也是由是引擎创建出来的函数，引擎认为不需要给这个函数对象添加 `prototype` 属性。`Function.prototype.prototype`为`undefined`。

@@ -1,7 +1,7 @@
 ---
 title: ES系列 ———— Object.defineProperty和Proxy的对比
 date: 2019-09-18 09:12:32
-tags: [ECMAScript6, JavaScript]
+tags: [ECMAScript6]
 categories: [ECMAScript6]
 description: Object.defineProperty和Proxy分别是什么，它们之间的优缺点，实现简单的双向绑定。
 ---

@@ -6,16 +6,7 @@ categories: [Http]
 description: http2.0协议和http1.x、http1.0的区别、优化。
 ---
 
-**_知者不言，言者不知。——老子_**
-
-- [Http 系列(-) Http 发展历史](/blog/http/http-http2.html)
-- [Http 系列(二) Http2 中的多路复用](/blog/http/http-http2-1.html)
-- [Http 系列(三) Http/Tcp 三次握手和四次挥手](/blog/http/http-tcp.html)
-- [Http 系列(四) Http 中 Get/Post 的区别](/blog/http/http-get-post.html)
-
 ## 简介
-
----
 
 **Hyper Text Transfer Protocol（超文本传输协议）**,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。
 
@@ -26,7 +17,7 @@ description: http2.0协议和http1.x、http1.0的区别、优化。
 
 **HTTP 协议工作于客户端-服务端架构为上**。浏览器作为 HTTP 客户端通过 URL 向 HTTP 服务端即 WEB 服务器发送所有请求。Web 服务器根据接收到的请求后，向客户端发送响应信息。
 
-![http2.0](../../images/http/http2.0-1-1.png)
+![http2.0](./http-http2/http2.0-1-1.png)
 
 ## HTTP 协议版本
 
@@ -38,7 +29,7 @@ description: http2.0协议和http1.x、http1.0的区别、优化。
 - HTTP/2
 
 发展的历史如下：
-![http2.0](../../images/http/http2.0-1-2.png)
+![http2.0](./http-http2/http2.0-1-2.png)
 
 ### HTTP/0.9
 
@@ -107,7 +98,7 @@ HTTP 是基于 `TCP/IP 协议的应用层协议`。**它不涉及数据包（pac
 - **服务端推送（server push）**，采用了 SPDY 的网页，例如我的网页有一个 sytle.css 的请求，在客户端收到 sytle.css 数据的同时，服务端会将 sytle.js 的文件推送给客户端，当客户端再次尝试获取 sytle.js 时就可以直接从缓存中获取到，不用再发请求了。
 
 SPDY 构成图：
-![http2.0](../../images/http/http2.0-1-3.png)
+![http2.0](./http-http2/http2.0-1-3.png)
 
 ## HTTP/2
 
@@ -133,7 +124,7 @@ HTTP/2 的新特性:
 - **流**：流是连接中的一个虚拟信道，可以承载双向的消息；每个流都有一个唯一的整数标识符（1、2…N）；
 
 HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二进制协议解析起来更高效。 HTTP / 1 的请求和响应报文，都是由起始行，首部和实体正文（可选）组成，各部分之间以文本换行符分隔。**HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码。**
-![http2.0](../../images/http/http2.0-1-4.png)
+![http2.0](./http-http2/http2.0-1-4.png)
 
 #### 帧、流、消息的关系
 
@@ -143,7 +134,7 @@ HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二
 ### 多路复用 (Multiplexing)
 
 **多路复用允许同时通过单一的 HTTP/2 连接发起多重的请求-响应消息**。即连接共享，即每一个 request 都是是用作连接共享机制的。一个 request 对应一个 id，这样一个连接上可以有多个 request，每个连接的 request 可以随机的混杂在一起，接收方可以根据 request 的 id 将 request 再归属到各自不同的服务端请求里面。多路复用原理图：
-![http2.0](../../images/http/http2.0-1-5.png)
+![http2.0](./http-http2/http2.0-1-5.png)
 
 ### 请求优先级
 
@@ -161,13 +152,13 @@ HTTP1.x 的 header 带有大量信息，而且每次都要**重复发送**，HTT
 - **每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值**
 
 两次请求不相同的 header，传说的 header 如下图所示：
-![http2.0](../../images/http/http2.0-1-10.png)
+![http2.0](./http-http2/http2.0-1-10.png)
 
 ### 服务端推送
 
 **Server Push 即服务端能通过 push 的方式将客户端需要的内容预先推送过去，也叫“cache push”**。
 服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确地请求，服务端可以提前给客户端推送必要的资源，这样可以减少请求延迟时间，例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不是等到 HTML 解析到资源时发送请求，大致过程如下图所示：
-![http2.0](../../images/http/http2.0-1-11.png)
+![http2.0](./http-http2/http2.0-1-11.png)
 
 注意：
 **所有推送的资源都遵守同源策略**。
@@ -200,4 +191,6 @@ HTTP1.x 的 header 带有大量信息，而且每次都要**重复发送**，HTT
 
 ## 参考
 
-> [HTTP 协议入门](https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w) > [HTTP,HTTP2.0,SPDY,HTTPS 你应该知道的一些事](https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w) > [http2.0 的时代真的来了...](https://mp.weixin.qq.com/s/0m4R31gSV-DfY_-VOSb_jA)
+[HTTP 协议入门](https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w)
+[HTTP,HTTP2.0,SPDY,HTTPS 你应该知道的一些事](https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w)
+[http2.0 的时代真的来了...](https://mp.weixin.qq.com/s/0m4R31gSV-DfY_-VOSb_jA)

@@ -26,7 +26,7 @@ description: 什么是尾递归？什么是尾调用？尾递归解决的什么�
 
 首先引入一个概念：`栈帧`，**栈帧**是指一个函数调用单独分配的那部**分栈空间**。`栈帧`中有两种比较重要的帧`当前帧`、`调用帧`，先看一张图：
 
-![algorithm-tailCall](../../images/algorithm/algorithm-1-1.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-1.png)
 
 当运行中的程序`调用另一个函数时`，就要进入一个`新的栈帧`，`原来函数`的栈帧称为`调用者的帧`，`新的栈帧`称为`当前帧`。
 那么`调用栈`大致是怎么执行的呢？大致步骤如下：
@@ -39,18 +39,18 @@ description: 什么是尾递归？什么是尾调用？尾递归解决的什么�
 在线代码体验[调用栈执行过程](https://codepen.io/njmcode/pen/dMPmGq)，如果访问比较慢可以看[调用栈执行过程 demo](https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack)把代码下载到本地运行查看。
 
 执行效果大致如下：
-![algorithm-tailCall](../../images/algorithm/algorithm-1-3.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-3.png)
 因为 gif 文件过大，就放一张图片好了。
 
 ### 调试
 
 我们也可以通过`chrome`中的控制台，通过`console.trace()`来追踪当前的调用栈，如下图所示：
-![algorithm-tailCall](../../images/algorithm/algorithm-1-2.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-2.png)
 
 或者通过在代码中`打断点调试`看到当前调用栈：
-![algorithm-tailCall](../../images/algorithm/algorithm-1-4.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-4.png)
 
-其实`调用栈`和`事件轮询(event loop)`有很大的关联，如果对`事件轮询(event loop)`有兴趣的话看我另一篇文章[事件轮询/事件模型](/blog/javascript/evenloop.html)。
+其实`调用栈`和`事件轮询(event loop)`有很大的关联，如果对`事件轮询(event loop)`有兴趣的话看我另一篇文章[事件轮询/事件模型](/blog/javascript/eventloop/evenloop.html)。
 
 ## 尾调用和尾调用优化
 
@@ -132,7 +132,7 @@ one();
 
 执行过程如下下图所示：
 
-![algorithm-tailCall](../../images/algorithm/algorithm-1-5.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-5.png)
 
 我们在一个函数中调用另一个函数，但是并没有通过`return`来结束当前函数的执行，`JS引擎`会认为当前的函数并没有执行完成，会在执行当前函数调用的函数，等他执行完成才会释放当前函数。
 
@@ -160,7 +160,7 @@ one();
 
 执行效果如下图所示：
 
-![algorithm-tailCall](../../images/algorithm/algorithm-1-6.png)
+![algorithm-tailCall](./algorithm-other-tailCall/algorithm-1-6.png)
 
 - `one函数`执行时，会把`one函数`添加进`调用栈`中，`one函数`现在为`当前帧`。
 - 在`one函数`中又调用了`two函数`，当时在调用`two函数`添加了`return`，`调用栈`会把`one函数`弹出，当前`调用栈`中只有一个`two函数`。

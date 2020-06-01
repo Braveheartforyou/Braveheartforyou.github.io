@@ -67,14 +67,14 @@ const videoURL = URL.createObjectURL(video); // blob:https://www.aaa.com/12212aa
 
 ## HLS 和 MPEG DASH
 
-HLS （HTTP Live Streaming）, 是由 Apple 公司实现的基于 HTTP 的媒体流传输协议。HLS 以 ts 为传输格式，m3u8 为索引文件（文件中包含了所要用到的 ts 文件名称，时长等信息，可以用播放器播放，也可以用 vscode 之类的编辑器打开查看），在移动端大部分浏览器都支持，也就是说你可以用 video 标签直接加载一个 m3u8 文件播放视频或者直播，但是在 pc 端，除了苹果的 Safari，需要引入库来支持。
-用到此方案的视频网站比如优酷，可以在视频播放时通过调试查看 Network 里的 xhr 请求，会发现一个 m3u8 文件，和每隔一段时间请求几个 ts 文件。
-![https](../../images/http/https-1-1.png)
-![https](../../images/http/https-1-2.png)
-但是除了 HLS，还有 Adobe 的 HDS，微软的 MSS，方案一多就要有个标准点的东西，于是就有了 MPEG DASH。
-DASH（Dynamic Adaptive Streaming over HTTP） ，是一种在互联网上传送动态码率的 Video Streaming 技术，类似于苹果的 HLS，DASH 会通过 media presentation description (MPD)将视频内容切片成一个很短的文件片段，每个切片都有多个不同的码率，DASH Client 可以根据网络的情况选择一个码率进行播放，支持在不同码率之间无缝切换。
-Youtube，B 站都是用的这个方案。这个方案索引文件通常是 mpd 文件（类似 HLS 的 m3u8 文件功能），传输格式推荐的是 fmp4（Fragmented MP4）,文件扩展名通常为.m4s 或直接用.mp4。所以用调试查看 b 站视频播放时的网络请求，会发现每隔一段时间有几个 m4s 文件请求。
-![https](../../images/http/https-1-3.png)
+`HLS （HTTP Live Streaming）`, 是由 Apple 公司实现的`基于 HTTP 的媒体流传输协议`。`HLS 以 ts 为传输格`式，`m3u8 为索引文件`（文件中包含了所要用到的 `ts 文件名称`，时长等信息，可以用播放器播放，也可以用 vscode 之类的编辑器打开查看），在移动端大部分浏览器都支持，也就是说你可以用 `video 标签直接加载一个 m3u8 文件播放视频`或者直播，但是在 pc 端，除了苹果的 Safari，需要引入库来支持。
+用到此方案的视频网站比如优酷，可以在视频播放时通过调试查看 `Network` 里的 `xhr` 请求，会发现一个 m3u8 文件，和每隔一段时间请求几个 ts 文件。
+![https](./http-https-blob/https-1-1.png)
+![https](./http-https-blob/https-1-2.png)
+但是除了 `HLS`，还有 `Adobe` 的 `HDS`，微软的 `MSS`，方案一多就要有个标准点的东西，于是就有了 `MPEG DASH`。
+`DASH（Dynamic Adaptive Streaming over HTTP）` ，是一种在互联网上传送动态码率的 `Video Streaming` 技术，类似于苹果的 `HLS，DASH` 会通过 `media presentation description (MPD)`将视频内容切片成一个很短的文件片段，每个切片都有多个不同的码率，`DASH Client` 可以根据网络的情况选择一个码率进行播放，支持在不同码率之间无缝切换。
+`Youtube，B` 站都是用的这个方案。这个方案索引文件通常是 mpd 文件（类似 HLS 的 m3u8 文件功能），传输格式推荐的是 `fmp4（Fragmented MP4）`,文件扩展名通常为`.m4s` 或直接用`.mp4`。所以用调试查看 b 站视频播放时的网络请求，会发现每隔一段时间有几个 m4s 文件请求。
+![https](./http-https-blob/https-1-3.png)
 不管是 HLS 还是 DASH 们，都有对应的库甚至是高级的播放器方便我们使用，但我们其实是想要学习一点实现。其实抛开掉索引文件的解析拿到实际媒体文件的传输地址，摆在我们面前的只有一个如何将多个视频数据合并让 video 标签可以无缝播放。
 
 > 与之相关的一篇 B 站文章推荐给感兴趣的朋友：[我们为什么使用 DASH](https://www.bilibili.com/read/cv855111/)
@@ -132,13 +132,13 @@ function sourceOpen() {
 }
 ```
 
-这段代码修改自 MDN 的 MediaSource 词条中的示例代码，原例子中只有加载一段视频，我修改为了多段视频，代码里面很多地方还可以优化精简，这里没做就当是为了方便我们看逻辑。
-此时我们已经基本实现了一个简易的流媒体播放功能，如果愿意可以再加入 m3u8 或 mpd 文件的解析，设计一下 UI 界面，就可以实现一个流媒体播放器了。
-最后提一下一个坑，很多人跑了 MDN 的 MediaSource 示例代码，可能会发现使用官方提供的视频是没问题的，但是用了自己的 mp4 视频就会报错，这是因为 fmp4 文件扩展名通常为.m4s 或直接用.mp4，但却是特殊的 mp4 文件。
+这段代码修改自 `MDN` 的 `MediaSource` 词条中的示例代码，原例子中只有加载一段视频，我修改为了多段视频，代码里面很多地方还可以优化精简，这里没做就当是为了方便我们看逻辑。
+此时我们已经基本实现了一个简易的流媒体播放功能，如果愿意可以再加入 `m3u8` 或 `mpd` 文件的解析，设计一下 UI 界面，就可以实现一个流媒体播放器了。
+最后提一下一个坑，很多人跑了 `MDN 的 MediaSource` 示例代码，可能会发现使用官方提供的视频是没问题的，但是用了自己的 mp4 视频就会报错，这是因为 `fmp4 文件扩展名通常为.m4s` 或直接用`.mp4`，但却是特殊的`mp4` 文件。
 
 ## Fragmented MP4
 
-通常我们使用的 mp4 文件是嵌套结构的，客户端必须要从头加载一个 MP4 文件，才能够完整播放，不能从中间一段开始播放。而 Fragmented MP4（简称 fmp4），就如它的名字碎片 mp4，是由一系列的片段组成，如果服务器支持 byte-range 请求，那么，这些片段可以独立的进行请求到客户端进行播放，而不需要加载整个文件。
+通常我们使用的 mp4 文件是嵌套结构的，客户端必须要从头加载一个`MP4 文件`，才能够完整播放，不能从中间一段开始播放。而 `Fragmented MP4（简称 fmp4）`，就如它的名字碎片 `mp4`，是由一系列的片段组成，如果服务器支持 `byte-range` 请求，那么，这些片段可以独立的进行请求到客户端进行播放，而不需要加载整个文件。
 我们可以通过这个网站判断一个 mp4 文件[是否为 Fragmented MP4 网站地址](http://nickdesaulniers.github.io/mp4info/)。
 我们通过[FFmpeg](https://ffmpeg.org/)或[Bento4](https://www.bento4.com/)的 mp4fragment 来将普通 mp4 转换为 Fragmented MP4，两个工具都是命令行工具，按照各自系统下载下来对应的压缩包，解压后设置环境变量指向文件夹中的 bin 目录，就可以使用相关命令了。
 Bento4 的 mp4fragment，没有太多参数，命令如下:
@@ -153,7 +153,7 @@ FFmpeg 会需要设置一些参数，命令如下：
     ffmpeg -i video.mp4 -movflags empty_moov+default_base_moof+frag_keyframe video-fragmented.mp4
 ```
 
-> Tips：网上大部分的资料中转换时是不带 default_base_moof 这个参数的，虽然可以转换成功，但是经测试如果不添加此参数网页中 MediaSource 处理视频时会报错。
+> Tips：网上大部分的资料中转换时是不带 `default_base_moof` 这个参数的，虽然可以转换成功，但是经测试如果不添加此参数网页中 MediaSource 处理视频时会报错。
 > 视频的切割分段可以使用 Bento4 的 mp4slipt，命令如下：
 
 ```shell
@@ -210,4 +210,5 @@ xhr.send();
 
 ## 引用
 
-> [为什么视频网站的视频链接地址是 blob？](https://juejin.im/post/5d1ea7a8e51d454fd8057bea) > [通过 BLOB 加密视频文件](https://www.jianshu.com/p/04727924273d)
+[为什么视频网站的视频链接地址是 blob？](https://juejin.im/post/5d1ea7a8e51d454fd8057bea)
+[通过 BLOB 加密视频文件](https://www.jianshu.com/p/04727924273d)

@@ -33,7 +33,7 @@ description: 基本上都知道relative是相对定位，一般会配合absolute
 
 **fixed**
 
-不为元素预留空间，而是通过指定元素**相对于屏幕视口（viewport）的位置来指定元素位置**。**元素的位置在屏幕滚动时不会改变**。打印时，元素会出现在的每页的固定位置。**fixed 属性会创建新的层叠上下文。当元素祖先的 transform  属性非 none 时，容器由视口改为该祖先**。
+不为元素预留空间，而是通过指定元素**相对于屏幕视口（viewport）的位置来指定元素位置**。**元素的位置在屏幕滚动时不会改变**。打印时，元素会出现在的每页的固定位置。**fixed 属性会创建新的层叠上下文。当元素祖先的 transform 属性非 none 时，容器由视口改为该祖先**。
 
 **sticky（实验属性）**
 
@@ -42,150 +42,150 @@ description: 基本上都知道relative是相对定位，一般会配合absolute
 **语法**
 
 ```css
-  postion: static | relative | absolute | sticky | fixed;
+postion: static | relative | absolute | sticky | fixed;
 ```
 
-## relative的特性
+## relative 的特性
 
 在上面看到**MDN**对`relative`的定位的一下描述，但是并没有描述的比较通俗，通过下面的实例总结一下`relative`的特性。
 
 **公用代码**
 
 ```html
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    .box {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      margin: 200px auto;
-      border: 1px solid #000;
-    }
-    .box div {
-      width: 100px;
-      height: 100px;
-    }
-    .one {
-      background: orange;
-    }
-    .two {
-      background: purple;
-    }
-  </style>
-  <div class="box">
-    <div class="one">one</div>
-    <div class="two">two</div>
-  </div>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 200px auto;
+    border: 1px solid #000;
+  }
+  .box div {
+    width: 100px;
+    height: 100px;
+  }
+  .one {
+    background: orange;
+  }
+  .two {
+    background: purple;
+  }
+</style>
+<div class="box">
+  <div class="one">one</div>
+  <div class="two">two</div>
+</div>
 ```
 
-### relative是相对于定位
+### relative 是相对于定位
 
 直接上代码，修改代码如下：
 
 ```css
-  .one {
-    position: relative;
-    top: 50px;
-  }
+.one {
+  position: relative;
+  top: 50px;
+}
 ```
 
 效果图如下：
-![css margin](../../images/css/css-relative-1-1.png)
+![css margin](./css-relative/css-relative-1-1.png)
 
 把`div.one`设置`position: relative`时，并且设置`top: 50px`时，可以看到`div.one`的元素相对于自身在正常流中的位置向下移动了`50px`，它挡住了一半的`div.two`元素。
 `relative`的四个定位值`top`、`left`、`bottom`、`right`是相对自身移动的。
 
-> **如果设置了对立属性top/bottom、left/right的相对定位元素，它的top/left生效，right/bottom无效。**
+> **如果设置了对立属性 top/bottom、left/right 的相对定位元素，它的 top/left 生效，right/bottom 无效。**
 
-### relative不改变布局
+### relative 不改变布局
 
 `margin-top: 负值`修改代码如下：
 
 ```css
-  .one {
-    margin-top: -50px;
-  }
+.one {
+  margin-top: -50px;
+}
 ```
 
 代码执行效果如下：
-![css margin](../../images/css/css-relative-1-2.png)
+![css margin](./css-relative/css-relative-1-2.png)
 
 可以看到`div.one`设置`margin-top: -50px;`时，它会影响到它相邻的兄弟元素`div.two`的位置，`div.one/div.two`都相对于原来的位置**向上**移动了`50px`。
 
 `top: -50px;`修改代码如下：
 
 ```css
-  .one {
-    position: relative;
-    top: -50px;
-  }
+.one {
+  position: relative;
+  top: -50px;
+}
 ```
 
 代码执行效果如下：
-![css margin](../../images/css/css-relative-1-3.png)
+![css margin](./css-relative/css-relative-1-3.png)
 
 可以看到`div.one`设置`postion: relative; top: -50px;`时，它不会影响到它相邻的兄弟元素`div.two`的位置，`div.one`都相对于原来的位置**向上**移动了`50px`，而`div.two`的位置是不变的。
 
 - `relative`是相对于自身定位的。
 - `relative`是不会改变布局的
 
-## relative的限制作用
+## relative 的限制作用
 
-### relative对absolute的限制作用
+### relative 对 absolute 的限制作用
 
-`absolute`定位的是其**第一个祖先元素定位属性不为static属性**。这个就不多赘述，基本上都在用这种布局。
+`absolute`定位的是其**第一个祖先元素定位属性不为 static 属性**。这个就不多赘述，基本上都在用这种布局。
 如果设置`postion: absolute;`元素的父元素没有设置`position: relative;`，那么设置`position: absolute;`元素的绝对定位就会最外层的**根元**素定位。
 
-### relative对overflow的限制作用
+### relative 对 overflow 的限制作用
 
 其实这个也比较常用但是一般不会太注意`relative`对`overflow`的影响。
 
-**父元素不添加relative**
+**父元素不添加 relative**
 
 修改**html**代码如下：
 
 ```html
-  <div class="box">
-    <div class="one">one</div>
-    <!-- <div class="two">two</div> -->
-  </div>
-  <div class="box" style="position: relative;">
-    <div class="one">one</div>
-    <!-- <div class="two">two</div> -->
-  </div>
+<div class="box">
+  <div class="one">one</div>
+  <!-- <div class="two">two</div> -->
+</div>
+<div class="box" style="position: relative;">
+  <div class="one">one</div>
+  <!-- <div class="two">two</div> -->
+</div>
 ```
 
 修改**css**代码如下：
 
 ```css
-  .box {
-    width: 100px;
-    height: 100px;
-    margin: 200px auto;
-    border: 1px solid #000;
-    overflow: hidden;
-  }
-  .box div {
-    width: 200px;
-    height: 200px;
-  }
-  .one {
-    position: absolute;
-    background: orange;
-  }
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 200px auto;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+.box div {
+  width: 200px;
+  height: 200px;
+}
+.one {
+  position: absolute;
+  background: orange;
+}
 ```
 
 下过显示如下图所示：
 
-![css margin](../../images/css/css-relative-1-4.png)
+![css margin](./css-relative/css-relative-1-4.png)
 
 可以看到第一个`div.box`没有设置`position: relative;`时，子元素设置`position: absoulte;`时，并且子元素的宽度高度大于父元素的宽度高度时，它会超出父元素的范围。
 第二个`div.box`设置了`position: relative;`时，子元素设置不会超出父元素的宽高范围。
 
-### relative对层级z-index的限制作用
+### relative 对层级 z-index 的限制作用
 
 对于一个已经定位的元素（即`position`属性值不是`static`的元素），`z-index` 属性指定：
 
@@ -195,48 +195,48 @@ description: 基本上都知道relative是相对定位，一般会配合absolute
 修改**html**代码如下：
 
 ```html
-  <div class="box">
-    <div class="one" style="position: relative;">one</div>
-    <div class="two">two</div>
-  </div>
-  <div class="box">
-    <div class="one">one</div>
-    <div class="two">two</div>
-  </div>
+<div class="box">
+  <div class="one" style="position: relative;">one</div>
+  <div class="two">two</div>
+</div>
+<div class="box">
+  <div class="one">one</div>
+  <div class="two">two</div>
+</div>
 ```
 
 修改**css**代码如下：
 
 ```css
-  .box {
-    width: 200px;
-    height: 200px;
-    margin: 20px auto;
-    border: 1px solid #000;
-    overflow: hidden;
-  }
-  .box div {
-    width: 100px;
-    height: 100px;
-  }
-  .one {
-    z-index: 3;
-    background: orange;
-  }
-  .two {
-    margin-top: -50px;
-    z-index: 2;
-    background: purple;
-  }
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+.box div {
+  width: 100px;
+  height: 100px;
+}
+.one {
+  z-index: 3;
+  background: orange;
+}
+.two {
+  margin-top: -50px;
+  z-index: 2;
+  background: purple;
+}
 ```
 
 效果图如下：
 
-![css margin](../../images/css/css-relative-1-5.png)
+![css margin](./css-relative/css-relative-1-5.png)
 
 在下面的第一幅图中，设置了`margin`负值，虽然同时设置了`z-index`为数值，但是后面的元素依然覆盖了前面的元素，而当增加了定位属性`position: relative`后，创建了层叠上下文，前面元素的层叠顺序高，虽然同时设置了`margin`负值，但是后面的元素依然覆盖不了前面的元素。
 
-## 相对定位relative的使用原则-最小化
+## 相对定位 relative 的使用原则-最小化
 
 虽然`relative`定位很好用，并且使用的频率很高，但是根据张鑫旭大神总结的布局实践原则，最好基于以下原则为好：
 
@@ -246,34 +246,36 @@ description: 基本上都知道relative是相对定位，一般会配合absolute
 比如，我们想在某个模块的右上角定位一个图标，如果让你去布局实现的话，你该如何布局呢？十有八九会如下面的方式实现：
 
 ```html
-  <div style="position: relative">
-    <img src="icon.png" style="position: absolute;top:0;right:0">
-    <p>内容1</p>
-    <p>内容2</p>
-    <p>内容3</p>
-    ...
-  </div>
+<div style="position: relative">
+  <img src="icon.png" style="position: absolute;top:0;right:0" />
+  <p>内容1</p>
+  <p>内容2</p>
+  <p>内容3</p>
+  ...
+</div>
 ```
 
-但是，我们可以采用”relative的最小化使用原则”的方式实现，其代码如下面的方式实现：
+但是，我们可以采用”relative 的最小化使用原则”的方式实现，其代码如下面的方式实现：
 
 ```html
-  <div>
-    <div style="position: relative"><img src="icon.png" style="position: absolute;top:0;right:0"> </div>
-    <p>内容1</p>
-    <p>内容2</p>
-    <p>内容3</p>
-    ...
+<div>
+  <div style="position: relative">
+    <img src="icon.png" style="position: absolute;top:0;right:0" />
   </div>
+  <p>内容1</p>
+  <p>内容2</p>
+  <p>内容3</p>
+  ...
+</div>
 ```
 
 ## 总结
 
-`position: relative;`其实它的特殊性比较少，但是最后的规则尽量要遵循，就是**relative的最小化使用原则**。
+`position: relative;`其实它的特殊性比较少，但是最后的规则尽量要遵循，就是**relative 的最小化使用原则**。
 
 ## 参考
 
-> [CSS深入理解之relative](https://www.imooc.com/learn/565)
-> [CSS深入理解之relative定位](https://juejin.im/entry/5b15fdb05188251371242963)
-> [position](https://developer.mozilla.org/zh-CN/docs/Web/CSS/position)
-> [z-index](https://developer.mozilla.org/zh-CN/docs/Web/CSS/z-index)
+[CSS 深入理解之 relative](https://www.imooc.com/learn/565)
+[CSS 深入理解之 relative 定位](https://juejin.im/entry/5b15fdb05188251371242963)
+[position](https://developer.mozilla.org/zh-CN/docs/Web/CSS/position)
+[z-index](https://developer.mozilla.org/zh-CN/docs/Web/CSS/z-index)

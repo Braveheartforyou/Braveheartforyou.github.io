@@ -6,10 +6,6 @@ categories: [Http]
 description: 因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。
 ---
 
-- [Http 中的缓存（一） 多级缓存结构](/blog/http-cache-multiple.html)
-- [Http 中的缓存（二） HTTP 中的缓存](/blog/http/http-cache-http.html)
-- [Http 中的缓存（三） PWA 中的 ServiceWorker](/blog/http/http-cache-serviceworker.html)
-
 ## 简述
 
 **HTTP 缓存**相信都不陌生，因为它是在前端性能优化中必不可少的一个环节。在**首次进入或者请求数据**正常传输数据，而当**再次进入或者请求数据**时，可以走本地或者服务器上的缓存，来**节省流量**、**优化性能**、**提高用户体验**、**降低网络负荷**等等。
@@ -106,9 +102,9 @@ _缓存又分为**强缓存和协商缓存**。其中强缓存包括`Expires`和
 #### 可缓存性
 
 - **public**： 表明响应可以被**任何对象（包括：发送请求的客户端、代理服务器、CDN 等中间代理服务器等等）缓存**，如下图所示：
-  ![http-cache-public](../../images/http/http-cache-3-1.png)
+  ![http-cache-public](./http-cache-http/http-cache-3-1.png)
 - **private**：表明响应只能被**单个用户缓存**，**不能作为共享缓存（即代理服务器不能缓存它）**。
-  ![http-cache-public](../../images/http/http-cache-3-2.png)
+  ![http-cache-public](./http-cache-http/http-cache-3-2.png)
 - **no-cache**：指定**不缓存响应**，表明资源**不进行缓存**，但是设置了 `no-cache` 之后并不代表**浏览器**不缓存，而是在**获取缓存前**要向**服务器确认资源**是否被更改。相当于`max-age: 0, must-revalidate`
 - **no-store**： **绝对禁止缓存，请求和响应都不缓存，每次请求都从服务器获取完整资源**。
 
@@ -155,7 +151,7 @@ _缓存又分为**强缓存和协商缓存**。其中强缓存包括`Expires`和
 ### 强缓存大致流程
 
 强缓的设置流程图大致如下：
-![http-cache-public](../../images/http/http-cache-3-3.png)
+![http-cache-public](./http-cache-http/http-cache-3-3.png)
 
 ## 协商缓存
 
@@ -217,7 +213,7 @@ Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
 
 根据实体内容生成一段**唯一 hash 字符串**，标识资源的状态，由服务端产生。浏览器会将这**串字符串传回服务器**，验证资源是否已经修改，如果没有修改，过程如下：
 
-![http-cache-public](../../images/http/http-cache-3-4.png)
+![http-cache-public](./http-cache-http/http-cache-3-4.png)
 
 `ETag` **HTTP 响应头**是资源的特定版本的标识符。
 **语法**
@@ -270,7 +266,7 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 
 大致流程如下图所示：
 
-![http-cache-public](../../images/http/http-cache-3-5.png)
+![http-cache-public](./http-cache-http/http-cache-3-5.png)
 
 这张图中没有包含`serverWorker`的缓存判断流程 b，但是在后面会有一篇文章专门介绍**serverWorker**，因为他是属于**PWA**中的内容。
 
@@ -293,7 +289,7 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 
 基本上包含了一些常见的用户操作对**强缓存**和**协商缓存**的影响，大致的判断流程如下：
 
-![http-cache-public](../../images/http/http-cache-3-6.png)
+![http-cache-public](./http-cache-http/http-cache-3-6.png)
 
 **注意**
 
@@ -331,7 +327,7 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 **Memory Cache** 是内存中的缓存。主要包含的是当前页面中请求到的数据如**图片（base64）**、**脚本（JavaScript）**、**样式（css）**等静态数据。读取内存中的数据肯定比磁盘中的**快**，但是内存中的**缓存持续性很短**，它会随着当前**Tab 页面关闭，内存中的缓存也就被释放**。
 
 比如在**百度首页**刷新页面，效果如下图所示：
-![http-cache-public](../../images/http/http-cache-3-7.png)
+![http-cache-public](./http-cache-http/http-cache-3-7.png)
 
 **preload**
 `<link>` 元素的 `rel` 属性的属性值`preload`，`<link rel="preload">`来显示的指定的预加载资源，也会被放入`memory cache`中。
@@ -383,7 +379,7 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 
 因为关于在什么时候用到什么缓存的文档相当的少所以真的不好判断，是当前使用的是哪个缓存，比如下面这个例子：
 
-![http-cache-public](../../images/http/http-cache-3-8.png)
+![http-cache-public](./http-cache-http/http-cache-3-8.png)
 
 ## 缓存策略之间的对比
 
@@ -409,16 +405,16 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 
 在`Chrome`和`Firefox`中打开`https://www.baidu.com/`首页，结果如下图所示
 **Firefox**效果如下：
-![http-cache-public](../../images/http/http-cache-3-9.png)
+![http-cache-public](./http-cache-http/http-cache-3-9.png)
 **Chrome**效果如下：
-![http-cache-public](../../images/http/http-cache-3-10.png)
+![http-cache-public](./http-cache-http/http-cache-3-10.png)
 
 我们以百度的`bd_logo1.png`的请求为例，`logo`的请求是一个`Get`请求，同时它被设置了**四个缓存**配置，但是它在两个浏览器中表现并不相同，如下图所示
 
 **Firefox**效果如下：
-![http-cache-public](../../images/http/http-cache-3-12.png)
+![http-cache-public](./http-cache-http/http-cache-3-12.png)
 **Chrome**效果如下：
-![http-cache-public](../../images/http/http-cache-3-11.png)
+![http-cache-public](./http-cache-http/http-cache-3-11.png)
 
 首先在**再次请求**时浏览器端都**没有携带协商缓存**需要的头部字段，所以它们肯定走的是**强缓存**，在**强缓存**中`Cache-Control`的优先级是最高的，所以都是走的**Cache-Control**的策略。
 
@@ -434,7 +430,7 @@ ETag: '33a64df551425fcc55e4d42a148795d9f25f89d4';
 测试环境`chrome 78.0.3904.70`、`node 12.9.1`、`koa 2.x`.
 
 整体的目录结构如下图所示：
-![http-cache-public](../../images/http/http-cache-3-13.png)
+![http-cache-public](./http-cache-http/http-cache-3-13.png)
 
 代码可能写的比较粗糙，但是后面会优化一下，公共代码如下：
 
@@ -564,12 +560,12 @@ router.get('/index/index.js', async (ctx, next) => {
 我们在通过`nodemon app.js`运行代码，运行效果大致如下：
 
 1. 第一个打开`localhost:3000`时，因为没有任何缓存所以资源是`从服务器中请求`来的，如下图所示
-   ![http-cache-public](../../images/http/http-cache-3-14.png)
+   ![http-cache-public](./http-cache-http/http-cache-3-14.png)
 2. 当我们刷新页面时，因为我们设置了`Cache-Control: max-age=10`，所以会走`本地缓存`，如下图所示
-   ![http-cache-public](../../images/http/http-cache-3-15.png)
+   ![http-cache-public](./http-cache-http/http-cache-3-15.png)
    第二次请求，三个请求都来自 `memory cache`。因为我们没有关闭 TAB，所以浏览器把缓存的应用加到了`memory cache`。(耗时 0ms，也就是 1ms 以内)
 3. 当我们跳转到`https://www.baidu.com`，再返回页面时，它也会`走本地缓存`，如下图所示
-   ![http-cache-public](../../images/http/http-cache-3-16.png)
+   ![http-cache-public](./http-cache-http/http-cache-3-16.png)
    因为跳转页面等于是**关闭了 TAB**，`memory cache` 也随之清空。但是 `disk cache` 是持久的，于是所有资源来自 `disk cache`。(大约耗时 3ms，因为文件有点小)而且对比 2 和 3，很明显看到 `memory cache` 还是比 `disk cache`快得多的。
 
 ### no-cache 和 no-store 对比
@@ -636,7 +632,7 @@ router.get('/index/index.js', async (ctx, next) => {
 ```
 
 我们运行代码看的效果如下图所示：
-![http-cache-public](../../images/http/http-cache-3-18.png)
+![http-cache-public](./http-cache-http/http-cache-3-18.png)
 
 - 同步请求方面，浏览器会**自动**把当次 `HTML` 中的资源存入到缓存 (`memory cache`)，这样碰到相同 `src` 的图片就会自动读取缓存(但不会在 `Network` 中显示出来)
 
@@ -666,7 +662,7 @@ router.get('/index/index.js', async (ctx, next) => {
 ```
 
 我们运行代码看的效果如下图所示：
-![http-cache-public](../../images/http/http-cache-3-17.png)
+![http-cache-public](./http-cache-http/http-cache-3-17.png)
 
 当我们设置了`Cache-Control: no-store`时，可以看到`css`、`js`文件都被请求了两次，`png`请求了三次。
 
@@ -706,9 +702,9 @@ router.get('/index/rotateX.png', async (ctx, next) => {
 大致流程如下：
 
 1. 在`Chrome`中选中`Disable Cache`禁用缓存，可以通过下面图片看到服务器端发送给客户端`Last-Modified: Thu, 24 Oct 2019 05:12:37 GMT`。
-   ![http-cache-public](../../images/http/http-cache-3-19.png)
+   ![http-cache-public](./http-cache-http/http-cache-3-19.png)
 2. 关闭 `disable cache` 后再次访问图片时，发现带上了 `if-modified-since` 请求头，值就是上次请求响应的 `last-modified` 值，因为图片最后修改时间不变，所以 `304 Not Modified`。效果如下图所示
-   ![http-cache-public](../../images/http/http-cache-3-20.png)
+   ![http-cache-public](./http-cache-http/http-cache-3-20.png)
 
 > 启用`Disable Cache`时，我们可以看到**客户端/浏览器端**自动带上了`Pragma':'no-cache'`、`'Cache-Control': 'no-cache'`这两个字段，不适用缓存。
 
@@ -742,7 +738,7 @@ router.get('/index/index.css', async (ctx, next) => {
 
 运行效果如下图所示：
 
-![http-cache-public](../../images/http/http-cache-3-21.png)
+![http-cache-public](./http-cache-http/http-cache-3-21.png)
 
 他的过程和`Last-Modified/If-Modified-Since`，但是因为`Last-Modified/If-Modified-Since`它不能监听`1s`以内的资源变化，所以一般用他来做`Etag/If-None-Match`的补充方案。
 
@@ -770,8 +766,8 @@ router.get('/index/index.css', async (ctx, next) => {
 
 ## 参考
 
-> [一文搞懂浏览器缓存机制](https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&mid=2247484082&idx=1&sn=2efec72057f7fa448a6c0e258fd80370&chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&mpshare=1&scene=1&srcid=&sharer_sharetime=1568210174017&sharer_shareid=491f5e3b572f21d39b90888df1c8829b&key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&ascene=1&uin=MTY4MzM5MzY2Mw%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw) > [关于 http 缓存，这些知识点你可能都不懂](https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w)
-
-> [浏览器缓存策略](https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q)
-
-> [一文读懂前端缓存](https://zhuanlan.zhihu.com/p/44789005) > [通过 koa2 服务器实践探究浏览器 HTTP 缓存机制](https://juejin.im/post/5d0f9585e51d4510926a7b68)
+[一文搞懂浏览器缓存机制](https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&mid=2247484082&idx=1&sn=2efec72057f7fa448a6c0e258fd80370&chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&mpshare=1&scene=1&srcid=&sharer_sharetime=1568210174017&sharer_shareid=491f5e3b572f21d39b90888df1c8829b&key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&ascene=1&uin=MTY4MzM5MzY2Mw%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw)
+[关于 http 缓存，这些知识点你可能都不懂](https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w)
+[浏览器缓存策略](https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q)
+[一文读懂前端缓存](https://zhuanlan.zhihu.com/p/44789005)
+[通过 koa2 服务器实践探究浏览器 HTTP 缓存机制](https://juejin.im/post/5d0f9585e51d4510926a7b68)

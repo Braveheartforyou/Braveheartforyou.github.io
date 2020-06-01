@@ -8,40 +8,31 @@ description: JavaScript中的类型转换，如强制转换（显示转换）、
 
 **_天下难事必作于易，天下大事必作于细。——《道德经》_**
 
-[JavaScript 数据类型（一） 常见数据类型](/blog/javascript/javascript-Type-conversion.html)
-[JavaScript 数据类型（二） 类型转换](/blog/javascript/javascript-type-one-question.html)
-[JavaScript 数据类型（三）常见的面试题](/blog/javascript/javascript-type-one-questionone.html)
-[JavaScript 数据类型（四）IF 转换规则](/blog/javascript/javascript-IF-False-options.html)
-[JavaScript 数据类型（五）== 混乱的转换规则](/blog/javascript/javascript-false-true.html)
-[JavaScript 数据类型（六）多种数据类型判断方法](/blog/javascript/javascript-bool-type.html)
-
 ## 简述
-
----
 
 在 JavaScript 中关于类型转换的规则是非常混乱的，有**强制转换（显示转换）**、**隐式转换**，并且转换的规则没有完整可参考的文档，只有当时的提议书。并且在**隐式转换**的时候会出现很多不可思议的 bug.
 
 > 类型转换发生在静态类型的语言的编译阶段，而强制类型转换则发生在动态类型语言的运行时（runtime）；
 
 我们先来解释显示转换再来隐式转换。
-如果想了解[javaScript 中的类型](/blog/javascript/javascript-Type-conversion.html)，或者[if 运算符转换规则](/blog/javascript/javascript-IF-False-options.html)的知识可以看看我其他的博客。
+如果想了解[javaScript 中的类型](/blog/javascript/type/javascript-Type-conversion.html)，或者[if 运算符转换规则](/blog/javascript/type/javascript-IF-False-options.html)的知识可以看看我其他的博客。
 
 ### 显示转换
 
-1. ToString
-2. ToNumber
-3. ToBoolean
+1. `ToString`
+2. `ToNumber`
+3. `ToBoolean`
 
-首先介绍显示转换中的基本类型互转，字符串、数字、布尔值、null、undefined 之间的转换。
+首先介绍显示转换中的基本类型互转，`字符串、数字、布尔值、null、undefined` 之间的转换。
 
 ### 隐式转换
 
-1. ToPrimitive(转换为原始值)
-2. valueOf(返回指定对象的原始值)
-3. 运算符中的转换（+、-、\*、/）
-4. ==
+1. `ToPrimitive(转换为原始值)`
+2. `valueOf(返回指定对象的原始值)`
+3. `运算符中的转换（+、-、\*、/）`
+4. `==`
 
-再来看一下 ToPrimitive 把对象转为原始值，当然也有 Object.prototype.toString()的介绍，再试 valueOf 返回对象的原始值，再最后就是运算符在基本类型和 object 之间的运算，其中最坑的应该是==的隐士转换，因为他的左右规则不同，左右类型不同执行的又不同。
+再来看一下 `ToPrimitive` 把对象转为原始值，当然也有 `Object.prototype.toString()`的介绍，再试 `valueOf` 返回对象的原始值，再最后就是运算符在`基本类型`和 `object 之间的运算`，其中最坑的应该是`==的隐士转换`，因为他的左右规则不同，左右类型不同执行的又不同。
 
 ### ToPrimitive 的规则
 
@@ -168,7 +159,7 @@ console.log(Boolean(new Date())); // 1555689600000
 - `NaN`
 
 只有上面的会转为`false`,其他的都会转为`true`.
-他和 if()条件运算符转换的规则基本上一至，请看[if 运算符转换](/blog/javascript/javascript-IF-False-options.html)。
+他和 `if()`条件运算符转换的规则基本上一至，请看[if 运算符转换](/blog/javascript/type/javascript-IF-False-options.html)。
 
 ## 隐士转换
 
@@ -198,10 +189,10 @@ String(obj);
 // Uncaught TypeError: Cannot convert object to primitive value
 ```
 
-根据上面的输出结果，证明上面的 String()，走了`ToPrimitive(obj, string)`的`type`为`string`的规则。详情见上面。
+根据上面的输出结果，证明上面的 `String()`，走了`ToPrimitive(obj, string)`的`type`为`string`的规则。详情见上面。
 
 **Object 转 Number 规则验证**
-再验证 Obejct 转换为 Number 的规则，直接上代码。
+再验证 `Obejct` 转换为 `Number` 的规则，直接上代码。
 
 ```javascript
 var obj = {
@@ -220,10 +211,11 @@ Number(obj);
 // Uncaught TypeError: Cannot convert object to primitive value
 ```
 
-根据上面的输出结果，证明上面的 Number()，走了`ToPrimitive(obj, number)`的`type`为`number`的规则。详情见上面。
+根据上面的输出结果，证明上面的 `Number()`，走了`ToPrimitive(obj, number)`的`type`为`number`的规则。详情见上面。
 
 **其他转变如数组转 String 或者 Number**
-再验证 Obejct 转换为 Number 的规则，直接上代码。
+
+再验证 `Obejct` 转换为 `Number` 的规则，直接上代码。
 
 ```javascript
 var obj = {
@@ -350,12 +342,12 @@ console.log(+true); // 1
 
 ### ==
 
-== 抽象相等比较与+运算符不同，不再是 String 优先，而是 Nuber 优先。假设左面为 x、y 为右面，大概的规则如下。
+`==` 抽象相等比较与`+运算符`不同，不再是 `String 优先`，而是 `Number 优先`。假设左面为 `x、y` 为右面，大概的规则如下。
 
-1. 如果 x,y 都为 number,直接比较
-2. 如果 x 为 string，y 为 number，x 转换为 number 比较，反则相反。
-3. 如果存在对象，通过 ToPrimitive(obj, number)type 为 number 进行转换，再进行比较。
-4. 如果 x，y 有一方存在 boolean,按照 ToNumber 将 boolean 转换为 1 或 0，再进行比较。
+1. 如果`x,y` 都为 `number`,直接比较
+2. 如果 `x 为 string，y 为 number，x 转换为 number 比较`，反则相反。
+3. 如果存在对象，通过`ToPrimitive(obj, number)type 为 number 进行转换`，再进行比较。
+4. 如果 `x，y 有一方存在 boolean,按照 ToNumber 将 boolean 转换为 1 或 0`，再进行比较。
 
 验证代码如下：
 
@@ -379,7 +371,7 @@ console.log(true == '0'); // false
 console.log(false == '0'); // true
 ```
 
-在这里就不多赘述了，看我另一篇文章 [![] == []](/blog/javascript/javascript-false-true.html)，通过一道面试题。来讲解基本的转换规则，因为这个规则其实挺复杂的，一两句话讲不清楚。
+在这里就不多赘述了，看我另一篇文章 [![] == []](/blog/javascript/type/javascript-false-true.html)，通过一道面试题。来讲解基本的转换规则，因为这个规则其实挺复杂的，一两句话讲不清楚。
 
 ## 总结
 

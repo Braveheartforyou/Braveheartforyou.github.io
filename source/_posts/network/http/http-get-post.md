@@ -6,13 +6,6 @@ categories: [Http]
 description: 在http协议中get请求和post请求的区别
 ---
 
-**_为无为，事无事，味无味。——老子_**
-
-- [Http 系列(-) Http 发展历史](/blog/http/http-http2.html)
-- [Http 系列(二) Http2 中的多路复用](/blog/http/http-http2-1.html)
-- [Http 系列(三) Http/Tcp 三次握手和四次挥手](/blog/http/http-tcp.html)
-- [Http 系列(四) Http 中 Get/Post 的区别](/blog/http/http-get-post.html)
-
 ## 简介
 
 在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：`GET` 和 `POST`。
@@ -91,4 +84,5 @@ description: 在http协议中get请求和post请求的区别
 
 ## 参考
 
-> [HTTP 方法：GET 对比 POST](https://www.w3school.com.cn/tags/html_ref_httpmethods.asp) > [GET 和 POST 两种基本请求方法的区别](https://www.cnblogs.com/logsharing/p/8448446.html#!comments)
+[HTTP 方法：GET 对比 POST](https://www.w3school.com.cn/tags/html_ref_httpmethods.asp)
+[GET 和 POST 两种基本请求方法的区别](https://www.cnblogs.com/logsharing/p/8448446.html#!comments)
