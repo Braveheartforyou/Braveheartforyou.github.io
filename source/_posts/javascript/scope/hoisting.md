@@ -1,7 +1,7 @@
 ---
 title: JavaScript中的变量提升
 date: 2019-03-21 11:32:13
-tags: [JavaScript]
+tags: [JavaScript, Scope]
 categories: [JavaScript]
 description: 我们首先了解一下JavaScript中的变量提升，后面再来两道面试题加深自己的记忆。
 ---
