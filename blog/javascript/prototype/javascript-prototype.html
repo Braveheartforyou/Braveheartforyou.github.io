@@ -123,17 +123,17 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="首先要了解几个属性`constructor`、`prototype`、`[[prototype]]`、`__proto__`分别作用是什么，还要理解几个概念**原型**、**原型链**、**构造函数**。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.jpg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-5.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.877Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-3.jpg">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-5.png">
+<meta property="og:updated_time" content="2020-06-01T13:08:27.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript原型系列（一）构造函数、原型和原型链">
 <meta name="twitter:description" content="首先要了解几个属性`constructor`、`prototype`、`[[prototype]]`、`__proto__`分别作用是什么，还要理解几个概念**原型**、**原型链**、**构造函数**。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype/javascript-prototype-1-1.png">
 
 
 
@@ -440,13 +440,9 @@
       
 
       
-        <p><strong><em>大方無隅，大器晚成，大音希聲，大象無形。——《道德經》</em></strong></p>
-<p><a href="/blog/javascript/javascript-prototype.html">JavaScript 原型系列（一）构造函数、原型和原型链</a><br><a href="/blog/javascript/javascript-prototype-one.html">JavaScript 原型系列（二）什么是原型继承</a><br><a href="/blog/javascript/javascript-prototype-two.html">JavaScript 原型系列（三）Function、Object、Null 等等的关系和鸡蛋问题</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>首先要了解几个属性<code>constructor</code>、<code>prototype</code>、<code>[[prototype]]</code>、<code>__proto__</code>分别作用是什么，还要理解几个概念<strong>原型</strong>、<strong>原型链</strong>、<strong>构造函数</strong>。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先要了解几个属性<code>constructor</code>、<code>prototype</code>、<code>[[prototype]]</code>、<code>__proto__</code>分别作用是什么，还要理解几个概念<strong>原型</strong>、<strong>原型链</strong>、<strong>构造函数</strong>。</p>
 <p>结合代码先把上面的的属性和记录清楚。</p>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><hr>
-<p><code>constrcutor</code>是一种用于创建和初始化<code>class</code>创建的对象的特殊方法。<br><code>构造函数</code>本身就是一个函数，与普通函数<code>没有</code>任何区别，不过为了规范一般将其<code>首字母</code>大写。<code>构造函数</code>和<code>普通函数</code>的区别在于，使用 <code>new</code> 生成实例的函数就是<code>构造函数</code>，直接调用的就是<code>普通函数</code>。下面示例代码：</p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p><code>constrcutor</code>是一种用于创建和初始化<code>class</code>创建的对象的特殊方法。<br><code>构造函数</code>本身就是一个函数，与普通函数<code>没有</code>任何区别，不过为了规范一般将其<code>首字母</code>大写。<code>构造函数</code>和<code>普通函数</code>的区别在于，使用 <code>new</code> 生成实例的函数就是<code>构造函数</code>，直接调用的就是<code>普通函数</code>。下面示例代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConstructorFun</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 通过new关键字创建实例</span></span><br><span class="line"><span class="keyword">let</span> constructorfun = <span class="keyword">new</span> ConstructorFun();</span><br></pre></td></tr></table></figure>
 <p>其实<code>ConstructorFun</code>就是一个普通函数，但是在通过<code>new</code>关键字生成实例的时候，就可以把这个函数叫做<strong>构造函数</strong>;</p>
 <h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>除了<code>null</code>、<code>undefined</code>其他无论是通过<code>new</code>生成的实例，还是通过字面量生成的<strong>变量</strong>，普通的函数都是有<code>constructor</code>属性的。</p>
@@ -464,19 +460,18 @@
 <blockquote>
 <p>注意：<code>null</code> 和 <code>undefined</code> 是没有 <code>constructor</code> 属性的。</p>
 </blockquote>
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><hr>
-<p>官方解释原型：”JavaScript 常被描述为一种<strong>基于原型的语言（prototype-based language）</strong>————每个对象拥有一个<strong>原型对象</strong>，对象以其原型为模板、从原型继承方法和属性。”<br>每个函数都有一个特殊的属性就叫作<code>原型（prototype）</code>，请看下面代码：</p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>官方解释原型：”JavaScript 常被描述为一种<strong>基于原型的语言（prototype-based language）</strong>————每个对象拥有一个<strong>原型对象</strong>，对象以其原型为模板、从原型继承方法和属性。”<br>每个函数都有一个特殊的属性就叫作<code>原型（prototype）</code>，请看下面代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype);</span><br></pre></td></tr></table></figure>
-<p>效果如下图所示：<br><img src="../../images/javascript/javascript-prototype-1-1.png" alt="JavaScript-prototype"><br><code>Foo.prototype</code>上有两个属性，一个是<code>constructor</code>它指向了函数本身；另一个是<code>__proto__</code>它指向了<code>Object.prototype</code>。</p>
-<p>构造函数<code>Foo</code>有一个指向原型的指针，原型<code>Foo.prototype</code>有一个指向构造函数的指针<code>Foo.prototype.constructor</code>，用下面的图来表示更清晰一点：<br><img src="../../images/javascript/javascript-prototype-1-2.png" alt="JavaScript-prototype"></p>
+<p>效果如下图所示：<br><img src="./javascript-prototype/javascript-prototype-1-1.png" alt="JavaScript-prototype"><br><code>Foo.prototype</code>上有两个属性，一个是<code>constructor</code>它指向了函数本身；另一个是<code>__proto__</code>它指向了<code>Object.prototype</code>。</p>
+<p>构造函数<code>Foo</code>有一个指向原型的指针，原型<code>Foo.prototype</code>有一个指向构造函数的指针<code>Foo.prototype.constructor</code>，用下面的图来表示更清晰一点：<br><img src="./javascript-prototype/javascript-prototype-1-2.png" alt="JavaScript-prototype"></p>
 <p>其实更重要的是任何一个<code>prototype</code>对象都有一个<code>constructor</code>属性，指向这个构造函数。</p>
 <h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h3><p>在上面看到<code>__proto__</code>这个属性，每个实例对象（object）都有一个<code>隐式原型</code>属性(称之为<code>__proto__</code>)指向了创建该对象的构造函数的<code>原型</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
-<p>效果图如下：<br><img src="../../images/javascript/javascript-prototype-1-3.png" alt="JavaScript-prototype"></p>
+<p>效果图如下：<br><img src="./javascript-prototype/javascript-prototype-1-3.png" alt="JavaScript-prototype"></p>
 <p>当通过<code>new Foo()</code>生成的实例对象<code>foo</code>，它有一个<code>__proto__</code>属性指向<code>Foo.prototype</code>，可以通过以下代码验证：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.__proto__ === Foo.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p><code>Foo</code>、<code>Foo.prototype</code>、<code>Foo.prototype.constructor</code>、<code>foo.__proto__</code>三者的关系如下图所示：</p>
-<p><img src="../../images/javascript/javascript-prototype-1-4.png" alt="JavaScript-prototype"></p>
+<p><img src="./javascript-prototype/javascript-prototype-1-4.png" alt="JavaScript-prototype"></p>
 <p><code>__proto__</code> 属性在 ES6 时才被标准化，以确保 Web 浏览器的兼容性，但是不推荐使用，除了标准化的原因之外还有性能问题。为了更好的支持，推荐使用 <code>Object.getPrototypeOf()</code>。</p>
 <blockquote>
 <p>通过改变一个对象的 <code>[[Prototype]]</code> 属性来改变和继承属性会对性能造成非常严重的影响，并且性能消耗的时间也不是简单的花费在 <code>obj.__proto__ = ...</code> 语句上, 它还会影响到所有继承自该 <code>[[Prototype]]</code> 的对象，如果你关心性能，你就不应该修改一个对象的 <code>[[Prototype]]</code>。</p>
@@ -491,10 +486,10 @@
 </blockquote>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><hr>
 <p>每个对象拥有一个原型对象，通过 <code>__proto__</code> 指针指向上一个原型 ，并从中继承方法和属性，同时原型对象也可能拥有原型，这样一层一层，最终指向 <code>null</code>。这种关系被称为<code>原型链 (prototype chain)</code>，通过原型链一个对象会拥有定义在其他对象中的属性和方法。看一面一张经典的图可能更直观：</p>
-<p><img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
+<p><img src="./javascript-prototype/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
 <p>看一下面的代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line">foo.__proto__ === Foo.prototype; <span class="comment">// true</span></span><br><span class="line">foo.__proto__.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">// true</span></span><br><span class="line">foo.__proto__.__proto__.__proto__ === <span class="literal">null</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>下面的图可以很好的展示上面的代码<code>prototype</code>和<code>__proto__</code>指向问题。<br><img src="../../images/javascript/javascript-prototype-1-5.png" alt="JavaScript-prototype"></p>
+<p>下面的图可以很好的展示上面的代码<code>prototype</code>和<code>__proto__</code>指向问题。<br><img src="./javascript-prototype/javascript-prototype-1-5.png" alt="JavaScript-prototype"></p>
 <h2 id="特殊的-Symbol"><a href="#特殊的-Symbol" class="headerlink" title="特殊的 Symbol"></a>特殊的 Symbol</h2><p><code>Symbol</code>是基础数据类型，它可以通过<code>Symbol(123)</code>生成实例，不能通过<code>new Symbol()</code>生成实例，<code>Symbol</code>不是构造函数，但是它有<code>constructor</code>属性。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sSymbol = <span class="built_in">Symbol</span>(<span class="string">'symbol'</span>);</span><br><span class="line"><span class="keyword">let</span> errSymbol = <span class="keyword">new</span> <span class="built_in">Symbol</span>(<span class="string">'symbol'</span>); <span class="comment">// Uncaught TypeError: Symbol is not a constructor</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Symbol</span>.constructor; <span class="comment">// ƒ Symbol() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
@@ -676,7 +671,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -784,7 +779,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

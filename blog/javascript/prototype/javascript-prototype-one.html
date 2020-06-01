@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="JavaScript原型系列（二）什么是原型继承">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.jpg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-7.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.877Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-one/javascript-prototype-1-3.jpg">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-one/javascript-prototype-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-one/javascript-prototype-1-7.png">
+<meta property="og:updated_time" content="2020-06-01T13:15:52.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript原型系列（二）什么是原型继承">
 <meta name="twitter:description" content="JavaScript原型系列（二）什么是原型继承">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.jpg">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-one/javascript-prototype-1-3.jpg">
 
 
 
@@ -437,15 +437,11 @@
       
 
       
-        <p><strong><em>將欲歙之，必固張之；將欲弱之，必固強之；——《道德經》</em></strong></p>
-<p><a href="/blog/javascript/javascript-prototype.html">JavaScript 原型系列（一）构造函数、原型和原型链</a><br><a href="/blog/javascript/javascript-prototype-one.html">JavaScript 原型系列（二）什么是原型继承</a><br><a href="/blog/javascript/javascript-prototype-two.html">JavaScript 原型系列（三）Function、Object、Null 等等的关系和鸡蛋问题</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p><img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="./javascript-prototype-one/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
 <p>在上一节上面介绍了原型和原型链，即每个对象拥有一个<strong>原型对象</strong>，通过 <code>__proto__</code> 指针指向上一个<strong>原型</strong> ，并从中<strong>继承方法和属性</strong>，同时原型对象也可能拥有原型，这样一层一层，最终指向 <code>null</code>，这种关系被称为<code>原型链(prototype chain)</code>。</p>
 <p><code>继承</code>是面向对象编程语言的一大核心功能点，<code>JavaScript</code>是面向对象的只不过是比较特殊的面向对象的语言。它不像<code>Java</code>是基于类的面向对象，而<code>javaScript</code>是基于<code>prototype</code>的面向对象。</p>
 <p>会用一篇文章来介绍什么面向对象，<code>javascript</code>是怎么实现<code>继承</code>、<code>封装</code>、<code>多态</code>和<code>javascript</code>面向对象的特殊之处。</p>
-<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><hr>
-<p><code>JavaScript</code> 对象是动态的属性“包”（指其自己的属性）。<code>JavaScript</code> 对象有一个指向一个<strong>原型对象</strong>的链。当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该对象的原型，以及该对象的原型的原型，<strong>依次层层</strong>向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。</p>
+<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><p><code>JavaScript</code> 对象是动态的属性“包”（指其自己的属性）。<code>JavaScript</code> 对象有一个指向一个<strong>原型对象</strong>的链。当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该对象的原型，以及该对象的原型的原型，<strong>依次层层</strong>向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。</p>
 <p>原型链继承的本质是<strong>重写原型对象，代之以一个新类型的实例</strong>。将父类的实例作为子类的原型。看下面代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'subtype'</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 将父类的实例作为子类的原型</span></span><br><span class="line">Sub.prototype = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</span><br><span class="line">sub.constructor === SubType; <span class="comment">// true</span></span><br><span class="line">Sub.prototype.constructor === SubType; <span class="comment">// true</span></span><br><span class="line">sub.name = <span class="string">'sub'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(sub.getName()); <span class="comment">// sub</span></span><br></pre></td></tr></table></figure>
 <p><strong>优点</strong></p>
@@ -462,9 +458,9 @@
 <h3 id="引用类型被修改"><a href="#引用类型被修改" class="headerlink" title="引用类型被修改"></a>引用类型被修改</h3><p>因为本质上每个实例的<code>__proto__</code>都会指向构造函数的<code>prototype</code>，实例上都是保存了一个<strong>引用地址</strong>，所以当<code>prototype</code>中的引用类型修改所有实例都会被改变。在上面代码基础上修改如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'subtype'</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SubType.prototype.Arr = [<span class="string">'sub'</span>, <span class="string">'subtype'</span>, <span class="string">'Sub'</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 将父类的实例作为子类的原型</span></span><br><span class="line">Sub.prototype = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</span><br><span class="line"><span class="keyword">var</span> sub1 = <span class="keyword">new</span> Sub();</span><br><span class="line"><span class="keyword">var</span> sub2 = <span class="keyword">new</span> Sub();</span><br><span class="line"></span><br><span class="line">sub2.Arr.push(<span class="string">'push'</span>);</span><br><span class="line"></span><br><span class="line">sub1.Arr; <span class="comment">// ["sub", "subtype", "Sub", "push"]</span></span><br><span class="line">sub2.Arr; <span class="comment">// ["sub", "subtype", "Sub", "push"]</span></span><br></pre></td></tr></table></figure>
 <p>在构造函数<code>SubType.prototype</code>新增<code>Arr</code>属性并且赋值为<code>[&#39;sub&#39;, &#39;subtype&#39;, &#39;Sub&#39;]</code>，通过<code>new</code>关键字实例化两个实例<code>sub1</code>、<code>sub1</code>,当修改了<code>sub2.Arr</code>的时候，<code>sub1.Arr</code>的也会被影响。</p>
-<h3 id="实例-constructor-被重写"><a href="#实例-constructor-被重写" class="headerlink" title="实例 constructor 被重写"></a>实例 constructor 被重写</h3><p>子类型原型上的 <code>constructor</code> 属性被重写, 执行 <code>Sub.prototype = new SubType()</code> 后原型被覆盖，<code>Sub.prototype</code> 上丢失了 <code>constructor</code> 属性， <code>Sub.prototype</code> 指向了 <code>SubType.prototype</code>，而 <code>SubType.prototype.constructor</code> 指向了 <code>SubType</code>，所以 <code>Sub.prototype.constructor</code> 指向了 <code>SubType</code>。<br>如下图所示：<br><img src="../../images/javascript/javascript-prototype-1-6.png" alt="JavaScript-prototype"></p>
+<h3 id="实例-constructor-被重写"><a href="#实例-constructor-被重写" class="headerlink" title="实例 constructor 被重写"></a>实例 constructor 被重写</h3><p>子类型原型上的 <code>constructor</code> 属性被重写, 执行 <code>Sub.prototype = new SubType()</code> 后原型被覆盖，<code>Sub.prototype</code> 上丢失了 <code>constructor</code> 属性， <code>Sub.prototype</code> 指向了 <code>SubType.prototype</code>，而 <code>SubType.prototype.constructor</code> 指向了 <code>SubType</code>，所以 <code>Sub.prototype.constructor</code> 指向了 <code>SubType</code>。<br>如下图所示：<br><img src="./javascript-prototype-one/javascript-prototype-1-6.png" alt="JavaScript-prototype"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'subtype'</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 将父类的实例作为子类的原型</span></span><br><span class="line">Sub.prototype = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="comment">// 所有涉及到原型链继承的继承方式都要修改子类构造函数的指向，否则子类实例的构造函数会指向SuperType。</span></span><br><span class="line">Sub.prototype.constrcutor = Sub;</span><br><span class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</span><br><span class="line"></span><br><span class="line">Sub.prototype.constrcutor === Sub; <span class="comment">// true</span></span><br><span class="line">sub.__proto__.constrcutor === Sub; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>通过<code>Sub.prototype.constrcutor = Sub;</code>把<code>Sub.prototype.constrcutor</code>指向<code>Sub</code>，如果所示：<br><img src="../../images/javascript/javascript-prototype-1-7.png" alt="JavaScript-prototype"></p>
+<p>通过<code>Sub.prototype.constrcutor = Sub;</code>把<code>Sub.prototype.constrcutor</code>指向<code>Sub</code>，如果所示：<br><img src="./javascript-prototype-one/javascript-prototype-1-7.png" alt="JavaScript-prototype"></p>
 <blockquote>
 <p>给子类型原型添加属性和方法必须在替换原型之后，原因在第二点已经解释过了，因为子类型的原型会被覆盖。</p>
 </blockquote>
@@ -654,7 +650,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -762,7 +758,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

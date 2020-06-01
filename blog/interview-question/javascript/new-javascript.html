@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="这一篇记录一道new相关的面试题，详细分析答案。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/interviewquestion/interviewquestion-javascirpt-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/interviewquestion/interviewquestion-javascirpt-1-2.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.870Z">
+<meta property="og:image" content="http://asyncnode.com/images/interviewquestion/interviewquestion-javascirpt-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/images/interviewquestion/interviewquestion-javascirpt-1-2.png">
+<meta property="og:updated_time" content="2020-06-01T12:54:02.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript中new相关的面试题">
 <meta name="twitter:description" content="这一篇记录一道new相关的面试题，详细分析答案。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/interviewquestion/interviewquestion-javascirpt-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/interviewquestion/interviewquestion-javascirpt-1-1.png">
 
 
 
@@ -449,7 +449,7 @@
 </ul>
 <p>首先看一下代码，如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>首先看一下<code>Foo.getName</code>会在<code>Foo.prototype.constructor</code>中添加一个<code>getName</code>属性，如果直接调用<code>Foo.getName</code>他就直接调用<code>Foo.prototype.constructor</code>上得<code>getName</code>属性。<br>如果没有通过<code>new</code>关键字调用<code>Foo</code>的话，是不能访问<code>prototype</code>中的<code>getName</code>属性。<br>代码结果如下：<br><img src="../../images/interviewquestion/interviewquestion-javascirpt-1-1.png" alt="interviewquestion-javascript"></p>
+<p>首先看一下<code>Foo.getName</code>会在<code>Foo.prototype.constructor</code>中添加一个<code>getName</code>属性，如果直接调用<code>Foo.getName</code>他就直接调用<code>Foo.prototype.constructor</code>上得<code>getName</code>属性。<br>如果没有通过<code>new</code>关键字调用<code>Foo</code>的话，是不能访问<code>prototype</code>中的<code>getName</code>属性。<br>代码结果如下：<br><img src="../../../images/interviewquestion/interviewquestion-javascirpt-1-1.png" alt="interviewquestion-javascript"></p>
 <h2 id="第一问"><a href="#第一问" class="headerlink" title="第一问"></a>第一问</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Foo.getName(); <span class="comment">// 第一问</span></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <p>根据上面的说明，可以得出第一问的<code>Foo.getName</code>就是会访问<code>constructor</code>上得静态属性，结果就是<code>2</code>。</p>
 <h2 id="第二问"><a href="#第二问" class="headerlink" title="第二问"></a>第二问</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getName(); <span class="comment">// 第二问</span></span><br><span class="line"><span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
@@ -466,7 +466,7 @@
 <h2 id="第四问"><a href="#第四问" class="headerlink" title="第四问"></a>第四问</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getName(); <span class="comment">// 第四问</span></span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <p>直接调用<code>getName</code>函数，相当于<code>window.getName()</code>，因为这个变量已经被<code>Foo</code>函数执行时修改了，所以结果和第三问相同也会<strong>输出 1</strong>。</p>
 <h2 id="第五问"><a href="#第五问" class="headerlink" title="第五问"></a>第五问</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Foo.getName(); <span class="comment">// 第五问</span></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<p>第五问主要考察的是<code>JS中的运算符优先级</code>，所以首先要了解<strong>JS 中的运算符优先级</strong>，可以通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">MDN 运算符优先级</a>学习这里就不多展示，只展示用到的如下图所示：<br><img src="../../images/interviewquestion/interviewquestion-javascirpt-1-2.png" alt="interviewquestion-javascript"><br>可以在上面看到一下两点：</p>
+<p>第五问主要考察的是<code>JS中的运算符优先级</code>，所以首先要了解<strong>JS 中的运算符优先级</strong>，可以通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">MDN 运算符优先级</a>学习这里就不多展示，只展示用到的如下图所示：<br><img src="../../../images/interviewquestion/interviewquestion-javascirpt-1-2.png" alt="interviewquestion-javascript"><br>可以在上面看到一下两点：</p>
 <ul>
 <li>成员访问<code>.</code>的优先级为<strong>(19)</strong>比 new 无参数列表<strong>(18)</strong>优先级高</li>
 <li>当点运算完后又因为有个括号()，此时就是变成 new 有参数列表<strong>(19)</strong>，所以直接执行 new，<code>new constructor</code> 后面可以跟<strong>一个指定对象实例的类型的类或函数</strong>。它是把<code>Foo.getName()</code>看做一个<strong>整体</strong>，而不是调用了<code>new</code>完成以后的<strong>函数</strong>，不信的话可以运行<code>new (Foo.getName)</code>这个代码，它的结果和本题的<strong>结果一致</strong>。<br>所以我们可以把代码改写成<code>new (Foo.getName)()</code>这样可以清晰的看到他的执行顺序，大的执行顺序分为两部步如下：</li>
@@ -662,7 +662,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -770,7 +770,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="javascript中的类型判断又分为基础类型判断和引用类型多种判断方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript2.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.882Z">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript1.png">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript2.png">
+<meta property="og:updated_time" content="2020-06-01T09:00:47.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript数据类型（六）多种数据类型判断方法">
 <meta name="twitter:description" content="javascript中的类型判断又分为基础类型判断和引用类型多种判断方法">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/javascript/javascript1.png">
 
 
 
@@ -437,16 +437,14 @@
 
       
         <p><strong><em>日极则仄，月满则亏。物极则反，命曰环流。——《管子·白心》</em></strong></p>
-<p><a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a><br><a href="/blog/javascript/javascript-type-one-question.html">JavaScript 数据类型（二） 类型转换</a><br><a href="/blog/javascript/javascript-type-one-questionone.html">JavaScript 数据类型（三）常见的面试题</a><br><a href="/blog/javascript/javascript-IF-False-options.html">JavaScript 数据类型（四）IF 转换规则</a><br><a href="/blog/javascript/javascript-false-true.html">JavaScript 数据类型（五）== 混乱的转换规则</a><br><a href="/blog/javascript/javascript-bool-type.html">JavaScript 数据类型（六）多种数据类型判断方法</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>在 ECMAScript 规范中，共定义了 7 种数据类型，分为基本数据类型和引用类型两大类，如下所示：</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在 ECMAScript 规范中，共定义了 7 种数据类型，分为基本数据类型和引用类型两大类，如下所示：</p>
 <blockquote>
 <p>基本类型： <strong>Null、Undefined、Symbol（ES6）、Number、Boolean、String</strong><br>引用类型： <strong>Obeject、Array、Date</strong>等等</p>
 </blockquote>
 <ul>
-<li><p>基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在<font color="#ff502c">栈</font>中，即按值访问。</p>
+<li><p>基本类型也称为简单类型，由于其占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在<code>栈</code>中，即按值访问。</p>
 </li>
-<li><p>引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在<font color="#ff502c">堆(heap)</font>中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。</p>
+<li><p>引用类型也称为复杂类型，由于其值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此，其值存储在<code>堆(heap)</code>中，而存储在变量处的值，是一个指针，指向存储对象的内存处，即按址访问。</p>
 </li>
 </ul>
 <h3 id="原始值-primitive-values"><a href="#原始值-primitive-values" class="headerlink" title="原始值( primitive values )"></a>原始值( primitive values )</h3><p>除 Object 以外的所有类型都是不可变的（值本身无法被改变）。例如，与 C 语言不同，JavaScript 中字符串是不可变的（译注：如，JavaScript 中对字符串的操作一定返回了一个新字符串，原始字符串并没有被改变）。我们称这些类型的值为“原始值”。</p>
@@ -531,8 +529,7 @@
 <blockquote>
 <p><strong>判断 null 类型也很简单，就用 null === null 来判断</strong> &gt; <strong>看 typeof 所有的类型细节请看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof#%E8%AF%AD%E6%B3%95" target="_blank" rel="noopener">mdn-typeof</a></strong></p>
 </blockquote>
-<h2 id="instanceof-运算符"><a href="#instanceof-运算符" class="headerlink" title="instanceof 运算符"></a>instanceof 运算符</h2><hr>
-<p><strong>instanceof 运算符用于测试构造函数的 prototype 属性是否出现在对象的原型链中的任何位置</strong>.<br>原始值使用<code>instanceof</code>都会返回<code>false</code>，如果使用<code>new</code> 声明 是可以检测出来。对于是使用<code>new</code>声明的类型，它还可以检测出多层继承关系。</p>
+<h2 id="instanceof-运算符"><a href="#instanceof-运算符" class="headerlink" title="instanceof 运算符"></a>instanceof 运算符</h2><p><strong>instanceof 运算符用于测试构造函数的 prototype 属性是否出现在对象的原型链中的任何位置</strong>.<br>原始值使用<code>instanceof</code>都会返回<code>false</code>，如果使用<code>new</code> 声明 是可以检测出来。对于是使用<code>new</code>声明的类型，它还可以检测出多层继承关系。</p>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
 <p>object instanceof constructor</p>
 </blockquote>
@@ -541,13 +538,13 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'123'</span>;</span><br><span class="line">str <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> c1 = <span class="keyword">new</span> C();</span><br><span class="line">c1 <span class="keyword">instanceof</span> C; <span class="comment">// true，因为 Object.getPrototypeOf(c1) === C.prototype</span></span><br><span class="line"></span><br><span class="line">C.prototype = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">c1 <span class="keyword">instanceof</span> C; <span class="comment">// false, C.prototype指向了一个空对象,这个空对象不在o的原型链上.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c2 = <span class="keyword">new</span> C();</span><br><span class="line"></span><br><span class="line">c2 <span class="keyword">instanceof</span> C; <span class="comment">// true，因为 Object.getPrototypeOf(c2) === C.prototype</span></span><br><span class="line"></span><br><span class="line">c2.__proto__ = &#123;&#125;; <span class="comment">// 借助于非标准的__proto__伪属性</span></span><br><span class="line"></span><br><span class="line">c2 <span class="keyword">instanceof</span> C; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <p>注：<strong>需要注意的是，如果表达式 obj instanceof Foo 返回 true，则并不意味着该表达式会永远返回 true，因为 Foo.prototype 属性的值有可能会改变，改变之后的值很有可能不存在于 obj 的原型链上，这时原表达式的值就会成为 false。另外一种情况下，原表达式的值也会改变，就是改变对象 obj 的原型链的情况，虽然在目前的 ES 规范中，我们只能读取对象的原型而不能改变它，但借助于非标准的</strong>proto<strong>伪属性，是可以实现的。比如执行 obj.</strong>proto<strong> = {}之后，obj instanceof Foo 就会返回 false 了。</strong></p>
 <h3 id="、Array、Object-三者之间的关系"><a href="#、Array、Object-三者之间的关系" class="headerlink" title="[]、Array、Object 三者之间的关系"></a>[]、Array、Object 三者之间的关系</h3><p>从 <code>instanceof</code> 能够判断出 <code>[ ].__proto__</code> 指向 <code>Array.prototype</code>，而 <code>Array.prototype.__proto__</code> 又指向了<code>Object.prototype</code>，最终 <code>Object.prototype.__proto__</code> 指向了<code>null</code>，标志着原型链的结束。因此，<code>[]、Array、Object</code> 就在内部形成了一条原型链：</p>
-<p><img src="../../images/javascript/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"></p>
+<p><img src="../../../images/javascript/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"></p>
 <p>从原型链可以看出，<code>[]</code> 的 <code>__proto__</code> 直接指向<code>Array.prototype</code>，间接指向 <code>Object.prototype</code>，所以按照 <code>instanceof</code> 的判断规则，<code>[]</code> 就是<code>Object</code>的实例。依次类推，类似的 <code>new Date()、new Person()</code> 也会形成一条对应的原型链 。<strong>因此，instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型。</strong></p>
 <h3 id="instanceof-和多全局对象-多个-frame-或多个-window-之间的交互"><a href="#instanceof-和多全局对象-多个-frame-或多个-window-之间的交互" class="headerlink" title="instanceof 和多全局对象(多个 frame 或多个 window 之间的交互)"></a>instanceof 和多全局对象(多个 frame 或多个 window 之间的交互)</h3><p>在浏览器中，我们的脚本可能需要在多个窗口之间进行交互。多个窗口意味着多个全局环境，不同的全局环境拥有不同的全局对象，从而拥有不同的内置类型构造函数。这可能会引发一些问题。比如，表达式 <code>[] instanceof window.frames[0].Array</code> 会返回<code>false</code>，因为 <code>Array.prototype !== window.frames[0].Array.prototype</code>，并且数组从前者继承。</p>
 <p>实际上你可以通过使用 <code>Array.isArray(myObj)</code> 或者<code>Object.prototype.toString.call(myObj) === &quot;[object Array]&quot;</code>来安全的检测传过来的对象是否是一个数组。</p>
 <h3 id="实现一个简单的-instanceof"><a href="#实现一个简单的-instanceof" class="headerlink" title="实现一个简单的 instanceof"></a>实现一个简单的 instanceof</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// L instanceof R</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instance_of</span>(<span class="params">L, R</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//L 表示左表达式，R 表示右表达式</span></span><br><span class="line">  <span class="keyword">var</span> O = R.prototype; <span class="comment">// 取的R的显式原型</span></span><br><span class="line">  L = L.__proto__; <span class="comment">// 取的L的隐式原型</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (L === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">// 已找到顶层</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (O === L) &#123;</span><br><span class="line">      <span class="comment">// 当 O严格等于L时，返回true</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    L = L.__proto__; <span class="comment">// 继续向上一层原型链查找</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line">instance_of([], <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line">instance_of([], <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h2 id="constructor-原型对象的构造函数"><a href="#constructor-原型对象的构造函数" class="headerlink" title="constructor(原型对象的构造函数)"></a>constructor(原型对象的构造函数)</h2><p>当一个函数 F 被定义时，JS 引擎会为 F 添加 <code>prototype</code> 原型，然后再在 <code>prototype</code>上添加一个 <code>constructor</code> 属性，并让其指向 F 的引用。如下所示：</p>
-<p><img src="../../images/javascript/javascript2.png" alt="constructor" style="margin: 0 auto;"></p>
+<p><img src="../../../images/javascript/javascript2.png" alt="constructor" style="margin: 0 auto;"></p>
 <p>当执行 <code>var f = new F()</code> 时，F 被当成了构造函数，f 是 F 的实例对象，此时 F 原型上的 <code>constructor</code> 传递到了 f 上，因此 <code>f.constructor === F</code>.</p>
 <p>可以看出，F 利用原型对象上的 constructor 引用了自身，当 F 作为构造函数来创建对象时，原型上的 constructor 就被遗传到了新创建的对象上， 从原型链角度讲，构造函数 F 就是新对象的类型。这样做的意义是，让新对象在诞生以后，就具有可追溯的数据类型。</p>
 <p>实例</p>
@@ -567,12 +564,10 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>以上就是已知的 4 中检测类型的方法，那个方法都不识最完美的，就看你要检测的是那个对应的类型，就用对应的检测方法。</strong></p>
 <p>我们可以通过四种方式获取数据类型：</p>
 <ul>
-<li><font color="#ff502c">typeof 运算符，用来区分对象和原始值</font></li>
-<li><font color="#ff502c">instanceof 运算符，用来分类对象</font></li>
-<li><font color="#ff502c">constructor，用来创建实例对象的 Object 构造函数的引用</font></li>
-<li><font color="#ff502c">[[Class]]是一个内部属性字符串，用来给对象分类</font>
-
-</li>
+<li><code>typeof 运算符，用来区分对象和原始值</code></li>
+<li><code>instanceof 运算符，用来分类对象</code></li>
+<li><code>constructor，用来创建实例对象的 Object 构造函数的引用</code></li>
+<li><code>[[Class]]是一个内部属性字符串，用来给对象分类</code></li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/onepixel/p/5126046.html" target="_blank" rel="noopener">判断 JS 数据类型的四种方法</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor" target="_blank" rel="noopener">MDN 中的 constructor</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" target="_blank" rel="noopener">MDN 中的 toString</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="noopener">MDN 中的 typeof</a><br><a href="https://segmentfault.com/a/1190000015264821" target="_blank" rel="noopener">js 判断数据类型</a></p>
 
@@ -746,7 +741,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -854,7 +849,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

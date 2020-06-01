@@ -123,22 +123,22 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-11.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-1-10.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.885Z">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-11.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-10.png">
+<meta property="og:updated_time" content="2020-06-01T12:32:26.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http中的缓存（一） 多级缓存结构">
 <meta name="twitter:description" content="大家都知道缓存的重要性，这里介绍一下有多少层可以做缓存来提高用户体验和性能，在那一层建议用什么缓存更合理。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/http/http-cache-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/network/cache/http-cache-multiple/http-cache-1-1.png">
 
 
 
@@ -445,12 +445,7 @@
       
 
       
-        <ul>
-<li><a href="/blog/http-cache-multiple.html">Http 中的缓存（一） 多级缓存结构</a></li>
-<li><a href="/blog/http/http-cache-http.html">Http 中的缓存（二） HTTP 中的缓存</a></li>
-<li><a href="/blog/http/http-cache-serviceworker.html">Http 中的缓存（三） PWA 中的 ServiceWorker</a></li>
-</ul>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>缓存</strong>相信现在这个词大家都不陌生，因为在当前的应用中被广泛的应用。因为<strong>缓存</strong>会带来更高的<strong>性能</strong>、<strong>用户体验</strong>，同时也会<strong>节省流量</strong>、<strong>离线体验</strong>等等好处。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>缓存</strong>相信现在这个词大家都不陌生，因为在当前的应用中被广泛的应用。因为<strong>缓存</strong>会带来更高的<strong>性能</strong>、<strong>用户体验</strong>，同时也会<strong>节省流量</strong>、<strong>离线体验</strong>等等好处。</p>
 <p>关于缓存的文章分为三篇：<strong>多级缓存结构</strong>、<strong>HTTP 缓存详解</strong>、<strong>离线缓存</strong></p>
 <h3 id="缓存的分层"><a href="#缓存的分层" class="headerlink" title="缓存的分层"></a>缓存的分层</h3><p><strong>缓存</strong>大致分为如下：</p>
 <ul>
@@ -463,7 +458,7 @@
 <li><strong>数据库</strong></li>
 </ul>
 <p>可以在下面几层做缓存大致如下：</p>
-<p><img src="../../images/http/http-cache-1-1.png" height="300" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-1.png" height="300" alt="http-cache"></p>
 <h3 id="多层缓存流程"><a href="#多层缓存流程" class="headerlink" title="多层缓存流程"></a>多层缓存流程</h3><p>整个的缓存判断流程是：</p>
 <ol>
 <li><strong>用户刷新页面发出请求</strong></li>
@@ -490,10 +485,10 @@
 </ul>
 <p>它们之间是有优缺点的，比如说静态资源适用于<code>Memory Cache</code>。</p>
 <h3 id="用户操作对缓存的影响"><a href="#用户操作对缓存的影响" class="headerlink" title="用户操作对缓存的影响"></a>用户操作对缓存的影响</h3><p>当用户的操作比如<strong>地址栏回车</strong>、<strong>前进回退</strong>、<strong>F5 刷新</strong>、<strong>Ctrl+F5 强制刷新</strong>等等对缓存的影响。大致如下图所示：</p>
-<p><img src="../../images/http/http-cache-1-2.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-2.png" alt="http-cache"></p>
 <p>在这里就不细究了不然这篇文章太长了。</p>
 <h2 id="CDN-缓存"><a href="#CDN-缓存" class="headerlink" title="CDN 缓存"></a>CDN 缓存</h2><p><strong>CND</strong>的全称是<strong>Content Delivery NetWork</strong>内容分发网络。<strong>HTTP</strong>缓存主要是对一些<strong>客户端/浏览器</strong>中的静态资源和<strong>不长更新的数据</strong>资源。<br><strong>CDN</strong>是在<strong>客户端</strong>和<strong>服务器</strong>端加设的一层，可以让<strong>CDN</strong>为应用服务器提供缓存，如果在 <strong>CDN</strong> 上缓存，就不用再请求应用服务器了。并且 <strong>HTTP</strong> 缓存提到的两种策略同样可以在 <strong>CDN</strong>服务器执行。</p>
-<h3 id="CDN-流程"><a href="#CDN-流程" class="headerlink" title="CDN 流程"></a>CDN 流程</h3><p><strong>CDN</strong>缓存流程大致如下：<br><img src="../../images/http/http-cache-1-3.png" alt="http-cache"></p>
+<h3 id="CDN-流程"><a href="#CDN-流程" class="headerlink" title="CDN 流程"></a>CDN 流程</h3><p><strong>CDN</strong>缓存流程大致如下：<br><img src="./http-cache-multiple/http-cache-1-3.png" alt="http-cache"></p>
 <ul>
 <li>客户端发送 <code>URL</code> 给 <code>DNS</code> 服务器。</li>
 <li><code>DNS</code> 通过域名解析，把请求指向 <code>CDN</code> 网络中的 <code>DNS</code> 负载均衡器。</li>
@@ -507,7 +502,7 @@
 <p><code>CDN</code> 接受客户端的请求，它就是离客户端最近的服务器，它后面会链接多台服务器，起到了缓存和负载均衡的作用。</p>
 <h2 id="负载均衡缓存"><a href="#负载均衡缓存" class="headerlink" title="负载均衡缓存"></a>负载均衡缓存</h2><p>说完客户端（<code>HTTP</code>）缓存和 <code>CDN</code> 缓存，我们离应用服务越来越近了，在到达应用服务之前，请求还要经过<strong>负载均衡器</strong>。</p>
 <p>虽说它的主要工作是对<strong>应用服务器进行负载均衡</strong>，但是它也可以作<strong>缓存</strong>。可以把一些修改频率不高的数据缓存在这里，例如：用户信息，配置信息。通过服务定期刷新这个缓存就行了。</p>
-<p><img src="../../images/http/http-cache-1-4.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-4.png" alt="http-cache"></p>
 <p>以 <code>Nginx</code> 为例，我们看看它是如何工作的：</p>
 <ul>
 <li>用户请求在达到应用服务器之前，会<strong>先访问 Nginx 负载均衡器</strong>，如果发现<strong>有缓存信息</strong>，直接<strong>返回</strong>给用户。</li>
@@ -532,10 +527,10 @@
 <li><strong>Timer 修改方案</strong></li>
 </ul>
 <h3 id="消息队列修改方案"><a href="#消息队列修改方案" class="headerlink" title="消息队列修改方案"></a>消息队列修改方案</h3><p>应用在<strong>修改完自身缓存数据和数据库数据</strong>之后，给消息队列<strong>发送数据变化通知</strong>，其他<strong>应用订阅了消息通知</strong>，在收到通知的时候<strong>修改缓存数据</strong>。</p>
-<p><img src="../../images/http/http-cache-1-5.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-5.png" alt="http-cache"></p>
 <h3 id="Timer-修改方案"><a href="#Timer-修改方案" class="headerlink" title="Timer 修改方案"></a>Timer 修改方案</h3><p>为了<strong>避免耦合</strong>，<strong>降低复杂性</strong>，对“实时一致性”不敏感的情况下。每个应用都会<strong>启动一个 Timer</strong>，<strong>定时</strong>从数据库拉取最新的数据<strong>更新缓存</strong>。</p>
 <p>不过在有的应用更新数据库后，其他节点通过 Timer 获取数据之间，会读到脏数据。这里需要控制好 Timer 的频率，以及应用与对实时性要求不高的场景。</p>
-<p><img src="../../images/http/http-cache-1-11.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-11.png" alt="http-cache"></p>
 <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
 <li><p><strong>场景一</strong>：<strong>只读数据</strong>，可以考虑在进程启动时加载到内存。当然，把数据加载到类似 Redis 这样的进程外缓存服务也能解决这类问题。</p>
 </li>
@@ -544,7 +539,7 @@
 </ul>
 <h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><p>说完进程内缓存，自然就过度到<strong>进程外缓存</strong>了。与进程内缓存不同，进程外缓存在应用运行的进程之外，它拥有<strong>更大的缓存容量</strong>，并且可以部署到<strong>不同的物理节点</strong>，通常会用<strong>分布式缓存</strong>的方式实现。</p>
 <p>分布式缓存是与应用分离的缓存服务，最大的特点是，自身是一个独立的应用/服务，与本地应用隔离，<strong>多个应用可直接共享一个或者多个缓存应用/服务</strong>。</p>
-<p><img src="../../images/http/http-cache-1-6.png" height="300" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-6.png" height="300" alt="http-cache"></p>
 <p>既然是分布式缓存，缓存的数据会分布到不同的缓存节点上，每个缓存节点缓存的数据大小通常也是<strong>有限制</strong>的。</p>
 <p>数据被缓存到不同的节点，为了能方便的访问这些节点，需要引入<strong>缓存代理</strong>，类似 Twemproxy。他会帮助请求找到对应的缓存节点。</p>
 <p>同时如果缓存节点增加了，这个代理也会只能识别并且把新的缓存数据分片到新的节点，做横向的扩展。</p>
@@ -559,15 +554,15 @@
 <h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p><code>Hash</code> 表是最常见的数据结构，实现方式是，对数据记录的<strong>关键值</strong>进行 <code>Hash</code>，然后再对需要分片的缓存节点个数进行取模得到的余数进行数据分配。</p>
 <p>例如：有三条记录数据分别是 <code>R1，R2，R3</code>。他们的 ID 分别是 <code>01，02，03</code>，假设对这三个记录的 ID 作为关键值进行 Hash 算法之后的结果依旧是 <code>01，02，03</code>。</p>
 <p>我们想把这三条数据放到三个缓存节点中，可以把这个结果分别对 3 这个数字取模得到余数，这个余数就是这三条记录分别放置的缓存节点。</p>
-<p><img src="../../images/http/http-cache-1-7.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-7.png" alt="http-cache"></p>
 <p><strong>Hash 算法是某种程度上的平均放置，策略比较简单，如果要增加缓存节点，对已经存在的数据会有较大的变动。</strong></p>
 <h4 id="一致性哈希算法"><a href="#一致性哈希算法" class="headerlink" title="一致性哈希算法"></a>一致性哈希算法</h4><p>一致性 <code>Hash</code> 是将数据按照特征值<strong>映射</strong>到一个*<strong>*首尾相接</strong>的 <code>Hash</code>环上，同时也将缓存节点映射到这个环上。</p>
 <p>如果要缓存数据，通过数据的<strong>关键值（Key）</strong>在环上找到自己存放的位置。这些数据按照自身的 <code>ID</code> 取 <code>Hash</code> 之后得到的值按照<strong>顺序</strong>在<strong>环上排列</strong>。</p>
-<p><img src="../../images/http/http-cache-1-8.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-8.png" alt="http-cache"></p>
 <p>如果这个时候要<strong>插入</strong>一条新的数据其 <code>ID</code> 是 <code>115</code>，那么就应该插入到如下图的位置</p>
-<p><img src="../../images/http/http-cache-1-9.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-9.png" alt="http-cache"></p>
 <p>同理如果要<strong>增加</strong>一个<strong>缓存节点</strong> <code>N4 150</code>，也可以放到如下图的位置。</p>
-<p><img src="../../images/http/http-cache-1-10.png" alt="http-cache"></p>
+<p><img src="./http-cache-multiple/http-cache-1-10.png" alt="http-cache"></p>
 <p><strong>这种算法对于增加缓存数据，和缓存节点的开销相对比较小。</strong></p>
 <h4 id="Range-Based-算法"><a href="#Range-Based-算法" class="headerlink" title="Range Based 算法"></a>Range Based 算法</h4><p>这种方式是按照关键值（例如 <code>ID</code>）将数据划分成不同的区间，每个缓存节点负责一个或者多个区间。跟一致性哈希有点像。</p>
 <p>例如：存在三个缓存节点分别是 <code>N1，N2，N3</code>。他们用来存放数据的区间分别是，<code>N1(0, 100]</code>， <code>N2(100, 200]</code>， <code>N3(300, 400]</code>。</p>
@@ -597,7 +592,7 @@
 <h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>在数据请求的时候，某一个缓存<strong>刚好失效或者正在写入缓存</strong>，同时这个缓存数据可能会在<strong>这个时间点被超高并发请求</strong>，成为“热点”数据。</p>
 <p>这就是缓存击穿问题，这个和缓存雪崩的区别在于，这里是<strong>针对某一个缓存</strong>，前者是针对多个缓存。</p>
 <p>解决方案：导致问题的原因是在同一时间读/写缓存，所以<strong>只有保证同一时间只有一个线程写</strong>，写完成以后，其他的请求再使用缓存就可以了。</p>
-<p>比较常用的做法是使用 <strong>mutex（互斥锁）</strong>。在缓存失效的时候，不是立即写入缓存，而是先设置一个<strong> mutex（互斥锁）</strong>。当缓存被写入完成以后，再放开这个锁让请求进行访问。</p>
+<p>比较常用的做法是使用 <strong>mutex（互斥锁）</strong>。在缓存失效的时候，不是立即写入缓存，而是先设置一个<code>**mutex（互斥锁）**</code>。当缓存被写入完成以后，再放开这个锁让请求进行访问。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>多层缓存结构：</p>
 <p><strong>缓存结构</strong>大致分为如下：</p>
 <ul>
@@ -791,7 +786,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -899,7 +894,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

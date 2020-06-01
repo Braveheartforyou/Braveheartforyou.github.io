@@ -124,22 +124,22 @@
 <meta property="og:description" content="深入理解css中padding，其实padding并没有认为那没简单。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/css-padding-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/padding-2-6.png">
-<meta property="og:updated_time" content="2020-06-01T03:46:25.053Z">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-padding/padding-2-6.png">
+<meta property="og:updated_time" content="2020-06-01T03:59:03.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解css系列 css中padding">
 <meta name="twitter:description" content="深入理解css中padding，其实padding并没有认为那没简单。">
@@ -505,11 +505,11 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  文字的应该怎么放置？</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>css</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffed53</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示如下：<br><img src="../../images/css/padding-1-2.png" alt="css padding"></p>
+<p>显示如下：<br><img src="./css-padding/padding-1-2.png" alt="css padding"></p>
 <p>对于 <code>block</code> 水平元素，但是<strong>width:auto</strong>或<strong>box-sizing 为 border-box</strong>的时候 <code>padding</code><strong>不会影响</strong>元素的尺寸。</p>
 <p>修改 css 代码如下：<br><strong>css</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffed53</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/padding-1-3.png" alt="css padding"><br><img src="../../images/css/padding-1-4.png" alt="css padding"><br>当<code>padding</code>大小<strong>超过宽度</strong>时，宽度按<code>padding的宽度</code>显示，里面的<strong>文字按最小宽度</strong>显示。</p>
+<p><img src="./css-padding/padding-1-3.png" alt="css padding"><br><img src="./css-padding/padding-1-4.png" alt="css padding"><br>当<code>padding</code>大小<strong>超过宽度</strong>时，宽度按<code>padding的宽度</code>显示，里面的<strong>文字按最小宽度</strong>显示。</p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
 <li><strong>padding 值大于元素本身的宽度时，一定会影响尺寸</strong>。</li>
 <li><strong>width 非 auto，padding 影响尺寸</strong>。</li>
@@ -517,10 +517,7 @@
 </ul>
 <h2 id="padding-对-inline-元素的影响"><a href="#padding-对-inline-元素的影响" class="headerlink" title="padding 对 inline 元素的影响"></a>padding 对 inline 元素的影响</h2><p>在上面代码的基础上修改代码如下：<br><strong>css</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffed53</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示效果如下：<br><img src="../../images/css/padding-1-5.png" alt="css padding"><br><img src="../../images/css/padding-1-6.png" alt="css padding"><br><strong>水平 padding 影响尺寸，垂直 padding 不影响尺寸，但会影响背景色（占据空间）</strong>。</p>
-<h3 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3><ul>
-<li><strong>水平 padding 影响尺寸，垂直 padding 不影响尺寸，但会影响背景色（占据空间）</strong>。</li>
-</ul>
+<p>显示效果如下：<br><img src="./css-padding/padding-1-5.png" alt="css padding"><br><img src="./css-padding/padding-1-6.png" alt="css padding"><br><strong>水平 padding 影响尺寸，垂直 padding 不影响尺寸，但会影响背景色（占据空间）</strong>。</p>
 <h2 id="关于-padding-的百分比值"><a href="#关于-padding-的百分比值" class="headerlink" title="关于 padding 的百分比值"></a>关于 padding 的百分比值</h2><ul>
 <li>关于 block 元素的 padding 的百分比值</li>
 <li>关于 inline 元素的 padding 的百分比值</li>
@@ -530,7 +527,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>css</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="comment">/* width: 100px; */</span></span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffed53</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示效果如下，可以明显看到<code>box</code>的宽高都是<code>100px</code>;<br><img src="../../images/css/padding-1-7.png" alt="css padding"><br><img src="../../images/css/padding-1-8.png" alt="css padding"></p>
+<p>显示效果如下，可以明显看到<code>box</code>的宽高都是<code>100px</code>;<br><img src="./css-padding/padding-1-7.png" alt="css padding"><br><img src="./css-padding/padding-1-8.png" alt="css padding"></p>
 <h3 id="inline-水平元素的-padding-百分比值"><a href="#inline-水平元素的-padding-百分比值" class="headerlink" title="inline 水平元素的 padding 百分比值"></a>inline 水平元素的 padding 百分比值</h3><p>注意以下几点：</p>
 <ul>
 <li>同样相对于宽度计算</li>
@@ -538,8 +535,8 @@
 <li>padding 会断行</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.container</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 200px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#8ec63f</span>;</span></span><br><span class="line">    padding: 50%;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>若干文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/padding-1-9.png" alt="css-padding" width="50%"><br><img src="../../images/css/padding-1-10.png" alt="css-padding" width="50%"></p>
-<p><code>iniline</code>元素的垂直 padding 会让“幽灵空白节点”显现，也就是规范中的“strut”出现。</p>
+<p><img src="./css-padding/padding-1-9.png" alt="css-padding" width="50%"><br><img src="./css-padding/padding-1-10.png" alt="css-padding" width="50%"></p>
+<p><code>inline</code>元素的垂直 padding 会让“幽灵空白节点”显现，也就是规范中的“strut”出现。</p>
 <h2 id="标签元素的内置-paading"><a href="#标签元素的内置-paading" class="headerlink" title="标签元素的内置 paading"></a>标签元素的内置 paading</h2><ul>
 <li>ol/li 元素内置 padding-left, 但单位是 px 不是 em;<ol>
 <li>例如 chrom 浏览器下是 40px;</li>
@@ -570,31 +567,28 @@
 <blockquote>
 <p>备注：background-clip:content-box ; /<strong>背景色不在 padding 区域显示</strong>/</p>
 </blockquote>
-<p>其实自己实现一个是最好的，借鉴一张别人的图如下：<br><img src="../../images/css/padding-2-1.png" alt="css-padding" width="50%"></p>
-<h3 id="实现白眼效果"><a href="#实现白眼效果" class="headerlink" title="实现白眼效果"></a>实现白眼效果</h3><p><img src="../../images/css/padding-2-2.png" alt="css-padding" width="50%"></p>
+<p>其实自己实现一个是最好的，借鉴一张别人的图如下：<br><img src="./css-padding/padding-2-1.png" alt="css-padding" width="50%"></p>
+<h3 id="实现白眼效果"><a href="#实现白眼效果" class="headerlink" title="实现白眼效果"></a>实现白眼效果</h3><p><img src="./css-padding/padding-2-2.png" alt="css-padding" width="50%"></p>
 <blockquote>
 <p>备注：background-clip:content-box ; /<strong>背景色不在padding区域显示</strong>/</p>
 </blockquote>
-<h3 id="实现一个-1-1-布局"><a href="#实现一个-1-1-布局" class="headerlink" title="实现一个 1:1 布局"></a>实现一个 1:1 布局</h3><p><img src="../../images/css/padding-2-3.png" alt="css-padding" width="50%"></p>
-<h3 id="实现等高布局"><a href="#实现等高布局" class="headerlink" title="实现等高布局"></a>实现等高布局</h3><p><img src="../../images/css/padding-2-4.png" alt="css-padding" width="50%"></p>
+<h3 id="实现一个-1-1-布局"><a href="#实现一个-1-1-布局" class="headerlink" title="实现一个 1:1 布局"></a>实现一个 1:1 布局</h3><p><img src="./css-padding/padding-2-3.png" alt="css-padding" width="50%"></p>
+<h3 id="实现等高布局"><a href="#实现等高布局" class="headerlink" title="实现等高布局"></a>实现等高布局</h3><p><img src="./css-padding/padding-2-4.png" alt="css-padding" width="50%"></p>
 <blockquote>
 <p>很大的 margin-bottom 负值，再用很大的 padding-bottom 填充缺失的空间</p>
 </blockquote>
-<h3 id="两栏自适应布局"><a href="#两栏自适应布局" class="headerlink" title="两栏自适应布局"></a>两栏自适应布局</h3><p><img src="../../images/css/padding-2-5.png" alt="css-padding" width="50%"><br><img src="../../images/css/padding-2-6.png" alt="css-padding" width="50%"></p>
-<h2 id="总计"><a href="#总计" class="headerlink" title="总计"></a>总计</h2><font color="#ff502c">padding 对 block 元素的影响</font>
-
+<h3 id="两栏自适应布局"><a href="#两栏自适应布局" class="headerlink" title="两栏自适应布局"></a>两栏自适应布局</h3><p><img src="./css-padding/padding-2-5.png" alt="css-padding" width="50%"><br><img src="./css-padding/padding-2-6.png" alt="css-padding" width="50%"></p>
+<h2 id="总计"><a href="#总计" class="headerlink" title="总计"></a>总计</h2><p><code>padding 对 block 元素的影响</code></p>
 <ul>
 <li><strong>padding 值大于元素本身的宽度时，一定会影响尺寸</strong>。</li>
 <li><strong>width 非 auto，padding 影响尺寸</strong>。</li>
 <li><strong>width 为 auto 或 box-sizing 为 border-box，同时 padding 值没有超过元素本身的宽度，不影响尺寸</strong></li>
 </ul>
-<font color="#ff502c">padding 对 inline 元素的影响</font>
-
+<p><code>padding 对 inline 元素的影响</code></p>
 <ul>
 <li><strong>水平 padding 影响尺寸，垂直 padding 不影响尺寸，但会影响背景色（占据空间）</strong></li>
 </ul>
-<font color="#ff502c">关于 padding 的百分比值</font>
-
+<p><code>关于 padding 的百分比值</code></p>
 <ul>
 <li><strong>block 元素的 padding 的百分比值</strong><ol>
 <li>padding 百分比均是相对于父元素的宽度计算的</li>
@@ -607,8 +601,7 @@
 </ol>
 </li>
 </ul>
-<font color="#ff502c">padding 的应用场景</font>
-
+<p><code>padding 的应用场景</code></p>
 <ul>
 <li><strong>实现 3 道杠效果</strong></li>
 <li><strong>实现白眼效果</strong></li>
@@ -616,9 +609,7 @@
 <li><strong>实现等高布局</strong></li>
 <li><strong>两栏自适应布局</strong></li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://www.cnblogs.com/qianxunpu/p/8303228.html" target="_blank" rel="noopener">css 之深入理解 padding</a> &gt; <a href="https://www.imooc.com/learn/710" target="_blank" rel="noopener">CSS 深入理解之 padding</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/qianxunpu/p/8303228.html" target="_blank" rel="noopener">css 之深入理解 padding</a><br><a href="https://www.imooc.com/learn/710" target="_blank" rel="noopener">CSS 深入理解之 padding</a></p>
 
       
     </div>
@@ -788,7 +779,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -841,7 +832,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-对-block-的影响"><span class="nav-number">2.</span> <span class="nav-text">padding 对 block 的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#width-固定"><span class="nav-number">2.1.</span> <span class="nav-text">width 固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#width-为-auto-或者-box-sizing-为-border-box-的时候"><span class="nav-number">2.2.</span> <span class="nav-text">width 为 auto 或者 box-sizing 为 border-box 的时候</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-对-inline-元素的影响"><span class="nav-number">3.</span> <span class="nav-text">padding 对 inline 元素的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结论-1"><span class="nav-number">3.1.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-padding-的百分比值"><span class="nav-number">4.</span> <span class="nav-text">关于 padding 的百分比值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#block-元素的-padding-的百分比值"><span class="nav-number">4.1.</span> <span class="nav-text">block 元素的 padding 的百分比值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inline-水平元素的-padding-百分比值"><span class="nav-number">4.2.</span> <span class="nav-text">inline 水平元素的 padding 百分比值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签元素的内置-paading"><span class="nav-number">5.</span> <span class="nav-text">标签元素的内置 paading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-的应用场景"><span class="nav-number">6.</span> <span class="nav-text">padding 的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-3-道杠效果"><span class="nav-number">6.1.</span> <span class="nav-text">实现 3 道杠效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现白眼效果"><span class="nav-number">6.2.</span> <span class="nav-text">实现白眼效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现一个-1-1-布局"><span class="nav-number">6.3.</span> <span class="nav-text">实现一个 1:1 布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现等高布局"><span class="nav-number">6.4.</span> <span class="nav-text">实现等高布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两栏自适应布局"><span class="nav-number">6.5.</span> <span class="nav-text">两栏自适应布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总计"><span class="nav-number">7.</span> <span class="nav-text">总计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-对-block-的影响"><span class="nav-number">2.</span> <span class="nav-text">padding 对 block 的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#width-固定"><span class="nav-number">2.1.</span> <span class="nav-text">width 固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#width-为-auto-或者-box-sizing-为-border-box-的时候"><span class="nav-number">2.2.</span> <span class="nav-text">width 为 auto 或者 box-sizing 为 border-box 的时候</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-对-inline-元素的影响"><span class="nav-number">3.</span> <span class="nav-text">padding 对 inline 元素的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-padding-的百分比值"><span class="nav-number">4.</span> <span class="nav-text">关于 padding 的百分比值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#block-元素的-padding-的百分比值"><span class="nav-number">4.1.</span> <span class="nav-text">block 元素的 padding 的百分比值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inline-水平元素的-padding-百分比值"><span class="nav-number">4.2.</span> <span class="nav-text">inline 水平元素的 padding 百分比值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签元素的内置-paading"><span class="nav-number">5.</span> <span class="nav-text">标签元素的内置 paading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding-的应用场景"><span class="nav-number">6.</span> <span class="nav-text">padding 的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-3-道杠效果"><span class="nav-number">6.1.</span> <span class="nav-text">实现 3 道杠效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现白眼效果"><span class="nav-number">6.2.</span> <span class="nav-text">实现白眼效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现一个-1-1-布局"><span class="nav-number">6.3.</span> <span class="nav-text">实现一个 1:1 布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现等高布局"><span class="nav-number">6.4.</span> <span class="nav-text">实现等高布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两栏自适应布局"><span class="nav-number">6.5.</span> <span class="nav-text">两栏自适应布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总计"><span class="nav-number">7.</span> <span class="nav-text">总计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -896,7 +887,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

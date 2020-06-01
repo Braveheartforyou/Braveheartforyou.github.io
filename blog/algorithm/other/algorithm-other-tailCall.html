@@ -123,17 +123,17 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="什么是尾递归？什么是尾调用？尾递归解决的什么问题，它和斐波拉契数列有什么关联，你都可以通过本篇文章学习到。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-6.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.853Z">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-6.png">
+<meta property="og:updated_time" content="2020-06-01T08:30:56.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是尾递归？ 尾递归和普通的递归的区别">
 <meta name="twitter:description" content="什么是尾递归？什么是尾调用？尾递归解决的什么问题，它和斐波拉契数列有什么关联，你都可以通过本篇文章学习到。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/algorithm/algorithm-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/algorithm/other/algorithm-other-tailCall/algorithm-1-1.png">
 
 
 
@@ -451,7 +451,7 @@
 <h2 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h2><p>首先要了解什么是<code>调用栈</code>，后面才能更好的了解<code>尾递归</code>和<code>尾调用</code>。</p>
 <p><strong>调用栈</strong>是<strong>解释器（就像浏览器中的 JavaScript 解释器）追踪函数执行流的一种机制</strong>。简单来说就是能够通过<code>调用栈</code>追踪到那个函数正在执行，执行的函数中又调用了那个函数。可能这样说还是不太具体，我们可以把它更具体一下。</p>
 <p>首先引入一个概念：<code>栈帧</code>，<strong>栈帧</strong>是指一个函数调用单独分配的那部<strong>分栈空间</strong>。<code>栈帧</code>中有两种比较重要的帧<code>当前帧</code>、<code>调用帧</code>，先看一张图：</p>
-<p><img src="../../images/algorithm/algorithm-1-1.png" alt="algorithm-tailCall"></p>
+<p><img src="./algorithm-other-tailCall/algorithm-1-1.png" alt="algorithm-tailCall"></p>
 <p>当运行中的程序<code>调用另一个函数时</code>，就要进入一个<code>新的栈帧</code>，<code>原来函数</code>的栈帧称为<code>调用者的帧</code>，<code>新的栈帧</code>称为<code>当前帧</code>。<br>那么<code>调用栈</code>大致是怎么执行的呢？大致步骤如下：</p>
 <ul>
 <li>每调用一个函数，解释器就会把该函数添加进<code>调用栈</code>并开始执行。</li>
@@ -460,10 +460,10 @@
 <li>当分配的<code>调用栈空间</code>被占满时，会引发<code>“堆栈溢出”(递归爆栈)</code>。</li>
 </ul>
 <p>在线代码体验<a href="https://codepen.io/njmcode/pen/dMPmGq" target="_blank" rel="noopener">调用栈执行过程</a>，如果访问比较慢可以看<a href="https://github.com/Braveheartforyou/Blog-Static/tree/master/callStack" target="_blank" rel="noopener">调用栈执行过程 demo</a>把代码下载到本地运行查看。</p>
-<p>执行效果大致如下：<br><img src="../../images/algorithm/algorithm-1-3.png" alt="algorithm-tailCall"><br>因为 gif 文件过大，就放一张图片好了。</p>
-<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>我们也可以通过<code>chrome</code>中的控制台，通过<code>console.trace()</code>来追踪当前的调用栈，如下图所示：<br><img src="../../images/algorithm/algorithm-1-2.png" alt="algorithm-tailCall"></p>
-<p>或者通过在代码中<code>打断点调试</code>看到当前调用栈：<br><img src="../../images/algorithm/algorithm-1-4.png" alt="algorithm-tailCall"></p>
-<p>其实<code>调用栈</code>和<code>事件轮询(event loop)</code>有很大的关联，如果对<code>事件轮询(event loop)</code>有兴趣的话看我另一篇文章<a href="/blog/javascript/evenloop.html">事件轮询/事件模型</a>。</p>
+<p>执行效果大致如下：<br><img src="./algorithm-other-tailCall/algorithm-1-3.png" alt="algorithm-tailCall"><br>因为 gif 文件过大，就放一张图片好了。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>我们也可以通过<code>chrome</code>中的控制台，通过<code>console.trace()</code>来追踪当前的调用栈，如下图所示：<br><img src="./algorithm-other-tailCall/algorithm-1-2.png" alt="algorithm-tailCall"></p>
+<p>或者通过在代码中<code>打断点调试</code>看到当前调用栈：<br><img src="./algorithm-other-tailCall/algorithm-1-4.png" alt="algorithm-tailCall"></p>
+<p>其实<code>调用栈</code>和<code>事件轮询(event loop)</code>有很大的关联，如果对<code>事件轮询(event loop)</code>有兴趣的话看我另一篇文章<a href="/blog/javascript/eventloop/evenloop.html">事件轮询/事件模型</a>。</p>
 <h2 id="尾调用和尾调用优化"><a href="#尾调用和尾调用优化" class="headerlink" title="尾调用和尾调用优化"></a>尾调用和尾调用优化</h2><h3 id="尾调用"><a href="#尾调用" class="headerlink" title="尾调用"></a>尾调用</h3><p><code>尾调用</code>是函数式编程中一个很重要的概念，当一个<code>函数执行时</code>的<code>最后一个步骤</code>是返回<code>另一个函数</code>的<code>调用</code>，这就叫做<code>尾调用</code>。<br>什么样算尾调用，什么不算尾调用呢？</p>
 <p>注意这里函数的调用方式是无所谓的，以下方式均可：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">函数调用:     func(···)</span><br><span class="line">方法调用:     obj.method(···)</span><br><span class="line">call调用:     func.call(···)</span><br><span class="line">apply调用:    func.apply(···)</span><br></pre></td></tr></table></figure>
@@ -477,7 +477,7 @@
 <h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>函数在调用的时候会在<code>调用栈（call stack）</code>中存有记录，每一条记录叫做一个<code>调用帧（call frame）</code>，每调用一个函数，就向栈中<code>push</code>一条记录，函数执行结束后<code>依次向外弹出</code>，直到<code>清空调用栈</code>，参考下图：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">one</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  two();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">two</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  three();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">three</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.trace();</span><br><span class="line">&#125;</span><br><span class="line">one();</span><br></pre></td></tr></table></figure>
 <p>执行过程如下下图所示：</p>
-<p><img src="../../images/algorithm/algorithm-1-5.png" alt="algorithm-tailCall"></p>
+<p><img src="./algorithm-other-tailCall/algorithm-1-5.png" alt="algorithm-tailCall"></p>
 <p>我们在一个函数中调用另一个函数，但是并没有通过<code>return</code>来结束当前函数的执行，<code>JS引擎</code>会认为当前的函数并没有执行完成，会在执行当前函数调用的函数，等他执行完成才会释放当前函数。</p>
 <ul>
 <li><code>one函数</code>执行时，会把<code>one函数</code>添加进<code>调用栈</code>中，<code>one函数</code>现在为<code>当前帧</code>。</li>
@@ -488,7 +488,7 @@
 <p>下面通过尾调用优化，修改代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">“use strict”;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">one</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> two();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">two</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> three();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">three</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.trace();</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">one();</span><br></pre></td></tr></table></figure>
 <p>执行效果如下图所示：</p>
-<p><img src="../../images/algorithm/algorithm-1-6.png" alt="algorithm-tailCall"></p>
+<p><img src="./algorithm-other-tailCall/algorithm-1-6.png" alt="algorithm-tailCall"></p>
 <ul>
 <li><code>one函数</code>执行时，会把<code>one函数</code>添加进<code>调用栈</code>中，<code>one函数</code>现在为<code>当前帧</code>。</li>
 <li>在<code>one函数</code>中又调用了<code>two函数</code>，当时在调用<code>two函数</code>添加了<code>return</code>，<code>调用栈</code>会把<code>one函数</code>弹出，当前<code>调用栈</code>中只有一个<code>two函数</code>。</li>
@@ -759,7 +759,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -867,7 +867,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

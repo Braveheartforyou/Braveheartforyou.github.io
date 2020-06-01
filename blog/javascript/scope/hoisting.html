@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="JavaScript,Scope,">
 
 
 
@@ -116,27 +116,27 @@
 
 
 <meta name="description" content="我们首先了解一下JavaScript中的变量提升，后面再来两道面试题加深自己的记忆。">
-<meta name="keywords" content="JavaScript">
+<meta name="keywords" content="JavaScript,Scope">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中的变量提升">
 <meta property="og:url" content="http://asyncnode.com/blog/javascript/scope/hoisting.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="我们首先了解一下JavaScript中的变量提升，后面再来两道面试题加深自己的记忆。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-7.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.878Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-7.png">
+<meta property="og:updated_time" content="2020-06-01T13:21:32.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的变量提升">
 <meta name="twitter:description" content="我们首先了解一下JavaScript中的变量提升，后面再来两道面试题加深自己的记忆。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascirpt-hosting-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/scope/hoisting/javascirpt-hosting-1.png">
 
 
 
@@ -463,7 +463,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// function a () &#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 代码分解 ***/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
 <p>那如果<code>变量提升</code>和<code>函数提升</code>同时存在，谁先谁后呢? 我们根据上面的注意事项<code>1</code>和<code>3</code>可以得出结果，根据实例来分析一下。 请看下面的例子：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(aa); <span class="comment">// function aa () &#123;&#125;</span></span><br><span class="line"><span class="keyword">var</span> aa = <span class="string">'aaaa'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(aa); <span class="comment">// aaaa</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** 代码分解 ***/</span></span><br><span class="line"><span class="keyword">var</span> aa; <span class="comment">// 只会声明一次的变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// 变量别覆盖为 aa 字面量函数</span></span><br><span class="line"><span class="built_in">console</span>.log(aa); <span class="comment">// function aa () &#123;&#125; 输出字面量函数</span></span><br><span class="line">aa = <span class="string">'aaaa'</span>; <span class="comment">// aa 重新被覆盖为 'aaaa'</span></span><br><span class="line"><span class="built_in">console</span>.log(aa); <span class="comment">// aaaa 输出最后的覆盖值</span></span><br></pre></td></tr></table></figure>
-<p>其实我们可以通过<code>chrome</code>浏览器调试效果大致如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-1.png" alt="hosting-debugger"></p>
+<p>其实我们可以通过<code>chrome</code>浏览器调试效果大致如下图所示：<br><img src="./hoisting/javascirpt-hosting-1.png" alt="hosting-debugger"></p>
 <p>到这里就大致知道<code>变量提升</code>、<code>函数提升</code>它们的大致过程和它们之间的<code>优先级</code>。下面我们来说一下它们和<code>块级作用域</code>和<code>函数作用域</code>的关系。</p>
 <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在<code>ES6</code>出现之后作用域变得很复杂，有太多种了，这里只说和本篇文章相关的几种作用域。我们只看<code>全局作用域</code>、<code>词法作用域</code>、<code>块级作用域</code>、<code>函数作用域</code>这四种作用域。<br><code>全局作用域</code>基本上没什么好说的，上面的样例基本上都是<code>全局作用域</code>，这里就不做多的赘述。</p>
 <h3 id="词法作用域-函数作用域"><a href="#词法作用域-函数作用域" class="headerlink" title="词法作用域/函数作用域"></a>词法作用域/函数作用域</h3><p>词法作用域：<code>函数在定义它们的作用域里运行，而不是在执行它们的作用域里运行。</code><br>我们直接通过一个例子来分析一下：</p>
@@ -493,24 +493,24 @@
 <p>如果是按上面分析的代码执行顺序是相同的，但是为什么结果不太相同，这种资料不太好找，我们直接上代码去<code>chrome</code>中调试一下代码就一清二楚了，大致调试过程如下：</p>
 <p><strong><code>function aa () {}; aa = 1;</code>执行过程</strong></p>
 <ol>
-<li><p>执行序号 1 时： 进入<code>if</code>内部执行，在<code>scope</code>中会多出来一个<code>block</code>，也就是在<code>作用域链</code>中会多出来一个<code>block</code>，这个作用域中有<code>aa = function aa () {}</code>。如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-2.png" alt="hosting-debugger"><br>这个时候<code>block</code>是<code>function aa() {}</code>而全局的<code>window.aa</code>现在还是<code>aaaa</code></p>
+<li><p>执行序号 1 时： 进入<code>if</code>内部执行，在<code>scope</code>中会多出来一个<code>block</code>，也就是在<code>作用域链</code>中会多出来一个<code>block</code>，这个作用域中有<code>aa = function aa () {}</code>。如下图所示：<br><img src="./hoisting/javascirpt-hosting-2.png" alt="hosting-debugger"><br>这个时候<code>block</code>是<code>function aa() {}</code>而全局的<code>window.aa</code>现在还是<code>aaaa</code></p>
 </li>
-<li><p>执行序号 2 时： 执行<code>console.log(aa)</code>,这个只是一个输出语法并不会改变变量的值,执行效果没有变。<br><img src="../../images/javascript/javascirpt-hosting-3.png" alt="hosting-debugger"></p>
+<li><p>执行序号 2 时： 执行<code>console.log(aa)</code>,这个只是一个输出语法并不会改变变量的值,执行效果没有变。<br><img src="./hoisting/javascirpt-hosting-3.png" alt="hosting-debugger"></p>
 </li>
-<li><p>执行序号 3 时: 执行<code>function aa() {}</code>, 我们可以看到<code>block</code>和<code>全局作用域</code>的<code>aa</code>变量都改变为<code>function aa () {}</code>，如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-4.png" alt="hosting-debugger"></p>
+<li><p>执行序号 3 时: 执行<code>function aa() {}</code>, 我们可以看到<code>block</code>和<code>全局作用域</code>的<code>aa</code>变量都改变为<code>function aa () {}</code>，如下图所示：<br><img src="./hoisting/javascirpt-hosting-4.png" alt="hosting-debugger"></p>
 </li>
-<li><p>执行序号 4 时: 它会执行的代码<code>aa = 1</code>，这个时候根据作用域链的规则，就近获取和修改变量。所以<code>block</code>内的<code>aa = 1</code>,而全局变量<code>window.aa = function aa () {}</code> 如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-5.png" alt="hosting-debugger"></p>
+<li><p>执行序号 4 时: 它会执行的代码<code>aa = 1</code>，这个时候根据作用域链的规则，就近获取和修改变量。所以<code>block</code>内的<code>aa = 1</code>,而全局变量<code>window.aa = function aa () {}</code> 如下图所示：<br><img src="./hoisting/javascirpt-hosting-5.png" alt="hosting-debugger"></p>
 </li>
 </ol>
 <p><strong><code>aa = 1; function aa () {};</code>执行过程</strong></p>
 <ol>
-<li><p>执行序号 5 时： 进入<code>if</code>内部执行，在<code>scope</code>中会多出来一个<code>block</code>，也就是在<code>作用域链</code>中会多出来一个<code>block</code>，这个作用域中有<code>aa = function aa () {}</code>。如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-2.png" alt="hosting-debugger"><br>这个时候<code>block</code>是<code>function aa() {}</code>而全局的<code>window.aa</code>现在还是<code>aaaa</code></p>
+<li><p>执行序号 5 时： 进入<code>if</code>内部执行，在<code>scope</code>中会多出来一个<code>block</code>，也就是在<code>作用域链</code>中会多出来一个<code>block</code>，这个作用域中有<code>aa = function aa () {}</code>。如下图所示：<br><img src="./hoisting/javascirpt-hosting-2.png" alt="hosting-debugger"><br>这个时候<code>block</code>是<code>function aa() {}</code>而全局的<code>window.aa</code>现在还是<code>aaaa</code></p>
 </li>
-<li><p>执行序号 6 时： 执行<code>console.log(aa)</code>,这个只是一个输出语法并不会改变变量的值,执行效果没有变。<br><img src="../../images/javascript/javascirpt-hosting-3.png" alt="hosting-debugger"></p>
+<li><p>执行序号 6 时： 执行<code>console.log(aa)</code>,这个只是一个输出语法并不会改变变量的值,执行效果没有变。<br><img src="./hoisting/javascirpt-hosting-3.png" alt="hosting-debugger"></p>
 </li>
-<li><p>执行序号 7 时: 执行<code>aa = 1</code>, 我们可以看到<code>block</code>作用域的变量<code>aa</code>被赋值为了<code>1</code>，而<code>全局作用域</code>中的变量<code>aa</code>还是<code>aaaa</code>。如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-6.png" alt="hosting-debugger"></p>
+<li><p>执行序号 7 时: 执行<code>aa = 1</code>, 我们可以看到<code>block</code>作用域的变量<code>aa</code>被赋值为了<code>1</code>，而<code>全局作用域</code>中的变量<code>aa</code>还是<code>aaaa</code>。如下图所示：<br><img src="./hoisting/javascirpt-hosting-6.png" alt="hosting-debugger"></p>
 </li>
-<li><p>执行序号 8 时: 它会执行的代码<code>function aa() {}</code>，当前代码执行完成时，我们会发现<code>全局作用域</code>中的变量<code>aa</code>也被赋值为<code>1</code>. 如下图所示：<br><img src="../../images/javascript/javascirpt-hosting-7.png" alt="hosting-debugger"></p>
+<li><p>执行序号 8 时: 它会执行的代码<code>function aa() {}</code>，当前代码执行完成时，我们会发现<code>全局作用域</code>中的变量<code>aa</code>也被赋值为<code>1</code>. 如下图所示：<br><img src="./hoisting/javascirpt-hosting-7.png" alt="hosting-debugger"></p>
 </li>
 </ol>
 <p><strong><code>aa = 1;</code>执行过程</strong><br>当没有<code>function aa () {};</code>函数声明时，我们会发现不会产生一个临时的<code>block</code>作用域，也不会存在奇特的现象。</p>
@@ -579,6 +579,8 @@
         <div class="post-tags">
           
             <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/Scope/" rel="tag"><i class="fa fa-tag"></i> Scope</a>
           
         </div>
       
@@ -718,7 +720,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -826,7 +828,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

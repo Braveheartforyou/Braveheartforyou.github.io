@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="webSocket(一)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/web-socket-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/web-socket-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/web-socket-1-2.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.888Z">
+<meta property="og:image" content="http://asyncnode.com/blog/network/socket/http-web-socket1/web-socket-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/socket/http-web-socket1/web-socket-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/socket/http-web-socket1/web-socket-1-3.png">
+<meta property="og:updated_time" content="2020-06-01T12:25:09.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webSocket(一) 浅析">
 <meta name="twitter:description" content="webSocket(一)">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/http/web-socket-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/network/socket/http-web-socket1/web-socket-1-1.png">
 
 
 
@@ -437,21 +437,17 @@
       
 
       
-        <ul>
-<li><a href="/blog/http/http-web-socket1.html">webSocket(一) 浅析</a></li>
-<li><a href="/blog/http/http-web-socket2.html">webSocket(二) Http 中的轮询、长轮询、Websocket、sse</a></li>
-</ul>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
 <p>WebSocket 由多个标准构成: WebSocket API 是 W3C 定义的，而 WebSocket 协议(RFC 6455)及其扩展则由 HyBi Working Group(IETF)定义。</p>
 </blockquote>
 <p>HTML5 开始提供的一种浏览器与服务器进行<code>全双工通讯的网络技术</code>，属于<code>应用层协议</code>。它基于<code>TCP 传输协议</code>，并<code>复用 HTTP 的握手通道</code>。<br><code>WebSocket</code> 可以实现<strong>客户端与服务器间双向</strong>、<strong>基于消息的文本或二进制数据传输</strong>。<code>WebSocket</code> 连接远远不是一个<strong>网络套接字</strong>，因为浏览器在这个简单的 API 之后隐藏了所有的复杂性，而且还提供了更多服务:</p>
 <ul>
-<li>连接协商和同源策略;</li>
-<li>与既有 HTTP 基础设施的互操作;</li>
-<li>基于消息的通信和高效消息分帧;</li>
-<li>子协议协商及可扩展能力。</li>
+<li><code>连接协商和同源策略</code>;</li>
+<li><code>与既有 HTTP 基础设施的互操作</code>;</li>
+<li><code>基于消息的通信和高效消息分帧</code>;</li>
+<li><code>子协议协商及可扩展能力</code>。</li>
 </ul>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>为什么已经有了轮询还要 WebSocket 呢，是因为短轮询和长轮询有个缺陷：通信只能由客户端发起。<br>WebSocket 提供了一个文明优雅的全双工通信方案。一般适合于对数据的实时性要求比较强的场景，如通信、股票、直播、共享桌面，特别适合于客户端与服务频繁交互的情况下，如聊天室、实时共享、多人协作等平台。<br>他的主要特点如下：</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>为什么已经有了轮询还要 WebSocket 呢，是因为短轮询和长轮询有个缺陷：<code>通信只能由客户端发起</code>。<br>WebSocket 提供了一个<code>文明优雅的全双工通信</code>方案。一般适合于对数据的实时性要求比较强的场景，如通信、股票、直播、共享桌面，特别适合于客户端与服务频繁交互的情况下，如聊天室、实时共享、多人协作等平台。<br>他的主要特点如下：</p>
 <ul>
 <li><strong>建立在 TCP 协议之上，服务器端的实现比较容易。</strong></li>
 <li><strong>与 HTTP 协议有着良好的兼容性。默认端口也是 80 和 443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</strong></li>
@@ -465,10 +461,10 @@
 </ul>
 <h3 id="webSocket-readyState"><a href="#webSocket-readyState" class="headerlink" title="webSocket.readyState"></a>webSocket.readyState</h3><p><code>readyState</code>属性返回实例对象的当前状态，共有四种。</p>
 <ul>
-<li>CONNECTING：值为 0，表示正在连接。</li>
-<li>OPEN：值为 1，表示连接成功，可以通信了。</li>
-<li>CLOSING：值为 2，表示连接正在关闭。</li>
-<li>CLOSED：值为 3，表示连接已经关闭，或者打开连接失败。</li>
+<li><code>CONNECTING：值为 0，表示正在连接</code>。</li>
+<li><code>OPEN：值为 1，表示连接成功，可以通信了</code>。</li>
+<li><code>CLOSING：值为 2，表示连接正在关闭</code>。</li>
+<li><code>CLOSED：值为 3，表示连接已经关闭，或者打开连接失败</code>。</li>
 </ul>
 <h3 id="webSocket-onopen"><a href="#webSocket-onopen" class="headerlink" title="webSocket.onopen"></a>webSocket.onopen</h3><p>实例对象的<code>onopen</code>属性，用于指定连接成功后的回调函数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ws.send(<span class="string">'Hello Server!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 如果要指定多个回调函数，可以使用addEventListener方法。</span></span><br><span class="line">ws.addEventListener(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  ws.send(<span class="string">'Hello Server!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -494,26 +490,26 @@
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>在正式介绍协议细节前，先来看一个简单的例子，有个直观感受。例子包括了<strong>WebSocket 服务端、WebSocket 客户端（网页端）</strong>。完整代码可以在 这里 找到。这里服务端用了<code>ws</code>这个库。相比大家熟悉的<code>socket.io</code>，ws 实现更<strong>轻量</strong>，更适合学习的目的。</p>
 <h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><p>代码如下，监听<code>8080</code>端口。当有新的连接请求到达时，打印日志，同时向客户端发送消息。当收到到来自客户端的消息时，同样打印日志。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).Server(app);</span><br><span class="line"><span class="keyword">const</span> WebSocket = <span class="built_in">require</span>(<span class="string">'ws'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wss = <span class="keyword">new</span> WebSocket.Server(&#123; <span class="attr">port</span>: <span class="number">8080</span> &#125;);</span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> <span class="title">connection</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'server: receive connection'</span>);</span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server: recevied: %s'</span>, message);</span><br><span class="line">  &#125;);</span><br><span class="line">  ws.send(<span class="string">'world'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.sendfile(__dirname + <span class="string">'/index.html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-<p>服务端运行结果如下图所示：<br><img src="../../images/http/web-socket-1-1.png" alt="webSocket"></p>
+<p>服务端运行结果如下图所示：<br><img src="./http-web-socket1/web-socket-1-1.png" alt="webSocket"></p>
 <h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>代码如下，向 8080 端口发起 WebSocket 连接。连接建立后，打印日志，同时向服务端发送消息。接收到来自服务端的消息后，同样打印日志。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:8080'</span>);</span><br><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'ws onopen'</span>);</span><br><span class="line">  ws.send(<span class="string">'from client:hello'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">ws.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'ws onmessage'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'from server:'</span> + e.data);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>客户端运行结果如下图所示：<br><img src="../../images/http/web-socket-1-2.png" alt="webSocket"></p>
+<p>客户端运行结果如下图所示：<br><img src="./http-web-socket1/web-socket-1-2.png" alt="webSocket"></p>
 <h2 id="如何建立连接"><a href="#如何建立连接" class="headerlink" title="如何建立连接"></a>如何建立连接</h2><p>前面提到，WebSocket 复用了<code>HTTP 的握手通道</code>。具体指的是，客户端通过 HTTP 请求与 WebSocket<code>服务端协商升级协议</code>。协议升级完成后，后续的数据交换则遵照<code>WebSocket 的协议</code>。</p>
 <h3 id="客户端：申请协议升级"><a href="#客户端：申请协议升级" class="headerlink" title="客户端：申请协议升级"></a>客户端：申请协议升级</h3><p>首先，客户端发起协议升级请求。可以看到，采用的是标准的 HTTP 报文格式，且只支持<code>GET 方法</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/<span class="number">1.1</span></span><br><span class="line">Host: localhost:<span class="number">8080</span></span><br><span class="line">Origin: http:<span class="comment">//127.0.0.1:3000</span></span><br><span class="line">Connection: Upgrade <span class="comment">// 表示要升级协议</span></span><br><span class="line">Upgrade: websocket <span class="comment">// 表示要升级到websocket协议。</span></span><br><span class="line">Sec-WebSocket-Version: <span class="number">13</span> <span class="comment">// 表示websocket的版本。如果服务端不支持该版本，需要返回一个Sec-WebSocket-Versionheader，里面包含服务端支持的版本号。</span></span><br><span class="line">Sec-WebSocket-Key: w4v7O6xFTi36lq3RNcgctw== <span class="comment">// 与后面服务端响应首部的Sec-WebSocket-Accept是配套的，提供基本的防护，比如恶意的连接，或者无意的连接。</span></span><br></pre></td></tr></table></figure>
 <p>重点请求首部意义如下：</p>
 <ul>
-<li><code>Connection</code>: Upgrade：表示要升级协议</li>
-<li><code>Upgrade: websocket</code>：表示要升级到 websocket 协议。</li>
-<li><code>Sec-WebSocket-Version</code>: 13：表示 websocket 的版本。如果服务端不支持该版本，需要返回一个 Sec-WebSocket-Versionheader，里面包含服务端支持的版本号。</li>
-<li><code>Sec-WebSocket-Key</code>：与后面服务端响应首部的 Sec-WebSocket-Accept 是配套的，提供基本的防护，比如恶意的连接，或者无意的连接。</li>
+<li><code>Connection</code>: <code>Upgrade</code> 表示要升级协议</li>
+<li><code>Upgrade: websocket</code>：表示要升级到 <code>websocket</code> 协议。</li>
+<li><code>Sec-WebSocket-Version</code>: 13：表示 <code>websocket</code> 的版本。如果服务端不支持该版本，需要返回一个 <code>Sec-WebSocket-Versionheader</code>，里面包含服务端支持的版本号。</li>
+<li><code>Sec-WebSocket-Key</code>：与后面服务端响应首部的 <code>Sec-WebSocket-Accept</code> 是配套的，提供基本的防护，比如恶意的连接，或者无意的连接。</li>
 </ul>
 <blockquote>
-<p>注意，上面请求省略了部分非重点请求首部。由于是标准的 HTTP 请求，类似 Host、Origin、Cookie 等请求首部会照常发送。在握手阶段，可以通过相关请求首部进行 安全限制、权限校验等。</p>
+<p>注意，上面请求省略了部分非重点请求首部。由于是标准的 <code>HTTP</code> 请求，类似 <code>Host、Origin、Cookie</code> 等请求首部会照常发送。在握手阶段，可以通过相关请求<code>首部进行 安全限制、权限校验</code>等。</p>
 </blockquote>
 <h3 id="服务端：响应协议升级"><a href="#服务端：响应协议升级" class="headerlink" title="服务端：响应协议升级"></a>服务端：响应协议升级</h3><p>服务端返回内容如下，状态代码<code>101</code>表示协议切换。到此完成协议升级，后续的数据交互都按照新的协议来。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">101</span> Switching Protocols</span><br><span class="line">Connection:Upgrade</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Sec-WebSocket-Accept: Oy4NRAQ13jhfONC7bP8dTKb4PTU=</span><br></pre></td></tr></table></figure>
-<p>如下图所示：<br><img src="../../images/http/web-socket-1-2.png" alt="webSocket"></p>
+<p>如下图所示：<br><img src="./http-web-socket1/web-socket-1-3.png" alt="webSocket"></p>
 <blockquote>
 <p>备注：每个 header 都以\r\n 结尾，并且最后一行加上一个额外的空行\r\n。此外，服务端回应的 HTTP 状态码只能在握手阶段使用。过了握手阶段后，就只能采用特定的错误码。</p>
 </blockquote>
@@ -525,38 +521,39 @@
 <p>伪代码如下：<br><code>&gt;toBase64( sha1( Sec-WebSocket-Key + 258EAFA5-E914-47DA-95CA-C5AB0DC85B11 ) )</code></p>
 <p>验证下前面的返回结果：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>);</span><br><span class="line"><span class="keyword">const</span> magic = <span class="string">'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span>;</span><br><span class="line"><span class="keyword">const</span> secWebSocketKey = <span class="string">'w4v7O6xFTi36lq3RNcgctw=='</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> secWebSocketAccept = crypto</span><br><span class="line">  .createHash(<span class="string">'sha1'</span>)</span><br><span class="line">  .update(secWebSocketKey + magic)</span><br><span class="line">  .digest(<span class="string">'base64'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(secWebSocketAccept);</span><br><span class="line"><span class="comment">// Oy4NRAQ13jhfONC7bP8dTKb4PTU=</span></span><br></pre></td></tr></table></figure>
-<h2 id="数据帧格式"><a href="#数据帧格式" class="headerlink" title="数据帧格式"></a>数据帧格式</h2><p><strong>客户端、服务端数据的交换</strong>，离不开数据帧格式的定义。因此，在实际讲解数据交换之前，我们先来看下 WebSocket 的数据帧格式。<br>WebSocket 客户端、服务端通信的最小单位是帧（frame），由 1 个或多个帧组成一条完整的消息（message）。</p>
+<h2 id="数据帧格式"><a href="#数据帧格式" class="headerlink" title="数据帧格式"></a>数据帧格式</h2><p><strong>客户端、服务端数据的交换</strong>，离不开数据帧格式的定义。因此，在实际讲解数据交换之前，我们先来看下 <code>WebSocket 的数据帧格式</code>。<br><code>WebSocket 客户端、服务端通信的最小单位是帧（frame）</code>，由 <code>1 个或多个帧组成一条完整的消息（message）</code>。</p>
 <ul>
-<li>发送端：将消息切割成多个帧，并发送给服务端；</li>
-<li>接收端：接收消息帧，并将关联的帧重新组装成完整的消息；</li>
+<li><code>发送端：将消息切割成多个帧，并发送给服务端</code>；</li>
+<li><code>接收端：接收消息帧，并将关联的帧重新组装成完整的消息</code>；</li>
 </ul>
 <p><strong>数据帧的格式</strong>。详细定义可参考 <a href="https://tools.ietf.org/html/rfc6455#section-5.2" target="_blank" rel="noopener">RFC6455 5.2 节</a> 。</p>
 <h3 id="数据帧格式概览"><a href="#数据帧格式概览" class="headerlink" title="数据帧格式概览"></a>数据帧格式概览</h3><p>下面给出了 WebSocket 数据帧的统一格式。熟悉 TCP/IP 协议的同学对这样的图应该不陌生。</p>
 <ul>
 <li>从左到右，单位是比特。比如<code>FIN</code>、<code>RSV1</code>各占据 1 比特，<code>opcode</code>占据 4 比特。</li>
-<li>内容包括了标识、操作代码、掩码、数据、数据长度等。（下一小节会展开）</li>
+<li>内容包括了<code>标识、操作代码、掩码、数据、数据长度</code>等。（下一小节会展开）</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">0</span>                   <span class="number">1</span>                   <span class="number">2</span>                   <span class="number">3</span></span><br><span class="line"> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">0</span> <span class="number">1</span></span><br><span class="line">+-+-+-+-+-------+-+-------------+-------------------------------+</span><br><span class="line">|F|R|R|R| opcode|M| Payload len |    Extended payload length    |</span><br><span class="line">|I|S|S|S|  (<span class="number">4</span>)  |A|     (<span class="number">7</span>)     |             (<span class="number">16</span>/<span class="number">64</span>)           |</span><br><span class="line">|N|V|V|V|       |S|             |   (<span class="keyword">if</span> payload len==<span class="number">126</span>/<span class="number">127</span>)   |</span><br><span class="line">| |<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|       |K|             |                               |</span><br><span class="line">+-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +</span><br><span class="line">|     Extended payload length continued, <span class="keyword">if</span> payload len == <span class="number">127</span>  |</span><br><span class="line">+ - - - - - - - - - - - - - - - +-------------------------------+</span><br><span class="line">|                               |Masking-key, <span class="keyword">if</span> MASK <span class="keyword">set</span> to 1  |</span><br><span class="line">+-------------------------------+-------------------------------+</span><br><span class="line">| Masking-key (continued)       |          Payload Data         |</span><br><span class="line">+-------------------------------- - - - - - - - - - - - - - - - +</span><br><span class="line">:                     Payload Data continued ...                :</span><br><span class="line">+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +</span><br><span class="line">|                     Payload Data continued ...                |</span><br><span class="line">+---------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
 <h3 id="数据帧格式详解"><a href="#数据帧格式详解" class="headerlink" title="数据帧格式详解"></a>数据帧格式详解</h3><p><strong>FIN</strong>：1 个比特。<br>如果是<strong>1</strong>，表示这是消息（message）的<strong>最后一个分片（fragment）</strong>，如果是<strong>0</strong>，表示不是是消息（message）的<strong>最后一个分片（fragment）</strong>。</p>
-<p><strong>RSV1, RSV2, RSV3</strong>：各占 1 个比特。<br>一般情况下全为 0。当客户端、服务端协商采用 WebSocket 扩展时，这三个标志位可以非 0，且值的含义由扩展进行定义。如果出现非零的值，且并没有采用 WebSocket 扩展，连接出错。</p>
-<p><strong>Opcode: 4 个比特。</strong><br>操作代码，Opcode 的值决定了应该如何解析后续的数据载荷（data payload）。如果操作代码是不认识的，那么接收端应该断开连接（fail the connection）。可选的操作代码如下：</p>
+<p><strong>RSV1, RSV2, RSV3</strong>：各占 1 个比特。<br>一般情况下全为 0。当客户端、服务端协商采用 WebSocket 扩展时，这三个标志位可以<code>非 0</code>，且值的含义由扩展进行定义。如果出现非零的值，且并没有采用 WebSocket 扩展，连接出错。</p>
+<p><strong>Opcode: 4 个比特。</strong><br>操作代码，Opcode 的值决定了应该如何解析后续的<code>数据载荷（data payload）</code>。如果操作代码是不认识的，那么接收端应该<code>断开连接（fail the connection）</code>。可选的操作代码如下：</p>
 <ul>
-<li>%x0：表示一个延续帧。当 Opcode 为 0 时，表示本次数据传输采用了数据分片，当前收到的数据帧为其中一个数据分片。</li>
-<li>%x1：表示这是一个文本帧（frame）</li>
-<li>%x2：表示这是一个二进制帧（frame）</li>
-<li>%x3-7：保留的操作代码，用于后续定义的非控制帧。</li>
-<li>%x8：表示连接断开。</li>
-<li>%x9：表示这是一个 ping 操作。</li>
-<li>%xA：表示这是一个 pong 操作。</li>
+<li>%x0：<code>表示一个延续帧</code>。当 Opcode 为 0 时，表示本次数据传输采用了数据分片，当前收到的数据帧为其中一个数据分片。</li>
+<li>%x1：<code>表示这是一个文本帧（frame）</code></li>
+<li>%x2：<code>表示这是一个二进制帧（frame）</code></li>
+<li>%x3-7：<code>保留的操作代码，用于后续定义的非控制帧</code>。</li>
+<li>%x8：<code>表示连接断开</code>。</li>
+<li>%x9：<code>表示这是一个 ping 操作</code>。</li>
+<li>%xA：<code>表示这是一个 pong 操作</code>。</li>
 <li>%xB-F：保留的操作代码，用于后续定义的控制帧。</li>
 </ul>
-<p><strong>Mask: 1 个比特。</strong><br>表示是否要对数据载荷进行掩码操作。从客户端向服务端发送数据时，需要对数据进行掩码操作；从服务端向客户端发送数据时，不需要对数据进行掩码操作。<br>如果服务端接收到的数据没有进行过掩码操作，服务端需要断开连接。<br>如果 Mask 是 1，那么在 Masking-key 中会定义一个掩码键（masking key），并用这个掩码键来对数据载荷进行反掩码。所有客户端发送到服务端的数据帧，Mask 都是 1。</p>
-<p><strong>Payload length：</strong>数据载荷的长度，单位是字节。为 7 位，或 7+16 位，或 1+64 位。<br>假设数 Payload length === x，如果</p>
+<p><strong>Mask: 1 个比特。</strong><br>表示是否要对数据载荷进行掩码操作。从客户端向服务端发送数据时，需要对数据进行掩码操作；从服务端向客户端发送数据时，不需要对数据进行掩码操作。<br>如果服务端接收到的数据没有进行过掩码操作，服务端需要断开连接。<br>如果 Mask 是 1，那么在 Masking-key 中会定义一个<code>掩码键（masking key）</code>，并用这个掩码键来对数据载荷进行反掩码。所有客户端发送到服务端的数据帧，Mask 都是 1。</p>
+<p><strong>Payload length：</strong>数据载荷的长度，单位是字节。为 7 位，或 7+16 位，或 1+64 位。<br>假设数 <code>Payload length === x</code>，如果</p>
 <ul>
-<li>x 为 0~126：数据的长度为 x 字节。</li>
-<li>x 为 126：后续 2 个字节代表一个 16 位的无符号整数，该无符号整数的值为数据的长度。</li>
-<li>x 为 127：后续 8 个字节代表一个 64 位的无符号整数（最高位为 0），该无符号整数的值为数据的长度。<br>此外，如果 payload length 占用了多个字节的话，payload length 的二进制表达采用网络序（big endian，重要的位在前）。</li>
+<li><code>x 为 0~126</code>：数据的长度为 x 字节。</li>
+<li><code>x 为 126</code>：后续 2 个字节代表一个 16 位的无符号整数，该无符号整数的值为数据的长度。</li>
+<li><code>x 为 127</code>：后续 8 个字节代表一个 64 位的无符号整数（最高位为 0），该无符号整数的值为数据的长度。</li>
 </ul>
+<p>此外，如果 <code>payload length 占用了多个字</code>节的话，<code>payload length 的二进制表达采用网络序（big endian，重要的位在前）</code>。</p>
 <p><strong>Masking-key：</strong>或 4 字节（32 位）<br>所有从客户端传送到服务端的数据帧，数据载荷都进行了掩码操作，Mask 为 1，且携带了 4 字节的 Masking-key。如果 Mask 为 0，则没有 Masking-key。</p>
 <blockquote>
 <p>备注：载荷数据的长度，不包括 mask key 的长度。</p>
@@ -564,13 +561,13 @@
 <p><strong>Payload data：</strong>(x+y) 字节<br>载荷数据：包括了扩展数据、应用数据。其中，扩展数据 x 字节，应用数据 y 字节。</p>
 <p>扩展数据：如果没有协商使用扩展的话，扩展数据数据为 0 字节。所有的扩展都必须声明扩展数据的长度，或者可以如何计算出扩展数据的长度。此外，扩展如何使用必须在握手阶段就协商好。如果扩展数据存在，那么载荷数据长度必须将扩展数据的长度包含在内。</p>
 <p>应用数据：任意的应用数据，在扩展数据之后（如果存在扩展数据），占据了数据帧剩余的位置。载荷数据长度 减去 扩展数据长度，就得到应用数据的长度。</p>
-<h3 id="掩码算法"><a href="#掩码算法" class="headerlink" title="掩码算法"></a>掩码算法</h3><p>掩码键（Masking-key）是由客户端挑选出来的 32 位的随机数。掩码操作不会影响数据载荷的长度。掩码、反掩码操作都采用如下算法：</p>
+<h3 id="掩码算法"><a href="#掩码算法" class="headerlink" title="掩码算法"></a>掩码算法</h3><p><code>掩码键（Masking-key）</code>是由客户端挑选出来的 <code>32 位的随机数</code>。掩码操作不会影响数据载荷的长度。<code>掩码、反掩码</code>操作都采用如下算法：</p>
 <p>首先，假设：</p>
 <ul>
-<li>original-octet-i：为原始数据的第 i 字节。</li>
-<li>transformed-octet-i：为转换后的数据的第 i 字节。</li>
-<li>j：为 i mod 4 的结果。</li>
-<li>masking-key-octet-j：为 mask key 第 j 字节。</li>
+<li><code>original-octet-i</code>：为原始数据的第 i 字节。</li>
+<li><code>transformed-octet-i</code>：为转换后的数据的第 i 字节。</li>
+<li><code>j</code>：为 i mod 4 的结果。</li>
+<li><code>masking-key-octet-j</code>：为 mask key 第 j 字节。</li>
 </ul>
 <p>算法描述为： original-octet-i 与 masking-key-octet-j 异或后，得到 transformed-octet-i。</p>
 <blockquote>
@@ -601,19 +598,19 @@
 <h2 id="Sec-WebSocket-Key-Accept-的作用"><a href="#Sec-WebSocket-Key-Accept-的作用" class="headerlink" title="Sec-WebSocket-Key/Accept 的作用"></a>Sec-WebSocket-Key/Accept 的作用</h2><p>前面提到了，<code>Sec-WebSocket-Key/Sec-WebSocket-Accept</code>在主要作用在于提供基础的防护，减少恶意连接、意外连接。</p>
 <p>作用大致归纳如下：</p>
 <ul>
-<li>避免服务端收到非法的 websocket 连接（比如 http 客户端不小心请求连接 websocket 服务，此时服务端可以直接拒绝连接）</li>
-<li>确保服务端理解 websocket 连接。因为 ws 握手阶段采用的是 http 协议，因此可能 ws 连接是被一个 http 服务器处理并返回的，此时客户端可以通过 Sec-WebSocket-Key 来确保服务端认识 ws 协议。（并非百分百保险，比如总是存在那么些无聊的 http 服务器，光处理 Sec-WebSocket-Key，但并没有实现 ws 协议。。。）</li>
-<li>用浏览器里发起 ajax 请求，设置 header 时，Sec-WebSocket-Key 以及其他相关的 header 是被禁止的。这样可以避免客户端发送 ajax 请求时，意外请求协议升级（websocket upgrade）</li>
-<li>可以防止反向代理（不理解 ws 协议）返回错误的数据。比如反向代理前后收到两次 ws 连接的升级请求，反向代理把第一次请求的返回给 cache 住，然后第二次请求到来时直接把 cache 住的请求给返回（无意义的返回）。</li>
-<li>Sec-WebSocket-Key 主要目的并不是确保数据的安全性，因为 Sec-WebSocket-Key、Sec-WebSocket-Accept 的转换计算公式是公开的，而且非常简单，最主要的作用是预防一些常见的意外情况（非故意的）。</li>
+<li>避免<code>服务端收到非法的 websocket 连接</code>（比如 http 客户端不小心请求连接 websocket 服务，此时服务端可以直接拒绝连接）</li>
+<li>确保<code>服务端理解 websocket 连接</code>。因为 ws 握手阶段采用的是 http 协议，因此可能 ws 连接是被一个 http 服务器处理并返回的，此时客户端可以通过 Sec-WebSocket-Key 来确保服务端认识 ws 协议。（并非百分百保险，比如总是存在那么些无聊的 http 服务器，光处理 Sec-WebSocket-Key，但并没有实现 ws 协议。。。）</li>
+<li>用浏览器里发起 ajax 请求，设置 header 时，<code>Sec-WebSocket-Key 以及其他相关的 header 是被禁止的</code>。这样可以避免客户端发送 ajax 请求时，意外请求协议升级（websocket upgrade）</li>
+<li><code>可以防止反向代理（不理解 ws 协议）返回错误的数据</code>。比如反向代理前后收到两次 ws 连接的升级请求，反向代理把第一次请求的返回给 cache 住，然后第二次请求到来时直接把 cache 住的请求给返回（无意义的返回）。</li>
+<li><code>Sec-WebSocket-Key 主要目的并不是确保数据的安全性</code>，因为 <code>Sec-WebSocket-Key</code>、<code>Sec-WebSocket-Accept</code> 的转换计算公式是公开的，而且非常简单，最主要的作用是预防一些常见的意外情况（非故意的）。</li>
 </ul>
 <blockquote>
-<p>强调：Sec-WebSocket-Key/Sec-WebSocket-Accept 的换算，只能带来基本的保障，但连接是否安全、数据是否安全、客户端/服务端是否合法的 ws 客户端、ws 服务端，其实并没有实际性的保证。</p>
+<p>强调：<code>Sec-WebSocket-Key/Sec-WebSocket-Accept</code> 的换算，只能带来基本的保障，但连接是否安全、数据是否安全、客户端/服务端是否合法的 ws 客户端、ws 服务端，其实并没有实际性的保证。</p>
 </blockquote>
 <h2 id="数据掩码的作用"><a href="#数据掩码的作用" class="headerlink" title="数据掩码的作用"></a>数据掩码的作用</h2><p>WebSocket 协议中，数据掩码的作用是增强协议的安全性。但数据掩码并不是为了保护数据本身，因为算法本身是公开的，运算也不复杂。除了加密通道本身，似乎没有太多有效的保护通信安全的办法。</p>
 <ul>
-<li>1、代理缓存污染攻击</li>
-<li>2、 最初的提案是对数据进行加密处理。基于安全、效率的考虑，最终采用了折中的方案：对数据载荷进行掩码处理。</li>
+<li><code>代理缓存污染攻击</code></li>
+<li>最初的提案是对数据进行加密处理。基于安全、效率的考虑，最终采用了折中的方案：<code>对数据载荷进行掩码处理</code>。</li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000012709475" target="_blank" rel="noopener">WebSocket：5 分钟从入门到精通</a><br><a href="https://mp.weixin.qq.com/s/sXde-0h7jjGlt4hdwi_Ngw" target="_blank" rel="noopener">WebSocket 通信过程与实现</a></p>
 
@@ -787,7 +784,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -895,7 +892,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

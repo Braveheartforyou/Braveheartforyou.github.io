@@ -123,24 +123,24 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/css/css-margin-1-11.png">
-<meta property="og:updated_time" content="2020-06-01T01:39:11.721Z">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-11.png">
+<meta property="og:updated_time" content="2020-06-01T06:56:06.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 css中margin">
 <meta name="twitter:description" content="margin属性有很多的奇特的操作，比如说负margin、margin重叠、margin占据的区域等等，这边文章希望能记录清楚margin的一些特性和特殊属性。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/css/css-margin-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/css/deep-attribute/css-margin/css-margin-1-1.png">
 
 
 
@@ -447,15 +447,15 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在平常开发过程中经常用到<strong>margin</strong>属性，但是也会遇到很多的问题，比如说<strong>margin 重叠（BFC）</strong>、<strong>负 margin</strong>等等问题，下面就一个一个来记录问什么会这样。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在平常开发过程中经常用到<strong>margin</strong>属性，但是也会遇到很多的问题，比如说<code>**margin 重叠（BFC）**</code>、<code>**负 margin**</code>等等问题，下面就一个一个来记录问什么会这样。</p>
 <p><strong>标准盒模型</strong></p>
-<p><img src="../../images/css/css-margin-1-1.png" alt="css margin"></p>
-<p>要了解<strong>margin</strong>就要先了解<strong>css</strong>中的<strong>盒子模型（Box Model）</strong>，<strong>标准盒模型</strong>可以分为：外边距(margin)、边框（border）、内边距（padding）、内容区域（content）。在<strong>标准盒模型</strong>中平常所说道的高度只是<strong>content</strong>的高度，不包含<strong>border</strong>的高度，而在<strong>ie 盒模型</strong>中是把<strong>border</strong>算在内的。</p>
+<p><img src="./css-margin/css-margin-1-1.png" alt="css margin"></p>
+<p>要了解<strong>margin</strong>就要先了解<strong>css</strong>中的<code>**盒子模型（Box Model）**</code>，<code>**标准盒模型**</code>可以分为：<code>外边距(margin)、边框（border）、内边距（padding）、内容区域（content）</code>。在<strong>标准盒模型</strong>中平常所说道的高度只是<strong>content</strong>的高度，不包含<strong>border</strong>的高度，而在<strong>ie 盒模型</strong>中是把<strong>border</strong>算在内的。</p>
 <p><strong>margin 属性</strong></p>
-<p>margin 有四个属性<strong>margin-top</strong>、<strong>margin-left</strong>、<strong>margin-bottom</strong>、<strong>margin-right</strong>，它们的值可以为<strong>百分比</strong>、<strong>数值（左右可为负数）</strong>、<strong>em、rem、vh、vw</strong>、<strong>auto</strong>等等。</p>
+<p>margin 有四个属性<code>**margin-top**、**margin-left**、**margin-bottom**、**margin-right**，它们的值可以为**百分比**、**数值（左右可为负数）**、**em、rem、vh、vw**、**auto**</code>等等。</p>
 <h2 id="margin-与容器尺寸"><a href="#margin-与容器尺寸" class="headerlink" title="margin 与容器尺寸"></a>margin 与容器尺寸</h2><p>元素尺寸：① 可视尺寸 clientWidth（标准）；② 占据尺寸</p>
-<p><img src="../../images/css/css-margin-1-2.png" alt="css margin"></p>
-<p>margin 与可视尺寸：<strong>① 适用于没有设定 width/height 的普通 block 元素；② 只适用于水平方向尺寸</strong><br>margin 与占据尺寸：<strong>①block/inline-block 水平元素均适用；② 与有没有设定 width/height 无关；</strong></p>
+<p><img src="./css-margin/css-margin-1-2.png" alt="css margin"></p>
+<p>margin 与可视尺寸：<code>**① 适用于没有设定 width/height 的普通 block 元素；② 只适用于水平方向尺寸**</code><br>margin 与占据尺寸：<code>**①block/inline-block 水平元素均适用；② 与有没有设定 width/height 无关；**</code></p>
 <p>③ 适用于水平方向和垂直方向。可用于页面的上下留白（padding 兼容性不好）。</p>
 <h3 id="margin-与可视尺寸"><a href="#margin-与可视尺寸" class="headerlink" title="margin 与可视尺寸"></a>margin 与可视尺寸</h3><p>特性：</p>
 <ul>
@@ -464,7 +464,7 @@
 </ul>
 <p>应用：一侧定宽自适应</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"150px"</span> <span class="attr">style</span>=<span class="string">"float:left"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"margin-left:170px;"</span>&gt;</span>图片左浮动....<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/css-margin-1-3.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-3.png" alt="css margin"></p>
 <h3 id="margin-与占据尺寸"><a href="#margin-与占据尺寸" class="headerlink" title="margin 与占据尺寸"></a>margin 与占据尺寸</h3><p>特性：</p>
 <ul>
 <li><code>block、inline-block</code>水平元素均适应</li>
@@ -535,10 +535,10 @@
 <h3 id="垂直居中方法-margin-实现"><a href="#垂直居中方法-margin-实现" class="headerlink" title="垂直居中方法(margin 实现)"></a>垂直居中方法(margin 实现)</h3><p><strong>writing-mode</strong></p>
 <p>更改流为垂直方向，但是水平居中失效</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">writing-mode</span>: vertical-lr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/css-margin-1-4.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-4.png" alt="css margin"></p>
 <p><strong>绝对定位元素的 margin:auto 居中</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/css-margin-1-5.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-5.png" alt="css margin"></p>
 <h2 id="margin-负值"><a href="#margin-负值" class="headerlink" title="margin 负值"></a>margin 负值</h2><p>为了方便理解负值<code>margin</code>，我们引入参考线的定义，参考线就是就是<code>margin</code>移动的基准点，而<code>margin</code>的值就是移动的数值。<br><code>margin</code>的参考线有两类，一类是<code>top、left</code>，它们以外元素作为参考线;<br>另一类是<code>right、bottom</code>，它们以自身作为参考线。<br>简单点说就是：</p>
 <ul>
 <li><code>top</code>负值就是以包含块<code>(Containing block)</code> 内容区域的上边或者上方相连元素 <code>margin</code> 的下边线为参考线;</li>
@@ -547,36 +547,36 @@
 <li><code>bottom</code>负值就是以元素本身<code>border</code>的下边为参考线；</li>
 </ul>
 <p>另外关于包含块的定义具体<a href="http://w3help.org/zh-cn/kb/008/" target="_blank" rel="noopener">请参考 KB008 包含块(Containing block)</a>。</p>
-<p><img src="../../images/css/css-margin-1-6.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-6.png" alt="css margin"></p>
 <p><strong>公用代码</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    margin: auto;</span><br><span class="line">    border: 1px black solid;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.one</span> &#123;</span></span><br><span class="line">    background: orange;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.two</span> &#123;</span></span><br><span class="line">    background: green;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"one"</span>&gt;</span>one<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"two"</span>&gt;</span>two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="margin-top-和-margin-left-负值"><a href="#margin-top-和-margin-left-负值" class="headerlink" title="margin-top 和 margin-left 负值"></a>margin-top 和 margin-left 负值</h3><h4 id="margin-top"><a href="#margin-top" class="headerlink" title="margin-top"></a>margin-top</h4><p>修改 css 代码如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果图如下：</p>
-<p><img src="../../images/css/css-margin-1-7.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-7.png" alt="css margin"></p>
 <p>当设置<code>.two</code>的<code>div</code>的<code>margin-top: -50px</code>的时候，它的参考线是<code>div.one</code>的下边，整个<code>div.two</code>向上移动<code>-50px</code>使得<code>div.two</code>覆盖<code>div.one</code>。</p>
 <h4 id="margin-left"><a href="#margin-left" class="headerlink" title="margin-left"></a>margin-left</h4><p>修改 css 代码如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果图如下：</p>
-<p><img src="../../images/css/css-margin-1-8.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-8.png" alt="css margin"></p>
 <p>当设置<code>.two</code>的<code>div</code>的<code>margin-left: -50px</code>的时候，它的参考线是<code>div.one</code>的右边线，整个<code>div.two</code>向左移动<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
 <h3 id="margin-right-和-margin-bottom-负值"><a href="#margin-right-和-margin-bottom-负值" class="headerlink" title="margin-right 和 margin-bottom 负值"></a>margin-right 和 margin-bottom 负值</h3><h4 id="margin-right"><a href="#margin-right" class="headerlink" title="margin-right"></a>margin-right</h4><p>修改 css 代码如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">  <span class="attribute">margin-right</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果图如下：</p>
-<p><img src="../../images/css/css-margin-1-8.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-8.png" alt="css margin"></p>
 <p>当设置<code>.one</code>的<code>div</code>的<code>margin-right: -50px</code>的时候，它的参考线是<code>div.one</code>的右边线，整个<code>div.one</code>向左收缩<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
 <h4 id="margin-bottom"><a href="#margin-bottom" class="headerlink" title="margin-bottom"></a>margin-bottom</h4><p>修改 css 代码如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: static;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果图如下：</p>
-<p><img src="../../images/css/css-margin-1-7.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-7.png" alt="css margin"></p>
 <p>当设置<code>.one</code>的<code>div</code>的<code>margin-bottom: -50px</code>的时候，它的参考线是<code>div.one</code>的下边线，整个<code>div.one</code>向上收缩<code>-50px</code>使的<code>div.two</code>覆盖<code>div.one</code>。</p>
 <h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p><strong>margin 负值下的两端对齐：</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  * &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 1200px;</span><br><span class="line">    margin: auto;</span><br><span class="line">    background: orange;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.ul</span> &#123;</span></span><br><span class="line">    list-style: none;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    margin-right: -20px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.li</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">width</span>: 386<span class="selector-class">.66px</span>;</span></span><br><span class="line">    height: 300px;</span><br><span class="line">    margin-right: 20px;</span><br><span class="line">    background: green;</span><br><span class="line">    float: left;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"li"</span>&gt;</span>列表3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../images/css/css-margin-1-9.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-9.png" alt="css margin"></p>
 <p><strong>margin 负值下的等高布局：</strong></p>
-<p><img src="../../images/css/css-margin-1-10.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-10.png" alt="css margin"></p>
 <p><strong>margin 负值下的两栏自适应布局：</strong></p>
-<p><img src="../../images/css/css-margin-1-11.png" alt="css margin"></p>
+<p><img src="./css-margin/css-margin-1-11.png" alt="css margin"></p>
 <h2 id="margin-无效情形解析"><a href="#margin-无效情形解析" class="headerlink" title="margin 无效情形解析"></a>margin 无效情形解析</h2><ol>
 <li><code>inline</code>水平元素的垂直<code>margin</code>无效前提：</li>
 </ol>
@@ -772,7 +772,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -880,7 +880,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

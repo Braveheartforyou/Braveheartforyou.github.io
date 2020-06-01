@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="JavaScirpt有关原型一道笔试题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/interviewquestion/javascript-prototype-1-1.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.870Z">
+<meta property="og:image" content="http://asyncnode.com/images/interviewquestion/javascript-prototype-1-1.png">
+<meta property="og:updated_time" content="2020-06-01T12:54:28.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScirpt面试题 ———— 有关原型一道笔试题">
 <meta name="twitter:description" content="JavaScirpt有关原型一道笔试题">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/interviewquestion/javascript-prototype-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/interviewquestion/javascript-prototype-1-1.png">
 
 
 
@@ -481,7 +481,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Child.prototype = <span class="keyword">new</span> Preson();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child1 = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="keyword">var</span> child2 = <span class="keyword">new</span> Child();</span><br><span class="line">child1.a = <span class="number">11</span>;</span><br><span class="line">child2.a = <span class="number">22</span>;</span><br></pre></td></tr></table></figure>
 <p>上面代码把<code>Child.prototype</code>指向一个<code>Preson</code>的实例，可以知道<code>Child.prototype.__proto__</code>指向<code>Preson.prototype</code>;<code>Child.prototype.constructor</code>指向<code>Preson</code>。下面是验证代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Child.prototype.__proto__ === Preson.prototype; <span class="comment">// true</span></span><br><span class="line">Child.prototype.constructor === Preson; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p><code>child1</code>、<code>child2</code>的结构如下图所示：<br><img src="../../images/interviewquestion/javascript-prototype-1-1.png" alt="javascript-prototype"></p>
+<p><code>child1</code>、<code>child2</code>的结构如下图所示：<br><img src="../../../images/interviewquestion/javascript-prototype-1-1.png" alt="javascript-prototype"></p>
 <p><code>child1</code>、<code>child2</code>都是<code>Child</code>构造函数实例化产生的，所以<code>child1.show() child2.show()</code>是调用的<code>Child.prototype</code>上的方法，但是注意<code>child1</code>、<code>child2</code>的对象上都声明了一个新属性<code>a</code>。<br>根据上面第<code>6</code>条知识点可知结果为<code>11, [1, 2, 1], 5)</code>、<code>12, [1, 2, 1], 5</code>；</p>
 <p><strong>注意</strong><br>从代码上看<code>child1.__proto__.b</code>数组的第三项是指向<code>child1.__proto__.a</code>的，那我们此时修改<code>child1.__proto__.a</code>的值，是否会影响<code>child1.show()</code>的结果呢:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">child1.__proto__.a = <span class="number">12123</span>;</span><br><span class="line">child1.show(); <span class="comment">// 11, [1, 2, 1], 5</span></span><br></pre></td></tr></table></figure>
@@ -680,7 +680,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -788,7 +788,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

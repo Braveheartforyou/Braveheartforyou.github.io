@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="JavaScript中的类型介绍">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-type.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.882Z">
+<meta property="og:image" content="http://asyncnode.com/images/javascript/javascript-type.png">
+<meta property="og:updated_time" content="2020-06-01T09:02:05.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript类型转换（一） 常见数据类型">
 <meta name="twitter:description" content="JavaScript中的类型介绍">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript-type.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/javascript/javascript-type.png">
 
 
 
@@ -436,14 +436,12 @@
 
       
         <p><strong><em>莫逆于心，遂相与为友。——庄子</em></strong></p>
-<p><a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a><br><a href="/blog/javascript/javascript-type-one-question.html">JavaScript 数据类型（二） 类型转换</a><br><a href="/blog/javascript/javascript-type-one-questionone.html">JavaScript 数据类型（三）常见的面试题</a><br><a href="/blog/javascript/javascript-IF-False-options.html">JavaScript 数据类型（四）IF 转换规则</a><br><a href="/blog/javascript/javascript-false-true.html">JavaScript 数据类型（五）== 混乱的转换规则</a><br><a href="/blog/javascript/javascript-bool-type.html">JavaScript 数据类型（六）多种数据类型判断方法</a></p>
-<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><hr>
-<p>JavaScript 中的内置类型，七中类型中的又分为两大类：<strong>基本类型（值类型）和引用类型</strong><br>基本类型有六种：<strong>null</strong>、<strong>number</strong>、<strong>string</strong>、<strong>undefined</strong>、<strong>boolean</strong>、<strong>symbol</strong><br>引用类型：<strong>object</strong><br>所有基本类型的值都是<strong>不可改变</strong>的。但需要注意的是，基本类型本身和一个赋值为基本类型的变量的区别。<br>变量会被赋予一个新值，而原值不能像数组、对象以及函数那样被改变。</p>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>JavaScript 中的内置类型，七中类型中的又分为两大类：<strong>基本类型（值类型）和引用类型</strong><br>基本类型有六种：<strong>null</strong>、<strong>number</strong>、<strong>string</strong>、<strong>undefined</strong>、<strong>boolean</strong>、<strong>symbol</strong><br>引用类型：<strong>object</strong><br>所有基本类型的值都是<strong>不可改变</strong>的。但需要注意的是，基本类型本身和一个赋值为基本类型的变量的区别。<br>变量会被赋予一个新值，而原值不能像数组、对象以及函数那样被改变。</p>
 <p><strong>基本类型</strong> 是储存在<code>栈</code>中<br><strong>引用类型</strong> 引用数据类型的<code>值</code>是保存在<code>堆内存</code>中的对象。JavaScript<code>不允许</code>直接访问堆内存中的位置，堆内存中的<code>值地址引用</code>保存在<code>栈</code>中，我们都是操作<code>栈中</code>的地址引用。</p>
 <p><strong>如果想看数据结构如堆、栈、链表等等，可以在本站搜索。</strong></p>
 <p>如下图所示：</p>
-<p><img src="../../images/javascript/javascript-type.png" alt="javascript-type" width="60%" style="margin: 0 auto;"></p>
-<p>如果不知道怎么判断数据类型的请看另一篇文章 <a href="/blog/javascript/javascript-bool-type.html">JavaScript 类型判断</a></p>
+<p><img src="../../../images/javascript/javascript-type.png" alt="javascript-type" width="60%" style="margin: 0 auto;"></p>
+<p>如果不知道怎么判断数据类型的请看另一篇文章 <a href="/blog/javascript/type/javascript-bool-type.html">JavaScript 类型判断</a></p>
 <h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><p>像基本类型如果<strong>String、Boolean、Number</strong>我们就不细写了，讲一下里面比较特殊的。如 <strong>null、undefined、NaN、symbol</strong>等等。</p>
 <h4 id="null"><a href="#null" class="headerlink" title="null"></a>null</h4><p>值<code>null</code>是一个字面量，他不像<strong>undefined</strong>是一个<strong>全局对象</strong>的一个<strong>属性</strong>。<strong>null</strong>是表示缺少的标识，知识变量未被指向任何对象，也可以看做是一个<strong>空指针对象</strong>。</p>
 <p>如果我们在浏览器中赋值 <strong>null</strong>,他会报错如下：</p>
@@ -471,10 +469,10 @@
 </tr>
 </tbody>
 </table>
-<p>在现代浏览器（JavaScript 1.8.5/Firefox 4+），自 ECMAscript5 标准以来 undefined 是一个不能被配置（non-configurable），不能被重写（non-writable）的属性。即便事实并非如此，也要避免去重写它。</p>
-<p>如果我们在浏览器中赋值 <strong>undefined</strong>, 因为他的 writable 是为 false,所以我们的赋值没有生效，如下所示：</p>
+<p>在现代浏览器<code>（JavaScript 1.8.5/Firefox 4+）</code>，自 <code>ECMAscript5</code> 标准以来 <code>undefined</code> 是一个不能被配置<code>（non-configurable）</code>，<code>不能被重写（non-writable）的属性</code>。即便事实并非如此，也要避免去重写它。</p>
+<p>如果我们在浏览器中赋值 <strong>undefined</strong>, 因为他的 <code>writable</code> 是为 <code>false</code>,所以我们的赋值没有生效，如下所示：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// chrome Google Chrome 已是最新版本</span></span><br><span class="line"><span class="comment">// 版本 75.0.3770.100（正式版本） （64 位）</span></span><br><span class="line"><span class="literal">undefined</span> = <span class="string">'111'</span>;</span><br><span class="line"><span class="literal">undefined</span> === <span class="literal">undefined</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p><strong>全局属性</strong> NaN 的值表示<strong>不是</strong>一个数字（Not-A-Number），<code>NaN</code>是一种特殊的<code>Number</code>类型.<br><code>NaN</code> 属性的初始值就是 <code>NaN</code>，和 <code>Number.NaN</code> 的值一样。在现代浏览器中（ES5 中），<code>NaN</code> 属性是一个不可配置（non-configurable），不可写（non-writable）的属性。但在 ES3 中，这个属性的值是可以被更改的，但是也应该避免覆盖。</p>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p><strong>全局属性</strong> <code>NaN</code> 的值表示<strong>不是</strong>一个数字（Not-A-Number），<code>NaN</code>是一种特殊的<code>Number</code>类型.<br><code>NaN</code> 属性的初始值就是 <code>NaN</code>，和 <code>Number.NaN</code> 的值一样。在现代浏览器中（ES5 中），<code>NaN</code> 属性是一个不可配置（non-configurable），不可写<code>（non-writable）</code>的属性。但在 ES3 中，这个属性的值是可以被更改的，但是也应该避免覆盖。</p>
 <table>
 <thead>
 <tr>
@@ -762,7 +760,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -870,7 +868,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

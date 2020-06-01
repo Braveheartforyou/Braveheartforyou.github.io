@@ -1,0 +1,1418 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Html,Render,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asyncnode" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。">
+<meta name="keywords" content="Html,Render">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解">
+<meta property="og:url" content="http://asyncnode.com/blog/html/render/html-reload-reflow.html">
+<meta property="og:site_name" content="asyncnode">
+<meta property="og:description" content="在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-10.png">
+<meta property="og:updated_time" content="2020-06-01T09:24:21.427Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解">
+<meta name="twitter:description" content="在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。">
+<meta name="twitter:image" content="http://asyncnode.com/blog/html/render/html-reload-reflow/reflow-repaint-1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://asyncnode.com/blog/html/render/html-reload-reflow.html">
+
+
+
+
+
+  <title>浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解 | asyncnode</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e3f894d9fe96307168a5b03e449ee6bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Braveheartforyou/Braveheartforyou.github.io" class="github-corner" aria-label="View source on Github"><svg width="92" height="92" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asyncnode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">asyncnode</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://asyncnode.com/blog/html/render/html-reload-reflow.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="asyncnode">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asyncnode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T08:00:46+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Html/" itemprop="url" rel="index">
+                    <span itemprop="name">Html</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/html/render/html-reload-reflow.html" class="leancloud_visitors" data-flag-title="浏览器渲染原理 （三）repaint(重绘)和reflow(回流)详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在浏览器渲染原理（一）中，我们知道了大致的渲染步骤，但是经常说的repaint(重绘)和reflow(回流)我们还不清楚它发生在那个阶段，和为什么会发生reload和reflow，怎么优化他们。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>知足则不辱，知止则不殆。——老子</em></strong></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>大多数设备的刷新频率是<strong>60Hz</strong>，也就说是浏览器对每一帧画面的渲染工作要在 <strong>16ms</strong> 内完成,超出这个时间，页面的渲染就会出现<strong>卡顿</strong>现象，影响用户体验。<br><strong>repaint(重绘)</strong>和 <strong>reflow(回流)</strong>发生在什么渲染的那个阶段，我们要了解什么叫做 <strong>repaint(重绘)</strong>和 <strong>reflow(回流)</strong>.</p>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="(重绘)"></a>(重绘)</h3><p><code>repaint</code> 就是在<code>不影响排版的情况下</code>对这个元素重新绘制的过程。例如改变一个元素的背景颜色、字体颜色等。</p>
+<h3 id="reflow-回流、重排"><a href="#reflow-回流、重排" class="headerlink" title="reflow(回流、重排)"></a>reflow(回流、重排)</h3><p><code>当 render tree 中的一部分（或全部）因为元素的规模尺寸，布局，隐藏等改变而需要重新构建</code>。这就称为回流（其实我觉得叫重新布局更简单明了些）。每个页面至少需要一次回流，就是在页面第一次加载的时候。<br><strong>回流必将引起重绘，而重绘不一定会引起回流</strong></p>
+<h3 id="三种常见的渲染流程"><a href="#三种常见的渲染流程" class="headerlink" title="三种常见的渲染流程"></a>三种常见的渲染流程</h3><p><strong>1. JS/CSS&gt;计算样式&gt;布局&gt;绘制&gt;渲染层合并</strong><br><img src="./html-reload-reflow/reflow-repaint-1-1.png" alt="reflow"><br>这张图上渲染流程对应的是<strong>reflow</strong>渲染的过程，它会经过布局再绘制。<br><strong>2. JS/CSS&gt;计算样式&gt;绘制&gt;渲染层合并</strong><br><img src="./html-reload-reflow/reflow-repaint-1-2.png" alt="repaint"><br>这张图上渲染流程对应的是<strong>repaint</strong>渲染的过程，它不需要经过布局，只需要绘制当前的元素，不需要重新计算它的父元素。<br><strong>3. JS/CSS&gt;计算样式&gt;渲染层合并</strong><br><img src="./html-reload-reflow/reflow-repaint-1-3.png" alt="compositor"><br>这张图上渲染流程比较特殊，它不选经过布局、绘制，它只需要在<strong>合成层</strong>上修改。</p>
+<!-- ### repaint、reflow和eventLoop关系 -->
+<h2 id="repaint-重绘-和-reflow-回流"><a href="#repaint-重绘-和-reflow-回流" class="headerlink" title="repaint(重绘)和 reflow(回流)"></a>repaint(重绘)和 reflow(回流)</h2><p>上面大致已经记录了 repaint、reflow 的流程和为什么要关注它，下面记录一下它们的触发条件、和 eventLoop 的关系。</p>
+<h3 id="触发-repaint、reflow"><a href="#触发-repaint、reflow" class="headerlink" title="触发 repaint、reflow"></a>触发 repaint、reflow</h3><ol>
+<li><strong>添加、删除元素</strong>（回流+重绘）</li>
+<li>隐藏元素，<strong>display:none</strong>(回流+重绘)，<strong>visibility:hidden</strong>(只重绘，不回流)</li>
+<li><strong>移动元素</strong>，比如改变 top、left（jquery 的 animate 方法就是改变 top、left 不一定会影响回流），或者移动元素到另外 1 个父元素中。(重绘+回流)</li>
+<li>对 style 的操作（对不同的属性操作，影响不一样）（color、background-color）=&gt;(重绘) (padding、margin)=&gt;(回流)</li>
+<li>浏览器大小改变<strong>resize</strong>、<strong>font-size</strong>（重绘+回流）</li>
+<li><strong>transform/opacity</strong> （不会触发生重绘、回流）</li>
+<li>最复杂的一种：<strong>获取某些属性</strong>，引发回流 很多浏览器会对回流做优化，他会等到足够数量的变化发生，在做一次批处理回流。 但是除了 render 树的直接变化。 当获取一些属性时，浏览器为了获得正确的值也会触发回流。<ol>
+<li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
+<li>scrollTop/Left/Width/Height</li>
+<li>clientTop/Left/Width/Height</li>
+<li>width,height</li>
+<li>调用了 getComputedStyle(), 或者 IE 的 currentStyle</li>
+</ol>
+</li>
+</ol>
+<p>上面大致就是触发<strong>repaint、reflow</strong>的操作，还有更多的后面还会补全。</p>
+<h3 id="repaint、reflow-和-eventLoop-关系"><a href="#repaint、reflow-和-eventLoop-关系" class="headerlink" title="repaint、reflow 和 eventLoop 关系"></a>repaint、reflow 和 eventLoop 关系</h3><ol>
+<li>当 <strong>Event loop</strong> 执行完 <strong>Microtasks</strong> 后，会判断 <code>document</code> 是否需要更新。因为浏览器是 <strong>60Hz</strong> 的刷新率，每 <strong>16ms</strong> 才会更新一次。</li>
+<li>然后判断是否有 <code>resize</code>或者 <code>scroll</code> ，有的话会去触发事件，所以 <code>resize</code> 和 <code>scroll</code> 事件也是至少 <strong>16ms</strong> 才会触发一次，并且自带节流功能。</li>
+<li>判断是否触发了 <code>media query</code></li>
+<li><strong>更新动画并且发送事件</strong></li>
+<li><strong>判断是否有全屏操作事件</strong></li>
+<li><strong>执行 requestAnimationFrame 回调</strong></li>
+<li><strong>执行 IntersectionObserver 回调，该方法用于判断元素是否可见，可以用于懒加载上，但是兼容性不好</strong></li>
+<li><strong>更新界面</strong></li>
+</ol>
+<p>在这个里面记录了触发 <strong>repaing、reflow</strong>，还有和 <strong>eventloop</strong> 的关系，但是 <strong>eventloop</strong> 和 <strong>ui 渲染</strong>流程关系有点太复杂，所以大致记录了一下。</p>
+<h2 id="优化渲染性能"><a href="#优化渲染性能" class="headerlink" title="优化渲染性能"></a>优化渲染性能</h2><ul>
+<li><strong><em>减少重绘和回流</em></strong></li>
+<li><strong><em>优化 JavaScript 的执行效率</em></strong></li>
+<li><strong><em>对用户输入事件的处理函数去抖动</em></strong></li>
+<li><strong><em>优先使用渲染层合并属性、控制层数量</em></strong></li>
+<li><strong><em>结合 chrome 工具分析性能</em></strong></li>
+</ul>
+<h3 id="减少重绘和回流"><a href="#减少重绘和回流" class="headerlink" title="减少重绘和回流"></a>减少重绘和回流</h3><ul>
+<li><strong><em>避免逐项更改样式</em></strong>。最好一次性更改 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。</li>
+<li><strong><em>避免循环操作 DOM</em></strong>。创建一个 documentFragment 或 div，在它上面应用所有 DOM 操作，最后再把它添加到 window.document。</li>
+<li><strong><em>避免多次读取 offsetLeft 等属性</em></strong>。无法避免则将它们缓存到变量。</li>
+<li><strong><em>将复杂的元素绝对定位或固定定位，使它脱离文档流</em></strong>。否则回流代价十分高</li>
+<li><strong><em>不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局</em></strong></li>
+<li><strong><em>动画实现的速度的选择</em></strong>，动画速度越快，回流次数越多，也可以选择使用 requestAnimationFrame</li>
+<li><strong><em>CSS 选择符从右往左匹配查找，避免 DOM 深度过深</em></strong></li>
+<li><strong><em>使用 visibility 替换 display: none</em></strong> ，因为前者只会引起重绘，后者会引发回流（改变了布局）</li>
+<li><strong><em>使用 translate 替代 top</em></strong></li>
+<li><strong><em>把 DOM 离线后修改</em></strong>，比如：先把 DOM 给 display:none (有一次 Reflow)，然后你修改 100 次，然后再把它显示出来</li>
+<li><strong><em>使用 flexbox 替代老的布局模型</em></strong><br>还有很多在这里就不一一列举了，主要思想就是减少 reflow、repaint 的次数。</li>
+</ul>
+<h3 id="优化-JavaScript-的执行效率"><a href="#优化-JavaScript-的执行效率" class="headerlink" title="优化 JavaScript 的执行效率"></a>优化 JavaScript 的执行效率</h3><p><strong>动画实现，避免使用 setTimeout 或 setInterval，尽量使用 requestAnimationFrame</strong><br><strong>把耗时长的 JavaScript 代码放到 Web Workers 中去做</strong></p>
+<h4 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h4><p><strong>动画实现，避免使用 setTimeout 或 setInterval，尽量使用 requestAnimationFrame</strong><br>setTimeout(callback)和 setInterval(callback)无法保证 callback 函数的执行时机，很可能在帧结束的时候执行，从而导致丢帧，如下图：<br><img src="./html-reload-reflow/reflow-repaint-1-4.png" alt="setTimeout、和setInterval"><br>requestAnimationFrame(callback)可以保证 callback 函数在每帧动画开始的时候执行。</p>
+<blockquote>
+<p>注意：jQuery 的 animate 函数就是用 setTimeout 来实现动画，可以通过 jquery-requestAnimationFrame 这个补丁来用 requestAnimationFrame 替代 setTimeout</p>
+</blockquote>
+<h4 id="把耗时长的-JavaScript-代码放到-Web-Workers-中去做"><a href="#把耗时长的-JavaScript-代码放到-Web-Workers-中去做" class="headerlink" title="把耗时长的 JavaScript 代码放到 Web Workers 中去做"></a>把耗时长的 JavaScript 代码放到 Web Workers 中去做</h4><p>把耗时长的 <strong>JavaScript 代码放到 Web Workers</strong> 中去做 JavaScript 代码运行在浏览器的<strong>主线程</strong>上，与此同时，浏览器的主线程还负责<strong>样式计算、布局、绘制</strong>的工作，如果 JavaScript 代码运行时间过长，就会<strong>阻塞</strong>其他渲染工作，很可能会导致丢帧。<br>前面提到每帧的渲染应该在 16ms 内完成，但在动画过程中，由于已经被占用了不少时间，所以 JavaScript 代码运行耗时应该控制在<strong>3-4 毫秒</strong>。</p>
+<h3 id="对用户输入事件的处理函数去抖动"><a href="#对用户输入事件的处理函数去抖动" class="headerlink" title="对用户输入事件的处理函数去抖动"></a>对用户输入事件的处理函数去抖动</h3><p>用户输入事件处理函数会在运行时<strong>阻塞帧的渲染</strong>，并且会导致<strong>额外的布局</strong>发生。<br>理想情况下，当用户和页面交互，页面的<strong>渲染层合并线程</strong>将接收到这个事件并移动元素。这个响应过程是不需要主线程参与，不会导致 <strong>JavaScript、布局和绘制</strong>过程发生。</p>
+<p><img src="./html-reload-reflow/reflow-repaint-1-5.png" alt="去抖"></p>
+<p>但是如果被触摸的元素绑定了输入事件处理函数，比如 <code>touchstart/touchmove/touchend</code>，那么渲染层合并线程必须等待这些被绑定的处理<strong>函数执行完毕</strong>才能执行，也就是用户的滚动页面操作<strong>被阻塞</strong>了，表现出的行为就是滚动出现<strong>延迟或者卡顿</strong>。<br>简而言之就是你必须确保用户输入事件绑定的任何处理函数都能够<strong>快速的执行完毕</strong>，以便腾出时间来让<strong>渲染层合并线程</strong>完成他的工作。</p>
+<p><img src="./html-reload-reflow/reflow-repaint-1-6.png" alt="去抖"></p>
+<h4 id="避免使用运行时间过长的输入事件处理函数"><a href="#避免使用运行时间过长的输入事件处理函数" class="headerlink" title="避免使用运行时间过长的输入事件处理函数"></a>避免使用运行时间过长的输入事件处理函数</h4><p>输入事件处理函数，比如 <code>scroll/touch 事件</code>的处理，都会在 <code>requestAnimationFrame</code> 之前被调用执行。<br>因此，如果你在上述输入事件的处理函数中做了<strong>修改样式属性</strong>的操作，那么这些操作就会被浏览器<strong>暂存</strong>起来，然后在调用 <code>requestAnimationFrame</code> 的时候，如果你在一开始就做了<strong>读取样式属性</strong>的操作，那么将会触发浏览器的强制同步布局操作。</p>
+<p><img src="./html-reload-reflow/reflow-repaint-1-7.png" alt="去抖"></p>
+<h4 id="对滚动事件处理函数去抖动"><a href="#对滚动事件处理函数去抖动" class="headerlink" title="对滚动事件处理函数去抖动"></a>对滚动事件处理函数去抖动</h4><p>通过 requestAnimationFrame 可以对样式修改操作去抖动，同时也可以使你的事件处理函数变得更轻</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScroll</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Store the scroll value for laterz.</span></span><br><span class="line">  lastScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prevent multiple rAF callbacks.</span></span><br><span class="line">  <span class="keyword">if</span> (scheduledAnimationFrame) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  scheduledAnimationFrame = <span class="literal">true</span>;</span><br><span class="line">  requestAnimationFrame(readAndUpdatePage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, onScroll);</span><br></pre></td></tr></table></figure>
+<h3 id="chrome-分析结合"><a href="#chrome-分析结合" class="headerlink" title="chrome 分析结合"></a>chrome 分析结合</h3><p>使用 Chrome DevTools 来了解页面的渲染层情况</p>
+<h4 id="Chrome-DevTools-gt-Preformance"><a href="#Chrome-DevTools-gt-Preformance" class="headerlink" title="Chrome DevTools &gt; Preformance"></a>Chrome DevTools &gt; Preformance</h4><p>通过 Chrome DevTools 的 Preformance 来录制一段操作，并且开启 More tools 的 Layers、Rendering 功能，如果下图所示:<br><img src="./html-reload-reflow/reflow-repaint-1-8.png" alt="Chrome DevTools"><br><img src="./html-reload-reflow/reflow-repaint-1-9.png" alt="Chrome DevTools"></p>
+<h4 id="借助-Chrome-暴露在-window-上的-preformance-对象"><a href="#借助-Chrome-暴露在-window-上的-preformance-对象" class="headerlink" title="借助 Chrome 暴露在 window 上的 preformance 对象"></a>借助 Chrome 暴露在 window 上的 preformance 对象</h4><p>可以用 preformance 对象来做一些前端的性能分析和统计，如下图所示：<br><img src="./html-reload-reflow/reflow-repaint-1-10.png" alt="Chrome DevTools"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这个上面了解了 <code>reflow、repaint</code> 的流程和他的触发条件，再后面也有一部分怎么优化性能，结合前面的渲染流程大致知道优化的是那部分的流程。当然在优化性能的时候，一定要结合 chrome 的性能分析功能。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="noopener">深度剖析浏览器渲染性能原理，你到底知道多少？</a><br><a href="https://www.cnblogs.com/dll-ft/p/5810639.html" target="_blank" rel="noopener">回流(reflow)与重绘(repaint)</a><br><a href="https://www.cnblogs.com/goloving/p/7545954.html" target="_blank" rel="noopener">高性能 WEB 开发：深入理解页面呈现、重绘、回流</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Html/" rel="tag"><i class="fa fa-tag"></i> Html</a>
+          
+            <a href="/tags/Render/" rel="tag"><i class="fa fa-tag"></i> Render</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/html/render/html-browser-render.html" rel="next" title="浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么">
+                <i class="fa fa-chevron-left"></i> 浏览器渲染原理 （一）在网址中输入一个网站后面都做了什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/algorithm/other/algorithm-other-flatten.html" rel="prev" title="JavaScript实现flatten多种方法">
+                JavaScript实现flatten多种方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/user.jpg" alt="asyncnode">
+          <p class="site-author-name" itemprop="name">asyncnode</p>
+           
+              <p class="site-description motion-element" itemprop="description">asyncnode</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Braveheartforyou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘"><span class="nav-number">1.1.</span> <span class="nav-text">(重绘)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reflow-回流、重排"><span class="nav-number">1.2.</span> <span class="nav-text">reflow(回流、重排)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种常见的渲染流程"><span class="nav-number">1.3.</span> <span class="nav-text">三种常见的渲染流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repaint-重绘-和-reflow-回流"><span class="nav-number">2.</span> <span class="nav-text">repaint(重绘)和 reflow(回流)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#触发-repaint、reflow"><span class="nav-number">2.1.</span> <span class="nav-text">触发 repaint、reflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repaint、reflow-和-eventLoop-关系"><span class="nav-number">2.2.</span> <span class="nav-text">repaint、reflow 和 eventLoop 关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化渲染性能"><span class="nav-number">3.</span> <span class="nav-text">优化渲染性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少重绘和回流"><span class="nav-number">3.1.</span> <span class="nav-text">减少重绘和回流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化-JavaScript-的执行效率"><span class="nav-number">3.2.</span> <span class="nav-text">优化 JavaScript 的执行效率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">3.2.1.</span> <span class="nav-text">requestAnimationFrame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把耗时长的-JavaScript-代码放到-Web-Workers-中去做"><span class="nav-number">3.2.2.</span> <span class="nav-text">把耗时长的 JavaScript 代码放到 Web Workers 中去做</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对用户输入事件的处理函数去抖动"><span class="nav-number">3.3.</span> <span class="nav-text">对用户输入事件的处理函数去抖动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#避免使用运行时间过长的输入事件处理函数"><span class="nav-number">3.3.1.</span> <span class="nav-text">避免使用运行时间过长的输入事件处理函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对滚动事件处理函数去抖动"><span class="nav-number">3.3.2.</span> <span class="nav-text">对滚动事件处理函数去抖动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chrome-分析结合"><span class="nav-number">3.4.</span> <span class="nav-text">chrome 分析结合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Chrome-DevTools-gt-Preformance"><span class="nav-number">3.4.1.</span> <span class="nav-text">Chrome DevTools &gt; Preformance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#借助-Chrome-暴露在-window-上的-preformance-对象"><span class="nav-number">3.4.2.</span> <span class="nav-text">借助 Chrome 暴露在 window 上的 preformance 对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asyncnode</span>
+</div>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站访客数: <span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+<!--<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共215.2k字</span>
+</div> -->
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz',
+        appKey: 'VInQ07WojuO29KYY877WamSx',
+        placeholder: '加上昵称更好玩。ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true 
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ik69l1I4Gc88loNLTEuFGfHw-gzGzoHsz", "VInQ07WojuO29KYY877WamSx");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>

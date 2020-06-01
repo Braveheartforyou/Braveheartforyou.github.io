@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Http,">
+  <meta name="keywords" content="Http,Cache,PWA,">
 
 
 
@@ -116,34 +116,34 @@
 
 
 <meta name="description" content="ServiceWorker其实很早就已经出来了，但是因为浏览器的差别">
-<meta name="keywords" content="Http">
+<meta name="keywords" content="Http,Cache,PWA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Http中的缓存（三） PWA中的serviceworker">
 <meta property="og:url" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="ServiceWorker其实很早就已经出来了，但是因为浏览器的差别">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-11.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-12.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-13.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-15.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-16.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-17.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-18.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-4-14.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.885Z">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-11.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-12.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-13.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-15.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-16.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-17.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-18.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-14.png">
+<meta property="og:updated_time" content="2020-06-01T12:36:08.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http中的缓存（三） PWA中的serviceworker">
 <meta name="twitter:description" content="ServiceWorker其实很早就已经出来了，但是因为浏览器的差别">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/http/http-cache-4-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/network/cache/http-cache-serviceworker/http-cache-4-1.png">
 
 
 
@@ -450,12 +450,7 @@
       
 
       
-        <ul>
-<li><a href="/blog/http-cache-multiple.html">Http 中的缓存（一） 多级缓存结构</a></li>
-<li><a href="/blog/http/http-cache-http.html">Http 中的缓存（二） HTTP 中的缓存</a></li>
-<li><a href="/blog/http/http-cache-serviceworker.html">Http 中的缓存（三） PWA 中的 ServiceWorker</a></li>
-</ul>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先了解一下<code>PWA（Progressive web apps，渐进式 Web 应用）</code>运用现代的 <code>Web API</code> 以及传统的渐进式增强策略来创建跨平台 <code>Web</code> 应用程序。<br><strong>PWA 的优点</strong><br><code>PWA</code> 是<strong>可被发现</strong>、<strong>易安装</strong>、<strong>可链接</strong>、<strong>独立于网络</strong>、<strong>渐进式</strong>、<strong>可重用</strong>、<strong>响应性</strong>和<strong>安全</strong>的。<br><code>PWA</code>中可以通过<code>Service Worker</code>来实现离线的应用，这个也是 PWA 中一个比较重要的环节，它们主要应用到<strong>Web App</strong>中，已获得更好的体验，并且在现在也在大规模的应用。<br><code>Service Worker</code>是一个事件驱动<code>worker</code>，运行在一个单独的后台进程，是<code>PWA（ProgressiveWeb App）</code>运行的基础。主要用于代理网页请求，可缓存请求结果；可实现离线缓存功能，也拥有单独的作用域范围和运行环境。我们以后把<code>Service Worker</code>简称为<code>SW</code>。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先了解一下<code>PWA（Progressive web apps，渐进式 Web 应用）</code>运用现代的 <code>Web API</code> 以及传统的渐进式增强策略来创建跨平台 <code>Web</code> 应用程序。<br><strong>PWA 的优点</strong><br><code>PWA</code> 是<strong>可被发现</strong>、<strong>易安装</strong>、<strong>可链接</strong>、<strong>独立于网络</strong>、<strong>渐进式</strong>、<strong>可重用</strong>、<strong>响应性</strong>和<strong>安全</strong>的。<br><code>PWA</code>中可以通过<code>Service Worker</code>来实现离线的应用，这个也是 PWA 中一个比较重要的环节，它们主要应用到<strong>Web App</strong>中，已获得更好的体验，并且在现在也在大规模的应用。<br><code>Service Worker</code>是一个事件驱动<code>worker</code>，运行在一个单独的后台进程，是<code>PWA（ProgressiveWeb App）</code>运行的基础。主要用于代理网页请求，可缓存请求结果；可实现离线缓存功能，也拥有单独的作用域范围和运行环境。我们以后把<code>Service Worker</code>简称为<code>SW</code>。</p>
 <p>本文大致分为：</p>
 <ul>
 <li>SW 特性</li>
@@ -488,7 +483,7 @@
 <li><strong>必须</strong>在 <code>https</code> 中使用，允许在开发调试的<code>localhost</code>使用。</li>
 <li>浏览器必须支持 SW</li>
 </ul>
-<h2 id="初始安装时"><a href="#初始安装时" class="headerlink" title="初始安装时"></a>初始安装时</h2><p>初始安装时大致流程大致如下图：<br><img src="../../images/http/http-cache-4-1.png" alt="http-cache-serviceworker"></p>
+<h2 id="初始安装时"><a href="#初始安装时" class="headerlink" title="初始安装时"></a>初始安装时</h2><p>初始安装时大致流程大致如下图：<br><img src="./http-cache-serviceworker/http-cache-4-1.png" alt="http-cache-serviceworker"></p>
 <p>大致可以分为<code>注册SW =&gt; 安装SW =&gt; 激活 =&gt; 空闲 =&gt; (缓存和返回请求/终止)</code>，在初始安装时会大致分为这几个步骤，下面就按照这几个步结合代码实现。</p>
 <h3 id="注册-Service-Worker"><a href="#注册-Service-Worker" class="headerlink" title="注册 Service Worker"></a>注册 Service Worker</h3><p>用户<strong>首次访问</strong>SW 控制的网站或页面时，<code>sw.js</code>会立刻被下载和解析。我们要在页面中写入<code>JavaScript</code>来注册<code>SW</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断浏览器是否支持serviceWorker</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="comment">// 在页面加载后</span></span><br><span class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 通过navigator.serviceWorker.register 注册'./sw.js</span></span><br><span class="line">    navigator.serviceWorker</span><br><span class="line">      .register(<span class="string">'./sw.js'</span>)</span><br><span class="line">      .then(<span class="function">(<span class="params">reg</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//注册成功</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'注册成功'</span>, reg);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//注册成功</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'注册失败'</span>, err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'当前浏览器不支持SW'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -497,7 +492,7 @@
 <p>注意：<code>register()</code> 方法的精妙之处在于服务工作线程文件的位置。<code>SW</code>降接收此网域上所有的事项的<code>featch</code>事件。<br>如果是 Chrome 浏览器可以通过<code>chrome://inspect/#service-workers</code>或者<code>console =&gt; application =&gt; Service Worker</code>查看是否注册成功</p>
 </blockquote>
 <p>因为现在<code>sw.js</code>中我们的代码是空的，所以在浏览器中的<code>cache stoage</code>是空的，运行效果如下：</p>
-<p><img src="../../images/http/http-cache-4-4.png"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-4.png"></p>
 <h3 id="安装-Service-Worker"><a href="#安装-Service-Worker" class="headerlink" title="安装 Service Worker"></a>安装 Service Worker</h3><p>在受控页面启动注册流程后，下面就是 SW 获取的第一个事件<code>install</code>，并且只发生一次。传递到 <code>installEvent.waitUntil()</code> 的一个 <code>promise</code> 可表明安装的持续时间以及安装是否成功。</p>
 <p>在<code>install</code>中要做三件事<strong>打开缓存</strong>、<strong>缓存文件</strong>、<strong>确认所有需要的资产是否已缓存</strong>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在sw.js中监听对应的安装事件，并预处理需要缓存的文件</span></span><br><span class="line"><span class="comment">// 该部分内容涉及到cacheStorage API</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义缓存空间名称</span></span><br><span class="line"><span class="keyword">const</span> CACHE_NAME = <span class="string">'sw_cache_v1'</span>;</span><br><span class="line"><span class="comment">// 定义需要缓存的文件目录</span></span><br><span class="line"><span class="keyword">let</span> cachelist = [<span class="string">'./app.js'</span>, <span class="string">'./index.css'</span>];</span><br><span class="line"><span class="comment">// 监听安装事件，返回installEvent对象</span></span><br><span class="line">self.addEventListener(<span class="string">'install'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">installEvent</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// waitUntil方法执行缓存方法</span></span><br><span class="line">  installEvent.waitUntil(</span><br><span class="line">    <span class="comment">// cacheStorage API 可直接用caches来替代</span></span><br><span class="line">    <span class="comment">// open方法创建/打开缓存空间，并会返回promise实例</span></span><br><span class="line">    <span class="comment">// then来接收返回的cache对象索引</span></span><br><span class="line">    caches</span><br><span class="line">      .open(CACHE_NAME)</span><br><span class="line">      <span class="comment">// cache对象addAll方法解析（同fetch）并缓存所有的文件</span></span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">cache</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Opened cache'</span>);</span><br><span class="line">        <span class="keyword">return</span> cache.addAll(cachelist);</span><br><span class="line">      &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -506,12 +501,12 @@
 <p>注意： 第一个事件<code>install</code>，它只能被每个 <strong>SW</strong> 调用一次。如果您更改您的 <strong>SW</strong> 脚本，则浏览器将其视为一个<strong>不同</strong>的 <strong>SW</strong>，并且它将获得自己的 <code>install</code> 事件。<br>如有<strong>任何文件无法下载</strong>，则安装步骤将失败。<br>当前的状态是在等待状态。<br>我们可以直接通过<code>self.skipwaiting()</code>让当前<code>sw</code>立即将状态提升到<code>active</code>。</p>
 </blockquote>
 <p>当我们安装成功时，效果如下图所示：</p>
-<p><img src="../../images/http/http-cache-4-5.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-5.png" alt="http-cache-serviceworker"></p>
 <p>会多了一个<code>skipWaiting</code>，还有在<code>cache stroage</code>中的当前域名下的<code>service worker</code>对应的缓存文件列表。这个时候我们即使刷新也不会走<code>service worker</code>的缓存的。</p>
 <h3 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h3><p><code>SW</code> 准备控制客户端并处理 <code>push</code> 和 <code>sync</code> 等功能事件时，您将获得一个 <code>activate</code> 事件。但这不意味着调用 <code>.register()</code> 的页面将受控制。如果<strong>第二次加载此演示（换言之，刷新页面）</strong>，该页面将受控制。改写代码<code>sw.js</code>如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'install'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 一般注册以后，激活需要等到再次刷新页面后再激活</span></span><br><span class="line">  <span class="comment">// 可防止出现等待的情况，这意味着服务工作线程在安装完后立即激活</span></span><br><span class="line">  self.skipWaiting();</span><br><span class="line">&#125;);</span><br><span class="line">self.addEventListener(<span class="string">'activate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    <span class="comment">// cacheStorage API 可直接用caches来替代</span></span><br><span class="line">    <span class="comment">// open方法创建/打开缓存空间，并会返回promise实例</span></span><br><span class="line">    <span class="comment">// then来接收返回的cache对象索引</span></span><br><span class="line">    caches</span><br><span class="line">      .open(CACHE_NAME)</span><br><span class="line">      <span class="comment">// cache对象addAll方法解析（同fetch）并缓存所有的文件</span></span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">cache</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Opened cache'</span>);</span><br><span class="line">        <span class="keyword">return</span> cache.addAll(cachelist);</span><br><span class="line">      &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>一般在书写的时候，会在<code>install()</code>注册之后直接通过<code>self.skipWaiting();</code>激活当前的<code>SW</code>，在<code>activate</code>中书写<strong>打开缓存等等</strong>的逻辑，就不会出现上面还要<strong>刷新或者手动激活</strong>的问题。效果图如下：</p>
-<p><img src="../../images/http/http-cache-4-6.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-6.png" alt="http-cache-serviceworker"></p>
 <p>但是如果出现<strong>更新 SW</strong>，并且<strong>更新了缓存列表</strong>或者<strong>出现异步资源时</strong>，我们可以通过<code>clients.claim()</code>更新缓存列表。</p>
 <h3 id="clients-claim"><a href="#clients-claim" class="headerlink" title="clients.claim"></a>clients.claim</h3><p>激活 <code>SW</code> 后，您可以通过在其中调用 <code>clients.claim()</code> 控制未受控制的客户端。<a href="https://cdn.rawgit.com/jakearchibald/80368b84ac1ae8e229fc90b3fe826301/raw/df4cae41fa658c4ec1fa7b0d2de05f8ba6d43c94/" target="_blank" rel="noopener">google developer</a>中的一个异步加载图片的实例。下面修改代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'install'</span>, (event) =&gt; &#123;</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    <span class="comment">// cacheStorage API 可直接用caches来替代</span></span><br><span class="line">    <span class="comment">// open方法创建/打开缓存空间，并会返回promise实例</span></span><br><span class="line">    <span class="comment">// then来接收返回的cache对象索引</span></span><br><span class="line">    caches</span><br><span class="line">      .open(CACHE_NAME)</span><br><span class="line">      <span class="comment">// cache对象addAll方法解析（同fetch）并缓存所有的文件</span></span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">cache</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Opened cache'</span>);</span><br><span class="line">        <span class="keyword">return</span> cache.addAll(cachelist);</span><br><span class="line">      &#125;)</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// 一般注册以后，激活需要等到再次刷新页面后再激活</span></span><br><span class="line">  <span class="comment">// 可防止出现等待的情况，这意味着服务工作线程在安装完后立即激活</span></span><br><span class="line">  self.skipWaiting();</span><br><span class="line">&#125;);</span><br><span class="line">self.addEventListener(<span class="string">'activate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 若缓存数据更改，则在这里更新缓存</span></span><br><span class="line">  <span class="keyword">var</span> cacheDeletePromise = caches.keys().then(<span class="function">(<span class="params">keyList</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Promise</span>.all(</span><br><span class="line">      keyList.map(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== CACHE_NAME) &#123;</span><br><span class="line">          <span class="keyword">var</span> deletePromise = caches.delete(key);</span><br><span class="line">          <span class="keyword">return</span> deletePromise;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">Promise</span>.resolve();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    <span class="built_in">Promise</span>.all([cacheDeletePromise]).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.clients.claim();</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -519,7 +514,7 @@
 <h3 id="缓存和返回请求"><a href="#缓存和返回请求" class="headerlink" title="缓存和返回请求"></a>缓存和返回请求</h3><p>上我们已经安装并且激活了<strong>SW</strong>，现在我们要返回一个缓存的响应。<strong>SW</strong>用户转至其他页面或刷新当前页面后，将开始接受<code>fetch</code>事件。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Cache hit - return response</span></span><br><span class="line">      <span class="keyword">if</span> (response) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> fetch(event.request);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>在定义的<code>fetch</code>事件中，我们在<code>event.respondWith()</code>中传入来自<code>caches.match()</code>的一个<code>promise</code>。<code>caches.match()</code>这个方法检视该请求，并从服务工作线程所创建的任何缓存中查找缓存的结果。如果命中返回缓存值，否则，将调用<code>fetch</code>以发出网络请求。运行效果如下：</p>
-<p><img src="../../images/http/http-cache-4-7.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-7.png" alt="http-cache-serviceworker"></p>
 <p>如果我们想把新的请求也缓存掉，修改代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Cache hit - return response</span></span><br><span class="line">      <span class="keyword">if</span> (response) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// return fetch(event.request);</span></span><br><span class="line">      <span class="keyword">var</span> requestClone = event.request.clone();</span><br><span class="line">      <span class="keyword">return</span> fetch(requestClone).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!response || response.status !== <span class="number">200</span> || response.type !== <span class="string">'basic'</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> response;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> responseToCache = response.clone();</span><br><span class="line">        caches.open(CACHE_NAME).then(<span class="function"><span class="keyword">function</span> (<span class="params">cache</span>) </span>&#123;</span><br><span class="line">          cache.put(event.request, responseToCache);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>执行操作如下：</p>
@@ -528,8 +523,8 @@
 <li>获得响应后，<strong>确保响应有效。</strong>、<strong>检查并确保响应的状态为 200。</strong>、<strong>确保响应类型为 basic，亦即由自身发起的请求。 这意味着，对第三方资产的请求也不会添加到缓存。</strong></li>
 <li>如果<strong>通过检查</strong>，则克隆响应。</li>
 </ol>
-<p>没有缓存新请求时效果如下：<br><img src="../../images/http/http-cache-4-8.png" alt="http-cache-serviceworker"></p>
-<p>当使用我们下面的代码时，效果图如下：<br><img src="../../images/http/http-cache-4-9.png" alt="http-cache-serviceworker"><br>即使异步请求的<code>png</code>图片也被加入了缓存中。</p>
+<p>没有缓存新请求时效果如下：<br><img src="./http-cache-serviceworker/http-cache-4-8.png" alt="http-cache-serviceworker"></p>
+<p>当使用我们下面的代码时，效果图如下：<br><img src="./http-cache-serviceworker/http-cache-4-9.png" alt="http-cache-serviceworker"><br>即使异步请求的<code>png</code>图片也被加入了缓存中。</p>
 <h2 id="更新-SW"><a href="#更新-SW" class="headerlink" title="更新 SW"></a>更新 SW</h2><p>在以下情况下会触发更新：</p>
 <ul>
 <li>导航到一个作用域内的页面。</li>
@@ -548,7 +543,7 @@
 <h3 id="更新-SW-代码"><a href="#更新-SW-代码" class="headerlink" title="更新 SW 代码"></a>更新 SW 代码</h3><p>更新一个叫做<code>sw_cache_v2</code>的新的<code>SW</code>缓存，代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CACHE_NAME = <span class="string">'sw_cache_v2'</span>;</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">'install'</span>, (event) =&gt; &#123;</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    <span class="comment">// cacheStorage API 可直接用caches来替代</span></span><br><span class="line">    <span class="comment">// open方法创建/打开缓存空间，并会返回promise实例</span></span><br><span class="line">    <span class="comment">// then来接收返回的cache对象索引</span></span><br><span class="line">    caches</span><br><span class="line">      .open(CACHE_NAME)</span><br><span class="line">      <span class="comment">// cache对象addAll方法解析（同fetch）并缓存所有的文件</span></span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">cache</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cache.add(<span class="string">'index_copy.png'</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// 一般注册以后，激活需要等到再次刷新页面后再激活</span></span><br><span class="line">  <span class="comment">// 可防止出现等待的情况，这意味着服务工作线程在安装完后立即激活</span></span><br><span class="line">  self.skipWaiting();</span><br><span class="line">&#125;);</span><br><span class="line">self.addEventListener(<span class="string">'activate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 若缓存数据更改，则在这里更新缓存</span></span><br><span class="line">  <span class="keyword">var</span> cacheDeletePromise = caches.keys().then(<span class="function">(<span class="params">keyList</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Promise</span>.all(</span><br><span class="line">      keyList.map(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== CACHE_NAME) &#123;</span><br><span class="line">          <span class="keyword">var</span> deletePromise = caches.delete(key);</span><br><span class="line">          <span class="keyword">return</span> deletePromise;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">Promise</span>.resolve();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    <span class="built_in">Promise</span>.all([cacheDeletePromise]).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.clients.claim();</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Cache hit - return response</span></span><br><span class="line">      <span class="keyword">if</span> (response) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> fetch(event.request);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>代码执行效果如下图所示：</p>
-<p><img src="../../images/http/http-cache-4-10.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-10.png" alt="http-cache-serviceworker"></p>
 <p>整个过程我们大致经过了<code>install =&gt; waiting =&gt; activate</code>三个过程。</p>
 <h3 id="更新-Install"><a href="#更新-Install" class="headerlink" title="更新 Install"></a>更新 Install</h3><p>我们在代码中把<code>sw_cache_v1</code>更改为<code>sw_cache_v2</code>，我们重新<code>Install</code>了一个新的缓存<code>sw_cache_v2</code>，并且通过添加了一个缓存进去<code>cache.add(&#39;index_copy.png&#39;)</code>。</p>
 <h3 id="更新-Waiting"><a href="#更新-Waiting" class="headerlink" title="更新 Waiting"></a>更新 Waiting</h3><p>如果新的缓存安装成功<code>SW</code>后，更新的<code>SW</code>将延迟激活，直到现有<code>SW</code>不再控制任何客户端。此状态为<code>waiting</code>，这是浏览器确保每次只运行一个<code>SW</code>版本的样式。</p>
@@ -586,7 +581,7 @@
 <li><strong>sync 事件</strong></li>
 </ul>
 <h3 id="更新小技巧"><a href="#更新小技巧" class="headerlink" title="更新小技巧"></a>更新小技巧</h3><p><code>SW</code> 生命周期是专为用户构建的，这就给开发工作带来一定的困难。幸运的是，我们可通过以下几个工具解决这个问题：</p>
-<h4 id="Update-on-reload"><a href="#Update-on-reload" class="headerlink" title="Update on reload"></a>Update on reload</h4><p><img src="../../images/http/http-cache-4-11.png" alt="http-cache-serviceworker"></p>
+<h4 id="Update-on-reload"><a href="#Update-on-reload" class="headerlink" title="Update on reload"></a>Update on reload</h4><p><img src="./http-cache-serviceworker/http-cache-4-11.png" alt="http-cache-serviceworker"></p>
 <p>这可使生命周期变得对开发者友好。每次浏览时都将：</p>
 <ol>
 <li>重新提取 <code>SW</code>。</li>
@@ -594,7 +589,7 @@
 <li><strong>跳过等待阶段</strong>，以<strong>激活</strong>新 <code>SW</code>。</li>
 <li>浏览页面。这意味着<strong>每次浏览时（包括刷新）都将进行更新</strong>，无需重新加载两次或关闭标签。</li>
 </ol>
-<h4 id="Skip-waiting"><a href="#Skip-waiting" class="headerlink" title="Skip waiting"></a>Skip waiting</h4><p><img src="../../images/http/http-cache-4-12.png" alt="http-cache-serviceworker"></p>
+<h4 id="Skip-waiting"><a href="#Skip-waiting" class="headerlink" title="Skip waiting"></a>Skip waiting</h4><p><img src="./http-cache-serviceworker/http-cache-4-12.png" alt="http-cache-serviceworker"></p>
 <p>如果您有一个 <code>Worker</code> 在等待，您可以按 <code>DevTools</code> 中的“<code>skip waiting</code>”以立即将其提升到“<code>active</code>”。同时也可以通过<code>self.skipWaiting()</code>来实现。</p>
 <h4 id="Shift-reload"><a href="#Shift-reload" class="headerlink" title="Shift-reload"></a>Shift-reload</h4><p>如果您强制重新加载页面 <code>(shift-reload)</code>，则将完全绕过 <code>SW</code>。页面将变得不受控制。此功能已列入规范，因此，它在其他支持 <code>SW</code> 的浏览器中也适用。</p>
 <h4 id="处理更新周期"><a href="#处理更新周期" class="headerlink" title="处理更新周期"></a>处理更新周期</h4><p>为支持尽可能多的模式，整个更新周期都是可观察的：</p>
@@ -645,7 +640,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sw.js</span></span><br><span class="line">self.addEventListener(<span class="string">'notificationclick'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 消息提醒被点击的事件</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">'notificationclose'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 消息提醒被关闭的事件</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>你需要先向用户寻求让你的网页产生消息提醒的权限。之后，你就可以弹出提示信息，然后处理某些事件，比如用户把消息关掉的事件。</p>
 <h3 id="信息推送"><a href="#信息推送" class="headerlink" title="信息推送"></a>信息推送</h3><p>信息推送涉及到利用浏览器提供的<code>Push API</code>以及后端的配合实现。要讲解如何使用<code>Push API</code>完全可以再写一篇文章，不过基本的套路如下：</p>
-<p><img src="../../images/http/http-cache-4-13.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-13.png" alt="http-cache-serviceworker"></p>
 <p>这是个略微复杂难懂的过程，已经超出这篇文章的讨论范围。</p>
 <h2 id="更好的方案-Workbox"><a href="#更好的方案-Workbox" class="headerlink" title="更好的方案 - Workbox"></a>更好的方案 - Workbox</h2><p>什么是 Workbox ?</p>
 <blockquote>
@@ -680,16 +675,16 @@
 </ol>
 <p>官方也有给了实现逻辑如下。</p>
 <h4 id="Cache-Only"><a href="#Cache-Only" class="headerlink" title="Cache Only"></a>Cache Only</h4><p>只从缓存中读取，当缓存中没有数据时，读取失败。</p>
-<p><img src="../../images/http/http-cache-4-15.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-15.png" alt="http-cache-serviceworker"></p>
 <h4 id="NetWork-Only"><a href="#NetWork-Only" class="headerlink" title="NetWork Only"></a>NetWork Only</h4><p>只通过网络请求进行资源请求，若请求失败，则返回失败响应。</p>
-<p><img src="../../images/http/http-cache-4-16.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-16.png" alt="http-cache-serviceworker"></p>
 <h4 id="NetWork-First"><a href="#NetWork-First" class="headerlink" title="NetWork First"></a>NetWork First</h4><ul>
 <li>优先网络请求</li>
 <li>网络请求成功时，将结果写入缓存，并将结果直接返回。</li>
 <li>网络请求失败时，从缓存中读取结果，若读取结果，则返回，若未读取到，则请求失败。</li>
 </ul>
 <p>不难看出，这种策略是为了保证在<strong>第一次请求成功之后</strong>，后面多次的请求始终都能返回结果。</p>
-<p><img src="../../images/http/http-cache-4-17.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-17.png" alt="http-cache-serviceworker"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">workbox.routing.registerRoute(</span><br><span class="line">  /\.(js|css)$/,</span><br><span class="line">  workbox.strategies.networkFirst(&#123;</span><br><span class="line">    <span class="comment">// 给网络请求0.5秒，若仍未返回则从缓存中取数据</span></span><br><span class="line">    networkTimetoutSeconds: <span class="number">0.5</span>,</span><br><span class="line">    cacheName: <span class="string">'css.js'</span></span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h4 id="Cache-First"><a href="#Cache-First" class="headerlink" title="Cache First"></a>Cache First</h4><ul>
 <li>优先从缓存中读取结果</li>
@@ -697,14 +692,14 @@
 <li>网络请求成功时，将结果写入缓存并返回</li>
 <li>网络请求失败时，返回失败响应</li>
 </ul>
-<p><img src="../../images/http/http-cache-4-18.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-18.png" alt="http-cache-serviceworker"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">workbox.routing.registerRoute(</span><br><span class="line">  /\.(png|jpg|jpeg|gif|webp)$/,</span><br><span class="line">  <span class="comment">// 对于图片资源使用缓存优先</span></span><br><span class="line">  workbox.strategies.cacheFirst(&#123;</span><br><span class="line">    cacheName: <span class="string">'images'</span>,</span><br><span class="line">    <span class="comment">// 设置最大缓存数量以及过期时间</span></span><br><span class="line">    plugins: [</span><br><span class="line">      <span class="keyword">new</span> workbox.expiration.Plugin(&#123;</span><br><span class="line">        maxEntries: <span class="number">60</span>,</span><br><span class="line">        maxAgeSeconds: <span class="number">7</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span></span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h4 id="Stale-While-Revalidate"><a href="#Stale-While-Revalidate" class="headerlink" title="Stale-While-Revalidate"></a>Stale-While-Revalidate</h4><ul>
 <li>优先查缓存，并同时发起网络请求</li>
 <li>若缓存命中且网络请求成功，返回缓存结果，并更新缓存（下次从缓存中读取的数据就是最新的了）</li>
 <li>若缓存未命中，则看网络请求是否成功，成功则更新缓存并返回结果，失败则返回失败响应。</li>
 </ul>
-<p><img src="../../images/http/http-cache-4-14.png" alt="http-cache-serviceworker"></p>
+<p><img src="./http-cache-serviceworker/http-cache-4-14.png" alt="http-cache-serviceworker"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workbox.routing.registerRoute(</span><br><span class="line">  /\.(js|css)$/,</span><br><span class="line">  workbox.strategies.staleWhileRevalidate(&#123;</span><br><span class="line">    cacheName: <span class="string">'css.js'</span></span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本篇文章中详细的记录了有关<code>SW</code>的主要功能和能给我们带来的好处。一般在开发中还是推荐使用<code>workbox</code>，最后如果个人有兴趣的可以自己编写示例来验证文章中的代码示例。</p>
 <p><strong>SW 主要作用</strong></p>
@@ -724,18 +719,7 @@
 <li><strong>网络优先</strong></li>
 <li><strong>速度优先</strong></li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN" target="_blank" rel="noopener">Service Worker：简介  |  Web Fundamentals  |  Google Developers</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-CN#install" target="_blank" rel="noopener">Service Worker 生命周期  |  Web Fundamentals  |  Google Developers</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/SLG_cDxDo7BaoQqAyLGa-Q" target="_blank" rel="noopener">用 Service Worker 实现前端性能优化</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/aboA9dtCK6t0fzs0JU58Iw" target="_blank" rel="noopener">service worker 实现离线缓存</a> &gt; <a href="https://www.jianshu.com/p/3fb5615f18cf" target="_blank" rel="noopener">【前-workbox-网络摘要】WorkBox 缓存策略</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN" target="_blank" rel="noopener">Service Worker：简介  |  Web Fundamentals  |  Google Developers</a><br><a href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-CN#install" target="_blank" rel="noopener">Service Worker 生命周期  |  Web Fundamentals  |  Google Developers</a><br><a href="https://mp.weixin.qq.com/s/SLG_cDxDo7BaoQqAyLGa-Q" target="_blank" rel="noopener">用 Service Worker 实现前端性能优化</a><br><a href="https://mp.weixin.qq.com/s/aboA9dtCK6t0fzs0JU58Iw" target="_blank" rel="noopener">service worker 实现离线缓存</a> &gt; <a href="https://www.jianshu.com/p/3fb5615f18cf" target="_blank" rel="noopener">【前-workbox-网络摘要】WorkBox 缓存策略</a></p>
 
       
     </div>
@@ -766,6 +750,10 @@
         <div class="post-tags">
           
             <a href="/tags/Http/" rel="tag"><i class="fa fa-tag"></i> Http</a>
+          
+            <a href="/tags/Cache/" rel="tag"><i class="fa fa-tag"></i> Cache</a>
+          
+            <a href="/tags/PWA/" rel="tag"><i class="fa fa-tag"></i> PWA</a>
           
         </div>
       
@@ -905,7 +893,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1013,7 +1001,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

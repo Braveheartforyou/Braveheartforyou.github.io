@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="我们在这篇中记录两个比较经典的面试题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.883Z">
+<meta property="og:updated_time" content="2020-06-01T09:00:11.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript类型转换（三）常见的面试题">
 <meta name="twitter:description" content="我们在这篇中记录两个比较经典的面试题">
@@ -434,12 +434,10 @@
 
       
         <p><strong><em>多言多败，多事多害。——《训蒙增广》</em></strong></p>
-<p><a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a><br><a href="/blog/javascript/javascript-type-one-question.html">JavaScript 数据类型（二） 类型转换</a><br><a href="/blog/javascript/javascript-type-one-questionone.html">JavaScript 数据类型（三）常见的面试题</a><br><a href="/blog/javascript/javascript-IF-False-options.html">JavaScript 数据类型（四）IF 转换规则</a><br><a href="/blog/javascript/javascript-false-true.html">JavaScript 数据类型（五）== 混乱的转换规则</a><br><a href="/blog/javascript/javascript-bool-type.html">JavaScript 数据类型（六）多种数据类型判断方法</a></p>
-<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><hr>
-<p>在另一篇文章中有表述大致显示转化规则，隐式转换规则，着篇文章中会收集一些前端比较经典的关于类型转换的问题。下面就开始比较经典的面试题。</p>
-<h2 id><a href="#" class="headerlink" title="![] == []"></a>![] == []</h2><p>这个题在另一篇面试中有记录过，<a href="/blog/javascript/javascript-false-true.html">![] == []</a>.</p>
-<h2 id="a-1-amp-amp-a-2-amp-amp-a-3"><a href="#a-1-amp-amp-a-2-amp-amp-a-3" class="headerlink" title="(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)"></a>(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)</h2><p>这个真的有很多种办法，这里只记录我知道的方法，如果有好的方法，请在下方留言，大家一起进步。<br>首先要知道==和===的区别。</p>
-<p><strong>==</strong><br>宽松匹配 ==会先将左右两两边的值转化成相同的原始类型，然后再去比较他们是否相等。<br><strong>===</strong><br>他是不转化直接比较，如果类型不同直接就是<code>false</code>，如果类型相同，原始值相同就为<code>true</code>。</p>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>在另一篇文章中有表述大致显示转化规则，隐式转换规则，着篇文章中会收集一些前端比较经典的关于类型转换的问题。下面就开始比较经典的面试题。</p>
+<h2 id><a href="#" class="headerlink" title="![] == []"></a>![] == []</h2><p>这个题在另一篇面试中有记录过，<a href="/blog/javascript/type/javascript-false-true.html">![] == []</a>.</p>
+<h2 id="a-1-amp-amp-a-2-amp-amp-a-3"><a href="#a-1-amp-amp-a-2-amp-amp-a-3" class="headerlink" title="(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)"></a>(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)</h2><p>这个真的有很多种办法，这里只记录我知道的方法，如果有好的方法，请在下方留言，大家一起进步。<br>首先要知道<code>==和===的区别</code>。</p>
+<p><strong>==</strong><br>宽松匹配 : <code>==会先将左右两两边的值转化成相同的原始类型，然后再去比较他们是否相等</code>。<br><strong>===</strong><br><code>他是不转化直接比较，如果类型不同直接就是false，如果类型相同，原始值相同就为true</code>。</p>
 <p>这里主要讲解<code>(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)</code>相等的多种解法，如下：</p>
 <ol>
 <li>重写<code>Object</code>的<code>valueOf</code></li>
@@ -449,7 +447,7 @@
 <li>数组<code>join、shift</code></li>
 <li>字符串骚操作</li>
 </ol>
-<h3 id="重写-Object-的-valueOf、重写-Object-的-toString"><a href="#重写-Object-的-valueOf、重写-Object-的-toString" class="headerlink" title="重写 Object 的 valueOf、重写 Object 的 toString"></a>重写 Object 的 valueOf、重写 Object 的 toString</h3><p><strong>重写代码的 valueOf 方法、和 toString 方法</strong>，如果不知道 ToPrimitive(obj, type)规则，请看<a href="/blog/javascript/javascript-type-one-question.html">ToPrimitive 规则</a>我的另一篇博客。代码如下：</p>
+<h3 id="重写-Object-的-valueOf、重写-Object-的-toString"><a href="#重写-Object-的-valueOf、重写-Object-的-toString" class="headerlink" title="重写 Object 的 valueOf、重写 Object 的 toString"></a>重写 Object 的 valueOf、重写 Object 的 toString</h3><p><strong>重写代码的 valueOf 方法、和 toString 方法</strong>，如果不知道 ToPrimitive(obj, type)规则，请看<a href="/blog/javascript/type/javascript-type-one-question.html">ToPrimitive 规则</a>我的另一篇博客。代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">a.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="keyword">this</span>.value += <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">a1.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">a1.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="keyword">this</span>.value += <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a1 == <span class="number">1</span> &amp;&amp; a1 == <span class="number">2</span> &amp;&amp; a1 == <span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h3 id="重写-ToPrimitive，es6-smybol-‘’"><a href="#重写-ToPrimitive，es6-smybol-‘’" class="headerlink" title="重写 ToPrimitive，es6 smybol(‘’)"></a>重写 ToPrimitive，es6 smybol(‘’)</h3><p><strong>在 ES6 之后，还允许对象通过显式指定 @@toPrimitive Symbol 来覆盖原有的行为，得到我们想要的结果</strong>。看代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;;</span><br><span class="line">a[<span class="built_in">Symbol</span>.toPrimitive] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="keyword">this</span>.value += <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
@@ -459,8 +457,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">a.join = a.shift;</span><br><span class="line"><span class="built_in">console</span>.log(a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h3 id="字符串的骚操作"><a href="#字符串的骚操作" class="headerlink" title="字符串的骚操作"></a>字符串的骚操作</h3><p><strong>通过定义变量是包含空格</strong>，实现视觉上的相等。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aﾠ = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> ﾠa = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(aﾠ == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; ﾠa == <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-<p>上面就是知道的可以让(aﾠ == 1 &amp;&amp; a == 2 &amp;&amp; ﾠa== 3 )的六种方法，如果还有后面会接着补充，下面来说一下(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)。</p>
-<h2 id="a-1-amp-amp-a-2-amp-amp-a-3-1"><a href="#a-1-amp-amp-a-2-amp-amp-a-3-1" class="headerlink" title="(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)"></a>(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)</h2><p>在上面介绍过==与===的区别， ===是不会进行类型转换的，所以==的很多规则并不适用，那只有<strong>劫持方法</strong>和<strong>字符串</strong>的操作可以实现，其他方法都不能实现。</p>
+<p>上面就是知道的可以让<code>(aﾠ == 1 &amp;&amp; a == 2 &amp;&amp; ﾠa== 3 )</code>的六种方法，如果还有后面会接着补充，下面来说一下<code>(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)</code>。</p>
+<h2 id="a-1-amp-amp-a-2-amp-amp-a-3-1"><a href="#a-1-amp-amp-a-2-amp-amp-a-3-1" class="headerlink" title="(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)"></a>(a === 1 &amp;&amp; a === 2 &amp;&amp; a === 3)</h2><p>在上面介绍过<code>==与===的区别</code>， ===是不会进行类型转换的，所以==的很多规则并不适用，那只有<strong>劫持方法</strong>和<strong>字符串</strong>的操作可以实现，其他方法都不能实现。</p>
 <h3 id="Obj-defineProperty-1"><a href="#Obj-defineProperty-1" class="headerlink" title="Obj.defineProperty"></a>Obj.defineProperty</h3><p><strong>通过劫持对象的属性值的 getter 操作</strong>，让他累加来做到我们想要的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">window</span>, <span class="string">'a'</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>: function () &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.value += <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a === <span class="number">1</span> &amp;&amp; a === <span class="number">2</span> &amp;&amp; a === <span class="number">3</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h3 id="字符串的骚操作-1"><a href="#字符串的骚操作-1" class="headerlink" title="字符串的骚操作"></a>字符串的骚操作</h3><p><strong>通过定义变量是包含空格</strong>，实现视觉上的相等。</p>
@@ -637,7 +635,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -745,7 +743,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

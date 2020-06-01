@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="this的产生">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-this-1-1.jpg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-this-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-this-1-3.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.881Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/this/javascript-this-one/javascript-this-1-1.jpg">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/this/javascript-this-one/javascript-this-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/this/javascript-this-one/javascript-this-1-3.png">
+<meta property="og:updated_time" content="2020-06-01T13:19:51.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的this（一）this是什么？怎么产生的？什么是执行上下文？">
 <meta name="twitter:description" content="this的产生">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript-this-1-1.jpg">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/this/javascript-this-one/javascript-this-1-1.jpg">
 
 
 
@@ -454,11 +454,11 @@
 <h3 id="执行栈执行过程"><a href="#执行栈执行过程" class="headerlink" title="执行栈执行过程"></a>执行栈执行过程</h3><p>当 <code>JavaScript 引擎</code>第一次遇到你的脚本时，它会创建一个<code>全局</code>的<code>执行上下文</code>并且压入当前<code>执行栈</code>。每当引擎遇到一个函数调用，它会为该函数创建一个<code>新的执行上下文并</code>压入栈的<code>顶部</code>。</p>
 <p>引擎会执行那些<code>执行上下文位于栈顶的函数</code>。当该函数执行结束时，执行上下文<code>从栈中弹出</code>，控制流程到达当前栈中的下一个上下文。</p>
 <p>首先我们看一张比较经典的图。</p>
-<p><img src="../../images/javascript/javascript-this-1-1.jpg" alt="this-one"></p>
+<p><img src="./javascript-this-one/javascript-this-1-1.jpg" alt="this-one"></p>
 <p>一个简单的实例，代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'global name'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'inside first function'</span>);</span><br><span class="line">  second();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">second</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'inside second function'</span>);</span><br><span class="line">  three();</span><br><span class="line">&#125;</span><br><span class="line">first();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'inside global Execution Context'</span>);</span><br></pre></td></tr></table></figure>
 <p>执行效果如下图所示：</p>
-<p><img src="../../images/javascript/javascript-this-1-2.png" alt="this-one"></p>
+<p><img src="./javascript-this-one/javascript-this-1-2.png" alt="this-one"></p>
 <p>当上述代码在浏览器加载时，<code>JavaScript 引擎</code>创建了一个<code>全局执行上下文</code>并把它压入当前<code>执行栈</code>。当遇到 <code>first()</code> 函数调用时，<code>JavaScript 引擎</code>为该函数<code>创建</code>一个新的<code>执行上下文</code>并把它压入<code>当前执行栈</code>的顶部。</p>
 <p>当从 <code>first()</code> 函数内部调用 <code>second()</code> 函数时，<code>JavaScript 引擎</code>为 <code>second()</code> 函数创建了一个<code>新的执行上下文</code>并把它压入当前<code>执行栈的顶部</code>。当 <code>second()</code> 函数执行完毕，它的<code>执行上下文</code>会从当前栈<code>弹出</code>，并且控制流程到达下一个<code>执行上下文</code>，即 <code>first()</code> 函数的执行上下文。<br>当 <code>first()</code> 执行完毕，它的执行上下文从栈<code>弹出</code>，控制流程到达全局执行上下文。一旦所有代码执行完毕，JavaScript 引擎从当前栈中<code>移除</code>全局执行上下文。</p>
 <p>有 5 个需要记住的关键点，关于<strong>执行栈（调用栈）</strong>：</p>
@@ -514,7 +514,7 @@
 <li><strong>对象环境记录器</strong>：用来定义出现在<strong>全局上下文</strong>中的变量和函数的关系 <code>(在全局环境中)</code>。</li>
 </ul>
 <p>总结一下<code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。来张图解释一下吧。</p>
-<p><img src="../../images/javascript/javascript-this-1-3.png" alt="this-one"></p>
+<p><img src="./javascript-this-one/javascript-this-1-3.png" alt="this-one"></p>
 <p><strong>注意</strong></p>
 <ul>
 <li>对于<code>函数环境</code>，<code>声明式环境记录器</code>还包含了一个传递给函数的 <code>arguments</code> 对象（此对象存储索引和参数的映射）和传递给函数的参数的 <code>length</code>。</li>
@@ -551,7 +551,7 @@
 <li>求出上下文内部“this”的值。</li>
 </ul>
 <p><code>词法环境</code>分为两种<strong>全局环境</strong>、<strong>函数环境</strong>，<code>函数环境</code>又包含两个概念<strong>环境记录器</strong>、<strong>引用的外部环境</strong>，而<code>环境记录器</code>又分为两种<strong>声明式环境记录器</strong>、<strong>对象环境记录器</strong>。</p>
-<p>在上面只是简单的讲解了<code>变量提升</code>，如果有兴趣再多了解一下<code>变量声明提升、函数声明提升</code>可以去看我的另一篇文章<a href="/blog/javascript/hoisting.html">JavaScript 中的变量提升</a>，里面又很多比较好的实例。</p>
+<p>在上面只是简单的讲解了<code>变量提升</code>，如果有兴趣再多了解一下<code>变量声明提升、函数声明提升</code>可以去看我的另一篇文章<a href="/blog/javascript/scope/hoisting.html">JavaScript 中的变量提升</a>，里面又很多比较好的实例。</p>
 <h2 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h2><p>在上面我们介绍了<code>创建阶段</code>，现在主要介绍一下<code>执行阶段</code>。<br><strong>激活/代码执行阶段</strong></p>
 <ul>
 <li>在<strong>当前上下文上运行/解释函数代码</strong>，并随着代码一行行执行指派变量的值。</li>
@@ -741,7 +741,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -849,7 +849,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

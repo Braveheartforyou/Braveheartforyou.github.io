@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="本篇文章会介绍JSON.stringify和JSON.parse用来深拷贝时存在什么问题，并且自己手动实现一个。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/es/es-assign-1-4.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.871Z">
+<meta property="og:image" content="http://asyncnode.com/images/es/es-assign-1-4.png">
+<meta property="og:updated_time" content="2020-06-01T08:47:47.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深拷贝系列 ———— 自己实现一个JSON.stringify和JSON.parse">
 <meta name="twitter:description" content="本篇文章会介绍JSON.stringify和JSON.parse用来深拷贝时存在什么问题，并且自己手动实现一个。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/es/es-assign-1-4.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/es/es-assign-1-4.png">
 
 
 
@@ -435,8 +435,7 @@
       
 
       
-        <p><a href="/blog/es6/es6-assign.html">深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign</a><br><a href="/blog/javascript/javascript-paser-stringify.html">深拷贝系列 ———— 自己实现一个 JSON.stringify 和 JSON.parse</a><br><a href="/blog/javascript/javascript-deepcopy.html">深拷贝系列 ———— 自己通过递归实现一个深拷贝</a><br><a href="/blog/javascript/javascript-loadsh-deepcopy.html">深拷贝系列 ———— 分析 lodash 中的 deepcopy</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在上篇文章我们已经了解什么是<strong>深拷贝</strong>和<strong>浅拷贝</strong>，也着重介绍了<strong>浅拷贝</strong>相关的一下实现方法，或者自己实现一个浅拷贝等等。本篇文章主要介绍深拷贝的一种简单实现方式<code>JSON.parse/JSON.stringify</code>。在平常开发时我们可以经常的看到别人使用，或者在不那么了解深拷贝时自己也有使用。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在上篇文章我们已经了解什么是<strong>深拷贝</strong>和<strong>浅拷贝</strong>，也着重介绍了<strong>浅拷贝</strong>相关的一下实现方法，或者自己实现一个浅拷贝等等。本篇文章主要介绍深拷贝的一种简单实现方式<code>JSON.parse/JSON.stringify</code>。在平常开发时我们可以经常的看到别人使用，或者在不那么了解深拷贝时自己也有使用。</p>
 <p><strong>JSON.parse/JSON.stringify</strong>其实是用来序列化 JSON 格式的数据的方法。那它为什么能实现一个简单的深拷贝呢？<br>在执行<code>JSON.stringify</code>会把我们的一个对象序列化为字符串，而字符串是基本类型。<br>再通过<code>JSON.parse</code>时，把字符串类型反序列化为对象，这个时候因为在反序列化之前它是基本类型所以他会指向一个新的地址，在反序列化之后它是一个对象会再分配内存空间。<br>所以<strong>JSON.parse/JSON.stringify</strong>可以实现一个简单的<strong>深拷贝</strong>。</p>
 <p>本篇文章首先实现一个<code>JSON.stringify/JSON.parse</code>，下一篇文章实现一个比较完整的<strong>深拷贝</strong>。</p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>直接上代码验证一下</p>
@@ -452,7 +451,7 @@
 </ul>
 <p>直接上代码验证</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明一个包含undefined、null、symbol、function的对象</span></span><br><span class="line"><span class="keyword">var</span> oldObj = &#123;</span><br><span class="line">  name: <span class="string">'old'</span>,</span><br><span class="line">  age: <span class="literal">undefined</span>,</span><br><span class="line">  sex: <span class="built_in">Symbol</span>(<span class="string">'setter'</span>),</span><br><span class="line">  title: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  lastName: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(oldObj));</span><br><span class="line"><span class="comment">// 可以看到会忽略undefined、symbol、function的对象</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">// &#123;name: "old", lastName: null&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstObj = &#123;</span><br><span class="line">  name: <span class="string">'firstObj'</span></span><br><span class="line">&#125;;</span><br><span class="line">firstObj.newKey = firstObj;</span><br><span class="line"><span class="comment">// Converting circular structure to JSON</span></span><br><span class="line"><span class="keyword">var</span> newFirstObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(firstObj));</span><br></pre></td></tr></table></figure>
-<p>如果循环引用报错如下图所示：<br><img src="../../images/es/es-assign-1-4.png" alt="JSON.parse/JSON.stringify"></p>
+<p>如果循环引用报错如下图所示：<br><img src="../../../images/es/es-assign-1-4.png" alt="JSON.parse/JSON.stringify"></p>
 <p>一个生成<strong>任意深度、广度</strong>对象方法。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createData</span>(<span class="params">deep, breadth</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> data = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> temp = data;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; deep; i++) &#123;</span><br><span class="line">    temp = temp[<span class="string">'data'</span>] = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; breadth; j++) &#123;</span><br><span class="line">      temp[j] = j;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>验证<code>JSON.stringify</code>递归爆栈</p>
@@ -686,7 +685,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -794,7 +793,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

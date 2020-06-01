@@ -123,19 +123,19 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="在JavaScript中==和===的区别,为什么![] == []为true, [] == false为true, ![] == false为true, !![] == false为false.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/false-true-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/false-true/false-true-2.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.883Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/false-true-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/false-true-2.png">
+<meta property="og:updated_time" content="2020-06-01T08:53:51.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript数据类型（五）== 混乱的转换规则">
 <meta name="twitter:description" content="在JavaScript中==和===的区别,为什么![] == []为true, [] == false为true, ![] == false为true, !![] == false为false.">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/false-true/1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/type/javascript-false-true/1.png">
 
 
 
@@ -443,9 +443,7 @@
 
       
         <p><strong><em>察见渊鱼者不详，智料隐匿者有殃。——《列子·说符》</em></strong></p>
-<p><a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a><br><a href="/blog/javascript/javascript-type-one-question.html">JavaScript 数据类型（二） 类型转换</a><br><a href="/blog/javascript/javascript-type-one-questionone.html">JavaScript 数据类型（三）常见的面试题</a><br><a href="/blog/javascript/javascript-IF-False-options.html">JavaScript 数据类型（四）IF 转换规则</a><br><a href="/blog/javascript/javascript-false-true.html">JavaScript 数据类型（五）== 混乱的转换规则</a><br><a href="/blog/javascript/javascript-bool-type.html">JavaScript 数据类型（六）多种数据类型判断方法</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>JavaScript 有两种比较方式：<strong>严格比较运算符</strong>和<strong>转换类型比较运算符</strong>。对于严格比较运算符（===）来说，仅当两个操作数的<strong>类型相同且值相等</strong>为 <code>true</code>，而对于被广泛使用的比较运算符（==）来说，会在进行比较之前，将两个操作数<strong>转换成相同的类型</strong>。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>JavaScript 有两种比较方式：<strong>严格比较运算符</strong>和<strong>转换类型比较运算符</strong>。对于严格比较运算符（===）来说，仅当两个操作数的<strong>类型相同且值相等</strong>为 <code>true</code>，而对于被广泛使用的比较运算符（==）来说，会在进行比较之前，将两个操作数<strong>转换成相同的类型</strong>。</p>
 <p>比较的特点:</p>
 <ul>
 <li><strong>对于两个拥有相同字符顺序，相同长度，并且每个字符的位置都匹配的字符串，应该使用严格比较运算符。</strong></li>
@@ -455,20 +453,19 @@
 <li><strong>当比较一个表达式和一个对象时，仅当两个操作数引用相同的对象（指针指向相同对象）。</strong></li>
 <li><strong>对于 Null 和 Undefined 类型而言，应使用严格比较运算符比较其自身，使用比较运算符进行互相比较。</strong></li>
 </ul>
-<p><a href="https://www.h5jun.com/post/why-false-why-true.html" target="_blank" rel="noopener"></a></p>
+<p><a href="https://www.h5jun.com/post/why-false-why-true.html" target="_blank" rel="noopener">false/true</a></p>
 <h3 id="一致-严格相等"><a href="#一致-严格相等" class="headerlink" title="一致/严格相等 (===)"></a>一致/严格相等 (===)</h3><p>一致运算符不会进行类型转换，仅当操作数<strong>严格相等</strong>时返回<code>true</code></p>
 <h3 id="相等"><a href="#相等" class="headerlink" title="相等(==)"></a>相等(==)</h3><p>比较操作符会为两个不同类型的操作数<strong>转换类型</strong>，然后进行<strong>严格比较</strong>。当两个操作数都是对象时，JavaScript 会比较其<strong>内部引用</strong>，当且仅当他们的引用指向内存中的相同对象（区域）时才相等，即他们在栈内存中的<strong>引用地址相同</strong>。</p>
 <p>非严格比较操作符 == 是会做强制类型转换的，那么根据 ECMA 262 它的规则是：</p>
-<p><strong>图 1-1</strong><br><img src="../../images/false-true/1.png" alt="! =="><br><strong><font color="#ff502c">ToPrimitive：</font></strong></p>
-<p><strong>图 1-2</strong><br><img src="../../images/false-true/2.png" alt="! =="></p>
-<p><strong>图 1-3</strong><br><img src="../../images/false-true/3.png" alt="! =="></p>
-<p><strong>图 1-4</strong><br><img src="../../images/false-true/4.png" alt="! =="><br><strong><font color="#ff502c">ToBoolean: </font></strong></p>
+<p><strong>图 1-1</strong><br><img src="./javascript-false-true/1.png" alt="! =="><br><strong><code>ToPrimitive：</code></strong></p>
+<p><strong>图 1-2</strong><br><img src="./javascript-false-true/2.png" alt="! =="></p>
+<p><strong>图 1-3</strong><br><img src="./javascript-false-true/3.png" alt="! =="></p>
+<p><strong>图 1-4</strong><br><img src="./javascript-false-true/4.png" alt="! =="><br><strong><code>ToBoolean:</code></strong></p>
 <p><strong>图 1-5</strong></p>
-<p><img src="../../images/false-true/5.png" alt="! =="><br><strong>图 1-6</strong><br><img src="../../images/false-true/6.png" alt="! =="></p>
+<p><img src="./javascript-false-true/5.png" alt="! =="><br><strong>图 1-6</strong><br><img src="./javascript-false-true/6.png" alt="! =="></p>
 <p><a href="http://www.ecma-international.org" target="_blank" rel="noopener">ecma 规则</a></p>
-<h2 id="false-or-or-false-为-true"><a href="#false-or-or-false-为-true" class="headerlink" title="[] == false or ![] == [] or ![] == false 为 true"></a>[] == false or ![] == [] or ![] == false 为 true</h2><p>mdn 运算符优先级参考表<br><img src="../../images/false-true/false-true-1.png" alt="! =="><br><img src="../../images/false-true/false-true-2.png" alt="! =="></p>
-<p><font color="#ff502c">==</font>的优先级 16</p>
-<p><font color="#ff502c">!</font>的优先级 10</p>
+<h2 id="false-or-or-false-为-true"><a href="#false-or-or-false-为-true" class="headerlink" title="[] == false or ![] == [] or ![] == false 为 true"></a>[] == false or ![] == [] or ![] == false 为 true</h2><p>mdn 运算符优先级参考表<br><img src="./javascript-false-true/false-true-1.png" alt="! =="><br><img src="./javascript-false-true/false-true-2.png" alt="! =="></p>
+<p><code>==</code>的优先级 16<br><code>!</code>的优先级 10</p>
 <h3 id="false-结果为-true"><a href="#false-结果为-true" class="headerlink" title="[] == false 结果为 true"></a>[] == false 结果为 true</h3><p>根据图 1-1 可知</p>
 <ul>
 <li>第 7 条：<strong>If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).</strong></li>
@@ -651,7 +648,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -759,7 +756,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

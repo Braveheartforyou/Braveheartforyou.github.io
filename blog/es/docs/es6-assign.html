@@ -97,7 +97,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="ECMAScript6,DeepClone,">
+  <meta name="keywords" content="ECMAScript6,">
 
 
 
@@ -116,21 +116,21 @@
 
 
 <meta name="description" content="本篇文章会介绍什么是深拷贝、什么是浅拷贝，Object.assgin、解构、扩展运算符是深拷贝还是浅拷贝，自己实现一个Object.assgin。">
-<meta name="keywords" content="ECMAScript6,DeepClone">
+<meta name="keywords" content="ECMAScript6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign">
 <meta property="og:url" content="http://asyncnode.com/blog/es/docs/es6-assign.html">
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="本篇文章会介绍什么是深拷贝、什么是浅拷贝，Object.assgin、解构、扩展运算符是深拷贝还是浅拷贝，自己实现一个Object.assgin。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/es/es-assign-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/es/es-assign-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/es/es-assign-1-3.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.862Z">
+<meta property="og:image" content="http://asyncnode.com/blog/es/docs/es6-assign/es-assign-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/es/docs/es6-assign/es-assign-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/es/docs/es6-assign/es-assign-1-3.png">
+<meta property="og:updated_time" content="2020-06-01T08:44:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深拷贝系列 ———— 什么是深拷贝、浅拷贝、Object.assign">
 <meta name="twitter:description" content="本篇文章会介绍什么是深拷贝、什么是浅拷贝，Object.assgin、解构、扩展运算符是深拷贝还是浅拷贝，自己实现一个Object.assgin。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/es/es-assign-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/es/docs/es6-assign/es-assign-1-1.png">
 
 
 
@@ -444,7 +444,7 @@
 <li><code>引用类型/“指针”类型：Object、Array、Window等等</code></li>
 </ul>
 <p><code>基本类型</code>是储存在栈(stack)中的数据。<br><code>引用类型</code>真实数据是储存在堆中的，而它的引用地址储存在栈中。</p>
-<p><img src="../../images/es/es-assign-1-1.png" alt="深拷贝/浅拷贝"></p>
+<p><img src="./es6-assign/es-assign-1-1.png" alt="深拷贝/浅拷贝"></p>
 <p>如果有兴趣了解<code>JavaScript</code>中的类型的话，可以看一下我往期的文章<a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a>，这个只是其中的一篇，有关<code>JavaScript</code>类型的常见的概念基本上都有提及。</p>
 <p><code>基本类型</code>是不存在<code>深拷贝</code>和<code>浅拷贝</code>的，因为<code>基本类型</code>是不可变的，无论是<code>修改</code>、<code>重新赋值</code>、<code>赋值给别的变量</code>都是一个新的值，和原来的值再无关联。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'abc'</span>,</span><br><span class="line">  b = a;</span><br><span class="line">b = <span class="string">'abcd'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a, b); <span class="comment">// abc, abcd</span></span><br></pre></td></tr></table></figure>
@@ -452,11 +452,11 @@
 <ul>
 <li><code>浅拷贝简介</code>: 创建一个新对象，这个对象有着<code>原始对象属性值</code>的一份精确拷贝。如果属性是基本类型，拷贝的就是<code>基本类型的值</code>，如果属性是引用类型，拷贝的就是<code>内存地址</code> ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。</li>
 </ul>
-<p><img src="../../images/es/es-assign-1-2.png" alt="深拷贝/浅拷贝"></p>
+<p><img src="./es6-assign/es-assign-1-2.png" alt="深拷贝/浅拷贝"></p>
 <ul>
 <li><code>深拷贝</code>: 创建一个新的对象把原始对象的<code>所有属性</code>的拷贝一份，并且<code>引用类型的引用地址和内存空间都会被拷贝一份，重新分配内存空间</code>。<code>修改新对象不会影响原始对象</code>。</li>
 </ul>
-<p><img src="../../images/es/es-assign-1-3.png" alt="深拷贝/浅拷贝"></p>
+<p><img src="./es6-assign/es-assign-1-3.png" alt="深拷贝/浅拷贝"></p>
 <p>本章主要记录<code>深拷贝/浅拷贝</code>，主要讲解浅拷贝相关的如<code>assign、解构、扩展运算符、slice</code>等等，后面的文章会<code>由浅到深的</code>的介绍<code>深拷贝</code>相关的。</p>
 <h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>虽然看着<code>浅拷贝</code>比较简单，其实它就是比较简单，但是它相关的东西也不少，下面就开始吧。</p>
 <ul>
@@ -512,12 +512,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">oldObj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 声明新对象</span></span><br><span class="line">  <span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 判断传入是否为对象</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> oldObj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请传入对象'</span>);</span><br><span class="line">    <span class="keyword">return</span> oldObj;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 循环获取传入对象属性</span></span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> oldObj) &#123;</span><br><span class="line">    <span class="comment">// 判断属性是否在对象本身上</span></span><br><span class="line">    <span class="keyword">if</span> (oldObj.hasOwnProperty(key)) &#123;</span><br><span class="line">      <span class="comment">// 把属性复制给新对象</span></span><br><span class="line">      newObj[key] = oldObj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回新对象</span></span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个对象</span></span><br><span class="line"><span class="keyword">var</span> old = &#123;</span><br><span class="line">  name: <span class="string">'old'</span>,</span><br><span class="line">  attr: &#123;</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">    sex: <span class="string">'man'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 通过shallowCopy</span></span><br><span class="line"><span class="keyword">var</span> newValue = shallowCopy(old);</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// &#123;name: "old", attr: &#123;age: 18, sex: "man"&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改原始对象的基本类型属性，新对象不受影响</span></span><br><span class="line">old.name = <span class="string">'new'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// &#123;name: "old", attr: &#123;age: 18, sex: "man"&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改原始对象引用类型属性，新对象受到影响</span></span><br><span class="line">old.attr.age = <span class="number">20</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newValue); <span class="comment">// &#123;name: "old", attr: &#123;age: 20, sex: "man"&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本文中我们分别介绍了<strong>深拷贝</strong>、<strong>浅拷贝</strong>是什么。着重介绍了我们日常使用的<strong>浅拷贝</strong>，并且自己实现了一个<code>assign()</code>和一个<code>shallowCopy</code>来加深对浅拷贝的理解，下一篇文件会介绍一个<strong>深拷贝</strong>相关的<code>JSON.stringify()/JSON.parse()</code>并且自己实现一个。</p>
 <p>通过上面的实例，可以验证我们对<strong>浅拷贝</strong>的理解是对的，如果是<strong>基本类型</strong>浅拷贝可以把它的值拷贝到新对象中，如果是<strong>引用类型</strong>浅拷贝只能拷贝引用类型的引用地址。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/bvYqA16mU_rRYT1G37onug" target="_blank" rel="noopener">一文搞懂 JS 中的赋值·浅拷贝·深拷贝</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a><br><a href="https://mp.weixin.qq.com/s/bvYqA16mU_rRYT1G37onug" target="_blank" rel="noopener">一文搞懂 JS 中的赋值·浅拷贝·深拷贝</a></p>
 
       
     </div>
@@ -548,8 +543,6 @@
         <div class="post-tags">
           
             <a href="/tags/ECMAScript6/" rel="tag"><i class="fa fa-tag"></i> ECMAScript6</a>
-          
-            <a href="/tags/DeepClone/" rel="tag"><i class="fa fa-tag"></i> DeepClone</a>
           
         </div>
       
@@ -689,7 +682,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -797,7 +790,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

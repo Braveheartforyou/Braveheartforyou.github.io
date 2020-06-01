@@ -123,16 +123,16 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="Function.prototype、Object.prototype、null、Function.prototype.__proto__、Object.prototype.__proto__、function、object之间的关系">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.jpg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-11.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.877Z">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-3.jpg">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-11.png">
+<meta property="og:updated_time" content="2020-06-01T13:17:17.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript原型系列（三）Function、Object、null等等的关系和鸡蛋问题">
 <meta name="twitter:description" content="Function.prototype、Object.prototype、null、Function.prototype.__proto__、Object.prototype.__proto__、function、object之间的关系">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/javascript/javascript-prototype-1-3.jpg">
+<meta name="twitter:image" content="http://asyncnode.com/blog/javascript/prototype/javascript-prototype-two/javascript-prototype-1-3.jpg">
 
 
 
@@ -439,23 +439,18 @@
       
 
       
-        <p><strong><em>將欲廢之，必固興之；將欲奪之，必固與之。——《道德經》</em></strong></p>
-<p><a href="/blog/javascript/javascript-prototype.html">JavaScript 原型系列（一）构造函数、原型和原型链</a><br><a href="/blog/javascript/javascript-prototype-one.html">JavaScript 原型系列（二）什么是原型继承</a><br><a href="/blog/javascript/javascript-prototype-two.html">JavaScript 原型系列（三）Function、Object、Null 等等的关系和鸡蛋问题</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p><img src="../../images/javascript/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="./javascript-prototype-two/javascript-prototype-1-3.jpg" width="50%" alt="JavaScript-prototype"></p>
 <p>基本上都知道原型链的尽头指向<code>null</code>，那么<code>Function.prototype</code>、<code>Object.prototype</code>、<code>null</code>、<code>Function.prototype.__proto__</code>、<code>Object.prototype.__proto__</code>、<code>function、object</code>之间的关系是什么，下面慢慢来记录一下。</p>
-<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><hr>
-<p><strong>Object</strong> 构造函数创建一个对象包装器。<strong>JavaScript</strong>中的所有对象都来自 <code>Object</code>；所有对象从<code>Object.prototype</code>继承方法和属性，尽管它们可能被覆盖。</p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p><strong>Object</strong> 构造函数创建一个对象包装器。<strong>JavaScript</strong>中的所有对象都来自 <code>Object</code>；所有对象从<code>Object.prototype</code>继承方法和属性，尽管它们可能被覆盖。</p>
 <p><strong><em>Object 作为构造函数时，其 [[Prototype]] 内部属性值指向 Function.prototype</em></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../images/javascript/javascript-prototype-1-9.png" alt="JavaScript-prototype"></p>
+<p><img src="./javascript-prototype-two/javascript-prototype-1-9.png" alt="JavaScript-prototype"></p>
 <h3 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h3><p><code>Object.prototype</code> 表示 <code>Object</code> 的原型对象，其 <code>[[Prototype]]</code> 属性是 <code>null</code>，访问器属性 <code>__proto__</code> 暴露了一个对象的内部 <code>[[Prototype]]</code> 。<code>Object.prototype</code>是浏览器底层根据 ECMAScript 规范创造的一个对象。</p>
 <h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p>通过<strong>字面量</strong>实例化一个<code>object</code>，它的<code>__proto__</code>指向<code>Object.prototype</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">obj.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>而通过<strong>new Object</strong>实例化一个<code>object</code>，它的<code>__proto__</code>指向<code>Object.prototype</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><hr>
-<p><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4" target="_blank" rel="noopener">摘录来自 ECMAScript 5.1 规范</a></p>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4" target="_blank" rel="noopener">摘录来自 ECMAScript 5.1 规范</a></p>
 <blockquote>
 <p>对象类型的成员，标准内置构造器 Function 的一个实例，并且可做为子程序被调用。<br>注： 函数除了拥有命名的属性，还包含可执行代码、状态，用来确定被调用时的行为。函数的代码不限于 ECMAScript。</p>
 </blockquote>
@@ -470,15 +465,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h3 id="Function-proto"><a href="#Function-proto" class="headerlink" title="Function.proto"></a>Function.<strong>proto</strong></h3><p><code>Function</code> 构造函数是一个函数对象，其 <code>[[Class]]</code> 属性是 <code>Function</code>。<code>Function</code> 的 <code>[[Prototype]]</code> 属性指向了 <code>Function.prototype</code>，即</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../images/javascript/javascript-prototype-1-8.png" alt="JavaScript-prototype"></p>
+<p><img src="./javascript-prototype-two/javascript-prototype-1-8.png" alt="JavaScript-prototype"></p>
 <h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p>实例化一个<code>Function</code>，它的<code>__proto__</code>指向<code>Function.prototype</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">foo.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// foo.__proto__ =&gt; Function.prototype =&gt; Function.prototype.__proto__ =&gt; Object.prototype =&gt; Object.prototype.__proto__ =&gt; null</span></span><br></pre></td></tr></table></figure>
-<h2 id="Object-和-Function-的鸡和蛋的问题"><a href="#Object-和-Function-的鸡和蛋的问题" class="headerlink" title="Object 和 Function 的鸡和蛋的问题"></a>Object 和 Function 的鸡和蛋的问题</h2><hr>
-<p>经过上面对<code>Object</code>和<code>Function</code>的阐述，延伸出来几个问题如下：</p>
+<h2 id="Object-和-Function-的鸡和蛋的问题"><a href="#Object-和-Function-的鸡和蛋的问题" class="headerlink" title="Object 和 Function 的鸡和蛋的问题"></a>Object 和 Function 的鸡和蛋的问题</h2><p>经过上面对<code>Object</code>和<code>Function</code>的阐述，延伸出来几个问题如下：</p>
 <ul>
-<li><p>在忽滤<code>null</code>在原型链上时，原型链的尽头（root）是<code>Object.prototype</code>。所有对象均从<code>Object.prototype</code>继承属性。<br><img src="../../images/javascript/javascript-prototype-1-10.png" alt="JavaScript-prototype"></p>
+<li><p>在忽滤<code>null</code>在原型链上时，原型链的尽头（root）是<code>Object.prototype</code>。所有对象均从<code>Object.prototype</code>继承属性。<br><img src="./javascript-prototype-two/javascript-prototype-1-10.png" alt="JavaScript-prototype"></p>
 </li>
-<li><p><code>Function.prototype</code>和<code>Function.__proto__</code>为同一对象。<br><img src="../../images/javascript/javascript-prototype-1-11.png" alt="JavaScript-prototype"><br>这意味着： <code>Object/Array/String</code>等等<strong>构造函数</strong>本质上和<code>Function</code>一样，均继承于<code>Function.prototype</code>。</p>
+<li><p><code>Function.prototype</code>和<code>Function.__proto__</code>为同一对象。<br><img src="./javascript-prototype-two/javascript-prototype-1-11.png" alt="JavaScript-prototype"><br>这意味着： <code>Object/Array/String</code>等等<strong>构造函数</strong>本质上和<code>Function</code>一样，均继承于<code>Function.prototype</code>。</p>
 </li>
 <li><p><code>Function.prototype</code>直接继承 root（<code>Object.prototype</code>）。</p>
 </li>
@@ -496,8 +490,7 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>为什么<code>Function instanceof Object</code>为<code>true</code>，<code>Object instanceof Function</code>也为<code>true</code>，那么他们到底是什么关系？</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><hr>
-<p>先要了解清楚<code>Function.prototype</code>和<code>Object构造函数</code>如下：<br>回归规范，摘录 2 点：</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>先要了解清楚<code>Function.prototype</code>和<code>Object构造函数</code>如下：<br>回归规范，摘录 2 点：</p>
 <ul>
 <li><code>Function.prototype</code>是个不同于一般函数（对象）的函数（对象）。</li>
 </ul>
@@ -523,8 +516,7 @@
 <p>个人偏向先有的<code>Function.prototype</code>，再有的<code>function Function</code>，所有构造函数本质上都是集成于<code>Function.prototype</code><br>，所以<code>Function.__proto__ === Function.prototype</code>。</p>
 <h3 id="第二问"><a href="#第二问" class="headerlink" title="第二问"></a>第二问</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function.__proto__、Function.prototype指向同一个对象，Function.prototype.__proto__指向Object.prototype</span></span><br><span class="line"><span class="comment">// Function.__proto__ =&gt; Function.prototype.__proto__ =&gt; Object.prototype =&gt; Object.prototype.__proto__ =&gt; null</span></span><br><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// Object作为构造函数继承自Function.prototype</span></span><br><span class="line"><span class="comment">// Object.__proto__ =&gt; Function.prototype</span></span><br><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// Object作为构造函数继承自Function.prototype，Function.prototype__proto__指向Object.prototype</span></span><br><span class="line"><span class="comment">// Object.__proto__ =&gt; Function.prototype =&gt; Function.prototype.__proto__ =&gt; Object.prototype</span></span><br><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// Function构造函数也是继承自Function.prototype</span></span><br><span class="line"><span class="comment">// Function.__proto__ =&gt; Function.prototype</span></span><br><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>总结一下：<strong>先有 <code>Object.prototype</code>（原型链顶端），<code>Function.prototype</code> 继承 <code>Object.prototype</code> 而产生，最后，<code>Function</code> 和 <code>Object</code> 和其它构造函数继承 <code>Function.prototype</code> 而产生。</strong></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><hr>
-<ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><code>Object.prototype</code>是浏览器底层根据 <code>ECMAScript</code> 规范创造的一个对象。</li>
 <li><code>Function.prototype</code>直接继承的<code>Object.prototype</code>，同样它也是由是引擎创建出来的函数，引擎认为不需要给这个函数对象添加 <code>prototype</code> 属性。<code>Function.prototype.prototype</code>为<code>undefined</code>。</li>
 <li><strong>先有 <code>Object.prototype</code>（原型链顶端），<code>Function.prototype</code> 继承 <code>Object.prototype</code> 而产生，最后，<code>Function</code> 和 <code>Object</code> 和其它构造函数继承 <code>Function.prototype</code> 而产生。</strong></li>
@@ -701,7 +693,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -809,7 +801,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

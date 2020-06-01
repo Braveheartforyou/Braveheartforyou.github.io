@@ -123,18 +123,18 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="http2.0协议和http1.x、http1.0的区别、优化。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http2.0-1-11.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.887Z">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-11.png">
+<meta property="og:updated_time" content="2020-06-01T11:35:28.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http系列(-) Http发展历史">
 <meta name="twitter:description" content="http2.0协议和http1.x、http1.0的区别、优化。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/http/http2.0-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/network/http/http-http2/http2.0-1-1.png">
 
 
 
@@ -441,19 +441,11 @@
       
 
       
-        <p><strong><em>知者不言，言者不知。——老子</em></strong></p>
-<ul>
-<li><a href="/blog/http/http-http2.html">Http 系列(-) Http 发展历史</a></li>
-<li><a href="/blog/http/http-http2-1.html">Http 系列(二) Http2 中的多路复用</a></li>
-<li><a href="/blog/http/http-tcp.html">Http 系列(三) Http/Tcp 三次握手和四次挥手</a></li>
-<li><a href="/blog/http/http-get-post.html">Http 系列(四) Http 中 Get/Post 的区别</a></li>
-</ul>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p><strong>Hyper Text Transfer Protocol（超文本传输协议）</strong>,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>Hyper Text Transfer Protocol（超文本传输协议）</strong>,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
 <p><strong>超文本传输 ​​ 协议（HTTP）</strong>是用于传输诸如 HTML 的超媒体文档的<strong>应用层协议</strong>。它被设计用于 Web 浏览器和 Web 服务器之间的通信，但它也可以用于其他目的。<br><strong>HTTP 是一个基于 TCP/IP 通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。也要通过三次握手，四次挥手。</strong></p>
 <p><strong>HTTP 是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统</strong>。它于 1990 年提出，经过几年的使用与发展，得到不断地完善和扩展。</p>
 <p><strong>HTTP 协议工作于客户端-服务端架构为上</strong>。浏览器作为 HTTP 客户端通过 URL 向 HTTP 服务端即 WEB 服务器发送所有请求。Web 服务器根据接收到的请求后，向客户端发送响应信息。</p>
-<p><img src="../../images/http/http2.0-1-1.png" alt="http2.0"></p>
+<p><img src="./http-http2/http2.0-1-1.png" alt="http2.0"></p>
 <h2 id="HTTP-协议版本"><a href="#HTTP-协议版本" class="headerlink" title="HTTP 协议版本"></a>HTTP 协议版本</h2><p>大致版本可以分为以下四个：</p>
 <ul>
 <li>HTTP/0.9</li>
@@ -461,7 +453,7 @@
 <li>HTTP/1.1</li>
 <li>HTTP/2</li>
 </ul>
-<p>发展的历史如下：<br><img src="../../images/http/http2.0-1-2.png" alt="http2.0"></p>
+<p>发展的历史如下：<br><img src="./http-http2/http2.0-1-2.png" alt="http2.0"></p>
 <h3 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h3><p>HTTP 是基于 <code>TCP/IP 协议的应用层协议</code>。<strong>它不涉及数据包（packet）传输</strong>，主要规定了客户端和服务器之间的通信格式，默认使用 80 端口。<br>最早版本是 1991 年发布的 0.9 版。该版本极其简单，只有一个命令 GET。</p>
 <blockquote>
 <p>GET /index.html</p>
@@ -510,7 +502,7 @@
 <li><strong>基于 HTTPS 的加密协议传输，大大提高了传输数据的可靠性</strong>。</li>
 <li><strong>服务端推送（server push）</strong>，采用了 SPDY 的网页，例如我的网页有一个 sytle.css 的请求，在客户端收到 sytle.css 数据的同时，服务端会将 sytle.js 的文件推送给客户端，当客户端再次尝试获取 sytle.js 时就可以直接从缓存中获取到，不用再发请求了。</li>
 </ul>
-<p>SPDY 构成图：<br><img src="../../images/http/http2.0-1-3.png" alt="http2.0"></p>
+<p>SPDY 构成图：<br><img src="./http-http2/http2.0-1-3.png" alt="http2.0"></p>
 <h2 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h2><p><code>HTTP/2</code> 可以说是 <code>SPDY</code> 的升级版（其实原本也是基于 <code>SPDY</code> 设计的），但是<code>HTTP2.0</code> 跟 <code>SPDY</code> 仍有不同的地方，主要是以下两点：</p>
 <ul>
 <li><code>HTTP2.0</code> 支持明文 <code>HTTP</code> 传输，而 <code>SPDY</code> 强制使用 <code>HTTPS</code></li>
@@ -530,9 +522,9 @@
 <li><strong>消息</strong>：是指逻辑上的 HTTP 消息，比如请求、响应等，由一或多个帧组成。</li>
 <li><strong>流</strong>：流是连接中的一个虚拟信道，可以承载双向的消息；每个流都有一个唯一的整数标识符（1、2…N）；</li>
 </ul>
-<p>HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二进制协议解析起来更高效。 HTTP / 1 的请求和响应报文，都是由起始行，首部和实体正文（可选）组成，各部分之间以文本换行符分隔。<strong>HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</strong><br><img src="../../images/http/http2.0-1-4.png" alt="http2.0"></p>
+<p>HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二进制协议解析起来更高效。 HTTP / 1 的请求和响应报文，都是由起始行，首部和实体正文（可选）组成，各部分之间以文本换行符分隔。<strong>HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</strong><br><img src="./http-http2/http2.0-1-4.png" alt="http2.0"></p>
 <h4 id="帧、流、消息的关系"><a href="#帧、流、消息的关系" class="headerlink" title="帧、流、消息的关系"></a>帧、流、消息的关系</h4><p><strong>每个数据流都以消息的形式发送，而消息又由一个或多个帧组成</strong>。<br><strong>帧是流中的数据单位。一个数据报的 header 帧可以分成多个 header 帧，data 帧可以分成多个 data 帧。</strong></p>
-<h3 id="多路复用-Multiplexing"><a href="#多路复用-Multiplexing" class="headerlink" title="多路复用 (Multiplexing)"></a>多路复用 (Multiplexing)</h3><p><strong>多路复用允许同时通过单一的 HTTP/2 连接发起多重的请求-响应消息</strong>。即连接共享，即每一个 request 都是是用作连接共享机制的。一个 request 对应一个 id，这样一个连接上可以有多个 request，每个连接的 request 可以随机的混杂在一起，接收方可以根据 request 的 id 将 request 再归属到各自不同的服务端请求里面。多路复用原理图：<br><img src="../../images/http/http2.0-1-5.png" alt="http2.0"></p>
+<h3 id="多路复用-Multiplexing"><a href="#多路复用-Multiplexing" class="headerlink" title="多路复用 (Multiplexing)"></a>多路复用 (Multiplexing)</h3><p><strong>多路复用允许同时通过单一的 HTTP/2 连接发起多重的请求-响应消息</strong>。即连接共享，即每一个 request 都是是用作连接共享机制的。一个 request 对应一个 id，这样一个连接上可以有多个 request，每个连接的 request 可以随机的混杂在一起，接收方可以根据 request 的 id 将 request 再归属到各自不同的服务端请求里面。多路复用原理图：<br><img src="./http-http2/http2.0-1-5.png" alt="http2.0"></p>
 <h3 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a>请求优先级</h3><ul>
 <li>把 HTTP 消息分解为很多独立的帧之后，就可以通过优化这些帧的交错和传输顺序，每个流都可以带有一个 31 比特的优先值：0 表示最高优先级；2 的 31 次方-1 表示最低优先级。</li>
 <li>服务器可以根据流的优先级，控制资源分配（CPU、内存、带宽），而在响应数据准备好之后，优先将最高优先级的帧发送给客户端。</li>
@@ -544,8 +536,8 @@
 <li><strong>首部表在 HTTP/2 的连接存续期内始终存在，由客户端和服务器共同渐进地更新;</strong></li>
 <li><strong>每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值</strong></li>
 </ul>
-<p>两次请求不相同的 header，传说的 header 如下图所示：<br><img src="../../images/http/http2.0-1-10.png" alt="http2.0"></p>
-<h3 id="服务端推送"><a href="#服务端推送" class="headerlink" title="服务端推送"></a>服务端推送</h3><p><strong>Server Push 即服务端能通过 push 的方式将客户端需要的内容预先推送过去，也叫“cache push”</strong>。<br>服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确地请求，服务端可以提前给客户端推送必要的资源，这样可以减少请求延迟时间，例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不是等到 HTML 解析到资源时发送请求，大致过程如下图所示：<br><img src="../../images/http/http2.0-1-11.png" alt="http2.0"></p>
+<p>两次请求不相同的 header，传说的 header 如下图所示：<br><img src="./http-http2/http2.0-1-10.png" alt="http2.0"></p>
+<h3 id="服务端推送"><a href="#服务端推送" class="headerlink" title="服务端推送"></a>服务端推送</h3><p><strong>Server Push 即服务端能通过 push 的方式将客户端需要的内容预先推送过去，也叫“cache push”</strong>。<br>服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确地请求，服务端可以提前给客户端推送必要的资源，这样可以减少请求延迟时间，例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不是等到 HTML 解析到资源时发送请求，大致过程如下图所示：<br><img src="./http-http2/http2.0-1-11.png" alt="http2.0"></p>
 <p>注意：<br><strong>所有推送的资源都遵守同源策略</strong>。<br><strong>服务器必须遵循请求- 响应的循环，只能借着对请求的响应推送资源</strong>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从 http/0.9 到 http/2 的发展，有了很多的优化点如下：</p>
 <ul>
@@ -568,9 +560,7 @@
 上图：多路复用 -->
 </li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w" target="_blank" rel="noopener">HTTP 协议入门</a> &gt; <a href="https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w" target="_blank" rel="noopener">HTTP,HTTP2.0,SPDY,HTTPS 你应该知道的一些事</a> &gt; <a href="https://mp.weixin.qq.com/s/0m4R31gSV-DfY_-VOSb_jA" target="_blank" rel="noopener">http2.0 的时代真的来了…</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mp.weixin.qq.com/s/fwRzZ8RWouyAhBiYDe9M7w" target="_blank" rel="noopener">HTTP 协议入门</a><br><a href="https://mp.weixin.qq.com/s/x-KE9B3s6GyJbS-T3oya4w" target="_blank" rel="noopener">HTTP,HTTP2.0,SPDY,HTTPS 你应该知道的一些事</a><br><a href="https://mp.weixin.qq.com/s/0m4R31gSV-DfY_-VOSb_jA" target="_blank" rel="noopener">http2.0 的时代真的来了…</a></p>
 
       
     </div>
@@ -742,7 +732,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -850,7 +840,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

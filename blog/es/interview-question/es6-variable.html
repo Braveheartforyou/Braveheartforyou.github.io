@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="var和let、const对比">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/es/es-let.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.866Z">
+<meta property="og:image" content="http://asyncnode.com/images/es/es-let.png">
+<meta property="og:updated_time" content="2020-06-01T08:49:50.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="var和let、const对比">
 <meta name="twitter:description" content="var和let、const对比">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/es/es-let.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/es/es-let.png">
 
 
 
@@ -435,12 +435,8 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-
-<p>在<strong>ECMAScript6</strong>中新增两个变量声明的指令<code>let</code>和<code>const</code>，以前经常用的<code>var</code>有什么区别。</p>
-<h2 id="var-声明"><a href="#var-声明" class="headerlink" title="var 声明"></a>var 声明</h2><hr>
-
-<p><code>var</code> <strong>声明语句</strong>声明一个变量，并可选地将其初始化为一个值。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<strong>ECMAScript6</strong>中新增两个变量声明的指令<code>let</code>和<code>const</code>，以前经常用的<code>var</code>有什么区别。</p>
+<h2 id="var-声明"><a href="#var-声明" class="headerlink" title="var 声明"></a>var 声明</h2><p><code>var</code> <strong>声明语句</strong>声明一个变量，并可选地将其初始化为一个值。</p>
 <ul>
 <li>可重复声明</li>
 <li>变量提升</li>
@@ -460,9 +456,7 @@
 <li>建议始终声明变量，无论它们是在函数还是全局作用域内。</li>
 </ul>
 </blockquote>
-<h2 id="let-声明"><a href="#let-声明" class="headerlink" title="let 声明"></a>let 声明</h2><hr>
-
-<p><code>let</code>允许你声明一个作用域被限制在 <code>块级中的变量</code>、<code>语句或者表达式</code>。与 <code>var</code> 关键字不同的是， <code>var</code>声明的变量只能是<code>全局</code>或者<code>整个函数块</code>的。</p>
+<h2 id="let-声明"><a href="#let-声明" class="headerlink" title="let 声明"></a>let 声明</h2><p><code>let</code>允许你声明一个作用域被限制在 <code>块级中的变量</code>、<code>语句或者表达式</code>。与 <code>var</code> 关键字不同的是， <code>var</code>声明的变量只能是<code>全局</code>或者<code>整个函数块</code>的。</p>
 <ul>
 <li>不可重复声明，可以重复赋值</li>
 <li>块作用域</li>
@@ -475,12 +469,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">varTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>; <span class="comment">// 同样的变量!</span></span><br><span class="line">    <span class="built_in">console</span>.log(x); <span class="comment">// 2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">letTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>; <span class="comment">// 不同的变量</span></span><br><span class="line">    <span class="built_in">console</span>.log(x); <span class="comment">// 2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>let 声明</strong>的变量不会挂载顶层对象下面，会临时创建一个<code>scope</code>来储存<strong>let 声明</strong>，执行完成清除，示例代码如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">debugger</span>;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> count = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> sum = <span class="number">2</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在执行完<code>let count = 1;</code>，效果如下图所示：<br><img src="../../images/es/es-let.png" alt="let"><br>当<strong>javascript</strong>执行完成后，<code>scope</code>也会被清空。</p>
+<p>在执行完<code>let count = 1;</code>，效果如下图所示：<br><img src="../../../images/es/es-let.png" alt="let"><br>当<strong>javascript</strong>执行完成后，<code>scope</code>也会被清空。</p>
 <h3 id="暂存死区-不存在变量提升"><a href="#暂存死区-不存在变量提升" class="headerlink" title="暂存死区/不存在变量提升"></a>暂存死区/不存在变量提升</h3><p><code>let</code> 被创建在包含该声明的（块）作用域顶部，<strong>一般被称为“提升”</strong>。与通过 <code>var</code> 声明的有初始化值 <code>undefined</code> 的变量不同，通过 <code>let</code> 声明的变量直到它们的定义被执行时才初始化。在变量初始化前访问该变量会导致 <code>ReferenceError</code>。该变量处在一个自块顶部到初始化处理的“暂存死区”中。<br>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(count); <span class="comment">// Uncaught ReferenceError: Cannot access 'count' before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="const-声明"><a href="#const-声明" class="headerlink" title="const 声明"></a>const 声明</h2><hr>
-
-<p>常量是块级作用域，很像使用 <code>let</code> 语句定义的变量。常量的值<strong>不能</strong>通过重新赋值来改变，并且<strong>不能</strong>重新声明。</p>
+<h2 id="const-声明"><a href="#const-声明" class="headerlink" title="const 声明"></a>const 声明</h2><p>常量是块级作用域，很像使用 <code>let</code> 语句定义的变量。常量的值<strong>不能</strong>通过重新赋值来改变，并且<strong>不能</strong>重新声明。</p>
 <ul>
 <li>不能重复声明</li>
 <li>不能重复赋值</li>
@@ -543,12 +535,7 @@
 </tbody>
 </table>
 <p>他们的特性基本上如上面表格所示，可以根据各个不同的需要，选择 var、let、const 来声明变量。</p>
-<blockquote>
-<p><a href="http://asyncnode.com/blog/javascript/javascript-Type-conversion.html">JavaScript 类型转换（一） 常见数据类型</a></p>
-</blockquote>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var" target="_blank" rel="noopener">var 声明语句</a> &gt; <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let" target="_blank" rel="noopener">let 声明语句</a> &gt; <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const" target="_blank" rel="noopener">const 声明语句</a> &gt; <a href="https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&amp;mid=2247483812&amp;idx=1&amp;sn=9bab06614e079bd9cc533a3b2cd02a75&amp;chksm=faec857ccd9b0c6a9b58e49f747651ffdf484acdd6fc82318a0964e4c339dbda6586e340ca4d&amp;mpshare=1&amp;scene=1&amp;srcid=082024th073paIFjxG2PXq8C&amp;sharer_sharetime=1566313518851&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd" target="_blank" rel="noopener">JS 系列一：var、let、const、解构、展开、函数</a> &gt; <a href="https://mp.weixin.qq.com/s?__biz=Mzg4MjAyMzY1OQ==&amp;mid=2247483768&amp;idx=1&amp;sn=328166a7f78be132b77215060e96128b&amp;chksm=cf5c4cfcf82bc5ea327e302b81401165663f3ad91d35270ee4e537f7b27081cad4fecffc4776&amp;mpshare=1&amp;scene=1&amp;srcid=0820mIdzuPo1JIpEQKyVpaGY&amp;sharer_sharetime=1566313451138&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd" target="_blank" rel="noopener">ES6 中 let、const 与 var 的区别</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var" target="_blank" rel="noopener">var 声明语句</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let" target="_blank" rel="noopener">let 声明语句</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const" target="_blank" rel="noopener">const 声明语句</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&amp;mid=2247483812&amp;idx=1&amp;sn=9bab06614e079bd9cc533a3b2cd02a75&amp;chksm=faec857ccd9b0c6a9b58e49f747651ffdf484acdd6fc82318a0964e4c339dbda6586e340ca4d&amp;mpshare=1&amp;scene=1&amp;srcid=082024th073paIFjxG2PXq8C&amp;sharer_sharetime=1566313518851&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b#rd" target="_blank" rel="noopener">JS 系列一：var、let、const、解构、展开、函数</a></p>
 
       
     </div>
@@ -720,7 +707,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -828,7 +815,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

@@ -123,32 +123,32 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-12.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-11.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-13.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-14.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-15.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-16.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-18.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-17.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-19.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-20.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/http/http-cache-3-21.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.885Z">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-1.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-12.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-11.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-13.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-14.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-15.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-16.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-18.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-17.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-19.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-20.png">
+<meta property="og:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-21.png">
+<meta property="og:updated_time" content="2020-06-01T12:29:09.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http中的缓存（二） HTTP中的缓存">
 <meta name="twitter:description" content="因为相对于前端能接触到的缓存基本上还是停留在HTTP缓存和cdn缓存这一层，这里就是记录HTTP缓存的多种实现形式，实现形式之间的优缺点。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/http/http-cache-3-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/network/cache/http-cache-http/http-cache-3-1.png">
 
 
 
@@ -455,12 +455,7 @@
       
 
       
-        <ul>
-<li><a href="/blog/http-cache-multiple.html">Http 中的缓存（一） 多级缓存结构</a></li>
-<li><a href="/blog/http/http-cache-http.html">Http 中的缓存（二） HTTP 中的缓存</a></li>
-<li><a href="/blog/http/http-cache-serviceworker.html">Http 中的缓存（三） PWA 中的 ServiceWorker</a></li>
-</ul>
-<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>HTTP 缓存</strong>相信都不陌生，因为它是在前端性能优化中必不可少的一个环节。在<strong>首次进入或者请求数据</strong>正常传输数据，而当<strong>再次进入或者请求数据</strong>时，可以走本地或者服务器上的缓存，来<strong>节省流量</strong>、<strong>优化性能</strong>、<strong>提高用户体验</strong>、<strong>降低网络负荷</strong>等等。</p>
+        <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>HTTP 缓存</strong>相信都不陌生，因为它是在前端性能优化中必不可少的一个环节。在<strong>首次进入或者请求数据</strong>正常传输数据，而当<strong>再次进入或者请求数据</strong>时，可以走本地或者服务器上的缓存，来<strong>节省流量</strong>、<strong>优化性能</strong>、<strong>提高用户体验</strong>、<strong>降低网络负荷</strong>等等。</p>
 <p><strong>web 缓存</strong>主要用来缓存<strong>html 文件</strong>、<strong>js 文件</strong>、<strong>css 文件</strong>、<strong>数据</strong>，基本上都是提升<strong>客户端/浏览器</strong>请求到<strong>服务器</strong>之间的速度，当然也可以结合数据压缩如<strong>gzip</strong>、<strong>7z</strong>等等加快响应数据传输。</p>
 <p>在整个应用中可以错多层缓存结构这里不多做介绍，因为前面已经大致介绍过了，这里主要介绍和前端比较相关的<strong>HTTP 缓存</strong>。</p>
 <h2 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h2><p>大致分为下面几步来加深对<strong>HTTP 中的缓存</strong>理解和应用场景。</p>
@@ -581,8 +576,8 @@
 </blockquote>
 <p><code>Cache-Control</code>: <code>cache-directive[,cache-directive]</code>。<code>cache-directive</code>为缓存指令，大小写不敏感，共有<strong>12</strong>个与<strong>HTTP</strong>缓存标准相关，如下所示。其中请求指令<em>7</em>种，响应指令<em>9</em>种。<code>Cache-Control</code>可以设置多个缓存指令，以逗号<code>,</code>分隔。</p>
 <h4 id="可缓存性"><a href="#可缓存性" class="headerlink" title="可缓存性"></a>可缓存性</h4><ul>
-<li><strong>public</strong>： 表明响应可以被<strong>任何对象（包括：发送请求的客户端、代理服务器、CDN 等中间代理服务器等等）缓存</strong>，如下图所示：<br><img src="../../images/http/http-cache-3-1.png" alt="http-cache-public"></li>
-<li><strong>private</strong>：表明响应只能被<strong>单个用户缓存</strong>，<strong>不能作为共享缓存（即代理服务器不能缓存它）</strong>。<br><img src="../../images/http/http-cache-3-2.png" alt="http-cache-public"></li>
+<li><strong>public</strong>： 表明响应可以被<strong>任何对象（包括：发送请求的客户端、代理服务器、CDN 等中间代理服务器等等）缓存</strong>，如下图所示：<br><img src="./http-cache-http/http-cache-3-1.png" alt="http-cache-public"></li>
+<li><strong>private</strong>：表明响应只能被<strong>单个用户缓存</strong>，<strong>不能作为共享缓存（即代理服务器不能缓存它）</strong>。<br><img src="./http-cache-http/http-cache-3-2.png" alt="http-cache-public"></li>
 <li><strong>no-cache</strong>：指定<strong>不缓存响应</strong>，表明资源<strong>不进行缓存</strong>，但是设置了 <code>no-cache</code> 之后并不代表<strong>浏览器</strong>不缓存，而是在<strong>获取缓存前</strong>要向<strong>服务器确认资源</strong>是否被更改。相当于<code>max-age: 0, must-revalidate</code></li>
 <li><strong>no-store</strong>： <strong>绝对禁止缓存，请求和响应都不缓存，每次请求都从服务器获取完整资源</strong>。</li>
 </ul>
@@ -610,7 +605,7 @@
 <blockquote>
 <p>Cache-Control &gt; Expires</p>
 </blockquote>
-<h3 id="强缓存大致流程"><a href="#强缓存大致流程" class="headerlink" title="强缓存大致流程"></a>强缓存大致流程</h3><p>强缓的设置流程图大致如下：<br><img src="../../images/http/http-cache-3-3.png" alt="http-cache-public"></p>
+<h3 id="强缓存大致流程"><a href="#强缓存大致流程" class="headerlink" title="强缓存大致流程"></a>强缓存大致流程</h3><p>强缓的设置流程图大致如下：<br><img src="./http-cache-http/http-cache-3-3.png" alt="http-cache-public"></p>
 <h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>在没有<strong>强缓存</strong>时，就会走协商缓存，协商缓存大致流程：</p>
 <ul>
 <li>第一次请求时，服务端返回给客户端一个<strong>key(如 Etag 的资源值、Last-Modified 最后修改时间)</strong>和资源</li>
@@ -651,7 +646,7 @@
 <li>与<code>If-Range</code>字段同时使用时，可以用来保证新的片段请求来自一个未修改的文档。</li>
 </ol>
 <h3 id="ETag-If-Match-If-None-Match"><a href="#ETag-If-Match-If-None-Match" class="headerlink" title="ETag/If-Match/If-None-Match"></a>ETag/If-Match/If-None-Match</h3><p>根据实体内容生成一段<strong>唯一 hash 字符串</strong>，标识资源的状态，由服务端产生。浏览器会将这<strong>串字符串传回服务器</strong>，验证资源是否已经修改，如果没有修改，过程如下：</p>
-<p><img src="../../images/http/http-cache-3-4.png" alt="http-cache-public"></p>
+<p><img src="./http-cache-http/http-cache-3-4.png" alt="http-cache-public"></p>
 <p><code>ETag</code> <strong>HTTP 响应头</strong>是资源的特定版本的标识符。<br><strong>语法</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ETag: W / <span class="string">'&lt;etag_value&gt;'</span>;</span><br><span class="line">ETag: <span class="string">'&lt;etag_value&gt;'</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>W/ 可选</strong><br><strong>‘W/‘(大小写敏感) </strong>表示使用<strong>弱验证器</strong>。 弱验证器很<strong>容易</strong>生成，但<strong>不利</strong>于比较。 强验证器是<strong>比较的理想</strong>选择，但<strong>很难</strong>有效地生成。</p>
@@ -675,7 +670,7 @@
 <li><strong>缓存失败阶段</strong>: 当服务器发现请求的资源<strong>已经修改过</strong>，或者这是一个新的请求(在本来没有找到资源)，服务器则返回该资源的数据，并且返回<code>200</code>， 当然这个是指找到资源的情况下，如果服务器上没有这个资源，则返回<code>404</code>。</li>
 </ol>
 <p>大致流程如下图所示：</p>
-<p><img src="../../images/http/http-cache-3-5.png" alt="http-cache-public"></p>
+<p><img src="./http-cache-http/http-cache-3-5.png" alt="http-cache-public"></p>
 <p>这张图中没有包含<code>serverWorker</code>的缓存判断流程 b，但是在后面会有一篇文章专门介绍<strong>serverWorker</strong>，因为他是属于<strong>PWA</strong>中的内容。</p>
 <blockquote>
 <p><strong>存储策略</strong>发生在<strong>收到请求响应后</strong>，用于决定<strong>是否缓存</strong>相应资源；<strong>过期策略</strong>发生在<strong>请求前</strong>，用于判断缓存<strong>是否过期</strong>；<strong>协商策略</strong>发生在<strong>请求中</strong>，用于判断缓存资源<strong>是否更新</strong>。</p>
@@ -733,7 +728,7 @@
 </tbody>
 </table>
 <p>基本上包含了一些常见的用户操作对<strong>强缓存</strong>和<strong>协商缓存</strong>的影响，大致的判断流程如下：</p>
-<p><img src="../../images/http/http-cache-3-6.png" alt="http-cache-public"></p>
+<p><img src="./http-cache-http/http-cache-3-6.png" alt="http-cache-public"></p>
 <p><strong>注意</strong></p>
 <blockquote>
 <ul>
@@ -763,7 +758,7 @@
 </ul>
 <p>在这里就不细说了，后面有一个单独的章节来讲述<strong>Service Worker</strong>, <strong>Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的</strong>。</p>
 <h3 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h3><p><strong>Memory Cache</strong> 是内存中的缓存。主要包含的是当前页面中请求到的数据如<strong>图片（base64）</strong>、<strong>脚本（JavaScript）</strong>、<strong>样式（css）</strong>等静态数据。读取内存中的数据肯定比磁盘中的<strong>快</strong>，但是内存中的<strong>缓存持续性很短</strong>，它会随着当前<strong>Tab 页面关闭，内存中的缓存也就被释放</strong>。</p>
-<p>比如在<strong>百度首页</strong>刷新页面，效果如下图所示：<br><img src="../../images/http/http-cache-3-7.png" alt="http-cache-public"></p>
+<p>比如在<strong>百度首页</strong>刷新页面，效果如下图所示：<br><img src="./http-cache-http/http-cache-3-7.png" alt="http-cache-public"></p>
 <p><strong>preload</strong><br><code>&lt;link&gt;</code> 元素的 <code>rel</code> 属性的属性值<code>preload</code>，<code>&lt;link rel=&quot;preload&quot;&gt;</code>来显示的指定的预加载资源，也会被放入<code>memory cache</code>中。</p>
 <p><strong>prefetch</strong><br><code>&lt;link rel=&quot;prefetch&quot;&gt;</code> 已经被许多浏览器支持了相当长的时间，但它是意图预获取一些资源，以备下一个导航/页面使用（比如，当你去到下一个页面时）。<br>浏览器会给使用<code>prefetch</code>的资源一个<strong>相对较低的优先</strong>级与使用<code>preload</code>的资源相比。</p>
 <p><strong>subresource</strong><br><code>&lt;link rel=&quot;subresource&quot;&gt;</code>被 Chrome 支持了有一段时间，并且已经有些搔到预加载当前导航/页面（所含有的资源）的痒处了。这些资源会以一个<strong>相当低的优先级</strong>被加载。<br><code>Memory Cache</code>不会轻易的命中一个请求，除了要有<strong>匹配的 URL</strong>，还要有相同的<strong>资源类型</strong>、<strong>CORS 模式</strong>以及一些<strong>其他特性</strong>。<br><code>Memory Cache</code>是不关心<code>HTTP语义</code>的，比如<code>Cache-Control: max-age=0</code>的资源，仍然可以在同一个导航中被重用。但是在特定的情况下，<code>Memory Cache</code>会遵守<code>Cache-Control: no-store</code>指令，不缓存相应的资源。</p>
@@ -790,7 +785,7 @@
 <p>那么为了性能上的考虑，大部分的接口都应该选择好缓存策略，通常浏览器缓存策略分为两种：<strong>强缓存和协商缓存</strong>，并且缓存策略都是通过设置 <code>HTTP Header</code> 来实现的。</p>
 <h3 id="关于-memory-cache-和-disk-cache"><a href="#关于-memory-cache-和-disk-cache" class="headerlink" title="关于 memory cache 和 disk cache"></a>关于 memory cache 和 disk cache</h3><p>这两种缓存类型存在于 Chrome 中。<br><code>disk cache</code> 存在硬盘，可以存很多，容量上限比内容缓存高很多，而 <code>memory cache</code> 从内存直接读取，速度上占优势，这两个各有各的好处！</p>
 <p>因为关于在什么时候用到什么缓存的文档相当的少所以真的不好判断，是当前使用的是哪个缓存，比如下面这个例子：</p>
-<p><img src="../../images/http/http-cache-3-8.png" alt="http-cache-public"></p>
+<p><img src="./http-cache-http/http-cache-3-8.png" alt="http-cache-public"></p>
 <h2 id="缓存策略之间的对比"><a href="#缓存策略之间的对比" class="headerlink" title="缓存策略之间的对比"></a>缓存策略之间的对比</h2><p>其实缓存之间也没有太好的对比性，大致可以从<strong>缓存策略</strong>和<strong>缓存位置</strong>两个角度对比缓存的优缺点。</p>
 <ul>
 <li><strong>强缓存</strong>返回 <strong>http 200 OK 状态码</strong>，而<strong>协商缓存</strong>返回<strong>http 304 Not Modified 状态码</strong></li>
@@ -805,9 +800,9 @@
 <p>它们的值优缺点如上所示，如在<strong>chrome</strong>、<strong>firefox</strong>、<strong>ie</strong>中<strong>Memory cache</strong>和<strong>Disk cache</strong>也是不太相同的。</p>
 <h3 id="关于-Chrome、FF、IE-的缓存区别"><a href="#关于-Chrome、FF、IE-的缓存区别" class="headerlink" title="关于 Chrome、FF、IE 的缓存区别"></a>关于 Chrome、FF、IE 的缓存区别</h3><p><strong>Chrome</strong>浏览器的速度比其他两个浏览器的速度更快一点，主要是因为<strong>V8</strong>引擎的执行速度更快，另一方面应该就是它的<strong>缓存策略</strong>的使用。<br>从这四个方面<strong>强缓存</strong>、<strong>协商缓存</strong>、<strong>Disk Cache</strong>、<strong>Memory Cache</strong>来对比，为什么说<strong>Chrome</strong>执行效果比其它的两个浏览器的执行速度和加载速度更快。</p>
 <p>就以百度首页为例看一下<strong>Chrome</strong>和<strong>Firefox</strong>的差别。</p>
-<p>在<code>Chrome</code>和<code>Firefox</code>中打开<code>https://www.baidu.com/</code>首页，结果如下图所示<br><strong>Firefox</strong>效果如下：<br><img src="../../images/http/http-cache-3-9.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="../../images/http/http-cache-3-10.png" alt="http-cache-public"></p>
+<p>在<code>Chrome</code>和<code>Firefox</code>中打开<code>https://www.baidu.com/</code>首页，结果如下图所示<br><strong>Firefox</strong>效果如下：<br><img src="./http-cache-http/http-cache-3-9.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="./http-cache-http/http-cache-3-10.png" alt="http-cache-public"></p>
 <p>我们以百度的<code>bd_logo1.png</code>的请求为例，<code>logo</code>的请求是一个<code>Get</code>请求，同时它被设置了<strong>四个缓存</strong>配置，但是它在两个浏览器中表现并不相同，如下图所示</p>
-<p><strong>Firefox</strong>效果如下：<br><img src="../../images/http/http-cache-3-12.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="../../images/http/http-cache-3-11.png" alt="http-cache-public"></p>
+<p><strong>Firefox</strong>效果如下：<br><img src="./http-cache-http/http-cache-3-12.png" alt="http-cache-public"><br><strong>Chrome</strong>效果如下：<br><img src="./http-cache-http/http-cache-3-11.png" alt="http-cache-public"></p>
 <p>首先在<strong>再次请求</strong>时浏览器端都<strong>没有携带协商缓存</strong>需要的头部字段，所以它们肯定走的是<strong>强缓存</strong>，在<strong>强缓存</strong>中<code>Cache-Control</code>的优先级是最高的，所以都是走的<strong>Cache-Control</strong>的策略。</p>
 <p>可以看到它们的区别如下几点：</p>
 <ul>
@@ -816,7 +811,7 @@
 </ul>
 <h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><p>在这里我们来一个一个测试<code>expires/cache-control/etag/last-modified/pragma</code>它们是否和我们上面所总结的一致。</p>
 <p>测试环境<code>chrome 78.0.3904.70</code>、<code>node 12.9.1</code>、<code>koa 2.x</code>.</p>
-<p>整体的目录结构如下图所示：<br><img src="../../images/http/http-cache-3-13.png" alt="http-cache-public"></p>
+<p>整体的目录结构如下图所示：<br><img src="./http-cache-http/http-cache-3-13.png" alt="http-cache-public"></p>
 <p>代码可能写的比较粗糙，但是后面会优化一下，公共代码如下：</p>
 <p><strong>index.html</strong>代码如下</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/index/index.css"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    测试cache</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/index/rotateX.png"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -828,9 +823,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 添加代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'max-age='</span> + <span class="number">10</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>我们在通过<code>nodemon app.js</code>运行代码，运行效果大致如下：</p>
 <ol>
-<li>第一个打开<code>localhost:3000</code>时，因为没有任何缓存所以资源是<code>从服务器中请求</code>来的，如下图所示<br><img src="../../images/http/http-cache-3-14.png" alt="http-cache-public"></li>
-<li>当我们刷新页面时，因为我们设置了<code>Cache-Control: max-age=10</code>，所以会走<code>本地缓存</code>，如下图所示<br><img src="../../images/http/http-cache-3-15.png" alt="http-cache-public"><br>第二次请求，三个请求都来自 <code>memory cache</code>。因为我们没有关闭 TAB，所以浏览器把缓存的应用加到了<code>memory cache</code>。(耗时 0ms，也就是 1ms 以内)</li>
-<li>当我们跳转到<code>https://www.baidu.com</code>，再返回页面时，它也会<code>走本地缓存</code>，如下图所示<br><img src="../../images/http/http-cache-3-16.png" alt="http-cache-public"><br>因为跳转页面等于是<strong>关闭了 TAB</strong>，<code>memory cache</code> 也随之清空。但是 <code>disk cache</code> 是持久的，于是所有资源来自 <code>disk cache</code>。(大约耗时 3ms，因为文件有点小)而且对比 2 和 3，很明显看到 <code>memory cache</code> 还是比 <code>disk cache</code>快得多的。</li>
+<li>第一个打开<code>localhost:3000</code>时，因为没有任何缓存所以资源是<code>从服务器中请求</code>来的，如下图所示<br><img src="./http-cache-http/http-cache-3-14.png" alt="http-cache-public"></li>
+<li>当我们刷新页面时，因为我们设置了<code>Cache-Control: max-age=10</code>，所以会走<code>本地缓存</code>，如下图所示<br><img src="./http-cache-http/http-cache-3-15.png" alt="http-cache-public"><br>第二次请求，三个请求都来自 <code>memory cache</code>。因为我们没有关闭 TAB，所以浏览器把缓存的应用加到了<code>memory cache</code>。(耗时 0ms，也就是 1ms 以内)</li>
+<li>当我们跳转到<code>https://www.baidu.com</code>，再返回页面时，它也会<code>走本地缓存</code>，如下图所示<br><img src="./http-cache-http/http-cache-3-16.png" alt="http-cache-public"><br>因为跳转页面等于是<strong>关闭了 TAB</strong>，<code>memory cache</code> 也随之清空。但是 <code>disk cache</code> 是持久的，于是所有资源来自 <code>disk cache</code>。(大约耗时 3ms，因为文件有点小)而且对比 2 和 3，很明显看到 <code>memory cache</code> 还是比 <code>disk cache</code>快得多的。</li>
 </ol>
 <h3 id="no-cache-和-no-store-对比"><a href="#no-cache-和-no-store-对比" class="headerlink" title="no-cache 和 no-store 对比"></a>no-cache 和 no-store 对比</h3><p>我们来对比一下<code>no-cache</code>和<code>no-store</code>的区别，修改代码如下：</p>
 <p>修改<strong>index.html</strong></p>
@@ -842,14 +837,14 @@
 </ul>
 <p>下面我们修改<strong>app.js</strong>中的代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>我们运行代码看的效果如下图所示：<br><img src="../../images/http/http-cache-3-18.png" alt="http-cache-public"></p>
+<p>我们运行代码看的效果如下图所示：<br><img src="./http-cache-http/http-cache-3-18.png" alt="http-cache-public"></p>
 <ul>
 <li>同步请求方面，浏览器会<strong>自动</strong>把当次 <code>HTML</code> 中的资源存入到缓存 (<code>memory cache</code>)，这样碰到相同 <code>src</code> 的图片就会自动读取缓存(但不会在 <code>Network</code> 中显示出来)</li>
 </ul>
 <p>如果把<code>no-cache</code>修改为<code>no-store</code></p>
 <p>修改<strong>app.js</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...省略代码</span></span><br><span class="line">router.get(<span class="string">'/index/index.js'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...省略代码</span></span><br><span class="line">  <span class="comment">// 替换原来代码</span></span><br><span class="line">  ctx.set(<span class="string">'Cache-Control'</span>, <span class="string">'no-store'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>我们运行代码看的效果如下图所示：<br><img src="../../images/http/http-cache-3-17.png" alt="http-cache-public"></p>
+<p>我们运行代码看的效果如下图所示：<br><img src="./http-cache-http/http-cache-3-17.png" alt="http-cache-public"></p>
 <p>当我们设置了<code>Cache-Control: no-store</code>时，可以看到<code>css</code>、<code>js</code>文件都被请求了两次，<code>png</code>请求了三次。</p>
 <ul>
 <li>如之前原理所述，虽然 <code>memory cache</code> 是无视 <code>HTTP</code> 头信息的，但是 <code>no-store</code> 是特别的。在这个设置下，<code>memory cache</code> 也不得不每次都请求资源。</li>
@@ -860,8 +855,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> responseFile = <span class="keyword">async</span> (path, context, encoding) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fileContent = <span class="keyword">await</span> fs.readFile(path, encoding);</span><br><span class="line">  context.type = mime.getType(path);</span><br><span class="line">  context.body = fileContent;</span><br><span class="line">&#125;;</span><br><span class="line">router.get(<span class="string">'/index/rotateX.png'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.set(<span class="string">'Pragma'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; response, request, path &#125; = ctx;</span><br><span class="line">  <span class="keyword">const</span> imagePath = Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> ifModifiedSince = request.headers[<span class="string">'if-modified-since'</span>];</span><br><span class="line">  <span class="built_in">console</span>.log(ifModifiedSince);</span><br><span class="line">  <span class="keyword">const</span> imageStatus = <span class="keyword">await</span> fs.stat(imagePath);</span><br><span class="line">  <span class="keyword">const</span> lastModified = imageStatus.mtime.toGMTString();</span><br><span class="line">  <span class="keyword">if</span> (ifModifiedSince === lastModified) &#123;</span><br><span class="line">    response.status = <span class="number">304</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    response.lastModified = lastModified;</span><br><span class="line">    <span class="keyword">await</span> responseFile(imagePath, ctx);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>大致流程如下：</p>
 <ol>
-<li>在<code>Chrome</code>中选中<code>Disable Cache</code>禁用缓存，可以通过下面图片看到服务器端发送给客户端<code>Last-Modified: Thu, 24 Oct 2019 05:12:37 GMT</code>。<br><img src="../../images/http/http-cache-3-19.png" alt="http-cache-public"></li>
-<li>关闭 <code>disable cache</code> 后再次访问图片时，发现带上了 <code>if-modified-since</code> 请求头，值就是上次请求响应的 <code>last-modified</code> 值，因为图片最后修改时间不变，所以 <code>304 Not Modified</code>。效果如下图所示<br><img src="../../images/http/http-cache-3-20.png" alt="http-cache-public"></li>
+<li>在<code>Chrome</code>中选中<code>Disable Cache</code>禁用缓存，可以通过下面图片看到服务器端发送给客户端<code>Last-Modified: Thu, 24 Oct 2019 05:12:37 GMT</code>。<br><img src="./http-cache-http/http-cache-3-19.png" alt="http-cache-public"></li>
+<li>关闭 <code>disable cache</code> 后再次访问图片时，发现带上了 <code>if-modified-since</code> 请求头，值就是上次请求响应的 <code>last-modified</code> 值，因为图片最后修改时间不变，所以 <code>304 Not Modified</code>。效果如下图所示<br><img src="./http-cache-http/http-cache-3-20.png" alt="http-cache-public"></li>
 </ol>
 <blockquote>
 <p>启用<code>Disable Cache</code>时，我们可以看到<strong>客户端/浏览器端</strong>自动带上了<code>Pragma&#39;:&#39;no-cache&#39;</code>、<code>&#39;Cache-Control&#39;: &#39;no-cache&#39;</code>这两个字段，不适用缓存。</p>
@@ -869,7 +864,7 @@
 <h3 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>修改<strong>app.js</strong>，通过<code>npm i crypto -D</code>安装<code>crypto</code>,用于生成<code>md5</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理 css 文件</span></span><br><span class="line">router.get(<span class="string">'/index/index.css'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; request, response, path &#125; = ctx;</span><br><span class="line">  ctx.type = mime.getType(path);</span><br><span class="line">  response.set(<span class="string">'pragma'</span>, <span class="string">'no-cache'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ifNoneMatch = request.headers[<span class="string">'if-none-match'</span>];</span><br><span class="line">  <span class="keyword">const</span> imagePath = Path.resolve(__dirname, <span class="string">`.<span class="subst">$&#123;path&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> hash = crypto.createHash(<span class="string">'md5'</span>);</span><br><span class="line">  <span class="keyword">const</span> imageBuffer = <span class="keyword">await</span> fs.readFile(imagePath);</span><br><span class="line">  hash.update(imageBuffer);</span><br><span class="line">  <span class="keyword">const</span> etag = <span class="string">`"<span class="subst">$&#123;hash.digest(<span class="string">'hex'</span>)&#125;</span>"`</span>;</span><br><span class="line">  <span class="keyword">if</span> (ifNoneMatch === etag) &#123;</span><br><span class="line">    response.status = <span class="number">304</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    response.set(<span class="string">'etag'</span>, etag);</span><br><span class="line">    ctx.body = imageBuffer;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>运行效果如下图所示：</p>
-<p><img src="../../images/http/http-cache-3-21.png" alt="http-cache-public"></p>
+<p><img src="./http-cache-http/http-cache-3-21.png" alt="http-cache-public"></p>
 <p>他的过程和<code>Last-Modified/If-Modified-Since</code>，但是因为<code>Last-Modified/If-Modified-Since</code>它不能监听<code>1s</code>以内的资源变化，所以一般用他来做<code>Etag/If-None-Match</code>的补充方案。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>缓存大致分为：<code>强缓存</code>、<code>协商缓存</code>。</p>
 <ul>
@@ -890,15 +885,7 @@
 <blockquote>
 <p><a href="https://codesandbox.io/embed/agitated-rain-55pzk?fontsize=14" target="_blank" rel="noopener">在线代码</a>，可以<strong>刷新页面（刷新内部页面）</strong>在<strong>控制台</strong>中查看当前效果</p>
 </blockquote>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&amp;mid=2247484082&amp;idx=1&amp;sn=2efec72057f7fa448a6c0e258fd80370&amp;chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1568210174017&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b&amp;key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&amp;ascene=1&amp;uin=MTY4MzM5MzY2Mw%3D%3D&amp;devicetype=Windows+10&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw" target="_blank" rel="noopener">一文搞懂浏览器缓存机制</a> &gt; <a href="https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w" target="_blank" rel="noopener">关于 http 缓存，这些知识点你可能都不懂</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q" target="_blank" rel="noopener">浏览器缓存策略</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/44789005" target="_blank" rel="noopener">一文读懂前端缓存</a> &gt; <a href="https://juejin.im/post/5d0f9585e51d4510926a7b68" target="_blank" rel="noopener">通过 koa2 服务器实践探究浏览器 HTTP 缓存机制</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDYxNTM0OQ==&amp;mid=2247484082&amp;idx=1&amp;sn=2efec72057f7fa448a6c0e258fd80370&amp;chksm=ebf9f568dc8e7c7e7d9e134b023c4cc71528caebd14153922bd8a753eb7330ec04289b4c89cc&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1568210174017&amp;sharer_shareid=491f5e3b572f21d39b90888df1c8829b&amp;key=87d0d2afc25bc11ed40773ae28d50dc35909a8612c034880c5d0f249e5ab7525f1e6476a825113b59ad0f71ae424aa90bc5ef63bd55775c844a86d0d7b64c96480f095a3072da752b723851f6685d76b&amp;ascene=1&amp;uin=MTY4MzM5MzY2Mw%3D%3D&amp;devicetype=Windows+10&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=x2ObXwYE5mF5saSt6Ycrs%2FnJfxgIYByJ8YPenA%2Ft5rl%2FXcqc7s6LVGsTuEjoprxw" target="_blank" rel="noopener">一文搞懂浏览器缓存机制</a><br><a href="https://mp.weixin.qq.com/s/MYEXGtMxa3tj4H2-Wl378w" target="_blank" rel="noopener">关于 http 缓存，这些知识点你可能都不懂</a><br><a href="https://mp.weixin.qq.com/s/b_vo_epjycDsGvczU6ol3Q" target="_blank" rel="noopener">浏览器缓存策略</a><br><a href="https://zhuanlan.zhihu.com/p/44789005" target="_blank" rel="noopener">一文读懂前端缓存</a><br><a href="https://juejin.im/post/5d0f9585e51d4510926a7b68" target="_blank" rel="noopener">通过 koa2 服务器实践探究浏览器 HTTP 缓存机制</a></p>
 
       
     </div>
@@ -1070,7 +1057,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1178,7 +1165,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         

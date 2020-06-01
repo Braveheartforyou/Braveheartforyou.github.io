@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="在用javaScript的if的时候他会把固定的值转换为false，其他的统一认为为true">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.882Z">
+<meta property="og:updated_time" content="2020-06-01T08:51:43.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript数据类型（四）IF 转换规则">
 <meta name="twitter:description" content="在用javaScript的if的时候他会把固定的值转换为false，其他的统一认为为true">
@@ -434,9 +434,7 @@
 
       
         <p><strong><em>多言多败，多事多害。——《训蒙增广》</em></strong></p>
-<p><a href="/blog/javascript/javascript-Type-conversion.html">JavaScript 数据类型（一） 常见数据类型</a><br><a href="/blog/javascript/javascript-type-one-question.html">JavaScript 数据类型（二） 类型转换</a><br><a href="/blog/javascript/javascript-type-one-questionone.html">JavaScript 数据类型（三）常见的面试题</a><br><a href="/blog/javascript/javascript-IF-False-options.html">JavaScript 数据类型（四）IF 转换规则</a><br><a href="/blog/javascript/javascript-false-true.html">JavaScript 数据类型（五）== 混乱的转换规则</a><br><a href="/blog/javascript/javascript-bool-type.html">JavaScript 数据类型（六）多种数据类型判断方法</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>在 JavaScript 中使用 if 的时候，自己如果不注意的话很可能出现判断进错，其实在 JavaScript 中只有`固定的几个值会转为 false，其它的统一认为为 true。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在 JavaScript 中使用 if 的时候，自己如果不注意的话很可能出现判断进错，其实在 JavaScript 中只有`固定的几个值会转为 false，其它的统一认为为 true。</p>
 <ul>
 <li><code>false</code></li>
 <li><code>null</code></li>
@@ -453,7 +451,7 @@
 <li>将 AND 转换为 OR</li>
 <li>将 OR 转换为 AND</li>
 <li>删除嵌套的 AND</li>
-<li>删除嵌套的 OR<br>可参考&gt;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators</a></li>
+<li>删除嵌套的 OR<br>可参考 &gt;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_Operators</a></li>
 </ul>
 <h3 id="逻辑与-amp-amp"><a href="#逻辑与-amp-amp" class="headerlink" title="逻辑与(&amp;&amp;)"></a>逻辑与(&amp;&amp;)</h3><p>尽管 <code>&amp;&amp;</code> 和 <code>||</code> 运算符能够使用<code>非布尔值</code>的操作数, 但它们依然被看作是<code>布尔操</code>作符，因为它们的返回值总是能够被转换为<code>布尔值</code>。<br>expr1 &amp;&amp; expr2<br>如果<code>expr1</code>能转换为<code>false</code>则返回<code>expr1</code>,否则返回<code>expr2</code>。因此，与布尔值一起使用时，如果<code>两个</code>操作数都为<code>true</code>时<code>&amp;&amp;</code>返回<code>true</code>,否则返回<code>false</code>.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a1 = <span class="literal">true</span> &amp;&amp; <span class="literal">true</span>; <span class="comment">// t &amp;&amp; t 结果为 true</span></span><br><span class="line">a2 = <span class="literal">true</span> &amp;&amp; <span class="literal">false</span>; <span class="comment">// t &amp;&amp; f 结果为 false</span></span><br><span class="line">a3 = <span class="literal">false</span> &amp;&amp; <span class="literal">true</span>; <span class="comment">// f &amp;&amp; t 结果为 false</span></span><br><span class="line">a4 = <span class="literal">false</span> &amp;&amp; <span class="number">3</span> == <span class="number">4</span>; <span class="comment">// f &amp;&amp; f 结果为 false</span></span><br><span class="line">a5 = <span class="string">'Cat'</span> &amp;&amp; <span class="string">'Dog'</span>; <span class="comment">// t &amp;&amp; t 结果为 Dog</span></span><br><span class="line">a6 = <span class="literal">false</span> &amp;&amp; <span class="string">'Cat'</span>; <span class="comment">// f &amp;&amp; t 结果为 false</span></span><br><span class="line">a7 = <span class="string">'Cat'</span> &amp;&amp; <span class="literal">false</span>; <span class="comment">// t &amp;&amp; f 结果为 false</span></span><br></pre></td></tr></table></figure>
@@ -641,7 +639,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -749,7 +747,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.6k字</span>
+  <span class="post-count">博客全站共215.2k字</span>
 </div> -->
 
         
