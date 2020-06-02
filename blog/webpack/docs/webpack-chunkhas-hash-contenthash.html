@@ -123,24 +123,24 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="webpack中的hash、chunkhash、contenthash分别是什么,在什么场景下用什么样的hash">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-6.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-7.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-8.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-9.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-10.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-11.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.918Z">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-5.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-7.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-9.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png">
+<meta property="og:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-11.png">
+<meta property="og:updated_time" content="2020-06-02T01:20:05.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack中的hash、chunkhash、contenthash分别是什么">
 <meta name="twitter:description" content="webpack中的hash、chunkhash、contenthash分别是什么,在什么场景下用什么样的hash">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-3.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash/webpack/webpack-1-3.png">
 
 
 
@@ -462,7 +462,7 @@
 <li>在项目根目录创建 <code>webpack.config.js</code></li>
 <li>直接在<code>cmd</code>中运行 <code>webpack</code></li>
 </ol>
-<p>文件目录如下：<br><img src="../../images/webpack/webpack-1-3.png" alt="webpack contenthash hash chunkhash"></p>
+<p>文件目录如下：<br><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-3.png" alt="webpack contenthash hash chunkhash"></p>
 <p>下面是代码<br><strong>chunk0.js</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>chunk1.js</strong></p>
@@ -477,10 +477,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>, <span class="comment">// 如果不添加就会警告</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>, <span class="comment">// 一个入口文件</span></span><br><span class="line">    chunk1: <span class="string">'./src/chunk1.js'</span> <span class="comment">// 两一个入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].[hash].js'</span> <span class="comment">// 出口文件</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>我们直接运行<code>webpack</code>，运行结果如下图所示：</p>
 <p>只有一个 hash，所有文件的 hash 都是相同：</p>
-<p><img src="../../images/webpack/webpack-1-4.png" alt="webpack contenthash hash chunkhash"><br>如果我们改变修改<strong>chunk1.js</strong>中的代码：</p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png" alt="webpack contenthash hash chunkhash"><br>如果我们改变修改<strong>chunk1.js</strong>中的代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">flow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'flow1'</span>; <span class="comment">// flow =&gt; folw1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再运行 webpack 发现所有的 hash 都<font color="#ff502c">变化</font>了，如下图所示：</p>
-<p><img src="../../images/webpack/webpack-1-4.png" alt="webpack contenthash hash chunkhash"><br><img src="../../images/webpack/webpack-1-5.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png" alt="webpack contenthash hash chunkhash"><br><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-5.png" alt="webpack contenthash hash chunkhash"></p>
 <p>对比发现他们的 hash 并不相同了，这个时候如果想修改了<strong>chunk1.js</strong>,index.js 不产生变化，就要用到 chunkhash。</p>
 <h2 id="chunkhash"><a href="#chunkhash" class="headerlink" title="chunkhash"></a>chunkhash</h2><ul>
 <li>第一步 我们先把<strong>webpack.config.js</strong>做一下修改</li>
@@ -489,7 +489,7 @@
 <ul>
 <li>第二步 我们运行<code>webpack</code></li>
 </ul>
-<p><img src="../../images/webpack/webpack-1-6.png" alt="webpack contenthash hash chunkhash"><br>根据上面图片发下，两个<code>chunk</code>的<code>hash</code>并不相同了。</p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png" alt="webpack contenthash hash chunkhash"><br>根据上面图片发下，两个<code>chunk</code>的<code>hash</code>并不相同了。</p>
 <ul>
 <li>第三部 我们修改 <code>chunk1.js</code></li>
 </ul>
@@ -497,7 +497,7 @@
 <ul>
 <li>再运行<code>webpack</code></li>
 </ul>
-<p><img src="../../images/webpack/webpack-1-6.png" alt="webpack contenthash hash chunkhash"><br><img src="../../images/webpack/webpack-1-7.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png" alt="webpack contenthash hash chunkhash"><br><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-7.png" alt="webpack contenthash hash chunkhash"></p>
 <p>根据图片我们看到了<code>chunk1.js</code>的<code>hash</code>变化，而<code>index.js</code>的<code>hash</code>并没有变化，达到了我们预期的效果，对我们线上的缓存也是比较好的。</p>
 <h2 id="contenthash"><a href="#contenthash" class="headerlink" title="contenthash"></a>contenthash</h2><p>但是当我们一个<code>js</code>文件里面引用了一个<code>css</code>文件，如果我么修改了<code>css</code>文件内的内容，我们<code>css</code>中的内容，会发发现这整个<code>bundle</code>的<code>hash</code>也会发生更新。<br>我们要引入<code>css</code>，并且要把<code>css</code>提出、压缩生成一个<code>css</code>文件，就要借助一个<code>webpack</code>的插件，叫做<code>MiniCssExtractPlugin</code>,他可以帮我提取 css 到 css 文件，并且压缩 css。</p>
 <ul>
@@ -511,7 +511,7 @@
 <ul>
 <li>第三步运行 webpack</li>
 </ul>
-<p><img src="../../images/webpack/webpack-1-8.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png" alt="webpack contenthash hash chunkhash"></p>
 <p>看代码可以看到<code>index.css</code>和<code>index.js</code>的<code>hash</code>是一样的。</p>
 <ul>
 <li>第四步修改 style.css</li>
@@ -520,19 +520,19 @@
 <ul>
 <li>第五步运行 webpack</li>
 </ul>
-<p><img src="../../images/webpack/webpack-1-8.png" alt="webpack contenthash hash chunkhash"><br><img src="../../images/webpack/webpack-1-9.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png" alt="webpack contenthash hash chunkhash"><br><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-9.png" alt="webpack contenthash hash chunkhash"></p>
 <p>对比两次构建的<code>hash</code>，发现只修改了<code>style.css</code>的文件，引入他的<code>index.js</code>确也更新了<code>hash</code>，这个时候就需要<code>contenthash</code>来发挥作用了。</p>
 <ul>
 <li>第六步修改<code>webpack.config.js</code> 并且运行 webpack</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>); <span class="comment">// 新增</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    chunk1: <span class="string">'./src/chunk1.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].[chunkhash].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="comment">// 新增</span></span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 新增</span></span><br><span class="line">    <span class="comment">// 提取css插件</span></span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      <span class="comment">// Options similar to the same options in webpackOptions.output</span></span><br><span class="line">      <span class="comment">// both options are optional</span></span><br><span class="line">      filename: <span class="string">'[name].[contenthash].css'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><img src="../../images/webpack/webpack-1-10.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png" alt="webpack contenthash hash chunkhash"></p>
 <p>看到他们直接 hash 就是不同的。</p>
 <ul>
 <li>修改<code>common.js</code>，直接运行 webpack</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">commonJs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'commonJs1'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="../../images/webpack/webpack-1-10.png" alt="webpack contenthash hash chunkhash"><br><img src="../../images/webpack/webpack-1-11.png" alt="webpack contenthash hash chunkhash"></p>
+<p><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png" alt="webpack contenthash hash chunkhash"><br><img src="./webpack-chunkhas-hash-contenthash/webpack/webpack-1-11.png" alt="webpack contenthash hash chunkhash"></p>
 <p>看到修改 js 时我们的 css 文件的 hash 并没有变更。</p>
 <blockquote>
 <p>注意，当使用<code>contenthash</code>时，如果修改 js 文件，css 文件的 hash 不会变化，但是修改 js 的文件，css 文件的 hash 也会变化。</p>
@@ -816,7 +816,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

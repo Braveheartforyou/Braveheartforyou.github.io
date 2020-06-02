@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="react中的mixins、hoc、hooks三者对比">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-mixins-1-1.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.892Z">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-mixins-1-1.png">
+<meta property="og:updated_time" content="2020-06-02T00:58:33.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react中的mixins、hoc、hooks三者对比">
 <meta name="twitter:description" content="react中的mixins、hoc、hooks三者对比">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/react/react-mixins-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/react/react-mixins-1-1.png">
 
 
 
@@ -435,8 +435,7 @@
       
 
       
-        <p><a href="/blog/react/react-hoc.html">react 的高阶组件浅析</a><br><a href="/blog/react/react-hooks.html">react 中 Hooks 浅析</a><br><a href="/blog/react/react-mixins-hoc-hooks.html">react 的 mixins、hoc、hooks 对比</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>Mixin（混入）</code>是一种通过扩展收集功能的方式，它本质上是将一个对象的属性拷贝到另一个对象上面去，不过你可以<code>拷贝任意多个对象的任意个方法</code>到一个新对象上去，这是继承所不能实现的。它的出现主要就是为了<code>解决代码复用问题</code>。<br>如下图所示：<br><img src="../../images/react/react-mixins-1-1.png" alt="reac-mixins"><br>Mixin 是用来提取可复用的逻辑或者方法，并且它比继承要更令活，它的应用范围也是比较广的比如在<code>JQuery</code>的<code>extend</code>方法。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>Mixin（混入）</code>是一种通过扩展收集功能的方式，它本质上是将一个对象的属性拷贝到另一个对象上面去，不过你可以<code>拷贝任意多个对象的任意个方法</code>到一个新对象上去，这是继承所不能实现的。它的出现主要就是为了<code>解决代码复用问题</code>。<br>如下图所示：<br><img src="../../../images/react/react-mixins-1-1.png" alt="reac-mixins"><br>Mixin 是用来提取可复用的逻辑或者方法，并且它比继承要更令活，它的应用范围也是比较广的比如在<code>JQuery</code>的<code>extend</code>方法。</p>
 <p>Mixin 大致实现如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setMixin</span>(<span class="params">target, mixin</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>[<span class="number">2</span>]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        t   arget.prototype[<span class="built_in">arguments</span>[i]] = mixin.prototype[<span class="built_in">arguments</span>[i]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> methodName <span class="keyword">in</span> mixin.prototype) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">Object</span>.hasOwnProperty(target.prototype, methodName)) &#123;</span><br><span class="line">                target.prototype[methodName] = mixin.prototype[methodName];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">setMixin(User,LogMixin,<span class="string">'actionLog'</span>);</span><br><span class="line">setMixin(Goods,LogMixin,<span class="string">'requestLog'</span>);</span><br></pre></td></tr></table></figure>
 <p>您可以使用<code>setMixin 方法</code>将任意对象的任意方法扩展到目标对象上。</p>
@@ -450,7 +449,7 @@
 <li><strong>Mixin 非常多时，组件是可以感知到的，甚至还要为其做相关处理，这样会给代码造成滚雪球式的复杂性</strong></li>
 </ul>
 <p><code>React</code>现在已经<code>不再推荐使用 Mixin</code>来解决代码复用问题，因为<code>Mixin</code>带来的<code>危害</code>比他产生的<code>价值</code>还要巨大，并且 React 全面推荐使用<code>高阶组件</code>来替代它。</p>
-<h2 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h2><p>React 推荐高阶组件和代替 Mixin 来做逻辑、代码复用，这里就不多赘述 Hoc 的使用和作用，如果不太清楚的可以看另一篇博客来了解 React 中的 HOC,<a href="/blog/react/react-hoc.html">react 的高阶组件浅析</a>。</p>
+<h2 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h2><p>React 推荐高阶组件和代替 Mixin 来做逻辑、代码复用，这里就不多赘述 Hoc 的使用和作用，如果不太清楚的可以看另一篇博客来了解 React 中的 HOC,<a href="/blog/react/optimization/react-hoc.html">react 的高阶组件浅析</a>。</p>
 <h3 id="HOC-的作用"><a href="#HOC-的作用" class="headerlink" title="HOC 的作用"></a>HOC 的作用</h3><p>HOC 可以比 Mixin 做更多的事情，也没有 Mixin 产生那么大副作用，具体实现什么样的功能如下：</p>
 <ul>
 <li><strong>操作 props(属性)(通过属性代理实现、通过反向继承实现)</strong></li>
@@ -467,14 +466,12 @@
 <p><strong>在新版的 React 中推行 Hooks 来替代 HOC。它可以同时解决 Mixin 和 HOC 带来的问题</strong></p>
 <h2 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h2><p>在<code>React v16.7.0-alpha</code>中加入了新的特性<code>Hooks</code>，他可以让你在<code>class</code>以外使用<code>state</code>和其他<code>React</code>特性。</p>
 <p>使用<code>Hooks</code>，你可以在将含有<code>state 的逻辑从组件中抽象出来</code>，这将可以让这些逻辑容易被测试。同时，<code>Hooks</code>可以帮助你在不重写组件结构的情况下复用这些逻辑。所以，它也可以作为一种实现<code>状态逻辑复用的方案</code>。</p>
-<p>可以看另一篇博客<a href="/blog/react/react-hooks.html">react 中 Hooks 浅析</a></p>
+<p>可以看另一篇博客<a href="/blog/react/hooks/react-hooks.html">react 中 Hooks 浅析</a></p>
 <h2 id="hook-使用事项"><a href="#hook-使用事项" class="headerlink" title="hook 使用事项"></a>hook 使用事项</h2><p><strong>Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。</strong></p>
 <h3 id="只在最顶层使用-Hook"><a href="#只在最顶层使用-Hook" class="headerlink" title="只在最顶层使用 Hook"></a>只在最顶层使用 Hook</h3><p><code>不要</code>在<code>循环，条件或嵌套函数</code>中<code>调用 Hook</code>， 确保总是在你的 <code>React 函数的最顶层调用</code>他们。</p>
 <h3 id="使用范围"><a href="#使用范围" class="headerlink" title="使用范围"></a>使用范围</h3><p><code>不要</code>在<code>普通的 JavaScript 函数中</code>调用 Hook。只能在<code>React 的函数组件中调用 Hook</code>。不要在其他 JavaScript 函数中调用。<br><strong>Hook 的提出主要就是为了解决 class 组件的一系列问题，所以我们能在 class 组件中使用它</strong>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>程序的发展提出一个可以解决当前问题的方案，但随着时间的变化发现以前的方案有很大的副作用或者有更好的方案，就会更新一套更好的方案来解决问题，就像<code>React 中复用逻辑的变化从 Mixin(已废弃)到 HOC(用的比较多)再到现在的 Hooks(新贵)</code>，可能以后 Hooks 也会落伍但是一定要保持学习。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://juejin.im/post/5cad39b3f265da03502b1c0a#heading-36" target="_blank" rel="noopener">【React 深入】从 Mixin 到 HOC 再到 Hook</a> &gt; <a href="/blog/react/react-hoc.html">react 的高阶组件浅析</a> &gt; <a href="/blog/react/react-hooks.html">react 中 Hooks 浅析</a></p>
-</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5cad39b3f265da03502b1c0a#heading-36" target="_blank" rel="noopener">【React 深入】从 Mixin 到 HOC 再到 Hook</a></p>
 
       
     </div>
@@ -754,7 +751,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

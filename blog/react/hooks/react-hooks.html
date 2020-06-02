@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-hook-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-hook-1-1.png">
 <meta property="og:image" content="http://asyncnode.com/blog/images/react/react-hook-1-2.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.892Z">
+<meta property="og:updated_time" content="2020-06-02T00:52:52.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react中Hooks浅析">
 <meta name="twitter:description" content="Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/react/react-hook-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/react/react-hook-1-1.png">
 
 
 
@@ -547,7 +547,7 @@
 <li>第二个参数是这个逻辑依赖输入变量组成的数组，如果不传每次都会执行逻辑函数， 传入空数组只会执行一次。（非必传）</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useMemo &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> renderCount = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'渲染次数：'</span> + count);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'渲染次数：'</span> + count;</span><br><span class="line">  &#125;, [count]);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="comment">// eslint-disable-next-line react/react-in-jsx-scope</span></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button</span><br><span class="line">        type=<span class="string">'button'</span></span><br><span class="line">        onClick=&#123;() =&gt; &#123;</span><br><span class="line">          setCount(count + <span class="number">1</span>);</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">        计数按钮</span><br><span class="line">      &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;&#123;renderCount&#125;&lt;/</span>p&gt;</span><br><span class="line">      &lt;p&gt;&#123;count&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下：<br><img src="../../images/react/react-hook-1-1.png" alt="reac-hook"><br>可以在依赖输入做判断优化渲染次数：</p>
+<p>运行结果如下：<br><img src="../../../images/react/react-hook-1-1.png" alt="reac-hook"><br>可以在依赖输入做判断优化渲染次数：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> renderCount = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(count);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'渲染次数：'</span> + count);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'渲染次数：'</span> + count;</span><br><span class="line">&#125;, [count === <span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
 <p><img src="../../images/react/react-hook-1-2.png" alt="reac-hook"><br><strong>你可以把 useMemo 作为性能优化的手段，但不要把它当成语义上的保证。</strong></p>
 <blockquote>
@@ -850,7 +850,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

@@ -123,15 +123,15 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="在react的v16.x之前和后面是有比较大的变化，先从之前的生命周期说起，并且大致说一下在老的生命周期做不同的操作，新的生命周期怎么做比较好。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-lifecricle-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-lifecricle-1-3.jpg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-lifecricle-1-1.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/react/react-lifecricle-1-4.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.893Z">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-lifecricle-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-lifecricle-1-3.jpg">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-lifecricle-1-1.png">
+<meta property="og:image" content="http://asyncnode.com/images/react/react-lifecricle-1-4.png">
+<meta property="og:updated_time" content="2020-06-02T00:56:59.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react的生命周期">
 <meta name="twitter:description" content="在react的v16.x之前和后面是有比较大的变化，先从之前的生命周期说起，并且大致说一下在老的生命周期做不同的操作，新的生命周期怎么做比较好。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/react/react-lifecricle-1-2.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/react/react-lifecricle-1-2.png">
 
 
 
@@ -438,7 +438,7 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<code>react</code> v16.x 对生命周期有比较大的变化，可以通过下面的两张比较经典的图片来一览变化。<br><strong>react v15.x</strong><br><img src="../../images/react/react-lifecricle-1-2.png" alt="reac-lifecricle"><br><strong>react v16.x</strong><br><img src="../../images/react/react-lifecricle-1-3.jpg" alt="reac-lifecricle"></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<code>react</code> v16.x 对生命周期有比较大的变化，可以通过下面的两张比较经典的图片来一览变化。<br><strong>react v15.x</strong><br><img src="../../../images/react/react-lifecricle-1-2.png" alt="reac-lifecricle"><br><strong>react v16.x</strong><br><img src="../../../images/react/react-lifecricle-1-3.jpg" alt="reac-lifecricle"></p>
 <p><code>react</code> v16.x 的生命周期是在 react v15.x 的生命周期基础上删减了一些生命周期，同时也新增了一些生命周期，删除的生命周期也可以通过 hook 来模拟实现。</p>
 <p><strong>React 16.3 新增的生命周期方法</strong></p>
 <ul>
@@ -461,7 +461,7 @@
 <li>卸载阶段（UnMounting）</li>
 </ol>
 <p>从 React v16.x 开始，还对生命周期加入了错误处理（Error Handling）。</p>
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>其实用下面的这个图更能展现 v15.x 的流程图三个阶段的生命周期，图如下：<br><img src="../../images/react/react-lifecricle-1-1.png" alt="reac-lifecricle"></p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>其实用下面的这个图更能展现 v15.x 的流程图三个阶段的生命周期，图如下：<br><img src="../../../images/react/react-lifecricle-1-1.png" alt="reac-lifecricle"></p>
 <h2 id="挂载-Mounting-阶段"><a href="#挂载-Mounting-阶段" class="headerlink" title="挂载(Mounting)阶段"></a>挂载(Mounting)阶段</h2><ul>
 <li>constructor</li>
 <li>static getDerivedStateFromProps()(<strong>新增</strong>)</li>
@@ -597,7 +597,7 @@
 </ul>
 <h2 id="组件树生命周期调用顺序"><a href="#组件树生命周期调用顺序" class="headerlink" title="组件树生命周期调用顺序"></a>组件树生命周期调用顺序</h2><p>应用初次挂载时，我们以<code>render</code>和<code>componentDidMount</code>为例，React 首先会调用根组件的<code>render</code>钩子，如果有子组件的话，依次调用子组件的<code>render</code>钩子，调用过程其实就是<code>递归</code>的顺序。</p>
 <p>等所有组件的 render 钩子都递归执行完毕，这时候执行权在最后一个子组件手里，于是开始触发下一轮生命周期钩子，调用最后一个子组件的 componentDidMount 钩子，然后调用栈依次往上递归。</p>
-<p><img src="../../images/react/react-lifecricle-1-4.png" alt="reac-lifecricle"></p>
+<p><img src="../../../images/react/react-lifecricle-1-4.png" alt="reac-lifecricle"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app.render();</span><br><span class="line">child.render();</span><br><span class="line">grandson.render();</span><br><span class="line"><span class="comment">// divide</span></span><br><span class="line">grandson.componentDidMount();</span><br><span class="line">child.componentDidMount();</span><br><span class="line">app.componentDidMount();</span><br><span class="line"><span class="comment">// divide</span></span><br><span class="line">app.render();</span><br><span class="line">child.render();</span><br><span class="line">grandson.render();</span><br><span class="line"><span class="comment">// divide</span></span><br><span class="line">grandson.componentDidUpdate();</span><br><span class="line">child.componentDidUpdate();</span><br><span class="line">app.componentDidUpdate();</span><br></pre></td></tr></table></figure>
 <h2 id="V16-生命周期函数用法建议"><a href="#V16-生命周期函数用法建议" class="headerlink" title="V16 生命周期函数用法建议"></a>V16 生命周期函数用法建议</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 用于初始化 state</span></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">  <span class="comment">// 用于替换 `componentWillReceiveProps` ，该函数会在初始化和 `update` 时被调用</span></span><br><span class="line">  <span class="comment">// 因为该函数是静态函数，所以取不到 `this`</span></span><br><span class="line">  <span class="comment">// 如果需要对比 `prevProps` 需要单独在 `state` 中维护</span></span><br><span class="line">  <span class="keyword">static</span> getDerivedStateFromProps(nextProps, prevState) &#123;&#125;</span><br><span class="line">  <span class="comment">// 判断是否需要更新组件，多用于组件性能优化</span></span><br><span class="line">  shouldComponentUpdate(nextProps, nextState) &#123;&#125;</span><br><span class="line">  <span class="comment">// 组件挂载后调用</span></span><br><span class="line">  <span class="comment">// 可以在该函数中进行请求或者订阅</span></span><br><span class="line">  componentDidMount() &#123;&#125;</span><br><span class="line">  <span class="comment">// 用于获得最新的 DOM 数据</span></span><br><span class="line">  getSnapshotBeforeUpdate() &#123;&#125;</span><br><span class="line">  <span class="comment">// 组件即将销毁</span></span><br><span class="line">  <span class="comment">// 可以在此处移除订阅，定时器等等</span></span><br><span class="line">  componentWillUnmount() &#123;&#125;</span><br><span class="line">  <span class="comment">// 组件销毁后调用</span></span><br><span class="line">  componentDidUnMount() &#123;&#125;</span><br><span class="line">  <span class="comment">// 组件更新后调用</span></span><br><span class="line">  componentDidUpdate() &#123;&#125;</span><br><span class="line">  <span class="comment">// 渲染组件函数</span></span><br><span class="line">  render() &#123;&#125;</span><br><span class="line">  <span class="comment">// 以下函数不建议使用</span></span><br><span class="line">  UNSAFE_componentWillMount() &#123;&#125;</span><br><span class="line">  UNSAFE_componentWillUpdate(nextProps, nextState) &#123;&#125;</span><br><span class="line">  UNSAFE_componentWillReceiveProps(nextProps) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5b7e0647e51d455d18400ef7#heading-10" target="_blank" rel="noopener">React 专题：生命周期</a><br><a href="https://blog.hhking.cn/2018/09/18/react-lifecycle-change/" target="_blank" rel="noopener">重新认识 React 生命周期</a><br><a href="https://www.jianshu.com/p/514fe21b9914" target="_blank" rel="noopener">详解 React 生命周期(包括 react16 版)</a></p>
@@ -878,7 +878,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

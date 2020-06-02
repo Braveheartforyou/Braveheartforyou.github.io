@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="编写一个自己的webpack插件plugin">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-3-5.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-3-6.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.918Z">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-3-5.png">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-3-6.png">
+<meta property="og:updated_time" content="2020-06-02T01:23:25.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编写一个自己的webpack插件plugin">
 <meta name="twitter:description" content="编写一个自己的webpack插件plugin">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/webpack/webpack-3-5.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/webpack/webpack-3-5.png">
 
 
 
@@ -436,14 +436,11 @@
       
 
       
-        <p><strong><em>非彼无我，非我无所取。——庄子</em></strong></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>插件是 webpack 的支柱功能。<code>webpack</code> 自身也是构建于，你在 <code>webpack</code> 配置中用到的相同的插件系统之上！插件目的在于解决 <code>loader</code> 无法实现的其他事。<br>要想写好插件就要知道<code>Webpack</code>中的两个比较核心的概念<code>compiler</code>、<code>compilation</code>、<code>tapable</code>。在<a href="/blog/webpack/webpack-process.html">webpack 编译流程</a>已经都要记录。<br><code>Webpack</code> 通过 <code>Plugin</code> 机制让其更加灵活，以适应各种应用场景。 在 <code>Webpack</code> 运行的生命周期中会广播出许多事件，<code>Plugin</code> 可以监听这些事件，在合适的时机通过 <code>Webpack</code> 提供的 <code>API</code> 改变输出结果。</p>
-<h2 id="实现一个-plugin"><a href="#实现一个-plugin" class="headerlink" title="实现一个 plugin"></a>实现一个 plugin</h2><hr>
-<p>一个 webpack plugin 基本包含以下几步：</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>插件是 webpack 的支柱功能。<code>webpack</code> 自身也是构建于，你在 <code>webpack</code> 配置中用到的相同的插件系统之上！插件目的在于解决 <code>loader</code> 无法实现的其他事。<br>要想写好插件就要知道<code>Webpack</code>中的两个比较核心的概念<code>compiler</code>、<code>compilation</code>、<code>tapable</code>。在<a href="/blog/webpack/webpack-process.html">webpack 编译流程</a>已经都要记录。<br><code>Webpack</code> 通过 <code>Plugin</code> 机制让其更加灵活，以适应各种应用场景。 在 <code>Webpack</code> 运行的生命周期中会广播出许多事件，<code>Plugin</code> 可以监听这些事件，在合适的时机通过 <code>Webpack</code> 提供的 <code>API</code> 改变输出结果。</p>
+<h2 id="实现一个-plugin"><a href="#实现一个-plugin" class="headerlink" title="实现一个 plugin"></a>实现一个 plugin</h2><p>一个 webpack plugin 基本包含以下几步：</p>
 <ol>
-<li>一个 JavaScript 函数或者类</li>
-<li>在函数原型（prototype）中定义一个注入<code>compiler</code>对象的<code>apply</code>方法。</li>
+<li>一个 <code>JavaScript 函数或者类</code></li>
+<li>在<code>函数原型（prototype）</code>中定义一个注入<code>compiler</code>对象的<code>apply</code>方法。</li>
 <li><code>apply</code>函数中通过<code>compiler</code>插入指定的事件钩子，在钩子回调中拿到<code>compilation</code>对象</li>
 <li>使用<code>compilation</code>操纵修改<code>webapack</code>内部实例数据。</li>
 <li>异步插件，数据处理完后使用<code>callback</code>回调</li>
@@ -463,12 +460,12 @@
 <ul>
 <li><strong>Compiler 对象包含了 Webpack 环境所有的的配置信息</strong>，包含 <code>options</code>，<code>hook</code>，<code>loaders</code>，<code>plugins</code> 这些信息，这个对象在 <code>Webpack</code> 启动时候被实例化，它是<strong>全局唯一</strong>的，可以简单地把它理解为 <code>Webpack</code> 实例；<code>Compiler</code>中包含的东西如下所示：</li>
 </ul>
-<p><img src="../../images/webpack/webpack-3-5.png" style="height: 300px"></p>
+<p><img src="../../../images/webpack/webpack-3-5.png" style="height: 300px"></p>
 <ul>
 <li><strong>Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等</strong>。当 <code>Webpack</code> 以开发模式运行时，每当检测到一个文件变化，一次新的 <code>Compilation</code> 将被创建。<code>Compilation</code> 对象也提供了很多事件回调供插件做扩展。通过 <code>Compilation</code> 也能读取到 <code>Compiler</code> 对象。</li>
 </ul>
 <p><code>Compilation</code>中包含的东西如下所示：</p>
-<p><img src="../../images/webpack/webpack-3-6.png" style="height: 300px"></p>
+<p><img src="../../../images/webpack/webpack-3-6.png" style="height: 300px"></p>
 <blockquote>
 <p><strong>Compiler 和 Compilation 的区别在于</strong>：<code>Compiler</code> 代表了整个 <code>Webpack</code> 从启动到关闭的生命周期，而 <code>Compilation</code> 只是代表了一次新的编译。</p>
 </blockquote>
@@ -769,7 +766,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

@@ -123,15 +123,15 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="使用webpack打包 前端应用，并且配置jenkins脚本打包不同环境路径，配置文件如vue-cli、create-react-app都可以配置，后续文章记录常用的webpack优化，从文件大小，传输类型，缓存优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/vue_build/jenkins_vue_cli2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/vue_build/jenkins_vue_cli3.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/vue_build/jenkins_vue_cli4.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/vue_build/jenkins_vue_cli5.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.900Z">
+<meta property="og:image" content="http://asyncnode.com/blog/vue/cli/jenkins-fornt/vue_build/jenkins_vue_cli2.png">
+<meta property="og:image" content="http://asyncnode.com/blog/vue/cli/jenkins-fornt/vue_build/jenkins_vue_cli3.png">
+<meta property="og:image" content="http://asyncnode.com/blog/vue/cli/jenkins-fornt/vue_build/jenkins_vue_cli4.png">
+<meta property="og:image" content="http://asyncnode.com/blog/vue/cli/jenkins-fornt/vue_build/jenkins_vue_cli5.png">
+<meta property="og:updated_time" content="2020-06-02T01:14:05.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins配置前端不同环境打包不同的文件">
 <meta name="twitter:description" content="使用webpack打包 前端应用，并且配置jenkins脚本打包不同环境路径，配置文件如vue-cli、create-react-app都可以配置，后续文章记录常用的webpack优化，从文件大小，传输类型，缓存优化">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/vue_build/jenkins_vue_cli2.png">
+<meta name="twitter:image" content="http://asyncnode.com/blog/vue/cli/jenkins-fornt/vue_build/jenkins_vue_cli2.png">
 
 
 
@@ -445,15 +445,15 @@
 <li>“build:uat”: “cross-env API_ROOT=uat node build/build.js”,</li>
 <li>“build:prod”: “cross-env API_ROOT=prod node build/build.js”</li>
 </ul>
-<p>其中<code>cross-env</code>包是为了兼容 liunx 和 window 不同系统都可以把 <font color="green">API_ROOT<code>参数传进进程中. ![jenkins_vue_cli](../../images/vue_build/jenkins_vue_cli.png) 然后配置</code>config<code>文件夹下的&lt;font color=&quot;green&quot;&gt;dev.env.js、prod.env.js</code></font></p>
+<p>其中<code>cross-env</code>包是为了兼容 liunx 和 window 不同系统都可以把 <font color="green">API_ROOT<code>参数传进进程中. ![jenkins_vue_cli](./jenkins-fornt/vue_build/jenkins_vue_cli.png) 然后配置</code>config<code>文件夹下的&lt;font color=&quot;green&quot;&gt;dev.env.js、prod.env.js</code></font></p>
 <h3 id="dev-env-js"><a href="#dev-env-js" class="headerlink" title="dev.env.js"></a>dev.env.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> prodEnv = <span class="built_in">require</span>(<span class="string">'./prod.env'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断环境 运行不同的api</span></span><br><span class="line"><span class="comment"> * 登录地址切换</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">switch</span> (process.env.API_ROOT) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'sit'</span>:</span><br><span class="line">    <span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">      NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">      API_URL: <span class="string">'"http://localhost:3800/api"'</span>,</span><br><span class="line">      API_PUBLIC: <span class="string">'"http://localhost:3800/public_api"'</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="prod-env-js"><a href="#prod-env-js" class="headerlink" title="prod.env.js"></a>prod.env.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断当前环境 打包不同的 api地址  login地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">switch</span> (process.env.API_ROOT) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'sit'</span>:</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">      NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">      API_URL: <span class="string">'"http://localhost:3800/api"'</span>,</span><br><span class="line">      API_PUBLIC: <span class="string">'"http://youpublicapi-sit.com/api"'</span>,</span><br><span class="line">      version: <span class="string">'v1.0.0'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'uat'</span>:</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">      NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">      API_URL: <span class="string">'"http://youapi-uat.com/api"'</span>,</span><br><span class="line">      API_PUBLIC: <span class="string">'"http://youpublicapi-uat.com/api"'</span>,</span><br><span class="line">      version: <span class="string">'v1.0.0'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'prod'</span>:</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">      NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">      API_URL: <span class="string">'"http://youapi-prod.com/api"'</span>,</span><br><span class="line">      API_PUBLIC: <span class="string">'"http://youpublicapi-prod.com/api"'</span>,</span><br><span class="line">      version: <span class="string">'v1.0.0'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后也是最重要的也就是我们要有一个统一的调用地址，如果不是统一的一个，那就多声明几个模块如<code>PAYMENT、PRODUCT</code>等来区分不同环境的不同后台接口<br><img src="../../images/vue_build/jenkins_vue_cli2.png" alt="jenkins_vue_cli2"></p>
+<p>最后也是最重要的也就是我们要有一个统一的调用地址，如果不是统一的一个，那就多声明几个模块如<code>PAYMENT、PRODUCT</code>等来区分不同环境的不同后台接口<br><img src="./jenkins-fornt/vue_build/jenkins_vue_cli2.png" alt="jenkins_vue_cli2"></p>
 <h2 id="jenkins-配置"><a href="#jenkins-配置" class="headerlink" title="jenkins 配置"></a>jenkins 配置</h2><ul>
 <li>新建一个 构建一个自由风格的软件项目</li>
-<li>配置》源码管理》Git(git 地址和 ssh 帐号密码、拉去代码的分支)<br><img src="../../images/vue_build/jenkins_vue_cli3.png" alt="jenkins_vue_cli3"></li>
-<li>锁定编译环境 node 版本为 8.9.3 或者别的<br><img src="../../images/vue_build/jenkins_vue_cli4.png" alt="jenkins_vue_cli4"></li>
-<li>jenkins 前端的构建脚本<br><img src="../../images/vue_build/jenkins_vue_cli5.png" alt="jenkins_vue_cli5"><br>这个只是最简单的打包发送到对应的服务器，其实你在这个时候还可以做很多其他的事，如运行单元测试、sonar 平台质量检测、备份等等</li>
+<li>配置》源码管理》Git(git 地址和 ssh 帐号密码、拉去代码的分支)<br><img src="./jenkins-fornt/vue_build/jenkins_vue_cli3.png" alt="jenkins_vue_cli3"></li>
+<li>锁定编译环境 node 版本为 8.9.3 或者别的<br><img src="./jenkins-fornt/vue_build/jenkins_vue_cli4.png" alt="jenkins_vue_cli4"></li>
+<li>jenkins 前端的构建脚本<br><img src="./jenkins-fornt/vue_build/jenkins_vue_cli5.png" alt="jenkins_vue_cli5"><br>这个只是最简单的打包发送到对应的服务器，其实你在这个时候还可以做很多其他的事，如运行单元测试、sonar 平台质量检测、备份等等</li>
 </ul>
 
       
@@ -734,7 +734,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

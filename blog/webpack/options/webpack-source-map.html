@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="webpack中source-map、preload、prefecth">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-2-1.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.918Z">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-1-2.png">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-2-1.png">
+<meta property="og:updated_time" content="2020-06-02T01:18:23.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack中source-map、WebpackPreload、WebpackPrefetch、WebpackChunkName">
 <meta name="twitter:description" content="webpack中source-map、preload、prefecth">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/webpack/webpack-1-2.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/webpack/webpack-1-2.png">
 
 
 
@@ -394,6 +394,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebPack/未完成/" itemprop="url" rel="index">
+                    <span itemprop="name">未完成</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -438,9 +449,9 @@
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在 webpack 中的比如在调试 vue 代码或者 react 代码中，调试打包后的代码时候，我们都会用到一个叫做 soruce-map，我们都是通过 devtool 来配置。比如说在 vue-cli 或者 create-react-app 中都有用到，source-map 有很多种，我们在这里记录一下他们对应的解释。<br>在编写 vue、react 的时候，我们想做懒加载是，有非常适合 chunk splitting 的模块，比如说 vue-router、react-router，在做懒加载切割的时候有三个要注意的不如说 WebpackChunkName、WebpackPreload、WebpackPrefetch 三个配置，他们分别对应 chunk 的 name，和 chunk 代码何时被加载。</p>
 <blockquote>
-<p><a href="/blog/webpack/webpack-chunkhas-hash-contenthash.html">chunkhas-hash-contenthash</a></p>
+<p><a href="/blog/webpack/docs/webpack-chunkhas-hash-contenthash.html">chunkhas-hash-contenthash</a></p>
 </blockquote>
-<h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><p>当 webpack 打包源代码时，可能会很难追踪到 error(错误) 和 warning(警告) 在源代码中的原始位置。source-map 就是帮忙<strong>追踪 rror(错误) 和 warning(警告)的</strong>。<br>通过下面官方提供的表格一览 devtool 对应 source-map 的配置和速度影响：<br><img src="../../images/webpack/webpack-1-2.png" alt="webpack source-map"><br>在这个上面那种适合 prod 那种适合 dev 环境，还有构建速度和重新构建速度等等。我们可以在上面的基础上再把所有的配置分为四类，<strong>cheap、inline、eval、module</strong>四种，再在这种基础上看一下他们的区别，当然官方提供了 devtool 各种配置下得具体区别，有兴趣的可以看一下<a href="https://github.com/webpack/webpack/tree/master/examples/source-map" target="_blank" rel="noopener">devtool 各种打包区别</a>。</p>
+<h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><p>当 webpack 打包源代码时，可能会很难追踪到 error(错误) 和 warning(警告) 在源代码中的原始位置。source-map 就是帮忙<strong>追踪 rror(错误) 和 warning(警告)的</strong>。<br>通过下面官方提供的表格一览 devtool 对应 source-map 的配置和速度影响：<br><img src="../../../images/webpack/webpack-1-2.png" alt="webpack source-map"><br>在这个上面那种适合 prod 那种适合 dev 环境，还有构建速度和重新构建速度等等。我们可以在上面的基础上再把所有的配置分为四类，<strong>cheap、inline、eval、module</strong>四种，再在这种基础上看一下他们的区别，当然官方提供了 devtool 各种配置下得具体区别，有兴趣的可以看一下<a href="https://github.com/webpack/webpack/tree/master/examples/source-map" target="_blank" rel="noopener">devtool 各种打包区别</a>。</p>
 <p><strong>heap、inline、eval、module 四种解释如下图标所示</strong></p>
 <table>
 <thead>
@@ -468,10 +479,10 @@
 </tr>
 </tbody>
 </table>
-<p>在下面对比 source-map、eval-source-map、cheap-source-map、cheap-module-source-map、inline-souce-map 来验证我们上面的总结<br>基础代码是在<a href="/blog/webpack/webpack-chunkhas-hash-contenthash.html">另一篇博客</a>中</p>
+<p>在下面对比 source-map、eval-source-map、cheap-source-map、cheap-module-source-map、inline-souce-map 来验证我们上面的总结<br>基础代码是在<a href="/blog/webpack/docs/webpack-chunkhas-hash-contenthash.html">另一篇博客</a>中</p>
 <h3 id="source-map-1"><a href="#source-map-1" class="headerlink" title="source-map"></a>source-map</h3><p>webpack 中用使用 devtool，修改 webpack.config.js 文件代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>); <span class="comment">// 新增</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    chunk1: <span class="string">'./src/chunk1.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].[chunkhash].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="comment">// 新增</span></span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 新增</span></span><br><span class="line">    <span class="comment">// 提取css插件</span></span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      <span class="comment">// Options similar to the same options in webpackOptions.output</span></span><br><span class="line">      <span class="comment">// both options are optional</span></span><br><span class="line">      filename: <span class="string">'[name].[contenthash].css'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行 webpack 结果如下：<br><img src="../../images/webpack/webpack-2-1.png" alt="webpack contenthash hash chunkhash"><br>可以看到多了三个文件，就是对应我们业务代码 bundle 的 map 映射。</p>
+<p>运行 webpack 结果如下：<br><img src="../../../images/webpack/webpack-2-1.png" alt="webpack contenthash hash chunkhash"><br>可以看到多了三个文件，就是对应我们业务代码 bundle 的 map 映射。</p>
 <h3 id="eval-source-map"><a href="#eval-source-map" class="headerlink" title="eval-source-map"></a>eval-source-map</h3><p>修改 devtool，修改 webpack.config.js 文件代码如下：</p>
 <pre><code class="javascript">
 </code></pre>
@@ -758,7 +769,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

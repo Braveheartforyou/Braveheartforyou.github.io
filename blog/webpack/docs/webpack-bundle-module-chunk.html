@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="webpack中的bundle、module、chunk分别是什么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack1-1.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.917Z">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack1-1.png">
+<meta property="og:updated_time" content="2020-06-02T01:17:43.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack中的bundle、module、chunk分别是什么">
 <meta name="twitter:description" content="webpack中的bundle、module、chunk分别是什么">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/webpack/webpack1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/webpack/webpack1-1.png">
 
 
 
@@ -466,7 +466,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">'./chunk0.js'</span>;</span><br><span class="line"><span class="keyword">import</span> commonJs <span class="keyword">from</span> <span class="string">'./common'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(commonJs());</span><br></pre></td></tr></table></figure>
 <p><strong>webpack.config.js</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>, <span class="comment">// 如果不添加就会警告</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>, <span class="comment">// 一个入口文件</span></span><br><span class="line">    chunk1: <span class="string">'./src/chunk1.js'</span> <span class="comment">// 两一个入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span> <span class="comment">// 出口文件</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行的效果如下<br><img src="../../images/webpack/webpack1-1.png" alt="webpack bundle module chunk"></p>
+<p>运行的效果如下<br><img src="../../../images/webpack/webpack1-1.png" alt="webpack bundle module chunk"></p>
 <p>通过上面的代码知道，<code>module</code> 就是没有被编译之前的代码，通过 <code>webpack</code> 的根据文件引用关系生成 <code>chunk</code> 文件，webpack 处理好 <code>chunk</code> 文件后，生成运行在浏览器中的代码 <code>bundle</code>。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5cede821f265da1bbd4b5630" target="_blank" rel="noopener">面试必备！webpack 中那些最易混淆的 5 个知识点</a><a href="http://qingbob.com/webpack-chunks-split-01/" target="_blank" rel="noopener">深入理解 Webpack 打包分块（上）</a></p>
 
@@ -746,7 +746,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

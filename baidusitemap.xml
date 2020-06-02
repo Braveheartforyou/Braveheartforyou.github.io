@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://asyncnode.com/blog/mobile/bug/ios-bug.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/webpack/plugin/webpack-self-plugins.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/webpack/principle/webpack-process.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/webpack/options/webpack-source-map.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/webpack/docs/webpack-bundle-module-chunk.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/cli/vue-build-dll.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/cli/jenkins-fornt.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/principle/vue-next-tick.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/lifecircle/vue-list-two.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/lifecircle/vue-list-one.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/principle/vue-dep.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/vue/principle/vue-definedProperty.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/react/hooks/react-mixins-hoc-hooks.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/react/lifecircle/react-lifecycle.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/react/hooks/react-hooks.html</loc>
+    <lastmod>2020-06-02</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/javascript/scope/javascript-scope.html</loc>
+    <lastmod>2020-06-01</lastmod>
+  </url>  <url>
+    <loc>http://asyncnode.com/blog/javascript/type/javascript-bool-type.html</loc>
+    <lastmod>2020-06-01</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/scope/hoisting.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
@@ -74,9 +128,6 @@
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/type/javascript-Type-conversion.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/type/javascript-bool-type.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/type/javascript-type-one-questionone.html</loc>
@@ -157,22 +208,7 @@
     <loc>http://asyncnode.com/blog/webpack/principle/webpack-rely-load.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/webpack/principle/webpack-process.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/webpack/docs/webpack-chunkhas-hash-contenthash.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/webpack/options/webpack-source-map.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/webpack/plugin/webpack-self-plugins.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/vue/ui/vue-ui.pagination.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/webpack/docs/webpack-bundle-module-chunk.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue/ui/vue-ui-selectedTwo.html</loc>
@@ -217,10 +253,10 @@
     <loc>http://asyncnode.com/blog/vue/ui/vue-element-input.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/principle/vue-parse.html</loc>
+    <loc>http://asyncnode.com/blog/vue/principle/vue-notify.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/principle/vue-notify.html</loc>
+    <loc>http://asyncnode.com/blog/vue/principle/vue-parse.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue/principle/vue-three-wathcer.html</loc>
@@ -241,9 +277,6 @@
     <loc>http://asyncnode.com/blog/vue/principle/vue-new-vue.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/principle/vue-next-tick.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/vue/optimization/vue-Mixins-one.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
@@ -253,34 +286,19 @@
     <loc>http://asyncnode.com/blog/vue/principle/vue-complier.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/principle/vue-definedProperty.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/principle/vue-dep.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/vue/effect/vue-vModel-sync.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/lifecircle/vue-list-one.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/lifecircle/vue-list-two.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/typescript/react-typescript.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/cli/jenkins-fornt.html</loc>
+    <loc>http://asyncnode.com/blog/vue/effect/vue-simple-mvvm.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/vue/cli/webpack-cli-sap.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/cli/vue-build-dll.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/vue/effect/vue-simple-mvvm.html</loc>
+    <loc>http://asyncnode.com/blog/tools/git/git-rebase.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/typescript/docs/typeScript_decorator.html</loc>
@@ -289,7 +307,7 @@
     <loc>http://asyncnode.com/blog/typescript/docs/typeScript_interface.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/tools/git/git-rebase.html</loc>
+    <loc>http://asyncnode.com/blog/tools/git/git-flow.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/tools/git/git-hooks.html</loc>
@@ -299,9 +317,6 @@
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/tools/git/git-precommit.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/tools/git/git-flow.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/tools/git/git-delete.html</loc>
@@ -316,28 +331,19 @@
     <loc>http://asyncnode.com/blog/react/redux-mobox-rxjs/react-redux2.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
+    <loc>http://asyncnode.com/blog/react/optimization/react-hoc.html</loc>
+    <lastmod>2020-06-01</lastmod>
+  </url>  <url>
     <loc>http://asyncnode.com/blog/react/principle/react-render-props.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/react/principle/react-setState.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/react/optimization/react-hoc.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/react/lib/react-immutable.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/react/lifecircle/react-lifecycle.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/react/hooks/react-useState.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/react/hooks/react-mixins-hoc-hooks.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/react/hooks/react-hooks.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/react/docs/react-context.html</loc>
@@ -370,9 +376,6 @@
     <loc>http://asyncnode.com/blog/monitor/perfromance/preformance.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/mobile/bug/ios-bug.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>http://asyncnode.com/blog/mobile/bug/mobile-all.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
@@ -394,10 +397,10 @@
     <loc>http://asyncnode.com/blog/javascript/this/javascript-this-three.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/this/javascript-this.html</loc>
+    <loc>http://asyncnode.com/blog/javascript/this/javascript-this-two.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/this/javascript-this-two.html</loc>
+    <loc>http://asyncnode.com/blog/javascript/this/javascript-this.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/this/javascript-this-five.html</loc>
@@ -416,9 +419,6 @@
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/scope/javascript-scope-two.html</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
-    <loc>http://asyncnode.com/blog/javascript/scope/javascript-scope.html</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
     <loc>http://asyncnode.com/blog/javascript/ram/javascript-GC.html</loc>

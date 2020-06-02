@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="webpack编译流程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack2.svg">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-3-2.png">
-<meta property="og:image" content="http://asyncnode.com/blog/images/webpack/webpack-3-4.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.919Z">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack2.svg">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-3-2.png">
+<meta property="og:image" content="http://asyncnode.com/images/webpack/webpack-3-4.png">
+<meta property="og:updated_time" content="2020-06-02T01:22:27.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack编译流程">
 <meta name="twitter:description" content="webpack编译流程">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/webpack/webpack2.svg">
+<meta name="twitter:image" content="http://asyncnode.com/images/webpack/webpack2.svg">
 
 
 
@@ -437,9 +437,7 @@
       
 
       
-        <p><strong><em>中无主而不止，外无正而不行。——庄子</em></strong></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>现在前端开发基本上都会用到<code>react</code>、<code>vue</code>，用到了前端<code>mvc</code>、<code>mvvm</code>框架，基本上都会涉及到打包发布，打包常用的工具就是<code>webpack</code>、<code>gulp</code>等等。经常使用自然也要了解一些他大致的流程也会方便使用。<br>首先要理解 webpack 中比较核心的概念：</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>现在前端开发基本上都会用到<code>react</code>、<code>vue</code>，用到了前端<code>mvc</code>、<code>mvvm</code>框架，基本上都会涉及到打包发布，打包常用的工具就是<code>webpack</code>、<code>gulp</code>等等。经常使用自然也要了解一些他大致的流程也会方便使用。<br>首先要理解 webpack 中比较核心的概念：</p>
 <ul>
 <li><strong>Entry</strong>: 指定 webpack 开始构建的入口模块，从该模块开始构建并计算出直接或间接依赖的模块或者库。</li>
 <li><strong>Output</strong>：告诉 webpack 如何命名输出的文件以及输出的目录</li>
@@ -449,20 +447,19 @@
 <li><strong>Plugin</strong>：扩展插件，在 Webpack 构建流程中的特定时机会广播出对应的事件，插件可以监听这些事件的发生，在特定时机做对应的事情。</li>
 </ul>
 <p>webpack 执行流程和事件流如下图所示：</p>
-<p><img src="../../images/webpack/webpack2.svg" style="height: 400px"><br>webpack编译过程中一个比较重要的概念<strong>compiler</strong>、<strong>compilation</strong>，如下：</p>
+<p><img src="../../../images/webpack/webpack2.svg" style="height: 400px"><br>webpack编译过程中一个比较重要的概念<strong>compiler</strong>、<strong>compilation</strong>，如下：</p>
 <ul>
 <li><strong>Compiler 对象</strong>：负责文件监听和启动编译。<code>Compiler</code> 实例中包含了完整的 <code>webpack</code> 配置，全局只有一个 <code>Compiler</code> 实例。</li>
-<li><strong>Compilation 对象</strong>：当 <code>webpack</code> 以开发模式运行时，每当检测到文件变化，一次新的 <code>Compilation</code> 将被创建。一个 <code>Compilation</code> 对象包含了当前的模块资源、编译生成资源、变化的文件等。<code>Compilation</code> 对象也提供了很多事件回调供插件做扩展。<!-- ![webpack-flow](../../images/webpack/webpack-3-1.png) -->
+<li><strong>Compilation 对象</strong>：当 <code>webpack</code> 以开发模式运行时，每当检测到文件变化，一次新的 <code>Compilation</code> 将被创建。一个 <code>Compilation</code> 对象包含了当前的模块资源、编译生成资源、变化的文件等。<code>Compilation</code> 对象也提供了很多事件回调供插件做扩展。<!-- ![webpack-flow](../../../images/webpack/webpack-3-1.png) -->
 </li>
 </ul>
-<h2 id="webpack-流程"><a href="#webpack-流程" class="headerlink" title="webpack 流程"></a>webpack 流程</h2><hr>
-<p>Webpack 的运行流程是一个串行的过程，从启动到结束依次执行以下流程：</p>
+<h2 id="webpack-流程"><a href="#webpack-流程" class="headerlink" title="webpack 流程"></a>webpack 流程</h2><p>Webpack 的运行流程是一个串行的过程，从启动到结束依次执行以下流程：</p>
 <ol>
-<li>初始化：启动构建，读取与合并配置参数，加载 Plugin，实例化 Compiler。</li>
-<li>编译：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找到该 Module 依赖的 Module，递归地进行编译处理。</li>
-<li>输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。</li>
+<li><code>初始化：启动构建，读取与合并配置参数，加载 Plugin，实例化 Compiler</code>。</li>
+<li><code>编译：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找到该 Module 依赖的 Module，递归地进行编译处理。</code></li>
+<li><code>输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。</code></li>
 </ol>
-<p>如果只执行一次构建，以上阶段将会按照顺序各执行一次。但在开启监听模式下，流程将变为如下：<br><img src="../../images/webpack/webpack-3-2.png" alt="webpack-flow"><br>下面具体介绍一下 <code>webpack</code>的三个大阶段具体的小步。</p>
+<p>如果只执行一次构建，以上阶段将会按照顺序各执行一次。但在开启监听模式下，流程将变为如下：<br><img src="../../../images/webpack/webpack-3-2.png" alt="webpack-flow"><br>下面具体介绍一下 <code>webpack</code>的三个大阶段具体的小步。</p>
 <h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>初始化阶段大致分为：</p>
 <ul>
 <li>合并<code>shell</code>和<strong>配置文件文件</strong>的参数并且<strong>实例化 Complier 对象</strong>。</li>
@@ -619,7 +616,7 @@
 <p>同理，<code>compilation.apply</code> 和 <code>compilation.plugin</code> 使用方法和上面一致。</p>
 <p><a href="https://github.com/webpack/tapable" target="_blank" rel="noopener">tapable</a>库暴露了很多 Hook（钩子）类，为插件提供挂载的钩子。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">  SyncHook,</span><br><span class="line">  SyncBailHook,</span><br><span class="line">  SyncWaterfallHook,</span><br><span class="line">  SyncLoopHook,</span><br><span class="line">  AsyncParallelHook,</span><br><span class="line">  AsyncParallelBailHook,</span><br><span class="line">  AsyncSeriesHook,</span><br><span class="line">  AsyncSeriesBailHook,</span><br><span class="line">  AsyncSeriesWaterfallHook</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'tapable'</span>);</span><br></pre></td></tr></table></figure>
-<p>如下图所示 tapable 上的钩子：<br><img src="../../images/webpack/webpack-3-4.png" alt="webpack-flow"></p>
+<p>如下图所示 tapable 上的钩子：<br><img src="../../../images/webpack/webpack-3-4.png" alt="webpack-flow"></p>
 <p>tabable 的提供了两类绑定钩子的方式：</p>
 <ul>
 <li><strong>AsyncHook(异步钩子)</strong>： <strong>绑定</strong>可以通过<code>tapAsync</code> 或 <code>tapPromise</code>（以及 <code>tap</code>），<strong>执行</strong>通过 <code>callAsync</code>、<code>promise</code>；</li>
@@ -915,7 +912,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         

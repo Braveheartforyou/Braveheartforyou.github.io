@@ -123,12 +123,12 @@
 <meta property="og:site_name" content="asyncnode">
 <meta property="og:description" content="Vue.js 实现响应式的核心是利用了 ES5 的 Object.defineProperty，这也是为什么 Vue.js 不能兼容 IE8 及以下浏览器的原因。Object.defineProperty是不能观测数据的一些方法的，为什么Vue中却可以实现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://asyncnode.com/blog/images/vue/vue-defineProperty-1-1.png">
-<meta property="og:updated_time" content="2020-06-01T00:18:43.902Z">
+<meta property="og:image" content="http://asyncnode.com/images/vue/vue-defineProperty-1-1.png">
+<meta property="og:updated_time" content="2020-06-02T00:59:18.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入Vue系列 Vue中的响应式对象">
 <meta name="twitter:description" content="Vue.js 实现响应式的核心是利用了 ES5 的 Object.defineProperty，这也是为什么 Vue.js 不能兼容 IE8 及以下浏览器的原因。Object.defineProperty是不能观测数据的一些方法的，为什么Vue中却可以实现。">
-<meta name="twitter:image" content="http://asyncnode.com/blog/images/vue/vue-defineProperty-1-1.png">
+<meta name="twitter:image" content="http://asyncnode.com/images/vue/vue-defineProperty-1-1.png">
 
 
 
@@ -435,12 +435,11 @@
       
 
       
-        <p><a href="/blog/vue/vue-definedProperty.html">深入 Vue 系列 Vue 中的响应式对象</a><br><a href="/blog/vue/vue-dep.html">深入 Vue 系列 Vue 中的依赖收集</a><br><a href="/blog/vue/vue-notify.html">深入 Vue 系列 Vue 中的派发更新</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Vue 的<strong>核心响应式</strong>是通过<code>Obeject.defineProperty</code>方法来实现的。 而<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>是 ES5 中无法<strong>shim</strong>的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Vue 的<strong>核心响应式</strong>是通过<code>Obeject.defineProperty</code>方法来实现的。 而<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>是 ES5 中无法<strong>shim</strong>的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。</p>
 <p><strong>Object.defineProperty</strong><br>Object.defineProperty 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象，先来看一下它的语法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor);</span><br></pre></td></tr></table></figure>
 <p>obj 是要在其上定义属性的对象；prop 是要定义或修改的属性的名称；descriptor 是将被定义或修改的属性描述符。</p>
-<p>由于 Vue 会在初始化实例时对属性执行 <strong>getter/setter</strong> 转化过程，所以属性必须在 <code>data</code> 对象上存在才能让 Vue 转换它，这样才能让它是响应的。<br>响应式原理大致流程如下图所示：<br><img src="../../images/vue/vue-defineProperty-1-1.png" alt="vue-defineProperty"><br>Vue 数据响应式变化主要涉及<strong>Observer、Watcher、Dep</strong>这三个主要的类。这里主要是响应式对象，后面分别会记录它的依赖收集、派发更新、三种 Watcher。<br>把普通对象改造为<strong>响应式对象</strong>在 Vue 中的大致流程为：</p>
+<p>由于 Vue 会在初始化实例时对属性执行 <strong>getter/setter</strong> 转化过程，所以属性必须在 <code>data</code> 对象上存在才能让 Vue 转换它，这样才能让它是响应的。<br>响应式原理大致流程如下图所示：<br><img src="../../../images/vue/vue-defineProperty-1-1.png" alt="vue-defineProperty"><br>Vue 数据响应式变化主要涉及<strong>Observer、Watcher、Dep</strong>这三个主要的类。这里主要是响应式对象，后面分别会记录它的依赖收集、派发更新、三种 Watcher。<br>把普通对象改造为<strong>响应式对象</strong>在 Vue 中的大致流程为：</p>
 <ul>
 <li><code>initState</code>(初始化数据)</li>
 <li><code>Observer(</code>劫持数据)</li>
@@ -765,7 +764,7 @@
 
 <!--<div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共215.2k字</span>
+  <span class="post-count">博客全站共215.1k字</span>
 </div> -->
 
         
