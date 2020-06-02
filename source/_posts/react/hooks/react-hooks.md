@@ -332,7 +332,7 @@ export default Counter;
 ```
 
 运行结果如下：
-![reac-hook](../../images/react/react-hook-1-1.png)
+![reac-hook](../../../images/react/react-hook-1-1.png)
 可以在依赖输入做判断优化渲染次数：
 
 ```javascript

@@ -6,10 +6,6 @@ categories: [Vue]
 description: Vue.js 实现响应式的核心是利用了 ES5 的 Object.defineProperty，这也是为什么 Vue.js 不能兼容 IE8 及以下浏览器的原因。Object.defineProperty是不能观测数据的一些方法的，为什么Vue中却可以实现。
 ---
 
-[深入 Vue 系列 Vue 中的响应式对象](/blog/vue/vue-definedProperty.html)
-[深入 Vue 系列 Vue 中的依赖收集](/blog/vue/vue-dep.html)
-[深入 Vue 系列 Vue 中的派发更新](/blog/vue/vue-notify.html)
-
 ## 简介
 
 Vue 的**核心响应式**是通过`Obeject.defineProperty`方法来实现的。 而[Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)是 ES5 中无法**shim**的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。
@@ -25,7 +21,7 @@ obj 是要在其上定义属性的对象；prop 是要定义或修改的属性�
 
 由于 Vue 会在初始化实例时对属性执行 **getter/setter** 转化过程，所以属性必须在 `data` 对象上存在才能让 Vue 转换它，这样才能让它是响应的。
 响应式原理大致流程如下图所示：
-![vue-defineProperty](../../images/vue/vue-defineProperty-1-1.png)
+![vue-defineProperty](../../../images/vue/vue-defineProperty-1-1.png)
 Vue 数据响应式变化主要涉及**Observer、Watcher、Dep**这三个主要的类。这里主要是响应式对象，后面分别会记录它的依赖收集、派发更新、三种 Watcher。
 把普通对象改造为**响应式对象**在 Vue 中的大致流程为：
 

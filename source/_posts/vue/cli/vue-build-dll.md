@@ -13,9 +13,9 @@ description: 在使用了Vue官方的vue-cli时，使用dll优化打包过程，
 运行`npm run build --report`
 如下图所示：
 在 cmd 中显示打包信息
-![cmd build](../../images/vue_build/vue_build_dos1.jpg)
+![cmd build](./vue-build-dll/vue_build/vue_build_dos1.jpg)
 在页面中显示打包信息
-![html build](../../images/vue_build/vue_build_dos2.jpg)
+![html build](./vue-build-dll/vue_build/vue_build_dos2.jpg)
 
 ## 懒加载
 
@@ -24,9 +24,9 @@ description: 在使用了Vue官方的vue-cli时，使用dll优化打包过程，
 参考 > https://router.vuejs.org/zh-cn/advanced/lazy-loading.html
 打包如下所示：
 在 cmd 中显示打包信息
-![cmd build](../../images/vue_build/vue_build_dos3.jpg)
+![cmd build](./vue-build-dll/vue_build/vue_build_dos3.jpg)
 在页面中显示打包信息
-![html build](../../images/vue_build/vue_build_dos4.jpg)
+![html build](./vue-build-dll/vue_build/vue_build_dos4.jpg)
 其中的`static/js/0.66e1ff74acbd166fa927.js`对应的是`ppt_model.vue`页面
 `static/js/1.f09ddc0b737b2466f148.js`对应的是`ppt_model1.vue`页面
 
@@ -79,9 +79,9 @@ module.exports = {
 再运行`npm run build --report`
 运行结果如图所示：
 在 cmd 中显示打包信息
-![cmd build](../../images/vue_build/vue_build_dos6.jpg)
+![cmd build](./vue-build-dll/vue_build/vue_build_dos6.jpg)
 在页面中显示打包信息
-![html build](../../images/vue_build/vue_build_dos7.jpg)
+![html build](./vue-build-dll/vue_build/vue_build_dos7.jpg)
 
 `**注意**`
 在打包前记得在 index.html 最下方，引入打包生成的 js
@@ -103,5 +103,7 @@ module.exports = {
 </html>
 ```
 
-如果报错，请参考 > https://router.vuejs.org/zh-cn/advanced/lazy-loading.html
+## 参考
+
+[webpack dll](https://router.vuejs.org/zh-cn/advanced/lazy-loading.html)
 本地可以预览页面效果，接口是不能调用的，dist 中的 index.html

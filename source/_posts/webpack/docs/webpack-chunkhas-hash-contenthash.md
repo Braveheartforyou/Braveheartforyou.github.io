@@ -35,7 +35,7 @@ description: webpack中的hash、chunkhash、contenthash分别是什么,在什�
 6. 直接在`cmd`中运行 `webpack`
 
 文件目录如下：
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-3.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-3.png)
 
 下面是代码
 **chunk0.js**
@@ -100,7 +100,7 @@ module.exports = {
 
 只有一个 hash，所有文件的 hash 都是相同：
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-4.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png)
 如果我们改变修改**chunk1.js**中的代码：
 
 ```javascript
@@ -111,8 +111,8 @@ export default function flow() {
 
 再运行 webpack 发现所有的 hash 都<font color="#ff502c">变化</font>了，如下图所示：
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-4.png)
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-5.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-4.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-5.png)
 
 对比发现他们的 hash 并不相同了，这个时候如果想修改了**chunk1.js**,index.js 不产生变化，就要用到 chunkhash。
 
@@ -135,7 +135,7 @@ module.exports = {
 
 - 第二步 我们运行`webpack`
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-6.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png)
 根据上面图片发下，两个`chunk`的`hash`并不相同了。
 
 - 第三部 我们修改 `chunk1.js`
@@ -148,8 +148,8 @@ export default function flow() {
 
 - 再运行`webpack`
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-6.png)
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-7.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-6.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-7.png)
 
 根据图片我们看到了`chunk1.js`的`hash`变化，而`index.js`的`hash`并没有变化，达到了我们预期的效果，对我们线上的缓存也是比较好的。
 
@@ -200,7 +200,7 @@ module.exports = {
 
 - 第三步运行 webpack
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-8.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png)
 
 看代码可以看到`index.css`和`index.js`的`hash`是一样的。
 
@@ -214,8 +214,8 @@ html {
 
 - 第五步运行 webpack
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-8.png)
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-9.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-8.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-9.png)
 
 对比两次构建的`hash`，发现只修改了`style.css`的文件，引入他的`index.js`确也更新了`hash`，这个时候就需要`contenthash`来发挥作用了。
 
@@ -253,7 +253,7 @@ module.exports = {
 };
 ```
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-10.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png)
 
 看到他们直接 hash 就是不同的。
 
@@ -265,8 +265,8 @@ export default function commonJs() {
 }
 ```
 
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-10.png)
-![webpack contenthash hash chunkhash](../../images/webpack/webpack-1-11.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-10.png)
+![webpack contenthash hash chunkhash](./webpack-chunkhas-hash-contenthash/webpack/webpack-1-11.png)
 
 看到修改 js 时我们的 css 文件的 hash 并没有变更。
 

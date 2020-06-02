@@ -6,14 +6,10 @@ categories: [Vue]
 description: Vue首先会会通过Obsever,创建响应式数据,并且在getter中做依赖收集setter中派发。
 ---
 
-[深入 Vue 系列 Vue 中的响应式对象](/blog/vue/vue-definedProperty.html)
-[深入 Vue 系列 Vue 中的依赖收集](/blog/vue/vue-dep.html)
-[深入 Vue 系列 Vue 中的派发更新](/blog/vue/vue-notify.html)
-
 ## 简介
 
 通过响应式对象知道，每一个 `data` 的属相都会实例化一个 `Dep`，并且它的 `get` 函数中通过 `dep.depend`做依赖收集。通过下面这张图比较直观的看出依赖收集的过程：
-![vue-Dep](../../images/vue/vue-Dep-1-1.jpg)
+![vue-Dep](../../../images/vue/vue-Dep-1-1.jpg)
 `defineReactive` 的功能就是定义一个响应式对象，给对象动态添加 `getter` 和 `setter`，它的定义在 `src/core/observer/index.js`，在 `getter` 中会做依赖收集，代码如下：
 
 ```javascript

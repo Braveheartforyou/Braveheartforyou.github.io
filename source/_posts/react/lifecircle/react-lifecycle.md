@@ -10,9 +10,9 @@ description: 在react的v16.x之前和后面是有比较大的变化，先从之
 
 在`react` v16.x 对生命周期有比较大的变化，可以通过下面的两张比较经典的图片来一览变化。
 **react v15.x**
-![reac-lifecricle](../../images/react/react-lifecricle-1-2.png)
+![reac-lifecricle](../../../images/react/react-lifecricle-1-2.png)
 **react v16.x**
-![reac-lifecricle](../../images/react/react-lifecricle-1-3.jpg)
+![reac-lifecricle](../../../images/react/react-lifecricle-1-3.jpg)
 
 `react` v16.x 的生命周期是在 react v15.x 的生命周期基础上删减了一些生命周期，同时也新增了一些生命周期，删除的生命周期也可以通过 hook 来模拟实现。
 
@@ -43,7 +43,7 @@ description: 在react的v16.x之前和后面是有比较大的变化，先从之
 ## 生命周期
 
 其实用下面的这个图更能展现 v15.x 的流程图三个阶段的生命周期，图如下：
-![reac-lifecricle](../../images/react/react-lifecricle-1-1.png)
+![reac-lifecricle](../../../images/react/react-lifecricle-1-1.png)
 
 ## 挂载(Mounting)阶段
 
@@ -307,7 +307,7 @@ class ScrollingList extends React.Component {
 
 等所有组件的 render 钩子都递归执行完毕，这时候执行权在最后一个子组件手里，于是开始触发下一轮生命周期钩子，调用最后一个子组件的 componentDidMount 钩子，然后调用栈依次往上递归。
 
-![reac-lifecricle](../../images/react/react-lifecricle-1-4.png)
+![reac-lifecricle](../../../images/react/react-lifecricle-1-4.png)
 
 ```javascript
 app.render();

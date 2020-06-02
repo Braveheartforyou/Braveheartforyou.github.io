@@ -6,11 +6,7 @@ categories: [WebPack]
 description: 编写一个自己的webpack插件plugin
 ---
 
-**_非彼无我，非我无所取。——庄子_**
-
 ## 简介
-
----
 
 插件是 webpack 的支柱功能。`webpack` 自身也是构建于，你在 `webpack` 配置中用到的相同的插件系统之上！插件目的在于解决 `loader` 无法实现的其他事。
 要想写好插件就要知道`Webpack`中的两个比较核心的概念`compiler`、`compilation`、`tapable`。在[webpack 编译流程](/blog/webpack/webpack-process.html)已经都要记录。
@@ -18,12 +14,10 @@ description: 编写一个自己的webpack插件plugin
 
 ## 实现一个 plugin
 
----
-
 一个 webpack plugin 基本包含以下几步：
 
-1. 一个 JavaScript 函数或者类
-2. 在函数原型（prototype）中定义一个注入`compiler`对象的`apply`方法。
+1. 一个 `JavaScript 函数或者类`
+2. 在`函数原型（prototype）`中定义一个注入`compiler`对象的`apply`方法。
 3. `apply`函数中通过`compiler`插入指定的事件钩子，在钩子回调中拿到`compilation`对象
 4. 使用`compilation`操纵修改`webapack`内部实例数据。
 5. 异步插件，数据处理完后使用`callback`回调
@@ -97,13 +91,13 @@ module.exports = {
 
 - **Compiler 对象包含了 Webpack 环境所有的的配置信息**，包含 `options`，`hook`，`loaders`，`plugins` 这些信息，这个对象在 `Webpack` 启动时候被实例化，它是**全局唯一**的，可以简单地把它理解为 `Webpack` 实例；`Compiler`中包含的东西如下所示：
 
-<img src="../../images/webpack/webpack-3-5.png" style="height: 300px"/>
+<img src="../../../images/webpack/webpack-3-5.png" style="height: 300px"/>
 
 - **Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等**。当 `Webpack` 以开发模式运行时，每当检测到一个文件变化，一次新的 `Compilation` 将被创建。`Compilation` 对象也提供了很多事件回调供插件做扩展。通过 `Compilation` 也能读取到 `Compiler` 对象。
 
 `Compilation`中包含的东西如下所示：
 
-<img src="../../images/webpack/webpack-3-6.png" style="height: 300px"/>
+<img src="../../../images/webpack/webpack-3-6.png" style="height: 300px"/>
 
 > **Compiler 和 Compilation 的区别在于**：`Compiler` 代表了整个 `Webpack` 从启动到关闭的生命周期，而 `Compilation` 只是代表了一次新的编译。
 

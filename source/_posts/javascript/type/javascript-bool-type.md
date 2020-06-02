@@ -35,8 +35,6 @@ description: javascript中的类型判断又分为基础类型判断和引用类
 
 ## typeof 运算符
 
----
-
 ### typeof 语法
 
 typeof 运算符后跟操作数：
@@ -147,7 +145,7 @@ c2 instanceof C; // false
 
 从 `instanceof` 能够判断出 `[ ].__proto__` 指向 `Array.prototype`，而 `Array.prototype.__proto__` 又指向了`Object.prototype`，最终 `Object.prototype.__proto__` 指向了`null`，标志着原型链的结束。因此，`[]、Array、Object` 就在内部形成了一条原型链：
 
-<img src="../../../images/javascript/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"/>
+<img src="./javascript-bool-type/javascript1.png" alt="[]-Array-Object" width="60%" style="margin: 0 auto;"/>
 
 从原型链可以看出，`[]` 的 `__proto__` 直接指向`Array.prototype`，间接指向 `Object.prototype`，所以按照 `instanceof` 的判断规则，`[]` 就是`Object`的实例。依次类推，类似的 `new Date()、new Person()` 也会形成一条对应的原型链 。**因此，instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型。**
 
@@ -186,7 +184,7 @@ instance_of([], Object); // true
 
 当一个函数 F 被定义时，JS 引擎会为 F 添加 `prototype` 原型，然后再在 `prototype`上添加一个 `constructor` 属性，并让其指向 F 的引用。如下所示：
 
-<img src="../../../images/javascript/javascript2.png" alt="constructor"  style="margin: 0 auto;"/>
+<img src="./javascript-bool-type/javascript2.png" alt="constructor"  style="margin: 0 auto;"/>
 
 当执行 `var f = new F()` 时，F 被当成了构造函数，f 是 F 的实例对象，此时 F 原型上的 `constructor` 传递到了 f 上，因此 `f.constructor === F`.
 

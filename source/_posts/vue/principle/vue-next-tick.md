@@ -8,7 +8,7 @@ description: Vue的next-tick其实也是在eventloop的原理实现的
 
 ## 简介
 
-在 vue 的官方文档中有一个 API 叫做 nextTick，将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+在 vue 的官方文档中有一个 API 叫做 `nextTick`，`将回调延迟到下次 DOM 更新循环之后执行`。在修改数据之后立即使用这个方法，获取更新后的 DOM。
 **语法**
 
 ```javascript
@@ -29,9 +29,9 @@ vm.$nextTick([callback]);
 
 Vue 的响应式原理：在 data 选项里所有属性都会被`watcher`监控，当修改了`data`的某一个值，并不会**立即**反映到视图中。Vue 会将我们对`data`的更改放到`watcher`的一个队列中（异步），只有在当前任务空闲时才会去执行`watcher`队列任务。这就有一个延迟时间，所以对 dom 的操作要放在`$nextTick`中来操作，才能获取到最新的`dom`。
 
-> [响应式对象 Observer](/blog/vue/vue-definedProperty.html) > [依赖收集 Dep](/blog/vue/vue-dep.html) > [派发更新 Watcher](/blog/vue/vue-notify.html)
+> [响应式对象 Observer](/blog/vue/principle/vue-definedProperty.html) > [依赖收集 Dep](/blog/vue/principle/vue-dep.html) > [派发更新 Watcher](/blog/vue/principle/vue-notify.html)
 
-`nextTick` 是 Vue 的一个**核心**实现，如果还不了解 js 运行机制，可以看一下另一篇文章[js 运行机制](/blog/javascript/evenloop.html)，这里就不多赘述了。
+`nextTick` 是 Vue 的一个**核心**实现，如果还不了解 js 运行机制，可以看一下另一篇文章[js 运行机制](/blog/javascript/eventloop/evenloop.html)，这里就不多赘述了。
 
 在浏览器环境中常见的 macro task 和 micro task 如下：
 **macro task**：
@@ -52,7 +52,7 @@ Vue 的响应式原理：在 data 选项里所有属性都会被`watcher`监控�
 
 ## vue 源码解析
 
-在[派发更新 Watcher](/blog/vue/vue-notify.html)里面有用到`nextTick(flushScheduerQueue)`，其实就是`vue`对派发更新的一个优化。下面直接看源码，在 src/core/util/next-tick.js 中：
+在[派发更新 Watcher](/blog/vue/principle/vue-notify.html)里面有用到`nextTick(flushScheduerQueue)`，其实就是`vue`对派发更新的一个优化。下面直接看源码，在 src/core/util/next-tick.js 中：
 
 ```javascript
 // nextTick 中执行回调函数的原因是保证在同一个 tick 内多次执行 nextTick，不会开启多个异步任务，而把这些异步任务都压成一个同步任务，在下一个 tick 执行完毕。
@@ -268,7 +268,7 @@ export function nextTick(cb?: Function, ctx?: Object) {
 ```
 
 执行结果如下图所示：
-![vue-nextTick](../../images/vue/vue-nextTick-1-1.png)
+![vue-nextTick](../../../images/vue/vue-nextTick-1-1.png)
 
 1. 同步方式： 当把`data`中的`name`修改之后，此时会触发`name`的 `setter` 中的 `dep.notify` 通知依赖本`data`的`render watcher`去 `update`，`update` 会把 `flushSchedulerQueue` 函数传递给 `nextTick`，`render watcher`在 `flushSchedulerQueue` 函数运行时 `watcher.run` 再走 `diff -> patch` 那一套重渲染 `re-render` 视图，这个过程中会重新依赖收集，这个过程是异步的；所以当我们直接修改了`name`之后打印，这时异步的改动还没有被 `patch` 到视图上，所以获取视图上的 DOM 元素还是原来的内容。
 2. setter 前： `setter`前为什么还打印原来的是原来内容呢，是因为 `nextTick` 在被调用的时候把回调挨个`push`进`callbacks`数组，之后执行的时候也是 for 循环出来挨个执行，所以是类似于队列这样一个概念，先入先出；在修改`name`之后，触发把`render watcher`填入 `schedulerQueue` 队列并把他的执行函数 `flushSchedulerQueue` 传递给 `nextTick` ，此时`callbacks`队列中已经有了 `setter`前函数 了，因为这个 `cb` 是在 `setter`前函数 之后被`push`进`callbacks`队列的，那么先入先出的执行`callbacks`中回调的时候先执行 `setter`前函数，这时并未执行`render watcher`的 `watcher.run`，所以打印 DOM 元素仍然是原来的内容。

@@ -70,12 +70,12 @@ description: 移动端业务开发，iOS 下经常会有 fixed 元素和输入�
 ```
 
 然后看起来就是下面这个样子。拖动页面时 header 和 footer 已经定位在了对应的位置，目测没问题了。
-![css3 3d transfrom](../../images/ios_bug/fixed.png)
+![css3 3d transfrom](../../../images/ios_bug/fixed.png)
 
-<!-- <img src="../../images/ios_bug/fixed.png" alt="ios_bug" title="ios_bug"/> -->
+<!-- <img src="../../../images/ios_bug/fixed.png" alt="ios_bug" title="ios_bug"/> -->
 
 但接下来问题就来了！如果底部输入框软键盘被唤起以后，再次滑动页面，就会看到如下图所示：
-![css3 3d transfrom](../../images/ios_bug/fixed_bug_0.png) ![css3 3d transfrom](../../images/ios_bug/fixed_bug_1.png)
+![css3 3d transfrom](../../../images/ios_bug/fixed_bug_0.png) ![css3 3d transfrom](../../../images/ios_bug/fixed_bug_1.png)
 `软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。`
 这就是 ios 上 fixed 元素和输入框的 bug,其中不仅陷入于`type="text"`的输入框，凡是软键盘（比如时间选择器、select 选择等等）被唤起，都会遇到同样的问题。
 
@@ -190,7 +190,7 @@ main {
 有些第三方浏览器底部的工具栏是浮在页面之上的，因此底部 fixed 定位会被工具栏遮挡。解决办法也比较简单粗暴——适配不同的浏览器，调整 fixed 元素距离底部的距离。
 最好将 header 和 footer 元素的 touchmove 事件禁止，以防止滚动在上面触发了部分浏览器全屏模式切换，而导致顶部地址栏和底部工具栏遮挡住 header 和 footer 元素。
 在页面滚动到上下边缘的时候，如果继续拖拽会将整个 View 一起拖拽走，导致页面的“露底”。
-![css3 3d transfrom](../../images/ios_bug/fixed_pull_over.png)
+![css3 3d transfrom](../../../images/ios_bug/fixed_pull_over.png)
 为了防止页面露底，可以在页面拖拽到边缘的时候，通过判断拖拽方向以及是否为边缘来阻止 touchmove 事件，防止页面继续拖拽。
 
 以上面内滚动 layout-scroll-fixed 布局为例，给出一段代码作为参考：

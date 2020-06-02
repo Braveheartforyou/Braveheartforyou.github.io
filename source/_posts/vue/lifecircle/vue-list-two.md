@@ -8,9 +8,7 @@ description: 如果是嵌套组件那么父组件和子组件的各个生命周�
 
 ## vue 生命周期
 
----
-
-在另一片博客中我已经有详细讲过[vue 生命周期](/blog/vue/vue-list-one.html)
+在另一片博客中我已经有详细讲过[vue 生命周期](/blog/vue/lifecircle/vue-list-one.html)
 
 ## 代码
 
@@ -114,9 +112,9 @@ description: 如果是嵌套组件那么父组件和子组件的各个生命周�
 
 代码执行结果如下：
 
-<img src="../../images/vue/vue-hook4.png" alt="vue-hook" width="100%" style="margin: 0 auto;"/>
+<img src="../../../images/vue/vue-hook4.png" alt="vue-hook" width="100%" style="margin: 0 auto;"/>
 
-### ** beforeCreate 到 mounted **
+### beforeCreate 到 mounted
 
 1. 先创建父组件
    `beforeCreate`
@@ -133,26 +131,27 @@ description: 如果是嵌套组件那么父组件和子组件的各个生命周�
 
 总结：`从创建到挂载，是从外到内，再由内到外`
 
-### ** beforeUpdate 到 updated **
+### beforeUpdate 到 updated
 
 > 注： `只有在标签上绑定了 data 时，data 发生改变，才会触发 updated 钩子函数。如果只是在控制台改变 data，而没有反馈到视图上，则无法触发。`
 
 1. 父组件点击事件更新 `data` 中的数据
-   <img src="../../images/vue/vue-hook5.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
-   他不会重新渲染子组件
+
+<img src="../../../images/vue/vue-hook5.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
+他不会重新渲染子组件
 
 > 注：`react 中如果父组件状态更新，子组件也会跟着更新。稍后的文章会讲怎么解决这种问题。`
 
 2. 子组件点击事件更新 `data` 中的数据
 
-<img src="../../images/vue/vue-hook6.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
+<img src="../../../images/vue/vue-hook6.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
 这个他也不会重新选然父组件
 
 > 注： `如果是 mixins 的话当 data 中的数据改变时，不会触发子组件中的 updated 函数。触发的顺序仍然是 mixins 先于组件`
 
 > 总结：`父子组件 update 互相不影响`
 
-### ** beforeDestroy 到 destroy **
+### beforeDestroy 到 destroy
 
 在浏览器中执行：
 
@@ -160,7 +159,7 @@ description: 如果是嵌套组件那么父组件和子组件的各个生命周�
 vm.$destroy();
 ```
 
-<img src="../../images/vue/vue-hook7.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
+<img src="../../../images/vue/vue-hook7.png" alt="vue-hook" width="50%" style="margin: 0 auto;"/>
 
 1. 父组件先`beforeDestroy`
 2. 子组件`beforeDestroy`

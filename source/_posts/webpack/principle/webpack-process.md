@@ -6,11 +6,7 @@ categories: [WebPack]
 description: webpack编译流程
 ---
 
-**_中无主而不止，外无正而不行。——庄子_**
-
 ## 简介
-
----
 
 现在前端开发基本上都会用到`react`、`vue`，用到了前端`mvc`、`mvvm`框架，基本上都会涉及到打包发布，打包常用的工具就是`webpack`、`gulp`等等。经常使用自然也要了解一些他大致的流程也会方便使用。
 首先要理解 webpack 中比较核心的概念：
@@ -24,25 +20,23 @@ description: webpack编译流程
 
 webpack 执行流程和事件流如下图所示：
 
-<img src="../../images/webpack/webpack2.svg" style="height: 400px"/> 
+<img src="../../../images/webpack/webpack2.svg" style="height: 400px"/>
 webpack编译过程中一个比较重要的概念**compiler**、**compilation**，如下：
 
 - **Compiler 对象**：负责文件监听和启动编译。`Compiler` 实例中包含了完整的 `webpack` 配置，全局只有一个 `Compiler` 实例。
 - **Compilation 对象**：当 `webpack` 以开发模式运行时，每当检测到文件变化，一次新的 `Compilation` 将被创建。一个 `Compilation` 对象包含了当前的模块资源、编译生成资源、变化的文件等。`Compilation` 对象也提供了很多事件回调供插件做扩展。
-<!-- ![webpack-flow](../../images/webpack/webpack-3-1.png) -->
+<!-- ![webpack-flow](../../../images/webpack/webpack-3-1.png) -->
 
 ## webpack 流程
 
----
-
 Webpack 的运行流程是一个串行的过程，从启动到结束依次执行以下流程：
 
-1. 初始化：启动构建，读取与合并配置参数，加载 Plugin，实例化 Compiler。
-2. 编译：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找到该 Module 依赖的 Module，递归地进行编译处理。
-3. 输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。
+1. `初始化：启动构建，读取与合并配置参数，加载 Plugin，实例化 Compiler`。
+2. `编译：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找到该 Module 依赖的 Module，递归地进行编译处理。`
+3. `输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。`
 
 如果只执行一次构建，以上阶段将会按照顺序各执行一次。但在开启监听模式下，流程将变为如下：
-![webpack-flow](../../images/webpack/webpack-3-2.png)
+![webpack-flow](../../../images/webpack/webpack-3-2.png)
 下面具体介绍一下 `webpack`的三个大阶段具体的小步。
 
 ### 初始化阶段
@@ -145,7 +139,7 @@ const {
 ```
 
 如下图所示 tapable 上的钩子：
-![webpack-flow](../../images/webpack/webpack-3-4.png)
+![webpack-flow](../../../images/webpack/webpack-3-4.png)
 
 tabable 的提供了两类绑定钩子的方式：
 
