@@ -429,6 +429,22 @@ description: 数据结构中的数组
 
 ### 字符串匹配
 
+字符串匹配问题的形式定义：
+
+- `文本(Text)`是一个长度为`n`的数组`T[1...n]`;
+- `模式(Pattern)`是一个长度为`m`且`m<=n`的数组`P[1...m]`;
+- `T`和`P`中的元素都属于有限的`字母表 Σ 表`;
+- 如果`0<=s<=n-m`，并且`T[s+1...s+m] = P[1...m]`，即对`1<=j<=m`，有`T[s+j] = P[j]`，则说`模式P`在`文本T`中出现且位移为`s`,且称`s`是一个`有限位移(Valid Shift)`。
+
+![字符串匹配](./algorithm-structure/25.png)
+
+比如上图中，目标是找出所有在`文本  T = abcabaabcabac 中模式 P = abaa`的所有出现。该模式在此文本中仅出现一次，即在位移`s = 3`处，位移`s = 3`是有效位移。
+
+简单来说`字符串匹配`问题就是在一个大的字符串`T`中搜索某个`字符串P`的所有出现位置。
+
+字符串匹配算法很多种，`朴素算法(Naive Algorithm or Brute Force)`、`Rabin-Karp算法`、`有限自动机算法(Finite Automation)`、`Knuth-Morris-Pratt算法(即 KMP Algorithm)`、`Boyer-Moore算法`、`Simon算法`、`Colussi算法`、`Galil-Giancarlo算法`、`Apostolico-Crochemore算法`、`Horspool算法`和`Sunday算法`等等。
+
+有两种比较简单的、好理解的，它们分别是：`BF算法`和`RK算法`。还有两种比较难理解、但更高效的它们是：`BM算法`和`KMP算法`。
 
 
 ## 线性表
