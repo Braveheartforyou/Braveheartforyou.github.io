@@ -1,6 +1,598 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数据结构 -- 数组</title>
+    <url>/blog/algorithm/data-structure/algorithm-structure-array.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Algorithm</category>
+        <category>未完成</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构/算法 知识引导篇</title>
+    <url>/blog/algorithm/data-structure/algorithm-structure.html</url>
+    <content><![CDATA[<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>什么是数据结构？数据结构的作用是啥？<br>什么是算法？算法有什么作用？</p>
+<p>本篇文章只是简单了解一些专业术语、基本概念，作为后期文章的引导篇。对数据结构和算法有一个基本的概念和了解，以便于后面的 leetcode 刷题、数据结构深入了解做铺垫。</p>
+<h3 id="基本概念和术语"><a href="#基本概念和术语" class="headerlink" title="基本概念和术语"></a>基本概念和术语</h3><h4 id="数据-data"><a href="#数据-data" class="headerlink" title="数据(data)"></a>数据(data)</h4><ul>
+<li>是事实或观察的结果，是对客观事物的<code>逻辑归纳</code>，是用于表示客观事物的未经加工的原始素材。</li>
+<li>在计算机科学中指的是所有能输入到计算机中并被计算机程序<code>处理的符号的总称</code>。</li>
+</ul>
+<h4 id="数据项-data-item"><a href="#数据项-data-item" class="headerlink" title="数据项(data item)"></a>数据项(data item)</h4><ul>
+<li>数据项是指数据元素可由若干个<code>数据项（data item）组成</code>，数据项是数据的<code>不可分割</code>的<code>最小单位</code>。</li>
+<li>数据项是数据记录中<code>最基本的</code>、<code>不可分的</code>有名<code>数据单位</code>，是具有独立含义的<code>最小标识单位</code>。</li>
+</ul>
+<h4 id="数据元素-data-element"><a href="#数据元素-data-element" class="headerlink" title="数据元素(data element)"></a>数据元素(data element)</h4><ul>
+<li>它是<code>数据</code>的<code>基本单位</code>，数据元素也叫做<code>结点</code>或<code>记录</code>。</li>
+<li>一个<code>数据元素</code>可由<code>若干</code>个<code>数据项</code>组成.</li>
+</ul>
+<h4 id="数据对象-data-Object"><a href="#数据对象-data-Object" class="headerlink" title="数据对象(data Object)"></a>数据对象(data Object)</h4><ul>
+<li>数据对象指<code>性质相同</code>的数据元素的集合，是数据的<code>子集</code>；</li>
+<li><code>数据对象</code>简称数据</li>
+</ul>
+<blockquote>
+<p>性质相同指数据元素具有相同数量和类型的数据项；</p>
+</blockquote>
+<h4 id="数据结构-data-structure"><a href="#数据结构-data-structure" class="headerlink" title="数据结构(data structure)"></a>数据结构(data structure)</h4><ul>
+<li>由互相之间存在着<code>一种</code>或<code>多种</code>关系的数据元素组成的<code>集合</code>；这些数据元素之间的关系称为<code>结构</code>。</li>
+</ul>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><blockquote>
+<p>在计算机科学中，<code>数据结构(英语：data structure)</code>是计算机中<code>存储</code>、<code>组织数据</code>的方式。</p>
+</blockquote>
+<p>简单来说数据结构: 是指互相之间存在一种或多种特定关系的数据元素的组合。<code>数据结构 = 数据元素 + 元素之间的关系</code>.</p>
+<p>数据结构一般分为两个维度：<code>逻辑结构</code>和<code>存储结构</code>，<code>逻辑结构</code>又大致可以分为<code>线性结构</code>和<code>非线性结构</code>两种。下面会对<code>逻辑机构</code>、<code>存储结构</code>展开来讲。</p>
+<p>常见数据结构：</p>
+<ul>
+<li><code>堆栈</code>（Stack）</li>
+<li><code>队列</code>（Queue）</li>
+<li><code>数组</code>（Array）</li>
+<li><code>链表</code>（Linked List）</li>
+<li><code>树</code> （Tree）</li>
+<li><code>图</code> （Graph）</li>
+<li><code>堆积</code> (Heap)</li>
+<li><code>散列表</code> （Hash table）</li>
+</ul>
+<h4 id="基本逻辑结构"><a href="#基本逻辑结构" class="headerlink" title="基本逻辑结构"></a>基本逻辑结构</h4><p><strong>集合结构</strong>： <code>数组元素的有限集合</code>。数据元素之间除了”属于同一个集合“的关系之外<code>没有其他关系</code>。<br><img src="./algorithm-structure/1.webp" alt="集合结构"></p>
+<p><strong>线性结构</strong>： <code>数据元素的有序集合</code>。数据元素之间形成<code>一对一</code>的关系。<br><img src="./algorithm-structure/2.webp" alt="线性结构"></p>
+<p><strong>树形结构</strong>： 树是层次数据结构，树中数据元素之间存在<code>一对多</code>的关系。<br><img src="./algorithm-structure/3.webp" alt="树形结构"></p>
+<p><strong>图状结构</strong>：  图中数据元素之间的关系是<code>多对多</code>。<br><img src="./algorithm-structure/4.webp" alt="图状结构"></p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<p><code>算法（algorithm）</code>，在数学（算学）和计算机科学之中，为任何一系列良定义的具体计算步骤，常用于<code>计算</code>、<code>数据处理</code>和<code>自动推理</code>。作为一个有效方法，算法被用于计算函数，它包含了一系列定义清晰的指令，并可于有限的时间及空间内清楚的表述出来。</p>
+</blockquote>
+<h4 id="算法的基本特征"><a href="#算法的基本特征" class="headerlink" title="算法的基本特征"></a>算法的基本特征</h4><p>算法的基本特征： 是一组严谨地定义运算顺序的规则，每一个规则都是<code>有效的</code>，是<code>明确的</code>，此顺序将在有限的次数下终止。<br>特征包括：</p>
+<ol>
+<li>输入：一个算法必须有零个或以上输入量。</li>
+<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
+<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地符合要求或期望，通常要求实际运行结果是确定的。</li>
+<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完全系统模拟的一串运算，而图灵机只有有限个状态、有限个输入符号和有限个转移函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
+<li>有效性：又称可行性。能够实现，算法中描述的操作都是可以通过已经实现的基本运算执行有限次来实现。</li>
+</ol>
+<h4 id="常用设计模式"><a href="#常用设计模式" class="headerlink" title="常用设计模式"></a>常用设计模式</h4><p><code>完全遍历法和不完全遍历法</code>： 在问题的解是有限离散解空间，且可以验证正确性和最优性时，最简单的算法就是把解空间的所有元素完全遍历一遍，逐个检测元素是否是我们要的解。这是最直接的算法，实现往往最简单。但是当解空间特别庞大时，这种算法很可能导致工程上无法承受的计算量。这时候可以利用不完全遍历方法——例如各种搜索法和规划法——来减少计算量。<br><code>分治法</code>： 把一个问题<code>分割</code>成<code>相互独立</code>的<code>多个部分</code>分别求解的思路。这种求解思路带来的好处之一便是进行并行计算。<br><code>动态规划</code>： 当问题的整体最优解就是由<code>局部最优解组成</code>的时候，经常采用的一种方法。<br><code>贪心算法</code>：常见的近似求解思路。当问题的整体<code>最优解不是（或无法证明是）由局部最优解组成</code>，且对接的最优性没有要求的时候，可以采用的一种方法。<br><code>线性规划法</code>： <code>线性规划（Linear Programming，简称LP）</code>特指目标函数和约束条件皆为线性的最优化问题。线性规划是最优化问题中的一个重要领域。<br><code>简并法</code>： 把一个问题通过逻辑或者数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。</p>
+<h4 id="常用实现方法"><a href="#常用实现方法" class="headerlink" title="常用实现方法"></a>常用实现方法</h4><p><a href="https://zh.wikipedia.org/wiki/%E9%80%92%E5%BD%92" target="_blank" rel="noopener">递归方法</a>: 递归（英语：Recursion），又译为递回，在数学与计算机科学中，是指在函数的定义中<code>使用函数自身的方法</code>。递归一词还较常用于描述以<code>自相似方法重复事物</code>的过程。<br><a href="https://zh.wikipedia.org/wiki/%E8%BF%AD%E4%BB%A3" target="_blank" rel="noopener">迭代方法</a>: 迭代是重复反馈过程的活动，其目的通常是为了接近并到达所需的目标或结果。每一次对过程的<code>重复被称为一次“迭代”</code>，而每一次迭代得到的结果会被用来作为<code>下一次迭代的初始值</code>。</p>
+<p><code>顺序计算</code>: 顺序计算就是把形式化算法用编程语言进行单线程序列化后执行。<br><code>并行计算</code>: 并行计算（英语：parallel computing）一般是指许多指令得以同时进行的计算模式。在同时进行的前提下，可以将计算的过程分解成小部分，之后以并发方式来加以解决</p>
+<p>常用的算法：<code>递归</code>、<code>排序</code>、<code>二分查找</code>、<code>搜索</code>、<code>哈希算法</code>、<code>贪心算法</code>、<code>分治算法</code>、<code>回溯算法</code>、<code>动态规划</code>、<code>字符串匹配算法</code>等等。</p>
+<h2 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h2><p>数据结构一般分为两个维度： <code>逻辑结构</code>和<code>存储结构</code>。下面再根据这两个维度来大致了解一下一些常用的知识点。</p>
+<h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><blockquote>
+<p>逻辑结构即数据之间的关系，逻辑结构可以分为两种：<code>线性结构</code>和<code>非线性结构</code>。</p>
+</blockquote>
+<p><code>非线性结构</code>又大致可以分为<code>图形结构</code>、<code>树形结构</code>、<code>集合结构</code>对应上面的分类。</p>
+<p><strong>线性结构</strong></p>
+<p>线性结构：是一个<code>有序数据元素的集合</code>，其中数据元素之间的关系是<code>一对一</code>的关系，即除了第一个和最后一个元素之外，其他数据元素都是一个<code>首尾接应</code>的。<br>常用的线性结构有：<code>数组</code>、<code>栈</code>、<code>队列</code>、<code>链表</code>、<code>线性表</code>等。</p>
+<p><strong>非线性结构</strong></p>
+<p>非线性结构：各个数据元素不再保持在<code>一个线性序列中</code>，每个数据元素可能与<code>零个或者多个</code>其他数据元素发生联系。<br>常见的非线性结构：<code>二叉树</code>、<code>图</code>、<code>树</code>、<code>集合</code>等等。</p>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>逻辑结构指的是数据元素之间的关系，而存储结构是逻辑结构用计算机语言的实现。常见的存储结构有： <code>顺序存储</code>、<code>链式存储</code>、<code>索引存储</code>、<code>散列存储</code>。</p>
+<p>比较常见的就是<code>顺序存储</code>和<code>链式存储</code></p>
+<p><strong>顺序存储结构</strong></p>
+<p>顺序存储结构：把数据元素存放在地址<code>连续的的存储单元里</code>，其数据间的<code>逻辑关系和物理关系一致</code>；比如数组等等，它存储结构大致如下图所示：<br><img src="./algorithm-structure/5.webp" alt="顺序存储结构"></p>
+<p><strong>链式存储结构</strong></p>
+<p>链式存储结构: 把数据元素存放在任意的存储单元里，这组存储单元可以是<code>连续</code>的也可以是<code>不连续</code>的。数据元素的存储关系<code>不反映其逻辑关系</code>，用<code>指针存放数据元素的地址，我们通过地址可以找到相关联数据元素的位置</code>。</p>
+<p><img src="./algorithm-structure/6.webp" alt="链式存储结构"></p>
+<p>下面会把比较常用的数据结构再稍微详细的介绍一下。</p>
+<h2 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h2><p>在学习算法和后面的算法实战中首先要非常清楚两个衡量算法的指标，<code>时间复杂度</code>和<code>空间复杂度</code>。</p>
+<h3 id="大O复杂度表示法"><a href="#大O复杂度表示法" class="headerlink" title="大O复杂度表示法"></a>大O复杂度表示法</h3><p>通过一个代码样例来了解一下什么是<code>大O</code>？代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum += i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>例1</code></p>
+<p>这是一个最简单的js代码，不需要关注代码的功能。假设每行代码的执行的时间都是相同为<code>unit_time</code>，从代码执行的角度来分析代码的执行时间。第<code>2行</code>代码它们只需要一个<code>unit_time</code>，但是下面<code>for循环（第3行、第4行）</code>它执行代码的时间为<code>2n*unit_time</code>，再加上<code>第6行</code>的代码执行时间为<code>unit_time</code>，到此我们知道总执行时间为<code>(2n+2)*unit_time</code>的时间。我们可以从这个样例里面知道，<code>所有代码执行时间T(n)与每行代码执行次数n成正比</code>。</p>
+<p>来看一下<code>大O</code>，公式为<code>T(n) = O(f(n))</code>，下面来解释一下<code>大O</code>中一些关键性的东西。</p>
+<ul>
+<li><code>T(n)</code>: 它表示代码执行的总时间。</li>
+<li><code>n</code>: 表示数据规模的大小，通俗的讲就是代码执行的次数。</li>
+<li><code>f(n)</code>: 表示每次代码执行的次数总和。因为这是一个公式，所以用<code>f(n)</code>来表示。</li>
+<li><code>O</code>: 表示代码的执行时间<code>T(n)</code>与<code>f(n)</code>表达式成正比。</li>
+</ul>
+<p>上面例子通过<code>大O</code>表示的话就是<code>T(n) = O(2n + 2)</code>，这就是<code>大O时间复杂度表示法</code>。</p>
+<blockquote>
+<p>大O时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码<code>执行时间随数据规模增长变化趋势</code>，所以，也叫作<code>渐进时间复杂度</code></p>
+</blockquote>
+<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><p>在上面的例子中我们得到公式<code>T(n) = O(2n + 2)</code>，当我们在看一些真实算法的时间复杂度时，并没有看到<code>O(2n + 2)</code>这种格式的方式，一般都是<code>O（n）</code>、<code>O(n²)</code>这种格式的，这是问什么呢。因为<code>大O这种复杂度表示方法</code>只是表示一种变化趋势。如何分析一段代码的时间复杂度？<a href="https://time.geekbang.org/column/article/40036" target="_blank" rel="noopener">王争–时间复杂度分析 三种实用方法</a>。</p>
+<h4 id="只关注循环执行次数最多的一段代码"><a href="#只关注循环执行次数最多的一段代码" class="headerlink" title="只关注循环执行次数最多的一段代码"></a>只关注循环执行次数最多的一段代码</h4><p>在上面例子中我们得到的<code>大O</code>公式<code>T(n) = O(2n + 2)</code>，但是一般不会这么些反而会<code>O(n)</code>这样写，因为通常会忽略掉公式中常量、低阶、系数，只需要记录一个最大阶的量级就可以了。我们在<code>分析一个算法、一段代码的时间复杂度的时候，也只关注循环执行次数最多的那段代码就可以了。</code></p>
+<h4 id="加法法则：总复杂度等于最大的那段代码的复杂度"><a href="#加法法则：总复杂度等于最大的那段代码的复杂度" class="headerlink" title="加法法则：总复杂度等于最大的那段代码的复杂度"></a>加法法则：总复杂度等于最大的那段代码的复杂度</h4><p>通过下面这个一段代码来分析一下<code>加法法则</code>，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum1 = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    sum1 += i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> sum2 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; n; i++) &#123;</span><br><span class="line">    sum2 += i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> sum3 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">      sum3 = sum3 + i * j;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum1 + sum2 + sum3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>例2</code></p>
+<p>上面代码可以分为三段<code>sum1</code>、<code>sum2</code>、<code>sum3</code>，可以分别求三段代码的<code>时间复杂度</code>，再取三段代码中量级最大的作为整段代码的复杂度。下面直接来分析三段代码的<code>时间复杂度</code>：</p>
+<p>第一段<code>时间复杂度</code>是多少呢？这段代码执行了<code>100</code>次，但是根据上面的规则我们知道，一个常量的执行时间，跟<code>n</code>的规模无关。即使是这个循环执行<code>1000</code>次、<code>10000</code>次，只要是一个已知数，跟<code>n</code>无关，照样也是常良级的执行时间。所以我们可以忽略掉当前</p>
+<p>第二段<code>时间复杂度</code>为<code>T(n) = O(n)</code>，第三段<code>时间复杂度</code>为<code>T(n) = O(n²)</code>。</p>
+<p>那我们怎么算当前所有代码的<code>总时间复杂度</code>呢？根据上面的规则我们去当前最大量级的，所以整段代码的<code>时间复杂度</code>为<code>O(n²)</code>。也就是说:<code>总的时间复杂度就等于量级最大的那段代码的时间复杂度</code>。抽象成公式为：</p>
+<p>如果<code>T1(n) = O(f(n))</code>,<code>T2(n) = O(g(n))</code>;那么<code>T(n) = T1(n) + T2(n) = max(O(f(n)), O(g(n))) = O(max(f(n), g(n)))</code>.</p>
+<h4 id="乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积"><a href="#乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积" class="headerlink" title="乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积"></a>乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</h4><p>还是以<code>例2</code>里面的第三段代码为样例，来分析一下<code>乘法法则</code>的复杂度计算，我们还是用抽象的公式来推导一下：</p>
+<p><code>T1(n) = O(f(n)), T2(n) = O(g(n));</code>分别来表示内层、外层的抽象公式，<code>总时间复杂度</code>为<code>T(n) = T1(n) * T2(n) = O(f(n)) * O(g(n)) = O(f(n) * g(n))</code>, 我们假设<code>f(n)</code>和<code>g(n)</code>它们两个相等，我们就可以得到<code>T(n) = O(n²)</code>。我们再来一个例子来分析一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum1</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum11 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum11 += sum2(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum2</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum22 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum22 += i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum22;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先看一下<code>sum1</code>它的<code>时间复杂度</code>，我们假设<code>sum2</code>它只是一个普通的操作，<code>sum1</code>的时间复杂度就是<code>T1(n) = O(f(n)) = T1(n) = O(n)</code>。但是在我们的代码中<code>sum2</code>它又是一个循环，<code>sum2</code>的时间复杂度为<code>T2(n) = O(n)</code>，那么整体的时间复杂度为<code>T(n) = T1(n) * T2(n) = O(n*n) = O(n²)</code>。</p>
+<h3 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h3><p>空间复杂度分析相对于时间复杂度分析是相简单的，<code>时间复杂度</code>全称是<code>渐进时间复杂度，表示算法的执行时间与数据规模之间的增长关系</code>。类比一下，<code>空间复杂度</code>全称就是<code>渐进空间复杂度（asymptotic space complexity），表示算法的存储空间与数据规模之间的增长关系</code>。</p>
+<p>还是来一个例子分析一下，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum1</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum11 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum11 += sum2(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum11;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在代码第2行声明了一个<code>sum11</code>,这行代码会申请了一个空间存储变量，第3行声明了一个变量<code>i</code>和传入<code>n</code>变量，它们会分别会声明两个空间存储变量，其他的代码并没有占用更多的空间，所以整段代码的空间复杂度就是<code>O(n)</code>。</p>
+<p>常见的空间复杂度是<code>O(1)</code>、<code>O(n)</code>、<code>O(n²)</code>，像<code>O(logn)</code>、<code>O(nlogn)</code>这样的对数阶复杂平常都用不到。</p>
+<h3 id="常见的时间复杂度实例分析"><a href="#常见的时间复杂度实例分析" class="headerlink" title="常见的时间复杂度实例分析"></a>常见的时间复杂度实例分析</h3><p>常见复杂度量级并不多，大致如下：</p>
+<p><strong>多项式量级</strong></p>
+<ul>
+<li>常量阶O(1)</li>
+<li>对数阶O(logn)</li>
+<li>线性阶O(n)</li>
+<li>线性对数阶O(nlogn)</li>
+<li>平方阶O(n²)、立方阶O(n³)、…..k次方阶O(n^k)</li>
+</ul>
+<p><strong>非多项式量级</strong></p>
+<ul>
+<li>指数阶O(2^n)</li>
+<li>阶乘阶O(n!)</li>
+</ul>
+<p>上面复杂度量级大致可以分为<code>多项式量级</code>和<code>非多项式量级</code>。其中，非多项式量级只有两个：<code>O(2^n)</code>、<code>O(n!)</code>。</p>
+<blockquote>
+<p>复杂度量级会随着量级的增多而递增</p>
+</blockquote>
+<p><img src="./algorithm-structure/6.webp" alt="时间复杂度"></p>
+<p>我们把时间<code>复杂度为非多项式量级</code>的算法问题叫作 <code>NP（Non-Deterministic Polynomial，非确定多项式）</code>问题。当数据规模<code>n</code>越来越大时，非多项式量级算法的执行时间会急剧增加，求解问题的执行时间无线增长。所以，非多项式时间复杂度的算法其实是非常低效的算法。</p>
+<h4 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h4><p><code>O(1)</code>只是一个常量级时间复杂度的一种表示法，并不是只执行了一行代码。如下面代码所示，它的时间复杂度也是<code>O(1)</code>，而不是<code>O(3)</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> sum = i + j;</span><br></pre></td></tr></table></figure>
+<p>总结： 只要代码的执行时间不随<code>n</code>的增大而增大，这样代码的时间复杂度我们都记作<code>O(1)</code>。或者说，<code>一般情况下，只要算法中不存在循环语句、递归语句、即使有成千上万行的代码，其时间复杂度也是O(1)</code>。</p>
+<h4 id="O-logn-、O-nlogn"><a href="#O-logn-、O-nlogn" class="headerlink" title="O(logn)、O(nlogn)"></a>O(logn)、O(nlogn)</h4><p>对数阶时间复杂度非常常见，它们是比较难分析的，通过下面的例子来看一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">  i = i * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码执行的的顺序来看，变量<code>i</code>的值从<code>1</code>开始，每循环一次就乘以<code>2</code>,当大于<code>n</code>时，循环结束。变量<code>i</code>的取值就是一个等比数列。大致如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">2</span>^<span class="number">0</span>、<span class="number">2</span>^<span class="number">1</span>、<span class="number">2</span>^<span class="number">2</span>、......<span class="number">.2</span>^k、<span class="number">2</span>^x = n</span><br></pre></td></tr></table></figure>
+<p>通过<code>2^x = n</code>求解<code>x</code>这个问题我们知道<code>x = log2n</code>，所以当前代码段的时间复杂度就是<code>O(log2n)</code>。<br>当把<code>2</code>替换为<code>3</code>时，根据<code>大O</code>来标记复杂度的时候，可以忽略系数，记<code>O(Cf(n)) = O(f(n))</code>。</p>
+<p><strong>O(nlogn)</strong></p>
+<p><code>O(nlogn)</code>就是一个乘法<code>O(n * logn)</code>，如果一段代码的时间复杂度是<code>O(logn)</code>，我们玄幻执行<code>n</code>遍，时间复杂度就是<code>O(nlogn)</code>。而且<code>O(nlogn)</code>也是一种非常常见的算法时间复杂度。比如递归排序、快速排序的时间复杂度都是<code>O(nlogn)</code>。</p>
+<h4 id="O-m-n-、O-m-n"><a href="#O-m-n-、O-m-n" class="headerlink" title="O(m+n)、O(m*n)"></a>O(m+n)、O(m*n)</h4><p>一段代码的复杂度由两个数据的规模来决定。代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">m, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    sum1 += i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> sum2 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum2 += i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum1 + sum2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这一段代码中我们要分别计算两个循环的时间复杂度，分别为<code>O(m)</code>、<code>O(n)</code>两个时间复杂度。那我们能不能应用上面的<code>加法法则</code>呢？其实是不能的，因为我们没办法知道<code>m</code>大，还是<code>n</code>大。所以，是不知道要忽略掉<code>m或者n</code>。这一段代码的时间复杂度就是<code>O(m+n)</code>。</p>
+<p>这里的<code>O(m) * O(n)</code>和<code>O(m) + O(n)</code>是一样的，也可以推算为<code>O(m) * O(n) = O(m * n)</code>。</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>排序算法有很多种，最常见的就是<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>快速排序</code>、<code>归并排序</code>、<code>计数排序</code>、<code>桶排序</code>、<code>基数排序</code>等等。</p>
+<ul>
+<li>冒泡排序</li>
+</ul>
+<blockquote>
+<p>循环数据，比较相近的两个元素的值，如果当前值比下一个元素的值大，交换两者位置。重复循环直到排序正确</p>
+</blockquote>
+<ul>
+<li>选择排序</li>
+</ul>
+<blockquote>
+<p>首先在未排序的序列中找到<code>最小（大）元素</code>，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找<code>最小（大）元素</code>，然后放到已排序序列的末尾。以此类推，知道所有元素均排序完毕。</p>
+</blockquote>
+<ul>
+<li>插入排序</li>
+</ul>
+<blockquote>
+<p>它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
+</blockquote>
+<ul>
+<li>归并排序</li>
+</ul>
+<blockquote>
+<p>该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为2-路归并。 </p>
+</blockquote>
+<ul>
+<li>快速排序</li>
+</ul>
+<blockquote>
+<p>通过一趟排序将待排记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
+</blockquote>
+<p>它们各有各的特点，在我们需求不同时就要选择不同的排序方式，从<code>时间复杂度</code>、<code>是否稳定排序</code>、<code>是否原地排序</code>三个方面来对比结果如下图所示：</p>
+<p><img src="./algorithm-structure/sort21.jpg" alt="排序对比"></p>
+<h3 id="二分法查找"><a href="#二分法查找" class="headerlink" title="二分法查找"></a>二分法查找</h3><p><code>二分查找（Binary Search）算法</code>，也叫<code>折半查找算法（half-interval search algorithm）</code>、<code>对数搜索算法（logarithmic search algorithm）</code>，是一种在<code>有序数组</code>中查找某一特定元素的搜索算法。</p>
+<p>二分查找针对的是一个<code>有序的数据集合</code>，查找思想有点类似分治思想。每次都通过跟区间的<code>中间元素</code>对比，将待查找的<code>区间缩小为之前的一半</code>，直到找到要查找的元素，或者区别被缩小为0。</p>
+<p>二分查找的<strong>时间复杂度</strong>为<code>O(logn)</code>。</p>
+<p>假设数据大小为<code>n</code>大小，每次查找后数据都会缩小为原来的一半，也就是会除以<code>2</code>。最坏的情况下，直到查找区间被缩小为空，才停止。</p>
+<p><img src="./algorithm-structure/halfSearch1.jpg" alt="排序对比"></p>
+<p>这是一个等比舒蕾。其中<code>n/(2^k) = 1</code>时，<code>k</code>的值就是总共缩小的次数。而每一次缩小操作只涉及两个数据的大小比较，所以，经过了<code>k次</code>区间缩小操作，时间复杂度就是<code>O(k)</code>。通过<code>n/2^k = 1</code>,我们可以求得<code>K = log2n</code>，所以时间复杂度就是<code>O(logn)</code>。</p>
+<h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p>哈希算法其实就是<code>Hash</code>，它的定义和原理非常简单。将任意长度的二级制值串映射为固定长度的二进制值串，这个映射的规则就是<code>哈希算法</code>。而通过原始数据映射之后得到的二进制值串就是<code>哈希值</code>。</p>
+<p>一个优秀的<code>哈希算法</code>大概有以下几个特点：</p>
+<ul>
+<li>从哈希值不能反向推导出原始数据（所以哈希算法也叫单向哈希算法）；</li>
+<li>对输入数据非常敏感，哪怕原始数据只修改了一个 Bit，最后得到的哈希值也大不相同；</li>
+<li>散列冲突的概率要很小，对于不同的原始数据，哈希值相同的概率非常小；</li>
+<li>哈希算法的执行效率要尽量高效，针对较长的文本，也能快速地计算出哈希值。</li>
+</ul>
+<p><code>哈希算法</code>可以应用到很多方面比如：</p>
+<ul>
+<li>用于安全加密的哈希算法<code>MD5</code>和<code>SHA</code></li>
+<li>唯一标识，百度云转存</li>
+<li>数据校验，大文件上传</li>
+</ul>
+<h3 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><p><code>广度优先搜索(Breadth-First-Search)</code>，我们平常都是简称为<code>BFS</code>。它其实是一种<code>&quot;地毯式&quot;</code>层层推进的搜索策略，即先查找离起始顶点最近的，以此向外搜索。大致搜索过程如下图所示：<br><img src="./algorithm-structure/22.jpg" alt="广度优先搜索"></p>
+<h3 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h3><p><code>深度优先搜索（Depth-First-Search）</code>，<code>简称 DFS</code>。与<code>BFS</code>不同，更早的访问的节点可能不是更靠近根节点的节点。因此，你在<code>DFS</code>中找到的第一条路径可能不是最短路径。<br><img src="./algorithm-structure/23.webp" alt="深度优先搜索"></p>
+<p>在 DFS中，结点的处理顺序是完全相反的顺序，就像它们被添加到栈中一样，它是后进先出。所以深度优先搜索一般使用栈实现。</p>
+<h3 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h3><p>字符串匹配问题的形式定义：</p>
+<ul>
+<li><code>文本(Text)</code>是一个长度为<code>n</code>的数组<code>T[1...n]</code>;</li>
+<li><code>模式(Pattern)</code>是一个长度为<code>m</code>且<code>m&lt;=n</code>的数组<code>P[1...m]</code>;</li>
+<li><code>T</code>和<code>P</code>中的元素都属于有限的<code>字母表 Σ 表</code>;</li>
+<li>如果<code>0&lt;=s&lt;=n-m</code>，并且<code>T[s+1...s+m] = P[1...m]</code>，即对<code>1&lt;=j&lt;=m</code>，有<code>T[s+j] = P[j]</code>，则说<code>模式P</code>在<code>文本T</code>中出现且位移为<code>s</code>,且称<code>s</code>是一个<code>有限位移(Valid Shift)</code>。</li>
+</ul>
+<p><img src="./algorithm-structure/25.png" alt="字符串匹配"></p>
+<p>比如上图中，目标是找出所有在<code>文本  T = abcabaabcabac 中模式 P = abaa</code>的所有出现。该模式在此文本中仅出现一次，即在位移<code>s = 3</code>处，位移<code>s = 3</code>是有效位移。</p>
+<p>简单来说<code>字符串匹配</code>问题就是在一个大的字符串<code>T</code>中搜索某个<code>字符串P</code>的所有出现位置。</p>
+<p>字符串匹配算法很多种，<code>朴素算法(Naive Algorithm or Brute Force)</code>、<code>Rabin-Karp算法</code>、<code>有限自动机算法(Finite Automation)</code>、<code>Knuth-Morris-Pratt算法(即 KMP Algorithm)</code>、<code>Boyer-Moore算法</code>、<code>Simon算法</code>、<code>Colussi算法</code>、<code>Galil-Giancarlo算法</code>、<code>Apostolico-Crochemore算法</code>、<code>Horspool算法</code>和<code>Sunday算法</code>等等。</p>
+<p>有两种比较简单的、好理解的，它们分别是：<code>BF算法</code>和<code>RK算法</code>。还有两种比较难理解、但更高效的它们是：<code>BM算法</code>和<code>KMP算法</code>。</p>
+<p><code>BF 算法</code>中的 <code>BF</code> 是 <code>Brute Force</code> 的缩写，中文叫作<code>暴力匹配算法</code>，也叫<code>朴素匹配算法</code>。执行过程大致如下：</p>
+<p><img src="./algorithm-structure/26.png" alt="BF 算法"></p>
+<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p><code>贪心算法</code>、<code>分治算法</code>、<code>回溯算法</code>、<code>动态规划</code>这四个基本算法，更准确的说应该是算法思想，并不是具体的算法，常用来知道我们设计的算法和编码等。</p>
+<blockquote>
+<p><code>贪心算法</code>就是如何利用贪心算法来实现对数据压缩编码，有效节省数据存储空间。</p>
+</blockquote>
+<p><code>贪心算法</code>有很多经典的应用比如<code>霍夫曼编码(Huffman Coding)</code>、<code>Prim</code>和<code>Kruskal最小生成树算法</code>、<code>Dikstra单源最短路径算法</code>。</p>
+<h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><p><code>分制算法(divide and conquer)</code>的核心思想其实就是四个字，分而治之，也就是将原有问题划分成<code>n个</code>规模较小，并且结构和原问题相似的子问题，递归的解决这些子问题，然后再合并其结果，就得到原问题的解。</p>
+<h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3><p><code>回溯算法</code>实际上一个类似枚举的搜索尝试过程，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就<code>回溯</code>返回，尝试别的路径。</p>
+<p>回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。</p>
+<p>但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。</p>
+<p>回溯算法适合由多个步骤组成的问题，并且每个步骤都有多个选项。</p>
+<ul>
+<li>二叉树中和为某一值的路径</li>
+<li>字符串的排列</li>
+<li>和为sum的n个数</li>
+<li>矩阵中的路径</li>
+<li>机器人的运动范围</li>
+<li>N皇后问题</li>
+</ul>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p><code>动态规划</code>比较实用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。</p>
+<p>适用于动态规划的问题，需要满足最优子结构和无后效性，动态规划的求解过程，在于找到状态转移方程，进行自底向上的求解。<br>自底向上的求解，可以帮你省略大量的复杂计算，例如上面的斐波拉契数列，使用递归的话时间复杂度会呈指数型增长，而动态规划则让此算法的时间复杂度保持在 <code>O(n)</code>。</p>
+<p><strong>路径问题</strong></p>
+<ul>
+<li>最小路径和</li>
+<li>不同路径</li>
+<li>不同路径 II</li>
+<li>形成字符串的最短路径</li>
+</ul>
+<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p><code>将具有“一对一”关系的数据“线性”地存储到物理空间中，这种存储结构就称为**线性存储结构（简称线性表）**</code></p>
+<p>线性表包括<code>数组</code>、<code>栈</code>、<code>队列</code>、<code>链表</code>等等都是线性结构。下面我们就简单的看一下这四个算是比较常用的结构类型。</p>
+<p>线性表存储数据可以细分为2种：</p>
+<ul>
+<li>将数据依次存储在连续的整块物理空间中，这种存储结构称为<code>顺序存储结构（简称顺序表）</code>。<br><img src="./algorithm-structure/16.png" alt="顺序表"></li>
+<li>数据分散的存储在物理空间中，通过一根线保存着它们之间的逻辑关系，这种存储结构称为<code>链式存储结构（简称链表）</code>。<br><img src="./algorithm-structure/17.png" alt="链表"></li>
+</ul>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p>数据结构中，一组数据中的每个个体被称为<code>数据元素（简称元素）</code>。在线性表中元素都是<code>一对一</code>逻辑关系的数据。数据元素之间关系怎么称呼呢？</p>
+<ul>
+<li>某一元素的左侧相邻元素称为<code>“直接前驱”</code>，位于此元素左侧的所有元素都统称为<code>“前驱元素”</code>；</li>
+<li>某一元素的右侧相邻元素称为<code>“直接后继”</code>，位于此元素右侧的所有元素都统称为<code>“后继元素”</code>；</li>
+</ul>
+<p><img src="./algorithm-structure/18.png" alt="术语"></p>
+<h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><p>顺序表对数据的物理存储结构也有要求。<code>顺序表存储数据时，会提前申请一整块足够大小的物理空间，然后将数据依次存储起来，存储时做到数据元素之间不留一丝缝隙</code>。</p>
+<p>例如，使用顺序表存储集合 <code>{1,2,3,4,5}</code>，数据最终的存储状态如图所示：</p>
+<p><img src="./algorithm-structure/19.png" alt="栈（先进后出）"></p>
+<p>由此我们可以得出，将“具有 ‘一对一’ 逻辑关系的数据按照次序连续存储到一整块物理空间上”的存储结构就是顺序存储结构。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>在大部分的编程语言中都会有一个基本数据类型数组，<code>数组(Array)是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据</code>。<br>数组为了保持内存数据的连续性，会导致<code>插入</code>、<code>删除</code>这两个操作比较低效。因为在<code>插入</code>、<code>删除</code>都会对后续的数组元素进行操作，这两个操作的时间复杂度平均来算为<code>O(n)</code>。</p>
+<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><p>栈和列表是比较常见的数据结构，在一些代码中我们经常也是能看到的。我们就分别来看一下<code>栈</code>和<code>队列</code>。<br>它们两种都是限制访问顺序的数据结构：<code>栈（先进后出）</code>、<code>队列（先进先出）</code>。大致如下图所示：</p>
+<p><img src="./algorithm-structure/7.png" alt="栈（先进后出）"><br><img src="./algorithm-structure/8.png" alt="队列（先进先出）"></p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>队列是一种受限的序列，它只能够操作队尾和队首，并且只能在队尾添加元素，在队首删除元素。</p>
+<p>队列作为最常见的数据结构同样有着非常广泛的应用，比如消息队列。同时我们也可以通过<code>JavaScript</code>中的数组来实现一个简单的队列操作：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 声明一个 数据 用以模仿队列</span></span><br><span class="line"><span class="keyword">var</span> queue = [];</span><br><span class="line"><span class="comment">// 向队列中添加 两个元素（入队）</span></span><br><span class="line">queue.push(<span class="number">1</span>);</span><br><span class="line">queue.push(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 出队</span></span><br><span class="line"><span class="keyword">let</span> dequeue = queue.shift();</span><br><span class="line"><span class="built_in">console</span>.log(dequeue, queue);</span><br></pre></td></tr></table></figure>
+<p>在计算机科学中，一个队列（queue）是一种特殊的抽象数据类型或集合。集合中的实体按顺序保存。</p>
+<p>队列基本操作有两种：</p>
+<ul>
+<li>入队：向队列的后端位置添加实体。</li>
+<li>出队：从队列的前端位置移除实体。</li>
+</ul>
+<p>队列中元素<code>先进先出FIFO(first in, first out)</code>如下图所示：</p>
+<p><img src="./algorithm-structure/9.png" alt="队列（先进先出）"><br><a href="https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/queue/README.zh-CN.md" target="_blank" rel="noopener">图片来自</a></p>
+<p>以<code>HTTP 1.0</code>、<code>HTTP 1.1</code> 、<code>HTTP 2.x</code>来举一个例子。</p>
+<p>我们前端在做性能优化的时候，很多时候会提到的一点就是<code>“HTTP 1.1 的队头阻塞问题”</code>。</p>
+<p>具体来说，就是<code>HTTP2</code> 解决了 <code>HTTP1.1 中的队头阻塞</code>问题，但是为什么<code>HTTP1.1</code>有队头阻塞问题，HTTP2究竟怎么解决的很多人都不清楚。</p>
+<p>其实<code>“队头阻塞”</code>是一个专有名词，不仅仅这里有，交换器等其他都有这个问题，引起这个问题的根本原因是使用了<code>队列</code>这种数据结构。</p>
+<p>在<code>HTTP 1.0</code>的版本中每一次请求都需要建立一个<code>TCP</code>连接，请求结束后立即断开连接。对于同一个tcp连接，所有的HTTP 1.0请求放入队列中，只有前一个<code>请求的响应</code>收到了，然后才能发送下一个请求，这个阻塞主要发生在<code>客户端</code>。</p>
+<blockquote>
+<p>在HTTP/1.1 中，并发多个请求需要多个TCP链接，且单个域名有6-8个TCP链接请求限制。</p>
+</blockquote>
+<p>在<code>HTTP 1.1</code>中，每一个连接都默认是长连接(persistent connection)。</p>
+<p>对于<code>同一个tcp连接</code>，允许一次发送多个<code>HTTP 1.1</code>请求，不必等到前一个响应收到，就可以发送下一个请求。这样解决了<code>HTTP 1.0</code>的客户端的<br><code>队头阻塞</code>，而这也就是<code>HTTP 1.1</code>中 <code>管道（Pipeline）</code>的概念。</p>
+<p>但是,<code>HTTP 1.1 规定，服务器端的响应的发送要根据请求被接收的顺序排队</code>，也就是说，先接收到的请求的响应也要先发送。这样造成的问题是，如果最先收到的请求的处理时间长的话，响应生成也慢，就会阻塞已经生成了的响应的发送。也会造成队头阻塞。所以，<code>HTTP 1.1</code>的<code>队头阻塞发生在服务端</code>。</p>
+<p><img src="./algorithm-structure/8.png" alt="HTTP 1.1 服务端队头阻塞"></p>
+<p>为了解决<code>HTTP 1.1</code>中的<code>服务器端队头阻塞</code>，<code>HTTP 2.x</code>采用了<code>二进制分帧</code>和<code></code>多路复用`等方法。</p>
+<p><code>二进制帧</code>是<code>HTTP 2.x</code>数据通信的最小单位。在<code>HTTP 1.1</code>中数据包是文本格式。采用帧可以将请求和响应的数据分割的更小，且二进制协议可以更高效解析。</p>
+<blockquote>
+<p>HTTP 2.x 中的帧分为头部帧、主体帧。</p>
+</blockquote>
+<p>在<code>HTTP 2.x</code>中，<code>同域名下所有通信都在单个连接上完成，该连接可以承载任意数量的双向数据流。</code></p>
+<p><code>每一个数据流都以消息的形式发送，而消息又由一个或多个帧组成。</code></p>
+<p><code>多个帧之间可以乱序发送，根据帧首部的流标识可以重新组装。</code></p>
+<p><code>多路复用，用于替代原来的序列和阻塞机制。</code></p>
+<p>在<code>HTTP/2</code>中，<code>同一域名下的所有通信在单个链接完成</code>，仅占用<code>一个TCP链接</code>，且在这一个链接上可以并行请求和响应，互不干扰。</p>
+<p>想了解多路复用的可以看我另一篇文章<a href>HTTP 2.x</a></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈也是一种受限的序列，它只能够操作栈顶，不管入栈还是出栈，都是在<code>栈顶操作</code>。</p>
+<p>在计算机科学中, 一个<code>栈(stack)</code> 是一种抽象数据类型,用作表示元素的集合,具有两种主要操作:</p>
+<ul>
+<li>push 添加元素到栈的顶端（末尾）。</li>
+<li>pop 移除栈最顶端（末尾）的元素。</li>
+</ul>
+<p>以上两种操作可以简单概括为<code>后进先出 LIFO(last in, first out)</code>。</p>
+<p>此外,应有一个 peek 操作用于访问栈当前顶端(末尾)的元素。（只返回不弹出）</p>
+<blockquote>
+<p>“栈”这个名称,可类比于一组物体的堆叠(一摞书,一摞盘子之类的)。</p>
+</blockquote>
+<p>可以通过<code>JS</code>中的数组类型来模仿栈的操作如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  <span class="comment">// 声明一个 数据 用以模仿栈</span></span><br><span class="line"><span class="keyword">var</span> stack = [];</span><br><span class="line"><span class="comment">// 向栈中添加 两个元素（push）</span></span><br><span class="line">stack.push(<span class="number">1</span>);</span><br><span class="line">stack.push(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// pop</span></span><br><span class="line"><span class="keyword">let</span> stackPop = stack.pop();</span><br><span class="line"><span class="built_in">console</span>.log(stackPop, stack);</span><br></pre></td></tr></table></figure>
+<p>栈的 <code>push</code> 和 <code>pop</code> 操作的示意:</p>
+<p><img src="./algorithm-structure/11.webp" alt="stack push pop"><br><a href="https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/stack/README.zh-CN.md" target="_blank" rel="noopener">图片来自</a></p>
+<p>栈在很多地方都有着应用，比如大家熟悉的浏览器就有很多栈，其实浏览器的执行栈就是一个基本的栈结构，从数据结构上说，它就是一个栈。这也就解释了，我们用递归的解法和用循环+栈的解法本质上是差不多。</p>
+<p>栈常见的应用有进制转换，括号匹配，栈混洗，中缀表达式（用的很少），后缀表达式（逆波兰表达式）等。</p>
+<blockquote>
+<p>合法的栈混洗操作，其实和合法的括号匹配表达式之间存在着一一对应的关系，也就是说n个元素的栈混洗有多少种，n对括号的合法表达式就有多少种。感兴趣的可以查找相关资料。</p>
+</blockquote>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>数据结构中的每<code>一个结点</code>对应于<code>一个存储单元</code>，这种存储单元称为<code>存储结点</code>。简称节点。</p>
+<p><strong>链表中的结点</strong></p>
+<p>链表中每个数据的存储都由以下两部分组成：</p>
+<ul>
+<li>数据元素本身，其所在的区域称为<code>数据域（后面用data代指）</code>。</li>
+<li>指向直接后继元素的指针，所在的区域称为<code>指针域（后面用next代指）</code>。</li>
+</ul>
+<p>链表别名<code>链式存储结构</code>或<code>单链表</code>，用于存储逻辑关系为<code>一对一</code>的数据。<code>与顺序表不同，链表不限制数据的物理存储转态，链表存储的数据元素的为物理存储位置是随机的</code>。</p>
+<!-- 链式存储方式即可用于表示线性结构，也可用于表示非线性结构。
+线性链表，`head`称为头`指针`，`head=null（或0）`称为空表，如果是两指针：`左指针（llink）指向前件结点，右指针（rlink）指向后件结点`。 
+线性链表的基本运算：`查找、插入、删除`。  -->
+<p>例如我们用链表存储<code>{1,2,3}</code>三个元素节，大致如下图所示：</p>
+<p><img src="./algorithm-structure/12.png" alt="Linked list"></p>
+<p>链表也有很多种类：常见的链表类型有<code>单链表</code>、<code>双链表</code>、<code>循环链表</code>它们在物理存储时的大致示意图。</p>
+<p><strong>单链表</strong></p>
+<p><code>单链表：N个结点链结成一个链表，由于此链表的每一个结点中包含一个指针域，故又称线性链表或单链表。</code></p>
+<p><img src="./algorithm-structure/13.png" alt="Linked list"></p>
+<p><strong>双链表</strong></p>
+<p><code>双向链表（简称双链表）是指在前驱和后继方向都能游历(遍历)的线性链表</code>。<br>在双向链表结构中，每一个结点除了数据域外，还包括两个指针域，一个指针指向该结点的后继结点，另一个指针指向它的前趋结点。通常采用带表头结点的循环链表形式。</p>
+<p><img src="./algorithm-structure/14.png" alt="Linked list"></p>
+<p><strong>循环链表</strong></p>
+<p><code>循环链表最后一个结点的next指针不为空，而是指向了表的前端。</code></p>
+<p><img src="./algorithm-structure/15.png" alt="Linked list"></p>
+<blockquote>
+<p>循环链表的特点是：只要知道表中某一结点的地址，就可搜寻到所有其他结点的地址。</p>
+</blockquote>
+<h3 id="链表操作时间复杂度"><a href="#链表操作时间复杂度" class="headerlink" title="链表操作时间复杂度"></a>链表操作时间复杂度</h3><p><strong>单链表</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作方法</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">append</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表尾部追加节点</td>
+</tr>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中查找任意元素</td>
+</tr>
+<tr>
+<td style="text-align:center">insert</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中任意位置插入一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">remove</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">删除链表中任意位置的一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">searchNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">查找某节点的后继节点</td>
+</tr>
+<tr>
+<td style="text-align:center">insertNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">在某一节点后插入一个节点（后继节点）</td>
+</tr>
+<tr>
+<td style="text-align:center">removeNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">在某一节点后删除一个节点（后继节点）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>双链表</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作方法</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中查找任意元素</td>
+</tr>
+<tr>
+<td style="text-align:center">insert</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中任意位置插入一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">remove</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">删除链表中任意位置的一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">searchNext 或 searchPre</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">查找某节点的后继节点或前驱节点</td>
+</tr>
+<tr>
+<td style="text-align:center">insertNext 或 insertPre</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">插入某节点的后继节点或前驱节点</td>
+</tr>
+<tr>
+<td style="text-align:center">removeNext 或 removePre</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">删除某节点的前驱节点或后继节点</td>
+</tr>
+</tbody>
+</table>
+<p><strong>循环链表</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作方法</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中查找任意元素</td>
+</tr>
+<tr>
+<td style="text-align:center">insert</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">在链表中任意位置插入一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">remove</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">删除链表中任意位置的一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">searchNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">查找某节点的后继节点</td>
+</tr>
+<tr>
+<td style="text-align:center">insertNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">在某一节点后插入一个节点（后继节点）</td>
+</tr>
+<tr>
+<td style="text-align:center">removeNext</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">在某一节点后删除一个节点（后继节点）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="顺序表与链表的比较"><a href="#顺序表与链表的比较" class="headerlink" title="顺序表与链表的比较"></a>顺序表与链表的比较</h3><ul>
+<li><code>顺序表</code>的存储空间可以是<code>静态分配</code>的，也可以是<code>动态分配</code>的。<code>链表</code>的存储空间是<code>动态分配</code>的。</li>
+<li><code>顺序表</code>可以<code>随机或顺序存取</code>。<code>链表</code>只能<code>顺序存取</code>。</li>
+<li><code>顺序表</code>进行<code>插入/删除</code>操作平均需要移动近一半元素。<code>链表</code>则<code>修改指针</code>不需要移动元素。若<code>插入/删</code>除仅发生在表的<code>两端</code>，宜采用<code>带尾指针的循环链表</code>。</li>
+<li><code>存储密度=结点数据本身所占的存储量/结点结构所占的存储总量。顺序表的存储密度= 1，链表的存储密度&lt; 1</code>。</li>
+</ul>
+<p>总结：<code>顺序表是用数组实现的，链表是用指针实现的。用指针来实现的链表，结点空间是动态分配的，链表又按链接形式的不同，区分为单链表、双链表和循环链表</code>。</p>
+<h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>树型结构是一类非常重要的非线性数据结构，其所有元素之间具有明显的层次特性。树中最常用的就是二叉树。</p>
+<p><code>树 是由n（n&gt;=1）个有限节点组成一个具有层次关系的集合。它具有以下特点：每个节点有零个或多个子节点；没有父节点的节点称为 根 节点；每一个非根节点有且只有一个 父节点</code>。</p>
+<p><img src="./algorithm-structure/20.png" alt="tree"></p>
+<p><img src="./algorithm-structure/21.png" alt="tree"></p>
+<p>将具有<code>“一对多”</code>关系的集合中的数据元素按照<code>图A</code>的形式进行存储，整个存储形状在逻辑结构上看，类似于实际生活中倒着的<code>树图B</code>倒过来），所以称这种存储结构为<code>“树型”存储结构</code>。</p>
+<h3 id="树的节点"><a href="#树的节点" class="headerlink" title="树的节点"></a>树的节点</h3><p><code>节点</code>：使用树结构存储的每一个数据元素都被称为<code>&quot;节点&quot;</code>。<br><code>树根节点（简称“根节点”）</code>：每一个非空树都有且只有一个被称为<code>根的节点</code>。<br><code>叶子节点</code>：如果结点没有任何子结点，那么此结点称为<code>叶子节点（叶节点）</code>。</p>
+<blockquote>
+<p>树根的判断依据为：如果一个结点没有父结点，那么这个结点就是整棵树的根结点。</p>
+</blockquote>
+<h3 id="子树和空树"><a href="#子树和空树" class="headerlink" title="子树和空树"></a>子树和空树</h3><p><code>子树</code>：我们上图整体树的根节点为<code>节点A</code>，而如果单看节点<code>B</code>、<code>E</code>、<code>F</code>等等组成的部分来说，也是一棵树，而且<code>节点B</code>为这棵树的<code>根节点</code>。所以<code>B、E、F</code>这几个节点组成的树为整棵树的子树；</p>
+<blockquote>
+<p>注意：单个结点也是一棵树，只不过根结点就是它本身。图 A中，结点 K、L、F 等都是树，且都是整棵树的子树。</p>
+</blockquote>
+<p>知道了子树的概念后，<code>树也可以这样定义：树是由根结点和若干棵子树构成的</code>。</p>
+<p><code>空树</code>：如果集合本身为空，那么构成的树就被称为空树。<code>空树中没有结点</code>。</p>
+<blockquote>
+<p>补充：在树结构中，对于具有同一个根结点的各个子树，相互之间不能有交集。例如，图（A）中，除了根结点 A，其余元素又各自构成了三个子树，根结点分别为 B、C、D，这三个子树相互之间没有相同的结点。如果有，就破坏了树的结构，不能算做是一棵树。</p>
+</blockquote>
+<h3 id="节点的层数和树的深度"><a href="#节点的层数和树的深度" class="headerlink" title="节点的层数和树的深度"></a>节点的层数和树的深度</h3><ul>
+<li><code>结点的层数</code>：根结点的层数为1，其余结点的层数等于其双亲结点的层数加1。</li>
+<li><code>堂兄弟</code>：双亲在同一层的结点互为堂兄弟。</li>
+<li><code>树的深度</code>：树中结点的最大层数称为树的深度。</li>
+</ul>
+<h3 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h3><ul>
+<li><code>先序遍历（DLR）</code>：先序遍历 若二叉树为空，则空操作，否则<code>访问根结点</code>——<code>先序遍历根的左子树</code>——<code>先序遍历根的右子数</code>。</li>
+<li><code>中序遍历（LDR）</code>：若二叉树为空，则空操作，否则<code>中序遍历左子树</code>——<code>访问根结点</code>——<code>中序遍历右子树</code>。</li>
+<li><code>后序遍历（LRD）</code>：若二叉树为空，则空操作，否则<code>后序遍历左子树</code>——<code>后序遍历右子树</code>——<code>访问根结点</code>。</li>
+</ul>
+<p><img src="./algorithm-structure/22.png" alt="tree"></p>
+<ul>
+<li>先序遍历：A -&gt; B -&gt; D -&gt; H -&gt; I -&gt; E -&gt; C -&gt; F -&gt; G -&gt; J -&gt; K</li>
+<li>中序遍历：H -&gt; D -&gt; I -&gt; B -&gt; E -&gt; A -&gt; F -&gt; C -&gt; J -&gt; K -&gt; G</li>
+<li>后序遍历：H -&gt; I -&gt; D -&gt; E -&gt; B -&gt; F -&gt; K -&gt; J -&gt; G -&gt; C -&gt; A</li>
+</ul>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是树中的一种，二叉树也是树中最常用的一种。怎么才会被称为二叉树呢？</p>
+<ul>
+<li>非空二叉树只有一个根节点；</li>
+<li>每一个节点最多有两棵子树，且分别称为该节点的左子树与右子树。</li>
+</ul>
+<p>二叉树中有两个比较常用的<code>满二叉树</code>和<code>完全二叉树</code>。</p>
+<h4 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a>满二叉树</h4><p><code>满二叉树</code>： 二叉树中<code>除了叶子结点</code>，每个节点的<code>度</code>都为<code>2</code>，则此二叉树称为满二叉树。并且满二叉树除了满足普通二叉树的性质，还具有一下性质：</p>
+<ol>
+<li>满二叉树中第i层的节点数为<code>2^n-1</code>个。</li>
+<li>深度为K的满二叉树必有<code>(2^k) - 1</code>个节点，叶子数为<code>2^k-1</code>。</li>
+<li>满二叉树中不存在度为<code>1</code>的节点，每一个分支节点中都两棵深度相同的子树，且<code>叶子节点</code>都在最底层。</li>
+<li>具有n个节点的满二叉树的深度为<code>log2(n+1)</code>。</li>
+</ol>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p><code>完全二叉树</code>： 如果二叉树中<code>除去最后一层节点为满二叉树</code>，且最后一层的结点<code>依次从左到右</code>分布，则此二叉树被称为完全二叉树。</p>
+<p>对于任意一个完全二叉树来说，如果将含有的结点按照层次<code>从左到右依次</code>标号，对于任意一个<code>节点i</code>，完全二叉树还有以下几个结论成立：</p>
+<ol>
+<li>当<code>i &gt; 1</code>时，父亲节点为节点<code>[i/2]</code>。<code>(i=1时，表示的是根节点，无父亲节点)</code>。</li>
+<li>如果<code>2*i &gt; n (总节点的个数)</code>，则节点<code>i</code>肯定没有左子节点（为叶子节点）；否则其左孩子是节点<code>2*i</code>。</li>
+<li>如果<code>2*i + 1 &gt; n</code>，则节点<code>i</code>肯定没有右子节点；否则右子节点是节点<code>2*i + 1</code>。</li>
+</ol>
+<h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><p>二叉树也有<code>先序遍历</code>、<code>中序遍历</code>、<code>后续遍历</code>，但是也会经常的被问到，<code>广度优先</code>、<code>深度优先</code>。</p>
+<p><code>广度优先搜索（ BFS）</code>是一种遍历或搜索数据结构（如树或图）的算法，也可以在更抽象的场景中使用。</p>
+<p>它的特点是越是接近根结点的结点将越早地遍历。</p>
+<p>例如，我们可以使用 BFS 找到从起始结点到目标结点的路径，特别是最短路径。</p>
+<p>在 BFS中，结点的处理顺序与它们添加到队列的顺序是完全相同的顺序，即先进先出，所以广度优先搜索一般使用队列实现。</p>
+<ul>
+<li>从上到下打印二叉树</li>
+<li>单词接龙</li>
+<li>员工的重要性</li>
+<li>岛屿数量</li>
+</ul>
+<h3 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h3><p><code>二叉查找树</code>就是<code>二叉排序树</code>，也叫<code>二叉搜索树</code>。二叉查找树或者是一棵空树，或者是具有下列性质的二叉树： </p>
+<ol>
+<li>若左子树不空，则左子树上所有结点的值均小于它的根结点的值；</li>
+<li>若右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
+<li>左、右子树也分别为二叉排序树；</li>
+<li>没有键值相等的结点。</li>
+</ol>
+<p><img src="./algorithm-structure/23.png" alt="tree"></p>
+<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p><code>平衡二叉树</code>又称<code>AVL树</code>，它或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<ul>
+<li>它的<code>左子树</code>和<code>右子树</code>都是<code>平衡二叉树</code>。</li>
+<li><code>左子树</code>和<code>右子树</code>的<code>深度之差的绝对值不超过1</code>。</li>
+</ul>
+<p><img src="./algorithm-structure/24.png" alt="AVL tree"></p>
+<p><code>AVL树</code>是最先发明的<code>自平衡二叉查找树算法</code>。在<code>AVL</code>中任何节点的儿歌儿子子树的高度最大差别为<code>1</code>，所以他也被称为<code>高度平衡树</code>，<code>n个节点</code>的<code>AVL树</code>最大深度约<code>1.44log2n</code>。<br><code>查找</code>、<code>插入</code>、<code>删除</code>在平衡和最坏情况下都是<code>O(logn)</code>。增加和删除可能需要通过一次或多次树旋转来重新平衡这个树。</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树是平衡二叉树的一种，它保证在最坏情况下基本动态几何操作的时间复杂度为<code>O(logn)</code>。<code>红黑树</code>和<code>平衡二叉树区别</code>如下:</p>
+<ol>
+<li>红黑树放弃了追求完全平衡，追求大致平衡，在与平衡二叉树的时间复杂度相差不大的情况下，保证每次插入最多只需要<code>三次旋转</code>就能达到平衡，实现起来也更为简单。</li>
+<li>平衡二叉树追求绝对平衡，条件比较苛刻，实现起来比较麻烦，每次插入新节点之后需要旋转的次数不能预知。</li>
+</ol>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>图是一种较<code>线性表</code>和<code>树</code>更为<code>复杂</code>的数据结构，在线性表中，数据元素之间仅有<code>线性关系</code>，在树形结构中，数据元素之间有着明显的<code>层次关系</code>，而在图形结构中，节点之间的关系可以是<code>任意的</code>，图中任意两个数据元素之间都可能相关。</p>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+        <category>未完成</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript了解JS中的位运算符</title>
     <url>/blog/javascript/docs/bitwise-operators.html</url>
     <content><![CDATA[<h2 id="JavaScript中的按位操作符"><a href="#JavaScript中的按位操作符" class="headerlink" title="JavaScript中的按位操作符"></a>JavaScript中的按位操作符</h2><p>JavaScript提供了几种运算符，可以对一些简单的值进行基本操作，比如<code>算术运算符</code>、<code>赋值运算符</code>、<code>逻辑运算符</code>、<code>按位操作符</code>等。其他的操作运算符都是经常用到的，比如算数运算符的<code>+、-、*、/</code>；赋值运算符的<code>=、+=、-=</code>；逻辑运算符的<code>||、&amp;&amp;、!</code>等等。但是<code>按位操作符</code>操作符是比较来说不常用的，很多人也不知道都有什么<code>按位操作符</code>?</p>
